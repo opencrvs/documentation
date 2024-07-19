@@ -66,6 +66,6 @@ Make sure to include a detailed description of the bug. Open a bug report on [Gi
 If you would like to request a new feature or enhancement but are not yet thinking about opening a pull request, you can**:**
 
 1. Email us at team@opencrvs.org to explore the feature together.
-2. File an issue with [t](https://github.com/facebook/docusaurus/issues/new?template=feature.md)he [feature template.](https://github.com/opencrvs/opencrvs-core/issues/new?assignees=\&labels=%E2%98%95%EF%B8%8F+Discussion\&template=---feature.md\&title=)
+2. File an issue with the [feature template.](https://github.com/opencrvs/opencrvs-core/issues/new?assignees=\&labels=%E2%98%95%EF%B8%8F+Discussion\&template=---feature.md\&title=)
 3. Join the community at [https://community.opencrvs.org/](https://community.opencrvs.org/) and ask what others think about your idea.
 
