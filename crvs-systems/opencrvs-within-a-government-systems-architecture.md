@@ -24,11 +24,15 @@ Similar to the way that physical infrastructure like railways and roads drives e
 
 At OpenCRVS we are reimagining the way that civil registration systems work. We see the registration of life events as a foundational component of DPI, contributing to inclusive and equitable service delivery in the public and private sectors. The landscape is changing for digital civil registration systems as part of DPI and we must be aware of the key architectural principles which must be upheld to achieve maximum societal value.
 
-The civil registration system plays a crucial role in providing a foundational and verifiable identity for individuals. In fact, you can’t get any more foundational than the system that recognises the very existence of people in a country, hence a well architected civil registration system is a true DPI:&#x20;
+{% hint style="info" %}
+**The civil registry provides the sole legal and trusted source of life events data for a country. By digitising this source of data and making it available to authorised users through secure and standardised interfaces, OpenCRVS provides a critical building block of Digital Public Infrastructure.**&#x20;
+{% endhint %}
+
+The civil registration system plays a crucial role in providing a foundational and verifiable identity for individuals. In fact, you can’t get any more foundational than the system that recognises the very existence of people in a country, hence a well architected civil registration system is a true DPI, providing the following:&#x20;
 
 * Foundational Identity: The civil registration system forms the basis for creating unique digital identities for life. Birth registration for example triggers the creation of a unique identifier within the ID system, providing key biographical data such as name and date of birth.&#x20;
 * Digitally signed certificates: The creation of verifiable credentials can be an output of the registration process, so that individuals are able to prove who they are to public and private institutions, without needing to request certified copies.&#x20;
-* Enable access to government services: Civil registration provides the legal and trusted source of life events data and represents the universal data set for the provision of public services, such as social services, healthcare, education, and voting. In simple terms the civil registry answers important questions like:
+* Access to government services: Civil registration provides the legal and trusted source of life events data and represents the universal data set for the provision of public services, such as social services, healthcare, education, and voting. In simple terms the civil registry answers important questions like:
   * Which families are entitled to a welfare grant (social protection)?
   * Who should be coming to school this year (education)?
   * Which children need to get vaccinated (healthcare)?
