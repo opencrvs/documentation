@@ -12,6 +12,10 @@ In order to configure the OpenCRVS product, you will need a number of inputs. Th
 Download our Excel templates to help you gather and define requirements for your OpenCRVS implementation [OpenCRVS Requirements Templates](https://github.com/opencrvs/opencrvs-core/wiki/Gather-requirements)
 {% endhint %}
 
+### How to complete the configuration templates
+
+{% embed url="https://www.youtube.com/watch?v=5hpczjwjQ48" %}
+
 ### Checklist
 
 * [ ] **Gather and analysis the rules and regulations for civil registration in your country**\
