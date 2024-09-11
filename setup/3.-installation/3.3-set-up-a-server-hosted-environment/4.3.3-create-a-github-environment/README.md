@@ -4,7 +4,7 @@ We have an automated script to generate [Github environments](https://docs.githu
 
 The environments will be named according to the naming convention identical to that we have described [here](../).&#x20;
 
-Specifically: **qa, staging, production,** for training purposes **development** (optional), for backup server **backup** and for jump / bastion server **jump.** &#x20;
+Specifically: **qa, staging, production,** **backup** and for training purposes a **development** (optional) server.
 
 Github Actions use these environments to access the secret keys and configurations used when installing software on servers and deploying OpenCRVS in the automated "continuous delivery" process.
 
@@ -28,6 +28,10 @@ Then create an empty private repository to store your configuration...
 
 <figure><img src="../../../../.gitbook/assets/Screenshot 2024-01-09 at 16.07.25.png" alt=""><figcaption><p>Creating a private Dockerhub repository for a countryconfig forked container</p></figcaption></figure>
 
+Ensure that the Dockerhub members have permissions to write to the repository:
+
+<figure><img src="../../../../.gitbook/assets/Screenshot 2024-09-11 at 11.35.02.png" alt=""><figcaption></figcaption></figure>
+
 {% hint style="info" %}
 You will need your Dockerhub **username** and a personal Dockerhub account **access token** in order to create the Github environment.  Our scripts use these credentials to login to Dockerhub programmatically.  This is how you create a Dockerhub access token: [https://docs.docker.com/security/for-developers/access-tokens/](https://docs.docker.com/security/for-developers/access-tokens/)
 {% endhint %}
@@ -44,11 +48,7 @@ The only required scope for the token is "repo" (above).
 
 ### 3. According to your requirements, decide your VPN approach
 
-OpenCRVS should be installed behind a VPN.  You will need to prepare variables for your VPN of choice.  This script will ask you for VPN information when provisioning a production or staging environment.  There are a few things to consider here.
-
-{% hint style="warning" %}
-Our Wireguard VPN is not designed for use at scale.  The Wireguard VPN Admin interface hosted at vpn.\<your-domain> uses [wg-easy](https://github.com/wg-easy/wg-easy). OpenCRVS accepts no responsibility for the penetration testing or security of the Wireguard VPN or WG Easy. Use at your own risk.
-{% endhint %}
+OpenCRVS should be installed behind a VPN.  You will need to prepare access secrets and variables for your VPN of choice.  This script will ask you for VPN information when provisioning a production or staging environment.  There are a few things to consider here.
 
 You have a choice (a) or (b) depending on your preferred way for Github Actions to access the target machine you are provisioning or deploying to.
 
