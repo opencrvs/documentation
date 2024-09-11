@@ -1,12 +1,12 @@
-# 4.3.4 Provision environments
+# 4.3.4 Configure inventory files
 
-[Ansible](https://docs.ansible.com/) is run by the "Provision environment" Github Action to install on your server all the software dependencies, configure scheduled tasks such as automated backup, install and configure a firewall.  The pipeline will also secure your server by only allowing your defined system administrator users SSH access to the servers using two factor authentication. &#x20;
+[Ansible](https://docs.ansible.com/) is run by the "Provision environment" Github Action to install on your server all the software dependencies, configure scheduled tasks such as automated backup, install and configure a firewall. &#x20;
 
+The pipeline will also secure your server by only allowing your defined system administrator users SSH access to the servers using two factor authentication. &#x20;
 
+An automated script will create a Github environment to safely store application secrets and supply them to the provision action.  Before running the script, you need to edit the Ansible inventory files and commit them to your repository.
 
 ### Configure the Ansible inventory files for your environments
-
-The first step is to configure the [YAML inventory file](https://docs.ansible.com/ansible/latest/inventory\_guide/intro\_inventory.html) that Ansible will use for your environment.
 
 Look in the **infrastructure/server-setup** directory and you will see the following files:&#x20;
 
@@ -22,6 +22,8 @@ Look in the **infrastructure/server-setup** directory and you will see the follo
 
 ### Starting with the **development.yml** file ... &#x20;
 
+If you are just wanting to set up a single server for training purposes, the file you need to edit is the development.yml file
+
 In the users block you can add SSH public keys for server super admins.  These are individuals in your organisation who will be able to SSH into the environment for debugging purposes.  Ansible will create these users and set up 2FA authentication for them when they connect.
 
 You must also replace the server hostname and the IP address for the development server.
@@ -30,20 +32,21 @@ You must also replace the server hostname and the IP address for the development
 all:
   vars:
     users:
+      # @todo this is where you define which development team members have access to the server.
       # If you need to remove access from someone, do not remove them from this list, but instead set their state: absent
-      - name: <REPLACE WITH THE SSH USERNAME>
+      - name: <REPLACE WITH A USERNAME FOR YOUR SSH USER>
         ssh_keys:
-          - <REPLACE WITH SSH PUBLIC KEY FOR THE USER>
+          - <REPLACE WITH THE USER'S PUBLIC SSH KEY>
         state: present
         sudoer: true
-
+    enable_backups: false
 docker-manager-first:
   hosts:
-    <REPLACE WITH THE SERVER HOSTNAME>:
-      ansible_host: '<IP ADDRESS FOR THE SERVER>'
-      data_label: data1
+    <REPLACE WITH THE SERVER HOSTNAME>: # @todo set this to be the hostname of your target server
+      ansible_host: '<REPLACE WITH THE IP ADDRESS>' # @todo set this to be the IP address of your server
+      data_label: data1 # for manager machines, this should always be "data1"
 
-# QA and staging servers are not configured to use workers.
+# Development servers are not configured to use workers.
 docker-workers: {}
 ```
 
@@ -51,38 +54,65 @@ docker-workers: {}
 
 ### Next, observe the **qa.yml** file ...
 
+The "qa" environment is a server used for quality assurance purposes.
+
 Once again,  add SSH public keys for super admins and amend the hostname and IP address as above.
 
-There are some optional blocks here depending on what you need to do.
+### Next, observe the **backup.yml** file ...&#x20;
 
-In our example setup, we are repurposing our QA server as the VPN & "jump" server. &#x20;
+OpenCRVS is configured to save a back up of citizen data from production into a backup server every night, and restore the backup onto staging.  This ensures that your citizen data is securely backed up in an encrypted file and is restorable to an environment that you can use for pre-production testing with real citizen data (staging).
 
-You will see the option to add a "jump" user that doesnt require 2FA to connect, as this user will be used by the Github action to then SSH into downstream servers using their "provision" user.  So you must paste in the public keys for each relevant server. &#x20;
+Once again,  add SSH public keys for super admins and amend the hostname and IP address for the **backup server** as above.
 
-If you are using your own VPN and you have your own jump server in your network, you can delete this block.
+The following variable defines how many days of backup will be retained on the backup server.  By default we set this to 7 days to optimise diskspace on the server.
 
 ```
-- name: jump
-    state: present
-    sudoer: false
-    two_factor: false
-    ssh_keys:
-        - <Here you must paste the public keys for the provision user for other servers>
+amount_of_backups_to_keep
 ```
 
-You will also notice this block.  This is used by some countries who wish to repurpose the QA server as a backup server in order to reduce costs.  If you have a separate backup server, you can delete this block. &#x20;
+The following variable allows you to customise the directory where backups will be stored.
 
-```yaml
-additional_keys_for_provisioning_user
+```
+backup_server_remote_target_directory
 ```
 
+```
+all:
+  vars:
+    # @todo how many days to store backups for?
+    amount_of_backups_to_keep: 7
+    backup_server_remote_target_directory: /home/backup/backups
+    users:
+      # @todo this is where you define which development team members have access to the server.
+      # If you need to remove access from someone, do not remove them from this list, but instead set their state: absent
+      - name: <REPLACE WITH A USERNAME FOR YOUR SSH USER>
+        ssh_keys:
+          - <REPLACE WITH THE USER'S PUBLIC SSH KEY>
+        state: present
+        sudoer: true
 
+backups-host:
+  hosts:
+    <REPLACE WITH THE SERVER HOSTNAME>: # @todo set this to be the hostname of your target server
+      ansible_host: '<REPLACE WITH THE IP ADDRESS>'
+```
 
 ### Next, observe the **staging.yml** file ...&#x20;
 
-Add SSH public keys for super admins and amend the hostname and IP address as above.
+Add SSH public keys for super admins and amend the hostname and IP address for the **staging server** as above.
 
+The following block should be edited with your backup server details so that the staging server can access the backup server programatically.
 
+```
+...
+backups:
+  hosts:
+    <REPLACE WITH THE BACKUP SERVER HOSTNAME>: # @todo set this to be the hostname of your backup server
+      ansible_host: '<REPLACE WITH THE BACKUP SERVER IP ADDRESS>' # set this to be the IP address of your backup server
+      # Written by provision pipeline. Assumes "backup" environment
+      # exists in Github environments
+      ansible_ssh_private_key_file: /tmp/backup_ssh_private_key
+```
 
 A staging server is used as a pre-production environment that is a mirror of production.  Production backs up every night to the backup server, and the staging server restores the previous days backup onto it. &#x20;
 
@@ -97,37 +127,9 @@ Note these variables:
 
 **"enable\_backups"** is set to false on staging.  Staging will not backup data.
 
-**"periodic\_restore\_from\_backup"** is set to true on staging.  Staging will only restore backup data from production.
+**"periodic\_restore\_from\_backup"** is set to true on staging.  Staging will restore backed up data from production.
 
-```
-only_allow_access_from_addresses:
-    - <REPLACE WITH WHITELIST OF IPS / JUMP SERVER IP etc>
-enable_backups: false
-periodic_restore_from_backup: true
-```
-
-Note the following variable:
-
-**"ansible\_ssh\_common\_args"** contains the same command as SSH\_ARGS used in [step 3.3.2](../4.3.3-create-a-github-environment/). &#x20;
-
-It is required to be manually set here again because unfortunately Github doesnt allow us to configure Ansible core to allow variables to be passed to inventory files.  You can remove these args if you are not using a "jump" server.
-
-```
-ansible_ssh_common_args: '-J jump@<REPLACE WITH YOUR JUMP SERVER IP> -o StrictHostKeyChecking=no'
-```
-
-Note the backups block which is set on the staging server so that the staging server has access to the backup environment to retrieve daily backups.
-
-```
-backups:
-  hosts:
-    <REPLACE WITH THE BACKUP SERVER HOSTNAME>:
-      ansible_host: '<IP ADDRESS FOR THE BACKUP SERVER>'
-```
-
-
-
-### Next, observe the production.yml file ...
+### Finally, observe the production.yml file ...
 
 The variables are similar to the staging environment.  Notice that the **"enable\_backups"** variable is set to true as this environment will backup every day.
 
@@ -146,42 +148,14 @@ docker-workers:
       ansible_ssh_common_args: ''
 ```
 
+If your production cluster contains only one server, you can replace the docker-workers block like this:
+
+```
+# This production cluster is configured to only use one server
+docker-workers: {}
+```
+
 {% embed url="https://youtu.be/LhMWxbNjAm0" %}
 
-### Commit the inventories and run the provision action for each environment
+### Commit the inventory file changes to your Github repository before proceeding.
 
-Amend the inventory files as appropriate and commit the files to Git.
-
-{% hint style="warning" %}
-If you are going to use the QA server as a jump server, then you should provision the QA server first.
-{% endhint %}
-
-<figure><img src="../../../../.gitbook/assets/Screenshot 2024-02-13 at 15.36.15.png" alt=""><figcaption></figcaption></figure>
-
-{% embed url="https://youtu.be/8x4cssPvPB0" %}
-
-### Set-up 2FA SSH access for all your super admins
-
-Now that your servers are provisioned and A records exist for them, you can SSH in using either the IP address or the domain, plus your super admin username. &#x20;
-
-<figure><img src="../../../../.gitbook/assets/Screenshot 2024-02-13 at 15.51.38.png" alt=""><figcaption></figcaption></figure>
-
-SSH'ing into a **production** or **staging** server that has been configured with a "jump" server, will require you to pass the arguments appropriate to your setup.
-
-<figure><img src="../../../../.gitbook/assets/Screenshot 2024-02-13 at 16.04.22.png" alt=""><figcaption></figcaption></figure>
-
-You will be asked to set up 2FA with Google Authenticator.  You must have the Google Authenticator app on your mobile phone.
-
-Scan the QR code then enter the 6-digit 2FA code to access the server.
-
-For all the questions that are asked, accept defaults by typing "y"
-
-<figure><img src="../../../../.gitbook/assets/Screenshot 2024-02-13 at 15.52.40.png" alt=""><figcaption><p>QR Code for Google Authenticator</p></figcaption></figure>
-
-<figure><img src="../../../../.gitbook/assets/Screenshot 2024-02-13 at 15.52.57.png" alt=""><figcaption><p>Accept defaults</p></figcaption></figure>
-
-You will also notice that root SSH access is now disabled as a security posture.
-
-<figure><img src="../../../../.gitbook/assets/Screenshot 2024-02-13 at 15.57.53.png" alt=""><figcaption></figcaption></figure>
-
-Now that all your servers are provisioned, you are ready to deploy OpenCRVS provided your country confguration Docker container image has pushed to Docker successfully.
