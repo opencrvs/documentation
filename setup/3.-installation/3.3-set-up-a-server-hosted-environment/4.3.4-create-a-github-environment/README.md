@@ -58,62 +58,6 @@ You have many choices depending on your preferred way for Github Actions to acce
 You will need to edit Github Action files for all scripts that require access to your network using whatever "recipe" is required for the Github Action runner.  Consider the Github Action runner as a client for your VPN.  Github's IP addresses should be whitelisted as authentic sources for VPN client connections.  They are listed here: [https://api.github.com/meta](https://api.github.com/meta)
 {% endhint %}
 
-#### a) Utilise a "jump" host server and "jump" user
-
-If you are going to use the OpenCRVS supplied Wireguard VPN
-
-_or_&#x20;
-
-if you are going to use your own VPN and use the VPN server as a "jump" or "bastion" server to allow Github Actions to SSH into the servers as the "provision" user ...&#x20;
-
-... then you should have an SSH user called "jump" created on your VPN server that is allowed to SSH through your VPN, without requiring VPN client connection from a whitelist of GitHub's IP addresses listed in Github's ["meta"](https://api.github.com/meta) endpoint, described here: [https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses)&#x20;
-
-{% hint style="info" %}
-The VPN company, "Tailscale" has [this](https://tailscale.com/learn/access-remote-server-jump-host) great explanation about what a jump host is and how to configure one.
-{% endhint %}
-
-Please note that OpenCRVS Github Actions connect to your servers like this
-
-```
-ssh -J jump@<your vpn server> provision@<your server>
-```
-
-{% hint style="info" %}
-If you are going to use the OpenCRVS supplied Wireguard VPN, then you will have to use the jump and whitelist approach, as Wireguard is not compatible with openconnect.  FYI: In our Farajaland reference implementation, we use our QA server as the VPN server which hosts Wireguard VPN, and we create a jump user on the QA server.
-{% endhint %}
-
-b) Dont utilise a "jump" host & use an openconnect compatible VPN
-
-{% hint style="info" %}
-openconnect compatible VPNs are:
-
-* [Cisco AnyConnect](https://www.infradead.org/openconnect/anyconnect.html) (--protocol=anyconnect)
-* [Array Networks SSL VPN](https://www.infradead.org/openconnect/array.html) (--protocol=array)
-* [Juniper SSL VPN](https://www.infradead.org/openconnect/juniper.html) (--protocol=nc)
-* [Pulse Connect Secure](https://www.infradead.org/openconnect/pulse.html) (--protocol=pulse)
-* [Palo Alto Networks GlobalProtect SSL VPN](https://www.infradead.org/openconnect/globalprotect.html) (--protocol=gp)
-* [F5 Big-IP SSL VPN](https://www.infradead.org/openconnect/f5.html) (--protocol=f5)
-* [Fortinet Fortigate SSL VPN](https://www.infradead.org/openconnect/fortinet.html) (--protocol=fortinet)
-{% endhint %}
-
-If you would prefer to not whitelist Github's IP addresses, and you would prefer to not utilise a jump user, then you will need to edit all of our Github Action pipelines with the following codeblock to connect to your VPN via [openconnect](https://www.infradead.org/openconnect/) before any scripts are run on a server.
-
-```
-- name: Install openconnect ppa
- run: sudo add-apt-repository ppa:dwmw2/openconnect -y && sudo apt update
-
-- name: Install openconnect
- run: sudo apt install -y openconnect
-
-- name: Connect to VPN
- run: |
-   echo "${{ secrets.VPN_PWD }}" | sudo openconnect -u ${{ secrets.VPN_USER }} --passwd-on-stdin --protocol=${{ secrets.VPN_PROTOCOL }} ${{ secrets.VPN_HOST }}:${{ secrets.VPN_PORT }} --servercert ${{ secrets.VPN_SERVERCERT }} --background
-
-- name: Test if IP is reachable
- run: |
-   ping -c4 ${{ secrets.SSH_HOST }}
-```
-
 
 
 ### 4. Prepare VPN variables for the script
