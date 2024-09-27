@@ -1,12 +1,12 @@
-# 4.3.3 Create a Github environment
+# 4.3.4 Create a Github environment
 
-We have an automated script to generate [Github environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment) for you along with all the application secrets that Github needs to run the continuous integration scripts.
+We have an automated script to generate [Github environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment) for you along with all the application secrets that Github needs to run the continuous provisioning and deployment scripts.
 
 The environments will be named according to the naming convention identical to that we have described [here](../).&#x20;
 
 Specifically: **qa, staging, production,** **backup** and for training purposes a **development** (optional) server.
 
-Github Actions use these environments to access the secret keys and configurations used when installing software on servers and deploying OpenCRVS in the automated "continuous delivery" process.
+Github Actions use these environments to access the secret keys and configurations used when installing software on servers and deploying OpenCRVS.
 
 Before running the script, you must prepare some secrets that the script requires.
 
@@ -40,11 +40,13 @@ You will need your Dockerhub **username** and a personal Dockerhub account **acc
 
 You need to create a [Github Personal Access Token ](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)with the required permissions in order for the script to programmatically create Github environments on your forked countryconfig repository.
 
-<figure><img src="../../../../.gitbook/assets/Screenshot 2024-01-15 at 16.26.10.png" alt=""><figcaption><p>Creating a Github Personal Access Token</p></figcaption></figure>
+The only required scope for the token is "repo".
 
-The only required scope for the token is "repo" (above).
+{% hint style="warning" %}
+**Set the expiration as you wish.  Note that the token secret will need to be updated regularly for deployment actions to function when it expires.**
+{% endhint %}
 
-<figure><img src="../../../../.gitbook/assets/Screenshot 2024-01-15 at 16.26.30.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/Screenshot 2024-09-27 at 09.16.14.png" alt=""><figcaption></figcaption></figure>
 
 ### 3. According to your requirements, decide your VPN approach
 
