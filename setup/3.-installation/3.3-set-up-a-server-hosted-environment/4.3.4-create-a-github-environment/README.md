@@ -52,7 +52,11 @@ The only required scope for the token is "repo".
 
 OpenCRVS should be installed behind a VPN.  You will need to prepare access secrets and variables for your VPN of choice.  This script will ask you for VPN information when provisioning a production or staging environment.  There are a few things to consider here.
 
-You have a choice (a) or (b) depending on your preferred way for Github Actions to access the target machine you are provisioning or deploying to.
+You have many choices depending on your preferred way for Github Actions to access the target machine you are provisioning or deploying to.
+
+{% hint style="warning" %}
+You will need to edit Github Action files for all scripts that require access to your network using whatever "recipe" is required for the Github Action runner.  Consider the Github Action runner as a client for your VPN.  Github's IP addresses should be whitelisted as authentic sources for VPN client connections.  They are listed here: [https://api.github.com/meta](https://api.github.com/meta)
+{% endhint %}
 
 #### a) Utilise a "jump" host server and "jump" user
 
