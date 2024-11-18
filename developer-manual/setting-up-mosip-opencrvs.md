@@ -1,0 +1,218 @@
+# Setting up MOSIP - OpenCRVS
+
+## Prerequisites
+
+Prerequisites, and examples of these can be found at the end of this document:
+
+* `keystore.p12` (auth partner key & cert)
+* password for the above keystore.p12 file
+* `mosip-priv.key` (credential partner private key)
+* `mosip-pub.key` (credential partner certificate)
+* `opencrvs-priv.key` (auth partner private key. This is extractable with "Keystore Explorer" from keystore.p12)
+* `opencrvs-pub.key` (auth partner certificate. This is extractable with "Keystore Explorer" from keystore.p12)
+* E-Signet client id
+* E-Signet JWK (as Base64)
+* WireGuard access to MOSIP (in MEC this is needed for Health Services, in your installation it might be needed for all MOSIP services)
+* **(OpenCRVS responsibility:)** Hosted logo URL for E-Signet UI. You can host assets in your country config or use the country config `/content/country-logo` -endpoint.![](.gitbook/assets/image.png)
+
+## Building blocks
+
+* MOSIP-side mediator: [https://github.com/mosip/mosip-opencrvs](https://github.com/mosip/mosip-opencrvs)
+  * Hosted by MOSIP&#x20;
+* OpenCRVS-side mediator: [https://github.com/opencrvs/mosip-mediator](https://github.com/opencrvs/mosip-mediator)
+  * Hosted by OpenCRVS
+* OpenCRVS-side MOSIP token seeder: [https://github.com/mosip/mosip-token-seeder](https://github.com/mosip/mosip-token-seeder)
+* OpenCRVS country config with MOSIP support
+
+## Step-by-step installation
+
+1.  Ask MOSIP:&#x20;
+
+    1. for all of the prerequisites and the Wireguard access
+    2. to host the MOSIP-side mediator
+
+    Note that this can take a week or two, so doing this before starting is recommended.\
+
+2. Set up **country config** and **integration as sys admin.** You can also fork [https://github.com/opencrvs/opencrvs-mosip](https://github.com/opencrvs/opencrvs-mosip) to skip parts 1 & 2 & 3.
+   1. Form customization. Use `getNIDVerificationButton` in place of the `getNationalID` field. [Example](https://github.com/opencrvs/opencrvs-mosip/blob/develop/src/form/birth/index.ts)
+   2. Introduce mosipAid -handlebars: [Example](https://github.com/opencrvs/opencrvs-mosip/commit/66d441e8fee94a9256f64fbd64f211c244942af3)
+   3. Set up the mosip-openhim-mediator endpoint to country config. [Example](https://github.com/opencrvs/opencrvs-mosip/blob/develop/src/index.ts)
+   4. Create a National ID integration client as a system admin. You need the client\_id, client\_secret, and sha\_secret for the MOSIP mediator, on both MOSIP & OpenCRVS sides. Remember to **provide these values to MOSIP**. [https://documentation.opencrvs.org/technology/interoperability/national-id-client](https://documentation.opencrvs.org/technology/interoperability/national-id-client)
+   5. Add OpenCRVS-side MOSIP mediator and token seeder to your docker-compose -files. [Example](https://github.com/opencrvs/opencrvs-mosip/blob/develop/infrastructure/docker-compose.development-deploy.yml). This file lets you see which environment variables you must set up to GitHub Secrets. Anything NATIONAL\_ID\_OIDP\_, TOKENSEEDER\_, or MOSIP\_MEDIATOR\_, -prefixed needs to be configured.
+   6. Add "ida.partner.crt", "keystore.p12", "opencrvs-priv.key", and "mosip-public.key" to your servers /data/secrets/mosip . These are the default filenames token seeder and mosip mediator expect, but they are configurable with environment variables if you wish.
+   7. Ensure your certificates can render `{{ mosipAid }}`. [Example](https://github.com/opencrvs/opencrvs-mosip/blob/develop/src/data-seeding/certificates/source/India-birth-certificate-v2.svg?short\_path=fb12ce9)
+3. Now all necessary should be set up. Test that you can see  `mosipAid` on a birth certificate. Test that you can authenticate mother and father with E-Signet. Test that you can receive the UIN card of the child. Test **with MOSIP**, that if the child is registered as dead, the UIN isn't active anymore.
+
+## Examples of GitHub secrets
+
+```
+NATIONAL_ID_OIDP_BASE_URL=https://esignet.collab.mosip.net/
+# Note: removed at 17.04.2024
+# NATIONAL_ID_OIDP_REST_URL=https://esignet.collab.mosip.net/v1/esignet/
+NATIONAL_ID_OIDP_TOKEN_URL=https://esignet.collab.mosip.net/v1/esignet/oauth/v2/token
+NATIONAL_ID_OIDP_USERINFO_URL=https://esignet.collab.mosip.net/v1/esignet/oidc/userinfo
+NATIONAL_ID_OIDP_JWT_AUD_CLAIM=https://esignet.collab.mosip.net/v1/esignet/oauth/v2/token
+NATIONAL_ID_OIDP_CLIENT_ID=DAdGEotdrTbJ19dAvh85jdvtIEpm2ibbYqStaojFaNU
+NATIONAL_ID_OIDP_ESSENTIAL_CLAIMS="name,family_name,given_name,middle_name,birthdate,address
+NATIONAL_ID_OIDP_CLIENT_PRIVATE_KEY=ewogICJrdHkiOiAiUlNBIiwKICAibiI6ICJ6bDRhSEdXNjd5MkxCRXdfWURpazRoYTBrYkxJTUlfQ0xuRmIyUWw5bzk2TVFzTzA1NFo1dXllNjBwZ2J6c19iSmJoY0NwVWxmc1NHeFc3Tlo5UjRYczZ4TDRhWURFdDhXR250NUNTUVBkd205YUlPZGhUMHZMSTBOVGdTN01QZVNBN2xPMHE0SVBQbE9yajRiZ2hSTWVVSkVTOXRDaE1kUGdYSHYzN2hSdVRiZFJGOWloSld0U3BMUjdJdHBPd2tkejZoc24xc1hTNXZLR25sNXIwT0J2Y0hIMGRkMGRjT3RVNDVyU3VmTkszYlUyRDNpdTVLS1RlTllINHZsZmpxNDVvOEVJRmktWjFsaDVjNFRaaFdsMWJLbGpSak4zSjBjbldJT0dMV2VQMm5henIwN0FlNEkzb0RWNV9IZTZBb2xRQ05GM2RlUlZ3ZldMeFFhRXh5V081dlpNN3hqTHFnNlZwMTJuSzdhd0xFb2M2OVlrbVBWMm9Geld5QlRTRmRxMXhXa0JNajAxeE0tZXFUZ3BFOUtqenNWbC1JcmdwcDhQTEdPQThlZjgxZkpULWtXUFVQYXVWUHJsX0p1SWpTb3ZCQkdyM29aN0ZxYlEtbUgwWnRpMnJkakVuVURwRWNzR1VOMU1YTWlwSS1xMWE2NnpCQTVicUFHTzdVeklzZHhwRGdqcjYtUXB3RDc2Z0VHeVhKNnNvZWtWYjN5M1JqeWV4UzJoV1ZpMjJUdVlPX09PcEtfNEJlLWxiZzlkbXhRVGZLZlg2YlgyM0xkRDVxdi15RmFrYm9ueWVlTGppNWdIMTI5S3pxaGh4QkVuX1dfUi1OVld1OHFQSERWcU1SbTJPVHQ3dFMyV0RWbnhNeUxZbHo1Q2hrQVdOdGpBZ2RPWnJkWnNER21LRSIsCiAgImUiOiAiQVFBQiIsCiAgImQiOiAiaGFHOS1zR05hU191bzF2VWRqUjM0TWVmS2ZIQlhHRGE5MFFFbS1oZmFXdkZHNzZyT0htRl9rRmQ0dDBJdE1VNFBaYkNVel85UmJkeEpndjRDdEkxRl85MEVUaHc0UlZJY2VBMllkT2phOHRSbHlIWGgzTk9mNXBONEdCdE1OQXM4akJqRkJfd1Y3WlhxOHozWWhrVXF1Q0xISXVfYWhTeWpPVWxVY1dSajF6SEYybTZCMXlVdFQtci04TlBkMHBLMnNTOTVGel9mTi1DcjRMVGtyUzlqcGtNRFo4akM2emRJMTZDVHJhLW8xZ3BmRGFBVllDMG1UZ1YzblFYMEYtZGlzRG5RRERvckliVnBoV3dLZDhKdzNvNk9VVzNNY0oxMFdCMlV6ejljTi1nTl9tM2U5Z0x6ejFGU01wNFhIOTdoX0VSYkM2cDV2UWVnRkdCSi1qSTZjNzJjazZ1M3lPQUhwNzM2VDdLUlhoQXE1LUZLUFVxdmVpMExYWGZIM284aUJwWnZNaVVUTkRvOFRNdmVIV2JpTmx6WVFhNjRobmJQaGN2ejF6N0gtN1pMei1tWDFGMWt4dy1sQ2ZybHdfaUl5ek9UT0ZDTE5yaXB4eHhkVUFMeTgtN1JITjhKOW9uak8zWHg4ZUd5a1h1RE0yb0s5YTV3c3kxYndJVjhPdEtxYUt5T3RBMUtaVEJsQU04NllaY1lxRUJhLWtOUnl4OEdESFBraXpZSWp4QWxrZlJSX0ljVHQtZzhqTkltODh6Yk1NR01ITlhvelo1Yk9aQ3hWVHAxMTFvaEhhWGlXODQ3VHFmVGY2aXhUbW4wYTZvcUZDMk9lLUtPUEFXVEJ1TXBNWl9jX3VPUmZOV3V3Qk1FZUJWdE96QnFjTmZWOGRIa2QyUWEzQkxsZ0UiLAogICJwIjogIi1JVThyM0FBc3IzaV9YR241NEw3SFBlVjNTZ0dZWmdUWnJDN2d1UUdjNHVjWmJpRmRYb21VS1pSai1mQkpnQXVfOGNlZzd0ZDZMeHVGU2J1REpUQXRUNkQ5ZW5zV1lva1o5Tnd3bW5pVmhTTHZkbElRQTBqYzlQMG5yc2kzQXFEc1JjOVAtMFJ4NDBHOGtDS0lXYUZQdEpfanVybllkaG9vWWMxZ05uVzZMUEVkaTdFS0Y5VDRaWHhJNkNsRUJEVlFIVmpkWGxNU2RraWRWWV9vMFRwRVprdDJXNFk4OUptUXJjQnNnekN4djBqVEJyMVJIRGlncWVnR2ZOdkdveXo0M1RrcGVyZXhwXzBYYTJ4aVBmQVltSFhiVzdNSTdYemczTlVPOWgxY3J6bkg1SE9lQXVSa19yZldqSTFOclNyMDJXQ20zRTA1UWxfcEtCbUVOcExFUSIsCiAgInEiOiAiMUpRWGctbkFJc1YzT0w4dnNUMDJrREIxejFiV1NiMWNZeENhSDB4dlN1RFMwLWlGbHNxZHVtaTNqZ3pkdW1nUzEtdm9meUpIaG1YRFV4aXVMWkhjUjJERDRtaWs1dmUwaUhRM0c5LTBRRjVOaXVEOVQ4LTRVZ0VQejB2YTRQbmpOWFI4TVRGM2NtWEtmMGpaR0FLOTcxZ2dqLWstdjdFU2tGT1VoSF9TVUZFTmk2SHdfSThDNy1HVXdPQUpUVjJneDVha2N3OGplZWhJckZfUG94cERyR3UtdTRrcXA5NUpJY09FRXVDNlpEUjVGeTlpYm5RanJQRmFtdDdobGdETFNmdjV1eGVPTUgxd3BNSjNWUjZJSHhCbDhtS2wxWExGZDJKcEV1cWdCMHRnVUJoSnlUc1dDU3gxOXhjWXo1ZzFHSXZ3SzdHRlBwQjB2WFhWVDNqVWtRIiwKICAiZHAiOiAiNjhaOExIVTJORjJ5WElEWHF1eTVFR0pUNjkxdE1HbjJfaFh0ei1CRnZwbFZaNndIOGN4UlRYSjlMdW5RZFJ6M2VmS1BJS3RDRE91NEJKbEtmdVVoYnRKQW42MnViY1NCaFg4MEd6NFpYVkZnd2x6Q0R3Sm9BQnUybUdFeVVWQW9ZSHFMd1hwSXcta29EZXp0SDRNRUp2WE56dWxOVzZiVW5XcUplQlV6cnRIZU1jRnNtR0RZVTh6TldkLXV1ZTgtWWtqOGN4Y0JLWTYzQWxzeFJOUzd5ZFpwaVQ3S3JZZVBQUHdpdjZrYm9XM0hid3lrWktvME80Q01oQkpQOWdCSEtpUmNTSXpyamNWek1PejQ0ZGtxekN2SEZpdG53UGwtYmRlY3NxcEp3dkUwMU42ZjQ0UVdPUzVwZUVqcDgxeTFKM25HejNJM25KUEdaWWxIU19YT0FRIiwKICAiZHEiOiAidE41Zjk2UGVEM2UxemJtVnlaYk1vdmdvZE1ac3d3Yno0WElSd0VtWGM3MUFoSDZWazB4SDBZQWhsU0pMVWJ3Vk5GUUxXSWlCRk1fbTFmX3N5dWNNNWtwbHdIREt4WjNDcEV0RlRGa1ZFNk5wRko0RHlYRnlZWXQzdVNmUVRwVXZCWjlidjd0WDV5VEdtM0FQRG9mZXRSTmxlU3k2Yl8wb1QxWmR5aks3Ymd6WW1wS3A2U21CRlRyNUJ2WlgwOVN5NUw2LW93c2hZeXNKRW1qZTBPYWE1OHd3MTMySXBwWFI0WUZxRVduV0RVWThOVWJpMkJuRzlQSFI1bTEyd050aUhFdmhHcGViS3BUQVQ5OEtDNGxUeGlKOHF6UFY1M3VrbWNSSXBJaXVxaVl2QjFiekNOMVdEVzRmM0tGeFFjZy1mT2tyNnZFNjdwV1lUazlBdEVLWmtRIiwKICAicWkiOiAidF9rcmJUc2E3WVJkSk5pU25BQ2FwcEE2cVY3MmNBRmV2SEtHdUR3NjBPUmJwTnFCMmpCbzVBTllCcE5BX1pIcWswLUg2Y2lYUUZsVnJMTGdRNWd5WWc3UU1zY1ZxRVV5SlB2T05GWDRKekFTMGNKcWVXa1k3QllfNkZid2NjLTcwUFBiYWtkLUNOTE5SSUYwRW9pb3dpTGdiT3ItSlYyMF9SRlB4U3lRYmVEY2lSS3F0RWRiVDdhSUlZX2pDbkdPd1huY2dEUHEwVWVCZldQN0xHVUpyaTgwXy1uMHhyV2k2MFRFeXhfYnhNM2hFMzdGS3BNM3lKX2JqMl9IR291bDkzWnNLbkNZeHBsbHBkQ0lVUDAyT3ZMU3k4cGZEYmVYcTQ3ejBCYlBLelBmZ0pFc0JMd3Z3MFJfaUExNV9LT1pycU9mSTdxcjRnWHdLeGNJcXVUc1JBIiwKICAiZXh0IjogdHJ1ZSwKICAia2lkIjogIjdmYjU4Zjg1M2Y5M2M5OWVlZGNhZTg3ZGIyZTViZiIsCiAgImFsZyI6ICJSUzI1NiIsCiAgInVzZSI6ICJzaWciCn0=
+TOKENSEEDER_MOSIP_AUTH__PARTNER_APIKEY=447807
+TOKENSEEDER_MOSIP_AUTH__PARTNER_MISP_LK=e8hOdqms1ff0lumQPkh8vOW49hT53PyHmpZvekvOEbjasDJA93
+TOKENSEEDER_MOSIP_AUTH__PARTNER_ID=opencrvs-auth-partner
+TOKENSEEDER_MOSIP_AUTH_SERVER__IDA_AUTH_DOMAIN_URI=https://api-internal.collab.mosip.net
+TOKENSEEDER_MOSIP_AUTH_SERVER__IDA_AUTH_URL=https://api.collab.mosip.net/idauthentication/v1/auth
+TOKENSEEDER_CRYPTO_SIGNATURE__SIGN_P12_FILE_PASSWORD=mosip123
+MOSIP_MEDIATOR_CLIENT_ID=89a383a4-57fe-4392-8247-97e05441741b
+MOSIP_MEDIATOR_CLIENT_SECRET=8b5ad79e-a33a-4bad-810e-3865f886e9d6
+MOSIP_MEDIATOR_SHA_SECRET=b8247112-f810-4848-a854-ce0699ee16b9
+MOSIP_AUTH_CLIENT_ID=opencrvs-partner
+MOSIP_AUTH_CLIENT_SECRET=qYkjsUASf3cwakJOSXvYL38U8o3pGU6g
+MOSIP_AUTH_URL=https://iam.collab.mosip.net/auth/realms/mosip/protocol/openid-connect/token
+MOSIP_AUTH_USER=opencrvs-partner
+MOSIP_AUTH_PASS=mosip123
+MOSIP_BIRTH_PROXY_CALLBACK_URL=https://api.collab.mosip.net/opencrvs/v1/birth
+MOSIP_DEATH_PROXY_CALLBACK_URL=https://api.collab.mosip.net/opencrvs/v1/death
+MOSIP_GENERATE_AID_URL=https://api.collab.mosip.net/opencrvs/v1/generateAid
+```
+
+## Hosted /data/secrets/mosip secrets
+
+**opencrvs-pub.key**: `/data/secrets/mosip/ida.partner.crt`
+
+```
+-----BEGIN CERTIFICATE-----
+MIIDrDCCApSgAwIBAgIIFoftfeT9Q/UwDQYJKoZIhvcNAQELBQAwdjELMAkGA1UE
+BhMCSU4xCzAJBgNVBAgMAktBMRIwEAYDVQQHDAlCQU5HQUxPUkUxDTALBgNVBAoM
+BElJVEIxIDAeBgNVBAsMF01PU0lQLVRFQ0gtQ0VOVEVSIChJREEpMRUwEwYDVQQD
+DAx3d3cubW9zaXAuaW8wHhcNMjIwOTMwMDkzNDExWhcNMjQwOTI5MDkzNDExWjB1
+MQswCQYDVQQGEwJJTjELMAkGA1UECAwCS0ExEjAQBgNVBAcMCUJBTkdBTE9SRTEN
+MAsGA1UECgwESUlUQjEgMB4GA1UECwwXTU9TSVAtVEVDSC1DRU5URVIgKElEQSkx
+FDASBgNVBAMMC0lEQS1QQVJUTkVSMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB
+CgKCAQEArzkS1JVOckj1sv3Kpt7MWJhsgVdJlAzjiEzuIuEBn9OkSH+dR4UBPcsz
+sqYrlcgVEJRYHSvEj34ADaUHmKkBqAVOTZMaUTOYYqh19N29N8svL9JrTc2DB4b1
+aoEGzfFAgxVYD5Ykuiy3x62/nybTLlVnJe9uE3E+87bANsj0G6Z+whk8VJOqjnSR
+/burzJsxn3ov+9f5bJ8PQv89un4fP2v0VwZugCJn06+IpiTd5tQVAad0Zuj+J5Aj
+vG+4OE/hqrvMSD92p0I/is+BJeAtVpV+ZhTA5Q3mzUNFijq3ySjwK8kJqkUfjcqy
+XjDsP9ZHBRcbOUs3sXQKYmcBwGetXwIDAQABoz8wPTAMBgNVHRMBAf8EAjAAMB0G
+A1UdDgQWBBTvE1Dnhab18nCh9LCQvSude94rdjAOBgNVHQ8BAf8EBAMCBSAwDQYJ
+KoZIhvcNAQELBQADggEBAEqbYKarHyyCd0RULznMbkFVfTRzMLV9GzkeDvmfTngu
+Ej+cFzciKbO3YdYHsAiqWgNQQkTtf2q/AonzKRI7RTGo9e/Sh1h73Cgd/EdKCHgQ
+vTG7q11PTkz/wTTdX3L8pW7bOZq+JmNtYAWtkCZsDmpYvZKCmH+RLNXmMERfzYd5
+qIHn1YH7wqY/1WLp/obkv3oI+b+qL6RTeQV1SPK6cnJExFBeZ2eLog0gUzDCh/KF
+ihKwO5qEpMfMSmzVkmXjm9Kkv1PRyV3pTsAGoLPfO1vItZ3LqQVP0upiTzfzvwoJ
+Wox6eQIx/3vY96Nq+mpOEXHCOrE4N443x4zISpdCvt8=
+-----END CERTIFICATE-----
+```
+
+**opencrvs-priv.key**: `/data/secrets/mosip/opencrvs-priv.key`
+
+```
+-----BEGIN RSA PRIVATE KEY-----
+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
+-----END RSA PRIVATE KEY-----
+```
+
+**keystore.p12**: `/data/secrets/mosip/keystore.p12`
+
+`<<redacted as it's encrypted binary>>`
+
+**mosip-pub.key**: `/data/secrets/mosip/mosip-public.key`
+
+```
+-----BEGIN CERTIFICATE-----
+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
+RfHbleOXaE+a/2O7JFxM/Go3yynALCrkX5Eo
+-----END CERTIFICATE-----
+```
+
+## Debugging
+
+### Issues with addresses mapping?
+
+This is the way in Collab:
+
+* province -> state id
+* region -> district id
+* zone -> country value
+
+Note that the addresses will not work properly before the address unification in https://github.com/mosip/address-standard-unification is done in both MOSIP & OpenCRVS.
+
