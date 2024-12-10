@@ -9,8 +9,7 @@ Tmate is a tool which will give you an SSH connection into the virtual machine o
 - name: Setup tmate session
   uses: mxschmitt/action-tmate@v3
   env:
-    SSH_USER: ${{ secrets.SSH_USER }}
-    SSH_HOST: ${{ vars.SSH_HOST }}
-    SSH_PORT: ${{ vars.SSH_PORT }}
+    MY_SECRET: ${{ secrets.MY_SECRET }}
+    MY_VAR: ${{ vars.MY_VAR }}
 
 ```
