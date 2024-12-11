@@ -21,7 +21,7 @@ Download our Excel templates to help you gather and define requirements for your
 * [ ] **Gather and analysis the rules and regulations for civil registration in your country**\
   These will be used to inform configuration parameters such as the legally stipulated timeframe to register a vital event, questions you must ask in the forms (supporting document requirements etc.) \
   \
-  Note**.** Rules and regulations should help a country achieve universal civil registration, not get in the way. A comprehensive review of all CRVS rules and regulations should be conducted as part of analysis to inform effective digitised civil registration services - this may mean reform is required as part of a digital transformation programme.\
+  Not&#x65;**.** Rules and regulations should help a country achieve universal civil registration, not get in the way. A comprehensive review of all CRVS rules and regulations should be conducted as part of analysis to inform effective digitised civil registration services - this may mean reform is required as part of a digital transformation programme.\
 
 * [ ] **Create as-is and to-be business process maps**\
   Understanding the current challenges and how future processes (enabled by technology) can overcome these, is critical to a successful transformation of your civil registration services. These processes will inform which users do what in your country.  Using the CRVS Digitisation Guidebook ([http://www.crvs-dgb.org/en/](http://www.crvs-dgb.org/en/)) can help you conduct business process analysis as well as a number of other activities that effectively prepare for CRVS digitisation. [3.1-mapping-business-processes.md](3.1-mapping-business-processes.md "mention")\
