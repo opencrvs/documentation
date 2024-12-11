@@ -167,7 +167,6 @@
   * [v1.5.0: Release notes](general/releases/v1.5.0-release-notes.md)
   * [v1.4.1: Release notes](general/releases/v1.4.1-release-notes.md)
   * [v1.4.0 Release notes](general/releases/v1.4.0-release-notes.md)
-  * [v1.3.\* to v1.4.\* Migration notes](general/releases/v1.3.-to-v1.4.-migration-notes.md)
   * [v1.3.5: Release notes](general/releases/v1.3.5-release-notes.md)
   * [v1.3.4: Release notes](general/releases/v1.3.4-release-notes.md)
   * [v1.3.3: Release notes](general/releases/v1.3.3-release-notes.md)
