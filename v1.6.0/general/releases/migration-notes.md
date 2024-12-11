@@ -12,7 +12,7 @@ Before you start migrating, consider these questions and the potential impacts o
 
 1. What version number you are currently using?
 2. What version number you wish to upgrade to?
-3. Have you made any NodeJS or React code customisations of any kind to opencrvs-core?
+3. Have you made any code customisations of any kind to opencrvs-core?
 
 We ask these questions because OpenCRVS is designed to be migrated incrementally, from the immediately proceeding version. &#x20;
 
@@ -20,7 +20,7 @@ We ask these questions because OpenCRVS is designed to be migrated incrementally
 Some countries fork and make customisations to opencrvs-core which means they need to merge or rebase changes to core (hosting their own opencrvs-core repository) as well as the country configuration server. Normally we do not advise people to make their own core customisations but instead work with our core team to open pull requests on core for any functionality you need. However some people choose to do this independently, so make sure you also merge/rebase your core repo too.
 {% endhint %}
 
-4\. Have you integrated OpenCRVS to another system using an API, or documented system client?  Remember to schedule and QA any integrations after updating.
+4\. Have you integrated OpenCRVS to another system using an API, or documented system client?  Remember to schedule QA for your integrations at each stage of the upgrade.
 
 5\. Have you completely configured OpenCRVS?  Conflicts in our countryconfig repo may not apply to your configuration.  Some conflicts may be related to bug-fixes.  Those are documented in the release notes.
 
