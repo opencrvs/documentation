@@ -161,6 +161,7 @@
 * [Contributing](general/contributing.md)
 * [Releases](general/releases/README.md)
   * [Migration notes](general/releases/migration-notes.md)
+  * [v1.6.2: Release notes](general/releases/v1.6.2-release-notes.md)
   * [v1.6.1: Release notes](general/releases/v1.6.1-release-notes.md)
   * [v1.6.0: Release notes](general/releases/v1.6.0-release-notes.md)
   * [v1.5.1: Release notes](general/releases/v1.5.1-release-notes.md)
