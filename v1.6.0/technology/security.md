@@ -20,7 +20,7 @@ Gofore pentesters utilise proven pentesting methods of code review, automated en
 
 #### **Two factor authentication**
 
-Our server SSH access, mobile application and microservices are secure, protected by [2-Factor Authentication](https://en.wikipedia.org/wiki/Multi-factor\_authentication) utilising [OAuth JWT best practices](https://tools.ietf.org/id/draft-ietf-oauth-jwt-bcp-02.html).  2FA codes are sent to the user's mobile device in order log in either via SMS or Google Authenticator.  These codes ensure that only  users with access to authenticated hardware can access OpenCRVS.
+Our server SSH access, mobile application and microservices are secure, protected by [2-Factor Authentication](https://en.wikipedia.org/wiki/Multi-factor_authentication) utilising [OAuth JWT best practices](https://tools.ietf.org/id/draft-ietf-oauth-jwt-bcp-02.html).  2FA codes are sent to the user's mobile device in order log in either via SMS or Google Authenticator.  These codes ensure that only  users with access to authenticated hardware can access OpenCRVS.
 
 #### Access controls and audit trail
 
@@ -38,9 +38,9 @@ OpenCRVS data is encrypted in transit via an SSL certificate that can be automat
 
 Encryption keys to the databases, API keys and sensitive environment secrets are never stored in .env files but instead are stored in RAM in inaccessible [Docker Secrets](https://docs.docker.com/engine/swarm/secrets/) and provided to deployment by inaccessible [Github Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
+#### Rate limiting
 
-
-
+OpenCRVS authentication and API gateway is rate limited to prevent abusive attacks such as "DoS Denial of service" and "Brute Force".  Rate limiting is a technique used to control the number of requests a user or system can make to an API or service within a specified timeframe, preventing abuse and ensuring fair resource distribution.
 
 ### Data security framework
 
