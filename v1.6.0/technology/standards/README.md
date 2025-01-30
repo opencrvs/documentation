@@ -4,7 +4,7 @@ description: Overview of how OpenCRVS uses best-practice technology standards
 
 # Standards
 
-We implement as per the U.N. Guidelines for Civil Registration.
+**We implement as per the U.N. Guidelines for Civil Registration.**
 
 Because OpenCRVS is a core component of Digital Public Infrastructure, we are committed to conforming to interoperable data standards.
 
@@ -16,12 +16,14 @@ OpenCRVS are a [Standards Committee Member ](https://standards.spdci.org/standar
 
 OpenCRVS has contributed to and conforms to the G2PConnect [standardised API](https://github.com/opencrvs/dci-crvs-api) using the DCI payloads above.
 
-#### Healthcare Standards:   By using [FHIR](https://hl7.org/FHIR/) as a standard for our NoSQL datastore, [Hearth](https://github.com/jembi/hearth) and the [OpenHIE](https://ohie.org/) standard interoperability layer [OpenHIM](http://openhim.org/), OpenCRVS seamlessly connects civil registration to health services and other systems. We can receive birth and death notifications from the hospital setting and expose registration events to any other technical system, such as National ID, via our FHIR standard API gateways.
+#### Healthcare Standards:  &#x20;
+
+By using FHIR as a standard for our NoSQL datastore, Hearth and OpenCRVS compatibility with OpenHIE standard interoperability layer OpenHIM, OpenCRVS seamlessly connects civil registration to health services. We can receive birth and death notifications from the hospital setting and expose registration events to any other technical system, such as National ID, via our FHIR standard API gateways.
 
 [FHIR](https://hl7.org/FHIR/) was created by [Health Level Seven International (HL7)](http://hl7.org/), a not-for-profit, ANSI-accredited, standards organization dedicated to providing a comprehensive framework and related standards for the exchange, integration, sharing and retrieval of electronic health information that supports clinical practice and the management, delivery and evaluation of health services.
 
 We have extended FHIR's model to include custom codes and extensions that assist the Civil Registration context.  To understand more about how and why we use FHIR, click [here](fhir-documents/).
 
-#### **Other Interoperable Standards:** Systems can interoperate with OpenCRVS using FHIR or via Webhooks which follow [WebSub](https://www.w3.org/TR/websub/) process and standards. Our friends at [MOSIP](https://mosip.io/) have demonstrated [ease of integration with OpenCRVS](https://docs.mosip.io/1.2.0/integrations/mosip-opencrvs-integration) using these methods.
+#### **Other Interoperable Standards:**&#x20;
 
-####
+Systems can interoperate with OpenCRVS using FHIR or via Webhooks which follow WebSub process and standards. Our friends at MOSIP have demonstrated ease of integration with OpenCRVS using these methods.
