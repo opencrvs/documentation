@@ -2,7 +2,7 @@
 
 OpenCRVS supports the creation of multiple custom users with specific permissions (scopes) to control what they can and cannot do in the system. This feature allows countries to define user roles and their corresponding scopes based on their specific needs.
 
-#### Key Features
+### Key Features
 
 • **Unlimited user role configuration**: Administrators can create and configure any number of system user roles.
 
