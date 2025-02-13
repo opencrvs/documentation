@@ -14,7 +14,7 @@
 * [Functional Architecture](product-specifications/functional-architecture.md)
 * [Workflow management](product-specifications/workflow-management.md)
 * [Status Flow Diagram](product-specifications/status-flow-diagram.md)
-* [Users](product-specifications/users/README.md)
+* [User roles & scope](product-specifications/users/README.md)
   * [Examples](product-specifications/users/examples.md)
 * [Core functions](product-specifications/core-functions/README.md)
   * [1. Notify event](product-specifications/core-functions/1.-notify-event.md)
