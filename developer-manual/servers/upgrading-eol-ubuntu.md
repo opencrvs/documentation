@@ -24,14 +24,14 @@ sudo apt install -y screen vim curl dnsutils
 
 ### Upgrade software to latest verions
 
-Upgrading to the latest available packages is required for successful Ubuntu distribution upgrade:
+Upgrading to the latest available packages are required for successful Ubuntu distribution upgrade:
 
 ```
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y ubuntu-release-upgrader-core update-manager-core
 ```
 
-After this you need to reboot the machine
+Reboot instance once all updates are applied:
 
 ```
 reboot now
@@ -39,6 +39,7 @@ reboot now
 
 ### Open additional tcp port on Firewall for ssh
 
+Usually Ubuntu use UFW or IPTables firewalls.
 Depending on system administrator choice run one of the following commands:
 
 - For UFW:
