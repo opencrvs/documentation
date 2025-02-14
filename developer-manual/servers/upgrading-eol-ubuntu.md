@@ -24,7 +24,7 @@ sudo apt install -y screen vim curl dnsutils
 
 ### Upgrade software to latest verions
 
-Upgrading to the lastest available packes is required for successful Ubunte distribution upgrade:
+Upgrading to the latest available packages is required for successful Ubuntu distribution upgrade:
 
 ```
 sudo apt update && sudo apt upgrade -y
