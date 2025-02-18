@@ -75,7 +75,7 @@
 * [Civil registration in Farajaland](default-configuration/civil-registration-in-farajaland.md)
 * [OpenCRVS configuration in Farajaland](default-configuration/opencrvs-configuration-in-farajaland/README.md)
   * [Application settings](default-configuration/opencrvs-configuration-in-farajaland/application-settings.md)
-  * [User / role mapping](default-configuration/opencrvs-configuration-in-farajaland/user-role-mapping.md)
+  * [User roles](default-configuration/opencrvs-configuration-in-farajaland/user-role-mapping.md)
   * [Declaration forms](default-configuration/opencrvs-configuration-in-farajaland/declaration-forms.md)
   * [Certificate templates](default-configuration/opencrvs-configuration-in-farajaland/certificate-templates.md)
 * [Business process flows in Farajaland](default-configuration/business-process-flows-in-farajaland.md)
