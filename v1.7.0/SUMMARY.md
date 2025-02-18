@@ -77,7 +77,7 @@
   * [Application settings](default-configuration/opencrvs-configuration-in-farajaland/application-settings.md)
   * [User roles](default-configuration/opencrvs-configuration-in-farajaland/user-role-mapping.md)
   * [Declaration forms](default-configuration/opencrvs-configuration-in-farajaland/declaration-forms.md)
-  * [Certificate templates](default-configuration/opencrvs-configuration-in-farajaland/certificate-templates.md)
+  * [Certified Copies templates](default-configuration/opencrvs-configuration-in-farajaland/certificate-templates.md)
 * [Business process flows in Farajaland](default-configuration/business-process-flows-in-farajaland.md)
 
 ## Setup

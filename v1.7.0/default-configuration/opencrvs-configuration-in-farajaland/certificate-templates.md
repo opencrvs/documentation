@@ -1,6 +1,17 @@
-# Certificate templates
+# Certified Copies templates
 
-The following birth and death certificate samples have been configured to meet the needs of the Farajaland context.
+The following certified copies templates have bene configured to support the business requirmeents of Farajaland.&#x20;
+
+Two types of certified copies have been configured:
+
+* **Certificate**&#x20;
+  * Issued upon registration
+  * Short from version of the digital record
+  * Fee: Free
+* **Certified Copy**
+  * Can be request after the certificate has been issued.&#x20;
+  * Long from version of the digital record
+  * Fee: $10
 
 ### Birth certificate
 
@@ -13,3 +24,6 @@ The following birth and death certificate samples have been configured to meet t
 ### Marriage certificate
 
 <figure><img src="../../.gitbook/assets/Farajaland-marriage-certificate-v2.png" alt=""><figcaption></figcaption></figure>
+
+
+
