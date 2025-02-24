@@ -2,117 +2,56 @@
 
 ## Workqueues
 
-Declarations are organised in each Registration Office into separate work queues based on their status, such as "In Progress," "Ready for Review" and "Ready to Print" so users can easily prioritise and manage their workload.
+Declarations are organised in each Registration Office into separate work queues based on a users assigned scopes, so they can easily prioritise and manage their workload.
 
 For a comprehensive understanding of the various statuses and the potential pathways a record can follow, please refer to the [status-flow-diagram.md](status-flow-diagram.md "mention")
 
-### **Field Agent:**
+### Draft
 
-#### **In progress**
+Shown if a user has `scope:record.declare{event}.` To list all saved draft declarations
 
-If a declaration is started and then saved as a draft, it will appear in this work queue. These declarations are stored locally on the mobile device or computer, which means other office users will not see these draft declarations.
+### **In progress**
 
-Record status: In progress
+Shown if a user has `scope:record.declaration-send-for-approval`  or `scope:record.register.` \
+\
+To list all declarations sent incomplete by a user with `scope:record.declaration-send-incomplete` and from a health integrated system.&#x20;
 
-#### **Sent for review**
+### Sent for review
 
-This workqueue displays incomplete or complete declaration sent to a registration office.
+Shown if a user has `scope:record.declaration-send-for-review` or `scope:record.declaration-send-incomplete`
 
-When a declaration is ‘Certified’, ‘Issued’ or ‘Archived’ by the Registration office and the Field Agent has an internet connection then the declaration is removed from their Sent for Review workqueue.
+To list all declarations that have been sent for review by the user
 
-Record status: In progress, In review, Registered
+### Ready for review
 
-#### **Requires updates**
+Shown if a user has `scope:record.record.declaration-send-for-approval` or `scope:record.review-duplicates` or `scope:record.registration-correct-record` or `scope:record.register.`&#x20;
 
-This workqueue displays declarations send for updates by a Registration Agent or Registrar. Currently the Field Agents is unable to update the declaration. This feature is intended solely to support any queries made by the informant. When a declaration is ‘Certified’, ‘Issued’ or ‘Archived’ by the Registration office and the Field Agent has an internet connection then the declaration is removed from their Requires updates workqueue.
+To list all declarations that are ready for review, potential duplicates or a correction has been requested&#x20;
 
-Record status: Requires updates
+### **Requires updates**
 
-### Registration **Agent:**
+Shown if a user has `scope:record.declaration-send-for-review` or `scope:record.declaration-send-for-approval` or `scope:record.register.`
 
-#### **In progress**
+To list all records with the status Requires Updates&#x20;
 
-1.  **Yours**
+### **Sent for approval**
 
-    If a declaration is started and then saved as a draft, it will appear in this work queue. These declarations are stored locally on the mobile device or computer, which means other office users will not see these draft declarations.
-2.  **Field Agents**
+Shown if a user has `scope:record.declaration-send-for-approval`
 
-    This workqueue tab displays incomplete declaration sent by a Field Agent
-3.  **Health system**
+To list all records sent for approval by the user
 
-    This workqueue tab displays health notifications sent by an integrated health system
+### **Ready to print**
 
-Record status: In progress
+Shown if a user has `scope:record.registration-print&issue-certified-copies`\
+\
+To list all recently registered records which have not been certified.
 
-#### **Ready for review**
+### **Ready to issue**
 
-This work queue displays declarations that have been sent for complete review, including all mandatory information provided by a Field Agent.
+Shown if a user has `scope:record.registration-print&issue-certified-copies`
 
-Record status: In review
+To list all certified-copies printed off in advance of issuance\
 
-#### **Requires updates**
-
-This workqueue displays declarations sent for updates.
-
-Record status: Requires updates
-
-#### **Sent for approval**
-
-This workqueue displays declarations sent for approval by the Registration Agent.
-
-Record status: Validated
-
-#### **Ready to print**
-
-This workqueue displays all recently registered records which have not been certified.
-
-Record status: Registered
-
-#### **Ready to issue**
-
-This workqueue displays records that have been certified in advance of issuance
-
-Record status: Certified
-
-### Registrar
-
-#### **In progress**
-
-1.  **Yours**
-
-    If a declaration is started and then saved as a draft, it will appear in this work queue. These declarations are stored locally on the mobile device or computer, which means other office users will not see these draft declarations.
-2.  **Field Agents**
-
-    This workqueue tab displays incomplete declaration sent by a Field Agent
-3.  **Health system**
-
-    This workqueue tab displays health notifications sent by an integrated health system
-
-Record status: In progress
-
-#### **Ready for review**
-
-This work queue displays declarations that have been sent for complete review, including all mandatory information provided by a Field Agent. In addition, declaration validated and sent for approval by a Registration Agent.
-
-Record status: In review, Validated
-
-#### **Requires updates**
-
-This workqueue displays declarations sent for updates.
-
-Record status: Requires updates
-
-#### **Ready to print**
-
-This workqueue displays all recently registered records which have not been certified.
-
-Record status: Registered
-
-#### **Ready to issue**
-
-This workqueue displays records that have been certified in advance of issuance
-
-Record status: Certified
 
 ## Outbox
 

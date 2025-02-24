@@ -1,14 +1,14 @@
-# User roles & scope
+# User roles & scopes
 
 OpenCRVS supports the creation of multiple custom users with specific permissions (scopes) to control what they can and cannot do in the system. This feature allows countries to define user roles and their corresponding scopes based on their specific needs.
 
 ### Key Features
 
-• **Unlimited user role configuration**: Administrators can create and configure any number of system user roles.
+**Unlimited user role configuration**: Administrators can create and configure any number of system user roles.
 
-• **Custom role naming**: Each user role can have a custom name (e.g., _Healthcare Worker, Mayor, Registrar_).
+**Custom role naming**: Each user role can have a custom name (e.g., _Healthcare Worker, Mayor, Registrar_).
 
-• **Scope-based permissions**: The functionalities available to each user role can be controlled by assigning specific scopes
+**Scope-based permissions**: The functionalities available to each user role can be controlled by assigning specific scopes
 
 ### User Role Scopes
 
@@ -114,7 +114,3 @@ Learn how to define and assign appropriate permissions to different user roles i
 **User roles & scopes in Farajaland?**\
 Learn how we mapped user roles and scopes to support and improve service delivery in Farajaland [user-role-mapping.md](../../default-configuration/opencrvs-configuration-in-farajaland/user-role-mapping.md "mention")
 {% endhint %}
-
-
-
-<table><thead><tr><th width="228.08182370999793">System roles</th><th>Responsibilities</th><th>Farajaland user roles</th></tr></thead><tbody><tr><td>Field Agent</td><td><ul><li>Create vital event notifications / declarations</li></ul></td><td><p>Hospital Clerk</p><p>Community Leader</p></td></tr><tr><td>Registration Agent</td><td><ul><li>Create vital event declarations</li><li>Validate and send declarations for approval</li><li>Issue certificates</li><li>Search for records</li><li>View performance statistics</li></ul></td><td>Registration Officer</td></tr><tr><td>Registrar</td><td><ul><li>Create vital event declarations</li><li>Approve and register declarations</li><li>Issue certificates</li><li>Search for records</li><li>View performance statistics (default local)</li></ul></td><td>Registrar<br>Provincial Registrar</td></tr><tr><td>National Registrar</td><td><ul><li>Create vital event declarations</li><li>Approve and register declarations</li><li>Issue certificates</li><li>Search for records</li><li>View performance statistics (default Nationally)</li></ul></td><td>Registrar General</td></tr><tr><td>Local System Admin</td><td><ul><li>Create users</li><li>Edit users</li></ul></td><td>Administrator</td></tr><tr><td>National System Admin</td><td><ul><li>Config management</li><li>Create users</li><li>Edit users</li></ul></td><td>National Administrator</td></tr><tr><td>Performance Manager</td><td><ul><li>View performance statistics (default local)</li></ul></td><td>Operations Manager</td></tr></tbody></table>
