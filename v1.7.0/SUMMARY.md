@@ -89,7 +89,7 @@
   * [3.2 Mapping offices and user types](setup/2.-gather-requirements/3.2-mapping-offices-and-user-types.md)
   * [3.3 Define your application settings](setup/2.-gather-requirements/3.3-define-your-application-settings.md)
   * [3.4 Designing event declaration forms](setup/2.-gather-requirements/3.4-designing-event-declaration-forms.md)
-  * [3.5 Designing a certificate template](setup/2.-gather-requirements/3.5-designing-a-certificate-template.md)
+  * [3.5 Designing a certified copy](setup/2.-gather-requirements/3.5-designing-a-certificate-template.md)
 * [4. Installation](setup/3.-installation/README.md)
   * [4.1 Set-up a local development environment](setup/3.-installation/3.1-set-up-a-development-environment/README.md)
     * [4.1.1 Install the required dependencies](setup/3.-installation/3.1-set-up-a-development-environment/3.1.1-install-the-required-dependencies.md)
