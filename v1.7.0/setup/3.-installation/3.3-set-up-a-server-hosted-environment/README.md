@@ -159,7 +159,7 @@ You must have a working SMTP server and SMTP user details to deploy OpenCRVS.  S
 
 OpenCRVS is hardcoded to use the following 3rd party services which require subscriptions.  The cost of these services is negligible, industry standard and promotes best practice developer operations experience.&#x20;
 
-1. A docker container registry [**organisation**](https://docs.docker.com/admin/organization/orgs/) account on [Dockerhub](https://hub.docker.com/) for hosting OpenCRVS Country config images.
+1. A docker container registry [**organisation**](https://docs.docker.com/admin/organization/orgs/) account on [Dockerhub](https://hub.docker.com/)
 2. An organisation Github account in a minimum of a ["Team"](https://github.com/pricing) plan to configure automated provisioning and deployment.
 3. Optional, but recommended:
 
