@@ -119,7 +119,7 @@
     * [4.2.8 Seeding & clearing your local databases](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.8-seeding-your-local-database.md)
     * [4.2.9 Countryconfig API endpoints explained](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.9-countryconfig-apis-explained.md)
   * [4.3 Set-up a server-hosted environment](setup/3.-installation/3.3-set-up-a-server-hosted-environment/README.md)
-    * [4.3.1 Verify servers & create a "provision" user](setup/3.-installation/3.3-set-up-a-server-hosted-environment/3.3.1-provision-your-server-nodes-with-ssh-access.md)
+    * [4.3.1 Verify servers & create a "provision" user](../setup/3.-installation/3.3-set-up-a-server-hosted-environment/3.3.1-provision-your-server-nodes-with-ssh-access.md)
     * [4.3.2 TLS / SSL & DNS](setup/3.-installation/3.3-set-up-a-server-hosted-environment/3.3.5-setup-dns-a-records/README.md)
       * [4.3.2.1 LetsEncrypt https challenge in development environments](setup/3.-installation/3.3-set-up-a-server-hosted-environment/3.3.5-setup-dns-a-records/4.3.2.1-letsencrypt-https-challenge-in-development-environments.md)
       * [4.3.2.2 LetsEncrypt DNS challenge in production](setup/3.-installation/3.3-set-up-a-server-hosted-environment/3.3.5-setup-dns-a-records/4.3.2.2-letsencrypt-dns-challenge-in-production.md)
