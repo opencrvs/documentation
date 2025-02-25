@@ -1,0 +1,25 @@
+﻿Version label,Version number,Description,QA strategy,QA environment,Frequency,Supported for
+Core: Major (breaking),n.0.0 (e.g. 2.0.0),"Major architectural redesign, including significant functional and design changes.
+Impacts Core + Country Resource Package + Infrastructure release.","Creation of new test cases for new functionality.
+Complete regression test. 
+Most likely new test data generator.
+Data migration testing. 
+End-to-end testing (Cypress).",https://farajaland-qa.opencrvs.org/,,
+Core: Minor (breaking),x.n.0 (breaking) e.g. 1.2.0,"Introduces new changes which are not backward-compatible. These changes can be process related or technical. ","Creation of new test cases for new functionality.
+Complete regression test. 
+Possibly changes to test data generator.
+Data migration testing. 
+End-to-end testing (Cypress).",https://farajaland-qa.opencrvs.org/,Every 4 months,Duration of 2 minor versions (?)
+Core: Minor (non-breaking),x.n.0 (e.g. 1.2.0),Introduces new backwards compatible functionality. May include data structure or other changes that are automatically migrated. SIs can safely upgrade their system to this version without implementation changes in integrations or country configuration.,"Creation of new test cases for new functionality.
+Regression test pack to be defined. 
+Potential changes to test data generator. 
+End-to-end testing (Cypress).",https://farajaland-qa.opencrvs.org/,Every 4 months,Duration of 2 minor versions (?)
+Core: Hotfix,x.x.n (e.g. 1.2.1),Bug fixes or minor internal changes such as performance optimisations. Developed in parallel with a Minor Release (which requires the same fixes applied).,"Specific tests to QA the defects.
+Small regression / smoke-test to ensure nothing impacted.
+End-to-end testing (Cypress).",https://farajaland-qa.opencrvs.org/,Weekly,N/A
+Dependant software component,x.x.0-n (e.g. 1.2.0-1),"Includes country resource packages, integrations, data generators etc. indicating the core release with which they are compatible, including a patch suffix. Releases are otherwise independent of core releases and changes to these components do not affect core releasing.","Specific tests to QA the defects.
+Small regression / smoke-test to ensure nothing impacted.
+
+In the case of Farajaland, latest compatible version is always deployed in conjunction with the core version being tested.
+End-to-end testing (Cypress).",https://farajaland-qa.opencrvs.org/,N/A,N/A
+,,,,,,
