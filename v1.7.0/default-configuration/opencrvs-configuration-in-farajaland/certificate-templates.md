@@ -1,13 +1,14 @@
 # Certified Copies templates
 
-The following certified copies templates have bene configured to support the business requirmeents of Farajaland.&#x20;
+The following certified copies templates have been configured to support the business requirments of Farajaland.&#x20;
 
 Two types of certified copies have been configured:
 
 * **Certificate**&#x20;
   * Issued upon registration
   * Short from version of the digital record
-  * Fee: Free
+  * Fee: Free\
+
 * **Certified Copy**
   * Can be request after the certificate has been issued.&#x20;
   * Long from version of the digital record
