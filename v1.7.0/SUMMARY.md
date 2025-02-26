@@ -161,6 +161,7 @@
 * [Contributing](general/contributing.md)
 * [Releases](general/releases/README.md)
   * [Migration notes](general/releases/migration-notes.md)
+  * [v1.7.0: Release notes](general/releases/v1.7-release-notes.md)
   * [v1.5.1: Release notes](general/releases/v1.5.1-release-notes.md)
   * [v1.5.0: Release notes](general/releases/v1.5.0-release-notes.md)
   * [v1.4.1: Release notes](general/releases/v1.4.1-release-notes.md)
@@ -176,5 +177,4 @@
   * [v.1.1.2: Release notes](general/releases/v.1.1.2-release-notes.md)
   * [v.1.1.1: Release notes](general/releases/v.1.1.1-release-notes.md)
   * [v1.1.0: Release notes](general/releases/v1.1.0-release-notes.md)
-  * [v1.7.0: Release notes](general/releases/v1.7-release-notes.md)
 * [Roadmap](general/product-roadmap.md)
