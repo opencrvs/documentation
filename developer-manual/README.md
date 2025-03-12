@@ -57,16 +57,21 @@ We want to ensure there partition mounted to / has enough disk space. Like we se
 
 If you only see a smaller disk mounted to /,  check what you see in `lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL`. If you just found another another disk there, refer to Cameroon project's ansible playbook.
 
-#### Create a user named `provision`
+### Create a user named `provision`
 
-The next commands will create a user named **provision**,  make it a sudoer (needed for provisioning) and finally generate an SSH key **for logging in as the user.** The SSH private key will not persist on the server as it should only be stored in Github Secrets.
+{% embed url="https://youtu.be/tVvhj_vsGLE" %}
 
-```
-adduser --gecos "OpenCRVS Provisioning user" --disabled-password provision
+The next commands will create a user named **provision**, make it a sudoer (needed for provisioning), and finally generate an SSH key **for logging in as the user**. The SSH private key will not persist on the server as it should only be stored in Github Secrets.
+
+It is important to note that the provision user and group IDs should be set to 1000. These IDs are the default for OpenCRVS and are used internally by the OpenCRVS application. They should be reserved to ensure that there are no conflicts with other users or groups on the system.
+
+<pre><code>
+<strong>addgroup --gid 1000 provision</strong>
+<strong>adduser --gecos "OpenCRVS Provisioning user" --disabled-password --uid 1000 --gid 1000 provision</strong>
 usermod -aG sudo provision
 echo 'provision ALL=(ALL) NOPASSWD:ALL' | sudo tee -a /etc/sudoers
-su provision
-```
+su - provision
+</code></pre>
 
 #### Create SSH keys for accessing `provision`
 
