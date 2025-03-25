@@ -26,8 +26,6 @@ Our international development teams work in an Agile way, in tandem with local d
 
 {% embed url="https://www.figma.com/file/vM1n322kWGHjcU9RPfUDDx/OpenCRVS-Architecture?node-id=0:1&t=ZGZuBLSL6gR6eEZ6-1" %}
 
-{% file src="../../.gitbook/assets/Application services and network diagram (1).png" %}
-
 ### Dependencies
 
 The following dependencies are automatically provisioned alongside the OpenCRVS Core in [docker](https://www.docker.com/) containers in a Docker Swarm on Ubuntu.
@@ -89,14 +87,14 @@ ElasticSearch is also used with [Kibana](https://www.elastic.co/kibana) for appl
 
 </div>
 
-### **InfluxData**
+### **InfluxDB**
 
 The hyper-efficient [Influx](https://www.influxdata.com) "time series database" is used in our stack for "big data" performance insights. Millisecond level query times facilitate civil registration statistical queries over years of data, disaggregated by gender, location and configurable operational and statistical parameters.\
 
 
 ### OpenCRVS microservice packages
 
-The core of OpenCRVS is a monorepo organised using [Lerna](https://github.com/lerna/lerna). Each package represents a single  microservice.  Each microservice has over 80% unit test coverage in [Jest](https://jestjs.io/). Following the [microservice](https://en.wikipedia.org/wiki/Microservices), 1 service per container model, every package is independently scalable in a single [docker](https://www.docker.com/) container.
+The core of OpenCRVS is a monorepo organised using [Lerna](https://github.com/lerna/lerna). Each package represents a single  microservice. Following the [microservice](https://en.wikipedia.org/wiki/Microservices), 1 service per container model, every package is independently scalable in a single [docker](https://www.docker.com/) container.
 
 ![](<../../.gitbook/assets/image (8).png>) ![](<../../.gitbook/assets/image (4).png>) ![](<../../.gitbook/assets/image (27).png>)\\
 
@@ -137,9 +135,3 @@ In remote areas, registrars can save a configurable number of registrations offl
 <img src="https://static.wixstatic.com/media/93440e_bdd011d5e3744e7b84684e6789c1f5c7~mv2.png/v1/fill/w_136,h_40,al_c,q_80,usm_0.66_1.00_0.01/openhim-logo-green.webp" alt="">
 
 </div>
-
-### **(Optional) OpenHIM enterprise service bus, interoperability Layer**
-
-The [OpenHIM (Health Information Mediator)](https://github.com/jembi/openhim-core-js) is the interoperability layer of choice in the [Open Health Information Exchange (OpenHIE) architectural standard](https://ohie.org/) and interoperates natively using [HL7 (Fast Healthcare Interoperability Resources) or FHIR](https://www.hl7.org/fhir/).&#x20;
-
-OpenHIM is built in NodeJS and is designed to ease interoperability between OpenCRVS and external healthcare systems. It provides external access to the system via secure APIs. OpenHIM is fully compatible with OpenCRVS and can be optionally included in the stack.
