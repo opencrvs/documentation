@@ -6,21 +6,21 @@ We treat the security of OpenCRVS and the personally identifiable citizen data i
 
 Every release of the OpenCRVS application and infrastructure has been security penetration tested by an independent, [CREST](https://www.crest-approved.org/) and [CyberEssentials](https://www.ncsc.gov.uk/cyberessentials/overview) certified 3rd party to UK government standards. &#x20;
 
-Penetration tests of OpenCRVS have been performed by [MDSec](https://www.mdsec.co.uk/), [The Guardian Project](https://guardianproject.info/code/) on behalf of UNICEF, and [GoFore](https://gofore.com/) - [NORAD's](https://www.norad.no/) preferred security testing provider.
+Penetration tests of OpenCRVS have been performed by [MDSec](https://www.mdsec.co.uk/), [The Guardian Project](https://guardianproject.info/code/) on behalf of UNICEF, and [Gofore](https://gofore.com/) - [NORAD's](https://www.norad.no/) preferred security testing provider.
 
-As an example, [GoFore](https://gofore.com/) Plc conducts security assessments for public and private organisations in the form of white hat penetration testing (aka ethical hacking) to simulate an adversary attacking the system and identifying vulnerabilities that may be exploited to compromise data confidentiality, integrity and availability.
+As an example, [Gofore](https://gofore.com/) Plc conducts security assessments for public and private organisations in the form of white hat penetration testing (aka ethical hacking) to simulate an adversary attacking the system and identifying vulnerabilities that may be exploited to compromise data confidentiality, integrity and availability.
 
 Gofore pentesters utilise proven pentesting methods of code review, automated enumeration scans via the public internet, fuzzing with diverse input, and manual tests. The security assessment was conducted in two rounds, first to identify and report vulnerabilities, and then reassessed to ensure reported vulnerabilities were resolved.
 
 > _"Already from the results of the first assessment, it was evident that the OpenCRVS web application had a good security posture. The web application security fundamentals were sound."_&#x20;
 >
-> GoFore Cyber Security Consultant
+> Gofore Cyber Security Consultant
 
 ### **Key security points**
 
 #### **Two factor authentication**
 
-Our server SSH access, mobile application and microservices are secure, protected by [2-Factor Authentication](https://en.wikipedia.org/wiki/Multi-factor_authentication) utilising [OAuth JWT best practices](https://tools.ietf.org/id/draft-ietf-oauth-jwt-bcp-02.html).  2FA codes are sent to the user's mobile device in order log in either via SMS or Google Authenticator.  These codes ensure that only  users with access to authenticated hardware can access OpenCRVS.
+Our server SSH access, mobile application and microservices are secure, protected by [2-Factor Authentication](https://en.wikipedia.org/wiki/Multi-factor_authentication) utilising [OAuth JWT best practices](https://tools.ietf.org/id/draft-ietf-oauth-jwt-bcp-02.html). 2FA codes are sent to the user's mobile device in order log in either via SMS or Google Authenticator. These codes ensure that only users with access to authenticated hardware can access OpenCRVS.
 
 #### Access controls and audit trail
 
