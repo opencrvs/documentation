@@ -1,6 +1,6 @@
 # v.1.1.1: Release notes
 
-**OpenCRVS v1.1.1** is a minor release that contains minor and non-breaking hot-fixes for the **OpenCRVS v1.1.0-stable** release. It is to be used in conjunction with a forked country configuration release [v1.1.1](https://github.com/opencrvs/opencrvs-farajaland/releases/tag/v1.1.1)
+**OpenCRVS v1.1.1** is a minor release that contains minor and non-breaking hotfixes for the **OpenCRVS v1.1.0-stable** release. It is to be used in conjunction with a forked country configuration release [v1.1.1](https://github.com/opencrvs/opencrvs-farajaland/releases/tag/v1.1.1)
 
 
 

@@ -2,7 +2,7 @@
 
 ### **OpenCRVS Release Calendar**
 
-The OpenCRVS Core team issue product releases once every 4 months with each release receiving 6 months of bug fix (hot-fix) support.
+The OpenCRVS Core team issue product releases once every 4 months with each release receiving 6 months of bug fix (hotfix) support.
 
 <figure><img src="../../.gitbook/assets/opencrvs-release-calendar.png" alt=""><figcaption></figcaption></figure>
 
@@ -20,7 +20,7 @@ The OpenCRVS Core team issue product releases once every 4 months with each rele
 
 ### **OpenCRVS Gitflow and "Quality Gates"**
 
-We follow the "[Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)" branching model with a "Quality Gate" concept (which defines specific quality assurance flows for features, beta releases, stable releases and hot-fixes).  It is imperative that implementers understand the concept of "Gitflow" when either contributing to core or merging in updates from the Farajaland country configuration package.
+We follow the "[Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)" branching model with a "Quality Gate" concept (which defines specific quality assurance flows for features, beta releases, stable releases and hotfixes).  It is imperative that implementers understand the concept of "Gitflow" when either contributing to core or merging in updates from the Farajaland country configuration package.
 
 <figure><img src="../../.gitbook/assets/opencrvs-gitflow.png" alt=""><figcaption><p>OpenCRVS Gitflow</p></figcaption></figure>
 
