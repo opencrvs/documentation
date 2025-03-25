@@ -1,6 +1,6 @@
 # v.1.1.1: Release notes
 
-**OpenCRVS v1.1.1** is a minor release that contains minor and non-breaking hot-fixes for the **OpenCRVS v1.1.0-stable** release.
+**OpenCRVS v1.1.1** is a minor release that contains minor and non-breaking hotfixes for the **OpenCRVS v1.1.0-stable** release.
 
 Upgrading from v1.0.1 to v1.1.1 requires the upgrade [Migration Notes](broken-reference) to be followed precisely.&#x20;
 

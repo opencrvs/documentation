@@ -61,5 +61,5 @@ Take screenshots or record your screen. [Loom](https://www.loom.com/) is a great
 
 Include all the steps required to reproduce the bug and describe the expected behaviour that did not occur.
 
-Get in touch with us by email to explain your issue, the country implementation you are working on, include the issue number, and explain the severity of your problem.  We need to understand your project timeline and dependencies in order to expedite the priority of a hot-fix.  Please be as honest as you can in order to be respectful to all other contributors and country's needs.
+Get in touch with us by email to explain your issue, the country implementation you are working on, include the issue number, and explain the severity of your problem.  We need to understand your project timeline and dependencies in order to expedite the priority of a hotfix.  Please be as honest as you can in order to be respectful to all other contributors and country's needs.
 

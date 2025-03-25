@@ -6,7 +6,7 @@
 
 The following release process commences with the v1.1.0 release.  You can read more about how we developed our release process, branching model and quality gates in this [blog post](https://www.opencrvs.org/resources/connect/blog/release-management-as-a-digital-public-good-what-we-have-learnt-so-far).
 
-The OpenCRVS Core team issue product releases once every 4 months with each release receiving 6 months of bug fix (hot-fix) support.
+The OpenCRVS Core team issue product releases once every 4 months with each release receiving 6 months of bug fix (hotfix) support.
 
 <figure><img src="../../.gitbook/assets/opencrvs-release-calendar.png" alt=""><figcaption></figcaption></figure>
 
@@ -24,7 +24,7 @@ Additional labels for "stable" and "beta" metadata are available as extensions t
 
 ### **OpenCRVS Gitflow and "Quality Gates"**
 
-We follow the "[Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)" branching model with a "Quality Gate" concept (which defines specific quality assurance flows for features, beta releases, stable releases and hot-fixes).  It is imperative that implementers understand the concept of "Gitflow" when either contributing to core or merging in updates from the Farajaland country configuration package.
+We follow the "[Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)" branching model with a "Quality Gate" concept (which defines specific quality assurance flows for features, beta releases, stable releases and hotfixes).  It is imperative that implementers understand the concept of "Gitflow" when either contributing to core or merging in updates from the Farajaland country configuration package.
 
 <figure><img src="../../.gitbook/assets/opencrvs-gitflow.png" alt=""><figcaption><p>OpenCRVS Gitflow</p></figcaption></figure>
 
