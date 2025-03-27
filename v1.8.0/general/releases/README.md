@@ -4,7 +4,7 @@
 
 The OpenCRVS Core team issue product releases once every 4 months with each release receiving 6 months of bug fix (hotfix) support.
 
-<figure><img src="../../.gitbook/assets/opencrvs-release-calendar.png" alt=""><figcaption></figcaption></figure>
+{% embed url="https://www.figma.com/board/E7EHoztOf2hJEmsybO1kro/Releases%2C-Quality-Assurance-%26-Quality-gates?node-id=36-333&t=aTwRRNS3Mrhn6slM-1" %}
 
 ### **OpenCRVS Semantic Versioning**
 
@@ -31,7 +31,6 @@ Any git hash tagged Dockerhub image is a new "feature" that has been recently me
 OWASP security penetration tests by a CREST certified 3rd party occur once every 12 months or on every major release.
 
 {% embed url="https://www.figma.com/board/E7EHoztOf2hJEmsybO1kro/Quality-Assurance-%26-Quality-gates?node-id=0-3&t=yrVF2ZewH8FG0Umf-1" %}
-
 
 
 ### **OpenCRVS Upgrade Process**
