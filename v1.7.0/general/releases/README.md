@@ -18,7 +18,7 @@ The OpenCRVS Core team issue product releases once every 4 months with each rele
 
 ### **OpenCRVS Gitflow and "Quality Gates"**
 
-We follow the "[Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)" branching model with a "Quality Gate" concept (which defines specific quality assurance flows for features, beta releases, stable releases and hotfixes). It is imperative that implementers understand the concept of "Gitflow" when either contributing to core or merging in updates from the Farajaland country configuration package.
+We follow the "[Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)" branching model with a "Quality Gate" concept (which defines specific quality assurance flows for features, stable releases and hotfixes). It is imperative that implementers understand the concept of "Gitflow" when either contributing to core or merging in updates from the Farajaland country configuration package.
 
 {% embed url="https://www.figma.com/board/E7EHoztOf2hJEmsybO1kro/Quality-Assurance-%26-Quality-gates?node-id=3-156&t=hywxqudS6k3j9B0u-1" %}
 
@@ -26,9 +26,7 @@ Referring to the Gitflow and Quality Gate diagrams, you should be able to unders
 
 A "stable" release has undergone not only automated testing but manual regression testing.
 
-A "beta" release has only undergone automated testing
-
-Any git hash tagged Dockerhub image is a new "feature" that has been recently merged into the active and unstable develop branch. These images are not in an official beta or stable release but available to experimenters and the core development team nonetheless.
+Any git hash tagged Dockerhub image is a new "feature" that has been recently merged into the active and unstable develop branch. These images are not in an official table release but available to experimenters and the core development team nonetheless.
 
 OWASP security penetration tests by a CREST certified 3rd party occur once every 12 months or on every major release.
 
