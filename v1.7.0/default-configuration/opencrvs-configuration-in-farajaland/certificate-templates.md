@@ -6,12 +6,12 @@ Two types of certified copies have been configured:
 
 * **Certificate**&#x20;
   * Issued upon registration
-  * Short from version of the digital record
+  * Short form version of the digital record
   * Fee: Free\
 
 * **Certified Copy**
   * Can be request after the certificate has been issued.&#x20;
-  * Long from version of the digital record
+  * Long form version of the digital record
   * Fee: $10
 
 ### Birth certificate
