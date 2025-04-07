@@ -10,4 +10,4 @@ Outlined below are the user roles identified in Farajaland and they key CRVS res
 
 ### Scopes assigned to each user role
 
-In the **Country Configuration Files** you will see how we mapped and assigned permissions (scopes) to Farajaland user roles.
+In the **Country Configuration Files** in the [Release Notes](../../general/v1.7-release-notes.md) you will see how we mapped and assigned permissions (scopes) to Farajaland user roles.
