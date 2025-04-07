@@ -26,7 +26,7 @@ Using our [application-config-default.ts](https://github.com/opencrvs/opencrvs-c
     },
     PRINT_IN_ADVANCE: true
   }
-</code></pre> | These are your registration time periods and fees for **birth**, explained in more detail [here](../../../4.-functional-configuration/4.2-configure-registration-periods-and-fees.md).  PRINT\_IN\_ADVANCE allows you to print  certificates in advance for collection.  You can disable this by setting it to false, if you operationally want to enforce an ID check from a recipient before printing a copy.                                                                                                                                                                           |
+</code></pre> | These are your registration time periods and fees for **birth**, explained in more detail [here](broken-reference).  PRINT\_IN\_ADVANCE allows you to print  certificates in advance for collection.  You can disable this by setting it to false, if you operationally want to enforce an ID check from a recipient before printing a copy.                                                                                                                                                                                                                                              |
 | <pre><code>DEATH: {
     REGISTRATION_TARGET: 45,
     FEE: {
@@ -35,7 +35,7 @@ Using our [application-config-default.ts](https://github.com/opencrvs/opencrvs-c
     },
     PRINT_IN_ADVANCE: true
   }
-</code></pre>                                                      | These are your registration time periods and fees for **death**, explained in more detail [here](../../../4.-functional-configuration/4.2-configure-registration-periods-and-fees.md).  PRINT\_IN\_ADVANCE allows you to print  certificates in advance for collection.  You can disable this by setting it to false, if you operationally want to enforce an ID check from a recipient before printing a copy.                                                                                                                                                                           |
+</code></pre>                                                      | These are your registration time periods and fees for **death**, explained in more detail [here](broken-reference).  PRINT\_IN\_ADVANCE allows you to print  certificates in advance for collection.  You can disable this by setting it to false, if you operationally want to enforce an ID check from a recipient before printing a copy.                                                                                                                                                                                                                                              |
 | <pre><code>MARRIAGE: {
     REGISTRATION_TARGET: 45,
     FEE: {
@@ -44,7 +44,7 @@ Using our [application-config-default.ts](https://github.com/opencrvs/opencrvs-c
     },
     PRINT_IN_ADVANCE: true
   }
-</code></pre>                                                 | These are your registration time periods and fees for **marriage**, explained in more detail [here](../../../4.-functional-configuration/4.2-configure-registration-periods-and-fees.md).  PRINT\_IN\_ADVANCE allows you to print  certificates in advance for collection.  You can disable this by setting it to false, if you operationally want to enforce an ID check from a recipient before printing a copy.                                                                                                                                                                        |
+</code></pre>                                                 | These are your registration time periods and fees for **marriage**, explained in more detail [here](broken-reference).  PRINT\_IN\_ADVANCE allows you to print  certificates in advance for collection.  You can disable this by setting it to false, if you operationally want to enforce an ID check from a recipient before printing a copy.                                                                                                                                                                                                                                           |
 | <pre><code>CURRENCY: {
     languagesAndCountry: ['en-US'],
     isoCode: 'USD'
