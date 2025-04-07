@@ -158,7 +158,7 @@
 * [Migration notes](general/migration-notes.md)
 * [Releases and upgrades](general/releases/README.md)
 * [Release notes](general/releases/v1.7-release-notes.md)
-* [Roadmap](general/product-roadmap.md)
+* [Product roadmap](general/product-roadmap.md)
 
 ## Developer
 
