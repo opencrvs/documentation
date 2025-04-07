@@ -146,7 +146,7 @@
   * [5.3 Managing system users](setup/4.-functional-configuration/4.5-create-system-users.md)
 * [6. Quality assurance testing](setup/5.-testing.md)
 * [7. Go-live](setup/6.-go-live/README.md)
-  * [6.1 Pre-Deployment Checklist](setup/6.-go-live/3.3.4-set-up-an-smtp-server-for-opencrvs-monitoring-alerts.md)
+  * [7.1 Pre-Deployment Checklist](setup/6.-go-live/3.3.4-set-up-an-smtp-server-for-opencrvs-monitoring-alerts.md)
 * [7. Operational Support](setup/8.-operational-support.md)
 * [8. Monitoring](setup/7.-monitoring/README.md)
   * [8.1 Application logs](setup/7.-monitoring/7.1-application-logs.md)
@@ -160,8 +160,8 @@
 * [Community](general/community.md)
 * [Contributing](general/contributing.md)
 * [Migration notes](general/migration-notes.md)
-* [Releases and upgrades](general/releases/README.md)
-  * [v1.7.0](general/releases/v1.7-release-notes.md)
+* [Releases and upgrades](general/releases.md)
+* [Release notes](general/v1.7-release-notes.md)
 * [Roadmap](general/product-roadmap.md)
 
 ## Developer

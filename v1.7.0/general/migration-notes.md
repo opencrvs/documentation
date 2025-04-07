@@ -45,7 +45,7 @@ We ask these questions to make sure that you are aware that you should backup yo
 The most complex task really depends upon how much customisation you have made to your country configuration fork as you will be required to merge or rebase your fork with our release branch. **(You must be familiar with the concept of** [**Git merge**](https://git-scm.com/docs/git-merge) **or** [**Git rebase**](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase)**)**.&#x20;
 
 {% hint style="info" %}
-Please refer to the release notes , which contains a video of an example code upgrade process, and our [release process including Gitflow](releases/) branching approach.&#x20;
+Please refer to the release notes , which contains a video of an example code upgrade process, and our [release process including Gitflow](releases.md) branching approach.&#x20;
 {% endhint %}
 
 1. Navigate to your opencrvs-core directory, checkout the **master** branch and pull latest changes. Yarn install any dependency upgrades:
