@@ -45,7 +45,7 @@ We ask these questions to make sure that you are aware that you should backup yo
 The most complex task really depends upon how much customisation you have made to your country configuration fork as you will be required to merge or rebase your fork with our release branch. **(You must be familiar with the concept of** [**Git merge**](https://git-scm.com/docs/git-merge) **or** [**Git rebase**](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase)**)**.&#x20;
 
 {% hint style="info" %}
-Please refer to the release notes , which contains a video of an example code upgrade process, and our [release process including Gitflow](./) branching approach.&#x20;
+Please refer to the release notes , which contains a video of an example code upgrade process, and our [release process including Gitflow](releases/) branching approach.&#x20;
 {% endhint %}
 
 1. Navigate to your opencrvs-core directory, checkout the **master** branch and pull latest changes. Yarn install any dependency upgrades:
@@ -90,7 +90,7 @@ git fetch --all
 git checkout -b upgrade-countryconfig-v<insert new version>
 ```
 
-The following command pulls from a remote named "upstream" which should already point to our countryconfig repository.  You set this up when [forking countryconfig](../../setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.1-fork-your-own-country-configuration-repository.md)
+The following command pulls from a remote named "upstream" which should already point to our countryconfig repository.  You set this up when [forking countryconfig](../setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.1-fork-your-own-country-configuration-repository.md)
 
 ```
 git pull upstream release-v*.*.* <-- substitute version of choice!
@@ -102,7 +102,7 @@ yarn --force
 
 5\. **You will likely need to fix some conflicts.**&#x20;
 
-6\. If you are running OpenCRVS locally, simply [start OpenCRVS](../../setup/3.-installation/3.1-set-up-a-development-environment/3.1.3-starting-and-stopping-opencrvs.md). Migrations will automatically run on your local data and you have finished upgrading OpenCRVS locally.&#x20;
+6\. If you are running OpenCRVS locally, simply [start OpenCRVS](../setup/3.-installation/3.1-set-up-a-development-environment/3.1.3-starting-and-stopping-opencrvs.md). Migrations will automatically run on your local data and you have finished upgrading OpenCRVS locally.&#x20;
 
 {% hint style="info" %}
 Test your upgrade locally before proceeding
@@ -115,7 +115,7 @@ Test your upgrade locally before proceeding
 
 ### Step 3: Upgrade your QA server **environments**
 
-1. Every release likely contains dev-ops improvements and bug fixes to your servers. Run the [Provision](../../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers/) action on your QA server environment.
+1. Every release likely contains dev-ops improvements and bug fixes to your servers. Run the [Provision](../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers/) action on your QA server environment.
 2. Run the Deploy script to your QA environment using the **new release number** for core and the **githash** for your countryconfig image, but **do not reset the environment**.  There is no need.  Migrations will run on your QA data, which you can monitor in Kibana, using Logstream and the **tag: migration**
 3. Log in to QA when the migrations are complete and test your upgrade.  Engage your QA team to do the same.  When your QA team is satisfied with the upgrade you can proceed to the next step.
 
@@ -133,7 +133,7 @@ Test your upgrade locally before proceeding
 All un-submitted draft applications only exist locally in a users browser cache and are therefore not preserved when the application is updated.  The browser cache is cleared.  **Inform all staff to submit in-progress drafts before updating OpenCRVS in production.**
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/Screenshot 2024-12-11 at 08.44.32.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2024-12-11 at 08.44.32.png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -142,7 +142,7 @@ All un-submitted draft applications only exist locally in a users browser cache 
 Before you proceed, ensure that you have understood these warnings:
 
 {% hint style="danger" %}
-If you have hosted **AND CONFIGURED** OpenCRVS on a server and are capturing live registrations in production, **YOU MUST ENSURE THAT OPENCRVS BACKUPS ARE WORKING AND RESTORING ON A "STAGING" ENVIRONMENT.  YOU SHOULD ALSO HAVE A HARD COPY OF RECENT BACKUPS.** This is so that you can restore in the event of any migration problems.  [Read the backup instructions.](../../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/)
+If you have hosted **AND CONFIGURED** OpenCRVS on a server and are capturing live registrations in production, **YOU MUST ENSURE THAT OPENCRVS BACKUPS ARE WORKING AND RESTORING ON A "STAGING" ENVIRONMENT.  YOU SHOULD ALSO HAVE A HARD COPY OF RECENT BACKUPS.** This is so that you can restore in the event of any migration problems.  [Read the backup instructions.](../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/)
 {% endhint %}
 
 {% hint style="danger" %}
