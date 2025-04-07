@@ -147,21 +147,21 @@
 * [6. Quality assurance testing](setup/5.-testing.md)
 * [7. Go-live](setup/6.-go-live/README.md)
   * [7.1 Pre-Deployment Checklist](setup/6.-go-live/3.3.4-set-up-an-smtp-server-for-opencrvs-monitoring-alerts.md)
-* [7. Operational Support](setup/8.-operational-support.md)
-* [8. Monitoring](setup/7.-monitoring/README.md)
-  * [8.1 Application logs](setup/7.-monitoring/7.1-application-logs.md)
-  * [8.2 Infrastructure health](setup/7.-monitoring/7.2-infrastructure-health.md)
-  * [8.3 Routine monitoring checklist](setup/7.-monitoring/7.3-routine-monitoring-checklist.md)
-  * [8.4 Setting up alerts](setup/7.-monitoring/7.4-setting-up-alerts.md)
-  * [8.5 Managing a Docker Swarm](setup/7.-monitoring/7.5-managing-a-docker-swarm.md)
+* [8. Operational Support](setup/8.-operational-support.md)
+* [9. Monitoring](setup/7.-monitoring/README.md)
+  * [9.1 Application logs](setup/7.-monitoring/7.1-application-logs.md)
+  * [9.2 Infrastructure health](setup/7.-monitoring/7.2-infrastructure-health.md)
+  * [9.3 Routine monitoring checklist](setup/7.-monitoring/7.3-routine-monitoring-checklist.md)
+  * [9.4 Setting up alerts](setup/7.-monitoring/7.4-setting-up-alerts.md)
+  * [9.5 Managing a Docker Swarm](setup/7.-monitoring/7.5-managing-a-docker-swarm.md)
 
 ## General
 
 * [Community](general/community.md)
 * [Contributing](general/contributing.md)
 * [Migration notes](general/migration-notes.md)
-* [Releases and upgrades](general/releases.md)
-* [Release notes](general/v1.7-release-notes.md)
+* [Releases and upgrades](general/releases/README.md)
+* [Release notes](general/releases/v1.7-release-notes.md)
 * [Roadmap](general/product-roadmap.md)
 
 ## Developer
