@@ -144,7 +144,7 @@
   * [5.1 Configure application settings](setup/4.-functional-configuration/4.1-configure-application-settings.md)
   * [5.2 Configure registration periods and fees](setup/4.-functional-configuration/4.2-configure-registration-periods-and-fees.md)
   * [5.3 Managing system users](setup/4.-functional-configuration/4.5-create-system-users.md)
-* [5. Quality assurance testing](setup/5.-testing.md)
+* [6. Quality assurance testing](setup/5.-testing.md)
 * [6. Go-live](setup/6.-go-live/README.md)
   * [6.1 Pre-Deployment Checklist](setup/6.-go-live/3.3.4-set-up-an-smtp-server-for-opencrvs-monitoring-alerts.md)
 * [7. Operational Support](setup/8.-operational-support.md)
