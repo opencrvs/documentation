@@ -108,7 +108,7 @@ For national scale implementations, we recommend deploying to a production serve
 
 | Population size | Servers required                                                 |
 | --------------- | ---------------------------------------------------------------- |
-| 1M - 30M        | **qa** x 1, **production** x 2, **staging** x 1 & **backup** x 1 |
+| < 30M        | **qa** x 1, **production** x 2, **staging** x 1 & **backup** x 1 |
 | 30M - 60M       | **qa** x 1, **production** x 3, **staging** x 1 & **backup** x 1 |
 | 60M+            | **qa** x 1, **production** x 5, **staging** x 1 & **backup** x 1 |
 
