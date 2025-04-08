@@ -104,7 +104,9 @@ A total of 4 servers are required for pilot implementations that capture citizen
 #### National scale
 
 For national scale implementations, we recommend deploying to a production server cluster of 2 - 5 production servers depending on population size. &#x20;
-**Recommendation:** It is recommended to deploy the production environment on a cluster of more than 1 server. This ensures high availability and prevents downtime or data loss in the event of a server failure. &#x20;
+{% hint style="warning" %}
+It is recommended to deploy the production environment on a cluster of at least 2 servers. This ensures high availability and prevents downtime or data loss in the event of a server failure.
+{% endhint %}
 
 | Population size | Servers required                                                 |
 | --------------- | ---------------------------------------------------------------- |
