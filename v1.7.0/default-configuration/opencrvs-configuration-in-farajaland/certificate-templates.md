@@ -26,5 +26,7 @@ Two types of certified copies have been configured:
 
 <figure><img src="../../.gitbook/assets/Farajaland-marriage-certificate-v2.png" alt=""><figcaption></figcaption></figure>
 
+In the **Country Configuration Files** in the [Release Notes](../../general/releases/v1.7-release-notes.md) you will find the svgs created for Farajaland certified copies
+
 
 
