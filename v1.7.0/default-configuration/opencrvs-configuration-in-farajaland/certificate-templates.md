@@ -18,7 +18,7 @@ Two types of certified copies have been configured:
 
 <figure><img src="../../.gitbook/assets/Farajaland-birth-certificate-v2.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/Farajaland-birth-certified-copy (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Farajaland-birth-certified-copy (2).png" alt=""><figcaption></figcaption></figure>
 
 ### Death certificate
 
