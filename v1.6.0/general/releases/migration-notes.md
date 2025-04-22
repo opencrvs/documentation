@@ -115,15 +115,17 @@ Test your upgrade locally before proceeding
 
 ### Step 3: Upgrade your QA server **environments**
 
-1. Every release likely contains dev-ops improvements and bug fixes to your servers. Run the [Provision](../../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers/) action on your QA server environment.
-2. Run the Deploy script to your QA environment using the **new release number** for core and the **githash** for your countryconfig image, but **do not reset the environment**.  There is no need.  Migrations will run on your QA data, which you can monitor in Kibana, using Logstream and the **tag: migration**
-3. Log in to QA when the migrations are complete and test your upgrade.  Engage your QA team to do the same.  When your QA team is satisfied with the upgrade you can proceed to the next step.
+1. Run the `yarn environment:upgrade` command to initialize all necessary environment variables required for provisioning servers in QA environment. This step ensures that your environment is properly configured before running any further provisioning or deployment actions.
+2. Every release likely contains dev-ops improvements and bug fixes to your servers. Run the [Provision](../../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers/) action on your QA server environment.
+3. Run the Deploy script to your QA environment using the **new release number** for core and the **githash** for your countryconfig image, but **do not reset the environment**.  There is no need.  Migrations will run on your QA data, which you can monitor in Kibana, using Logstream and the **tag: migration**
+4. Log in to QA when the migrations are complete and test your upgrade.  Engage your QA team to do the same.  When your QA team is satisfied with the upgrade you can proceed to the next step.
 
 ### Step 4: Upgrade your Staging server **environments**
 
-1. Run the Provision action on your Staging server environment.  Then run the Deploy action.
-2. As staging contains a mirror of all your citizen data, data migrations may take hours to complete. Once again, monitor the migrations in Kibana and **do not use the staging environment until the migrations are complete.**
-3. Log in to Staging when the migrations are complete and test your upgrade.  Engage your QA team to do the same.  When your QA team is satisfied with the staging upgrade you can proceed to the next step.
+1. Run the `yarn environment:upgrade` command to initialize all necessary environment variables required for provisioning servers in Staging environment. This step ensures that your environment is properly configured before running any further provisioning or deployment actions.
+2. Run the Provision action on your Staging server environment.  Then run the Deploy action.
+3. As staging contains a mirror of all your citizen data, data migrations may take hours to complete. Once again, monitor the migrations in Kibana and **do not use the staging environment until the migrations are complete.**
+4. Log in to Staging when the migrations are complete and test your upgrade.  Engage your QA team to do the same.  When your QA team is satisfied with the staging upgrade you can proceed to the next step.
 
 ### Step 5: Schedule downtime on production & backup for the upgrade
 
@@ -147,7 +149,8 @@ If you have hosted **AND CONFIGURED** OpenCRVS on a server and are capturing liv
 A release of OpenCRVS can contain automatic database migrations. If you have been running OpenCRVS in production and you have live civil registrations for real citizens, these migrations may take several hours to complete depending on your scale. This will lead to reduced performance of OpenCRVS during this time. Therefore test your release on a "staging" environment first that has a restored backup of citizen data on it.  Monitor migrations in Kibana, searching Observability > Logs using "tag: migration" to ensure there are no migration errors.
 {% endhint %}
 
-2. Run the Provision action on your Backup server environment.&#x20;
-3. Run the Provision action on your Production server environment.  Then run the Deploy action.
-4. Once again, monitor the migrations in Kibana and **do not use the production environment until the migrations are complete.**
-5. Log in to production when the migrations are complete and test your upgrade.  Engage your QA team to do the same.  When your QA team is satisfied with the production upgrade you can contact all staff to recommence operations.
+2. Run the `yarn environment:upgrade` command to initialize all necessary environment variables required for provisioning servers in Production environment. This step ensures that your environment is properly configured before running any further provisioning or deployment actions.
+3. Run the Provision action on your Backup server environment.&#x20;
+4. Run the Provision action on your Production server environment.  Then run the Deploy action.
+5. Once again, monitor the migrations in Kibana and **do not use the production environment until the migrations are complete.**
+6. Log in to production when the migrations are complete and test your upgrade.  Engage your QA team to do the same.  When your QA team is satisfied with the production upgrade you can contact all staff to recommence operations.
