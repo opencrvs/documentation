@@ -1,6 +1,8 @@
+# Infrastructure
+
 Setting up OpenCRVS locally allows developers to safely experiment with country-specific configurations, simulate low-connectivity environments, and test full platform functionality offline. It enables quick iteration on roles, forms, and localisation, while also providing a playground for exploring integrations like OpenHIM, FHIR APIs, and messaging services. Crucially, it also gives you hands-on experience with Ansible-based provisioning, helping you understand how infrastructure is automated before deploying to staging or production environments​​.
 
-# OpenCRVS Local Infrastructure Setup Guide
+## OpenCRVS Local Infrastructure Setup Guide
 
 This guide will help you set up the OpenCRVS infrastructure locally for development and testing purposes. It covers all essential steps, from cloning the country configuration repository to provisioning servers.
 

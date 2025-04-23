@@ -181,4 +181,4 @@
 
 ## Developers
 
-* [Infrastructure](developers/Infrastructure/local-setup.md)
+* [Infrastructure](developers/infrastructure.md)
