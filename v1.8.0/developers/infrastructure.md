@@ -20,6 +20,7 @@ Before you begin, ensure you meet the following requirements:
 
 - At least **30 GB** of free disk space
 - A Unix-based operating system (Linux or macOS)
+- 16GB or more memory
 
 ---
 
