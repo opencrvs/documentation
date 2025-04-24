@@ -59,11 +59,6 @@ Follow the [official Ansible installation guide](https://docs.ansible.com/ansibl
 
 Make sure you have **at least 30 GB** of free storage to allow for provisioning and service deployment.
 
-### Check Disk Space:
-
-```bash
-df -h
-```
 
 ---
 
