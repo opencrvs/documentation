@@ -1,14 +1,4 @@
-# Infrastructure
-
-The OpenCRVS infrastructure setup includes:
-
-- **Ansible-based server provisioning automation** that transforms bare Ubuntu servers into production-ready application and backup servers.  
-- **Configuration files** for deploying services on Docker Swarm.  
-- **Deployment automation pipelines** implemented with GitHub Actions.  
-
-If you are deploying OpenCRVS for your country, it is critical to understand and adapt these processes and configurations to align with your government's IT environment.
-
-## OpenCRVS Local Infrastructure Setup Guide
+# OpenCRVS Local Infrastructure Setup Guide
 
 Setting up OpenCRVS servers locally allows infrastructure developers to experiment with provisioning and deployment automation in a safe environment, without needing to perform real deployments to remote servers. It enables quick iteration on Ansible playbooks, inventory configurations, and service orchestration, providing hands-on experience with how the infrastructure is composed and managed.
 

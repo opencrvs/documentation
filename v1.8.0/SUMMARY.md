@@ -181,4 +181,5 @@
 
 ## Developers
 
-* [Infrastructure](developers/infrastructure.md)
+* [Infrastructure](developers/infrastructure/README.md)
+  * [Local Setup](developers/infrastructure/local-setup/local-setup.md)
