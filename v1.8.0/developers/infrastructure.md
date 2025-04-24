@@ -42,7 +42,7 @@ cd opencrvs-countryconfig
 Depending on your operating system, install the appropriate virtualisation tool:
 
 - **Linux**: [Multipass](https://multipass.run/)
-- **macOS**: [OrbStack](https://orbstack.dev/) (formerly `orbfleet`)
+- **macOS**: [OrbStack](https://orbstack.dev/)
 
 These tools are used to provision lightweight virtual machines for running OpenCRVS services.
 
