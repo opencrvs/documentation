@@ -181,7 +181,6 @@
 
 ## Developers
 
-
 * [Infrastructure](developers/infrastructure/README.md)
   * [Local Setup](developers/infrastructure/local-setup/local-setup.md)
 * ```yaml
