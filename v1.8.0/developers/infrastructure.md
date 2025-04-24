@@ -10,6 +10,8 @@ If you are deploying OpenCRVS for your country, it is critical to understand and
 
 ## OpenCRVS Local Infrastructure Setup Guide
 
+Setting up OpenCRVS servers locally allows infrastructure developers to experiment with provisioning and deployment automation in a safe environment, without needing to perform real deployments to remote servers. It enables quick iteration on Ansible playbooks, inventory configurations, and service orchestration, providing hands-on experience with how the infrastructure is composed and managed.
+
 This guide will help you set up the OpenCRVS infrastructure locally for development and testing purposes. It covers all essential steps, from cloning the country configuration repository to provisioning servers.
 
 ## Prerequisites
