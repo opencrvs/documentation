@@ -182,3 +182,13 @@
 ## Developers
 
 * [Infrastructure](developers/infrastructure.md)
+* ```yaml
+  type: builtin:openapi
+  props:
+    models: true
+  dependencies:
+    spec:
+      ref:
+        kind: openapi
+        spec: opencrvs-api
+  ```
