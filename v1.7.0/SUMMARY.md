@@ -106,7 +106,7 @@
     * [4.2.3 Set up CR offices and Health facilities](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.3-set-up-cr-offices-and-health-facilities/README.md)
       * [4.2.3.1 Prepare source file for CRVS Office facilities](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.3-set-up-cr-offices-and-health-facilities/3.2.3.1-prepare-source-file-for-crvs-office-facilities.md)
       * [4.2.3.2 Prepare source file for health facilities](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.3-set-up-cr-offices-and-health-facilities/3.2.3.2-prepare-source-file-for-health-facilities.md)
-    * [4.2.4 Set up employees & roles for testing or production](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.4-set-up-employees-for-testing-or-production/README.md)
+    * [4.2.4 Set up employee users, and scopes, for testing or production](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.4-set-up-employees-for-testing-or-production/README.md)
       * [4.2.3.1 Prepare source file for employees](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.4-set-up-employees-for-testing-or-production/3.2.3.1-prepare-source-file-for-test-employees.md)
       * [4.2.3.2 Configure role titles](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.4-set-up-employees-for-testing-or-production/4.2.3.2-configure-role-titles.md)
     * [4.2.5 Set up application settings](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.5-set-up-application-settings/README.md)
