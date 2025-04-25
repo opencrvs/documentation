@@ -1,14 +1,12 @@
 # 4.2.5 Set up application settings
 
-The next step is to configure some functional application settings. Some of these settings can be changed later using the OpenCRVS Functional Configuration UI by a National System Administrator. Others must be configured now during installation and cannot be changed in production.
+The next step is to configure some functional application settings. Some of these settings can be changed later, others must be configured now during installation and cannot be changed in production.
 
-You will be referring to the Config: Application Settings Excel sheet that would have been prepared in [section 2: Gather requirements](../../../2.-gather-requirements/).
+You will be referring to the **5. config: Applications Settings Excel** sheet that would have been prepared in [section 2: Gather requirements](../../../2.-gather-requirements/).
 
 ## 1. Prepare global functional settings
 
 Prepare your _**application-config-default.ts**_ source file. This is a Typescript file that is loaded in the application via an API explained in section [3.2.9 Countryconfig APIs explained](../3.2.9-countryconfig-apis-explained.md).
-
-{% embed url="https://youtu.be/N-D6ZKglPsg" %}
 
 Using our [application-config-default.ts](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/src/api/application/application-config-default.ts) file as an example, update the settings according to your needs.&#x20;
 
