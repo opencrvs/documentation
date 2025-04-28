@@ -181,7 +181,8 @@
 
 ## Developers
 
-* [Infrastructure](developers/infrastructure.md)
+* [Infrastructure](developers/infrastructure/README.md)
+  * [Local Setup](developers/infrastructure/local-setup/local-setup.md)
 * ```yaml
   type: builtin:openapi
   props:
@@ -192,3 +193,4 @@
         kind: openapi
         spec: opencrvs-api
   ```
+
