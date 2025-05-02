@@ -29,3 +29,13 @@
 * [Setting up MOSIP - OpenCRVS](setting-up-mosip-opencrvs.md)
 * [Advanced debugging tips & tricks](advanced-debugging-tips-and-tricks/README.md)
   * [Connecting to remote MongoDB from a local machine](advanced-debugging-tips-and-tricks/connecting-to-remote-mongodb-from-a-local-machine.md)
+* ```yaml
+  type: builtin:openapi
+  props:
+    models: true
+  dependencies:
+    spec:
+      ref:
+        kind: openapi
+        spec: opencrvs-api
+  ```

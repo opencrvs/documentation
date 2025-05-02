@@ -7,7 +7,9 @@ description: >-
 # OpenCRVS configuration in Farajaland
 
 {% embed url="https://youtu.be/j2zDFn-UVS0" %}
-OpenCRVS v1.3.0 Demo
+OpenCRVS Demo
 {% endembed %}
 
-The OpenCRVS configuration for Farajaland has been developed to support the country's civil registration business process flows and CRVS strategic goals. All of the settings documented here can be modified for other country contexts (see [4.-functional-configuration](../../setup/4.-functional-configuration/ "mention")).
+The OpenCRVS configuration for Farajaland has been developed to support the country's civil registration business process flows and CRVS strategic goals. All of the settings documented here can be modified for other country contexts.\
+\
+In the **Country Configuration Files** in the [Release Notes](../../general/releases/v1.7-release-notes.md) you the examples given is the configuration for Farajaland

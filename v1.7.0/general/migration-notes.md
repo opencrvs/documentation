@@ -45,7 +45,7 @@ We ask these questions to make sure that you are aware that you should backup yo
 The most complex task really depends upon how much customisation you have made to your country configuration fork as you will be required to merge or rebase your fork with our release branch. **(You must be familiar with the concept of** [**Git merge**](https://git-scm.com/docs/git-merge) **or** [**Git rebase**](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase)**)**.&#x20;
 
 {% hint style="info" %}
-Please refer to the release notes , which contains a video of an example code upgrade process, and our [release process including Gitflow](./) branching approach.&#x20;
+Please refer to the release notes , which contains a video of an example code upgrade process, and our [release process including Gitflow](releases/) branching approach.&#x20;
 {% endhint %}
 
 1. Navigate to your opencrvs-core directory, checkout the **master** branch and pull latest changes. Yarn install any dependency upgrades:
@@ -90,7 +90,7 @@ git fetch --all
 git checkout -b upgrade-countryconfig-v<insert new version>
 ```
 
-The following command pulls from a remote named "upstream" which should already point to our countryconfig repository.  You set this up when [forking countryconfig](../../setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.1-fork-your-own-country-configuration-repository.md)
+The following command pulls from a remote named "upstream" which should already point to our countryconfig repository.  You set this up when [forking countryconfig](../setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.1-fork-your-own-country-configuration-repository.md)
 
 ```
 git pull upstream release-v*.*.* <-- substitute version of choice!
@@ -102,7 +102,7 @@ yarn --force
 
 5\. **You will likely need to fix some conflicts.**&#x20;
 
-6\. If you are running OpenCRVS locally, simply [start OpenCRVS](../../setup/3.-installation/3.1-set-up-a-development-environment/3.1.3-starting-and-stopping-opencrvs.md). Migrations will automatically run on your local data and you have finished upgrading OpenCRVS locally.&#x20;
+6\. If you are running OpenCRVS locally, simply [start OpenCRVS](../setup/3.-installation/3.1-set-up-a-development-environment/3.1.3-starting-and-stopping-opencrvs.md). Migrations will automatically run on your local data and you have finished upgrading OpenCRVS locally.&#x20;
 
 {% hint style="info" %}
 Test your upgrade locally before proceeding
@@ -115,15 +115,17 @@ Test your upgrade locally before proceeding
 
 ### Step 3: Upgrade your QA server **environments**
 
-1. Every release likely contains dev-ops improvements and bug fixes to your servers. Run the [Provision](../../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers/) action on your QA server environment.
-2. Run the Deploy script to your QA environment using the **new release number** for core and the **githash** for your countryconfig image, but **do not reset the environment**.  There is no need.  Migrations will run on your QA data, which you can monitor in Kibana, using Logstream and the **tag: migration**
-3. Log in to QA when the migrations are complete and test your upgrade.  Engage your QA team to do the same.  When your QA team is satisfied with the upgrade you can proceed to the next step.
+1. Run the `yarn environment:upgrade` command to initialize all necessary environment variables required for provisioning servers in QA environment. This step ensures that your environment is properly configured before running any further provisioning or deployment actions.
+2. Every release likely contains dev-ops improvements and bug fixes to your servers. Run the [Provision](../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers/) action on your QA server environment.
+3. Run the Deploy script to your QA environment using the **new release number** for core and the **githash** for your countryconfig image, but **do not reset the environment**.  There is no need.  Migrations will run on your QA data, which you can monitor in Kibana, using Logstream and the **tag: migration**
+4. Log in to QA when the migrations are complete and test your upgrade.  Engage your QA team to do the same.  When your QA team is satisfied with the upgrade you can proceed to the next step.
 
 ### Step 4: Upgrade your Staging server **environments**
 
-1. Run the Provision action on your Staging server environment.  Then run the Deploy action.
-2. As staging contains a mirror of all your citizen data, data migrations may take hours to complete. Once again, monitor the migrations in Kibana and **do not use the staging environment until the migrations are complete.**
-3. Log in to Staging when the migrations are complete and test your upgrade.  Engage your QA team to do the same.  When your QA team is satisfied with the staging upgrade you can proceed to the next step.
+1. Run the `yarn environment:upgrade` command to initialize all necessary environment variables required for provisioning servers in Staging environment. This step ensures that your environment is properly configured before running any further provisioning or deployment actions.
+2. Run the Provision action on your Staging server environment.  Then run the Deploy action.
+3. As staging contains a mirror of all your citizen data, data migrations may take hours to complete. Once again, monitor the migrations in Kibana and **do not use the staging environment until the migrations are complete.**
+4. Log in to Staging when the migrations are complete and test your upgrade.  Engage your QA team to do the same.  When your QA team is satisfied with the staging upgrade you can proceed to the next step.
 
 ### Step 5: Schedule downtime on Production & Backup for the upgrade
 
@@ -133,7 +135,7 @@ Test your upgrade locally before proceeding
 All un-submitted draft applications only exist locally in a users browser cache and are therefore not preserved when the application is updated.  The browser cache is cleared.  **Inform all staff to submit in-progress drafts before updating OpenCRVS in production.**
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/Screenshot 2024-12-11 at 08.44.32.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2024-12-11 at 08.44.32.png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -142,14 +144,15 @@ All un-submitted draft applications only exist locally in a users browser cache 
 Before you proceed, ensure that you have understood these warnings:
 
 {% hint style="danger" %}
-If you have hosted **AND CONFIGURED** OpenCRVS on a server and are capturing live registrations in production, **YOU MUST ENSURE THAT OPENCRVS BACKUPS ARE WORKING AND RESTORING ON A "STAGING" ENVIRONMENT.  YOU SHOULD ALSO HAVE A HARD COPY OF RECENT BACKUPS.** This is so that you can restore in the event of any migration problems.  [Read the backup instructions.](../../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/)
+If you have hosted **AND CONFIGURED** OpenCRVS on a server and are capturing live registrations in production, **YOU MUST ENSURE THAT OPENCRVS BACKUPS ARE WORKING AND RESTORING ON A "STAGING" ENVIRONMENT.  YOU SHOULD ALSO HAVE A HARD COPY OF RECENT BACKUPS.** This is so that you can restore in the event of any migration problems.  [Read the backup instructions.](../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/)
 {% endhint %}
 
 {% hint style="danger" %}
 A release of OpenCRVS can contain automatic database migrations. If you have been running OpenCRVS in production and you have live civil registrations for real citizens, these migrations may take several hours to complete depending on your scale. This will lead to reduced performance of OpenCRVS during this time. Therefore test your release on a "staging" environment first that has a restored backup of citizen data on it.  Monitor migrations in Kibana, searching Observability > Logs using "tag: migration" to ensure there are no migration errors.
 {% endhint %}
 
-2. Run the Provision action on your Backup server environment.&#x20;
-3. Run the Provision action on your Production server environment.  Then run the Deploy action.
-4. Once again, monitor the migrations in Kibana and **do not use the production environment until the migrations are complete.**
-5. Log in to production when the migrations are complete and test your upgrade.  Engage your QA team to do the same.  When your QA team is satisfied with the production upgrade you can contact all staff to recommence operations.
+2. Run the `yarn environment:upgrade` command to initialize all necessary environment variables required for provisioning servers in Production environment. This step ensures that your environment is properly configured before running any further provisioning or deployment actions.
+3. Run the Provision action on your Backup server environment.&#x20;
+4. Run the Provision action on your Production server environment.  Then run the Deploy action.
+5. Once again, monitor the migrations in Kibana and **do not use the production environment until the migrations are complete.**
+6. Log in to production when the migrations are complete and test your upgrade.  Engage your QA team to do the same.  When your QA team is satisfied with the production upgrade you can contact all staff to recommence operations.

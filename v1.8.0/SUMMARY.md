@@ -178,3 +178,19 @@
   * [v1.1.0: Release notes](general/releases/v1.1.0-release-notes.md)
   * [v1.7.0: Release notes](general/releases/v1.7-release-notes.md)
 * [Roadmap](general/product-roadmap.md)
+
+## Developers
+
+* [Infrastructure](developers/infrastructure/README.md)
+  * [Local Setup](developers/infrastructure/local-setup/local-setup.md)
+* ```yaml
+  type: builtin:openapi
+  props:
+    models: true
+  dependencies:
+    spec:
+      ref:
+        kind: openapi
+        spec: opencrvs-api
+  ```
+
