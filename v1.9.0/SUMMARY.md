@@ -183,4 +183,16 @@
 
 * [Infrastructure](developers/infrastructure/README.md)
   * [Local Setup](developers/infrastructure/local-setup.md)
-* [Country configuration](developers/country-configuration.md)
+* [Country configuration](developers/country-configuration/README.md)
+  * ```yaml
+    type: builtin:openapi
+    props:
+      models: false
+    dependencies:
+      spec:
+        ref:
+          kind: openapi
+          spec: cc-develop
+    ```
+  * [Certificate templates](developers/country-configuration/certificate-templates/README.md)
+    * [Variables & functions](developers/country-configuration/certificate-templates/variables-and-functions.md)
