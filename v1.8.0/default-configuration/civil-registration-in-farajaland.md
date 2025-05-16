@@ -12,15 +12,15 @@ Detailed below is an explanation of the current state and operations of civil re
 
 2. The Births and Deaths Registration Act of 2021 includes a number of provisions for electronic civil registration processes, including the use of electronic signatures and the storage of vital event records in electronic format.\
 
-3. The Executive Chairman of the CRA and person with overall accountability for civil registration in Farajaland is the Registrar General. At the National level the CRA has its HQ Office in Isamba District. In this office there are a number of management positions, including a National Operations Manager and a National System Administrator.\
+3. The Executive Chairman of the CRA and person with overall accountability for civil registration in Farajaland is the Registrar General. At the National level the CRA has its HQ Office in Isamba District. In this office there are a number of management positions, including an Operations Manager and a National System Administrator.\
 
-4. Civil registration in Farajaland is administered at the District level and there is a Civil Registration Office in each of the 16 districts. In each office there is a Registrar, who is responsible for formally registering vital events and issuing certificates in the district. Supporting the Registrar are 2-3 Registration Officers and a number of community leaders that have a formal role to notify births and deaths in the community.\
+4. Civil registration in Farajaland is administered at the District level and there is a Civil Registration Office in each of the 16 districts. In each office there is a Local Registrar, who is responsible for formally registering vital events and issuing certificates in the district. Supporting the Registrar are 2-3 Registration Officers and a number of Community Leaders that have a formal role to notify vital events in the community.\
 
-5. There is also a Memorandum of Understanding (MoU) between the CRA and the Ministry of Health to integrate health and civil registration systems, such that details of vital events captured electronically within hospitals and health facilities can be shared digitally with the Civil Registration Office. \
+5. There is also a Memorandum of Understanding (MoU) between the CRA and the Ministry of Health to integrate health and civil registration systems, such that details of vital events captured electronically within hospitals and health facilities can be shared digitally with the Civil Registration Office. The Hospital Clerk can also declare births and deaths directly in OpenCRVS.\
 
 6. Until recently Farajaland has been using manual, paper-based processes and the performance of the CRVS system has been poor: \
 
-   * Completeness rates (within 1 year of event) are at 40% (births) and 15% (deaths).
+   * Completeness rates (registration within 1 year of event) are at 40% (births) and 15% (deaths).
    * There are low levels of data quality and large numbers of duplicate entries in the civil registry.&#x20;
    * Customer service is also poor, with many families complaining that they have to visit the Civil Registration Office a number of times to get vital events registered, which proves time consuming and expensive. \
 
