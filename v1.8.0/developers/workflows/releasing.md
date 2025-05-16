@@ -12,6 +12,13 @@ To trigger this action, you are required to provide only the release version.
 Ensure that the version number adheres to [semantic versioning](https://semver.org/) (e.g., `1.6.1`).
 {% endhint %}
 
+Once triggered, the action performs the following steps automatically:
+
+- **Creates a release branch** following the naming convention: `release/{version_number}` (e.g., `release/1.6.1`).
+- **Opens a pull request** to begin the release process.
+- **Updates `CHANGELOG.md`** heading with the specified version number.
+- **Modifies all `package.json` files** across the repository to reflect the new version.
+
 ## Deployment to a Release Environment
 
 You can deploy a draft release to a dedicated release environment, which is highly beneficial for validation and testing purposes. The process is streamlined and straightforward.
