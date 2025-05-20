@@ -26,7 +26,7 @@ This documentation can be used by governments, system integrators and developmen
 * to setup you own OpenCRVS project, then go to [Setup](setup/1.-establish-project-and-team.md)
 * to run OpenCRVS on your laptop, take a look at the [Quick Start](setup/3.-installation/3.1-set-up-a-development-environment/).
 * to technically configure OpenCRVS, go to [Configure](setup/3.-installation/3.2-set-up-your-own-country-configuration/).
-* to  deploy a configured version of OpenCRVS, go to [Deploy](setup/3.-installation/3.3-set-up-a-server-hosted-environment/).
+* to deploy to a server, a configured version of OpenCRVS, go to [Deploy](setup/3.-installation/3.3-set-up-a-server-hosted-environment/).
 * to see what's coming next for OpenCRVS, see the [Product Roadmap](general/product-roadmap.md)
 
 {% hint style="info" %}
