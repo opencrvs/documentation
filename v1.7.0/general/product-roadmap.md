@@ -6,7 +6,7 @@ We often get the question "What does OpenCRVS do?". Beyond the descriptions foun
 
 {% file src="../.gitbook/assets/OpenCRVS Use Cases Inventory v1.7.0.xlsx" %}
 
-In addition to the functional and integration use cases, as separate tab includes non-functional requirements (NFRs) that we believe are important for national scale civil registration systems, the majority of which OpenCRVS is already compliant. &#x20;
+In addition to the functional and integration use cases, a separate tab includes non-functional requirements (NFRs) that we believe are important for national scale civil registration systems, the majority of which OpenCRVS is already compliant with. &#x20;
 
 ## Future release dates
 
