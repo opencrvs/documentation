@@ -11,9 +11,8 @@ The first step in launching a new release is to create the release pull request.
 To trigger this action, you are required to provide only the release version.
 
 {% hint style="warning" %}
- **⚠️ Caution** 
-- Ensure that the version number adheres to [semantic versioning](https://semver.org/) (e.g., `1.6.1`).
-- Ensure there are no open pull requests that need to be included in the release—this applies to both the `countryconfig` and `core` repositories.
+**⚠️ Caution** 
+Ensure that the version number adheres to [semantic versioning](https://semver.org/) (e.g., `1.6.1`).
 {% endhint %}
 
 Once triggered, the action performs the following steps automatically:
@@ -40,7 +39,12 @@ Once triggered, the action will handle the rest of the setup automatically.
 ## Publishing the Release
 
 Once the release pull request has been generated via the [`Release - Start a new release`](https://github.com/opencrvs/opencrvs-core/actions/workflows/init-release.yml) workflow, a few final tasks remain to fully complete the release process.
+During this phase, it's common for issues to be discovered or additional pull requests to be merged into the release branch. Proceed carefully and ensure all necessary changes are included.
 
+{% hint style="warning" %}
+**⚠️ Caution**  
+Before proceeding to the next steps, make sure **there are no open pull requests** that need to be included in the release—this applies to both the `countryconfig` and `core` repositories.
+{% endhint %}
 
 ### 1. Tag the Release
 
@@ -51,8 +55,8 @@ git tag v1.7.0
 git push origin tag v1.7.0
 ```
 {% hint style="warning" %}
- **⚠️ Caution** 
-- Before creating a new Git tag, confirm that a tag with the same version number does not already exist in either the `countryconfig` or `core` repositories.
+**⚠️ Caution** 
+Before creating a new Git tag, confirm that a tag with the same version number does not already exist in either the `countryconfig` or `core` repositories.
 {% endhint %}
 
 ### 2. Publish & Verify Docker Images
@@ -67,8 +71,8 @@ git push origin tag v1.7.0
 - If there is a significant difference in size, report it to the maintainers for investigation.
 
 {% hint style="warning" %}
- **⚠️ Caution** 
-- Check Docker Hub (or the GitHub Container Registry for versions post `1.7.0` in core) to confirm that Docker images have been built and published using the correct release version name.
+**⚠️ Caution** 
+Check Docker Hub (or the GitHub Container Registry for versions post `1.7.0` in core) to confirm that Docker images have been built and published using the correct release version name.
 {% endhint %}
 
 ### 3. Finalize GitHub Release
