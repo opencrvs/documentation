@@ -2,14 +2,18 @@
 
 OpenCRVS follows a structured and coordinated release process to ensure stability and alignment between the core platform and country-specific configurations. Releases are versioned semantically (e.g., v1.4.0). Each release is accompanied by migration notes, upgrade instructions, and full changelogs to support system integrators and implementers.
 
-## Create the release pull request
+## Initializing a Release
 
-The first step in launching a new release is to create the release pull request—arguably the simplest part of the process. To do so, execute the GitHub Action titled [`Release - Start a new release`](https://github.com/opencrvs/opencrvs-core/actions/workflows/init-release.yml) available in the [opencrvs-core](https://github.com/opencrvs/opencrvs-core) repository.
+### Create the release pull request
+
+The first step in launching a new release is to create the release pull request. To do so, execute the GitHub Action titled [`Release - Start a new release`](https://github.com/opencrvs/opencrvs-core/actions/workflows/init-release.yml) available in the [opencrvs-core](https://github.com/opencrvs/opencrvs-core) repository.
 
 To trigger this action, you are required to provide only the release version.
 
 {% hint style="warning" %}
-Ensure that the version number adheres to [semantic versioning](https://semver.org/) (e.g., `1.6.1`).
+ **⚠️ Caution** 
+- Ensure that the version number adheres to [semantic versioning](https://semver.org/) (e.g., `1.6.1`).
+- Ensure there are no open pull requests that need to be included in the release—this applies to both the `countryconfig` and `core` repositories.
 {% endhint %}
 
 Once triggered, the action performs the following steps automatically:
@@ -19,7 +23,7 @@ Once triggered, the action performs the following steps automatically:
 - **Updates `CHANGELOG.md`** heading with the specified version number.
 - **Modifies all `package.json` files** across the repository to reflect the new version.
 
-## Deployment to a Release Environment
+### Deployment to a Release Environment
 
 You can deploy a draft release to a dedicated release environment, which is highly beneficial for validation and testing purposes. The process is streamlined and straightforward.
 
@@ -33,7 +37,7 @@ To initiate the deployment, simply run the [`Create Hetzner Server`](https://git
 
 Once triggered, the action will handle the rest of the setup automatically.
 
-## Comprehensive Guide to Completing the Release
+## Publishing the Release
 
 Once the release pull request has been generated via the [`Release - Start a new release`](https://github.com/opencrvs/opencrvs-core/actions/workflows/init-release.yml) workflow, a few final tasks remain to fully complete the release process.
 
@@ -46,12 +50,26 @@ Create a Git tag from the `HEAD` of the release branch. For example, to tag vers
 git tag v1.7.0
 git push origin tag v1.7.0
 ```
+{% hint style="warning" %}
+ **⚠️ Caution** 
+- Before creating a new Git tag, confirm that a tag with the same version number does not already exist in either the `countryconfig` or `core` repositories.
+{% endhint %}
 
-### 2. Verify Docker Images
+### 2. Publish & Verify Docker Images
 
-- Confirm that the Docker images have been published to [Docker Hub](https://hub.docker.com/r/opencrvs/ocrvs-countryconfig/tags?name=v). For post v1.7.0 check Github Container regestry.
+- 🛠️ Publish Docker images for:
+  - **Core** using [this workflow](https://github.com/opencrvs/opencrvs-core/blob/develop/.github/workflows/build-images-from-branch.yml)
+  - **CountryConfig** using [this workflow](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/.github/workflows/publish-to-dockerhub.yml)
+- ✅ Verify that the Docker images have been published to the appropriate registry:
+  - **CountryConfig** and **Core** (pre `v1.7.0`): [Docker Hub](https://hub.docker.com/r/opencrvs/ocrvs-countryconfig/tags?name=v)
+  - **Core** (`v1.7.0` and later): [GitHub Container Registry (GHCR)](https://github.com/orgs/opencrvs/packages?repo_name=opencrvs-core)
 - Compare the size of the new images with those from the previous release.
 - If there is a significant difference in size, report it to the maintainers for investigation.
+
+{% hint style="warning" %}
+ **⚠️ Caution** 
+- Check Docker Hub (or the GitHub Container Registry for versions post `1.7.0` in core) to confirm that Docker images have been built and published using the correct release version name.
+{% endhint %}
 
 ### 3. Finalize GitHub Release
 
@@ -86,22 +104,7 @@ git push origin tag v1.7.0
 
 - Announce the newly published version to your team and stakeholders, ensuring they are informed and aligned.
 
----
-
-By following this structured checklist, you ensure a smooth, transparent, and high-quality release process.
-
-## Verification Steps During a Release
-
-During the release process, it is critical to exercise extra caution and perform thorough validation at each stage to ensure accuracy and completeness. Below are essential verification tasks you must carry out:
-
-- **Check for pending pull requests**  
-  Ensure there are no open pull requests that need to be included in the release—this applies to both the `countryconfig` and `core` repositories.
-
-- **Verify Git tags**  
-  Before creating a new Git tag, confirm that a tag with the same version number does not already exist in either the `countryconfig` or `core` repositories.
-
-- **Validate Docker image availability**  
-  Check Docker Hub (or the GitHub Container Registry for versions post `1.7.0`) to confirm that Docker images have been built and published using the correct release version name.
+### 9. Post Verification Steps 
 
 - **Confirm GitHub release publication**  
   After publishing the GitHub release, open the repository’s **Releases** tab and verify that the release is publicly available and correctly labeled.
@@ -109,5 +112,9 @@ During the release process, it is critical to exercise extra caution and perform
 - **Verify NPM package publication (core only)**  
   For the `core` repository, ensure the NPM release has been published successfully. You can confirm this by checking for the presence of the corresponding version under the [@opencrvs/toolkit](https://www.npmjs.com/package/@opencrvs/toolkit?activeTab=versions) package on NPM.
 
-> ✅ Conducting these checks diligently helps avoid release inconsistencies and ensures a smooth experience for downstream users.
+---
+
+By following this structured checklist, you ensure a smooth, transparent, and high-quality release process.
+
+
 
