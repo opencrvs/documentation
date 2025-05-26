@@ -24,17 +24,30 @@ Once triggered, the action performs the following steps automatically:
 
 ### Deployment to a Release Environment
 
-You can deploy a draft release to a dedicated release environment, which is highly beneficial for validation and testing purposes. The process is streamlined and straightforward.
+You can deploy a draft release to a dedicated release environment. The process is streamlined and easy to follow.
 
-To initiate the deployment, simply run the [`Create Hetzner Server`](https://github.com/opencrvs/opencrvs-farajaland/actions/workflows/create-hetzner-server.yml) GitHub Action. This workflow automates the server provisioning process and requires only two input parameters:
+- To initiate the deployment, run the [`Create Hetzner Server`](https://github.com/opencrvs/opencrvs-farajaland/actions/workflows/create-hetzner-server.yml) GitHub Action.  
+  This workflow will:
+  - Create a new server on Hetzner Cloud
+  - Register DNS records via Cloudflare
 
-- **`env_name`**: A short identifier for the environment (preferably 3–5 characters).  
-  *Tip:* Use the release version as a reference, such as `v17` for version `1.7.0`.
+  It requires two input parameters:
+  - **`env_name`**: A short identifier for the environment (typically 3–5 characters).  
+    *Tip:* Use the release version for clarity, e.g., `v17` for version `1.7.0`.
+  - **`env_type`**: Defines the server configuration.  
+    Use `multi-node` for production environments and `single-node` for all others.
 
-- **`env_type`**: Specify the environment configuration.  
-  Use `multi-node` for production deployments and `single-node` for all other cases.
+- To provision the newly created server, use the [`Provision Environment`](https://github.com/opencrvs/opencrvs-farajaland/actions/workflows/provision.yml) workflow.  
+  This action requires two inputs:
+  - **Environment**: Select the environment you wish to provision.
+  - **Ansible tag**:  
+    *Tip:* Choose `all` if you are provisioning for the first time or want to perform a full setup. Otherwise, select the specific tag you want to update—this can significantly reduce provisioning time.
 
-Once triggered, the action will handle the rest of the setup automatically.
+- Once provisioning is complete, deploy the release using the appropriate workflow:
+  - For **production** and **staging** environments, use the [`Deploy to Prod/Staging`](https://github.com/opencrvs/opencrvs-farajaland/actions/workflows/deploy-prod.yml) workflow.
+  - For **other environments**, use the [`Deploy`](https://github.com/opencrvs/opencrvs-farajaland/actions/workflows/deploy.yml) workflow.
+
+- After deployment, seed the environment with necessary data using the [`Seed Data`](https://github.com/opencrvs/opencrvs-farajaland/actions/workflows/seed-data.yml) workflow.
 
 ## Publishing the Release
 
@@ -46,7 +59,14 @@ During this phase, it's common for issues to be discovered or additional pull re
 Before proceeding to the next steps, make sure **there are no open pull requests** that need to be included in the release—this applies to both the `countryconfig` and `core` repositories.
 {% endhint %}
 
-### 1. Tag the Release
+### 1. Publish Docker Images to Container Registry
+
+You can publish all Docker images to our container registry by running the [`Publish Release`](https://github.com/opencrvs/opencrvs-core/blob/develop/.github/workflows/publish-release.yml) workflow in the `opencrvs-core` repository.
+
+> 💡 This step ensures that all release-related images are built and made available in the appropriate container registry.
+
+
+### 2. Tag the Release
 
 Create a Git tag from the `HEAD` of the release branch. For example, to tag version `1.7.0`, run:
 
@@ -59,11 +79,8 @@ git push origin tag v1.7.0
 Before creating a new Git tag, confirm that a tag with the same version number does not already exist in either the `countryconfig` or `core` repositories.
 {% endhint %}
 
-### 2. Publish & Verify Docker Images
+### 3. Verify Docker Images
 
-- 🛠️ Publish Docker images for:
-  - **Core** using [this workflow](https://github.com/opencrvs/opencrvs-core/blob/develop/.github/workflows/build-images-from-branch.yml)
-  - **CountryConfig** using [this workflow](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/.github/workflows/publish-to-dockerhub.yml)
 - ✅ Verify that the Docker images have been published to the appropriate registry:
   - **CountryConfig** and **Core** (pre `v1.7.0`): [Docker Hub](https://hub.docker.com/r/opencrvs/ocrvs-countryconfig/tags?name=v)
   - **Core** (`v1.7.0` and later): [GitHub Container Registry (GHCR)](https://github.com/orgs/opencrvs/packages?repo_name=opencrvs-core)
@@ -75,22 +92,22 @@ Before creating a new Git tag, confirm that a tag with the same version number d
 Check Docker Hub (or the GitHub Container Registry for versions post `1.7.0` in core) to confirm that Docker images have been built and published using the correct release version name.
 {% endhint %}
 
-### 3. Finalize GitHub Release
+### 4. Finalize GitHub Release
 
 - Copy the content from `CHANGELOG.md` into the GitHub Release notes.
 - Paste any changed "Copy" items into the release notes. You can generate these with [this tool](https://gist.github.com/rikukissa/9415b88016c0acfc0e0d4e00add45993).
 - Once finalized, **publish** the GitHub release.
 
-### 4. Publish NPM Release
+### 5. Publish NPM Release
 
 - In the core repository, ensure that the corresponding NPM package is published to reflect the new version.
 
-### 5. Version Control Management
+### 6. Version Control Management
 
 - In both the `core` and `countryconfig` repositories, **merge the release branch into `master`**.  
   ⚠️ **Do not squash merge** — use a regular merge to preserve history.
 
-### 6. Documentation Management
+### 7. Documentation Management
 
 - Add the new release notes to the official documentation.
 - Create a placeholder for the next version's documentation.
@@ -98,17 +115,17 @@ Check Docker Hub (or the GitHub Container Registry for versions post `1.7.0` in 
 - Publish the updated documentation.
 - Merge any open pull requests in the documentation repository, if appropriate.
 
-### 7. Environment Management
+### 8. Environment Management
 
 - Merge the latest `countryconfig` updates into your country-specific repository.
 - **For minor releases**: Deploy the new version to **production**.
 - **For hotfix releases**: Deploy the new version to **staging**.
 
-### 8. Team Communication
+### 9. Team Communication
 
 - Announce the newly published version to your team and stakeholders, ensuring they are informed and aligned.
 
-### 9. Post Verification Steps 
+### 10. Post Verification Steps 
 
 - **Confirm GitHub release publication**  
   After publishing the GitHub release, open the repository’s **Releases** tab and verify that the release is publicly available and correctly labeled.
