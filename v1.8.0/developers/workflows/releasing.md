@@ -12,8 +12,8 @@ To trigger this action, you are required to provide only the release version.
 
 {% hint style="warning" %}
 **⚠️ Caution** 
-Ensure that the version number adheres to [semantic versioning](https://semver.org/) (e.g., `1.6.1`).
-For a hotfix release, ensure that the branch corresponding to the previous release exists in both the `core` and `countryconfig` repositories.
+- Ensure that the version number adheres to [semantic versioning](https://semver.org/) (e.g., `1.6.1`).
+- For a hotfix release, ensure that the branch corresponding to the previous release exists in both the `core` and `countryconfig` repositories.
 {% endhint %}
 
 Once triggered, the action performs the following steps automatically:
