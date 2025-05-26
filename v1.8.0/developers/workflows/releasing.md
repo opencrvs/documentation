@@ -33,9 +33,9 @@ You can deploy a draft release to a dedicated release environment. The process i
   - Register DNS records via Cloudflare
 
   It requires two input parameters:
-  - **`env_name`**: A short identifier for the environment (typically 3–5 characters).  
+  - **`Short server name`**: A short identifier for the environment (typically 3–5 characters).  
     *Tip:* Use the release version for clarity, e.g., `v17` for version `1.7.0`.
-  - **`env_type`**: Defines the server configuration.  
+  - **`Environment type`**: Defines the server configuration.  
     Use `multi-node` for production environments and `single-node` for all others.
 
 - To provision the newly created server, use the [`Provision Environment`](https://github.com/opencrvs/opencrvs-farajaland/actions/workflows/provision.yml) workflow.  
@@ -107,6 +107,7 @@ Check Docker Hub (or the GitHub Container Registry for versions post `1.7.0` in 
 
 - In both the `core` and `countryconfig` repositories, **merge the release branch into `master`**.  
   ⚠️ **Do not squash merge** — use a regular merge to preserve history.
+-  Also **merge the release branch back into the `develop` branch** after the release is finalized to keep `develop` up to date with the latest changes.
 
 ### 7. Documentation Management
 
