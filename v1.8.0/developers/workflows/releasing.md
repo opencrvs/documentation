@@ -62,7 +62,7 @@ Before proceeding to the next steps, make sure **there are no open pull requests
 
 ### 1. Publish Docker Images to Container Registry
 
-You can publish all Docker images to our container registry by running the [`Publish Release`](https://github.com/opencrvs/opencrvs-core/blob/develop/.github/workflows/publish-release.yml) workflow in the `opencrvs-core` repository.
+You can publish all Docker images to our container registry by running the [`Publish Release`](https://github.com/opencrvs/opencrvs-core/blob/develop/.github/workflows/publish-release.yml) workflow in the `opencrvs-core` repository. For `opencrvs-countryconfig` you can publish all Docker images through [`Publish image to Dockerhub`](https://github.com/opencrvs/opencrvs-countryconfig/actions/workflows/publish-to-dockerhub.yml) workflow. 
 
 > 💡 This step ensures that all release-related images are built and made available in the appropriate container registry.
 
