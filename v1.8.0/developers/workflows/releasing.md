@@ -47,7 +47,6 @@ This provides a fully functional environment for validating and reviewing the re
 
 ## Publishing the Release
 
-Once the release pull request has been generated via the [`Release - Start a new release`](https://github.com/opencrvs/opencrvs-core/actions/workflows/init-release.yml) workflow, a significant number of final tasks still remain to fully complete the release process.
 During this phase, it's common for issues to be discovered or additional pull requests to be merged into the release branch. Proceed carefully and ensure all necessary changes are included.
 
 {% hint style="warning" %}
