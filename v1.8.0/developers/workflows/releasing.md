@@ -25,11 +25,18 @@ Once triggered, the action performs the following steps automatically:
 
 ### Deployment to a Release Environment
 
-You can deploy a draft release to a dedicated release environment by running the `Release - Provision Environment` workflow.
+You can deploy a draft release to a dedicated release environment by running the [`Release - Provision Environment`](https://github.com/opencrvs/opencrvs-farajaland/blob/develop/.github/workflows/provision-release-environment.yml) workflow.
 This workflow requires two input parameters:
 - **`Environment`**: A short identifier for the environment.  
-  *Tip:* If you are creating a release for version `v1.9.0`, enter `v19` as the input. This will result in a deployment like `v19.opencrvs.dev`.
+  *Tip:* If you are creating a release for version `v1.9.0`, enter `v19` as the input. This will result in a deployment like `v19.opencrvs.dev`.  
+  If you are releasing a patch version such as `v1.9.1`, you should still use `v19`.  
+  New environments are created only for minor releases.
 - **`Core image tag`**: The Docker image tag for, core that you want to deploy.
+
+{% hint style="warning" %}
+⚠️ **Caution**  
+Make sure to run the workflow from the appropriate release branch.
+{% endhint %}
 
 Once triggered, this workflow will:
 - Create a server for the release environment
