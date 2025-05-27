@@ -35,7 +35,7 @@ This workflow requires two input parameters:
 
 {% hint style="warning" %}
 ⚠️ **Caution**  
-Make sure to run the workflow from the appropriate release branch.
+Make sure to run the workflow from the release branch.
 {% endhint %}
 
 Once triggered, this workflow will:
