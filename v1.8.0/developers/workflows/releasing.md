@@ -25,30 +25,18 @@ Once triggered, the action performs the following steps automatically:
 
 ### Deployment to a Release Environment
 
-You can deploy a draft release to a dedicated release environment. The process is streamlined and easy to follow.
+You can deploy a draft release to a dedicated release environment by running the `Release - Provision Environment` workflow.
+This workflow requires two input parameters:
+- **`Environment`**: A short identifier for the environment.  
+  *Tip:* If you are creating a release for version `v1.9.0`, enter `v19` as the input. This will result in a deployment like `v19.opencrvs.dev`.
+- **`Core image tag`**: The Docker image tag for, core that you want to deploy.
 
-- To initiate the deployment, run the [`Create Hetzner Server`](https://github.com/opencrvs/opencrvs-farajaland/actions/workflows/create-hetzner-server.yml) GitHub Action.  
-  This workflow will:
-  - Create a new server on Hetzner Cloud
-  - Register DNS records via Cloudflare
+Once triggered, this workflow will:
+- Create a server for the release environment
+- Provision the environment
+- Deploy the release environment
 
-  It requires two input parameters:
-  - **`Short server name`**: A short identifier for the environment (typically 3–5 characters).  
-    *Tip:* Use the release version for clarity, e.g., `v17` for version `1.7.0`.
-  - **`Environment type`**: Defines the server configuration.  
-    Use `multi-node` for production environments and `single-node` for all others.
-
-- To provision the newly created server, use the [`Provision Environment`](https://github.com/opencrvs/opencrvs-farajaland/actions/workflows/provision.yml) workflow.  
-  This action requires two inputs:
-  - **Environment**: Select the environment you wish to provision.
-  - **Ansible tag**:  
-    *Tip:* Choose `all` if you are provisioning for the first time or want to perform a full setup. Otherwise, select the specific tag you want to update—this can significantly reduce provisioning time.
-
-- Once provisioning is complete, deploy the release using the appropriate workflow:
-  - For **production** and **staging** environments, use the [`Deploy to Prod/Staging`](https://github.com/opencrvs/opencrvs-farajaland/actions/workflows/deploy-prod.yml) workflow.
-  - For **other environments**, use the [`Deploy`](https://github.com/opencrvs/opencrvs-farajaland/actions/workflows/deploy.yml) workflow.
-
-- After deployment, seed the environment with necessary data using the [`Seed Data`](https://github.com/opencrvs/opencrvs-farajaland/actions/workflows/seed-data.yml) workflow.
+This provides a fully functional environment for validating and reviewing the release.
 
 ## Publishing the Release
 
