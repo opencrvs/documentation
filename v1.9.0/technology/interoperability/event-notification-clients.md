@@ -6,70 +6,70 @@ description: >-
 
 # Event Notification clients
 
-An Event Notification client can submit full or partial events into an OpenCRVS' office. The technical documentation for the Event Notification API's are found in our [Swagger-documentation](https://api.opencrvs.org/develop/events/).
+An **Event Notification client** can submit full or partial events to an OpenCRVS office. You can find the technical documentation for the Event Notification APIs in our [Swagger documentation](https://api.opencrvs.org/develop/events/).
 
 {% hint style="info" %}
-You can use our [Postman collections](https://github.com/opencrvs/opencrvs-countryconfig/tree/master/postman) to test Event Notification API functionality. Specifically, use the **Event Notification - v1.9.0 -collection**.
+You can use our [Postman collections](https://github.com/opencrvs/opencrvs-countryconfig/tree/master/postman) to test the Event Notification API functionality. Specifically, use the **Event Notification - v1.9.0** collection.
 
 [Postman](https://www.postman.com/) is a tool you can download to test API access before building your integrations.
 {% endhint %}
 
-The following images and examples use our fictional country's, [Farajaland's](../../default-configuration/intro-to-farajaland.md), birth registration configuration. However, the actual events and workflows will depend on your own country's configuration.
+The following images and examples use the fictional country [Farajaland](../../default-configuration/intro-to-farajaland.md) and its birth registration configuration. Your actual events and workflows may vary depending on your country’s configuration.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-01-11 at 15.39.53.png" alt=""><figcaption><p>An Event Notification in the Farajaland 'In Progress' view</p></figcaption></figure>
 
-When Event Notifications are received in OpenCRVS, they are audited accordingly as being received from one of your automated clients. **Events notified via the Event Notification API are saved with status `NOTIFIED`.**
+When Event Notifications are received in OpenCRVS, they are audited and logged as being received from an automated client. **Events submitted via the Event Notification API are saved with the status `NOTIFIED`.**
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-01-11 at 15.40.23.png" alt=""><figcaption><p>Record Audit view for an Event Notification</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-01-11 at 15.40.23.png" alt=""><figcaption><p>Record audit view for an Event Notification</p></figcaption></figure>
 
-**Submitting an Event Notification**
+## Submitting an Event Notification
 
 To submit an Event Notification, your client must first request an [authorization token](authenticate-a-client.md) using your `client_id` and `client_secret`.
 
-#### Event Notification Requests
+### Event Notification Requests
 
-With the token as an authorization header, events are notified with two subsequent API requests:
+Using the token in the Authorization header, an event is notified via two sequential API requests:
 
-1. `POST /api/events/events` to initialize an event
-2. `POST /api/events/events/notifications` to send full or partial event values and notify an event
+1. `POST /api/events/events` to initialize the event
+2. `POST /api/events/events/notifications` to submit full or partial event data and trigger the notification
 
-With the token as an authorization header, the following requests will submit a minimal birth declaration on the [Farajaland](../../default-configuration/intro-to-farajaland.md) configuration.
+The example below demonstrates how to submit a minimal birth declaration based on the [Farajaland](../../default-configuration/intro-to-farajaland.md) configuration.
 
 ```http
 POST /api/events/events
-content-type: application/json
+Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "type": "v2.birth",
-    "transactionId": "{{uuid}}",
-    "dateOfEvent": {
-        "fieldId": "child.dob"
-    }
+  "type": "v2.birth",
+  "transactionId": "{{uuid}}",
+  "dateOfEvent": {
+    "fieldId": "child.dob"
+  }
 }
 ```
 
 {% hint style="info" %}
-This request will respond with a payload containing the event id, in the `id` field. This event id must be used in the following request.
+This request will return a response containing the event ID in the `id` field. You must use this `eventId` in the subsequent request.
 {% endhint %}
 
-After the request above is sent, the event will be initialized and ready for receiving the notification:
+Once the event is initialized, you can submit the notification:
 
 ```http
 POST /api/events/events/notifications
-content-type: application/json
+Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "eventId": "{{eventId}}",
-    "transactionId": "{{uuid}}",
-    "declaration": {
-        "child.firstname": "Jane",
-        "child.surname": "Doe",
-        "child.dob": "{{yyyy-MM-dd}}"
-    },
-    "annotation": {}
+  "eventId": "{{eventId}}",
+  "transactionId": "{{uuid}}",
+  "declaration": {
+    "child.firstname": "Jane",
+    "child.surname": "Doe",
+    "child.dob": "{{yyyy-MM-dd}}"
+  },
+  "annotation": {}
 }
 ```
 
-See the detailed documentation for the API's in [Swagger](https://api.opencrvs.org/develop/events/).
+For full API details, refer to the [Swagger documentation](https://api.opencrvs.org/develop/events/).
