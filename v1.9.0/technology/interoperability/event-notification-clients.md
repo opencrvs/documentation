@@ -33,7 +33,7 @@ Using the token in the Authorization header, an event is notified via two sequen
 1. `POST /api/events/events` to initialize the event
 2. `POST /api/events/events/notifications` to submit full or partial event data and trigger the notification
 
-The example below demonstrates how to submit a minimal birth declaration based on the [Farajaland](../../default-configuration/intro-to-farajaland.md) configuration.
+The example below demonstrates how to submit a simple birth declaration based on the [Farajaland](../../default-configuration/intro-to-farajaland.md) configuration. This example will contain the child's name and date of birth details.
 
 ```http
 POST /api/events/events
