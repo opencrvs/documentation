@@ -13,7 +13,8 @@ To trigger this action, you are required to provide only the release version.
 {% hint style="warning" %}
 **⚠️ Caution** 
 - Ensure that the version number adheres to [semantic versioning](https://semver.org/) (e.g., `1.6.1`).
-- For a hotfix release, ensure that the branch corresponding to the previous release exists in both the `core` and `countryconfig` repositories.
+- For a minor release, the release branch will be created from develop branch.
+- For a **hotfix release**, make sure that the branch corresponding to the previous release exists in the `core`, `countryconfig`, and `farajaland` repositories. If it does not exist, create it first—otherwise, the workflow will fail. (e.g., If you are creating a hotfix release for version `1.6.2`, ensure that the `release/1.6.1` branch already exists.)
 {% endhint %}
 
 Once triggered, the action performs the following steps automatically:
@@ -22,15 +23,13 @@ Once triggered, the action performs the following steps automatically:
 - **Opens a pull request** to begin the release process.
 - **Updates `CHANGELOG.md`** heading with the specified version number.
 - **Modifies all `package.json` files** across the repository to reflect the new version.
+- **Creates a draft release** for core and countryconfig.
 
 ### Deployment to a Release Environment
 
-You can deploy a draft release to a dedicated release environment by running the [`Release - Provision Environment`](https://github.com/opencrvs/opencrvs-farajaland/blob/develop/.github/workflows/provision-release-environment.yml) workflow.
+You can deploy a draft release to a dedicated release environment by running the [`Release - Create Environment`](https://github.com/opencrvs/opencrvs-farajaland/actions/workflows/create-release-environment.yml) workflow.
 This workflow requires two input parameters:
-- **`Environment`**: A short identifier for the environment.  
-  *Tip:* If you are creating a release for version `v1.9.0`, enter `v19` as the input. This will result in a deployment like `v19.opencrvs.dev`.  
-  If you are releasing a patch version such as `v1.9.1`, you should still use `v19`.  
-  New environments are created only for minor releases.
+- **Select the branch** from which you want to run the workflow.
 - **`Core image tag`**: The Docker image tag for, core that you want to deploy.
 
 {% hint style="warning" %}
