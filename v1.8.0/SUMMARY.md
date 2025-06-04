@@ -67,7 +67,6 @@
   * [Webhook clients](technology/interoperability/webhook-clients.md)
   * [National ID client](technology/interoperability/national-id-client.md)
   * [FHIR Location REST API](technology/interoperability/fhir-location-rest-api.md)
-  * [Other ways to interoperate](technology/interoperability/other-ways-to-interoperate.md)
 
 ## Default configuration
 
@@ -173,9 +172,9 @@
   * [Releasing](developers/workflows/releasing.md)
 * [API Documentation](developers/api-documentation/README.md)
   * ```yaml
-    type: builtin:openapi
     props:
       models: false
+    type: builtin:openapi
     dependencies:
       spec:
         ref:
