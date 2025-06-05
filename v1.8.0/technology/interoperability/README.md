@@ -8,21 +8,29 @@ OpenCRVS has been technically architected from conception to interoperate with o
 
 Various APIs exist for different consumers and business use cases.  The interoperability documentation is structured around theses use cases.
 
+
+
+### APIs requiring OAuth client credentials
+
 OpenCRVS OAuth API client credentials are required in order for a trusted external system to integrate with OpenCRVS for the following use cases:
 
-Performing a record search of the OpenCRVS database
+Performing a R**ecord search** of the OpenCRVS database either directly using ur GraphQL Gateway or via a DCI standard middleware.
 
-Submitting an "Event Notification" in FHIR from healthcare systems
+Submitting an **"Event Notification" in FHIR** from healthcare systems
 
-Subscribing to event webhooks for status updates on a processing event
+Subscribing to event **Webhooks** for status updates on a processing event
 
 
+
+### APIs for system administrators
 
 An API exists for system administrators to perform management of OpenCRVS reference data, specifically administrative structure, civil registration offices and health facilities on a running OpenCRVS instance in production.
 
 This is the FHIR Location API and a National System Administrators JWT is used as an authentication mechanism for these APIs.
 
 
+
+### National ID
 
 Integrating with an external National ID system is a complex topic with multiple, optional use cases available.  A dedicated section on National ID integration exists to cover:
 
@@ -33,9 +41,11 @@ Integrating with an external National ID system is a complex topic with multiple
 
 
 
+### Interoperability Roadmap
+
 Our interoperability roadmap currently incudes:
 
-* Extension of the Event Notification and Webhook APIs to support a "Self-service" civil registration portal front end.
+* Extension of the Event Notification and Webhook APIs to support a "Self-service" civil registration portal front end.  Simplified payloads with and without FHIR
 * Verifiable credentials
 
 
