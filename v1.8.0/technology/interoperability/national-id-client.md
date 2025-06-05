@@ -8,7 +8,7 @@ The partnership of Civil Registration and National ID is what collectively const
 
 [Bridging the Identity Gap: Integrating Civil Registration and National Identity Systems](http://prod-website-903390823.ap-south-1.elb.amazonaws.com/mosip16.9/bridging-the-identity-gap-integrating-civil-registration-and-national-identity-systems)
 
-###
+
 
 ### Which National ID systems can OpenCRVS interoperate with?
 
