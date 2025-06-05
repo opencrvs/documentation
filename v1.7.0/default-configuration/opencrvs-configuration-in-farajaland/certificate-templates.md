@@ -32,7 +32,7 @@ Two types of certified copies have been configured:
 
 <figure><img src="../../.gitbook/assets/Farajaland-marriage-certified-copy.png" alt=""><figcaption></figcaption></figure>
 
-In the **Country Configuration Files** in the [Release Notes](../../general/v1.7-release-notes/) you will find the svgs created for Farajaland certified copies
+In the **Country Configuration Files** in the [Release Notes](../../general/v1.8-release-notes/) you will find the svgs created for Farajaland certified copies
 
 
 

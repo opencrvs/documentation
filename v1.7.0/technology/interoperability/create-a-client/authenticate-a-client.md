@@ -19,7 +19,7 @@ You can use our [Postman collections](https://github.com/opencrvs/opencrvs-count
 **URL**
 
 ```
-POST https://auth.<your_domain>/token
+POST https://auth.<your_domain>/token?client_id=<client_id>&client_secret=<client_secret>&grant_type=&grant_type=client_credentials
 ```
 
 #### **Request payload**
@@ -27,10 +27,10 @@ POST https://auth.<your_domain>/token
 Example URL
 
 ```
-https://auth.<your_domain>/token
+https://auth.<your_domain>/token?client_id=2fd153ab-86c8-45fb-990d-721140e46061&client_secret=8636abe2-affb-4238-8bff-200ed3652d1e&grant_type=&grant_type=client_credentials
 ```
 
-| POST parameter  | Sample value                           | Description                                                              |
+| Query parameter | Sample value                           | Description                                                              |
 | --------------- | -------------------------------------- | ------------------------------------------------------------------------ |
 | `client_id`     | `2fd153ab-86c8-45fb-990d-721140e46061` | The client id used in the authentication process for system clients.     |
 | `client_secret` | `8636abe2-affb-4238-8bff-200ed3652d1e` | The client secret used in the authentication process for system clients. |

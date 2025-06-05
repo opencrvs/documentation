@@ -4,19 +4,19 @@ description: >-
   offices or health facilities using FHIR.
 ---
 
-# FHIR Location REST API
+# APIs for system administrators
 
-### Why use the FHIR Location REST API?
+### FHIR Location REST API
 
 You need access to the FHIR Location API for 3 important reasons...
 
-#### 1. Using the FHIR Location API for clients
+#### 1. In order to get FHIR IDs for locations required in Event Notification or deciphering location information from FHIR IDs returned from a Record Search or Webhook response
 
-This API will help you configure integrating clients to understand the relationship to places referenced by [FHIR Location](https://build.fhir.org/location.html) ids in payloads such as "Place of birth", "Place of registration", or "Jurisdiction" such as [Webhooks](webhook-clients.md) and [National ID](national-id-client.md) clients.
+This API will help you configure integrating clients to understand the relationship to places referenced by [FHIR Location](https://build.fhir.org/location.html) ids in payloads such as "Place of birth", "Place of registration", or "Jurisdiction" such as [Webhooks](create-a-client/webhook-clients.md) and [National ID](national-id-client.md) clients.
 
-For an [Event Notification](event-notification-clients.md) client, you must submit the correct FHIR Location id for the health facility that OpenCRVS understands in order to correctly track the place of birth.
+For an [Event Notification](create-a-client/event-notification-clients.md) client, you must submit the correct FHIR Location id for the health facility that OpenCRVS understands in order to correctly track the place of birth.
 
-For a [Record Search](record-search-clients.md) client, you need the correct FHIR Location id when performing advanced searches depending on your parameters.
+For a [Record Search](create-a-client/record-search-clients.md) client, you need the correct FHIR Location id when performing advanced searches depending on your parameters.
 
 {% hint style="info" %}
 All FHIR objects such as Location are ["FHIR Resources"](https://hl7.org/fhir/resource.html) and have a unique uuid: [**"id"**](https://hl7.org/fhir/resource-definitions.html#Resource.id) property that never changes.

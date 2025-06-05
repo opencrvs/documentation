@@ -60,14 +60,19 @@
     * [Locations](technology/standards/fhir-documents/locations.md)
 * [Security](technology/security.md)
 * [Interoperability](technology/interoperability/README.md)
-  * [Create a client](technology/interoperability/create-a-client.md)
-  * [Authenticate a client](technology/interoperability/authenticate-a-client.md)
-  * [Event Notification clients](technology/interoperability/event-notification-clients.md)
-  * [Record Search clients](technology/interoperability/record-search-clients.md)
-  * [Webhook clients](technology/interoperability/webhook-clients.md)
-  * [National ID client](technology/interoperability/national-id-client.md)
-  * [FHIR Location REST API](technology/interoperability/fhir-location-rest-api.md)
-  * [Other ways to interoperate](technology/interoperability/other-ways-to-interoperate.md)
+  * [APIs requiring OAuth credentials](technology/interoperability/create-a-client/README.md)
+    * [Authenticate a client](technology/interoperability/create-a-client/authenticate-a-client.md)
+    * [Event Notification clients](technology/interoperability/create-a-client/event-notification-clients.md)
+    * [Record Search clients](technology/interoperability/create-a-client/record-search-clients.md)
+    * [Webhook clients](technology/interoperability/create-a-client/webhook-clients.md)
+  * [APIs for system administrators](technology/interoperability/fhir-location-rest-api.md)
+  * [National ID](technology/interoperability/national-id-client.md)
+    * [Registration integration](technology/interoperability/national-id-client/registration-integration.md)
+    * [In-form authentication / verification](technology/interoperability/national-id-client/in-form-authentication-verification.md)
+    * [MOSIP](technology/interoperability/national-id-client/mosip/README.md)
+      * [Registration integration](technology/interoperability/national-id-client/mosip/registration-integration.md)
+      * [In-form authentication / verification using E-Signet](technology/interoperability/national-id-client/mosip/in-form-authentication-verification-using-e-signet.md)
+      * [Deployment](technology/interoperability/national-id-client/mosip/deployment.md)
 
 ## Default configuration
 
@@ -157,13 +162,28 @@
 * [Contributing](general/contributing.md)
 * [Migration notes](general/migration-notes.md)
 * [Releases and upgrades](general/releases/README.md)
-* [Release notes](general/v1.7-release-notes/README.md)
-  * [v1.7.2: Release notes](general/v1.7-release-notes/v1.7.2-release-notes.md)
-  * [v1.7.1: Release notes](general/v1.7-release-notes/v1.7.1-release-notes.md)
-  * [v1.7.0: Release notes](general/v1.7-release-notes/v1.7.0-release-notes.md)
+* [Release notes](general/v1.8-release-notes/README.md)
+  * [v1.8.2: Release notes](general/v1.8-release-notes/v1.8.2-release-notes.md)
+  * [v1.8.1: Release notes](general/v1.8-release-notes/v1.8.1-release-notes.md)
+  * [v1.8.0: Release notes](general/v1.8-release-notes/v1.8.0-release-notes.md)
 * [Product roadmap](general/product-roadmap.md)
 
 ## Developer
 
 * [Contributing](developer/contributing/README.md)
   * [Submitting a hotfix](developer/contributing/submitting-a-hotfix.md)
+* [Infrastructure](developers/infrastructure/README.md)
+  * [Local Setup](developers/infrastructure/local-setup/local-setup.md)
+* [Workflows](developers/workflows/README.md)
+  * [Releasing](developers/workflows/releasing.md)
+* [API Documentation](developers/api-documentation/README.md)
+  * ```yaml
+    props:
+      models: false
+    type: builtin:openapi
+    dependencies:
+      spec:
+        ref:
+          kind: openapi
+          spec: opencrvs-legacy-api-documentation
+    ```

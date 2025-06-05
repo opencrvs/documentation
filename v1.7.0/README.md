@@ -20,7 +20,7 @@ OpenCRVS is an open-source digital solution for civil registration, designed spe
 
 This documentation can be used by governments, system integrators and development partners to design, configure, operate and maintain an OpenCRVS application that meets your country's needs.
 
-* to understand what effective digital CRVS looks like and the role that OpenCRVS can play, check out [CRVS Systems](crvs-systems/effective-digital-crvs-systems.md).&#x20;
+* to understand what effective digital CRVS looks like and the role that OpenCRVS can play, check out [CRVS Systems](crvs-systems/effective-digital-crvs-systems.md).
 * to explore the OpenCRVS functionality, take a look at the [Product Specifications](product-specifications/functional-architecture.md) and the [Default Configuration for Farajaland](default-configuration/intro-to-farajaland.md)
 * to understand how OpenCRVS works technically, go to [Technology](technology/architecture/)
 * to setup you own OpenCRVS project, then go to [Setup](setup/1.-establish-project-and-team.md)

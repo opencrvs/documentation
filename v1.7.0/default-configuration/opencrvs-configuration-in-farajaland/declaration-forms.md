@@ -2,7 +2,7 @@
 
 The following birth and death declaration forms have been configured to meet the needs of the Farajaland context. Note that the mandatory fields are intended to promote inclusion and avoid barriers to registration (e.g. National ID not mandatory as many people do not yet have them, supporting documents not mandatory).
 
-In the **Country Configuration Files** in the [Release Notes](../../general/v1.7-release-notes/) you will see how we configured Farajaland declaration forms for other events.
+In the **Country Configuration Files** in the [Release Notes](../../general/v1.8-release-notes/) you will see how we configured Farajaland declaration forms for other events.
 
 ### Birth
 
