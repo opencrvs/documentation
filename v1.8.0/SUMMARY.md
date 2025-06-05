@@ -66,8 +66,9 @@
     * [Record Search clients](technology/interoperability/create-a-client/record-search-clients.md)
     * [Webhook clients](technology/interoperability/create-a-client/webhook-clients.md)
   * [APIs for system administrators](technology/interoperability/fhir-location-rest-api.md)
-  * [National ID](technology/interoperability/national-id-client.md)
-  * [Page](technology/interoperability/page.md)
+  * [National ID](technology/interoperability/national-id-client/README.md)
+    * [Registration integration](technology/interoperability/national-id-client/registration-integration.md)
+    * [In-form authentication / verification](technology/interoperability/national-id-client/in-form-authentication-verification.md)
 
 ## Default configuration
 

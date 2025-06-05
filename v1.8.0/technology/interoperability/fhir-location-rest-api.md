@@ -12,7 +12,7 @@ You need access to the FHIR Location API for 3 important reasons...
 
 #### 1. In order to get FHIR IDs for locations required in Event Notification or deciphering location information from FHIR IDs returned from a Record Search or Webhook response
 
-This API will help you configure integrating clients to understand the relationship to places referenced by [FHIR Location](https://build.fhir.org/location.html) ids in payloads such as "Place of birth", "Place of registration", or "Jurisdiction" such as [Webhooks](create-a-client/webhook-clients.md) and [National ID](national-id-client.md) clients.
+This API will help you configure integrating clients to understand the relationship to places referenced by [FHIR Location](https://build.fhir.org/location.html) ids in payloads such as "Place of birth", "Place of registration", or "Jurisdiction" such as [Webhooks](create-a-client/webhook-clients.md) and [National ID](national-id-client/) clients.
 
 For an [Event Notification](create-a-client/event-notification-clients.md) client, you must submit the correct FHIR Location id for the health facility that OpenCRVS understands in order to correctly track the place of birth.
 
