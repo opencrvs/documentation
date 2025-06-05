@@ -60,13 +60,13 @@
     * [Locations](technology/standards/fhir-documents/locations.md)
 * [Security](technology/security.md)
 * [Interoperability](technology/interoperability/README.md)
-  * [Create a client](technology/interoperability/create-a-client.md)
-  * [Authenticate a client](technology/interoperability/authenticate-a-client.md)
-  * [Event Notification clients](technology/interoperability/event-notification-clients.md)
-  * [Record Search clients](technology/interoperability/record-search-clients.md)
-  * [Webhook clients](technology/interoperability/webhook-clients.md)
-  * [National ID client](technology/interoperability/national-id-client.md)
-  * [FHIR Location REST API](technology/interoperability/fhir-location-rest-api.md)
+  * [APIs requiring OAuth credentials](technology/interoperability/create-a-client/README.md)
+    * [Authenticate a client](technology/interoperability/create-a-client/authenticate-a-client.md)
+    * [Event Notification clients](technology/interoperability/create-a-client/event-notification-clients.md)
+    * [Record Search clients](technology/interoperability/create-a-client/record-search-clients.md)
+    * [Webhook clients](technology/interoperability/create-a-client/webhook-clients.md)
+  * [APIs for system administrators](technology/interoperability/fhir-location-rest-api.md)
+  * [National ID](technology/interoperability/national-id-client.md)
 
 ## Default configuration
 

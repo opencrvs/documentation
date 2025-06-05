@@ -78,11 +78,11 @@ Verify that the `topic` value matches the event you're trying to subscribe to. R
 
 Whenever there's a a new event created, we will send your endpoint a POST request with a JSON payload. When you create or edit a webhook client, you select the data you wish to be contained in the payload using the checkboxes.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-01-11 at 11.34.54.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2023-01-11 at 11.34.54.png" alt=""><figcaption></figcaption></figure>
 
 For example, if you subscribed to the birth registration event, we would send you a POST request to the same URL as the **Verification request** URL that would look something like this depending on what content you configured in the screen above:
 
-The property `context` contains the FHIR bundles. Refer to our [standards](../standards/) section to learn more about the FHIR specification.
+The property `context` contains the FHIR bundles. Refer to our [standards](../../standards/) section to learn more about the FHIR specification.
 
 ```
 POST / HTTPS/1.1
