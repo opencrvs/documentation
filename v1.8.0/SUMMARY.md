@@ -67,6 +67,7 @@
     * [Webhook clients](technology/interoperability/create-a-client/webhook-clients.md)
   * [APIs for system administrators](technology/interoperability/fhir-location-rest-api.md)
   * [National ID](technology/interoperability/national-id-client.md)
+  * [Page](technology/interoperability/page.md)
 
 ## Default configuration
 
