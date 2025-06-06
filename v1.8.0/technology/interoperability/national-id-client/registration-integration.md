@@ -40,7 +40,7 @@ The following library can return a graceful rejection message.
 
 ### Aynchronous integration
 
-It is possible to use the same endpoint asynchronously.  But first, the following setting must be set to true in [application-config.ts](../../../default-configuration/opencrvs-configuration-in-farajaland/application-settings.md):
+It is possible to use the same endpoint asynchronously.  But first, the following setting must be set to true in [application-config.ts](../../../setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.5-set-up-application-settings/):
 
 ```typescript
 EXTERNAL_VALIDATION_WORKQUEUE: true
