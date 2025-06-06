@@ -51,7 +51,7 @@ This configuration setting enables a work-queue "In external validation" that ca
 <figure><img src="../../../.gitbook/assets/Screenshot 2025-06-05 at 18.02.55.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="danger" %}
-The JWT token that is sent to the /event-registration endpoint & the birth registration number that is generated here, must be stored by your asynchronous process and used in the next operation.
+The JWT token that is sent to the /event-registration endpoint & the birth / death registration number that is generated here, must be stored by your asynchronous process and used in the next operation.
 {% endhint %}
 
 Using the JWT, you can call the gateway microservice GraphQL endpoint `confirmRegistration` resolver.
