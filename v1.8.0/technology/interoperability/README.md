@@ -14,11 +14,11 @@ Various APIs exist for different consumers and business use cases.  The interope
 
 OpenCRVS OAuth API client credentials are required in order for a trusted external system to integrate with OpenCRVS for the following use cases:
 
-Performing a R**ecord search** of the OpenCRVS database either directly using ur GraphQL Gateway or via a DCI standard middleware.
+Performing a [R**ecord search**](create-a-client/record-search-clients.md) of the OpenCRVS database either directly using ur GraphQL Gateway or via a DCI standard middleware.
 
-Submitting an **"Event Notification" in FHIR** from healthcare systems
+Submitting an [**"Event Notification"**](create-a-client/event-notification-clients.md) **in FHIR** from healthcare systems
 
-Subscribing to event **Webhooks** for status updates on a processing event
+Subscribing to event [**Webhooks**](create-a-client/webhook-clients.md) for status updates on a processing event
 
 
 
@@ -26,13 +26,13 @@ Subscribing to event **Webhooks** for status updates on a processing event
 
 An API exists for system administrators to perform management of OpenCRVS reference data, specifically administrative structure, civil registration offices and health facilities on a running OpenCRVS instance in production.
 
-This is the FHIR Location API and a National System Administrators JWT is used as an authentication mechanism for these APIs.
+This is the [FHIR Location API](./#apis-for-system-administrators) and a National System Administrators JWT is used as an authentication mechanism for these APIs.
 
 
 
 ### National ID
 
-Integrating with an external National ID system is a complex topic with multiple, optional use cases available.  A dedicated section on National ID integration exists to cover:
+Integrating with an external [National ID ](national-id-client.md)system is a complex topic with multiple, optional use cases available.  A dedicated section on National ID integration exists to cover:
 
 * Authentication and verification of informants / parents details with NID / external systems during event form completion - online / offline.
 * Generation of a National ID for a citizen at birth registration
