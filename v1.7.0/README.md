@@ -12,7 +12,7 @@ layout:
     visible: true
 ---
 
-# 👋 Welcome!
+# Welcome!
 
 {% embed url="https://youtu.be/HAYN3ATxQGI" %}
 
