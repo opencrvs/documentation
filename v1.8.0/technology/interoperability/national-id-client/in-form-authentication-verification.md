@@ -14,11 +14,9 @@ It's possible to [configure](../../../setup/3.-installation/3.2-set-up-your-own-
 
 If your user has connectivity, then of course it is possible to query a National ID system in 1 of 2 ways.
 
-
-
 **API integration within an event form**
 
-A form field component type of **HTTP** type can connect with an external API. Use it along with a **BUTTON** and any relevent field type such as **TEXT** where you may wish to store a response. Or, we also have many display UI components to show message responses, or simply to display if someone is authenticated or verified, such as **ID\_VERIFICATION\_BANNER**.  Just adopt the copy appropriately.
+A form field component of **HTTP** type can connect with an external API. Use it along with a **BUTTON** and any relevent field type such as **TEXT** where you may wish to store a response. Or, we also have many display UI components to show message responses, or simply to display if someone is authenticated or verified, such as **ID\_VERIFICATION\_BANNER**.  Just adopt the copy appropriately.
 
 ```
 {
@@ -85,4 +83,14 @@ A form field component type of **HTTP** type can connect with an external API. U
   icon: 'UserCircle',
   loadingLabel: {}
 }
+```
+
+
+
+**Redirect to NID auth portal from within an event form**
+
+A form field component of **HTTP** type can redirect the user to an external NID web interface for authentication.  Authorised values can then be returned to the form and used in a similar way to the API example.
+
+```
+// Some code
 ```
