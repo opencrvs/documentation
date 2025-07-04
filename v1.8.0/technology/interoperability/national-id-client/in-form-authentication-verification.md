@@ -12,7 +12,104 @@ It's possible to [configure](../../../setup/3.-installation/3.2-set-up-your-own-
 
 If your user has no connectivity, and if your country issues a National ID card to users that contains a QR code, then a form field component of **ID\_READER** type can parse the contents of the QR code and pre-populate some fields in the form.
 
+```
+import { and } from '@opencrvs/toolkit/conditionals'
 
+type MessageDescriptor = {
+  id: string;
+  defaultMessage: string;
+  description?: string;
+};
+
+interface QRValidation {
+  rule: Record<string, unknown>;
+  errorMessage: MessageDescriptor;
+}
+
+interface QRConfig {
+  validation: QRValidation;
+}
+
+function objectHasProperty(
+  property: string,
+  type: 'string' | 'number' | 'boolean' | 'array' | 'object',
+  format?: string
+) {
+  return {
+    type: 'object',
+    properties: {
+      [property]: {
+        type,
+        format
+      }
+    },
+    required: [property]
+  }
+}
+
+export const qr = ({ validation }: QRConfig) => ({
+  type: "QR",
+  validation,
+});
+
+const qrCodeConfig = {
+  validation: {
+    rule: and(
+      objectHasProperty('firstName', 'string'),
+      objectHasProperty('familyName', 'string'),
+      objectHasProperty('gender', 'string'),
+      objectHasProperty('birthDate', 'string'),
+      objectHasProperty('nid', 'string')
+    ),
+    errorMessage: {
+      defaultMessage: 'This QR code is not recognised. Please try again.',
+      description: 'Error message for QR code validation',
+      id: 'form.field.qr.validation.error'
+    }
+  }
+}
+
+const readers: any[] = [];
+  if (qrConfig) {
+    readers.push(qr(qrConfig));
+  }
+
+{
+  name: "idReader",
+  customQuestionMappingId: fieldId,
+  custom: true,
+  required: false,
+  type: "ID_READER",
+  label: {},
+  hideInPreview: true,
+  initialValue,
+  validator: [],
+  conditionals,
+  dividerLabel: {
+    id: "views.idReader.label.or",
+    defaultMessage: "Or",
+  },
+  manualInputInstructionLabel: {
+    id: "views.idReader.label.manualInput",
+    defaultMessage: "Complete fields below",
+  },
+  mapping: {
+    mutation: {
+      operation: "ignoreFieldTransformer",
+    },
+  },
+  readers,
+}
+
+const getInitialValueFromIDReader = (fieldNameInReader: string) => ({
+  dependsOn: ["idReader"],
+  expression: `$form?.idReader?.${fieldNameInReader} || ""`,
+});
+
+// In a form field, the initialValue can be set from data in the QR code:
+
+const initialValue = getInitialValueFromIDReader('firstName')
+```
 
 ### Online
 
