@@ -1,4 +1,4 @@
-# 4.3 Set-up a server-hosted environment
+# 4.3 Deploy: Set-up a server-hosted environment
 
 
 
@@ -55,6 +55,12 @@ Before proceeding to discuss network specifications, it is important to understa
 Refer to these minimum server specifications for the above environments.  Note that the hard-disk space specifications are illustrative. Depending on the population size and number of supporting documents that are required to be captured during civil registration business processes, you may require more disk-space.  Regardless your system administrators must be capable of monitoring and increasing server disk-space on demand. :
 
 <table><thead><tr><th>Environment</th><th width="284">Specification</th></tr></thead><tbody><tr><td>development (suitable for learning or proof-of-concept) / qa</td><td>16GB RAM / 4CPUs / 320 GB Disk / Ubuntu 24.04 (LTS) x64, Headless</td></tr><tr><td>production / staging</td><td>16GB RAM / 8CPUs / diskspace calculated using formula below / Ubuntu 24.04 (LTS) x64, Headless</td></tr><tr><td>backup</td><td>1GB RAM / 2CPUs / diskspace calculated using formula below / Ubuntu 24.04 (LTS) x64, Headless</td></tr></tbody></table>
+
+
+
+{% hint style="warning" %}
+Our software is currently only supported on x86\_64 architectures and does not support ARM-based processors.
+{% endhint %}
 
 ### Production / staging / backup diskspace requirements
 
