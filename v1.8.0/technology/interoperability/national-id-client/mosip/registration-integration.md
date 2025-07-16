@@ -86,10 +86,3 @@ For reference, the logic is here:
 
 {% embed url="https://github.com/opencrvs/mosip/blob/9c43d0f902416935b04a95344819fc43b5b44d62/packages/mosip-api/src/routes/websub-credential-issued.ts#L35" %}
 
-
-
-### Running the mosip-api and mocks in development
-
-Checkout this repo and follow the README to run the middleware and mocks alongside your local instance of OpenCRVS:
-
-{% embed url="https://github.com/opencrvs/mosip/tree/main" %}
