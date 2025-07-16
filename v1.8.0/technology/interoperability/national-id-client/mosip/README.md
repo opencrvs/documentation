@@ -8,6 +8,10 @@ description: >-
 
 {% embed url="https://youtu.be/mUrXeuOjQZE?si=5BW217DrYOz5OU1n" %}
 
+{% hint style="warning" %}
+Watch the video above to see a successful configuration of components that are all explained in this section
+{% endhint %}
+
 ### Introduction
 
 OpenCRVS integration with MOSIP follows a very similar technical process as followed for configuring integration with any other National ID system. &#x20;
