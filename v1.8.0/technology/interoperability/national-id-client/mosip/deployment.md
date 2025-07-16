@@ -162,3 +162,11 @@ Click "Add environment variable" and enter the following variables:
 | MOSIP\_WEBSUB\_TOPIC                     |             |
 
 ### Static certificate key files
+
+You will need to make a directory on your server for the shared volume that stores the static certificate key files used by the mosip-api.  In our example, the path to this drectory is:
+
+```
+/certs
+```
+
+You will be given static files from MOSIP in order to decrypt the credential that is issued.  The files are called something like X and should be placed in this directory.
