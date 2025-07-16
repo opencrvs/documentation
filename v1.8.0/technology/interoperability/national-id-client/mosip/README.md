@@ -31,19 +31,27 @@ The following integrations between OpenCRVS and MOSIP are in development.  Shoul
 * Registration correction integration
 * Name change integration
 
-### Example set-up, using our NPM repository
+### opencrvs/mosip library
 
-In order to make life as easy as possible for developers who wish to configure the MOSIP integration, we have abstracted away all the non-customisable logic into an NPM library.
+In order to make life as easy as possible for developers who wish to configure the MOSIP integration, we have abstracted away all the non-customisable logic into an NPM library and created mock servers for both MOSIP and E-Signet.
 
 {% embed url="https://github.com/opencrvs/mosip/releases/tag/v1.8.0" %}
+
+Checkout this repo and follow the README to run the middleware and mocks alongside your local instance of OpenCRVS.
+
+### mosip-api middleware
+
+The mosip-api middleware is a critical component that must be deployed.  This is explained further in the following sections.
+
+{% embed url="https://github.com/opencrvs/mosip/tree/release-v1.8.0/packages/mosip-api" %}
+
+### Example countryconfig
 
 We also provide an example, forked country configuration that uses this library.  You can follow exactly how we have configured the full business logic by reading the code.
 
 {% embed url="https://github.com/opencrvs/opencrvs-countryconfig-mosip/releases/tag/v1.8.0" %}
 
-### MOSIP & E-Signet mocks for development
-
-The library contains a mock of the MOSIP Packet Manager API endpoints used by OpenCRVS, and a mock of the E-Signet backend to ease the development process.  Any developer can start up these mocked servers and develop an integration against them. &#x20;
+### Mocks:
 
 {% embed url="https://github.com/opencrvs/mosip/tree/v1.8.0/packages/mosip-mock" %}
 

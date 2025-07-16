@@ -88,10 +88,6 @@ For reference, the logic is here:
 
 
 
-###
-
-###
-
 ### Running the mosip-api and mocks in development
 
 Checkout this repo and follow the README to run the middleware and mocks alongside your local instance of OpenCRVS:
