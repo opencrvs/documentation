@@ -68,13 +68,29 @@ The OpenCRVS form data is expressed in the FHIR standard and therefore must be c
 
 This function is imported from our NPM library into your countryconfig repo and calls the mosip-api middleware.  The mosip-api middleware creates and stores an Application ID (AID) along with the Birth Registration Number and sends the full payload with this metadata to MOSIP. &#x20;
 
-For reference, this logic is here: [https://github.com/opencrvs/mosip/blob/9c43d0f902416935b04a95344819fc43b5b44d62/packages/mosip-api/src/routes/event-registration.ts#L89](https://github.com/opencrvs/mosip/blob/9c43d0f902416935b04a95344819fc43b5b44d62/packages/mosip-api/src/routes/event-registration.ts#L89)
+For reference, this logic is here:&#x20;
 
-The metadata is stored in an SQLLite database.  MOSIP processes asynchronously, so the mosip-api has to subscribe to MOSIP WebSub status updates which will contain the metadata so OpenCRVS can identify status updates with the correct application. &#x20;
-
-In the case of birth for example, when the status of the MOSIP application is successful, the mosip-api can retrieve the record from the SQLLite database, append the VID and inform OpenCRVS Core that MOSIP registration is completed.
+{% embed url="https://github.com/opencrvs/mosip/blob/9c43d0f902416935b04a95344819fc43b5b44d62/packages/mosip-api/src/routes/event-registration.ts#L89" %}
 
 
+
+The metadata is stored in an SQLLite database.  MOSIP processes asynchronously, so the mosip-api has to subscribe to MOSIP WebSub status updates which will contain a credential issuance with the metadata,  so OpenCRVS can identify the credential with the correct application. &#x20;
+
+In the case of birth for example, when the status of the MOSIP application is successful and a credential is issued, the mosip-api can retrieve the record from the SQLLite database, append the VID and inform OpenCRVS Core that MOSIP registration is completed.
+
+### confirmRegistration mutation on MOSIP WebSub credential issuance
+
+The mosip-api will call the confirmRegistration mutation automatically when the credential is received and decoded. &#x20;
+
+For reference, the logic is here:
+
+{% embed url="https://github.com/opencrvs/mosip/blob/9c43d0f902416935b04a95344819fc43b5b44d62/packages/mosip-api/src/routes/websub-credential-issued.ts#L35" %}
+
+
+
+###
+
+###
 
 ### Running the mosip-api and mocks in development
 
