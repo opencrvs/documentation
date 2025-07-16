@@ -114,8 +114,21 @@ Click "Add environment secret" and enter the following variables:
 
 #### **Environment secrets** <a href="#environment-secrets" id="environment-secrets"></a>
 
-|                                |                                                                                                                                                                                                       |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| BACKUP\_ENCRYPTION\_PASSPHRASE | This is the password that is used to encrypt all the backups that OpenCRVS creates from a production server and that are stored on the **backup** server. Use this passphrase to decrypt the backups. |
+| secret                           | description |
+| -------------------------------- | ----------- |
+| DECRYPT\_P12\_FILE\_PASSWORD     |             |
+| DECRYPT\_P12\_FILE\_PATH         |             |
+| ENCRYPT\_CERT\_PATH              |             |
+| ESIGNET\_USERINFO\_URL           |             |
+| IDA\_AUTH\_DOMAIN\_URI           |             |
+| IDA\_AUTH\_URL                   |             |
+| OIDP\_CLIENT\_PRIVATE\_KEY\_PATH |             |
+| OIDP\_JWT\_AUD\_CLAIM            |             |
+| OPENID\_PROVIDER\_CLAIMS         |             |
+| PARTNER\_APIKEY                  |             |
+| PARTNER\_ID                      |             |
+| PARTNER\_MISP\_LK                |             |
+| SIGN\_P12\_FILE\_PASSWORD        |             |
+| SIGN\_P12\_FILE\_PATH            |             |
 
 ### Static certificate key files
