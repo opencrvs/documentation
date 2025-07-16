@@ -16,7 +16,20 @@ For registration, the same API endpoints are configured, "in-form authentication
 
 In order to make MOSIP integration easier from a back-end perspective, we supply a [**mosip-api** ](https://github.com/opencrvs/mosip/tree/v1.8.0/packages/mosip-api)middleware component, which should be deployed in the OpenCRVS stack using a docker-compose configuration.  The middleware allows you to configure the required business logic for interacting with the MOSIP Packet Manager API according to your needs.
 
+### Detailed flow diagrams
 
+To understand the business process around the technical integration between OpenCRVS and MOSIP that is currently available, refer to this Figjam flow diagram:
+
+{% embed url="https://www.figma.com/board/ouhT8BRAu7HASKkebrUkwu/MOSIP-Public-Documentation?node-id=0-1&t=tJj8mP3hENcpXbBI-1" %}
+
+### Backlog
+
+The following integrations between OpenCRVS and MOSIP are in development.  Should you require them in your country, we welcome contrbutions to this effort.  Please get in touch.
+
+* Revoke a birth or death registration (a substantial legal procedure)
+* In-form authentication and verification upon certificate issuance to guarantee the identity of the receiving party.
+* Registration correction integration
+* Name change integration
 
 ### Example set-up, using our NPM repository
 
