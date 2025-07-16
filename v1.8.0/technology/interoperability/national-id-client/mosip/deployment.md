@@ -114,22 +114,22 @@ You will need to manually add the environment variables used for the MOSIP and E
 
 Click "Add environment secret" and enter the following secrets:
 
-| secret                           | description |
-| -------------------------------- | ----------- |
-| DECRYPT\_P12\_FILE\_PASSWORD     |             |
-| DECRYPT\_P12\_FILE\_PATH         |             |
-| ENCRYPT\_CERT\_PATH              |             |
-| ESIGNET\_USERINFO\_URL           |             |
-| IDA\_AUTH\_DOMAIN\_URI           |             |
-| IDA\_AUTH\_URL                   |             |
-| OIDP\_CLIENT\_PRIVATE\_KEY\_PATH |             |
-| OIDP\_JWT\_AUD\_CLAIM            |             |
-| OPENID\_PROVIDER\_CLAIMS         |             |
-| PARTNER\_APIKEY                  |             |
-| PARTNER\_ID                      |             |
-| PARTNER\_MISP\_LK                |             |
-| SIGN\_P12\_FILE\_PASSWORD        |             |
-| SIGN\_P12\_FILE\_PATH            |             |
+| secret                           | description                                                                                                                                                        |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| DECRYPT\_P12\_FILE\_PASSWORD     |                                                                                                                                                                    |
+| DECRYPT\_P12\_FILE\_PATH         |                                                                                                                                                                    |
+| ENCRYPT\_CERT\_PATH              |                                                                                                                                                                    |
+| ESIGNET\_USERINFO\_URL           | The E-Signet User Info API endpoint used to retrieve details of the individual using an authorsed E-Signet token that is returned from the authentication process. |
+| IDA\_AUTH\_DOMAIN\_URI           |                                                                                                                                                                    |
+| IDA\_AUTH\_URL                   |                                                                                                                                                                    |
+| OIDP\_CLIENT\_PRIVATE\_KEY\_PATH |                                                                                                                                                                    |
+| OIDP\_JWT\_AUD\_CLAIM            |                                                                                                                                                                    |
+| OPENID\_PROVIDER\_CLAIMS         |                                                                                                                                                                    |
+| PARTNER\_APIKEY                  |                                                                                                                                                                    |
+| PARTNER\_ID                      |                                                                                                                                                                    |
+| PARTNER\_MISP\_LK                |                                                                                                                                                                    |
+| SIGN\_P12\_FILE\_PASSWORD        |                                                                                                                                                                    |
+| SIGN\_P12\_FILE\_PATH            |                                                                                                                                                                    |
 
 
 
@@ -137,29 +137,29 @@ Click "Add environment secret" and enter the following secrets:
 
 Click "Add environment variable" and enter the following variables:
 
-| variable                                 | description |
-| ---------------------------------------- | ----------- |
-| ESIGNET\_REDIRECT\_URL                   |             |
-| ESIGNET\_TOKEN\_URL                      | ​           |
-| MOSIP\_API\_USERINFO\_URL                |             |
-| MOSIP\_API\_VERSION                      |             |
-| MOSIP\_AUTH\_CLIENT\_ID                  |             |
-| MOSIP\_AUTH\_CLIENT\_SECRET              |             |
-| MOSIP\_AUTH\_PASS                        |             |
-| MOSIP\_AUTH\_URL                         |             |
-| MOSIP\_AUTH\_USER                        |             |
-| MOSIP\_CENTER\_ID                        |             |
-| MOSIP\_CREATE\_PACKET\_URL               |             |
-| MOSIP\_MACHINE\_ID                       |             |
-| MOSIP\_PACKET\_AUTH\_CLIENT\_ID          |             |
-| MOSIP\_PACKET\_AUTH\_CLIENT\_SECRET      |             |
-| MOSIP\_PROCESS\_PACKET\_URL              |             |
-| MOSIP\_VERIFIABLE\_CREDENTIAL\_ALLOWLIST |             |
-| MOSIP\_WEBSUB\_AUTH\_CLIENT\_ID          |             |
-| MOSIP\_WEBSUB\_AUTH\_CLIENT\_SECRET      |             |
-| MOSIP\_WEBSUB\_HUB\_URL                  |             |
-| MOSIP\_WEBSUB\_SECRET                    |             |
-| MOSIP\_WEBSUB\_TOPIC                     |             |
+| variable                                 | description                                                                                                                                                        |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ESIGNET\_REDIRECT\_URL                   | The E-Signet login URL that OpenCRVS redirects to.                                                                                                                 |
+| ESIGNET\_TOKEN\_URL                      | ​The authorized "code" from an E-Signet login is used to retrieve an API OAuth token from this API endpoint in order to interact with the E-Signet User Info API.  |
+| MOSIP\_API\_USERINFO\_URL                |                                                                                                                                                                    |
+| MOSIP\_API\_VERSION                      |                                                                                                                                                                    |
+| MOSIP\_AUTH\_CLIENT\_ID                  |                                                                                                                                                                    |
+| MOSIP\_AUTH\_CLIENT\_SECRET              |                                                                                                                                                                    |
+| MOSIP\_AUTH\_PASS                        |                                                                                                                                                                    |
+| MOSIP\_AUTH\_URL                         |                                                                                                                                                                    |
+| MOSIP\_AUTH\_USER                        |                                                                                                                                                                    |
+| MOSIP\_CENTER\_ID                        |                                                                                                                                                                    |
+| MOSIP\_CREATE\_PACKET\_URL               |                                                                                                                                                                    |
+| MOSIP\_MACHINE\_ID                       |                                                                                                                                                                    |
+| MOSIP\_PACKET\_AUTH\_CLIENT\_ID          |                                                                                                                                                                    |
+| MOSIP\_PACKET\_AUTH\_CLIENT\_SECRET      |                                                                                                                                                                    |
+| MOSIP\_PROCESS\_PACKET\_URL              |                                                                                                                                                                    |
+| MOSIP\_VERIFIABLE\_CREDENTIAL\_ALLOWLIST |                                                                                                                                                                    |
+| MOSIP\_WEBSUB\_AUTH\_CLIENT\_ID          |                                                                                                                                                                    |
+| MOSIP\_WEBSUB\_AUTH\_CLIENT\_SECRET      |                                                                                                                                                                    |
+| MOSIP\_WEBSUB\_HUB\_URL                  |                                                                                                                                                                    |
+| MOSIP\_WEBSUB\_SECRET                    |                                                                                                                                                                    |
+| MOSIP\_WEBSUB\_TOPIC                     |                                                                                                                                                                    |
 
 ### Static certificate key files
 
