@@ -50,7 +50,7 @@ Lets delve into the example functions we have written to explain the logic.
 
 ### shouldForwardToIDSystem
 
-There will be edge cases in your civil registration and foundational identity business processes where you do not always want to create a MOSIP National ID at the point of birth registration depending on the demographic data completed by the informant.  This function examines the payload according to these **purely example rules**.  You should configure these according to the laws and processes relevant to your country:
+There will be edge cases in your civil registration and foundational identity business processes where you do not always want to create a MOSIP National ID at the point of birth, or inform MOSIP at death,  depending on the demographic data completed by the informant.  This function examines the payload according to these **purely example rules**.  You should configure these according to the laws and processes relevant to your country:
 
 * In this example, we are only creating a National ID at birth if any of the parents or informant have successfully completed "in-form authentication", using QR Code or E-Signet
 * At death, we are only informing MOSIP that the deceased has passed if the spouse has successfully completed "in-form authentication", using QR Code or E-Signet
@@ -63,3 +63,21 @@ Every country has a different form configuration with different questions and se
 The configurability of the systems are key selling points of both MOSIP & OpenCRVS. &#x20;
 
 The OpenCRVS form data is expressed in the FHIR standard and therefore must be converted into a format that is understandable by the MOSIP Packet Manager API.  That is the purpose of these mapping functions.  You should customise them to suit the form that you have configured and the MOSIP data requirements that your country has decided to configure.
+
+### mosipRegistrationHandler
+
+This function is imported from our NPM library into your countryconfig repo and calls the mosip-api middleware.  The mosip-api middleware creates and stores an Application ID (AID) along with the Birth Registration Number and sends the full payload with this metadata to MOSIP. &#x20;
+
+For reference, this logic is here: [https://github.com/opencrvs/mosip/blob/9c43d0f902416935b04a95344819fc43b5b44d62/packages/mosip-api/src/routes/event-registration.ts#L89](https://github.com/opencrvs/mosip/blob/9c43d0f902416935b04a95344819fc43b5b44d62/packages/mosip-api/src/routes/event-registration.ts#L89)
+
+The metadata is stored in an SQLLite database.  MOSIP processes asynchronously, so the mosip-api has to subscribe to MOSIP WebSub status updates which will contain the metadata so OpenCRVS can identify status updates with the correct application. &#x20;
+
+In the case of birth for example, when the status of the MOSIP application is successful, the mosip-api can retrieve the record from the SQLLite database, append the VID and inform OpenCRVS Core that MOSIP registration is completed.
+
+
+
+### Running the mosip-api and mocks in development
+
+Checkout this repo and follow the README to run the middleware and mocks alongside your local instance of OpenCRVS:
+
+{% embed url="https://github.com/opencrvs/mosip/tree/main" %}
