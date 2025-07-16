@@ -110,9 +110,9 @@ You will need to manually add the environment variables used for the MOSIP and E
 
 <figure><img src="../../../../.gitbook/assets/Screenshot 2025-07-16 at 11.10.39.png" alt=""><figcaption></figcaption></figure>
 
-Click "Add environment secret" and enter the following variables:
-
 #### **Environment secrets** <a href="#environment-secrets" id="environment-secrets"></a>
+
+Click "Add environment secret" and enter the following secrets:
 
 | secret                           | description |
 | -------------------------------- | ----------- |
@@ -130,5 +130,16 @@ Click "Add environment secret" and enter the following variables:
 | PARTNER\_MISP\_LK                |             |
 | SIGN\_P12\_FILE\_PASSWORD        |             |
 | SIGN\_P12\_FILE\_PATH            |             |
+
+
+
+**Environment variables**
+
+Click "Add environment variable" and enter the following variables:
+
+|                              |   |
+| ---------------------------- | - |
+|                              |   |
+| DECRYPT\_P12\_FILE\_PASSWORD | ​ |
 
 ### Static certificate key files
