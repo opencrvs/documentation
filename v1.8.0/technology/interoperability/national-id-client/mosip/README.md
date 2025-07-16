@@ -24,7 +24,7 @@ To understand the business process around the technical integration between Open
 
 ### Backlog
 
-The following integrations between OpenCRVS and MOSIP are in development.  Should you require them in your country, we welcome contrbutions to this effort.  Please get in touch.
+The following integrations between OpenCRVS and MOSIP are in development.  Should you require them in your country, we welcome contributions to this effort.  Please get in touch.
 
 * Revoke a birth or death registration (a substantial legal procedure)
 * In-form authentication and verification upon certificate issuance to guarantee the identity of the receiving party.
