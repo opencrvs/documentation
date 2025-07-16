@@ -71,7 +71,7 @@
     * [In-form authentication / verification](technology/interoperability/national-id-client/in-form-authentication-verification.md)
     * [MOSIP](technology/interoperability/national-id-client/mosip/README.md)
       * [Registration integration](technology/interoperability/national-id-client/mosip/registration-integration.md)
-      * [In-form authentication / verification using E-Signet](technology/interoperability/national-id-client/mosip/in-form-authentication-verification-using-e-signet.md)
+      * [In-form authentication / verification & E-Signet](technology/interoperability/national-id-client/mosip/in-form-authentication-verification-using-e-signet.md)
       * [Deployment](technology/interoperability/national-id-client/mosip/deployment.md)
 
 ## Default configuration
