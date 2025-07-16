@@ -55,3 +55,11 @@ There will be edge cases in your civil registration and foundational identity bu
 * In this example, we are only creating a National ID at birth if any of the parents or informant have successfully completed "in-form authentication", using QR Code or E-Signet
 * At death, we are only informing MOSIP that the deceased has passed if the spouse has successfully completed "in-form authentication", using QR Code or E-Signet
 * We are only creating a National ID at birth automatically from the cvil registration if the child is under 10 years of age.  If the child is over 10, then to create a National ID, they will be required to do so directly in MOSIP and submit their biometrics.
+
+### fhirBirthToMosip / fhirDeathToMosip
+
+Every country has a different form configuration with different questions and sections and different requirements regarding the demographic data points that are required by MOSIP. &#x20;
+
+The configurability of the systems are key selling points of both MOSIP & OpenCRVS. &#x20;
+
+The OpenCRVS form data is expressed in the FHIR standard and therefore must be converted into a format that is understandable by the MOSIP Packet Manager API.  That is the purpose of these mapping functions.  You should customise them to suit the form that you have configured and the MOSIP data requirements that your country has decided to configure.
