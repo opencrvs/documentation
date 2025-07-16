@@ -40,6 +40,8 @@ We will provisionally assign a release based on discussion with you when you com
 
 ### Contribution Champions!
 
+[68 developers](https://github.com/opencrvs/opencrvs-core/graphs/contributors) from our regular core maintaner community have contributed features to OpenCRVS over the years.
+
 The following developers from our global community deserve extra special kudos for already contributing critical features to OpenCRVS following the process above. &#x20;
 
 We are hugely grateful to you for your contributions.
