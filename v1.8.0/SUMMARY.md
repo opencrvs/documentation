@@ -176,24 +176,3 @@
   * [Local Setup](developers/infrastructure/local-setup/local-setup.md)
 * [Workflows](developers/workflows/README.md)
   * [Releasing](developers/workflows/releasing.md)
-* [API Documentation](developers/api-documentation/README.md)
-  * ```yaml
-    type: builtin:openapi
-    props:
-      models: false
-    dependencies:
-      spec:
-        ref:
-          kind: openapi
-          spec: new-endpoints
-    ```
-  * ```yaml
-    type: builtin:openapi
-    props:
-      models: false
-    dependencies:
-      spec:
-        ref:
-          kind: openapi
-          spec: legacy-with-webhook
-    ```
