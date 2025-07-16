@@ -40,33 +40,11 @@ https://gateway.your\_domain/graphql
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2023-01-11 at 17.33.01.png" alt=""><figcaption><p>The GraphQL Playground for OpenCRVS</p></figcaption></figure>
 
-The GraphQL parameters are explained below. A full list of available Advanced Search GraphQL variables is also explained below.
+The API and parameters explained below. A full list of available Advanced Search GraphQL variables is also explained below.
 
-```
-POST https://gateway.<your_domain>/graphql
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-{
-  "operationName": "searchEvents",
-  "query": "query searchEvents($advancedSearchParameters: AdvancedSearchParametersInput!, $sort: String, $count: Int, $skip: Int) {\nsearchEvents(\n  advancedSearchParameters: $advancedSearchParameters\n  sort: $sort\n  count: $count\n  skip: $skip\n) {\n  totalItems\n  results {\n    id\n    type\n    registration {\n      status\n      contactNumber\n      trackingId\n      registrationNumber\n      registeredLocationId\n      duplicates\n      assignment {\n        userId\n        firstName\n        lastName\n        officeName\n        __typename\n      }\n      createdAt\n      modifiedAt\n      __typename\n    }\n    operationHistories {\n      operationType\n      operatedOn\n      operatorRole\n      operatorName {\n        firstNames\n        familyName\n        use\n        __typename\n      }\n      operatorOfficeName\n      operatorOfficeAlias\n      notificationFacilityName\n      notificationFacilityAlias\n      rejectReason\n      rejectComment\n      __typename\n    }\n    ... on BirthEventSearchSet {\n      dateOfBirth\n      childName {\n        firstNames\n        familyName\n        use\n        __typename\n      }\n      __typename\n    }\n    ... on DeathEventSearchSet {\n      dateOfDeath\n      deceasedName {\n        firstNames\n        familyName\n        use\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n  __typename\n}}",  
-  "variables": {"advancedSearchParameters": {
-      "event": "birth",
-      "registrationStatuses": ["REGISTERED"],
-      "childGender": "male",
-      "dateOfRegistrationEnd": "2022-12-31T23:59:59.999Z",
-      "dateOfRegistrationStart": "2021-11-01T00:00:00.000Z",
-      "declarationJurisdictionId": "576uyegf7 .... ", // A FHIR Location ID for an admin level
-      "eventLocationId": "aaabuifr87h ...", // A FHIR Location ID for a health facility where the birth or death took place
-      "fatherFirstNames": "Dad",
-      "motherFirstNames": "Mom"
-    },
-    "count": 10,
-    "skip": 0
-  }
-}
-
-```
+{% openapi-operation spec="record-search" path="/graphql" method="post" %}
+[OpenAPI record-search](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/e1db6b2ce67c739a754f530156c76a8d0197722d00a870f80115a5de4f5aac2f.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250716%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250716T110005Z&X-Amz-Expires=172800&X-Amz-Signature=6acd506d573741f0f03de85e8724b34d87a51f6c2c1e6569932b80a9cbc67f40&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+{% endopenapi-operation %}
 
 **GraphQL Parameters**
 
@@ -155,119 +133,7 @@ We recommend that you use the Advanced Search feature in the OpenCRVS applicatio
 
 **Record Search Response**
 
-The response from a record search is not FHIR, but an Elasticsearch response. The audit experience is explained below the example payload.
-
-```
-{
-  "data": {
-    "searchEvents": {
-      "totalItems": 3,
-      "results": [
-        {
-          "id": "cb813494-9339-48dd-85a1-156278436f30",
-          "type": "Birth",
-          "registration": {
-            "status": "CERTIFIED",
-            "contactNumber": "+260760001907",
-            "trackingId": "BHKTHM7",
-            "registrationNumber": "2023BHKTHM7",
-            "registeredLocationId": "712502d2-5ea2-49d9-86df-a7d61f3f351f",
-            "duplicates": null,
-            "assignment": null,
-            "createdAt": "1673047650433",
-            "modifiedAt": null,
-            "__typename": "RegistrationSearchSet"
-          },
-          "operationHistories": [ ... ],
-          "dateOfBirth": "2022-10-26",
-          "childName": [
-            {
-              "firstNames": "Santiago",
-              "familyName": "Schmeler",
-              "use": "en",
-              "__typename": "HumanName"
-            },
-            {
-              "firstNames": "",
-              "familyName": null,
-              "use": "fr",
-              "__typename": "HumanName"
-            }
-          ],
-          "__typename": "BirthEventSearchSet"
-        },
-        {
-          "id": "b2fd5270-49c1-4227-8625-d874b6eef25d",
-          "type": "Birth",
-          "registration": {
-            "status": "CERTIFIED",
-            "contactNumber": "+260754288799",
-            "trackingId": "BBPX0DM",
-            "registrationNumber": "2023BBPX0DM",
-            "registeredLocationId": "712502d2-5ea2-49d9-86df-a7d61f3f351f",
-            "duplicates": null,
-            "assignment": null,
-            "createdAt": "1673048958068",
-            "modifiedAt": null,
-            "__typename": "RegistrationSearchSet"
-          },
-          "operationHistories": [ ... ],
-          "dateOfBirth": "2022-08-31",
-          "childName": [
-            {
-              "firstNames": "Price",
-              "familyName": "Lind",
-              "use": "en",
-              "__typename": "HumanName"
-            },
-            {
-              "firstNames": "",
-              "familyName": null,
-              "use": "fr",
-              "__typename": "HumanName"
-            }
-          ],
-          "__typename": "BirthEventSearchSet"
-        },
-        {
-          "id": "a7c641cb-9671-4715-a1a4-ecee08def9b0",
-          "type": "Birth",
-          "registration": {
-            "status": "CERTIFIED",
-            "contactNumber": "+260751978586",
-            "trackingId": "BXZJNML",
-            "registrationNumber": "2023BXZJNML",
-            "registeredLocationId": "712502d2-5ea2-49d9-86df-a7d61f3f351f",
-            "duplicates": null,
-            "assignment": null,
-            "createdAt": "1673062235276",
-            "modifiedAt": null,
-            "__typename": "RegistrationSearchSet"
-          },
-          "operationHistories": [ ... ],
-          "dateOfBirth": "2021-12-11",
-          "childName": [
-            {
-              "firstNames": "Nash",
-              "familyName": "Cruickshank",
-              "use": "en",
-              "__typename": "HumanName"
-            },
-            {
-              "firstNames": "",
-              "familyName": null,
-              "use": "fr",
-              "__typename": "HumanName"
-            }
-          ],
-          "__typename": "BirthEventSearchSet"
-        }
-      ],
-      "__typename": "EventSearchResultSet"
-    }
-  }
-}
-```
+The response from a record search is not FHIR, but an Elasticsearch response.&#x20;
 
 After a search has completed and if you search for any record returned, you will see that in Record Audit, an entry shows that this client has accessed the personally identifiable citizen data on the record.
 
