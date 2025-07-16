@@ -14,9 +14,7 @@ This section assumes that you have already read the general [National ID registr
 
 MOSIP integration can only work asynchronously, so ensure that you have enabled the external validation workqueue and prepare to configure the endpoints we described in the link above.
 
-
-
-Note how we customise the event-registration endpoint in order to follow whatever configuration requirements exist for the country and prepare the payload for the MOSIP Packet Manager API at [this](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/4fa62771a1faea01f87c2fb0db80824e8f594fe7/src/index.ts#L445) point in the code:
+Note how we customise the event-registration endpoint in order to follow whatever configuration requirements exist for the country and prepare the payload for the **mosip-api** middleware that will authenticate with MOSIP, and submit data using. the MOSIP Packet Manager API at [this](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/4fa62771a1faea01f87c2fb0db80824e8f594fe7/src/index.ts#L445) point in the code:
 
 ```
 handler: async (request, h) => {
@@ -47,3 +45,13 @@ handler: async (request, h) => {
   }
 }
 ```
+
+Lets delve into the example functions we have written to explain the logic.
+
+### shouldForwardToIDSystem
+
+There will be edge cases in your civil registration and foundational identity business processes where you do not always want to create a MOSIP National ID at the point of birth registration depending on the demographic data completed by the informant.  This function examines the payload according to these **purely example rules**.  You should configure these according to the laws and processes relevant to your country:
+
+* In this example, we are only creating a National ID at birth if any of the parents or informant have successfully completed "in-form authentication", using QR Code or E-Signet
+* At death, we are only informing MOSIP that the deceased has passed if the spouse has successfully completed "in-form authentication", using QR Code or E-Signet
+* We are only creating a National ID at birth automatically from the cvil registration if the child is under 10 years of age.  If the child is over 10, then to create a National ID, they will be required to do so directly in MOSIP and submit their biometrics.
