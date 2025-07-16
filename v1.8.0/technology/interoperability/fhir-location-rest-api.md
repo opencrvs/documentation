@@ -46,64 +46,45 @@ During the configuration step of OpenCRVS you import all administrative areas wi
 You can use our [Postman collections](https://github.com/opencrvs/opencrvs-countryconfig/tree/master/postman) to test FHIR Location API functionality. [Postman](https://www.postman.com/) is a tool you can download to test API access before building your integrations.
 {% endhint %}
 
-A simple test harness for the FHIR Location API is also available in [Swagger](https://swagger.io/) at the following URL:
-
-```
-https://gateway.<your-domain>/documentation
-```
-
-<figure><img src="../../.gitbook/assets/Screenshot 2023-01-19 at 16.57.25.png" alt=""><figcaption></figcaption></figure>
-
-#### Reading FHIR Locations
-
-Send a **GET** request with **Content-Type: application/json** headers to:
-
-<pre><code><strong>Get ALL administrative structure locations:
-</strong>
-<strong>https://gateway.&#x3C;your-domain>/location
-</strong>
-or, get a single location:
-
-https://gateway.&#x3C;your-domain>/location/{{FHIR Location id}}
-</code></pre>
-
 {% hint style="warning" %}
 Getting all FHIR Locations or getting a single FHIR Location by its id, can be performed by any client, publicly on the internet with no authorization headers necessary. If you wish to whitelist access for whatever reason, you can do so via Traefik in Docker compose files.
+{% endhint %}
+
+{% hint style="danger" %}
+Only a National System Administrator's JWT token can be used to perform these actions as they are potentially destructive and can affect business operations. **An Interoperability client does not have permission.**
 {% endhint %}
 
 You can also use the FHIR API URL parameters to search using [**FHIR identifiers**](https://build.fhir.org/datatypes.html#Identifier) or other FHIR properties such as [**type**](https://build.fhir.org/datatypes-definitions.html#Identifier.type).
 
 By adding the FHIR **status=active** property, you can filter out any deactivated locations that are no longer in use.
 
-```
-Get ALL administrative areas by FHIR type and status:
+{% openapi-operation spec="fhir-location-api" path="/locations" method="get" %}
+[OpenAPI fhir-location-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250716%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250716T105626Z&X-Amz-Expires=172800&X-Amz-Signature=3c0be4a90599402a796aa76850c20261729aee6796f6bdff1b707f2119caa60e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+{% endopenapi-operation %}
 
-location?type=ADMIN_STRUCTURE&_count=0&status=active
+{% openapi-operation spec="fhir-location-api" path="/locations/{locationId}" method="get" %}
+[OpenAPI fhir-location-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250716%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250716T105626Z&X-Amz-Expires=172800&X-Amz-Signature=3c0be4a90599402a796aa76850c20261729aee6796f6bdff1b707f2119caa60e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+{% endopenapi-operation %}
 
-Get ALL office locations by FHIR type and status:
+When creating a new location, **statisticalID** is the **adminPCode** or **custom id** you set when importing administrative areas or facility CSVs respectively. We call that a statisticalID because it is generally used by statistics departments in government as opposed to a FHIR id.
 
-location?type=CRVS_OFFICE&_count=0&status=active
+{% openapi-operation spec="fhir-location-api" path="/locations" method="post" %}
+[OpenAPI fhir-location-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250716%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250716T105626Z&X-Amz-Expires=172800&X-Amz-Signature=3c0be4a90599402a796aa76850c20261729aee6796f6bdff1b707f2119caa60e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+{% endopenapi-operation %}
 
-Get ALL health facilities by FHIR type and status:
-
-location?type=HEALTH_FACILITY&_count=0&status=active
-
-Get a single location by FHIR identifier:
-
-https://gateway.<your-domain>/location?identifier=ADMIN_STRUCTURE_{{statisticalID}}
-https://gateway.<your-domain>/location?identifier=HEALTH_FACILITY_{{statisticalID}}
-https://gateway.<your-domain>/location?identifier=CRVS_OFFICE_{{statisticalID}}
-```
+{% openapi-operation spec="fhir-location-api" path="/locations/{locationId}" method="put" %}
+[OpenAPI fhir-location-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250716%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250716T105626Z&X-Amz-Expires=172800&X-Amz-Signature=3c0be4a90599402a796aa76850c20261729aee6796f6bdff1b707f2119caa60e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+{% endopenapi-operation %}
 
 {% hint style="info" %}
-**statisticalID** is the **adminPCode** or **custom id** you set when importing administrative areas or facility CSVs respectively. We call that a statisticalID because it is generally used by statistics departments in government as opposed to a FHIR id.
+To reinstate a location, set the status prop to **"active"**
 {% endhint %}
 
-#### Authorization to create, update and archive a FHIR Location
-
-{% hint style="danger" %}
-Only a National System Administrator's JWT token can be used to perform these actions as they are potentially destructive and can affect business operations. **An Interoperability client does not have permission.**
+{% hint style="info" %}
+To archive a location, set the status prop to **"inactive"**
 {% endhint %}
+
+### Authorization to create, update and archive a FHIR Location
 
 To retrieve a National System Administrators JWT token, login as the national system administrator. In our example, this is the user **j.campbell**.
 
@@ -117,115 +98,5 @@ The JWT is the value for the key **"opencrvs"**
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-01-19 at 17.41.39.png" alt=""><figcaption></figcaption></figure>
 
-**Create a FHIR Location**
-
-Send a **POST** request with **Content-Type: application/json** , and **Authorization: Bearer \<National System Administrators JWT>** headers to the following endpoint with the JSON payload appropriate to your location type:
-
-**Administrative area**
-
-```
-POST https://gateway.<your_domain>/location
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-{
-  "statisticalID": "TEST_LOCATION",
-  "name": "My name",
-  "alias": "My alias", // used for a different character set in localisation e.g. Arabic
-  "partOf": "Location/0",
-  "code": "ADMIN_STRUCTURE",
-  "jurisdictionType": "STATE",
-  "statistics": [
-    {
-      "year": 0,
-      "male_population": 0,
-      "female_population": 0,
-      "population": 0,
-      "crude_birth_rate": 0
-    }
-  ]
-}
-
-```
-
-**Civil registration office**
-
-```
-POST https://gateway.<your_domain>/location
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-{
-  "statisticalID": "TEST_OFFICE_LOCATION",
-  "name": "My office",
-  "alias": "My office alias", // used for a different character set in localisation e.g. Arabic
-  "partOf": "Location/0",
-  "code": "CRVS_OFFICE"
-}
-
-```
-
-**Health facility**
-
-```
-POST https://gateway.<your_domain>/location
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-{
-  "statisticalID": "TEST_HEALTH_LOCATION",
-  "name": "My hospital",
-  "alias": "My hospital alias", // used for a different character set in localisation e.g. Arabic
-  "partOf": "Location/0",
-  "code": "HEALTH_FACILITY"
-}
-```
-
 **Update or Archive a FHIR Location**
 
-Send a **PUT** request with **Content-Type: application/json** , and **Authorization: Bearer \<National System Administrators JWT>** headers to the following endpoint with the JSON payload appropriate to your location type:
-
-{% hint style="info" %}
-To archive a location, set the status prop to **"inactive"**
-{% endhint %}
-
-{% hint style="info" %}
-To reinstate a location, set the status prop to **"active"**
-{% endhint %}
-
-**Administrative area**
-
-```
-PUT https://gateway.<your_domain>/location
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-{
-  "name": "My new name",
-  "alias": "My new alias",
-  "status": "active",
-  "statistics": 
-    {
-      "year": 0,
-      "male_population": 0,
-      "female_population": 0,
-      "population": 0,
-      "crude_birth_rate": 0
-    }
-  
-}
-```
-
-**Civil registration office / Health facility**
-
-```
-PUT https://gateway.<your_domain>/location
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-{
-  "name": "My new name",
-  "alias": "My new alias",
-  "status": "active"
-}
-```
