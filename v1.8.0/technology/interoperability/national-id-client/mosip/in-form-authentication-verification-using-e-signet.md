@@ -28,7 +28,9 @@ The mosip-api package handles all communication to/from E-Signet and more enviro
 
 ### Routes required for integration with MOSP ID Auth SDK
 
-The countryconfig microservice must be able to communicate with the MOSIP ID Auth SDK when using the **offline** or **manual** form field options.  This is for a secondary online authentication check once the application is submitted and passes through the OpenCRVS validation, approval and registration status transitions. &#x20;
+In OpenCRVS, some event actions require additional confirmation from the Country Configuration API before they can be accepted. This process is known as **action confirmation**.
+
+The MOSIP integration uses the [Action Confirmation API ](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/develop/src/api/action-confirmation.md)to communicate with the MOSIP ID Auth SDK when using the **offline** or **manual** form field options.  This is for a secondary online authentication check once the application is submitted and passes through the OpenCRVS validation, approval and registration status transitions. &#x20;
 
 The following [routes](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/4fa62771a1faea01f87c2fb0db80824e8f594fe7/src/index.ts#L634) **must be added.** These routes are critically important to ensure that the record moves through the process successfully.
 

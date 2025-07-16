@@ -112,4 +112,10 @@ You will need to manually add the environment variables used for the MOSIP and E
 
 Click "Add environment secret" and enter the following variables:
 
+#### **Environment secrets** <a href="#environment-secrets" id="environment-secrets"></a>
+
+|                                |                                                                                                                                                                                                       |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| BACKUP\_ENCRYPTION\_PASSPHRASE | This is the password that is used to encrypt all the backups that OpenCRVS creates from a production server and that are stored on the **backup** server. Use this passphrase to decrypt the backups. |
+
 ### Static certificate key files
