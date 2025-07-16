@@ -137,9 +137,28 @@ Click "Add environment secret" and enter the following secrets:
 
 Click "Add environment variable" and enter the following variables:
 
-|                              |   |
-| ---------------------------- | - |
-|                              |   |
-| DECRYPT\_P12\_FILE\_PASSWORD | ​ |
+| variable                                 | description |
+| ---------------------------------------- | ----------- |
+| ESIGNET\_REDIRECT\_URL                   |             |
+| ESIGNET\_TOKEN\_URL                      | ​           |
+| MOSIP\_API\_USERINFO\_URL                |             |
+| MOSIP\_API\_VERSION                      |             |
+| MOSIP\_AUTH\_CLIENT\_ID                  |             |
+| MOSIP\_AUTH\_CLIENT\_SECRET              |             |
+| MOSIP\_AUTH\_PASS                        |             |
+| MOSIP\_AUTH\_URL                         |             |
+| MOSIP\_AUTH\_USER                        |             |
+| MOSIP\_CENTER\_ID                        |             |
+| MOSIP\_CREATE\_PACKET\_URL               |             |
+| MOSIP\_MACHINE\_ID                       |             |
+| MOSIP\_PACKET\_AUTH\_CLIENT\_ID          |             |
+| MOSIP\_PACKET\_AUTH\_CLIENT\_SECRET      |             |
+| MOSIP\_PROCESS\_PACKET\_URL              |             |
+| MOSIP\_VERIFIABLE\_CREDENTIAL\_ALLOWLIST |             |
+| MOSIP\_WEBSUB\_AUTH\_CLIENT\_ID          |             |
+| MOSIP\_WEBSUB\_AUTH\_CLIENT\_SECRET      |             |
+| MOSIP\_WEBSUB\_HUB\_URL                  |             |
+| MOSIP\_WEBSUB\_SECRET                    |             |
+| MOSIP\_WEBSUB\_TOPIC                     |             |
 
 ### Static certificate key files
