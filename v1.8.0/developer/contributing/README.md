@@ -40,5 +40,19 @@ We will provisionally assign a release based on discussion with you when you com
 
 ### Contribution Champions!
 
-The following developers from our community have already contributed features to OpenCRVS following the process above.  We are hugely grateful to you for your contributions.
+The following developers from our global community deserve extra special kudos for already contributing critical features to OpenCRVS following the process above. &#x20;
+
+We are hugely grateful to you for your contributions.
+
+> _Bug fixing and developing new features can be quite challenging, especially when you're new to OpenCRVS. Thankfully, the core team and other contributors are always there to guide you, offering ideas and recommendations to help you make it work. I’m grateful for the chance to learn and grow through open collaboration, and I’m looking forward to contributing more. -_ [_Onion Quimson_](https://github.com/oni-on1003) _- Philippines_
+
+| Github Profile                                                               | Country                                      | Feature                                        |
+| ---------------------------------------------------------------------------- | -------------------------------------------- | ---------------------------------------------- |
+| [https://github.com/oni-on1003](https://github.com/oni-on1003)               | Philippines                                  | New Form UI Components                         |
+| [https://github.com/Eezi](https://github.com/Eezi)                           | Finland                                      | DevOps Optimisations                           |
+| [https://github.com/ak-shanith](https://github.com/ak-shanith)               | [Bevolv](https://www.bevolv.co/) - Sri Lanka | MOSIP Integration, Interoperability & Bugfixes |
+| [https://github.com/anjana6](https://github.com/anjana6)                     | [Bevolv](https://www.bevolv.co/) - Sri Lanka | MOSIP Integration, Interoperability & Bugfixes |
+| [https://github.com/PathumN99](https://github.com/PathumN99)                 | [Bevolv](https://www.bevolv.co/) - Sri Lanka | MOSIP Integration, Interoperability & Bugfixes |
+| [https://github.com/Hyper3x](https://github.com/Hyper3x)                     | [Bevolv](https://www.bevolv.co/) - Sri Lanka | MOSIP Integration, Interoperability & Bugfixes |
+| [https://github.com/tharakadadigama20](https://github.com/tharakadadigama20) | [Bevolv](https://www.bevolv.co/) - Sri Lanka | MOSIP Integration, Interoperability & Bugfixes |
 
