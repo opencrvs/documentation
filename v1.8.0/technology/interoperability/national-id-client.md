@@ -36,5 +36,6 @@ The following business functionality is not currently supported but is in our ro
 
 * Notifying a National ID system of any legal correction to a previously registered record
 * Notifying a National ID system of any legal revocation of a previously registered record
+* Notifying a National ID system of any legal name change
 * Authenticating and verifying the identity of an individual who is collecting an issued certificate
 
