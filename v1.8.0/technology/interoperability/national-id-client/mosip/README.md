@@ -26,15 +26,6 @@ To understand the business process around the technical integration between Open
 
 {% embed url="https://www.figma.com/board/ouhT8BRAu7HASKkebrUkwu/MOSIP-Public-Documentation?node-id=0-1&t=tJj8mP3hENcpXbBI-1" %}
 
-### Backlog
-
-The following integrations between OpenCRVS and MOSIP are in development.  Should you require them in your country, we welcome contributions to this effort.  Please get in touch.
-
-* Revoke a birth or death registration (a substantial legal procedure)
-* In-form authentication and verification upon certificate issuance to guarantee the identity of the receiving party.
-* Registration correction integration
-* Name change integration
-
 ### opencrvs/mosip library
 
 In order to make life as easy as possible for developers who wish to configure the MOSIP integration, we have abstracted away all the non-customisable logic into an NPM library and created mock servers for both MOSIP and E-Signet.

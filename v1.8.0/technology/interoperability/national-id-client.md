@@ -30,9 +30,11 @@ Currently OpenCRVS supports the following default National ID integration functi
 
 
 
-### Roadmapped National ID integration functionality
+### Roadmap (Backlog) of National ID/MOSIP  integration functionality
 
-The following business functionality is not currently supported but is in our roadmap
+The following integrations between OpenCRVS and a National ID / MOSIP system are in development.  Should you require them in your country, we welcome contributions to this effort.  Please get in touch:
+
+
 
 * Notifying a National ID system of any legal correction to a previously registered record
 * Notifying a National ID system of any legal revocation of a previously registered record
