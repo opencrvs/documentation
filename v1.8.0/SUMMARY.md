@@ -162,8 +162,7 @@
 * [Contributing](general/contributing.md)
 * [Migration notes](general/migration-notes.md)
 * [Releases and upgrades](general/releases/README.md)
-* [Release notes](general/v1.8-release-notes/README.md)
-  * [v1.8.0: Release notes](general/v1.8-release-notes/v1.8.0-release-notes.md)
+* [Release notes](general/v1.8-release-notes.md)
 * [Product roadmap](general/product-roadmap.md)
 
 ## Developer
