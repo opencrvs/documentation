@@ -38,6 +38,8 @@ The following are the key scope categories available for configuration:
 
 • record.unassign-others – Allows a user to unassign another user currently assigned to the record.
 
+• record.review-duplicates - Alloes a user to review a declaration flagged as a duplicate against the matching record/s
+
 #### 3. Register
 
 • record.register – Allows a user to register a record.
@@ -102,8 +104,7 @@ The following are the key scope categories available for configuration:
 
 • user.read:my-office – Allows a user to view user audit pages in their office.
 
-• user.read:only-my-audit – Allows a user to view only their own audit page.\
-
+• user.read:only-my-audit – Allows a user to view only their own audit page.\\
 
 {% hint style="info" %}
 **How to configure user roles & scopes?**\
