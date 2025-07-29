@@ -36,7 +36,9 @@ The following are the key scope categories available for configuration:
 
 • record.declaration-reinstate – Allows a user to reinstate an archived declaration (reverting to the previous status).
 
-• record.unassign-others – Allows a user to unassign another user currently assigned to the record.
+• record.unassign-others – Allows a user to unassign another user currently assigned to the record.\
+\
+• record.review-duplicates - Alloes a user to review a declaration flagged as a duplicate against the matching record/s
 
 #### 3. Register
 
