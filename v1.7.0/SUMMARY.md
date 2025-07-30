@@ -158,6 +158,7 @@
 * [Migration notes](general/migration-notes.md)
 * [Releases and upgrades](general/releases/README.md)
 * [Release notes](general/v1.7-release-notes/README.md)
+  * [v1.7.4: Release notes](general/v1.7-release-notes/v1.7.4-release-notes.md)
   * [v1.7.3: Release notes](general/v1.7-release-notes/v1.7.3-release-notes.md)
   * [v1.7.2: Release notes](general/v1.7-release-notes/v1.7.2-release-notes.md)
   * [v1.7.1: Release notes](general/v1.7-release-notes/v1.7.1-release-notes.md)
