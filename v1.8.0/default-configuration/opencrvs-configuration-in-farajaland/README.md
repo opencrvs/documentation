@@ -12,4 +12,4 @@ OpenCRVS Demo
 
 The OpenCRVS configuration for Farajaland has been developed to support the country's civil registration business process flows and CRVS strategic goals. All of the settings documented here can be modified for other country contexts.\
 \
-The **Country Configuration Files** in the [Release Notes](../../general/v1.8-release-notes) provides a full example configuration for Farajaland.
+The **Country Configuration Files** in the [Release Notes](../../general/v1.8-release-notes.md) provides a full example configuration for Farajaland.
