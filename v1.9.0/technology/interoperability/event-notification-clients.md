@@ -74,7 +74,7 @@ Authorization: Bearer {{token}}
 ```
 
 {% hint style="info" %}
-The request must contain a valid `createdAtLocation`. For finding the correct id's, refer to the [FHIR Location REST API -documentation](./fhir-location-rest-api.md)
+The request must contain a valid facility id in the `createdAtLocation` field. For finding the correct id's, refer to the [FHIR Location REST API -documentation](./fhir-location-rest-api.md)
 {% endhint %}
 
 For full API details, refer to the [Swagger documentation](https://api.opencrvs.org/develop/events/).
