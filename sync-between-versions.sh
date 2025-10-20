@@ -47,3 +47,22 @@ git diff --name-only "$LAST_TARGET_COMMIT"..HEAD -- "$SRC_DIR/" \
 done
 
 echo "Sync from $SRC_DIR to $TARGET_DIR complete."
+
+
+echo "Run raw file comparison across versions:"
+# Capture diff output
+DIFF_OUTPUT=$(diff -rq "$SRC_DIR" "$TARGET_DIR" || true)
+
+# Separate groups
+ONLY_IN_SRC=$(echo "$DIFF_OUTPUT" | grep -E "^Only in $SRC_DIR" | sed "s#Only in $SRC_DIR/##" || true)
+ONLY_IN_TARGET=$(echo "$DIFF_OUTPUT" | grep -E "^Only in $TARGET_DIR" | sed "s#Only in $TARGET_DIR/##" || true)
+
+
+echo
+# Print grouped output
+echo "### Only in $SRC_DIR"
+[[ -n "$ONLY_IN_SRC" ]] && echo "$ONLY_IN_SRC" || echo "(none)"
+echo
+
+echo "### Only in $TARGET_DIR"
+[[ -n "$ONLY_IN_TARGET" ]] && echo "$ONLY_IN_TARGET" || echo "(none)"
