@@ -6,7 +6,10 @@ description: Prepare all the inputs required for product configuration.
 
 In order to configure the OpenCRVS product, you will need a number of inputs. These requirements are listed below and templates are provided where relevant. Gather these requirements in advance to make sure you have everything you need before you get started.
 
-{% file src="../../.gitbook/assets/OpenCRVS 1.7 Configuration Files.zip" %}
+{% hint style="info" %}
+[Configuration, testing and technical configuration files](../../general/v1.9-release-notes.md#configuration-template-files)\
+Check out our release notes for configuration template files to help you configure your OpenCRVS instance and version
+{% endhint %}
 
 ### How to complete the configuration templates
 
