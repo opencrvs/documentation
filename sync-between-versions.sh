@@ -37,9 +37,13 @@ git diff --name-only "$LAST_TARGET_COMMIT"..HEAD -- "$SRC_DIR/" \
     target_file="$TARGET_DIR/${file#${SRC_DIR}/}"
     echo "Updating: $target_file"
     mkdir -p "$(dirname "$target_file")"
-    sed -e "s|$SRC_DIR|$TARGET_DIR|g" \
-        -e "s|$SRC_VERSION_PREFIX|$TARGET_VERSION_PREFIX|g" \
-        "$file" > "$target_file"
+    if [[ "$target_file" == *release-notes.md ]]; then
+        cp $file "$target_file"
+    else
+        sed -e "s|$SRC_DIR|$TARGET_DIR|g" \
+            -e "s|$SRC_VERSION_PREFIX|$TARGET_VERSION_PREFIX|g" \
+            "$file" > "$target_file"
+    fi
 done
 
 echo "Sync from $SRC_DIR to $TARGET_DIR complete."
