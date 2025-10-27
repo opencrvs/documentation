@@ -22,7 +22,7 @@ The following are the key scope categories available for configuration:
 | record.declared.validate                 | This scope allows a user to validate a declaration                                                                                    |
 | record.declared.reject                   | This scope allows a user to reject a declaration                                                                                      |
 | record.declared.archive                  | This scope allows a user to archive a declaration. An archived declaration has the status 'Archived'                                  |
-| record.declared.reinstate                | This scope allows a user to reinstate an archived declaration. Declarations will revert to the previous status before it was archived |
+| record.archived.reinstate                | This scope allows a user to reinstate an archived declaration. Declarations will revert to the previous status before it was archived |
 | record.declared.edit                     | This scope allows a user to edit a declaration declared by another user                                                               |
 | record.unassign-user                     | This scope is to allow a user to unassign another user who is current assigned to the record                                          |
 | record.review-duplicates                 | This scope allows a user to review declarations that have been flagged as a potential duplicate                                       |
