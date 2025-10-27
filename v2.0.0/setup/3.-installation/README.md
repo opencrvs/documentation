@@ -16,8 +16,10 @@ Once this section is completed a less technical system administrator can login a
 
 ### Steps
 
+[Quick start](quick-start.md)
+
 {% content-ref url="../../../v1.8.0/setup/3.-installation/3.1-set-up-a-development-environment" %}
-[3.1-set-up-a-development-environment](../../../v1.8.0/setup/3.-installation/3.1-set-up-a-development-environment)
+[Setup local development environment](../../../v1.8.0/setup/3.-installation/3.1-set-up-a-development-environment)
 {% endcontent-ref %}
 
 {% content-ref url="../../../v1.8.0/setup/3.-installation/3.2-set-up-your-own-country-configuration" %}
