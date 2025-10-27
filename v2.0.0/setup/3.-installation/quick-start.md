@@ -1,4 +1,4 @@
-# 🚀 Quickstart
+# Quickstart
 
 Quickstart scenario allows to run OpenCRVS locally on kubernetes cluster like docker-desktop or minikube.
 
