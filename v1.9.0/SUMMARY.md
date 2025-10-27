@@ -159,6 +159,7 @@
 
 * [Community](general/community.md)
 * [Contributing](general/contributing.md)
+* [Migration notes](general/migration-notes.md)
 * [Release notes](general/releases.md)
 * [Releases and upgrades](general/releases-and-upgrades.md)
 * [Roadmap](general/product-roadmap.md)
