@@ -1,6 +1,6 @@
 # Please read!
 
-OpenCRVS 1.9 is a marjor rewrite to support the configuration of any number of civil events with existing functions.\
+OpenCRVS 1.9 is a marjor rewrite to support the configuration of any number of civil events with existing core, support and admin functions.\
 \
 It is seen as a stepping stone to supporting in OpenCRVS 1.10:
 
