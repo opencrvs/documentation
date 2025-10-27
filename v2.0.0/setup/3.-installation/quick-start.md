@@ -1,6 +1,6 @@
 # Quickstart
 
-Quickstart scenario allows to run OpenCRVS locally on kubernetes cluster like docker-desktop or minikube.
+Quickstart scenario allows to run OpenCRVS with Farajaland demo data locally on kubernetes cluster like docker-desktop or minikube.
 
 > NOTE: Before running commands make sure `helm` and `kubectl` are installed and kubernetes context is set to local cluster.
 
@@ -57,5 +57,5 @@ helm get values opencrvs --namespace "opencrvs-dev" \
 **5. After installation visit http://opencrvs.localhost**
 
 > ➡️ Next steps:
-> - Follow up step by step single node installation guide with GitHub Actions workflow, see [here](../../examples/dev/README.md)
+> - Run fully functional local development environment, see [here](./3.1-set-up-a-development-environment/README.md)
 > - Read more about advanced configurations options available here and for [Dependencies helm chart](../dependencies/README.md)
