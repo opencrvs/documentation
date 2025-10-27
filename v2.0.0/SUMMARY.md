@@ -141,6 +141,7 @@
     * [4.3.7 Backup & Restore](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/README.md)
       * [4.3.7.1 Restoring a backup](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/4.3.7.1-restoring-a-backup.md)
       * [4.3.7.2 Off-boarding from OpenCRVS](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/4.3.7.2-off-boarding-from-opencrvs.md)
+  * [4.4 Advanced topics](setup/3.-installation/3.4-advanced-topics.md)
 * [5. Functional configuration](setup/4.-functional-configuration/README.md)
   * [5.1 Configure application settings](setup/4.-functional-configuration/4.1-configure-application-settings.md)
   * [5.2 Configure registration periods and fees](setup/4.-functional-configuration/4.2-configure-registration-periods-and-fees.md)
