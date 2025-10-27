@@ -11,6 +11,7 @@
 
 ## Product Specifications
 
+* [Please read!](product-specifications/please-read.md)
 * [Functional Architecture](product-specifications/functional-architecture.md)
 * [Workflow management](product-specifications/workflow-management.md)
 * [Status Flow Diagram](product-specifications/status-flow-diagram.md)
