@@ -160,7 +160,7 @@
 * [Community](general/community.md)
 * [Contributing](general/contributing.md)
 * [Release notes](general/releases.md)
-* [Releases and notes](general/releases-and-notes.md)
+* [Releases and upgrades](general/releases-and-upgrades.md)
 * [Roadmap](general/product-roadmap.md)
 
 ## Developers
