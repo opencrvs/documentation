@@ -185,9 +185,9 @@
   * [Local Setup](developers/infrastructure/local-setup.md)
 * [Country configuration](developers/country-configuration/README.md)
   * ```yaml
-    type: builtin:openapi
     props:
       models: false
+    type: builtin:openapi
     dependencies:
       spec:
         ref:
