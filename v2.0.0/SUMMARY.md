@@ -91,6 +91,7 @@
   * [3.4 Designing event declaration forms](setup/2.-gather-requirements/3.4-designing-event-declaration-forms.md)
   * [3.5 Designing a certified copy](setup/2.-gather-requirements/3.5-designing-a-certificate-template.md)
 * [4. Installation](setup/3.-installation/README.md)
+  * [Quick start](setup/3.-installation/quick-start.md)
   * [4.1 Set-up a local development environment](setup/3.-installation/3.1-set-up-a-development-environment/README.md)
     * [4.1.1 Install the required dependencies](setup/3.-installation/3.1-set-up-a-development-environment/3.1.1-install-the-required-dependencies.md)
     * [4.1.2 Install OpenCRVS locally](setup/3.-installation/3.1-set-up-a-development-environment/3.1.2-install-opencrvs-locally.md)
