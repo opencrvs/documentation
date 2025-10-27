@@ -2,17 +2,26 @@
 
 The status flow diagram shows all the vital event record statuses in OpenCRVS and how it is possible to move from one to the next
 
-Record status:
+**Statuses**:\
+A record status describe the primary legal status of a record, control what actions can be performed and can be used to filter custom workqueues:
 
 * Draft
 * Notified
 * Declared
 * Archived
-* Validated
+* Validated (Deprecated in 1.10. Will become a record flag)
 * Registered
 
+\
+**Flags:**\
+A record flag can be thought of as a secondary record status. It describes additonal characteristics of a declared or registered record, control what actions can be performed and can be used to filter custom workqueues.
+
+* Rejected
+* Potential duplicate
+* Pending certification
+* Correction requested
+* Duplicate\
 
 
+<figure><img src="../.gitbook/assets/Status WorkFlow (1).png" alt=""><figcaption></figcaption></figure>
 
-
-<figure><img src="../.gitbook/assets/status-flow-diagram-v1.3.png" alt=""><figcaption></figcaption></figure>
