@@ -95,7 +95,7 @@
   * [4.1 Set-up a local development environment](setup/3.-installation/3.1-set-up-a-development-environment/README.md)
     * [4.1.1 Install the required dependencies](setup/3.-installation/3.1-set-up-a-development-environment/3.1.1-install-the-required-dependencies.md)
     * [4.1.2 Install OpenCRVS locally](setup/3.-installation/3.1-set-up-a-development-environment/3.1.2-install-opencrvs-locally.md)
-    * [4.1.3 Starting and stopping OpenCRVS](setup/3.-installation/3.1-set-up-a-development-environment/3.1.3-starting-and-stopping-opencrvs.md)
+    * [4.1.3 Local environment maintenance](setup/3.-installation/3.1-set-up-a-development-environment/3.1.3-local-environment-maintenance.md)
     * [4.1.4 Log in to OpenCRVS locally](setup/3.-installation/3.1-set-up-a-development-environment/3.1.4-log-in-to-opencrvs-locally.md)
     * [4.1.5 Tooling](setup/3.-installation/3.1-set-up-a-development-environment/3.1.5-tooling/README.md)
       * [4.1.5.1 WSL Support](setup/3.-installation/3.1-set-up-a-development-environment/3.1.5-tooling/4.1.5.1-wsl-support.md)

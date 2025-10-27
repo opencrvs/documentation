@@ -102,7 +102,7 @@ yarn --force
 
 5\. **You will likely need to fix some conflicts.**
 
-6\. If you are running OpenCRVS locally, simply [start OpenCRVS](../../setup/3.-installation/3.1-set-up-a-development-environment/3.1.3-starting-and-stopping-opencrvs.md). Migrations will automatically run on your local data and you have finished upgrading OpenCRVS locally.
+6\. If you are running OpenCRVS locally, simply [start OpenCRVS](../../setup/3.-installation/3.1-set-up-a-development-environment/3.1.3-local-environment-maintenance.md). Migrations will automatically run on your local data and you have finished upgrading OpenCRVS locally.
 
 {% hint style="info" %}
 Test your upgrade locally before proceeding
