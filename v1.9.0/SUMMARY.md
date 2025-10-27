@@ -159,7 +159,7 @@
 
 * [Community](general/community.md)
 * [Contributing](general/contributing.md)
-* [Releases](general/releases.md)
+* [Release notes](general/releases.md)
 * [Releases and notes](general/releases-and-notes.md)
 * [Roadmap](general/product-roadmap.md)
 
