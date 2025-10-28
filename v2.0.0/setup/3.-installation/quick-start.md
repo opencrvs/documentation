@@ -18,7 +18,7 @@ Quickstart scenario allows to run OpenCRVS with Farajaland demo data locally on 
 **NOTE:**
 - This guide does not cover the installation of these prerequisites.
 - OpenCRVS team has limited capacity to test different configurations. Feel free to submit an issue on GitHub if something doesn't work in your hardware or software setup.
-
+- Check GitHub repository for additional examples and hints: [opencrvs/infrastructure](https://github.com/opencrvs/infrastructure)
 
 > **Before running commands make sure:**
 > - [ ] kubernetes cluster is running on your PC/laptop
