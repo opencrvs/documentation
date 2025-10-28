@@ -61,10 +61,9 @@ helm upgrade --install opencrvs oci://ghcr.io/opencrvs/opencrvs-services \
     -f https://raw.githubusercontent.com/opencrvs/infrastructure/refs/heads/develop/examples/localhost/opencrvs-services/values.yaml
 ```
 
-[Configuration options](#configuration-options) table gives brief overview of options available within helm chart. Copy and modify `examples/localhost/opencrvs-services/values.yaml` to suit your needs.
-
 **4. After installation visit http://opencrvs.localhost**
 
 > ➡️ Next steps:
 > - Run fully functional local development environment, see [here](./3.1-set-up-a-development-environment/README.md)
 > - Read more about advanced configurations options available here and for [Dependencies helm chart](../dependencies/README.md)
+> - Check GitHub infrastructure repository [Configuration options](http://github.com/opencrvs/infrastructure/tree/develop/charts/opencrvs-services#configuration-options) table to get brief overview of options available within helm chart. Copy and modify `examples/localhost/opencrvs-services/values.yaml` to suit your needs.
