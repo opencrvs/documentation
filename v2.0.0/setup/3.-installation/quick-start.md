@@ -2,10 +2,30 @@
 
 Quickstart scenario allows to run OpenCRVS with Farajaland demo data locally on kubernetes cluster like docker-desktop or minikube.
 
-> NOTE: Before running commands make sure:
+## Hardware requirements
+- 16G RAM
+- 8 CPU (at least Intel 8th generation)
+- 100G free storage space
+
+## Software requirements
+
+| Tool       | Description |
+| ---------- | ----------- |
+| Kubernetes | For macOS and Windows users, we recommend Docker Desktop with Kubernetes, [Learn more](https://www.docker.com/); for Linux users, we recommend Minikube, [Learn more](https://minikube.sigs.k8s.io/docs/start). More information about setting up Kubernetes can be found in the [Docker engine with Kubernetes cluster](#docker-engine-with-kubernetes-cluster) section. |
+| kubectl    | Kubernetes command-line tool. [Documentation](https://kubernetes.io/docs/tasks/tools/). |
+| helm       | Helm, a template engine for managing Kubernetes manifests. [Learn more](https://helm.sh/). |
+
+**NOTE:**
+- This guide does not cover the installation of these prerequisites.
+- OpenCRVS team has limited capacity to test different configurations. Feel free to submit an issue on GitHub if something doesn't work in your hardware or software setup.
+
+
+> **Before running commands make sure:**
 > - [ ] kubernetes cluster is running on your PC/laptop
 > - [ ] `helm` and `kubectl` are installed
 > - [ ] context for `kubectl` is set to local cluster.
+
+# Step by step
 
 **1. Install Traefik Ingress Controller**
 
