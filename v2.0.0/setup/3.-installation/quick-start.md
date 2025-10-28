@@ -61,7 +61,7 @@ helm upgrade --install opencrvs oci://ghcr.io/opencrvs/opencrvs-services \
     -f https://raw.githubusercontent.com/opencrvs/infrastructure/refs/heads/develop/examples/localhost/opencrvs-services/values.yaml
 ```
 
-**4. After installation visit http://opencrvs.localhost**
+**4. After installation visit [http://opencrvs.localhost](http://opencrvs.localhost)**
 
 > ➡️ Next steps:
 > - Run fully functional local development environment, see [here](./3.1-set-up-a-development-environment/README.md)
