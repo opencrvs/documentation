@@ -16,7 +16,7 @@ Quickstart scenario allows to run OpenCRVS with Farajaland demo data locally on 
 | helm       | Helm, a template engine for managing Kubernetes manifests. [Learn more](https://helm.sh/). |
 
 **NOTE:**
-- This guide does not cover the installation of these prerequisites.
+- Quick start guide does not cover prerequisites installation.
 - OpenCRVS team has limited capacity to test different configurations. Feel free to submit an issue on GitHub if something doesn't work in your hardware or software setup.
 - Check GitHub repository for additional examples and hints: [opencrvs/infrastructure](https://github.com/opencrvs/infrastructure)
 
