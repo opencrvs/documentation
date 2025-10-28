@@ -7,9 +7,9 @@ The following instructions will guide you on how to set up a local, development 
 {% endhint %}
 
 {% hint style="warning" %}
-We recommend that you setup OpenCRVS on your local laptop to work with our fictional country repo before proceeding to fork and create your own country configuration.
+We recommend that you setup OpenCRVS Demo configuration on your local laptop to work with our fictional country repo before proceeding to fork and create your own country configuration.
 
-In order to run OpenCRVS, we expect that you have a working knowledge of Linux / Unix operating systems and can run terminal commands. You should also be familiar with Docker and NodeJS.
+In order to run OpenCRVS, we expect that you have a working knowledge of Linux / Unix operating systems and can run terminal commands. You should also be familiar with Docker, kubernetes and NodeJS.
 {% endhint %}
 
 First, you will have to install some dependencies on your local computer.
