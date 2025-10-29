@@ -9,6 +9,8 @@ Quickstart scenario allows to run OpenCRVS with Farajaland demo data locally on 
 
 ## Software requirements
 
+**Check how to configure local Kubernetes cluster at [Docker engine and Kubernetes cluster](3.1-set-up-a-development-environment/3.1.1-install-the-required-dependencies.md#docker-engine-and-kubernetes-cluster)
+
 | Tool       | Description |
 | ---------- | ----------- |
 | Kubernetes | For macOS and Windows users, we recommend Docker Desktop with Kubernetes, [Learn more](https://www.docker.com/); for Linux users, we recommend Minikube, [Learn more](https://minikube.sigs.k8s.io/docs/start). More information about setting up Kubernetes can be found in the [Docker engine with Kubernetes cluster](#docker-engine-with-kubernetes-cluster) section. |
