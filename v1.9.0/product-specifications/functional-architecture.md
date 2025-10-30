@@ -1,10 +1,10 @@
 # Functional Architecture
 
-The OpenCRVS functional architecture shows the logical components of which the system is comprised. Each of these "functions" is explained in greater detail within the relevant section of the documentation.
+OpenCRVS 1.9 is a marjor rewrite to support the configuration of any number of civil events with existing core, support and admin functions.\
+\
+It is seen as a stepping stone to supporting in OpenCRVS 1.10 (with this a new functional architecture will be shared):
 
-<figure><img src="../.gitbook/assets/Functional architecture2.png" alt=""><figcaption></figcaption></figure>
+* custom business process record workflows (eg. attestation, seniro approvals, escalations)
+* hierarchy of offices and jurisdictions (control what records users can view and action)
+* verifiable credentials&#x20;
 
-#### Key:
-
-* Blue (built)
-* White (coming soon)
