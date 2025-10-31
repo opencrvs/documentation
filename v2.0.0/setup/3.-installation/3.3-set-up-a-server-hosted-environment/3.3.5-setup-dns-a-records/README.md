@@ -62,9 +62,9 @@ Alternatively you could consider purchasing a long term SSL certificate and manu
 
 The following "recipes" are not meant to be exhaustive, but simply describe some examples you may wish to follow. Every country will have unique network, domain name & management considerations to pay attention to.
 
-For each recipe, search the traefik [values.yaml](https://github.com/opencrvs/infrastructure/tree/develop/examples) file.
+Pre-configured traefik installation options:
+- [LetsEncrypt https challenge in development environments](4.3.2.1-letsencrypt-https-challenge-in-development-environments.md)
+- [LetsEncrypt DNS challenge in production](4.3.2.2-letsencrypt-dns-challenge-in-production.md)
+- [Static TLS certificates](4.3.2.3-static-tls-certificates.md)
 
-Pre-configured installation options:
-- `values.yaml`: [LetsEncrypt https challenge in development environments](4.3.2.1-letsencrypt-https-challenge-in-development-environments.md)
-- `values-dns-challenge.yaml`: Lets-encrypt configuration with DNS challenge
-- `values-custom-ssl.yaml`: Custom SSL Certificate example
+For each recipe, search the traefik [values.yaml](https://github.com/opencrvs/infrastructure/tree/develop/examples/dev/traefik) file.
