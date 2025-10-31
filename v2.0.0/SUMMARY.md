@@ -91,10 +91,13 @@
   * [3.4 Designing event declaration forms](setup/2.-gather-requirements/3.4-designing-event-declaration-forms.md)
   * [3.5 Designing a certified copy](setup/2.-gather-requirements/3.5-designing-a-certificate-template.md)
 * [4. Installation](setup/3.-installation/README.md)
+  * [Quick start](setup/3.-installation/quick-start.md)
   * [4.1 Set-up a local development environment](setup/3.-installation/3.1-set-up-a-development-environment/README.md)
     * [4.1.1 Install the required dependencies](setup/3.-installation/3.1-set-up-a-development-environment/3.1.1-install-the-required-dependencies.md)
-    * [4.1.2 Install OpenCRVS locally](setup/3.-installation/3.1-set-up-a-development-environment/3.1.2-install-opencrvs-locally.md)
-    * [4.1.3 Starting and stopping OpenCRVS](setup/3.-installation/3.1-set-up-a-development-environment/3.1.3-starting-and-stopping-opencrvs.md)
+    * [4.1.2 Install OpenCRVS locally (Docker)](setup/3.-installation/3.1-set-up-a-development-environment/3.1.2-install-opencrvs-locally.md)
+    * [4.1.2 Install OpenCRVS locally (Kubernetes)](setup/3.-installation/3.1-set-up-a-development-environment/3.1.2-install-opencrvs-locally-k8s.md)
+    * [4.1.3 Local environment maintenance (Docker)](setup/3.-installation/3.1-set-up-a-development-environment/3.1.3-local-environment-maintenance.md)
+    * [4.1.3 Local environment maintenance (Kubernetes)](setup/3.-installation/3.1-set-up-a-development-environment/3.1.3-local-environment-maintenance-k8s.md)
     * [4.1.4 Log in to OpenCRVS locally](setup/3.-installation/3.1-set-up-a-development-environment/3.1.4-log-in-to-opencrvs-locally.md)
     * [4.1.5 Tooling](setup/3.-installation/3.1-set-up-a-development-environment/3.1.5-tooling/README.md)
       * [4.1.5.1 WSL Support](setup/3.-installation/3.1-set-up-a-development-environment/3.1.5-tooling/4.1.5.1-wsl-support.md)
@@ -140,6 +143,7 @@
     * [4.3.7 Backup & Restore](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/README.md)
       * [4.3.7.1 Restoring a backup](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/4.3.7.1-restoring-a-backup.md)
       * [4.3.7.2 Off-boarding from OpenCRVS](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/4.3.7.2-off-boarding-from-opencrvs.md)
+  * [4.4 Advanced topics](setup/3.-installation/3.4-advanced-topics.md)
 * [5. Functional configuration](setup/4.-functional-configuration/README.md)
   * [5.1 Configure application settings](setup/4.-functional-configuration/4.1-configure-application-settings.md)
   * [5.2 Configure registration periods and fees](setup/4.-functional-configuration/4.2-configure-registration-periods-and-fees.md)
@@ -185,9 +189,9 @@
   * [Local Setup](developers/infrastructure/local-setup.md)
 * [Country configuration](developers/country-configuration/README.md)
   * ```yaml
-    type: builtin:openapi
     props:
       models: false
+    type: builtin:openapi
     dependencies:
       spec:
         ref:

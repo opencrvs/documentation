@@ -2,55 +2,43 @@
 
 ## Workqueues
 
-Declarations are organised in each Registration Office into separate work queues based on a users assigned scopes, so they can easily prioritise and manage their workload.
+Declarations are organised in each Registration Office into separate work queues based so they can easily prioritise and manage their workload.\
+\
+Workqueues are configurable for each user role allowing you to configure custom record workflows
 
-For a comprehensive understanding of the various statuses and the potential pathways a record can follow, please refer to the [status-flow-diagram.md](status-flow-diagram.md "mention")
+For a comprehensive understanding of the various statuses and the potential pathways a record can follow, please refer to the [status-flow-diagram.md](status-flow-diagram.md "mention")\
+\
+The following example workqueues have been configured for Farajaland:
 
 ### Draft
 
-Shown if a user has `scope:record.declare{event}.` To list all saved draft declarations
+Shown if a user has `scope:record.create[event=event]` . To list all saved draft declarations
 
-### **In progress**
+### **Notifications**
 
-Shown if a user has `scope:record.declaration-send-for-approval` or `scope:record.register.`\
-\
-To list all declarations sent incomplete by a user with `scope:record.declaration-send-incomplete` and from a health integrated system.
+To list all notifications sent by a user or external system eg. a health system.
 
 ### Sent for review
 
-Shown if a user has `scope:record.declaration-send-for-review` or `scope:record.declaration-send-incomplete`
-
-To list all declarations that have been sent for review by the user
+To list all declarations that have been notified or declared by the user
 
 ### Ready for review
-
-Shown if a user has `scope:record.record.declaration-send-for-approval` or `scope:record.review-duplicates` or `scope:record.registration-correct-record` or `scope:record.register.`
 
 To list all declarations that are ready for review, potential duplicates or a correction has been requested
 
 ### **Requires updates**
 
-Shown if a user has `scope:record.declaration-send-for-review` or `scope:record.declaration-send-for-approval` or `scope:record.register.`
-
-To list all records with the status Requires Updates
+To list all records that were rejected
 
 ### **Sent for approval**
 
-Shown if a user has `scope:record.declaration-send-for-approval`
-
-To list all records sent for approval by the user
+To list all records validated by the user
 
 ### **Ready to print**
 
-Shown if a user has `scope:record.registration-print&issue-certified-copies`\
-\
 To list all recently registered records which have not been certified.
 
-### **Ready to issue**
-
-Shown if a user has `scope:record.registration-print&issue-certified-copies`
-
-To list all certified-copies printed off in advance of issuance\\
+***
 
 ## Outbox
 

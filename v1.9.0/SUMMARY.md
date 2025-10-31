@@ -22,30 +22,28 @@
   * [3. Validate event](product-specifications/core-functions/3.-validate-event.md)
   * [4. Register event](product-specifications/core-functions/4.-register-event.md)
   * [5. Print certificate](product-specifications/core-functions/5.-print-certificate.md)
-  * [6. Issue certificate](product-specifications/core-functions/5.-issue-certificate.md)
-  * [7. Search for a record](product-specifications/core-functions/6.-search-for-a-record.md)
-  * [8. View record](product-specifications/core-functions/7.-view-record.md)
+  * [6. Search for a record](product-specifications/core-functions/6.-search-for-a-record.md)
+  * [7. View record](product-specifications/core-functions/7.-view-record.md)
   * [9. Correct record](product-specifications/core-functions/8.-correct-record.md)
-  * [10. Verify record](product-specifications/core-functions/9.-verify-record.md)
-  * [11. Archive record](product-specifications/core-functions/10.-archive-record.md)
-  * [12. Vital statistics export](product-specifications/core-functions/11.-vital-statistics-export.md)
+  * [10. Archive record](product-specifications/core-functions/10.-archive-record.md)
+  * [11. Vital statistics export](product-specifications/core-functions/11.-vital-statistics-export.md)
 * [Support functions](product-specifications/support-functions/README.md)
-  * [13. Login](product-specifications/support-functions/10.-login.md)
+  * [12. Login](product-specifications/support-functions/10.-login.md)
   * [14. Audit](product-specifications/support-functions/11.-audit.md)
-  * [15. Deduplication](product-specifications/support-functions/12.-deduplication.md)
-  * [16. Performance management](product-specifications/support-functions/13.-performance-management.md)
-  * [17. Payment](product-specifications/support-functions/14.-payment.md)
-  * [18. Learning](product-specifications/support-functions/15.-learning.md)
-  * [19. User support](product-specifications/support-functions/16.-user-support.md)
-  * [20. User onboarding](product-specifications/support-functions/20.-user-onboarding.md)
+  * [14. Deduplication](product-specifications/support-functions/12.-deduplication.md)
+  * [15. Performance management](product-specifications/support-functions/13.-performance-management.md)
+  * [16. Payment](product-specifications/support-functions/14.-payment.md)
+  * [17. Learning](product-specifications/support-functions/15.-learning.md)
+  * [18. User support](product-specifications/support-functions/16.-user-support.md)
+  * [19. User onboarding](product-specifications/support-functions/20.-user-onboarding.md)
 * [Admin functions](product-specifications/admin-functions/README.md)
-  * [21. User management](product-specifications/admin-functions/17.-user-management.md)
-  * [22. Comms management](product-specifications/admin-functions/18.-comms-management.md)
-  * [23. Content management](product-specifications/admin-functions/19.-content-management.md)
-  * [24. Config management](product-specifications/admin-functions/20.-config-management.md)
+  * [20. User management](product-specifications/admin-functions/17.-user-management.md)
+  * [21. Comms management](product-specifications/admin-functions/18.-comms-management.md)
+  * [22. Content management](product-specifications/admin-functions/19.-content-management.md)
+  * [23. Config management](product-specifications/admin-functions/20.-config-management.md)
 * [Data functions](product-specifications/data-functions/README.md)
-  * [25. Legacy data import](product-specifications/data-functions/21.-legacy-data-import.md)
-  * [26. Legacy paper import](product-specifications/data-functions/22.-legacy-paper-import.md)
+  * [24. Legacy data import](product-specifications/data-functions/21.-legacy-data-import.md)
+  * [25. Legacy paper import](product-specifications/data-functions/22.-legacy-paper-import.md)
 
 ## Technology
 
@@ -159,24 +157,9 @@
 
 * [Community](general/community.md)
 * [Contributing](general/contributing.md)
-* [Releases](general/releases/README.md)
-  * [Migration notes](general/releases/migration-notes.md)
-  * [v1.5.1: Release notes](general/releases/v1.5.1-release-notes.md)
-  * [v1.5.0: Release notes](general/releases/v1.5.0-release-notes.md)
-  * [v1.4.1: Release notes](general/releases/v1.4.1-release-notes.md)
-  * [v1.4.0 Release notes](general/releases/v1.4.0-release-notes.md)
-  * [v1.3.5: Release notes](general/releases/v1.3.5-release-notes.md)
-  * [v1.3.4: Release notes](general/releases/v1.3.4-release-notes.md)
-  * [v1.3.3: Release notes](general/releases/v1.3.3-release-notes.md)
-  * [v1.3.1: Release notes](general/releases/v1.3.1-release-notes.md)
-  * [v1.3.0: Release notes](general/releases/v1.3.0-beta-release-notes.md)
-  * [v1.2.1: Release notes](general/releases/v1.2.1-release-notes.md)
-  * [Patch: Elasticsearch 7.10.2](general/releases/patch-elasticsearch-7.10.2.md)
-  * [v1.2.0: Release notes](general/releases/v1.2.0-release-notes.md)
-  * [v.1.1.2: Release notes](general/releases/v.1.1.2-release-notes.md)
-  * [v.1.1.1: Release notes](general/releases/v.1.1.1-release-notes.md)
-  * [v1.1.0: Release notes](general/releases/v1.1.0-release-notes.md)
-  * [v1.7.0: Release notes](general/releases/v1.7-release-notes.md)
+* [Migration notes](general/migration-notes.md)
+* [Release notes](general/releases.md)
+* [Releases and upgrades](general/releases-and-upgrades.md)
 * [Roadmap](general/product-roadmap.md)
 
 ## Developers
@@ -185,9 +168,9 @@
   * [Local Setup](developers/infrastructure/local-setup.md)
 * [Country configuration](developers/country-configuration/README.md)
   * ```yaml
-    type: builtin:openapi
     props:
       models: false
+    type: builtin:openapi
     dependencies:
       spec:
         ref:

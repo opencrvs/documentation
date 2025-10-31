@@ -12,13 +12,9 @@ Prepare your _**application-config-default.ts**_ source file. This is a Typescri
 
 Using our [application-config-default.ts](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/src/api/application/application-config-default.ts) file as an example, update the settings according to your needs.
 
-| Parameter                                                  | Description                                                                       |
-| ---------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| <pre><code><strong>APPLICATION_NAME
-</strong></code></pre> |                                                                                   |
-|                                                            | You can call your instance of OpenCRVS anything you like, such as "Farajaland CR" |
-| <pre><code>BIRTH: {
-</code></pre>                          |                                                                                   |
+<table><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td><pre><code><strong>APPLICATION_NAME
+</strong></code></pre></td><td></td></tr><tr><td></td><td>You can call your instance of OpenCRVS anything you like, such as "Farajaland CR"</td></tr><tr><td><pre><code>BIRTH: {
+</code></pre></td><td></td></tr></tbody></table>
 
 ```
 REGISTRATION_TARGET: 30,

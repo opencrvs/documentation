@@ -14,95 +14,33 @@ OpenCRVS supports the creation of multiple custom users with specific permission
 
 The following are the key scope categories available for configuration:
 
-#### 1. Declare
-
-• record.declare-birth – Allows a user to declare a birth.
-
-• record.declare-death – Allows a user to declare a death.
-
-• record.declare-marriage – Allows a user to declare a marriage.
-
-• record.declaration-submit-incomplete – Allows a user to send incomplete declarations to an assigned office.
-
-• record.declaration-submit-for-review – Allows a user to send complete declarations for review.
-
-• record.declaration-submit-for-approval – Allows a user to send a declaration for approval.
-
-#### 2. Validate
-
-• record.declaration-submit-for-updates – Allows a user to send a declaration for updates (status: _Requires Updates_).
-
-• record.declaration-archive – Allows a user to archive a declaration (status: _Archived_).
-
-• record.declaration-reinstate – Allows a user to reinstate an archived declaration (reverting to the previous status).
-
-• record.unassign-others – Allows a user to unassign another user currently assigned to the record.
-
-#### 3. Register
-
-• record.register – Allows a user to register a record.
-
-#### 4. Certify
-
-• record.registration-print\&issue-certified-copies – Allows a user to print and issue a certified copy.
-
-#### 5. Correct
-
-• record.registration-request-correction – Allows a user to request a correction to a record.
-
-• record.registration-correct – Allows a user to correct a record and review correction requests.
-
-#### 6. Performance
-
-• performance.read – Allows a user to view performance reports.
-
-• performance.read-dashboards – Allows a user to view Metabase performance dashboards.
-
-• performance.vital-statistics-export – Allows a user to export vital statistics to CSV.
-
-#### 7. Search
-
-• search.birth – Allows a user to search for all birth records.
-
-• search.death – Allows a user to search for all death records.
-
-• search.marriage – Allows a user to search for all marriage records.
-
-• search.birth:my-jurisdiction – Allows a user to search for birth records in their jurisdiction.
-
-• search.death:my-jurisdiction – Allows a user to search for death records in their jurisdiction.
-
-• search.marriage:my-jurisdiction – Allows a user to search for marriage records in their jurisdiction.
-
-#### 8. Config
-
-• config.update:all – Allows a user to update configuration settings.
-
-#### 9. Organisation
-
-• organisation.read-locations:all – Allows a user to view all locations in the organisation.
-
-• organisation.read-locations:my-jurisdiction – Allows a user to view only locations in their jurisdiction.
-
-• organisation.read-locations:my-office – Allows a user to only view their office’s information.
-
-#### 10. User Management
-
-• user.create:all – Allows a user to create a user in any location.
-
-• user.create:my-jurisdiction – Allows a user to create a user only in their jurisdiction.
-
-• user.update:all – Allows a user to update user details in any location.
-
-• user.update:my-jurisdiction – Allows a user to update user details only in their jurisdiction.
-
-• user.read:all – Allows a user to view any user’s audit page.
-
-• user.read:my-jurisdiction – Allows a user to view audit pages only in their jurisdiction.
-
-• user.read:my-office – Allows a user to view user audit pages in their office.
-
-• user.read:only-my-audit – Allows a user to view only their own audit page.\\
+| Scope                                    | Description                                                                                                                           |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| record.create                            | This scope adds a custom event as an option in the event declaration form select                                                      |
+| record.notify                            | This scope allows a user to send incomplete declarations to an assinged office. Declarations have the status 'Notified'               |
+| record.declare                           | This scope allows a user to send complete declarations to their assigned office. Declarations will have the status 'Declared'         |
+| record.declared.validate                 | This scope allows a user to validate a declaration                                                                                    |
+| record.declared.reject                   | This scope allows a user to reject a declaration                                                                                      |
+| record.declared.archive                  | This scope allows a user to archive a declaration. An archived declaration has the status 'Archived'                                  |
+| record.archived.reinstate                | This scope allows a user to reinstate an archived declaration. Declarations will revert to the previous status before it was archived |
+| record.declared.edit                     | This scope allows a user to edit a declaration declared by another user                                                               |
+| record.unassign-user                     | This scope is to allow a user to unassign another user who is current assigned to the record                                          |
+| record.review-duplicates                 | This scope allows a user to review declarations that have been flagged as a potential duplicate                                       |
+| record.register                          | This scope allows a user to register a record. Record will have the status 'Registered'                                               |
+| record.registered.print-certified-copies | This scope allows a user to print a certified copy and issue                                                                          |
+| record.registered.request-correction     | This scope allows a user to request a correction to a record                                                                          |
+| record.registered.correct                | This scope allows a user to correct a record and review correction requests                                                           |
+| record.read                              | This scopes allows a user to view a record data                                                                                       |
+| record.read.audit                        | This scopes allows a user to view record audit history                                                                                |
+| record.read.comments                     | This scopes allows a user to view record comments                                                                                     |
+| search                                   | This scope allows a user to search for record and view summary information                                                            |
+| profile.electronic-signature             | This scopes allows a user to add and update their electronic signature                                                                |
+| performance.read                         | This scope allows a user to view metabase peformance dashboards                                                                       |
+| config.update:all                        | This scope allows the user access to configurations options                                                                           |
+| organisation.locations                   | This scope allows a user to view the Organisation, My Team menu tabs and view all locations                                           |
+| organisation.user.create                 | This scope allows a user to create a new user                                                                                         |
+| organisation.user.edit                   | This scope allows a user to edit a new user                                                                                           |
+| organisation.user.read                   | This scope allows a user to view a user's profile                                                                                     |
 
 {% hint style="info" %}
 **How to configure user roles & scopes?**\

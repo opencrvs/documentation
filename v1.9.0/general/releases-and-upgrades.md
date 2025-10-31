@@ -1,4 +1,4 @@
-# Releases
+# Releases and notes
 
 ### **OpenCRVS Release Calendar**
 
