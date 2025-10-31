@@ -66,5 +66,3 @@ Pre-configured traefik installation options:
 - [LetsEncrypt https challenge in development environments](4.3.2.1-letsencrypt-https-challenge-in-development-environments.md)
 - [LetsEncrypt DNS challenge in production](4.3.2.2-letsencrypt-dns-challenge-in-production.md)
 - [Static TLS certificates](4.3.2.3-static-tls-certificates.md)
-
-For each recipe, search the traefik [values.yaml](https://github.com/opencrvs/infrastructure/tree/develop/examples/dev/traefik) file.
