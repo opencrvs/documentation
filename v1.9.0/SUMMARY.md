@@ -138,10 +138,10 @@
     * [4.3.7 Backup & Restore](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/README.md)
       * [4.3.7.1 Restoring a backup](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/4.3.7.1-restoring-a-backup.md)
       * [4.3.7.2 Off-boarding from OpenCRVS](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/4.3.7.2-off-boarding-from-opencrvs.md)
-* [5. Functional configuration](setup/4.-functional-configuration/README.md)
-  * [5.1 Configure application settings](setup/4.-functional-configuration/4.1-configure-application-settings.md)
-  * [5.2 Configure registration periods and fees](setup/4.-functional-configuration/4.2-configure-registration-periods-and-fees.md)
-  * [5.3 Managing system users](setup/4.-functional-configuration/4.5-create-system-users.md)
+* [5. Functional configuration](setup/5.-functional-configuration/README.md)
+  * [5.1 Configure application settings](setup/5.-functional-configuration/5.1-configure-application-settings.md)
+  * [5.2 Configure registration periods and fees](setup/5.-functional-configuration/5.2-configure-registration-periods-and-fees.md)
+  * [5.3 Managing system users](setup/5.-functional-configuration/5.3-managing-system-users.md)
 * [6. Quality assurance testing](setup/5.-testing.md)
 * [7. Go-live](setup/6.-go-live/README.md)
   * [7.1 Pre-Deployment Checklist](setup/6.-go-live/3.3.4-set-up-an-smtp-server-for-opencrvs-monitoring-alerts.md)
@@ -167,6 +167,16 @@
 * [Infrastructure](developers/infrastructure/README.md)
   * [Local Setup](developers/infrastructure/local-setup.md)
 * [Country configuration](developers/country-configuration/README.md)
+  * ```yaml
+    props:
+      models: false
+    type: builtin:openapi
+    dependencies:
+      spec:
+        ref:
+          kind: openapi
+          spec: cc-develop
+    ```
   * ```yaml
     props:
       models: false

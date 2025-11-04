@@ -2,7 +2,7 @@
 
 ## Configuration template files
 
-{% file src="../.gitbook/assets/1.8 OpenCRVS Configuration Files.zip" %}
+**Add 1.9 config files**
 
 ## Deployment, Monitoring & Data Security
 
