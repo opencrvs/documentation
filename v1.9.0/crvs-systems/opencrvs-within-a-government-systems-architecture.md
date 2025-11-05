@@ -16,28 +16,35 @@ In the diagram below you can see a generic view of potential integration points 
 
 {% embed url="https://youtu.be/rBupieEHVy0" %}
 
-Further examples of potential integration points are available [here](https://www.opencrvs.org/product/interoperability), including interoperability with other DPGs like MOSIP and OpenSPP.
+Further examples of potential integration points are available [here](https://www.opencrvs.org/product/interoperability), including interoperability with other DPGs like MOSIP and OpenSPP.&#x20;
 
 ## OpenCRVS and Digital Public Infrastructure
 
-Similar to the way that physical infrastructure like railways and roads drives economic development and innovation, Digital Public Infrastructure (DPI) provides the open technology standards and systems required to catalyse and enable countries to safely and efficiently deliver economic opportunities and social services in the digital world. We recommend the [Centre for DPI](https://cdpi.dev/) website for further guidance, definitions and practical resources on this important topic.
+Similar to the way that physical infrastructure like railways and roads drives economic development and innovation, **Digital Public Infrastructure (DPI)** provides the open technology standards and systems required to catalyse and enable countries to safely and efficiently deliver economic opportunities and social services in the digital world. We recommend the [Centre for DPI website](https://dpicentre.org) for further guidance, definitions, and practical resources on this important topic.
 
-At OpenCRVS we are reimagining the way that civil registration systems work. We see the registration of life events as a foundational component of DPI, contributing to inclusive and equitable service delivery in the public and private sectors. The landscape is changing for digital civil registration systems as part of DPI and we must be aware of the key architectural principles which must be upheld to achieve maximum societal value.
+At OpenCRVS, we are reimagining the way that civil registration systems work. We see the registration of life events as a **foundational component of DPI**, contributing to inclusive and equitable service delivery in both the public and private sectors. The **Civil Registry** acts as a building block of DPI as it provides a country’s **single source of legal and trusted life events data**. This trusted data underpins the ability of other systems to function effectively, enabling both individual rights and national development.
 
-The civil registration system plays a crucial role in providing a foundational and verifiable identity for individuals. In fact, you can’t get any more foundational than the system that recognises the very existence of people in a country, hence a well architected civil registration system is a true DPI:
+The DPI landscape distinguishes between two types of infrastructure:
 
-* Foundational Identity: The civil registration system forms the basis for creating unique digital identities for life. Birth registration for example triggers the creation of a unique identifier within the ID system, providing key biographical data such as name and date of birth.
-* Digitally signed certificates: The creation of verifiable credentials can be an output of the registration process, so that individuals are able to prove who they are to public and private institutions, without needing to request certified copies.
-* Enable access to government services: Civil registration provides the legal and trusted source of life events data and represents the universal data set for the provision of public services, such as social services, healthcare, education, and voting. In simple terms the civil registry answers important questions like:
-  * Which families are entitled to a welfare grant (social protection)?
-  * Who should be coming to school this year (education)?
-  * Which children need to get vaccinated (healthcare)?
-* Population Statistics and Planning: Civil registration provides a critical source of data for demographic analysis, population statistics, and future planning. Governments can use this data to make informed decisions about resource allocation, infrastructure development, and social policies.
+* **Foundational DPI** includes identity, data exchange, and payments systems. These provide common digital rails across all sectors of society, enabling digital inclusion, accountability, and interoperability.
+* **Sectoral DPI** refers to digital systems tailored to meet the needs of specific sectors, such as health, education, or—crucially—civil registration. These systems rely on foundational DPI to work at scale, while also generating data and services specific to their domain.
+
+The civil registration system plays a crucial role in enabling foundational DPI by:
+
+* **Providing Foundational Identity**: Civil registration forms the basis for creating unique digital identities for life. Birth registration, for example, typically triggers the creation of a unique identifier within the national ID system, supplying essential biographical data such as name, sex, and date of birth.
+* **Creating Digitally Signed Credentials**: Registration processes can produce verifiable credentials, allowing individuals to prove their identity or life events to public and private institutions without relying on physical certificates.
+* **Enabling Access to Government Services**: As the legal and trusted source of life events data, civil registration represents a universal data set for delivering essential public services. It helps answer questions such as:
+  * Which families are entitled to a welfare grant? (social protection)
+  * Who should be coming to school this year? (education)
+  * Which children need to be vaccinated? (healthcare)
+* **Generating Population Statistics and Enabling Planning**: The system provides a continuous source of accurate and disaggregated demographic data, essential for policymaking, resource allocation, and future planning.
 
 <figure><img src="../.gitbook/assets/image (52).png" alt=""><figcaption><p>OpenCRVS and DPI</p></figcaption></figure>
 
-OpenCRVS has the potential to be a true DPI and to do so means ensuring the following to unlock its full potential:
+**OpenCRVS** has the potential to become a true DPI. Realising this potential means adhering to key architectural principles to unlock societal value:
 
-* **Interoperability -** Open standards and specifications are required to share data in an efficient way and prevent fragmentation and functional silos.
-* **Security and privacy by design** - Consent management protocols are required to allow safe sharing of personal data across systems and enforce data privacy. With civil registration data in a digital format the consent management process means that data subjects can choose to share their personal data on demand.
-* **Modularity** - Maintaining civil registration components which are loosely coupled is valuable within a DPI context. Implementers can choose to use OpenCRVS as a fully fledged digital civil registration system or they can leverage modules (e.g. data validation, certificate printing) to incorporate them into their own solutions using open APIs.
+* **Interoperability**: Open standards and specifications are essential to enable secure, efficient data sharing across systems, avoiding fragmentation and silos.
+* **Security and Privacy by Design**: Consent management protocols must ensure that personal data is shared safely and only with permission. In a digital context, this enables individuals to control access to their personal data.
+* **Modularity**: Maintaining loosely coupled components ensures flexibility and scalability. OpenCRVS can be deployed as a comprehensive civil registration system or as standalone modules (e.g. data validation, certificate generation) integrated into existing ecosystems through open APIs.
+
+As countries strengthen their DPI foundations, a well-architected civil registration system is not only sectorally significant—it becomes foundational in itself, enabling rights, services, and participation for every person, from the moment of birth.

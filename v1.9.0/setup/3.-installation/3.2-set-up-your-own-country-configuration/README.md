@@ -3,7 +3,7 @@
 This section instructs you how to set-up and provision your own, local, country configuration of OpenCRVS.
 
 {% hint style="info" %}
-OpenCRVS must be configured for your country locally, before deploying to a server in the next section: [3.3 Set-up a server-hosted environment](../../../../v1.8.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment)
+OpenCRVS must be configured for your country locally, before deploying to a server in the next section: [3.3 Set-up a server-hosted environment](../3.3-set-up-a-server-hosted-environment/)
 {% endhint %}
 
 The instructions should be conducted sequentially as laid out in each step, and will include:
@@ -17,3 +17,4 @@ The instructions should be conducted sequentially as laid out in each step, and 
 7. Configure declarion forms
 8. Commands to seed & clear your local databases with the above reference data for development purposes.
 9. Understanding of the API endpoints available in the country configuration and their business use-cases.
+

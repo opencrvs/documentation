@@ -20,7 +20,7 @@ As you join the OpenCRVS community, we request that you collaborate in the spiri
 
 #### **Because we care**
 
-> We work hard because we believe profoundly in our mission.
+> We work hard because we believe profoundly in our mission.&#x20;
 >
 > We care deeply about the quality of our product and its implementation, knowing that it will profoundly affect people’s lives.
 >
@@ -28,12 +28,12 @@ As you join the OpenCRVS community, we request that you collaborate in the spiri
 
 ## Product councils
 
-The product council includes countries using OpenCRVS and industry experts. The OpenCRVS Core team consults the product council to develop new OpenCRVS functionality by running virtual workshops. Together we explore the requirements for new features such as a Public Portal - so that a solution can be developed that suites all countries.\
+The product council includes countries using OpenCRVS and industry experts. The OpenCRVS Core team consults the product council to develop new OpenCRVS functionality by running virtual workshops. Together we explore the requirements for new features such as a Public Portal - so that a solution can be developed that suites all countries. \
 \
 Contact team@opencrvs.org if you want to be notified of upcoming product council sessions
 
 Are you a system implementor developing a new feature and want to engage the product council? Lets us know team@opencrvs.org!
 
-## Join the community
+## Join the community&#x20;
 
-Share your insights on CRVS and engage with other like minded individuals at [https://community.opencrvs.org/](https://community.opencrvs.org/)
+Share your insights on CRVS and engage with other like minded individuals at [https://community.opencrvs.org/](https://community.opencrvs.org/)&#x20;

@@ -45,7 +45,7 @@ We ask these questions to make sure that you are aware that you should backup yo
 The most complex task really depends upon how much customisation you have made to your country configuration fork as you will be required to merge or rebase your fork with our release branch. **(You must be familiar with the concept of** [**Git merge**](https://git-scm.com/docs/git-merge) **or** [**Git rebase**](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase)**)**.
 
 {% hint style="info" %}
-Please refer to the release notes , which contains a video of an example code upgrade process, and our [release process including Gitflow](releases.md) branching approach.
+Please refer to the release notes , which contains a video of an example code upgrade process, and our [release process including Gitflow](releases/) branching approach.
 {% endhint %}
 
 1. Navigate to your opencrvs-core directory, checkout the **master** branch and pull latest changes. Yarn install any dependency upgrades:
@@ -121,7 +121,7 @@ Test your upgrade locally before proceeding
 
 ### Step 4: Upgrade your QA server **environments**
 
-1. Every release likely contains dev-ops improvements and bug fixes to your servers. Run the [Provision](../../v1.9.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers) action on your QA server environment.
+1. Every release likely contains dev-ops improvements and bug fixes to your servers. Run the [Provision](../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers) action on your QA server environment.
 2. Run the Deploy script to your QA environment using the **new release number** for core and the **githash** for your countryconfig image, but **do not reset the environment**. There is no need. Migrations will run on your QA data, which you can monitor in Kibana, using Logstream and the **tag: migration**
 3. Log in to QA when the migrations are complete and test your upgrade. Engage your QA team to do the same. When your QA team is satisfied with the upgrade you can proceed to the next step.
 
@@ -146,7 +146,7 @@ All un-submitted draft applications only exist locally in a users browser cache 
 Before you proceed, ensure that you have understood these warnings:
 
 {% hint style="danger" %}
-If you have hosted **AND CONFIGURED** OpenCRVS on a server and are capturing live registrations in production, **YOU MUST ENSURE THAT OPENCRVS BACKUPS ARE WORKING AND RESTORING ON A "STAGING" ENVIRONMENT. YOU SHOULD ALSO HAVE A HARD COPY OF RECENT BACKUPS.** This is so that you can restore in the event of any migration problems. [Read the backup instructions.](../../v1.9.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore)
+If you have hosted **AND CONFIGURED** OpenCRVS on a server and are capturing live registrations in production, **YOU MUST ENSURE THAT OPENCRVS BACKUPS ARE WORKING AND RESTORING ON A "STAGING" ENVIRONMENT. YOU SHOULD ALSO HAVE A HARD COPY OF RECENT BACKUPS.** This is so that you can restore in the event of any migration problems. [Read the backup instructions.](../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore)
 {% endhint %}
 
 {% hint style="danger" %}

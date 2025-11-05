@@ -4,7 +4,7 @@ description: Overview of results from performance tests conducted on OpenCRVS
 
 # Performance tests
 
-OpenCRVS has been tested to ensure its performance and stability in a country that represents the upper-end of possible concurrent users and the number of birth declarations per year. Birth declaration submission was chosen as the focus of the performance tests because it is the most resource intensive operation of the software from the perspective of processing and storing data.
+OpenCRVS has been tested to ensure its performance and stability in a country that represents the upper-end of possible concurrent users and the number of birth declarations per year. Birth declaration submission was chosen as the focus of the performance tests because it is the most resource intensive operation of the software from the perspective of processing and storing data.&#x20;
 
 The test, controlled by a performance testing framework [k6](https://k6.io/) by Grafana Labs, creates automated requests to the backend interface mimicking the actual birth declaration submission. A configured target value determines the number of requests per minute. The number of concurrent requests (Virtual Users) is dynamic and fluctuates based on request response times. New virtual users are added to meet the demand when the framework detects that the current target rate can not be reached with the current response times.
 
@@ -27,6 +27,8 @@ The infrastructure chosen for the test represents the recommended minimum server
 
 The system achieved a request rate of 4 requests per second with minimal noticeable impact on response times, which is approximately four times the load required to support a country the size of Nigeria (population 206M).
 
+
+
 **OpenCRVS v1.2.\* Test results**
 
 The test was configured to run up to 15 VUs for 12 minutes 30 seconds. A total of 1 104 requests were made with a max throughput of 3.5 reqs/s.
@@ -44,6 +46,8 @@ The amount of data sent peaked at 13 VUs, sending 4 KB/s of data. Data received 
 There were requests to 3 unique URLs, with 1 104 different responses received. The slowest response had an average response time of 1 897 ms.
 
 <figure><img src="../../.gitbook/assets/k6results.png" alt=""><figcaption></figcaption></figure>
+
+
 
 **OpenCRVS v1.1.\* Test results**
 
