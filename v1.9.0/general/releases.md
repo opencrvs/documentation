@@ -2,7 +2,7 @@
 
 ## Configuration template files
 
-**Add 1.9 config files**
+
 
 ## Deployment, Monitoring & Data Security
 
