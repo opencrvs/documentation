@@ -51,7 +51,7 @@ Refer to these minimum server specifications for the above environments. Note th
 <table><thead><tr><th>Environment</th><th width="284">Specification</th></tr></thead><tbody><tr><td>development (suitable for learning or proof-of-concept) / qa</td><td>16GB RAM / 4CPUs / 320 GB Disk / Ubuntu 24.04 (LTS) x64, Headless</td></tr><tr><td>production / staging</td><td>16GB RAM / 8CPUs / diskspace calculated using formula below / Ubuntu 24.04 (LTS) x64, Headless</td></tr><tr><td>backup</td><td>1GB RAM / 2CPUs / diskspace calculated using formula below / Ubuntu 24.04 (LTS) x64, Headless</td></tr></tbody></table>
 
 {% hint style="warning" %}
-Our software is currently only supported on x86\_64 architectures and does not support ARM-based processors.&#x20;
+Our software is currently only supported on x86\_64 architectures and does not support ARM-based processors.
 {% endhint %}
 
 ### Production / staging / backup diskspace requirements
@@ -63,7 +63,7 @@ Please use the following formula:\
 \&#xNAN;_attachments\_per\_year = number of births, deaths.. records per year \* average number of attachments \* 0.4MB_
 
 _record\_data\_per\_year = number of births, deaths.. records per year \* 18.33kB_\
-&#xNAN;_&#x6F;perating\_system\_requirements = 100GB_
+\&#xNAN;_operating\_system\_requirements = 100GB_
 
 _minimum\_required\_disk\_space = operating\_system\_requirements + record\_data\_per\_year + attachments\_per\_year_
 
@@ -117,7 +117,7 @@ It is recommended to deploy the production environment on a cluster of at least 
 
 Refer to the following network diagram as a reference example of how to network your server cluster.
 
-<figure><img src="../../../.gitbook/assets/OpenCRVS Network &#x26; Servers.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../v1.6.0/.gitbook/assets/OpenCRVS Network &#x26; Servers.png" alt=""><figcaption></figcaption></figure>
 
 ### Server administrator SSH access & permissions:
 
@@ -163,5 +163,3 @@ OpenCRVS is hardcoded to use the following 3rd party services which require subs
 * A Slack Pro account [https://app.slack.com/plans](https://app.slack.com/plans)
 * A [Sentry](https://sentry.io/welcome/) Team account. A free plan is fine for development / proof-of-concept.
 * A password manager such as 1Password Team [https://1password.com/business-pricing](https://1password.com/business-pricing) or Bitwarden Team [https://bitwarden.com/pricing](https://bitwarden.com/pricing)
-
-
