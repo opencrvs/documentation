@@ -2,7 +2,7 @@
 
 {% embed url="https://youtu.be/eb1aeFstOGg" %}
 
-Watch the videos above to understand the OpenCRVS network and how TLS is configured in OpenCRVS servers
+Watch the videos above to understand the OpenCRVS network and how TLS is configured in OpenCRVS servers&#x20;
 
 ### Domain A records
 
@@ -54,18 +54,23 @@ _register.\<your\_domain>_
 
 _webhooks.\<your\_domain>_
 
+
+
 ### TLS / SSL certificates
 
-There are a number of ways you can configure TLS / SSL certificates for OpenCRVS. The options are explained in subsequent pages and all methods must be compatible with [Traefik](https://doc.traefik.io/traefik/https/overview/).
+There are a number of ways you can configure TLS / SSL certificates for OpenCRVS.  The options are explained in subsequent pages and all methods must be compatible with [Traefik](https://doc.traefik.io/traefik/https/overview/).
 
-A free approach is to use LetsEncrypt. However LetsEncrypt certificates must validate and refresh every 3 months. When installing OpenCRVS behind a VPN, your VPN and DNS settings must be configured to enable this, and some techniques may not work in your network.
+A free approach is to use LetsEncrypt.  However LetsEncrypt certificates must validate and refresh every 3 months.  When installing OpenCRVS behind a VPN, your VPN and DNS settings must be configured to enable this, and some techniques may not work in your network. &#x20;
 
-Alternatively you could consider purchasing a long term SSL certificate and manually replacing the static .crt & .key files every 1, 2 or 3 years depending on it's lifetime. The SSL certificates that you purchase must support the subdomains and each environment's domain: **qa, production & staging.** You may opt for a single, multi-domain, wildcard SSL certificate that covers all of your domains regardless of the number of subdomain levels. You need to pay close attention to your domain to understand which SSL certificate to purchase.
+Alternatively you could consider purchasing a long term SSL certificate and manually replacing the static .crt & .key files every 1, 2 or 3 years depending on it's lifetime.  The SSL certificates that you purchase must support the subdomains and each environment's domain: **qa, production & staging.**  You may opt for a single,  multi-domain, wildcard SSL certificate that covers all of your domains regardless of the number of subdomain levels.  You need to pay close attention to your domain to understand which SSL certificate to purchase.
 
-The following "recipes" are not meant to be exhaustive, but simply describe some examples you may wish to follow. Every country will have unique network, domain name & management considerations to pay attention to.
+The following "recipes" are not meant to be exhaustive, but simply describe some examples you may wish to follow.  Every country will have unique network, domain name & management considerations to pay attention to.
 
-For each recipe, search the [docker-compose.{YOUR ENVIRONMENT}-deploy.yml](https://github.com/opencrvs/opencrvs-countryconfig/tree/develop/infrastructure) files for each environment to find the block below. In this block, you can amend configurations for each individual environment: **qa, production & staging.** Alternatively, you can remove each individual block and have a single block in [docker-compose-deploy.yml](https://github.com/opencrvs/opencrvs-countryconfig/blob/dfbf4c6a0b2962015d152c2adb4a0f8bc6038bdd/infrastructure/docker-compose.deploy.yml#L13) that will apply a generic approach applied to all environments.
+For each recipe, search the [docker-compose.{YOUR ENVIRONMENT}-deploy.yml](https://github.com/opencrvs/opencrvs-countryconfig/tree/develop/infrastructure) files for each environment to find the block below.  In this block, you can amend configurations for each individual environment: **qa, production & staging.**  Alternatively, you can remove each individual block and have a single block in [docker-compose-deploy.yml](https://github.com/opencrvs/opencrvs-countryconfig/blob/dfbf4c6a0b2962015d152c2adb4a0f8bc6038bdd/infrastructure/docker-compose.deploy.yml#L13) that will apply a generic approach applied to all environments.
 
 ```
 traefik:
 ```
+
+
+

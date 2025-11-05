@@ -20,7 +20,7 @@ Once the environment is installed, the monitoring suite can be accessed using th
 
 ![](<../../.gitbook/assets/image (17).png>)
 
-The login credentials are the ones you used as `KIBANA_USERNAME` and `KIBANA_PASSWORD` as part of the [deployment](../../../v1.8.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/3.3.6-deploy-automated-and-manual), or the username: "elastic" and `ELASTICSEARCH_SUPERUSER_PASSWORD`
+The login credentials are the ones you used as `KIBANA_USERNAME` and `KIBANA_PASSWORD` as part of the [deployment](../3.-installation/3.3-set-up-a-server-hosted-environment/3.3.6-deploy-automated-and-manual/), or the username: "elastic" and `ELASTICSEARCH_SUPERUSER_PASSWORD`
 
 #### Metricbeat
 
@@ -34,7 +34,7 @@ The OpenCRVS monitoring stack comes with a pre-installed Application Performance
 
 #### Logstash
 
-Logstash receives log entries in [GELF format](https://docs.graylog.org/docs/gelf) from all OpenCRVS services and writes them into the Elasticsearch database. These logs can be viewed in real-time from **Observability -> Logs -> Stream** or through APM. By default, OpenCRVS stores all logs for three days before they are removed. Read more about logging in [7.1 Application logs](7.1-application-logs.md).
+Logstash receives log entries in [GELF format](https://docs.graylog.org/docs/gelf) from all OpenCRVS services and writes them into the Elasticsearch database. These logs can be viewed in real-time from **Observability -> Logs -> Stream** or through APM. By default, OpenCRVS stores all logs for three days before they are removed. Read more about logging in [9.1 Application logs](7.1-application-logs.md).
 
 ### Read more
 

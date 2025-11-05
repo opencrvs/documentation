@@ -1,2 +1,0 @@
-# 5. Functional configuration
-

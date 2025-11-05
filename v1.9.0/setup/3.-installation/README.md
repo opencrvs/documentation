@@ -12,18 +12,23 @@ This section introduces the installation steps that your Technical System Admini
 
 All the steps in this section must be completed before OpenCRVS can be configured.
 
-Once this section is completed a less technical system administrator can login as a National System Administrator user to perform application, form and certificate configuration steps, documented in the Configuration section.
+Once this section is completed a less technical system administrator can login as a National System Administrator user to perform application, form and certificate configuration steps, documented in the Configuration section.&#x20;
 
 ### Steps
 
-{% content-ref url="../../../v1.8.0/setup/3.-installation/3.1-set-up-a-development-environment" %}
-[3.1-set-up-a-development-environment](../../../v1.8.0/setup/3.-installation/3.1-set-up-a-development-environment)
+{% content-ref url="3.1-set-up-a-development-environment/" %}
+[3.1-set-up-a-development-environment](3.1-set-up-a-development-environment/)
 {% endcontent-ref %}
 
-{% content-ref url="../../../v1.8.0/setup/3.-installation/3.2-set-up-your-own-country-configuration" %}
-[3.2-set-up-your-own-country-configuration](../../../v1.8.0/setup/3.-installation/3.2-set-up-your-own-country-configuration)
+{% content-ref url="3.2-set-up-your-own-country-configuration/" %}
+[3.2-set-up-your-own-country-configuration](3.2-set-up-your-own-country-configuration/)
 {% endcontent-ref %}
 
-{% content-ref url="../../../v1.8.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment" %}
-[3.3-set-up-a-server-hosted-environment](../../../v1.8.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment)
+{% content-ref url="3.3-set-up-a-server-hosted-environment/" %}
+[3.3-set-up-a-server-hosted-environment](3.3-set-up-a-server-hosted-environment/)
 {% endcontent-ref %}
+
+
+
+
+

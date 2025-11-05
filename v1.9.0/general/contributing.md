@@ -19,6 +19,8 @@ We need your support to ensure that every individual on the planet is recognised
 
 If you would like to request a new feature or enhancement based on your country's requirements or for improved user / developer experience read the following steps closely.
 
+
+
 1. Perform detailed business analysis on the use case so that you can open a Github "Issue" with a "Feature" (for functional requirements) or "Tech" (for non-functional requirements) label. Alternatively search for existing issues in our Github Project Backlog to see if we already have an issue for this that you will be requiring.
 2. Get in touch with us at team@opencrvs.org to introduce us to your needs so that we can understand if this truly is a gap in functionality or if there is a work-around that may suffice. We will need to understand your project timeline and dependencies in order to evaluate which release the feature can go into depending on our schedule.
 3. Open an issue with the [feature template](https://github.com/opencrvs/opencrvs-core/issues/new?template=---feature.md) and write the issue including [User Stories](https://www.atlassian.com/agile/project-management/user-stories).
@@ -60,3 +62,4 @@ Take screenshots or record your screen. [Loom](https://www.loom.com/) is a great
 Include all the steps required to reproduce the bug and describe the expected behaviour that did not occur.
 
 Get in touch with us by email to explain your issue, the country implementation you are working on, include the issue number, and explain the severity of your problem. We need to understand your project timeline and dependencies in order to expedite the priority of a hotfix. Please be as honest as you can in order to be respectful to all other contributors and country's needs.
+
