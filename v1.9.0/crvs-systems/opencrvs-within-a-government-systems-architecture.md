@@ -16,7 +16,7 @@ In the diagram below you can see a generic view of potential integration points 
 
 {% embed url="https://youtu.be/rBupieEHVy0" %}
 
-Further examples of potential integration points are available [here](https://www.opencrvs.org/product/interoperability), including interoperability with other DPGs like MOSIP and OpenSPP.&#x20;
+Further examples of potential integration points are available [here](https://www.opencrvs.org/product/interoperability), including interoperability with other DPGs like MOSIP and OpenSPP.
 
 ## OpenCRVS and Digital Public Infrastructure
 
@@ -39,7 +39,7 @@ The civil registration system plays a crucial role in enabling foundational DPI 
   * Which children need to be vaccinated? (healthcare)
 * **Generating Population Statistics and Enabling Planning**: The system provides a continuous source of accurate and disaggregated demographic data, essential for policymaking, resource allocation, and future planning.
 
-<figure><img src="../.gitbook/assets/image (52).png" alt=""><figcaption><p>OpenCRVS and DPI</p></figcaption></figure>
+<figure><img src="../../v1.6.0/.gitbook/assets/image (52).png" alt=""><figcaption><p>OpenCRVS and DPI</p></figcaption></figure>
 
 **OpenCRVS** has the potential to become a true DPI. Realising this potential means adhering to key architectural principles to unlock societal value:
 

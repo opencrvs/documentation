@@ -1,7 +1,6 @@
 # Status Flow Diagram
 
-The status flow diagram shows all the vital event record statuses and record flags in OpenCRVS and how it is possible to move from one to the next.\
-
+The status flow diagram shows all the vital event record statuses and record flags in OpenCRVS and how it is possible to move from one to the next.\\
 
 **Statuses**:\
 A record status describe the primary legal status of a record, control what actions can be performed and can be used to filter custom workqueues:
@@ -21,8 +20,6 @@ A record flag can be thought of as a secondary record status. It describes addit
 * Potential duplicate
 * Pending certification
 * Correction requested
-* Duplicate\
+* Duplicate\\
 
-
-<figure><img src="../.gitbook/assets/Status WorkFlow (1).png" alt=""><figcaption></figcaption></figure>
-
+<figure><img src="../../v1.6.0/.gitbook/assets/Status WorkFlow (1).png" alt=""><figcaption></figcaption></figure>

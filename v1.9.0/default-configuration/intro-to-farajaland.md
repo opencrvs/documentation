@@ -23,4 +23,4 @@ Take time to become familiar with Farajaland and its requirements for a digital 
 
 #### Map of Farajaland
 
-![Provinces and Districts of Farajaland](../.gitbook/assets/farajaland-map.png)
+![Provinces and Districts of Farajaland](../../v1.6.0/.gitbook/assets/farajaland-map.png)
