@@ -28,7 +28,7 @@ PRINT_IN_ADVANCE: true
 ```
 
 }\
-\| These are your registration time periods and fees for **birth**, explained in more detail [here](../../../4.-functional-configuration/4.2-configure-registration-periods-and-fees.md). PRINT\_IN\_ADVANCE allows you to print certificates in advance for collection. You can disable this by setting it to false, if you operationally want to enforce an ID check from a recipient before printing a copy. |\
+\| These are your registration time periods and fees for **birth**, explained in more detail [here](broken-reference). PRINT\_IN\_ADVANCE allows you to print certificates in advance for collection. You can disable this by setting it to false, if you operationally want to enforce an ID check from a recipient before printing a copy. |\
 |
 
 ```
@@ -42,7 +42,7 @@ PRINT_IN_ADVANCE: true
 }
 ```
 
-\| These are your registration time periods and fees for **death**, explained in more detail [here](../../../4.-functional-configuration/4.2-configure-registration-periods-and-fees.md). PRINT\_IN\_ADVANCE allows you to print certificates in advance for collection. You can disable this by setting it to false, if you operationally want to enforce an ID check from a recipient before printing a copy. |\
+\| These are your registration time periods and fees for **death**, explained in more detail [here](broken-reference). PRINT\_IN\_ADVANCE allows you to print certificates in advance for collection. You can disable this by setting it to false, if you operationally want to enforce an ID check from a recipient before printing a copy. |\
 |
 
 ```
@@ -56,7 +56,7 @@ PRINT_IN_ADVANCE: true
 }
 ```
 
-\| These are your registration time periods and fees for **marriage**, explained in more detail [here](../../../4.-functional-configuration/4.2-configure-registration-periods-and-fees.md). PRINT\_IN\_ADVANCE allows you to print certificates in advance for collection. You can disable this by setting it to false, if you operationally want to enforce an ID check from a recipient before printing a copy. |\
+\| These are your registration time periods and fees for **marriage**, explained in more detail [here](broken-reference). PRINT\_IN\_ADVANCE allows you to print certificates in advance for collection. You can disable this by setting it to false, if you operationally want to enforce an ID check from a recipient before printing a copy. |\
 |
 
 ```
