@@ -1,21 +1,32 @@
 # 4.2 Configure: Set-up your own, local, country configuration
 
-This section instructs you how to configure your own, country configuration of OpenCRVS.
+This section explains how to set up your own **country configuration** of OpenCRVS.
 
-The instructions guide you to:
+You will learn how to:
 
-1. Fork our fictional country configuration "Farajaland" into your own country configuration repository.
-2. Set up administrative divisions and statistics for location specific performance metrics.
-3. Set up civil registration offices (the locations where civil registrations occur - relative to the administrative divisions), and set up health facilities (the locations where some births and deaths occur, in order to track hospital births and deaths separately from home births and deaths & in order to interoperate with these facilities va APIs.)
-4. Set up a list of test civil registration employee users who can access the system in QA. Set up of a single National System Administrator user for use in production.   (Production users must be created using the OpenCRVS National System Administrator user interface after deployment)
-5. Configure application settings and copy
-6. Configure user roles and permissions
-7. Configure user "work-queues" to manage their backlog of registrations requiring processing
-8. Configure certificates
-9. Configure events, event declaration, search, certificate collection & correction forms.
-10. Configure de-duplication algorithms
-11. Configure BI analytics dashboards
-12. Understand the API endpoints available in the country configuration and their business use-cases for aspects such as SMS notifications, event registration number configuration & integration with other systems.&#x20;
-13. Commands to seed & clear your local databases with the above reference data for development purposes.
+1. **Create your configuration repository**
+   * Fork the fictional country configuration, **Farajaland**, into your own country configuration repository.
+2. **Set up locations and statistics**
+   * Define your **administrative divisions**.
+   * Configure **performance metrics** for each location.
+3. **Set up registration offices and health facilities**
+   * Add **civil registration offices** where registrations are processed (aligned with your administrative divisions).
+   * Add **health facilities** to track hospital births and deaths separately from home events.
+4. **Create user accounts**
+   * Set up **test users** for QA environments.
+   * Create a **National System Administrator** user for production use.\
+     &#xNAN;_(Note: All production users must be created through the OpenCRVS National System Administrator interface after deployment.)_
+5. **Configure system settings**
+   * Application settings
+   * User roles and permissions
+   * User work queues for managing registration backlogs
+   * Certificates
+   * Event configurations (declaration, search, certificate collection, and correction forms)
+   * De-duplication algorithms
+   * Business Intelligence (BI) dashboards
+6. **Understand API integrations**
+   * Learn about available **API endpoints** and their business use cases (e.g., SMS notifications, event registration numbers, and integration with external systems).
+7. **Seed and clear local databases**
+   * Use provided commands to populate or reset your local databases with reference data for development.
 
 To learn how to deploy your configuration to a remote server, you must go to the next [section: 4.3](../3.3-set-up-a-server-hosted-environment/).
