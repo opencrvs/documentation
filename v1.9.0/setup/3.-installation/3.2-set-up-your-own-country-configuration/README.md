@@ -1,20 +1,20 @@
-# 4.2 Set-up your own, local, country configuration
+# 4.2 Configure: Set-up your own, local, country configuration
 
-This section instructs you how to set-up and provision your own, local, country configuration of OpenCRVS.
+This section instructs you how to configure your own, country configuration of OpenCRVS.
 
-{% hint style="info" %}
-OpenCRVS must be configured for your country locally, before deploying to a server in the next section: [3.3 Set-up a server-hosted environment](../3.3-set-up-a-server-hosted-environment/)
-{% endhint %}
+The instructions guide you to:
 
-The instructions should be conducted sequentially as laid out in each step, and will include:
-
-1. Forking our fictional country configuration "Farajaland" into your own country configuration repository.
+1. Fork our fictional country configuration "Farajaland" into your own country configuration repository.
 2. Set up administrative divisions and statistics for location specific performance metrics.
-3. Set up civil registration offices (the locations where civil registrations occur - relative to the administrative divisions), and set up health facilities (the locations where some births and deaths occur - relative to the administrative divisions - in order to track hospital births and deaths separately from home births and deaths & in order to interoperate with these facilities va APIs.)
-4. Set up an list of test civil registration employee users who can access the system. (Users can be created using the OpenCRVS user interface at any time). Set up of a single National System Administrator user for production.
-5. Set up application settings
-6. Configure certificates
-7. Configure declarion forms
-8. Commands to seed & clear your local databases with the above reference data for development purposes.
-9. Understanding of the API endpoints available in the country configuration and their business use-cases.
+3. Set up civil registration offices (the locations where civil registrations occur - relative to the administrative divisions), and set up health facilities (the locations where some births and deaths occur, in order to track hospital births and deaths separately from home births and deaths & in order to interoperate with these facilities va APIs.)
+4. Set up a list of test civil registration employee users who can access the system in QA. Set up of a single National System Administrator user for use in production.   (Production users must be created using the OpenCRVS National System Administrator user interface after deployment)
+5. Configure application settings and copy
+6. Configure user roles and permissions
+7. Configure certificates
+8. Configure events, event declaration, search, certificate collection & correction forms.
+9. Configure de-duplication algorithms
+10. Configure BI analytics dashboards
+11. Understand the API endpoints available in the country configuration and their business use-cases for aspects such as SMS notifications, event registration number configuration & integration with other systems.&#x20;
+12. Commands to seed & clear your local databases with the above reference data for development purposes.
 
+To learn how to deploy your configuration to a remote server, you must go to the next [section: 4.3](../3.3-set-up-a-server-hosted-environment/).
