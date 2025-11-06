@@ -10,11 +10,12 @@ The instructions guide you to:
 4. Set up a list of test civil registration employee users who can access the system in QA. Set up of a single National System Administrator user for use in production.   (Production users must be created using the OpenCRVS National System Administrator user interface after deployment)
 5. Configure application settings and copy
 6. Configure user roles and permissions
-7. Configure certificates
-8. Configure events, event declaration, search, certificate collection & correction forms.
-9. Configure de-duplication algorithms
-10. Configure BI analytics dashboards
-11. Understand the API endpoints available in the country configuration and their business use-cases for aspects such as SMS notifications, event registration number configuration & integration with other systems.&#x20;
-12. Commands to seed & clear your local databases with the above reference data for development purposes.
+7. Configure user "work-queues" to manage their backlog of registrations requiring processing
+8. Configure certificates
+9. Configure events, event declaration, search, certificate collection & correction forms.
+10. Configure de-duplication algorithms
+11. Configure BI analytics dashboards
+12. Understand the API endpoints available in the country configuration and their business use-cases for aspects such as SMS notifications, event registration number configuration & integration with other systems.&#x20;
+13. Commands to seed & clear your local databases with the above reference data for development purposes.
 
 To learn how to deploy your configuration to a remote server, you must go to the next [section: 4.3](../3.3-set-up-a-server-hosted-environment/).
