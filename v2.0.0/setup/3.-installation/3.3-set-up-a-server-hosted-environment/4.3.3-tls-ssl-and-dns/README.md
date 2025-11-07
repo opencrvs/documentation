@@ -1,7 +1,5 @@
 # 4.3.3 TLS / SSL & DNS
 
-## 4.3.2 TLS / SSL & DNS
-
 #### Domain A records
 
 Using your domain management system, A records will need to be created for all the services which are publicly exposed for **qa, production & staging** environments.

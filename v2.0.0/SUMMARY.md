@@ -122,8 +122,8 @@
     * [4.2.8 Seeding & clearing your local databases](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.8-seeding-your-local-database.md)
     * [4.2.9 Countryconfig API endpoints explained](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.9-countryconfig-apis-explained.md)
   * [4.3 Set-up a server-hosted environment](setup/3.-installation/3.3-set-up-a-server-hosted-environment/README.md)
-    * [4.3.1 Create a Github environment](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.4-create-a-github-environment/README.md)
-      * [4.3.1.1 Environment secrets and variables explained](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.4-create-a-github-environment/4.3.4.1-environment-secrets-and-variables-explained.md)
+    * [4.3.1 Create a Github environment](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-create-a-github-environment/README.md)
+      * [4.3.1.1 Environment secrets and variables explained](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-create-a-github-environment/4.3.1.1-environment-secrets-and-variables-explained.md)
     * [4.3.2 Bootstrap servers](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.2-bootstrap-servers.md)
     * [4.3.3 TLS / SSL & DNS](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.3-tls-ssl-and-dns/README.md)
       * [4.3.3.1 LetsEncrypt https challenge in development environments](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.3-tls-ssl-and-dns/4.3.3.1-letsencrypt-https-challenge-in-development-environments.md)
@@ -187,6 +187,16 @@
 * [Infrastructure](developers/infrastructure/README.md)
   * [Local Setup](developers/infrastructure/local-setup.md)
 * [Country configuration](developers/country-configuration/README.md)
+  * ```yaml
+    props:
+      models: false
+    type: builtin:openapi
+    dependencies:
+      spec:
+        ref:
+          kind: openapi
+          spec: cc-develop
+    ```
   * ```yaml
     props:
       models: false
