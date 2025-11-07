@@ -16,11 +16,11 @@ You can use our [Postman collections](https://github.com/opencrvs/opencrvs-count
 
 The following images and examples use the fictional country [Farajaland](../../default-configuration/intro-to-farajaland.md) and its birth registration configuration. Your actual events and workflows may vary depending on your country’s configuration.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-01-11 at 15.39.53.png" alt=""><figcaption><p>An Event Notification in the Farajaland 'In Progress' view</p></figcaption></figure>
+<figure><img src="../../../v1.7.0/.gitbook/assets/Screenshot 2023-01-11 at 15.39.53.png" alt=""><figcaption><p>An Event Notification in the Farajaland 'In Progress' view</p></figcaption></figure>
 
 When Event Notifications are received in OpenCRVS, they are audited and logged as being received from an automated client. **Events submitted via the Event Notification API are saved with the status `NOTIFIED`.**
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-01-11 at 15.40.23.png" alt=""><figcaption><p>Record audit view for an Event Notification</p></figcaption></figure>
+<figure><img src="../../../v1.7.0/.gitbook/assets/Screenshot 2023-01-11 at 15.40.23.png" alt=""><figcaption><p>Record audit view for an Event Notification</p></figcaption></figure>
 
 ## Submitting an Event Notification
 

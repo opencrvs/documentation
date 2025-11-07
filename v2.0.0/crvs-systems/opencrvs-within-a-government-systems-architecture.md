@@ -34,7 +34,7 @@ The civil registration system plays a crucial role in providing a foundational a
   * Which children need to get vaccinated (healthcare)?
 * Population Statistics and Planning: Civil registration provides a critical source of data for demographic analysis, population statistics, and future planning. Governments can use this data to make informed decisions about resource allocation, infrastructure development, and social policies.
 
-<figure><img src="../.gitbook/assets/image (52).png" alt=""><figcaption><p>OpenCRVS and DPI</p></figcaption></figure>
+<figure><img src="../../v1.7.0/.gitbook/assets/image (52).png" alt=""><figcaption><p>OpenCRVS and DPI</p></figcaption></figure>
 
 OpenCRVS has the potential to be a true DPI and to do so means ensuring the following to unlock its full potential:
 

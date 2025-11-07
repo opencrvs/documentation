@@ -52,7 +52,7 @@ A simple test harness for the FHIR Location API is also available in [Swagger](h
 https://gateway.<your-domain>/documentation
 ```
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-01-19 at 16.57.25.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../v1.7.0/.gitbook/assets/Screenshot 2023-01-19 at 16.57.25.png" alt=""><figcaption></figcaption></figure>
 
 #### Reading FHIR Locations
 
@@ -115,7 +115,7 @@ The JWT is the value for the key **"opencrvs"**
 
 **Double click inside the value** and type **Ctrl+A** to select all, then **Ctrl+C** to copy the JWT into your clipboard.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-01-19 at 17.41.39.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../v1.7.0/.gitbook/assets/Screenshot 2023-01-19 at 17.41.39.png" alt=""><figcaption></figcaption></figure>
 
 **Create a FHIR Location**
 

@@ -59,7 +59,7 @@ Please use the following formula:\
 \&#xNAN;_attachments\_per\_year = number of births, deaths.. records per year \* average number of attachments \* 0.4MB_
 
 _record\_data\_per\_year = number of births, deaths.. records per year \* 18.33kB_\
-&#xNAN;_&#x6F;perating\_system\_requirements = 100GB_
+\&#xNAN;_operating\_system\_requirements = 100GB_
 
 _minimum\_required\_disk\_space = operating\_system\_requirements + record\_data\_per\_year + attachments\_per\_year_
 
@@ -113,7 +113,7 @@ It is recommended to deploy the production environment on a cluster of at least 
 
 Refer to the following network diagram as a reference example of how to network your server cluster.
 
-<figure><img src="../../../.gitbook/assets/OpenCRVS Network &#x26; Servers.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../v1.7.0/.gitbook/assets/OpenCRVS Network &#x26; Servers.png" alt=""><figcaption></figcaption></figure>
 
 ### Server administrator SSH access & permissions:
 

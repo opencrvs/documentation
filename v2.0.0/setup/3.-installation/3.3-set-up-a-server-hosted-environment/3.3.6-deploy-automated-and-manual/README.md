@@ -50,7 +50,7 @@ c) Optional: If you are going to use any external service using any custom Githu
 
 In order to stop the Deploy (production) action from being accidentally run, an approval check has been implemented. When the action runs, a Git issue will open requiring repository administrators to reply approve or deny in order for the action to continue.
 
-<figure><img src="../../../../.gitbook/assets/Screenshot 2024-02-13 at 17.39.46.png" alt=""><figcaption><p>Example of Deploy(production) approval</p></figcaption></figure>
+<figure><img src="../../../../../v1.7.0/.gitbook/assets/Screenshot 2024-02-13 at 17.39.46.png" alt=""><figcaption><p>Example of Deploy(production) approval</p></figcaption></figure>
 
 In the .github/workflows/deploy-prod.yml change the approvers to a comma separated list of Github usernames for administrators in your repository, and commit the updated workflow to Git:
 
@@ -64,7 +64,7 @@ steps:
 
 Your Git repository must be configured to allow Issues and additionally Workflows must have read/write permissions.
 
-<figure><img src="../../../../.gitbook/assets/Screenshot 2024-02-13 at 17.34.21.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../v1.7.0/.gitbook/assets/Screenshot 2024-02-13 at 17.34.21.png" alt=""><figcaption></figcaption></figure>
 
 ### Commit any changes
 

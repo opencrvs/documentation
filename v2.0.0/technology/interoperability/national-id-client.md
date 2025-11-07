@@ -16,7 +16,7 @@ When creating a National ID client, you must give it a name. If you are installi
 **You can only have one National ID client!**
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-01-16 at 16.31.32.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../v1.7.0/.gitbook/assets/Screenshot 2023-01-16 at 16.31.32.png" alt=""><figcaption></figcaption></figure>
 
 ### Default functionality
 
@@ -73,7 +73,7 @@ If there is any failure communicating with MOSIP, the event creation will not be
 If you are integrating with MOSIP, there are a few extra configuration steps in OpenCRVS that are required when setting up your servers and deploying.
 
 1. Refer to the [MOSIP OpenCRVS Integration Documentation](https://docs.mosip.io/1.2.0/integrations/mosip-opencrvs-integration) to prepare MOSIP for OpenCRVS integration.
-2. When setting up your OpenCRVS servers, you may need to provision a Wireguard VPN, and you _**will**_ need a shared Docker volume to store some secret key files that MOSIP will supply you with. You will need to uncomment [these lines in the country configuration Ansible playbook](https://github.com/opencrvs/opencrvs-farajaland/blob/1d8017657d074c9e83f07c01215ab4736e513d28/playbook.yml#L61) before running the Ansible command in [this step](../../setup/3.-installation/3.3-set-up-a-server-hosted-environment/3.3.2-install-dependencies.md).
+2. When setting up your OpenCRVS servers, you may need to provision a Wireguard VPN, and you _**will**_ need a shared Docker volume to store some secret key files that MOSIP will supply you with. You will need to uncomment [these lines in the country configuration Ansible playbook](https://github.com/opencrvs/opencrvs-farajaland/blob/1d8017657d074c9e83f07c01215ab4736e513d28/playbook.yml#L61) before running the Ansible command in [this step](broken-reference).
 3.  You will need to copy the secret key files that MOSIP will provide you with onto your server in this directory. The names of these files must match whatever you use in docker-compose in the next step.
 
     ```
