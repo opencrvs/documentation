@@ -16,10 +16,20 @@ Once this section is completed a less technical system administrator can login a
 
 ### Steps
 
-[Quick start](quick-start.md)
 
-[Setup local development environment](./3.1-set-up-a-development-environment/README.md)
 
-[3.2-set-up-your-own-country-configuration](./3.2-set-up-your-own-country-configuration)
+{% content-ref url="quick-start.md" %}
+[quick-start.md](quick-start.md)
+{% endcontent-ref %}
 
-[3.3-set-up-a-server-hosted-environment](./3.3-set-up-a-server-hosted-environment)
+{% content-ref url="3.1-set-up-a-development-environment/" %}
+[3.1-set-up-a-development-environment](3.1-set-up-a-development-environment/)
+{% endcontent-ref %}
+
+{% content-ref url="3.2-set-up-your-own-country-configuration/" %}
+[3.2-set-up-your-own-country-configuration](3.2-set-up-your-own-country-configuration/)
+{% endcontent-ref %}
+
+{% content-ref url="3.3-set-up-a-server-hosted-environment/" %}
+[3.3-set-up-a-server-hosted-environment](3.3-set-up-a-server-hosted-environment/)
+{% endcontent-ref %}
