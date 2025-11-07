@@ -1,9 +1,5 @@
 # 4.3.2 TLS / SSL & DNS
 
-TODO: Watch video
-
-{% embed url="https://youtu.be/eb1aeFstOGg" %}
-
 Watch the videos above to understand the OpenCRVS network and how TLS is configured in OpenCRVS servers
 
 ### Domain A records
