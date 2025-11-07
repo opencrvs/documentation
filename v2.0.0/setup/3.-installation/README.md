@@ -18,14 +18,8 @@ Once this section is completed a less technical system administrator can login a
 
 [Quick start](quick-start.md)
 
-{% content-ref url="../../../v1.8.0/setup/3.-installation/3.1-set-up-a-development-environment" %}
-[Setup local development environment](../../../v1.8.0/setup/3.-installation/3.1-set-up-a-development-environment)
-{% endcontent-ref %}
+[Setup local development environment](./3.1-set-up-a-development-environment/README.md)
 
-{% content-ref url="../../../v1.8.0/setup/3.-installation/3.2-set-up-your-own-country-configuration" %}
-[3.2-set-up-your-own-country-configuration](../../../v1.8.0/setup/3.-installation/3.2-set-up-your-own-country-configuration)
-{% endcontent-ref %}
+[3.2-set-up-your-own-country-configuration](./3.2-set-up-your-own-country-configuration)
 
-{% content-ref url="../../../v1.8.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment" %}
-[3.3-set-up-a-server-hosted-environment](../../../v1.8.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment)
-{% endcontent-ref %}
+[3.3-set-up-a-server-hosted-environment](./3.3-set-up-a-server-hosted-environment)
