@@ -1,5 +1,7 @@
 # 4.3.2 TLS / SSL & DNS
 
+TODO: Watch video
+
 {% embed url="https://youtu.be/eb1aeFstOGg" %}
 
 Watch the videos above to understand the OpenCRVS network and how TLS is configured in OpenCRVS servers
@@ -23,7 +25,7 @@ _\*.\<your\_domain>_
 #### Option 2: Individual A Records:
 
 {% hint style="info" %}
-A total of 42 A Records are required for this option, 14 for each environment's domain: **qa, production & staging**
+A total of 36 A Records are required for this option, 12 for each environment's domain: **qa, production & staging**
 {% endhint %}
 
 _\<your\_domain>_
@@ -34,15 +36,11 @@ _config.\<your\_domain>_
 
 _countryconfig.\<your\_domain>_
 
-_documents.\<your\_domain>_
-
 _metabase.\<your\_domain>_
 
 _minio.\<your\_domain>_
 
 _minio-console.\<your\_domain>_
-
-_ui-kit.\<your\_domain>_
 
 _gateway.\<your\_domain>_
 
@@ -64,8 +62,7 @@ Alternatively you could consider purchasing a long term SSL certificate and manu
 
 The following "recipes" are not meant to be exhaustive, but simply describe some examples you may wish to follow. Every country will have unique network, domain name & management considerations to pay attention to.
 
-For each recipe, search the [docker-compose.{YOUR ENVIRONMENT}-deploy.yml](https://github.com/opencrvs/opencrvs-countryconfig/tree/develop/infrastructure) files for each environment to find the block below. In this block, you can amend configurations for each individual environment: **qa, production & staging.** Alternatively, you can remove each individual block and have a single block in [docker-compose-deploy.yml](https://github.com/opencrvs/opencrvs-countryconfig/blob/dfbf4c6a0b2962015d152c2adb4a0f8bc6038bdd/infrastructure/docker-compose.deploy.yml#L13) that will apply a generic approach applied to all environments.
-
-```
-traefik:
-```
+Pre-configured traefik installation options:
+- [LetsEncrypt https challenge in development environments](4.3.2.1-letsencrypt-https-challenge-in-development-environments.md)
+- [LetsEncrypt DNS challenge in production](4.3.2.2-letsencrypt-dns-challenge-in-production.md)
+- [Static TLS certificates](4.3.2.3-static-tls-certificates.md)

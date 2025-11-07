@@ -3,13 +3,23 @@
 {% hint style="warning" %}
 #### Important! Please read
 
-The following instructions will guide you on how to set up a local, development environment of OpenCRVS, on your laptop, using our fictional country configuration: "Farajaland" for development and configuration purposes. To learn how to deploy OpenCRVS to a server host, the documentation is at [3.3 Set-up a server-hosted environment.](../../../../v1.8.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment)
+The following instructions will guide you through setting up a **local development** environment for OpenCRVS on your laptop, using our fictional country configuration “Farajaland” for development and configuration purposes.
+ To learn how to deploy OpenCRVS to a server host, please refer to Section [3.3 Set-up a server-hosted environment.](../../../../v1.8.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment)
 {% endhint %}
 
 {% hint style="warning" %}
-We recommend that you setup OpenCRVS on your local laptop to work with our fictional country repo before proceeding to fork and create your own country configuration.
+We recommend that you first set up the OpenCRVS Demo configuration on your local machine using our fictional country repository before proceeding to fork and create your own country configuration.
 
-In order to run OpenCRVS, we expect that you have a working knowledge of Linux / Unix operating systems and can run terminal commands. You should also be familiar with Docker and NodeJS.
+To run OpenCRVS successfully, you should have a working knowledge of Linux/Unix operating systems and be comfortable using the terminal. You should also be familiar with Docker, Kubernetes, and Node.js.
 {% endhint %}
 
-First, you will have to install some dependencies on your local computer.
+{% hint style="warning" %}
+#### Important! Please read
+
+OpenCRVS Team provides 2 ways for running local development environment:
+- On top Docker compose (stable)
+- On local Kubernetes cluster (experimental with limited set of features)
+
+{% endhint %}
+
+First, [install the required dependencies on your local computer](3.1.1-install-the-required-dependencies.md).

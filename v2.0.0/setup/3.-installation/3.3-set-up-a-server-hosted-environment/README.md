@@ -39,18 +39,27 @@ Before proceeding to discuss server specifications, it is important to understan
 Before proceeding to discuss network specifications, it is important to understand the following other concepts:
 
 | Concept                                                     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **vpn**                                                     | <p>All servers must be protected behind a government "virtual private network" (VPN). It should not be possible to browse to OpenCRVS on the public internet in Chrome unless the user has successfully authenticated via a VPN client.</p><p><br><strong>Your country should provide the VPN.</strong></p><p>OpenCRVS Core team cannot recommend which VPN to use nor how best to manage and maintain your VPN. We can advise how the following CD pipelines should connect to the servers through a VPN.</p>                                                                                                                                                                                                                                                           |
-| **Continuous provisioning & deployment via Github Actions** | OpenCRVS provides a continuous deployment suite of automated scripts (pipelines) powered by Github Actions. Therefore a Github organisation is required in order to deploy OpenCRVS. These CD scripts connect through a VPN via a variety of configurable methods. Most commonly tools such as [openconnect](https://www.infradead.org/openconnect/) can be configured. Note that Wireguard VPN does not support openconnect - (This Marketplace action is an option for Wireguard VPNs: [https://github.com/marketplace/actions/easy-wireguard-connection](https://github.com/marketplace/actions/easy-wireguard-connection)). Finally, it is possible for the CD pipelines to connect using a ["bastion" / "jump"](https://en.wikipedia.org/wiki/Bastion_host) server. |
-| **bastion** or **jump**                                     | An optional “jump” or “bastion” server can be configured to allow SSH access to servers behind a VPN without the need for a VPN client.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **vpn** | All servers must be protected behind a government virtual private network (VPN). Users must authenticate via the VPN to access OpenCRVS in a browser. The country should provide and operate the VPN. When using self-hosted GitHub Actions runners, place those runners inside the VPN or on the internal network so they can reach servers directly; no VPN tunnel from GitHub-hosted services is required. |
+| **Continuous provisioning & deployment via GitHub Actions** | OpenCRVS provides GitHub Actions workflows for automated provisioning and deployment. A GitHub organisation is required. Self-hosted runners deployed within your VPN/internal network (recommended). |
+| **bastion** or **jump** | An optional bastion (jump) host can consolidate and control SSH access to servers behind the VPN without distributing VPN credentials. Bastions are useful for administrative SSH access, auditing and as an alternative deployment hop even when using self-hosted runners inside the VPN. |
 
 ### Server specifications
 
 Refer to these minimum server specifications for the above environments. Note that the hard-disk space specifications are illustrative. Depending on the population size and number of supporting documents that are required to be captured during civil registration business processes, you may require more disk-space. Regardless your system administrators must be capable of monitoring and increasing server disk-space on demand. :
+### Minimum server specifications
 
-<table><thead><tr><th>Environment</th><th width="284">Specification</th></tr></thead><tbody><tr><td>development (suitable for learning or proof-of-concept) / qa</td><td>16GB RAM / 4CPUs / 320 GB Disk / Ubuntu 24.04 (LTS) x64, Headless</td></tr><tr><td>production / staging</td><td>16GB RAM / 8CPUs / diskspace calculated using formula below / Ubuntu 24.04 (LTS) x64, Headless</td></tr><tr><td>backup</td><td>1GB RAM / 2CPUs / diskspace calculated using formula below / Ubuntu 24.04 (LTS) x64, Headless</td></tr></tbody></table>
+| Environment (use)                                               | Minimum specification                                                                                       |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| development (learning / proof-of-concept) / qa                  | 16 GB RAM · 4 vCPU · 320 GB disk · Ubuntu 24.04 LTS x64 (headless)                                          |
+| production / staging                                            | 16 GB RAM · 8 vCPU · disk space calculated using formula above · Ubuntu 24.04 LTS x64 (headless)           |
+| backup                                                          | 1 GB RAM · 2 vCPU · disk space calculated using formula above (recommend 2× application server size) · Ubuntu 24.04 LTS x64 (headless) |
 
-### Production / staging / backup diskspace requirements
+Notes:
+- Disk-space values are minimums and illustrative; adjust based on population, attachments and retention needs.
+- Ensure administrators can monitor and expand disk capacity on demand.
+- Production clusters should follow recommendations in the "Server clusters by project" section for HA and scalability.
+
+### Production / staging / backup disk space requirements
 
 Required disk space for production, staging and backup environments is calculated using the expected number of records per year and the estimated average number of attachments. The number of participating locations should be taken into account.
 
@@ -113,13 +122,15 @@ It is recommended to deploy the production environment on a cluster of at least 
 
 Refer to the following network diagram as a reference example of how to network your server cluster.
 
-<figure><img src="../../../../v1.7.0/.gitbook/assets/OpenCRVS Network &#x26; Servers.png" alt=""><figcaption></figcaption></figure>
+TODO: Update
+
+<figure><img src="../../../.gitbook/assets/OpenCRVS Network &#x26; Servers.png" alt=""><figcaption></figcaption></figure>
 
 ### Server administrator SSH access & permissions:
 
 During provisioning, the server administrator requires SSH access through the provided VPN to all servers with **sudo** permissions.
 
-During installation of OpenCRVS, SSH config to all servers will be modified, blocking password baseed SSH authentication, root user access, configuring 2FA authentication and alerting for all future SSH access.
+During installation of OpenCRVS, SSH config to all servers will be modified, blocking password based SSH authentication, root user access, configuring 2FA authentication and alerting for all future SSH access.
 
 Once provisioned, there should be no need for technical staff to ever SSH into a server during day-to-day operations. Every SSH access going forward is audited via a Slack notification to all technical staff thanks to these provisioned alerts.
 
@@ -159,5 +170,3 @@ OpenCRVS is hardcoded to use the following 3rd party services which require subs
 * A Slack Pro account [https://app.slack.com/plans](https://app.slack.com/plans)
 * A [Sentry](https://sentry.io/welcome/) Team account. A free plan is fine for development / proof-of-concept.
 * A password manager such as 1Password Team [https://1password.com/business-pricing](https://1password.com/business-pricing) or Bitwarden Team [https://bitwarden.com/pricing](https://bitwarden.com/pricing)
-
-\\
