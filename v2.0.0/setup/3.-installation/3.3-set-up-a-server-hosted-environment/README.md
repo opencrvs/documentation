@@ -1,12 +1,25 @@
 # 4.3 Set-up a server-hosted environment
 
-This section describes the environments, servers and network requirements that countries are required to prepare in order to install OpenCRVS. This section also explains how OpenCRVS periodically backs up its data. Additionally it describes step-by-step instructions on how to
+This section describes the environments, servers and network requirements that countries are required to prepare in order to install OpenCRVS. This section also explains how setup OpenCRVS with all components.
 
-1. Generate environments on Github with the required secrets.
-2. Provision server clusters using Ansible in order to run the environments.
-3. Configure DNS
-4. Run continuous deployment actions to deploy your OpenCRVS configuration to the server clusters depending on environment.
-5. Initially seed a deployed cluster with reference data as you would perform on a local development environment.
+Installation steps at high level:
+
+1. Build servers (Virtual machines)
+2. Configure DNS and Issue SSL Certificates
+3. Setup SMTP server
+4. Create prerequisite accounts:
+   1. GitHub
+   2. DockerHub
+   3. 1Password (any other)
+   4. Other optional accounts (Slack, Sentry)
+5. Fork countryconfig repository and configure CI process with push to container registry
+6. Fork infrastructure repository
+7. Generate configuration files and environments on Github with the required secrets.
+8. Bootstrap servers with GitHub self-hosted runners
+9. Provision infrastructure configuration using Ansible in order to run the environments.
+10. Run continuous deployment actions to deploy your OpenCRVS configuration to the server clusters depending on environment.
+11. Initially seed a deployed cluster with reference data as you would perform on a local development environment.
+12. Configure data backup and restore
 
 ### Data Center
 
@@ -38,26 +51,27 @@ Before proceeding to discuss server specifications, it is important to understan
 
 Before proceeding to discuss network specifications, it is important to understand the following other concepts:
 
-| Concept                                                     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| **vpn** | All servers must be protected behind a government virtual private network (VPN). Users must authenticate via the VPN to access OpenCRVS in a browser. The country should provide and operate the VPN. When using self-hosted GitHub Actions runners, place those runners inside the VPN or on the internal network so they can reach servers directly; no VPN tunnel from GitHub-hosted services is required. |
-| **Continuous provisioning & deployment via GitHub Actions** | OpenCRVS provides GitHub Actions workflows for automated provisioning and deployment. A GitHub organisation is required. Self-hosted runners deployed within your VPN/internal network (recommended). |
-| **bastion** or **jump** | An optional bastion (jump) host can consolidate and control SSH access to servers behind the VPN without distributing VPN credentials. Bastions are useful for administrative SSH access, auditing and as an alternative deployment hop even when using self-hosted runners inside the VPN. |
+* **vpn:** All servers must be protected behind a government virtual private network (VPN). Users must authenticate via the VPN to access OpenCRVS in a browser. The country should provide and operate the VPN. When using self-hosted GitHub Actions runners, place those runners inside the VPN or on the internal network so they can reach servers directly; no VPN tunnel from GitHub-hosted services is required.
+* **Continuous provisioning & deployment via GitHub Actions:** OpenCRVS provides GitHub Actions workflows for automated provisioning and deployment. A GitHub organisation is required. Self-hosted runners deployed within your VPN/internal network (recommended).
+* **bastion** or **jump:** An optional bastion (jump) host can consolidate and control SSH access to servers behind the VPN without distributing VPN credentials. Bastions are useful for administrative SSH access, auditing and as an alternative deployment hop even when using self-hosted runners inside the VPN.
 
 ### Server specifications
 
 Refer to these minimum server specifications for the above environments. Note that the hard-disk space specifications are illustrative. Depending on the population size and number of supporting documents that are required to be captured during civil registration business processes, you may require more disk-space. Regardless your system administrators must be capable of monitoring and increasing server disk-space on demand. :
+
 ### Minimum server specifications
 
-| Environment (use)                                               | Minimum specification                                                                                       |
-| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| development (learning / proof-of-concept) / qa                  | 16 GB RAM · 4 vCPU · 320 GB disk · Ubuntu 24.04 LTS x64 (headless)                                          |
-| production / staging                                            | 16 GB RAM · 8 vCPU · disk space calculated using formula above · Ubuntu 24.04 LTS x64 (headless)           |
-| backup                                                          | 1 GB RAM · 2 vCPU · disk space calculated using formula above (recommend 2× application server size) · Ubuntu 24.04 LTS x64 (headless) |
+| Environment (use)                              | Minimum specification                                                                                                                  |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| development (learning / proof-of-concept) / qa | 16 GB RAM · 4 vCPU · 320 GB disk · Ubuntu 24.04 LTS x64 (headless)                                                                     |
+| production / staging                           | 16 GB RAM · 8 vCPU · disk space calculated using formula above · Ubuntu 24.04 LTS x64 (headless)                                       |
+| backup                                         | 1 GB RAM · 2 vCPU · disk space calculated using formula above (recommend 2× application server size) · Ubuntu 24.04 LTS x64 (headless) |
 
 Notes:
-- Disk-space values are minimums and illustrative; adjust based on population, attachments and retention needs.
-- Ensure administrators can monitor and expand disk capacity on demand.
-- Production clusters should follow recommendations in the "Server clusters by project" section for HA and scalability.
+
+* Disk-space values are minimums and illustrative; adjust based on population, attachments and retention needs.
+* Ensure administrators can monitor and expand disk capacity on demand.
+* Production clusters should follow recommendations in the "Server clusters by project" section for HA and scalability.
 
 ### Production / staging / backup disk space requirements
 
@@ -124,7 +138,7 @@ Refer to the following network diagram as a reference example of how to network 
 
 TODO: Update
 
-<figure><img src="../../../.gitbook/assets/OpenCRVS Network &#x26; Servers.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/OpenCRVS%20Network%20&#x26;%20Servers.png" alt=""><figcaption></figcaption></figure>
 
 ### Server administrator SSH access & permissions:
 

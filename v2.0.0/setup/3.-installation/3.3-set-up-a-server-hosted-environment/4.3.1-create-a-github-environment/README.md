@@ -1,20 +1,36 @@
 # 4.3.1 Create a Github environment
 
+#### Before you begin
+
 We have an automated script to generate [Github environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment) for you along with all the application secrets that Github needs to run the continuous provisioning and deployment scripts.
 
-Environment naming is not limited, but recommended to use naming convention described at here.
-
-Specifically: **qa, staging, production,** **backup** and for training purposes a **development** (optional) server.
+Environment naming is not limited, but recommended to use naming convention described at here.Specifically: **qa, staging, production,** **backup** and for training purposes a **development** (optional) server.
 
 Github Actions use these environments to access the secret keys and configurations used when installing software on servers and deploying OpenCRVS.
 
-Before running the script, you must prepare some secrets that the script requires.
+Before running the script, you must prepare some secrets that the script requires. Please carefully check information on this page.
+
+#### 1. Fork (or clone) repositories
 
 {% hint style="info" %}
-While we would like to show you a video of this process, it involves a lot of organisation secrets. Therefore, we have provided as many obfuscated screenshots as possible :-)
+Fork Country config template repository required to store configuration for the country: [https://github.com/opencrvs/opencrvs-countryconfig](https://github.com/opencrvs/opencrvs-countryconfig). More information how to fork and configure repository is here:&#x20;
+
+Fork Infrastructure repository required to store infrastructure configuration and GitHub environments: [https://github.com/opencrvs/infrastructure](https://github.com/opencrvs/infrastructure)
 {% endhint %}
 
-#### 1. Set up an individual and an organisation account on Dockerhub
+**Steps to fork infrastructure repository:**
+
+1. Go to [https://github.com/opencrvs/infrastructure](https://github.com/opencrvs/infrastructure)
+2. In the top right corner press "Fork" button
+3. Provide "Owner" and "Repository name" values
+4. Press "Create fork" button.
+5. Create a [Github Personal Access Token ](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)with the required permissions in order for the script to programmatically create Github environments on your forked repository. The only required scope for the token is "repo".
+
+{% hint style="warning" %}
+**Set the token expiration time as you wish. Note that the token secret will need to be updated regularly for deployment actions to function when it expires.**
+{% endhint %}
+
+#### 2. Set up an individual and an organisation account on Dockerhub
 
 {% hint style="info" %}
 Dockerhub account is required by two repositories:
@@ -37,16 +53,6 @@ Ensure that the Dockerhub members have permissions to write to the repository:
 You will need your Dockerhub **username** and a personal Dockerhub account **access tokens** in order to create the Github environment. Our scripts use these credentials to login to Dockerhub programmatically. This is how you create a Dockerhub access token: [https://docs.docker.com/security/for-developers/access-tokens/](https://docs.docker.com/security/for-developers/access-tokens/)
 {% endhint %}
 
-#### 2. Create a Github Personal Access Token
-
-You need to create a [Github Personal Access Token ](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)with the required permissions in order for the script to programmatically create Github environments on your forked countryconfig repository.
-
-The only required scope for the token is "repo".
-
-{% hint style="warning" %}
-**Set the expiration as you wish. Note that the token secret will need to be updated regularly for deployment actions to function when it expires.**
-{% endhint %}
-
 #### 3. Create companion service accounts for monitoring (optional, but recommended)
 
 Our code is hardcoded to track bugs in [Sentry](https://www.sentry.io) and then these can be redirected to an email address or [Slack](https://slack.com/) channel. Sentry and Slack are extremely low cost tools (all ongoing service costs are listed in section 4.3).
@@ -65,9 +71,11 @@ Any uncaught errors that are not tracked by Sentry, will be tracked by Kibana as
 
 Sentry & Kibana alerts can be configured to be broadcast to any email address. The benefits of using Slack, are that your entire development and quality assurance team can receive these notifications without a single individual being a gatekeeper, thus improving your processes.
 
-#### 5. Run the create github environment script to create a "qa" and (or) "development" environment
 
-To run the script, cd into your forked infrastructure repository and run the following command:
+
+#### 4. Run the create github environment script to create a "qa" and (or) "development" environment
+
+To run the script, open terminal window and cd into your forked infrastructure repository and run the following command:
 
 ```
 yarn environment:init
@@ -160,7 +168,7 @@ You will notice that an environment now exists in your Github repo containing al
 If you made a mistake and wish to run the script for this environment again, you must delete the environment on Github by clicking the trash icon first. **The environment and all secrets will be deleted and recreated, enforcing you to start over.**
 {% endhint %}
 
-#### 6. Run the script again to create a "staging" & "production" environment
+#### 5. Run the script again to create a "staging" & "production" environment
 
 {% hint style="info" %}
 You may run this step right after "development" and "qa" environment is created or later.

@@ -1,4 +1,4 @@
-# 4.3.5 Provisioning servers
+# 4.3.3 Provisioning servers
 
 Now that your Github environments are set up you can proceed to provision your servers using our automated ["Ansible"](https://www.ansible.com/) powered actions.
 
@@ -31,6 +31,12 @@ Ansible will perform a huge amount of Ubuntu commands that you would normally be
 <figure><img src="../../../../../v1.7.0/.gitbook/assets/Screenshot 2024-11-13 at 08.38.28.png" alt=""><figcaption><p>Success!</p></figcaption></figure>
 
 If the server provisioning works, you will eventually see a green tick to mark that the server provisioned successfully.
+
+## Provision verification steps
+
+* [ ] Kubernetes self-hosted runner is visible under **Settings → Actions → Runners** on GitHub.
+* [ ] You should be able to ssh (login) on the server with any user account defined under `users` section of inventory file, check [SSH Access](4.3.5.1-ssh-access.md)
+* [ ] You should have access to kubernetes cluster after ssh (login). Command to verify: `kubectl config current-context` and locally, check [Kubernetes cluster access](4.3.5.2-kubernetes-cluster-access.md)
 
 ### Ansible tasks explained
 
