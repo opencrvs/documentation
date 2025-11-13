@@ -13,7 +13,7 @@ Before running the script, you must prepare some secrets that the script require
 #### 1. Fork (or clone) repositories
 
 {% hint style="info" %}
-Fork Country config template repository required to store configuration for the country: [https://github.com/opencrvs/opencrvs-countryconfig](https://github.com/opencrvs/opencrvs-countryconfig). More information how to fork and configure repository is here:&#x20;
+Fork Country config template repository required to store configuration for the country: [https://github.com/opencrvs/opencrvs-countryconfig](https://github.com/opencrvs/opencrvs-countryconfig). More information how to fork and configure repository is here: [4.2.1 Fork your own country configuration repository](../../3.2-set-up-your-own-country-configuration/3.2.1-fork-your-own-country-configuration-repository.md)
 
 Fork Infrastructure repository required to store infrastructure configuration and GitHub environments: [https://github.com/opencrvs/infrastructure](https://github.com/opencrvs/infrastructure)
 {% endhint %}
@@ -33,24 +33,21 @@ Fork Infrastructure repository required to store infrastructure configuration an
 #### 2. Set up an individual and an organisation account on Dockerhub
 
 {% hint style="info" %}
-Dockerhub account is required by two repositories:
-
-* Countryconfig template: Push custom docker image with your country configuration
-* Infrastructure: Pull pushed image on your server environment
+DockerHub account is required as registry for Country config docker image.
 {% endhint %}
 
-Firstly, you will need a companion container registry account. Our scripts are hardcoded to use Dockerhub, if you need to work with any other private registry, please modify provision and deploy scripts.
+Firstly, you will need a companion container registry account. Our scripts are hardcoded to use DockerHub, if you need to work with any other private registry, please modify provision and deploy scripts.
 
-You will need a docker container registry [**organisation**](https://docs.docker.com/admin/organization/orgs/) account on [Dockerhub](https://hub.docker.com/) to build and push your country configuration container (image) in order to use our scripts. An organisation is required with all of your developers (including yourself) individual accounts added to the organisation's "[members](https://docs.docker.com/admin/organization/members/)" (or teams) list, so that each developer can access the container.
+You will need a docker container registry [**organisation**](https://docs.docker.com/admin/organization/orgs/) account on [DockerHub](https://hub.docker.com/) to build and push your country configuration container (image) in order to use our scripts. An organisation is required with all of your developers (including yourself) individual accounts added to the organisation's "[members](https://docs.docker.com/admin/organization/members/)" (or teams) list, so that each developer can access the container.
 
-This is because your full team and all the servers will need access to your forked countryconfig docker container. The servers will use your personal Dockerhub credentials to access the container. [Dockerhub](https://hub.docker.com/) is a free containerisation repository that will provide you with 1 free private repository, and that is all you need. You will have to customise our infrastructure scripts if you wish to use a different container registry provider.
+This is because your full team and all the servers will need access to your forked country config docker container. The servers will use your personal DockerHub credentials to access the container. [DockerHub](https://hub.docker.com/) is a free containerisation repository that will provide you with 1 free private repository, and that is all you need. You will have to customise our infrastructure scripts if you wish to use a different container registry provider.
 
 Then create an empty private repository to store your configuration...
 
-Ensure that the Dockerhub members have permissions to write to the repository:
+Ensure that the DockerHub members have permissions to write to the repository:
 
 {% hint style="info" %}
-You will need your Dockerhub **username** and a personal Dockerhub account **access tokens** in order to create the Github environment. Our scripts use these credentials to login to Dockerhub programmatically. This is how you create a Dockerhub access token: [https://docs.docker.com/security/for-developers/access-tokens/](https://docs.docker.com/security/for-developers/access-tokens/)
+You will need your DockerHub **username** and a personal DockerHub account **access tokens** in order to create the Github environment. Our scripts use these credentials to login to DockerHub programmatically. This is how you create a DockerHub access token: [https://docs.docker.com/security/for-developers/access-tokens/](https://docs.docker.com/security/for-developers/access-tokens/)
 {% endhint %}
 
 #### 3. Create companion service accounts for monitoring (optional, but recommended)

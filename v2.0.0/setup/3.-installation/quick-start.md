@@ -10,13 +10,13 @@ Quickstart scenario allows to run OpenCRVS with Farajaland demo data locally on 
 * 8 CPU (at least Intel 8th generation)
 * 100G free storage space
 
-### Software requirements
+### Software requirements for this demo
 
+* [ ] `kubectl`: Kubernetes command-line tool. see [Documentation](https://kubernetes.io/docs/tasks/tools/).
+* [ ] `helm`: a template engine and command-line tool for managing Kubernetes manifests. [Learn more](https://helm.sh/).
 * [ ] Kubernetes cluster:
   * [ ] [Docker Desktop with Kubernetes](https://www.docker.com/) for MacOS and Windows users
   * [ ] [Minikube](https://minikube.sigs.k8s.io/docs/start) for Linux users
-* [ ] `kubectl`: Kubernetes command-line tool. see [Documentation](https://kubernetes.io/docs/tasks/tools/).
-* [ ] `helm`: a template engine and command-line tool for managing Kubernetes manifests. [Learn more](https://helm.sh/).
 
 Check how to configure local Kubernetes cluster at [Docker engine and Kubernetes cluster](3.1-set-up-a-development-environment/3.1.1-install-the-required-dependencies.md#docker-engine-and-kubernetes-cluster)
 
