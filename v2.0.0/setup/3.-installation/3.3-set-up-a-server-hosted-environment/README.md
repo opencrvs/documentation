@@ -1,6 +1,6 @@
 # 4.3 Set-up a server-hosted environment
 
-This section describes the environments, servers and network requirements that countries are required to prepare in order to install OpenCRVS. This section also explains how to setup OpenCRVS with all components.
+This section describes the environments, servers and network requirements that countries are required to prepare in order to install OpenCRVS. This section also explains how to configure, provision, deploy and maintain OpenCRVS server deployments technically.
 
 Installation steps at high level:
 
