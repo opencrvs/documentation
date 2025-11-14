@@ -96,6 +96,10 @@ All the secrets are explained in more detail in the section [4.3.1.1 Environment
 
 To run the script, open terminal window and cd into your forked infrastructure repository and run the following command:
 
+{% hint style="info" %}
+The script will create files that must be pushed to Git, so it is advisable to run the script in a new branch in order to open a pull request.
+{% endhint %}
+
 <pre><code><strong>yarn install
 </strong><strong>yarn environment:init
 </strong></code></pre>
