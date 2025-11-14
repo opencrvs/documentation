@@ -1,6 +1,6 @@
 # 4.3 Set-up a server-hosted environment
 
-This section describes the environments, servers and network requirements that countries are required to prepare in order to install OpenCRVS. This section also explains how setup OpenCRVS with all components.
+This section describes the environments, servers and network requirements that countries are required to prepare in order to install OpenCRVS. This section also explains how to setup OpenCRVS with all components.
 
 Installation steps at high level:
 
@@ -79,10 +79,10 @@ Required disk space for production, staging and backup environments is calculate
 
 Please use the following formula:\
 \
-\&#xNAN;_attachments\_per\_year = number of births, deaths.. records per year \* average number of attachments \* 0.4MB_
+&#xNAN;_&#x61;ttachments\_per\_year = number of births, deaths.. records per year \* average number of attachments \* 0.4MB_
 
 _record\_data\_per\_year = number of births, deaths.. records per year \* 18.33kB_\
-\&#xNAN;_operating\_system\_requirements = 100GB_
+&#xNAN;_&#x6F;perating\_system\_requirements = 100GB_
 
 _minimum\_required\_disk\_space = operating\_system\_requirements + record\_data\_per\_year + attachments\_per\_year_
 
