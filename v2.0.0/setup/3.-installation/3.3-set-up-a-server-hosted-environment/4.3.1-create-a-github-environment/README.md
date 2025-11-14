@@ -153,13 +153,33 @@ Usually review is not required for files under the `.github` folder.
 
 Review modified files:
 
-* `infrastructure/server-setup/inventory/<environment name>.yml`: Configuration file for Ansible playbook responsible for server provision. Make sure users list was updated. For more information please follow hints inside file.
+* `infrastructure/server-setup/inventory/<environment name>.yml`: Configuration file for Ansible playbook responsible for server provision.&#x20;
 * `environments/<environment name>`: Folder with `values,yaml` files for helm charts:
-  * `environments/<environment name>/traefik/values.yaml`: Update this file with proper configuration to handle SSL certificate. Please follow documentation under TLS / SSL & DNS
+  * `environments/<environment name>/traefik/values.yaml`: Update this file with proper configuration to handle SSL certificate. Please follow documentation under [TLS / SSL & DNS](../4.3.3-tls-ssl-and-dns/)
   * `environments/<environment name>/opencrvs-services/values.yaml`: Review configuration and adjust according to your needs, **usually defaults are good for initial deployment**
-  * `environments/<environment name>/dependencies/values.yaml`: Review configuration and adjust according to your needs, **usually defaults are good for initial deployment**. Often storage or authentication options needs to be adjusted.
+  * `environments/<environment name>/dependencies/values.yaml`: Review configuration and adjust according to your needs, **usually defaults are good for initial deployment**.&#x20;
 
-Once all changes are adjusted commit and push configuration files to GitHub on your infrastructure repository.
+
+
+#### 6. Add SSH public keys for all users who require SSH access to the servers
+
+In the `infrastructure/server-setup/inventory/<environment name>.yml` file, you must configure the users property to contain blocks for each user that requires SSH access to the server.  You will need each users public ssh key.
+
+For more information please follow hints inside file.
+
+Once all changes are adjusted commit and push all the configuration files to GitHub on your infrastructure repository.
+
+{% hint style="danger" %}
+The provision script will disable password SSH access for all users on the server and create new users from the `infrastructure/server-setup/inventory/<environment name>.yml` file. After provisioning, SSH will only be possible using public/private key pairs. &#x20;
+{% endhint %}
+
+{% hint style="success" %}
+Users will be required to use Google Authenticator to SSH in after provisioning.  This 2FA approach is an important step to secure your infrastructure.
+{% endhint %}
+
+{% hint style="danger" %}
+If any user is utilising the 1000 group, the script will fail.  Modify your available user groups to ensure this one is available.
+{% endhint %}
 
 {% hint style="danger" %}
 The .env.\<your environment> file contains sensitive information about your environment configuration. Copy content of this file into secure place or password manager such as [Bitwarden](https://bitwarden.com/) or [1Password](https://1password.com/) and delete this file. **YOU MUST NEVER SHARE THIS FILE, NOR COMMIT IT TO GIT!!!** This file is not required by OpenCRVS.
@@ -171,7 +191,7 @@ You will notice that an environment now exists in your Github repo containing al
 If you made a mistake and wish to run the script for this environment again, you must delete the environment on Github by clicking the trash icon first. **The environment and all secrets will be deleted and recreated, enforcing you to start over.**
 {% endhint %}
 
-#### 6. Run the script again to create a "staging" & "production" environment
+#### 7. Run the script again to create a "staging" & "production" environment
 
 {% hint style="info" %}
 You may run this step right after "development" and "qa" environment is created or later.
@@ -181,7 +201,5 @@ The script will ask you few additional questions since production and staging en
 
 * `GH_APPROVERS`: List of valid GitHub accounts to approve deployments for particular environment.
 * `APPROVAL_REQUIRED`: Make approval required for this particular environment. If set to `true` all GitHub workflows will ask for approval, otherwise approval process will be optional even with defined `GH_APPROVERS` list. "Reset environment" workflow required 3 approvals to proceed, that additional requirement was made for security reasons. Single person is not able to take decision for environment reset.
+* `BACKUP_ENCRYPTION_PASSPHRASE` GitHub secret will be created for staging and production environments. That secret will be used to encrypt and decrypt backup zips of subfolders in the  `/data` folder, used in the configure backup and restore process, for more information please check Backup and Restore section.
 
-**`BACKUP_ENCRYPTION_PASSPHRASE`** GitHub secret will be created for staging and production environments. That secret will be used to configure backup and restore process, for more information please check Backup and Restore section.
-
-When all the environments are prepared, you should see something like this on your GitHub infrastructure repository:
