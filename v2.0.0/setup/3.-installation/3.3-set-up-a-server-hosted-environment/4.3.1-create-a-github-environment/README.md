@@ -203,7 +203,7 @@ You may run this step right after "development" and "qa" environment is created 
 
 The script will ask you few additional questions since production and staging environments are used to store personally identifiable information (PII) for citizens.
 
-* `GH_APPROVERS`: List of valid GitHub accounts to approve deployments for particular environment.
-* `APPROVAL_REQUIRED`: Make approval required for this particular environment. If set to `true` all GitHub workflows will ask for approval, otherwise approval process will be optional even with defined `GH_APPROVERS` list. "Reset environment" workflow required 3 approvals to proceed, that additional requirement was made for security reasons. Single person is not able to take decision for environment reset.
+* `GH_APPROVERS`: A comma separated list of valid GitHub accounts to approve deployments for particular environment.  Uses [this](https://github.com/trstringer/manual-approval) action.  It stops anyone accidentally performing deployment or provision actions on a server that contains PII without a second approval.  **HIGHLY RECOMMENDED!**
+* `APPROVAL_REQUIRED`: Make approval required for this particular environment. If set to `true` all GitHub workflows will ask for approval, otherwise approval process will be optional even with defined `GH_APPROVERS` list. "Reset environment" workflow required 3 approvals to proceed, that additional requirement was made for security reasons. A single person is not able to take a decision for an environment reset on a server storing PII.
 * `BACKUP_ENCRYPTION_PASSPHRASE` GitHub secret will be created for staging and production environments. That secret will be used to encrypt and decrypt backup zips of subfolders in the  `/data` folder, used in the configure backup and restore process, for more information please check Backup and Restore section.
 
