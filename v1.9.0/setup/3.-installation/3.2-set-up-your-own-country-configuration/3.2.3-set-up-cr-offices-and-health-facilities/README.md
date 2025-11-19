@@ -2,17 +2,58 @@
 
 {% embed url="https://youtu.be/GNhLLJgMozA" %}
 
-The next step is to prepare csv files to import into OpenCRVS all of the offices where civil registration staff work and all of the health facilities where births and deaths can occur in a medical setting.
+#### Configuring Civil Registration Offices and Health Facilities
 
-The facilities you create are saved into OpenCRVS as [FHIR Locations](https://www.hl7.org/fhir/location.html).
+The next step is to prepare **CSV files** that define all the **civil registration offices** and **health facilities** in your country.  These locations are critical for mapping where registration activities take place and where births and deaths occur in medical settings.
 
-CRVS\_OFFICE is an important location saved into [FHIR](https://build.fhir.org/location.html) to map registrations to a specific office. All civil registration employees have a CRVS\_OFFICE where they work, and every CRVS\_OFFICE is part of an administrative division, ie a "district".  The CRVS\_OFFICE location provides a way for Local or National System Administrators to manage staff access and for OpenCRVS to record an audit trail of all staff interactions with registrations. &#x20;
+***
 
-* The CRVS\_OFFICE is also recorded as the registration location for all vital events on the printed certificate.
-* HEALTH\_FACILITY is also an important location saved into [FHIR](https://build.fhir.org/location.html) to map places of birth and death that do not occur in a private home or other location to a specific health institution in your country.&#x20;
-* This HEALTH\_FACILITY is printed as the place of birth or place of death on a printed certificate where the birth or death occured in that facility.
+**🗂️ Data Overview**
 
-{% hint style="info" %}
-Note: So that Field Agents can register births and deaths offline, all the health facilities are saved onto the user's mobile phone when installing OpenCRVS.  This can represent the largest single initial application load, as there may many thousands of health facilities configured in your country.
-{% endhint %}
+You will import two main categories of locations into OpenCRVS:
 
+| Location Type        | Purpose                                                               |
+| -------------------- | --------------------------------------------------------------------- |
+| **CRVS\_OFFICE**     | Civil registration offices where staff work and events are registered |
+| **HEALTH\_FACILITY** | Medical institutions where births and deaths occur                    |
+
+These locations are used across the system for workflow management, reporting, and ineroperability.
+
+***
+
+**🏛️ Civil Registration Offices (`CRVS_OFFICE`)**
+
+Each civil registration office represents a physical or administrative location where registration staff operate.
+
+* Every **civil registration employee** is assigned to a single `CRVS_OFFICE`.
+* Each `CRVS_OFFICE` belongs to an **administrative division** (e.g., district, province).
+* `CRVS_OFFICE` locations provide a structure for:
+  * Managing user access and permissions
+  * Auditing user actions in the registration process
+  * Linking each registration to the office where it was recorded
+
+The **CRVS\_OFFICE name** can be printed as the **registration location** on all issued certificates (e.g., birth or death certificates).
+
+***
+
+**🏥 Health Facilities (`HEALTH_FACILITY`)**
+
+Each health facility represents a place where births or deaths may occur under medical care.
+
+* A **HEALTH\_FACILITY** maps to real hospitals, clinics, or maternity wards in your country.
+* When a birth or death occurs in a facility, its name is printed on the certificate as the **place of birth** or **place of death**.
+* These facilities enable OpenCRVS to distinguish between:
+  * **Hospital births/deaths**, and
+  * **Home or non-facility events**
+
+This distinction is important for both **analytics** and **interoperability** with national health information systems.
+
+***
+
+**📱 Offline Access for Field Agents**
+
+To enable **offline registration**, all configured facilities are automatically **stored locally** on Field Agents’ mobile devices during app installation.
+
+> ⚠️ Because countries often have **thousands of facilities**, combined with potentially **thousands of administrative levels**, this step can often represent the **largest initial data load** when installing OpenCRVS.
+
+***
