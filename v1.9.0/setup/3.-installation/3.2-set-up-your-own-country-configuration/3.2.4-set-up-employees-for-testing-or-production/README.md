@@ -1,15 +1,46 @@
-# 4.2.4 Set up employee users, and scopes, for testing or production
+# 4.2.4 Set up employees & roles for testing or production
 
-The next step is for you to set up some employees that have access to your development or production OpenCRVS instance with different authorization levels (access to functionality) depending on your require use cases.&#x20;
+#### 👥 Setting Up Employees and Access Levels
 
-This was explained in detail in the section: [User roles & scopes](../../../../product-specifications/users/)
+The next step is to create the **employees** who will access your development or production OpenCRVS instance. Each user must be assigned the appropriate **authorization level** (roles and scopes) depending on your country’s business processes.
 
-For demo and development purposes, we have created some example employees in our Farajaland repo.&#x20;
+User roles and permissions are described in detail in the section **User Roles & Scopes**.
 
-A test employee setup like this should allow you to perform all quality assurance activities you may wish to perform.
+***
 
-The setup includes all the user roles located in 3 separate offices. But you should never use this list of test employees in production.
+#### 🧪 Test Users for Development & QA
 
-In production, your employee setup should only contain a **single National System Administrator** that will independently need to configure production staff accounts.&#x20;
+For demonstration and development purposes, the Farajaland example configuration includes several **sample employee accounts**.
 
-In production, it is these users who should login and use the Team section to create users.  They can delegate user management responsibility to technical staff per office if you configure roles and scopes in a creative way.
+This test setup is designed to:
+
+* Represent all major user roles
+* Cover multiple civil registration offices
+* Enable full end-to-end QA and workflow testing
+
+You may create a similar set of demo users in your country configuration to support development and testing.
+
+> ⚠️ **Important:**\
+> These test users must **never** be used in production.
+
+***
+
+#### 🏛️ Users in Production
+
+In a production environment, your configuration should contain **only one** pre-defined user:
+
+* **The National System Administrator**
+
+This user is responsible for:
+
+* Logging into the production instance
+* Using the **Team** section to create real user accounts
+* Assigning roles to staff in each office
+
+With well-designed roles and scopes, the National System Administrator can also **delegate user-management responsibilities** to trusted technical staff at regional or office level.
+
+This ensures production user management remains:
+
+* Secure
+* Audited
+* Controlled by authorised personnel in the National CRVS organisation
