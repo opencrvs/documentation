@@ -109,7 +109,7 @@ The script will ask you to provide Kubernetes and Runtime options:
 * `DOMAIN`: Domain name to expose OpenCRVS instance
 * `KUBE_API_HOST`: IP address or domain of your single, manager node
 * `WORKER_NODES`: Optional parameter if you are planning to setup kubernetes cluster with multiple nodes. This property could be left empty for single node setup or you can add worker nodes later.
-* `BACKUP_HOST`: Backup server, define this property if you would like to manage backup server as part of your environment. Check Backup and restore section for more information how to use configure backup server. More information about backup server configuration can be found at [Backup and Restore](../4.3.7-backup-and-restore/) section.
+* `BACKUP_HOST`: Backup server, define this property if you would like to manage backup server as part of your environment. Check Backup and restore section for more information how to use configure backup server. More information about backup server configuration can be found at [Backup and Restore](../4.3.6-maintenance/4.3.7-backup-and-restore/) section.
 
 {% hint style="info" %}
 Setting up a **staging** or **production** environment will ask for more details explained in the next step

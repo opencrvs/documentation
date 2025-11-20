@@ -140,7 +140,7 @@
     * [4.3.6 Maintenance](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.6-maintenance/README.md)
       * [4.3.6.3 Seeding a server environment](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.6-maintenance/4.3.6.2-seeding-a-server-environment.md)
       * [4.3.6.5 Resetting a server environment](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.6-maintenance/4.3.6.5-resetting-a-server-environment.md)
-    * [4.3.7 Backup & Restore](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/README.md)
+    * [4.3.7 Backup & Restore](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.6-maintenance/4.3.7-backup-and-restore/README.md)
       * [4.3.7.1 Automated backup configuration](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/4.3.7.1-automated-backup-configuration.md)
       * [4.3.7.2 Manual backup creation](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/4.3.7.2-manual-backup-creation.md)
       * [4.3.7.3 Automated restore configuration](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore/4.3.7.1-restoring-a-backup.md)
