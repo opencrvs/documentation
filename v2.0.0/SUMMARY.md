@@ -127,7 +127,7 @@
     * [4.3.3 Provisioning servers](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers/README.md)
       * [4.3.3.1 SSH access](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers/4.3.5.1-ssh-access.md)
       * [4.3.3.2 Kubernetes cluster access](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers/4.3.5.2-kubernetes-cluster-access.md)
-      * [4.3.3.4 TODO: Ansible tasks when provisioning](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers/4.3.5.4-ansible-tasks-when-provisioning.md)
+      * [4.3.3.4 Ansible tasks when provisioning](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers/4.3.5.4-ansible-tasks-when-provisioning.md)
     * [4.3.4 TLS / SSL & DNS](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.3-tls-ssl-and-dns/README.md)
       * [4.3.4.1 LetsEncrypt https challenge in development environments](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.3-tls-ssl-and-dns/4.3.3.1-letsencrypt-https-challenge-in-development-environments.md)
       * [4.3.4.2 LetsEncrypt DNS challenge in production](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.3-tls-ssl-and-dns/4.3.3.2-letsencrypt-dns-challenge-in-production.md)

@@ -34,15 +34,9 @@ Fork Infrastructure repository required to store infrastructure configuration an
 A DockerHub account is required as the registry for the countryconfig docker image.
 {% endhint %}
 
-Firstly, you will need a companion container registry account. Our scripts are hardcoded to use DockerHub, if you need to work with any other private registry, please modify provision and deploy scripts.
-
-You will need a docker container registry [**organisation**](https://docs.docker.com/admin/organization/orgs/) account on [DockerHub](https://hub.docker.com/) to build and push your country configuration container (image) to a private repository.
-
-An organisation is required with all of your developers (including yourself) individual accounts added to the organisation's "[members](https://docs.docker.com/admin/organization/members/)" (or teams) list, so that each developer can access the container.
-
-Ensure that the DockerHub Team that your members belong to have permissions to write to the repository.
-
 You will need your DockerHub **username** and a personal DockerHub account **access tokens** as secrets. Our scripts use these credentials to login to DockerHub programmatically. This is how you create a DockerHub access token: [https://docs.docker.com/security/for-developers/access-tokens/](https://docs.docker.com/security/for-developers/access-tokens/)
+
+Please check [Build Country config docker image](../../3.2-set-up-your-own-country-configuration/4.2.10-build-country-config-docker-image.md) for more information.
 
 #### 3. Create companion service accounts for monitoring (optional, but recommended) & notifications
 
@@ -115,7 +109,7 @@ The script will ask you to provide Kubernetes and Runtime options:
 * `DOMAIN`: Domain name to expose OpenCRVS instance
 * `KUBE_API_HOST`: IP address or domain of your single, manager node
 * `WORKER_NODES`: Optional parameter if you are planning to setup kubernetes cluster with multiple nodes. This property could be left empty for single node setup or you can add worker nodes later.
-* `BACKUP_HOST`: Backup server, define this property if you would like to manage backup server as part of your environment. Check Backup and restore section for more information how to use configure backup server.
+* `BACKUP_HOST`: Backup server, define this property if you would like to manage backup server as part of your environment. Check Backup and restore section for more information how to use configure backup server. More information about backup server configuration can be found at [Backup and Restore](../4.3.6-maintenance/4.3.7-backup-and-restore/) section.
 
 {% hint style="info" %}
 Setting up a **staging** or **production** environment will ask for more details explained in the next step
@@ -169,7 +163,7 @@ Review modified files:
 
 In the `infrastructure/server-setup/inventory/<environment name>.yml` file, you must configure the users property to contain blocks for each user that requires SSH access to the server.  You will need each users public ssh key.
 
-For more information please follow hints inside file.
+For more information please follow hints inside file and [SSH Access](../4.3.5-provisioning-servers/4.3.5.1-ssh-access.md) section.
 
 Once all changes are adjusted commit and push all the configuration files to GitHub on your infrastructure repository.
 

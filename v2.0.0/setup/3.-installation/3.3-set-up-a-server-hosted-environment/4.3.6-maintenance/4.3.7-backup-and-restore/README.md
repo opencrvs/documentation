@@ -18,3 +18,5 @@ Elasticsearch doesn't support backup and restore, please use re-index job instea
 Each datastore has its own backup job, configured as a Kubernetes `CronJob`. Backup settings are defined in the `backup` section of the chart values file. You can configure a separate backup (restore) schedule and remote directory for each datastore.
 
 Usually backup is configured only on production environment and restore is configured on staging environment, but there is no limitations to configure backup/restore on any other servers. E/g for testing purposes backup/restore can be configured between development and qa environments.
+
+Backup server configuration is fully automated with Ansible playbooks, you need to provide backup server IP address (or hostname) to `yarn environment:init` script and bootstrap backup server.
