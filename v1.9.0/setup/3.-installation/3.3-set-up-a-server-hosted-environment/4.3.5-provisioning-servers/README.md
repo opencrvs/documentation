@@ -12,7 +12,7 @@ The Provision environment action will automate a number of tasks on your servers
 
 Click on the "Actions" tab in Github and select the "Provision environment" action. Click the "Run workflow" button.
 
-<figure><img src="../../../../../v1.6.0/.gitbook/assets/Screenshot 2024-11-11 at 16.48.25.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/Screenshot 2024-11-11 at 16.48.25.png" alt=""><figcaption></figcaption></figure>
 
 * In the "Machine to provision" select, choose "**QA**".
 * In the "Select group tag you want to execute" select, choose "**all**".
@@ -20,7 +20,7 @@ Click on the "Actions" tab in Github and select the "Provision environment" acti
 
 The process can take anything up to around **20-30** minutes to complete.
 
-<figure><img src="../../../../../v1.6.0/.gitbook/assets/Screenshot 2024-11-13 at 08.13.37.png" alt=""><figcaption><p>Github Action logs can help you debug any issues. In this example a package installation was interrupted - perhaps due to a random Network error. ChatGPT can help you understand any errors you may encounter and potential steps to resolve them. Error messages often explain to you the solution required.</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/Screenshot 2024-11-13 at 08.13.37.png" alt=""><figcaption><p>Github Action logs can help you debug any issues. In this example a package installation was interrupted - perhaps due to a random Network error. ChatGPT can help you understand any errors you may encounter and potential steps to resolve them. Error messages often explain to you the solution required.</p></figcaption></figure>
 
 If you see a red cross, it means that a certain step failed and requires to be debugged. There might be a problem with your Ansible inventory files, your Github environment secrets, or there may be network connectivity issues between Github, your VPN and your servers that require your attention.
 
@@ -28,7 +28,7 @@ If you see a red cross, it means that a certain step failed and requires to be d
 Ansible will perform a huge amount of Ubuntu commands that you would normally be required to run manually one-by-one. It saves you a large amount of time as you can see by the [list](4.3.5.3-ansible-tasks-when-provisioning.md). However computers are sensitive to all sorts of conditions in your data center and errors can occur. You need experience with Ubuntu and confidence with servers to debug issues. In the above example, the solution was as simple as SSH-ing into the server and running the command as instructed in the error message, then re-running the Provision action again.
 {% endhint %}
 
-<figure><img src="../../../../../v1.6.0/.gitbook/assets/Screenshot 2024-11-13 at 08.38.28.png" alt=""><figcaption><p>Success!</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/Screenshot 2024-11-13 at 08.38.28.png" alt=""><figcaption><p>Success!</p></figcaption></figure>
 
 If the server provisioning works, you will eventually see a green tick to mark that the server provisioned successfully.
 

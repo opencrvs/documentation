@@ -117,7 +117,7 @@ It is recommended to deploy the production environment on a cluster of at least 
 
 Refer to the following network diagram as a reference example of how to network your server cluster.
 
-<figure><img src="../../../../v1.6.0/.gitbook/assets/OpenCRVS Network &#x26; Servers.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/OpenCRVS Network &#x26; Servers.png" alt=""><figcaption></figcaption></figure>
 
 ### Server administrator SSH access & permissions:
 

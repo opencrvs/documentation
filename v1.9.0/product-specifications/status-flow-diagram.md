@@ -22,4 +22,4 @@ A record flag can be thought of as a secondary record status. It describes addit
 * Correction requested
 * Duplicate\\
 
-<figure><img src="../../v1.6.0/.gitbook/assets/Status WorkFlow (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Status WorkFlow (1).png" alt=""><figcaption></figcaption></figure>

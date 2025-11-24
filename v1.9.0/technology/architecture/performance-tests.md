@@ -43,10 +43,10 @@ The amount of data sent peaked at 13 VUs, sending 4 KB/s of data. Data received 
 
 There were requests to 3 unique URLs, with 1 104 different responses received. The slowest response had an average response time of 1 897 ms.
 
-<figure><img src="../../../v1.6.0/.gitbook/assets/k6results.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/k6results.png" alt=""><figcaption></figcaption></figure>
 
 **OpenCRVS v1.1.\* Test results**
 
 1267 request were made in total, with no errors encountered during the test. With the highest request rate target of 200, the 95 percentile response time was 3.5 seconds, with an average request rate of 2.8 requests per second. During this target, an average of 12 requests were made concurrently.
 
-![](<../../../v1.6.0/.gitbook/assets/Screenshot 2022-06-27 at 14.39.06.png>)
+![](<../../.gitbook/assets/Screenshot 2022-06-27 at 14.39.06.png>)

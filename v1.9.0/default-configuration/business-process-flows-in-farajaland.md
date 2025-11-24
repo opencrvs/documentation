@@ -16,12 +16,12 @@ For each of the service delivery models a digitally enabled business process has
 
 ### Community declaration via a community leader
 
-![Community declaration process](<../../v1.6.0/.gitbook/assets/Community declaration.png>)
+![Community declaration process](<../.gitbook/assets/Community declaration.png>)
 
 ### Notification from the health facility
 
-![Health facility notification process in Farajaland](<../../v1.6.0/.gitbook/assets/Health facility notification.png>)
+![Health facility notification process in Farajaland](<../.gitbook/assets/Health facility notification.png>)
 
 ### Registration at the District Registration Office
 
-![Office registration process in Farajaland](<../../v1.6.0/.gitbook/assets/Office registration.png>)
+![Office registration process in Farajaland](<../.gitbook/assets/Office registration.png>)
