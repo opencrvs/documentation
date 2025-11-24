@@ -133,7 +133,7 @@ Test your upgrade locally before proceeding
 All un-submitted draft applications only exist locally in a users browser cache and are therefore not preserved when the application is updated. The browser cache is cleared. **Inform all staff to submit in-progress drafts before updating OpenCRVS in production.**
 {% endhint %}
 
-<figure><img src="../../../v1.7.0/.gitbook/assets/Screenshot 2024-12-11 at 08.44.32.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2024-12-11 at 08.44.32.png" alt=""><figcaption></figcaption></figure>
 
 ### Step 6: Upgrade your Production & Backup environments
 

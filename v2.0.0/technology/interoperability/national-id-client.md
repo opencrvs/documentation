@@ -16,7 +16,7 @@ When creating a National ID client, you must give it a name. If you are installi
 **You can only have one National ID client!**
 {% endhint %}
 
-<figure><img src="../../../v1.7.0/.gitbook/assets/Screenshot 2023-01-16 at 16.31.32.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-01-16 at 16.31.32.png" alt=""><figcaption></figcaption></figure>
 
 ### Default functionality
 

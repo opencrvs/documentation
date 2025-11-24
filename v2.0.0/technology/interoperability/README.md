@@ -14,7 +14,7 @@ b) installing a permanent installation of an OpenCRVS and National ID integratio
 
 c) integrating with [DHIS2](https://dhis2.org/) to standardise birth and death notifications from a hospital setting for civil registration using [FHIR](https://www.hl7.org/fhir/overview.html).
 
-<figure><img src="../../../v1.7.0/.gitbook/assets/Screenshot 2023-01-10 at 16.46.06.png" alt=""><figcaption><p>Using the OpenCRVS Integrations GUI to configure a webhook client</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-01-10 at 16.46.06.png" alt=""><figcaption><p>Using the OpenCRVS Integrations GUI to configure a webhook client</p></figcaption></figure>
 
 OpenCRVS provides a simple GUI to set up, enable and disable integrating clients that generates and refreshes API keys.
 

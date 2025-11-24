@@ -7,7 +7,7 @@ The OpenCRVS functional architecture shows the logical components of which the s
 For a comprehensive understanding of the features of OpenCRVS, please refer to the complete product specification, which can be found in the [OpenCRVS Specifications v1.4](https://docs.google.com/spreadsheets/d/1Jf31WkNMqlfQOYpjpfG73M5utVGrx4zqA5eiODaftNI/edit?usp=sharing) excel document
 {% endhint %}
 
-<figure><img src="../../v1.7.0/.gitbook/assets/Functional architecture2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Functional architecture2.png" alt=""><figcaption></figcaption></figure>
 
 #### Key:
 

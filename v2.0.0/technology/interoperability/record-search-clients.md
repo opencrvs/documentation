@@ -8,7 +8,7 @@ description: >-
 
 The Record Search client can perform an advanced search of civil registration records. Use this to help support social protection systems, check the existence of civil registration records or check citizen demographics.
 
-<figure><img src="../../../v1.7.0/.gitbook/assets/Screenshot 2023-01-11 at 17.17.45.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-01-11 at 17.17.45.png" alt=""><figcaption></figcaption></figure>
 
 To stop abuse of such a powerful API, all results returned are audited as having been downloaded by the client. System Administrators should be careful to ensure that citizen data is not exposed to untrustworthy individuals by using this API.
 
@@ -38,7 +38,7 @@ You can browse to the [GraphQL Playground](https://www.apollographql.com/docs/ap
 https://gateway.your\_domain/graphql
 {% endhint %}
 
-<figure><img src="../../../v1.7.0/.gitbook/assets/Screenshot 2023-01-11 at 17.33.01.png" alt=""><figcaption><p>The GraphQL Playground for OpenCRVS</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-01-11 at 17.33.01.png" alt=""><figcaption><p>The GraphQL Playground for OpenCRVS</p></figcaption></figure>
 
 The GraphQL parameters are explained below. A full list of available Advanced Search GraphQL variables is also explained below.
 
@@ -203,4 +203,4 @@ The response from a record search is not FHIR, but an Elasticsearch response. Th
 
 After a search has completed and if you search for any record returned, you will see that in Record Audit, an entry shows that this client has accessed the personally identifiable citizen data on the record.
 
-<figure><img src="../../../v1.7.0/.gitbook/assets/Screenshot 2023-01-16 at 11.49.25.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-01-16 at 11.49.25.png" alt=""><figcaption></figcaption></figure>

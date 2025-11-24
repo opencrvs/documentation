@@ -15,12 +15,12 @@ Two types of certified copies have been configured:
 
 ### Birth certificate
 
-<figure><img src="../../../v1.7.0/.gitbook/assets/Farajaland-birth-certificate-v2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Farajaland-birth-certificate-v2.png" alt=""><figcaption></figcaption></figure>
 
 ### Death certificate
 
-<figure><img src="../../../v1.7.0/.gitbook/assets/Farajaland-death-certificate-v2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Farajaland-death-certificate-v2.png" alt=""><figcaption></figcaption></figure>
 
 ### Marriage certificate
 
-<figure><img src="../../../v1.7.0/.gitbook/assets/Farajaland-marriage-certificate-v2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Farajaland-marriage-certificate-v2.png" alt=""><figcaption></figcaption></figure>
