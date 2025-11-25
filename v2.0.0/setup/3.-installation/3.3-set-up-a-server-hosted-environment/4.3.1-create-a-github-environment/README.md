@@ -102,7 +102,11 @@ The script will ask you to select the type of environment that you wish to creat
 
 The script will fail if it cannot connect to Github for whatever reason, then continue.
 
+<figure><img src="../../../../.gitbook/assets/after-login-to-github.png" alt=""><figcaption></figcaption></figure>
+
 The script will ask for your Dockerhub credentials or skip if they already exist.
+
+<figure><img src="../../../../.gitbook/assets/dockerhub-existing-credentials.png" alt=""><figcaption></figcaption></figure>
 
 The script will ask you to provide Kubernetes and Runtime options:
 
@@ -111,15 +115,21 @@ The script will ask you to provide Kubernetes and Runtime options:
 * `WORKER_NODES`: Optional parameter if you are planning to setup kubernetes cluster with multiple nodes. This property could be left empty for single node setup or you can add worker nodes later.
 * `BACKUP_HOST`: Backup server, define this property if you would like to manage backup server as part of your environment. Check Backup and restore section for more information how to use configure backup server. More information about backup server configuration can be found at [Backup and Restore](../4.3.6-maintenance/4.3.7-backup-and-restore/) section.
 
+<figure><img src="../../../../.gitbook/assets/kubernetes-and-runtime.png" alt=""><figcaption></figcaption></figure>
+
 {% hint style="info" %}
 Setting up a **staging** or **production** environment will ask for more details explained in the next step
 {% endhint %}
 
 The script will  generate strong database passwords for all the database technologies used in OpenCRVS. It will display all the secrets that the script will create and ask you if you want to continue to create the environment on Github.
 
+<figure><img src="../../../../.gitbook/assets/database-and-monitoring.png" alt=""><figcaption></figcaption></figure>
+
 The script will slowly create the Github environment and upload all the secrets OpenCRVS requires to provision and deploy OpenCRVS from Github Actions.  It will create Helm chart and values files ready for committing to your repository.
 
 On the final step the script will proceed to create the Github environment and provide a command to bootstrap self-hosted runner on your server. Save the command from script output to a temporal file, you will need it later.
+
+<figure><img src="../../../../.gitbook/assets/final-message.png" alt=""><figcaption></figcaption></figure>
 
 Run following command on your infrastructure repository:
 
@@ -201,3 +211,6 @@ The script will ask you few additional questions since production and staging en
 * `APPROVAL_REQUIRED`: Make approval required for this particular environment. If set to `true` all GitHub workflows will ask for approval, otherwise approval process will be optional even with defined `GH_APPROVERS` list. "Reset environment" workflow required 3 approvals to proceed, that additional requirement was made for security reasons. A single person is not able to take a decision for an environment reset on a server storing PII.
 * `BACKUP_ENCRYPTION_PASSPHRASE` GitHub secret will be created for staging and production environments. That secret will be used to encrypt and decrypt backup zips of subfolders in the  `/data` folder, used in the configure backup and restore process, for more information please check Backup and Restore section.
 
+<figure><img src="../../../../.gitbook/assets/production-approvers.png" alt=""><figcaption></figcaption></figure>
+
+Once all environments are setup feel free to continue with Provision part.

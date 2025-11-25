@@ -1,6 +1,6 @@
 # 4.3.7 Backup & Restore
 
-
+### General information
 
 OpenCRVS dependencies helm chart has an configuration options for automated backups and restores.
 
@@ -22,3 +22,16 @@ Each datastore has its own backup job, configured as a Kubernetes `CronJob`. Bac
 Usually backup is configured only on production environment and restore is configured on staging environment, but there is no limitations to configure backup/restore on any other servers. E/g for testing purposes backup/restore can be configured between development and qa environments.
 
 Backup server configuration is fully automated with Ansible playbooks, you need to provide backup server IP address (or hostname) to `yarn environment:init` script and bootstrap backup server.
+
+### Backup and restore configuration flow
+
+Here are high level concepts how backup/restore is working:
+
+* Production servers should have only backup job configured.
+* Stating server has restore and optionally backup job as well.
+* Restore key should be same as backup encryption key on production.
+* Private ssh key for restore job should be same as on production
+
+Visit appropriate backup/restore documentation sections to get more details how to configure backup/restore.
+
+<figure><img src="../../../../../.gitbook/assets/Kubernetes infrastructure.png" alt=""><figcaption></figcaption></figure>
