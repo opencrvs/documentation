@@ -74,14 +74,21 @@ imageFit: 'FILL'
 </code></pre></td><td><strong>DEPRECATED:</strong> The code remains to support the transition of existing countries still using previous versions.   User notifications will use email as a delivery method by default but this can be configured.  There does not have to be a universal method of delivery in practice.</td></tr><tr><td><pre><code>INFORMANT_NOTIFICATION_DELIVERY_METHOD
 </code></pre></td><td><strong>DEPRECATED:</strong> The code remains to support the transition of existing countries still using previous versions.   Informant notifications will  use email as a delivery method by default but this can be configured.  There does not have to be a universal method of delivery in practice.</td></tr><tr><td><pre><code>export const COUNTRY_WIDE_CRUDE_DEATH_RATE = 10
 </code></pre></td><td><strong>This cannot be amended later in the UI and must be configured here.</strong> You will notice this separate property used by an API handler called by our analytics services. Whereas countries generally have crude birth rate ratios per area in their stastics, they tend to have a country-wide crude death rate. You can set this here in order to correctly calculate death registration completeness rates.</td></tr><tr><td><pre class="language-typescript"><code class="lang-typescript">SIGNATURE_REQUIRED_FOR_ROLES
-</code></pre></td><td>The National System Administrator can create new employees. In the create user forms, the requirement to add a transparent PNG signature for certain employee roles, so that the signature can appear on the certificate can be configured here.</td></tr><tr><td><pre><code>FEATURES: { ... }
+</code></pre></td><td>The National System Administrator can create new employees. In the create user forms, the requirement to add a transparent PNG signature for certain employee roles, so that the signature can appear on the certificate can be configured here.</td></tr><tr><td><pre><code>SEARCH_DEFAULT_CRITERIA
+</code></pre></td><td><p>This relates to the "Quick search" feature in the search bar.  Availbale options for the default value in the select are:   </p><pre class="language-typescriptreact"><code class="lang-typescriptreact">TRACKING_ID
+REGISTRATION_NUMBER
+NATIONAL_ID
+NAME
+PHONE_NUMBER
+EMAIL
+</code></pre></td></tr><tr><td>Example screenshot for above:</td><td><div><figure><img src="../../../../.gitbook/assets/Screenshot 2025-11-26 at 17.42.47.png" alt=""><figcaption></figcaption></figure></div><p></p></td></tr><tr><td><pre><code>FEATURES: { ... }
 </code></pre></td><td><strong>The following features can be enabled on and off in this block. We refer to this block as "Feature flags</strong></td></tr><tr><td><pre><code>DATE_OF_BIRTH_UNKNOWN
 </code></pre></td><td><strong>This cannot be amended later in the UI and must be configured here.</strong> In some countries, individuals do not know their date of birth. If you wish to enable that individuals are allowed to submit their ages in your declaration forms rather than a date of birth, set this to true. <strong>Please note that those individuals will have their days and months of birth automatically set to the 1st January in the system in that case.</strong></td></tr><tr><td><pre><code>DEATH_REGISTRATION
-</code></pre></td><td>Whether to enable the registration of death events in your OpenCRVS installation.</td></tr><tr><td><pre><code>MARRIAGE_REGISTRATION
-</code></pre></td><td>Whether to enable the registration of marriage events in your OpenCRVS installation. In OpenCRVS v1.3 we have released marriage registration in BETA. Set this property to true in order to demonstrate marriage registration as a proof of concept. Get in touch with us at <a href="mailto:team@opencrvs.org">team@opencrvs.org</a> if you wish to use marriage registration in production. We require to complete marriage performance analytics and searching in order to release this feature in a future version. <strong>It is not yet production ready.</strong></td></tr><tr><td><pre><code>PRINT_DECLARATION
-</code></pre></td><td>If enabled, you are able to print the review page of any declaration form including all the data entered by the applicant in an easy to read fashion. This can be a useful tool.</td></tr><tr><td><pre><code>INFORMANT_SIGNATURE
+</code></pre></td><td><strong>DEPRECATED:</strong> Any event, and its associated  availability,  is now configurable.</td></tr><tr><td><pre><code>MARRIAGE_REGISTRATION
+</code></pre></td><td><strong>DEPRECATED:</strong> Any event, and its associated  availability,  is now configurable.</td></tr><tr><td><pre><code>PRINT_DECLARATION
+</code></pre></td><td><strong>DEPRECATED:</strong> A Field.Type.ALPHA_PRINT_BUTTON can now be added to enable printing any SVG "template" from any page of the form.</td></tr><tr><td><pre><code>INFORMANT_SIGNATURE
 INFORMANT_SIGNATURE_REQUIRED
-</code></pre></td><td>These props enable the informant signature component on the review page. Signatures are now configurable also in the form config so it is likely that this prop will be deprecated in future versions.</td></tr><tr><td><pre><code>EXTERNAL_VALIDATION_WORKQUEUE
+</code></pre></td><td><strong>DEPRECATED:</strong> Signatures are now entierly configurable on any field on the form.</td></tr><tr><td><pre><code>EXTERNAL_VALIDATION_WORKQUEUE
 </code></pre></td><td>This prop controls the visibility of a workqueue that you can use for asynchronous integration with an external system at the point of registration via APIs. As an example, we use this for MOSIP asynchronous generation of a National ID.</td></tr></tbody></table>
 
 ## 2. Prepare javascript initialisation settings
@@ -149,44 +156,101 @@ window.config = {
   LOGIN_URL: 'http://localhost:3020',
   AUTH_URL: 'http://localhost:4040',
   MINIO_BUCKET: 'ocrvs',
+  MINIO_URL: 'http://localhost:3535/ocrvs/',
+  MINIO_BASE_URL: 'http://localhost:3535', 
   COUNTRY_CONFIG_URL: 'http://localhost:3040',
   // Country code in uppercase ALPHA-3 format
   COUNTRY: 'FAR',
   LANGUAGES: 'en,fr',
   SENTRY: '',
-  // Use the values in comments when Metabase is running locally
-  // http://localhost:4444/public/dashboard/acae0527-74be-4804-a3ee-f8b3c9c8784c#bordered=false&titled=false&refresh=300
-  LEADERBOARDS_DASHBOARD_URL: '',
-  // http://localhost:4444/public/dashboard/fec78656-e4f9-4b51-b540-0fed81dbd821#bordered=false&titled=false&refresh=300
-  REGISTRATIONS_DASHBOARD_URL: '',
-  // http://localhost:4444/public/dashboard/a17e9bc0-15a2-4bd1-92fa-ab0f346227ca#bordered=false&titled=false&refresh=300
-  STATISTICS_DASHBOARD_URL: ''
+  DASHBOARDS: [
+    {
+      id: 'registrations',
+      title: {
+        id: 'dashboard.registrationsTitle',
+        defaultMessage: 'Registrations Dashboard',
+        description: 'Menu item for registrations dashboard'
+      },
+      url: `http://localhost:4444/public/dashboard/03be04d6-bde0-4fa7-9141-21cea2a7518b#bordered=false&titled=false&refresh=300` // Filled in below
+    },
+    {
+      id: 'completeness',
+      title: {
+        id: 'dashboard.completenessTitle',
+        defaultMessage: 'Completeness Dashboard',
+        description: 'Menu item for completeness dashboard'
+      },
+      url: `http://localhost:4444/public/dashboard/41940907-8542-4e18-a05d-2408e7e9838a#bordered=false&titled=false&refresh=300`
+    },
+    {
+      id: 'registry',
+      title: {
+        id: 'dashboard.registryTitle',
+        defaultMessage: 'Registry',
+        description: 'Menu item for registry dashboard'
+      },
+      url: `http://localhost:4444/public/dashboard/dc66b77a-79df-4f68-8fc8-5e5d5a2d7a35#bordered=false&titled=false&refresh=300`
+    }
+  ],
+  FEATURES: {}
 }
 ```
 
-Following the same process as you did for the local development Login app config file, you must set the **COUNTRY & LANGUAGES** values, and can optionally uncomment **LEADERBOARDS\_DASHBOARD\_URL, REGISTRATIONS\_DASHBOARD\_URL** and **STATISTICS\_DASHBOARD\_URL** if you wish to run metabase dashboards locally. Refer to[ this step](broken-reference/) for more instructions.
+Following the same process as you did for the local development Login app config file, you must set the **COUNTRY & LANGUAGES** values, and can optionally change the menu item titles for each of the available analytics dashboards configurable via Metabase.
 
 **Client app - server:** [**client-config.prod.js**](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/src/client-config.prod.js)
 
 ```
-window.config = {
-  API_GATEWAY_URL: 'https://gateway.{{hostname}}/',
-  CONFIG_API_URL: 'https://config.{{hostname}}',
-  LOGIN_URL: 'https://login.{{hostname}}',
-  AUTH_URL: 'https://auth.{{hostname}}',
-  MINIO_BUCKET: 'ocrvs',
-  COUNTRY_CONFIG_URL: 'https://countryconfig.{{hostname}}',
-  // Country code in uppercase ALPHA-3 format
-  COUNTRY: 'FAR',
-  LANGUAGES: 'en,fr',
-  SENTRY: '{{sentry}}',
-  LEADERBOARDS_DASHBOARD_URL:
-    'https://metabase.{{hostname}}/public/dashboard/acae0527-74be-4804-a3ee-f8b3c9c8784c#bordered=false&titled=false&refresh=300',
-  REGISTRATIONS_DASHBOARD_URL:
-    'https://metabase.{{hostname}}/public/dashboard/fec78656-e4f9-4b51-b540-0fed81dbd821#bordered=false&titled=false&refresh=300',
-  STATISTICS_DASHBOARD_URL:
-    'https://metabase.{{hostname}}/public/dashboard/a17e9bc0-15a2-4bd1-92fa-ab0f346227ca#bordered=false&titled=false&refresh=300'
-}
+;(function initClientConfig() {
+  const scheme = window.location.protocol // "http:" or "https:"
+  const hostname = '{{hostname}}' // Replaced dynamically
+  const sentry = '{{sentry}}' // Replaced dynamically
+
+  window.config = {
+    API_GATEWAY_URL: `${scheme}//gateway.${hostname}/`,
+    CONFIG_API_URL: `${scheme}//config.${hostname}`,
+    LOGIN_URL: `${scheme}//login.${hostname}`,
+    AUTH_URL: `${scheme}//gateway.${hostname}/auth/`,
+    MINIO_URL: `${scheme}//minio.${hostname}/ocrvs/`,
+    MINIO_BASE_URL: `${scheme}//minio.${hostname}`, // URL without path/bucket information, used for file uploads, v2
+    MINIO_BUCKET: 'ocrvs',
+    COUNTRY_CONFIG_URL: `${scheme}//countryconfig.${hostname}`,
+    // Country code in uppercase ALPHA-3 format
+    COUNTRY: 'FAR',
+    LANGUAGES: 'en,fr',
+    SENTRY: sentry,
+    DASHBOARDS: [
+      {
+        id: 'registrations',
+        title: {
+          id: 'dashboard.registrationsTitle',
+          defaultMessage: 'Registrations Dashboard',
+          description: 'Menu item for registrations dashboard'
+        },
+        url: `${scheme}//metabase.${hostname}/public/dashboard/03be04d6-bde0-4fa7-9141-21cea2a7518b#bordered=false&titled=false&refresh=300`
+      },
+      {
+        id: 'completeness',
+        title: {
+          id: 'dashboard.completenessTitle',
+          defaultMessage: 'Completeness Dashboard',
+          description: 'Menu item for completeness dashboard'
+        },
+        url: `${scheme}//metabase.${hostname}/public/dashboard/41940907-8542-4e18-a05d-2408e7e9838a#bordered=false&titled=false&refresh=300`
+      },
+      {
+        id: 'registry',
+        title: {
+          id: 'dashboard.registryTitle',
+          defaultMessage: 'Registry',
+          description: 'Menu item for registry dashboard'
+        },
+        url: `${scheme}//metabase.${hostname}/public/dashboard/dc66b77a-79df-4f68-8fc8-5e5d5a2d7a35#bordered=false&titled=false&refresh=300`
+      }
+    ],
+    FEATURES: {}
+  }
+})()
 ```
 
 Following the same process as you did for the production Login app config file, you must set the **COUNTRY & LANGUAGES** values.
