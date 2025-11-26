@@ -48,7 +48,7 @@ Using our [application-config.ts](https://github.com/opencrvs/opencrvs-countryco
       }
     }
   ]
-</code></pre></td><td><div><figure><img src="../../../../.gitbook/assets/Screenshot 2025-11-26 at 17.24.05.png" alt=""><figcaption></figcaption></figure></div></td></tr><tr><td><pre><code>MARRIAGE: {
+</code></pre></td><td><strong>🏛️</strong> In section <a href="../3.2.2-set-up-administrative-address-divisions/">4.2.2</a> you had to configure admin levels for our standardised address <strong>Hierarchy Levels.</strong>  This property must be completed with the ids and labels to be used in a form FieldType.ADDRESS component below.  They are required fields.  Optional fields will appear below these selects.  The label prop, and further details around localisation are explained in the next section: <a href="3.2.9.1-managing-language-content/">4.2.5.1 Managing language content</a></td></tr><tr><td>Related to the above, here is an example screenshot of standardised address <strong>Hierarchy Level selects</strong>:</td><td><p></p><div><figure><img src="../../../../.gitbook/assets/Screenshot 2025-11-26 at 17.24.05.png" alt=""><figcaption></figcaption></figure></div></td></tr><tr><td><pre><code>MARRIAGE: {
     REGISTRATION_TARGET: 45,
     FEE: {
       ON_TIME: 10,
