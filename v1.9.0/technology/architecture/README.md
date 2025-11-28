@@ -23,7 +23,7 @@ OpenCRVS is a full-stack that is designed to give you the lowest possible ["tota
 
 {% embed url="https://www.figma.com/board/iT4utAw7tGpGZx6wrEI3mC/OpenCRVS-Architecture-2.0?node-id=0-1&p=f&t=NiJIN0DOj4S60kqs-0" %}
 
-### Docker Swarm
+#### Docker Swarm
 
 [Docker Swarm](https://docs.docker.com/engine/swarm/) was chosen by our architects in 2018 because, at the time, dependencies supporting bare-metal installations for Kubernetes architectures were in their infancy and difficult to understand. &#x20;
 
@@ -35,7 +35,7 @@ Since 2018, Kubernetes bare-metal tooling has advanced significantly.  Our work-
 
 Previously unskilled system administrators can quickly up-skill in the techniques of Docker infrastructure management using Docker Swarm.&#x20;
 
-### **Databases**
+#### **Databases**
 
 OpenCRVS uses [Elasticsearch](https://www.elastic.co/), an industry standard, NoSQL document orientated, real-time de-duplication & search engine. Lightning fast, intelligent civil registration record returns are possible, even with imprecise “fuzzy” search parameters.
 
@@ -49,9 +49,9 @@ Some legacy code in OpenCRVS 1.9 still uses [MongoDB](https://www.mongodb.com/) 
 
 Analytics are developed in [Metabase](https://www.metabase.com/), but any BI tool can be used as a substitute.
 
-### OpenCRVS microservice packages
+#### Microservices
 
-The core of OpenCRVS is a monorepo organised using [Lerna](https://github.com/lerna/lerna). Each package represents a single microservice. Following the [microservice](https://en.wikipedia.org/wiki/Microservices), 1 service per container model, every package is independently scalable in a single [docker](https://www.docker.com/) container.
+The core of OpenCRVS is a monorepo organised using [Lerna](https://github.com/lerna/lerna). Each package represents a single NodeJS microservice. Following the [microservice](https://en.wikipedia.org/wiki/Microservices), 1 service per container model, every package is independently scalable in a single [docker](https://www.docker.com/) container.
 
 ![](<../../.gitbook/assets/image (8).png>) ![](<../../.gitbook/assets/image (4).png>) ![](<../../.gitbook/assets/image (27).png>)\\
 
@@ -65,6 +65,4 @@ Each microservice in OpenCRVS has no knowledge of other services or business req
 
 <div align="left"><img src="https://static.wixstatic.com/media/93440e_50ed7c9e719e44daa7ca7d3e183f4071~mv2.png/v1/fill/w_121,h_55,al_c,q_80,usm_0.66_1.00_0.01/react.webp" alt=""></div>
 
-Client applications are built using [React](https://reactjs.org/) and [progressive web application](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction) technology. This means that we can take advantage of offline functionality and native mobile features using [Workbox](https://developers.google.com/web/tools/workbox), without the overhead of maintaining multiple web and mobile codebases and respective App/Play Store releases.
-
-In remote areas, registrars can save a configurable number of registrations offline on their mobile phone, using [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API).
+Client applications are built using [React](https://reactjs.org/) and [progressive web application](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction) technology. This means that we can take advantage of offline functionality and native mobile features using [Workbox](https://developers.google.com/web/tools/workbox), without the TCO overhead of maintaining multiple web and mobile codebases and respective App/Play Store releases.  In remote areas, registrars can save a configurable number of registrations offline on their mobile phone, using Chrome's [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API).
