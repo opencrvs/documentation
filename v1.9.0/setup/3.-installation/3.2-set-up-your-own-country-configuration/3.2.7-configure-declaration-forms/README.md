@@ -37,8 +37,6 @@ This new system is fundamentally different from the approach used in **OpenCRVS 
 
 This new architecture provides much more freedom in defining workflows and event types.
 
-####
-
 #### 🚫 For New Users: Do NOT Use the Old 1.8 Method
 
 OpenCRVS 1.9 is a transitional release designed to allow safe migration while enabling all new deployments to start cleanly on the modern architecture.
@@ -79,8 +77,6 @@ In OpenCRVS **v1.9**, the legacy event configuration remains available alongside
 
 An environment variable `V2_EVENTS` can be used to toggle between versions. See: [https://github.com/opencrvs/opencrvs-core/pull/10763](https://github.com/opencrvs/opencrvs-core/pull/10763)
 
-
-
 ***
 
 #### 📘 About This Documentation
@@ -89,4 +85,3 @@ The guidance in this section refers **exclusively** to:
 
 * The **new 1.9 event configuration code** in this directory
 * The **API endpoints** associated with the new configuration model
-
