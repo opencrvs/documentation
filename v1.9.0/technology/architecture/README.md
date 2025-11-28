@@ -31,21 +31,15 @@ The following dependencies are automatically provisioned alongside the OpenCRVS 
 
 ### Docker Swarm
 
-[Docker Swarm](https://docs.docker.com/engine/swarm/) was chosen by our architects in 2018 for it's lack of requirement of other essential dependencies, it's close alignment with Docker and it's simplicity in terms of installation and monitoring on a [Tier 2 private data centre](https://en.wikipedia.org/wiki/Data_center), on bare metal servers with headless [Ubuntu OS](https://en.wikipedia.org/wiki/Ubuntu). Why not use AWS, public cloud SaaS or serverless you might be thinking?
+[Docker Swarm](https://docs.docker.com/engine/swarm/) was chosen by our architects in 2018 because, at the time, dependencies supporting bare-metal installations for Kubernetes architectures were in their infancy and difficult to understand. &#x20;
 
-* Many countries may be located far from a high-quality data-centre above Tier 2.
-* Many countries may not legally support international data storage of citizen data on a public cloud. Getting the legal approval for external storage of citizen data requires regulatory change which can take a considerable amount of time.
-* Because some countries may not be able to maintain complex software independently, we are considering a SaaS solution, provided enough countries get regulatory approval. Over time, this situation appears to be slowly evolving and we are monitoring it closely.
+Many countries cannot legally support international data storage of citizen data on a public cloud so were dependant on something quick and easy to install in a Tier-2 data centre.   &#x20;
 
-Previously unskilled system administrators can quickly up-skill in the techniques of private cloud infrastructure management using Docker Swarm. We wanted to democratise containerisation benefits for all countries.
+#### **Kubernetes available in OpenCRVS 2.0**
 
-#### **Is there a plan for Kubernetes?**
+Since 2018, Kubernetes bare-metal tooling has advanced significantly.  Our work-in-progress [Kubernetes](https://kubernetes.io/) installation will be easier to use and configure.  As of OpenCRVS 1.9, Docker Swarm is still the supported deployment mechanism.
 
-We are working on a [Kubernetes](https://kubernetes.io/) migration now that Kubernetes has become a more mature, easier to use and configure solution, thanks to dependencies like Helm and other plugins increasing popularity since 2018. In the meantime, Docker Swarm makes it easy to commence containerised microservice package distribution privately, automatically configures a "round robin" load balanced cluster, and provides Service Discovery out-the-box.
-
-###
-
-<div align="left"><img src="https://static.wixstatic.com/media/93440e_d04078ae922a4126b8e9dd3f96066505~mv2.png/v1/fill/w_136,h_39,al_c,q_80,usm_0.66_1.00_0.01/FHIR_Foundation.webp" alt=""></div>
+Previously unskilled system administrators can quickly up-skill in the techniques of Docker infrastructure management using Docker Swarm.&#x20;
 
 ### **Elasticsearch**
 
@@ -56,7 +50,6 @@ De-duplication management to ensure data integrity is essential to any civil reg
 Elasticsearch is also used with [Kibana](https://www.elastic.co/kibana) for application and server health monitoring.\\
 
 <div align="left"><img src="https://static.wixstatic.com/media/93440e_7ae07f5f77c6407080656fff4e0cdcd3~mv2.jpg/v1/fill/w_134,h_26,al_c,q_80,usm_0.66_1.00_0.01/influxdata-2.webp" alt=""></div>
-
 
 ### OpenCRVS microservice packages
 
@@ -69,7 +62,6 @@ The OpenCRVS microservice architecture enables continuous evolution of its busin
 The microservices are written in [TypeScript](https://github.com/microsoft/TypeScript) (a strictly typed superset of JavaScript that compiles to JavaScript) and NodeJS using the [HapiJS](https://github.com/hapijs/hapi) framework.
 
 Each microservice in OpenCRVS has no knowledge of other services or business requirements in the application, and each exposes it’s capabilities via [JWT](https://auth0.com/blog/a-look-at-the-latest-draft-for-jwt-bcp/) secured APIs.
-
 
 <div align="left"><img src="https://static.wixstatic.com/media/93440e_8452ed95c717459e86c95ed0e17378ad~mv2.png/v1/fill/w_136,h_70,al_c,q_80,usm_0.66_1.00_0.01/PWA-Progressive-Web-App-Logo.webp" alt=""></div>
 
