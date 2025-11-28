@@ -21,13 +21,7 @@ OpenCRVS provides:
 
 OpenCRVS is a full-stack that is designed to give you the lowest possible ["total cost of ownership"](https://en.wikipedia.org/wiki/Total_cost_of_ownership).
 
-Our international development teams work in an Agile way, in tandem with local development resources and human-centred designers, following the [Scrum](https://www.atlassian.com/agile/scrum) methodology, to rapidly design, build, deploy, test and maintain OpenCRVS releases.
-
 {% embed url="https://www.figma.com/board/iT4utAw7tGpGZx6wrEI3mC/OpenCRVS-Architecture-2.0?node-id=0-1&p=f&t=NiJIN0DOj4S60kqs-0" %}
-
-### Dependencies
-
-The following dependencies are automatically provisioned alongside the OpenCRVS Core in [docker](https://www.docker.com/) containers in a Docker Swarm on Ubuntu.
 
 ### Docker Swarm
 
@@ -41,15 +35,19 @@ Since 2018, Kubernetes bare-metal tooling has advanced significantly.  Our work-
 
 Previously unskilled system administrators can quickly up-skill in the techniques of Docker infrastructure management using Docker Swarm.&#x20;
 
-### **Elasticsearch**
+### **Databases**
 
 OpenCRVS uses [Elasticsearch](https://www.elastic.co/), an industry standard, NoSQL document orientated, real-time de-duplication & search engine. Lightning fast, intelligent civil registration record returns are possible, even with imprecise “fuzzy” search parameters.
 
 De-duplication management to ensure data integrity is essential to any civil registration system. A fast search engine lowers operational costs and improves the user experience for frontline staff.
 
-Elasticsearch is also used with [Kibana](https://www.elastic.co/kibana) for application and server health monitoring.\\
+Elasticsearch is also used with [Kibana](https://www.elastic.co/kibana) for application and server health monitoring.
 
-<div align="left"><img src="https://static.wixstatic.com/media/93440e_7ae07f5f77c6407080656fff4e0cdcd3~mv2.jpg/v1/fill/w_134,h_26,al_c,q_80,usm_0.66_1.00_0.01/influxdata-2.webp" alt=""></div>
+Event data is stored in [PostgreSQL](https://www.postgresql.org/)
+
+Some legacy code in OpenCRVS 1.9 still uses [MongoDB](https://www.mongodb.com/) and [InfluxData](https://www.influxdata.com/).  These dependencies will be deprecated.
+
+Analytics are developed in [Metabase](https://www.metabase.com/), but any BI tool can be used as a substitute.
 
 ### OpenCRVS microservice packages
 
@@ -59,7 +57,7 @@ The core of OpenCRVS is a monorepo organised using [Lerna](https://github.com/le
 
 The OpenCRVS microservice architecture enables continuous evolution of its business requirements.
 
-The microservices are written in [TypeScript](https://github.com/microsoft/TypeScript) (a strictly typed superset of JavaScript that compiles to JavaScript) and NodeJS using the [HapiJS](https://github.com/hapijs/hapi) framework.
+The microservices are written in [TypeScript](https://github.com/microsoft/TypeScript) (a strictly typed superset of JavaScript that compiles to JavaScript)
 
 Each microservice in OpenCRVS has no knowledge of other services or business requirements in the application, and each exposes it’s capabilities via [JWT](https://auth0.com/blog/a-look-at-the-latest-draft-for-jwt-bcp/) secured APIs.
 
