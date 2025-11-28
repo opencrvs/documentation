@@ -105,7 +105,7 @@
       * [4.2.5.1 Managing language content](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.5-set-up-application-settings/3.2.9.1-managing-language-content/README.md)
         * [4.2.5.1.1 Informant and staff notifications](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.5-set-up-application-settings/3.2.9.1-managing-language-content/3.3.3-provision-a-comms-gateway.md)
     * [4.2.6 Configure events](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.7-configure-declaration-forms/README.md)
-      * [4.2.6.1 Configuring an event](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.7-configure-declaration-forms/4.2.7.1-configuring-an-event-form.md)
+      * [4.2.6.1 Working with events](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.7-configure-declaration-forms/4.2.7.1-configuring-an-event-form.md)
       * [4.2.6.2 Configure certificate templates](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.7-configure-declaration-forms/3.2.6-configure-certificate-templates.md)
     * [4.2.7 Configure Metabase Analytics](setup/3.-installation/3.2-set-up-your-own-country-configuration/4.2.5.2-configuring-metabase-dashboards.md)
     * [4.2.8 Seeding & clearing your local databases](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.8-seeding-your-local-database.md)
