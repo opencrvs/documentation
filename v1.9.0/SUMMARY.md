@@ -110,7 +110,7 @@
       * [4.2.6.3 Configure certificate templates](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.7-configure-declaration-forms/3.2.6-configure-certificate-templates.md)
     * [4.2.7 Configure Metabase Analytics](setup/3.-installation/3.2-set-up-your-own-country-configuration/4.2.5.2-configuring-metabase-dashboards.md)
     * [4.2.8 Seeding & clearing your local databases](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.8-seeding-your-local-database.md)
-    * [4.2.9 Countryconfig API endpoints explained](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.9-countryconfig-apis-explained.md)
+    * [4.2.9 Other configurable countryconfig API endpoints explained](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.9-countryconfig-apis-explained.md)
   * [4.3 Deploy: Set-up a server-hosted environment](setup/3.-installation/3.3-set-up-a-server-hosted-environment/README.md)
     * [4.3.1 Verify servers & create a "provision" user](setup/3.-installation/3.3-set-up-a-server-hosted-environment/3.3.1-provision-your-server-nodes-with-ssh-access.md)
     * [4.3.2 TLS / SSL & DNS](setup/3.-installation/3.3-set-up-a-server-hosted-environment/3.3.5-setup-dns-a-records/README.md)
