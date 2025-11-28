@@ -21,7 +21,7 @@ OpenCRVS provides:
 
 OpenCRVS is a full-stack that is designed to give you the lowest possible ["total cost of ownership"](https://en.wikipedia.org/wiki/Total_cost_of_ownership).
 
-{% embed url="https://www.figma.com/board/iT4utAw7tGpGZx6wrEI3mC/OpenCRVS-Architecture-2.0?node-id=12615-103&t=I52T4OG0DBiypR0t-4" %}
+{% embed url="https://www.figma.com/community/file/1576304609126977924" %}
 
 #### Docker Swarm
 
