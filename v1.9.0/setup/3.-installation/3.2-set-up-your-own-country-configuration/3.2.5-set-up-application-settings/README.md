@@ -6,7 +6,7 @@ You will be referring to the **5. config: Applications Settings Excel** sheet th
 
 ## 1. Prepare global functional settings
 
-Prepare your _**src/api/applcation/application-config.ts**_ source file. This is a Typescript file that is loaded in the application via an API explained in section [4.2.9 Countryconfig APIs explained](../3.2.9-countryconfig-apis-explained.md).
+Prepare your _**src/api/applcation/application-config.ts**_ source file. This is a Typescript file that is loaded in the application via an API explained in section [4.2.9 Countryconfig APIs explained](../3.2.9-countryconfig-apis-explained/).
 
 Using our [application-config.ts](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/src/api/application/application-config.ts) file as an example, update the settings according to your needs.
 
@@ -21,7 +21,7 @@ Using our [application-config.ts](https://github.com/opencrvs/opencrvs-countryco
     },
     PRINT_IN_ADVANCE: true
   }
-</code></pre></td><td><strong>DEPRECATED</strong>: The code remains to support the transition of existing countries still using previous versions.  Fees and certificates are now customisable in a dedicated endpoint.</td></tr><tr><td><pre><code>DEATH: {
+</code></pre></td><td><strong>DEPRECATED</strong>: The code remains to support the transition of existing countries still using previous versions. Fees and certificates are now customisable in a dedicated endpoint.</td></tr><tr><td><pre><code>DEATH: {
     REGISTRATION_TARGET: 45,
     FEE: {
       ON_TIME: 0,
@@ -29,8 +29,8 @@ Using our [application-config.ts](https://github.com/opencrvs/opencrvs-countryco
     },
     PRINT_IN_ADVANCE: true
   }
-</code></pre></td><td><strong>DEPRECATED</strong>: The code remains to support the transition of existing countries still using previous versions.  Fees and certificates are now customisable in a dedicated endpoint.</td></tr><tr><td><pre><code>SYSTEM_IANA_TIMEZONE
-</code></pre></td><td>Default timezone for the country. Basis for date and time calculations during searches: <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">https://en.wikipedia.org/wiki/List_of_tz_database_time_zones</a> </td></tr><tr><td><pre><code>ADMIN_STRUCTURE: [
+</code></pre></td><td><strong>DEPRECATED</strong>: The code remains to support the transition of existing countries still using previous versions. Fees and certificates are now customisable in a dedicated endpoint.</td></tr><tr><td><pre><code>SYSTEM_IANA_TIMEZONE
+</code></pre></td><td>Default timezone for the country. Basis for date and time calculations during searches: <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">https://en.wikipedia.org/wiki/List_of_tz_database_time_zones</a></td></tr><tr><td><pre><code>ADMIN_STRUCTURE: [
     {
       id: 'province',
       label: {
@@ -48,7 +48,7 @@ Using our [application-config.ts](https://github.com/opencrvs/opencrvs-countryco
       }
     }
   ]
-</code></pre></td><td><strong>🏛️</strong> In section <a href="../3.2.2-set-up-administrative-address-divisions/">4.2.2</a> you had to configure admin levels for our standardised address <strong>Hierarchy Levels.</strong>  This property must be completed with the ids and labels to be used in a form FieldType.ADDRESS component below.  They are required fields.  Optional fields will appear below these selects.  The label prop, and further details around localisation are explained in the next section: <a href="3.2.9.1-managing-language-content/">4.2.5.1 Managing language content</a></td></tr><tr><td>Related to the above, here is an example screenshot of standardised address <strong>Hierarchy Level selects</strong>:</td><td><p></p><div><figure><img src="../../../../.gitbook/assets/Screenshot 2025-11-26 at 17.24.05.png" alt=""><figcaption></figcaption></figure></div></td></tr><tr><td><pre><code>MARRIAGE: {
+</code></pre></td><td><strong>🏛️</strong> In section <a href="../3.2.2-set-up-administrative-address-divisions">4.2.2</a> you had to configure admin levels for our standardised address <strong>Hierarchy Levels.</strong> This property must be completed with the ids and labels to be used in a form FieldType.ADDRESS component below. They are required fields. Optional fields will appear below these selects. The label prop, and further details around localisation are explained in the next section: <a href="3.2.9.1-managing-language-content">4.2.5.1 Managing language content</a></td></tr><tr><td>Related to the above, here is an example screenshot of standardised address <strong>Hierarchy Level selects</strong>:</td><td><div><figure><img src="../../../../.gitbook/assets/Screenshot 2025-11-26 at 17.24.05.png" alt=""><figcaption></figcaption></figure></div></td></tr><tr><td><pre><code>MARRIAGE: {
     REGISTRATION_TARGET: 45,
     FEE: {
       ON_TIME: 10,
@@ -56,7 +56,7 @@ Using our [application-config.ts](https://github.com/opencrvs/opencrvs-countryco
     },
     PRINT_IN_ADVANCE: true
   }
-</code></pre></td><td><strong>DEPRECATED</strong>: The code remains to support the transition of existing countries still using previous versions.  Fees and certificates are now customisable in a dedicated endpoint.</td></tr><tr><td><pre><code>CURRENCY: {
+</code></pre></td><td><strong>DEPRECATED</strong>: The code remains to support the transition of existing countries still using previous versions. Fees and certificates are now customisable in a dedicated endpoint.</td></tr><tr><td><pre><code>CURRENCY: {
     languagesAndCountry: ['en-US'],
     isoCode: 'USD'
   }
@@ -69,23 +69,23 @@ backgroundColor: '36304E'
 </code></pre></td><td><p>You can set the background of the login page to be a color of choice. You can always use the UI to change this color later, or use a tiled or full screen image.</p><p>Other available properties are:</p><pre class="language-typescript"><code class="lang-typescript">backgroundImage data:image/jpg;base64,${fs       .readFileSync(join(__dirname, 'login-bg.jpg'))       .toString('base64')},
 imageFit: 'FILL'
 </code></pre></td></tr><tr><td><pre><code>FIELD_AGENT_AUDIT_LOCATIONS
-</code></pre></td><td><strong>DEPRECATED:</strong> The code remains to support the transition of existing countries still using previous versions.  Performance ahanlytics are now entirely configurable in Metabase.</td></tr><tr><td><pre><code>DECLARATION_AUDIT_LOCATIONS
-</code></pre></td><td><strong>DEPRECATED:</strong> The code remains to support the transition of existing countries still using previous versions.  Performance ahanlytics are now entirely configurable in Metabase.</td></tr><tr><td><pre><code>USER_NOTIFICATION_DELIVERY_METHOD
-</code></pre></td><td><strong>DEPRECATED:</strong> The code remains to support the transition of existing countries still using previous versions.   User notifications will use email as a delivery method by default but this can be configured.  There does not have to be a universal method of delivery in practice.</td></tr><tr><td><pre><code>INFORMANT_NOTIFICATION_DELIVERY_METHOD
-</code></pre></td><td><strong>DEPRECATED:</strong> The code remains to support the transition of existing countries still using previous versions.   Informant notifications will  use email as a delivery method by default but this can be configured.  There does not have to be a universal method of delivery in practice.</td></tr><tr><td><pre><code>export const COUNTRY_WIDE_CRUDE_DEATH_RATE = 10
+</code></pre></td><td><strong>DEPRECATED:</strong> The code remains to support the transition of existing countries still using previous versions. Performance ahanlytics are now entirely configurable in Metabase.</td></tr><tr><td><pre><code>DECLARATION_AUDIT_LOCATIONS
+</code></pre></td><td><strong>DEPRECATED:</strong> The code remains to support the transition of existing countries still using previous versions. Performance ahanlytics are now entirely configurable in Metabase.</td></tr><tr><td><pre><code>USER_NOTIFICATION_DELIVERY_METHOD
+</code></pre></td><td><strong>DEPRECATED:</strong> The code remains to support the transition of existing countries still using previous versions. User notifications will use email as a delivery method by default but this can be configured. There does not have to be a universal method of delivery in practice.</td></tr><tr><td><pre><code>INFORMANT_NOTIFICATION_DELIVERY_METHOD
+</code></pre></td><td><strong>DEPRECATED:</strong> The code remains to support the transition of existing countries still using previous versions. Informant notifications will use email as a delivery method by default but this can be configured. There does not have to be a universal method of delivery in practice.</td></tr><tr><td><pre><code>export const COUNTRY_WIDE_CRUDE_DEATH_RATE = 10
 </code></pre></td><td><strong>This cannot be amended later in the UI and must be configured here.</strong> You will notice this separate property used by an API handler called by our analytics services. Whereas countries generally have crude birth rate ratios per area in their stastics, they tend to have a country-wide crude death rate. You can set this here in order to correctly calculate death registration completeness rates.</td></tr><tr><td><pre class="language-typescript"><code class="lang-typescript">SIGNATURE_REQUIRED_FOR_ROLES
 </code></pre></td><td>The National System Administrator can create new employees. In the create user forms, the requirement to add a transparent PNG signature for certain employee roles, so that the signature can appear on the certificate can be configured here.</td></tr><tr><td><pre><code>SEARCH_DEFAULT_CRITERIA
-</code></pre></td><td><p>This relates to the "Quick search" feature in the search bar.  Availbale options for the default value in the select are:   </p><pre class="language-typescriptreact"><code class="lang-typescriptreact">TRACKING_ID
+</code></pre></td><td><p>This relates to the "Quick search" feature in the search bar. Availbale options for the default value in the select are:</p><pre class="language-typescriptreact"><code class="lang-typescriptreact">TRACKING_ID
 REGISTRATION_NUMBER
 NATIONAL_ID
 NAME
 PHONE_NUMBER
 EMAIL
-</code></pre></td></tr><tr><td>Example screenshot for above:</td><td><div><figure><img src="../../../../.gitbook/assets/Screenshot 2025-11-26 at 17.42.47.png" alt=""><figcaption></figcaption></figure></div><p></p></td></tr><tr><td><pre><code>FEATURES: { ... }
+</code></pre></td></tr><tr><td>Example screenshot for above:</td><td><div><figure><img src="../../../../.gitbook/assets/Screenshot 2025-11-26 at 17.42.47.png" alt=""><figcaption></figcaption></figure></div></td></tr><tr><td><pre><code>FEATURES: { ... }
 </code></pre></td><td><strong>The following features can be enabled on and off in this block. We refer to this block as "Feature flags</strong></td></tr><tr><td><pre><code>DATE_OF_BIRTH_UNKNOWN
 </code></pre></td><td><strong>This cannot be amended later in the UI and must be configured here.</strong> In some countries, individuals do not know their date of birth. If you wish to enable that individuals are allowed to submit their ages in your declaration forms rather than a date of birth, set this to true. <strong>Please note that those individuals will have their days and months of birth automatically set to the 1st January in the system in that case.</strong></td></tr><tr><td><pre><code>DEATH_REGISTRATION
-</code></pre></td><td><strong>DEPRECATED:</strong> Any event, and its associated  availability,  is now configurable.</td></tr><tr><td><pre><code>MARRIAGE_REGISTRATION
-</code></pre></td><td><strong>DEPRECATED:</strong> Any event, and its associated  availability,  is now configurable.</td></tr><tr><td><pre><code>PRINT_DECLARATION
+</code></pre></td><td><strong>DEPRECATED:</strong> Any event, and its associated availability, is now configurable.</td></tr><tr><td><pre><code>MARRIAGE_REGISTRATION
+</code></pre></td><td><strong>DEPRECATED:</strong> Any event, and its associated availability, is now configurable.</td></tr><tr><td><pre><code>PRINT_DECLARATION
 </code></pre></td><td><strong>DEPRECATED:</strong> A Field.Type.ALPHA_PRINT_BUTTON can now be added to enable printing any SVG "template" from any page of the form.</td></tr><tr><td><pre><code>INFORMANT_SIGNATURE
 INFORMANT_SIGNATURE_REQUIRED
 </code></pre></td><td><strong>DEPRECATED:</strong> Signatures are now entierly configurable on any field on the form.</td></tr><tr><td><pre><code>EXTERNAL_VALIDATION_WORKQUEUE
