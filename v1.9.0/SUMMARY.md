@@ -58,6 +58,7 @@
     * [Record Search clients](technology/interoperability/apis-requiring-oauth-credentials/record-search-clients.md)
     * [Webhook clients](technology/interoperability/apis-requiring-oauth-credentials/webhook-clients.md)
   * [APIs for system administrators](technology/interoperability/fhir-location-rest-api.md)
+  * [Registration integration](technology/interoperability/registration-integration.md)
   * [National ID](technology/interoperability/national-id.md)
 
 ## Default configuration
