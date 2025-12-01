@@ -8,7 +8,7 @@ This section assumes that you are already thoroughly aware of how to deploy Open
 
 Take a look at the docker-compose.deploy.yml file in our example configuration.&#x20;
 
-The mosip-api middleware is configured like [this](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/4fa62771a1faea01f87c2fb0db80824e8f594fe7/infrastructure/docker-compose.deploy.yml#L1030):
+The mosip-api middleware is configured like [this](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/aa338d2974699e56db574f7df046ca8e8638f35d/infrastructure/docker-compose.deploy.yml#L1108):
 
 ```
 mosip-api:
@@ -17,11 +17,12 @@ mosip-api:
     image: ghcr.io/opencrvs/mosip-api:${MOSIP_API_VERSION}
     environment:
       - NODE_ENV=production
-      - OPENCRVS_GRAPHQL_GATEWAY_URL=http://gateway:7070/graphql
+      - OPENCRVS_GATEWAY_URL=http://gateway:7070
       - OPENCRVS_PUBLIC_KEY_URL=http://auth:4040/.well-known
       - LOCALE=en
       - ESIGNET_USERINFO_URL=${ESIGNET_USERINFO_URL}
       - ESIGNET_TOKEN_URL=${ESIGNET_TOKEN_URL}
+      - ESIGNET_REDIRECT_URL=${ESIGNET_REDIRECT_URL}
       - OIDP_CLIENT_PRIVATE_KEY_PATH=${OIDP_CLIENT_PRIVATE_KEY_PATH}
       - OPENID_PROVIDER_CLAIMS=${OPENID_PROVIDER_CLAIMS}
       - DECRYPT_P12_FILE_PATH=${DECRYPT_P12_FILE_PATH}
@@ -41,7 +42,7 @@ mosip-api:
       - MOSIP_WEBSUB_AUTH_CLIENT_ID=${MOSIP_WEBSUB_AUTH_CLIENT_ID}
       - MOSIP_WEBSUB_AUTH_CLIENT_SECRET=${MOSIP_WEBSUB_AUTH_CLIENT_SECRET}
       - MOSIP_AUTH_URL=${MOSIP_AUTH_URL}
-      - MOSIP_WEBSUB_CALLBACK_URL=http://mosip-api:2024/websub/callback
+      - MOSIP_WEBSUB_CALLBACK_URL=https://mosip-api.{{hostname}}/websub/callback
       - MOSIP_WEBSUB_HUB_URL=${MOSIP_WEBSUB_HUB_URL}
       - MOSIP_WEBSUB_SECRET=${MOSIP_WEBSUB_SECRET}
       - MOSIP_WEBSUB_TOPIC=${MOSIP_WEBSUB_TOPIC}
