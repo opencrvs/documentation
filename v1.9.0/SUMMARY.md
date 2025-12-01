@@ -183,5 +183,25 @@
           kind: openapi
           spec: cc-develop
     ```
+  * ```yaml
+    props:
+      models: false
+    type: builtin:openapi
+    dependencies:
+      spec:
+        ref:
+          kind: openapi
+          spec: cc-develop
+    ```
+  * ```yaml
+    props:
+      models: false
+    type: builtin:openapi
+    dependencies:
+      spec:
+        ref:
+          kind: openapi
+          spec: cc-develop
+    ```
   * [Certificate templates](developers/country-configuration/certificate-templates/README.md)
     * [Variables & functions](developers/country-configuration/certificate-templates/variables-and-functions.md)
