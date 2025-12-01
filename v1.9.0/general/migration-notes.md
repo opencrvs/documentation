@@ -1,5 +1,33 @@
 # Migration notes
 
+### 🚨 **Critical Notice: Upgrading to OpenCRVS 1.9 Requires a Full Event System Refactor**
+
+OpenCRVS **1.9** is a major architectural upgrade and includes a **complete refactor** of the event configuration and event storage model.\
+This means that upgrading from **OpenCRVS 1.8 → 1.9 is&#x20;**_**not**_**&#x20;a standard upgrade.**
+
+#### ❗ What you _must_ do before upgrading
+
+* You are required to **re-configure all events** using the new **v2 event configuration format**.
+* The v1.8 event configuration model is **not compatible** with OpenCRVS 1.9.
+* A **custom data migration** must be written to convert your existing 1.8 FHIR-based MongoDB events into the new PostgreSQL event model.
+
+We provide example migration code here:\
+👉 [https://github.com/opencrvs/notebooks](https://github.com/opencrvs/notebooks)
+
+#### ❗ You cannot complete this migration without assistance
+
+A v1.8 → v1.9 migration involves:
+
+* Deep changes to how events are stored
+* Transformation of event declarations, registrations, corrections, certificates, workqueues, and analytics
+* Rebuilding event state transitions and ensuring compatibility with v2 APIs
+* Migration and re-validation of all existing citizen records
+
+> 🚨 **Therefore: You must contact us before attempting this migration.**\
+> This is a **specialised migration path**, and our team must support you through it to ensure data integrity and system stability.
+
+📧 **Contact us at team@opencrvs.org before beginning your upgrade.**
+
 ## 🔄 Upgrading OpenCRVS — Migration Guide
 
 OpenCRVS supports **incremental upgrades**, but preparation is essential—especially for governments running live civil registration services. This guide helps you plan, test, and execute a safe migration.
