@@ -1,2 +1,0 @@
-# In-form authentication / verification
-
