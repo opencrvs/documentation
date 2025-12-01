@@ -52,7 +52,7 @@
 * [Standards](technology/standards.md)
 * [Security](technology/security.md)
 * [Interoperability](technology/interoperability/README.md)
-  * [Create a client](technology/interoperability/create-a-client.md)
+  * [APIs requiring OAuth credentials](technology/interoperability/apis-requiring-oauth-credentials.md)
   * [Authenticate a client](technology/interoperability/authenticate-a-client.md)
   * [Event Notification clients](technology/interoperability/event-notification-clients.md)
   * [Record Search clients](technology/interoperability/record-search-clients.md)
