@@ -15,6 +15,76 @@ Deployment & Monitoring checklist, Data Security Framework
 Dependency table, Network Diagram with VPN & approx. costs associated
 {% endfile %}
 
+## v1.9.1: Release notes
+
+### OpenCRVS Core v1.9.1
+
+### Breaking changes
+
+- `QUERY_PARAM_READER` now returns picked params under a `data` object.
+  For example, `code` and `state` are now accessed via `data.code` and `data.state`.
+
+  Previously:
+  field(<page>.query-params).get('code')
+  Now:
+  field(<page>.query-params).get('data.code')
+
+- **Removed support for following scopes**
+  - `NATLSYSADMIN`
+  - `DECLARE`
+  - `VALIDATE`
+  - `CERTIFY`
+  - `PERFORMANCE`
+  - `SYSADMIN`
+  - `TEAMS`
+  - `CONFIG`
+  - `RECORD_EXPORT_RECORDS`
+  - `RECORD_DECLARATION_PRINT`
+  - `RECORD_PRINT_RECORDS_SUPPORTING_DOCUMENTS`
+  - `RECORD_REGISTRATION_PRINT`
+  - `RECORD_PRINT_CERTIFIED_COPIES`
+  - `RECORD_REGISTRATION_VERIFY_CERTIFIED_COPIES`
+  - `PROFILE_UPDATE`
+
+### New features
+
+- Add multi-field search with a single component [#10617](https://github.com/opencrvs/opencrvs-core/issues/10617)
+- **Search Field**: A new form field that allows searching previous records and using the data to pre-fill the current form. [#10131](https://github.com/opencrvs/opencrvs-core/issues/10131)
+- HTTP input now accepts `field('..')` references in the HTTP body definition.
+- **Searchable Select**: A new select component that allows searching through options. Useful for selects with a large number of options. Currently being used in address fields. [#10749](https://github.com/opencrvs/opencrvs-core/issues/10749)
+
+### Bug fixes
+- During user password reset, email address lookup is now case insensitive [#9869](https://github.com/opencrvs/opencrvs-core/issues/9869)
+- Users cannot activate or reactivate users with roles not specified in the `user.edit` scope [#9933](https://github.com/opencrvs/opencrvs-core/issues/9933)
+- Login page no longer show "Farajaland CRVS" before showing the correct title [#10958](https://github.com/opencrvs/opencrvs-core/issues/10958)
+- `ALPHA_PRINT_BUTTON` does not get disabled after first print [#10953](https://github.com/opencrvs/opencrvs-core/issues/10953)
+
+### OpenCRVS Country config template v1.9.0
+
+### Breaking changes
+
+- **Remove Unused Scopes**: Removed `RECORD_PRINT_RECORDS_SUPPORTING_DOCUMENTS` and `RECORD_EXPORT_RECORDS` scopes from `REGISTRATION_AGENT`, `LOCAL_REGISTRAR` and `NATIONAL_REGISTRAR`
+
+### Improvements
+
+- Make encryption step optional [#1123](https://github.com/opencrvs/opencrvs-countryconfig/pull/1123)
+- Added validation for ENCRYPTION_KEY [#10896](https://github.com/opencrvs/opencrvs-core/issues/10896)
+
+### New content keys requiring translation
+```
+searchField.indicators.clearButton,Clear button text,Clear,Effacer
+searchField.indicators.clearModal.cancel,Cancel button for clear confirmation modal,Cancel,Annuler
+searchField.indicators.clearModal.confirm,Confirm button for clear confirmation modal,Confirm,Confirmer
+searchField.indicators.clearModal.description,Description for the clear confirmation modal,This will remove the current search results.,Cela supprimera les résultats de recherche actuels.
+searchField.indicators.clearModal.title,Title for the clear confirmation modal,Clear search results?,Effacer les résultats de recherche ?
+searchField.indicators.confirmButton,Confirm button text,Search,Rechercher
+searchField.indicators.httpError,HTTP error indicator,"{statusCode, select, 408{Timed out} other{An error occurred while fetching data}}","{statusCode, select, 408{Délai d'attente dépassé} other{Une erreur s'est produite lors de la récupération des données}}"
+searchField.indicators.loading,Loading indicator,Searching...,Recherche en cours...
+searchField.indicators.noResultsError,No results found indicator,No record found,Aucun enregistrement trouvé
+searchField.indicators.offline,Offline indicator,Search is unavailable while offline,La recherche n'est pas disponible hors ligne
+searchField.indicators.ok,OK button text,Found {count} results,{count} résultats trouvés
+```
+
 ## v1.9.0: Release notes
 
 ### OpenCRVS Core v1.9.0
