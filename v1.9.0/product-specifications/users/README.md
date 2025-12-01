@@ -24,23 +24,23 @@ The following are the key scope categories available for configuration:
 | record.declared.archive                  | This scope allows a user to archive a declaration. An archived declaration has the status 'Archived'                                  |
 | record.archived.reinstate                | This scope allows a user to reinstate an archived declaration. Declarations will revert to the previous status before it was archived |
 | record.declared.edit                     | This scope allows a user to edit a declaration declared by another user                                                               |
-| record.unassign-user                     | This scope is to allow a user to unassign another user who is current assigned to the record                                          |
-| record.review-duplicates                 | This scope allows a user to review declarations that have been flagged as a potential duplicate                                       |
+| record.unassign-others                   | This scope is to allow a user to unassign another user who is current assigned to the record                                          |
+| record.declared.review-duplicates        | This scope allows a user to review declarations that have been flagged as a potential duplicate                                       |
 | record.register                          | This scope allows a user to register a record. Record will have the status 'Registered'                                               |
 | record.registered.print-certified-copies | This scope allows a user to print a certified copy and issue                                                                          |
 | record.registered.request-correction     | This scope allows a user to request a correction to a record                                                                          |
 | record.registered.correct                | This scope allows a user to correct a record and review correction requests                                                           |
 | record.read                              | This scopes allows a user to view a record data                                                                                       |
-| record.read.audit                        | This scopes allows a user to view record audit history                                                                                |
-| record.read.comments                     | This scopes allows a user to view record comments                                                                                     |
 | search                                   | This scope allows a user to search for record and view summary information                                                            |
 | profile.electronic-signature             | This scopes allows a user to add and update their electronic signature                                                                |
 | performance.read                         | This scope allows a user to view metabase peformance dashboards                                                                       |
 | config.update:all                        | This scope allows the user access to configurations options                                                                           |
 | organisation.locations                   | This scope allows a user to view the Organisation, My Team menu tabs and view all locations                                           |
-| organisation.user.create                 | This scope allows a user to create a new user                                                                                         |
-| organisation.user.edit                   | This scope allows a user to edit a new user                                                                                           |
-| organisation.user.read                   | This scope allows a user to view a user's profile                                                                                     |
+| user.create                              | This scope allows a user to create a new user                                                                                         |
+| user.update                              | This scope allows a user to update a user role details                                                                                |
+| user.edit                                | This scope defines what user roles you can edit                                                                                       |
+| user.read                                | This scope allows a user to view a user's profile                                                                                     |
+| workqueue                                | This scopes defines what workqueues they see                                                                                          |
 
 {% hint style="info" %}
 **How to configure user roles & scopes?**\
