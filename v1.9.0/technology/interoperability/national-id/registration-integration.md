@@ -34,7 +34,7 @@ The following library can return a graceful rejection message.
 
 ### Aynchronous integration - birth & death
 
-It is possible to use the same endpoint asynchronously.  But first, the following setting must be set to true in [application-config.ts](../../setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.5-set-up-application-settings/):
+It is possible to use the same endpoint asynchronously.  But first, the following setting must be set to true in [application-config.ts](../../../setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.5-set-up-application-settings/):
 
 ```typescript
 EXTERNAL_VALIDATION_WORKQUEUE: true
@@ -42,7 +42,7 @@ EXTERNAL_VALIDATION_WORKQUEUE: true
 
 This configuration setting enables a work-queue "In external validation" that can hold records in a `WAITING_VALIDATION` status until an asynchronous process completes.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2025-06-05 at 18.02.55.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2025-06-05 at 18.02.55.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="danger" %}
 The JWT token that is sent to the /event-registration endpoint & the birth / death registration number that is generated here, must be stored by your asynchronous process and used in the next operation.
