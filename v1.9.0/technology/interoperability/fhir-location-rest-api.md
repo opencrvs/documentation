@@ -1,9 +1,3 @@
----
-description: >-
-  Create, read, update or archive administrative areas, civil registration
-  offices or health facilities using FHIR.
----
-
 # APIs for system administrators
 
 ### FHIR Location REST API
@@ -12,11 +6,11 @@ You need access to the FHIR Location API for 3 important reasons...
 
 #### 1. In order to get FHIR IDs for locations required in Event Notification or deciphering location information from FHIR IDs returned from a Record Search or Webhook response
 
-This API will help you configure integrating clients to understand the relationship to places referenced by [FHIR Location](https://build.fhir.org/location.html) ids in payloads such as "Place of birth", "Place of registration", or "Jurisdiction" such as [Webhooks](create-a-client/webhook-clients.md) and [National ID](national-id-client.md) clients.
+This API will help you configure integrating clients to understand the relationship to places referenced by [FHIR Location](https://build.fhir.org/location.html) ids in payloads such as "Place of birth", "Place of registration", or "Jurisdiction" such as [Webhooks](apis-requiring-oauth-credentials/webhook-clients.md) and [National ID](/broken/pages/fnIUyeYxJLdeNSimQ86w) clients.
 
-For an [Event Notification](create-a-client/event-notification-clients.md) client, you must submit the correct FHIR Location id for the health facility that OpenCRVS understands in order to correctly track the place of birth.
+For an [Event Notification](apis-requiring-oauth-credentials/event-notification-clients.md) client, you must submit the correct FHIR Location id for the health facility that OpenCRVS understands in order to correctly track the place of birth.
 
-For a [Record Search](create-a-client/record-search-clients.md) client, you need the correct FHIR Location id when performing advanced searches depending on your parameters.
+For a [Record Search](apis-requiring-oauth-credentials/record-search-clients.md) client, you need the correct FHIR Location id when performing advanced searches depending on your parameters.
 
 {% hint style="info" %}
 All FHIR objects such as Location are ["FHIR Resources"](https://hl7.org/fhir/resource.html) and have a unique uuid: [**"id"**](https://hl7.org/fhir/resource-definitions.html#Resource.id) property that never changes.
@@ -59,21 +53,21 @@ You can also use the FHIR API URL parameters to search using [**FHIR identifiers
 By adding the FHIR **status=active** property, you can filter out any deactivated locations that are no longer in use.
 
 {% openapi-operation spec="fhir-location-api" path="/locations" method="get" %}
-[OpenAPI fhir-location-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250716%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250716T105626Z&X-Amz-Expires=172800&X-Amz-Signature=3c0be4a90599402a796aa76850c20261729aee6796f6bdff1b707f2119caa60e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+[OpenAPI fhir-location-api](https://4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/gitbook-x-prod-openapi/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20251201%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20251201T180504Z&X-Amz-Expires=172800&X-Amz-Signature=a3506e2b70f05544d6e218977351adc8893221ed17675e86b7421ae2154cd884&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 {% endopenapi-operation %}
 
 {% openapi-operation spec="fhir-location-api" path="/locations/{locationId}" method="get" %}
-[OpenAPI fhir-location-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250716%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250716T105626Z&X-Amz-Expires=172800&X-Amz-Signature=3c0be4a90599402a796aa76850c20261729aee6796f6bdff1b707f2119caa60e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+[OpenAPI fhir-location-api](https://4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/gitbook-x-prod-openapi/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20251201%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20251201T180504Z&X-Amz-Expires=172800&X-Amz-Signature=a3506e2b70f05544d6e218977351adc8893221ed17675e86b7421ae2154cd884&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 {% endopenapi-operation %}
 
 When creating a new location, **statisticalID** is the **adminPCode** or **custom id** you set when importing administrative areas or facility CSVs respectively. We call that a statisticalID because it is generally used by statistics departments in government as opposed to a FHIR id.
 
 {% openapi-operation spec="fhir-location-api" path="/locations" method="post" %}
-[OpenAPI fhir-location-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250716%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250716T105626Z&X-Amz-Expires=172800&X-Amz-Signature=3c0be4a90599402a796aa76850c20261729aee6796f6bdff1b707f2119caa60e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+[OpenAPI fhir-location-api](https://4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/gitbook-x-prod-openapi/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20251201%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20251201T180504Z&X-Amz-Expires=172800&X-Amz-Signature=a3506e2b70f05544d6e218977351adc8893221ed17675e86b7421ae2154cd884&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 {% endopenapi-operation %}
 
 {% openapi-operation spec="fhir-location-api" path="/locations/{locationId}" method="put" %}
-[OpenAPI fhir-location-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250716%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250716T105626Z&X-Amz-Expires=172800&X-Amz-Signature=3c0be4a90599402a796aa76850c20261729aee6796f6bdff1b707f2119caa60e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+[OpenAPI fhir-location-api](https://4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/gitbook-x-prod-openapi/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20251201%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20251201T180504Z&X-Amz-Expires=172800&X-Amz-Signature=a3506e2b70f05544d6e218977351adc8893221ed17675e86b7421ae2154cd884&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 {% endopenapi-operation %}
 
 {% hint style="info" %}
@@ -96,7 +90,6 @@ The JWT is the value for the key **"opencrvs"**
 
 **Double click inside the value** and type **Ctrl+A** to select all, then **Ctrl+C** to copy the JWT into your clipboard.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-01-19 at 17.41.39.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-01-19 at 17.41.39 (1).png" alt=""><figcaption></figcaption></figure>
 
 **Update or Archive a FHIR Location**
-
