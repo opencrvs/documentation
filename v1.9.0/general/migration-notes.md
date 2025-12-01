@@ -1,159 +1,255 @@
 # Migration notes
 
-### Step 1: Prepare to migrate
+## 🔄 Upgrading OpenCRVS — Migration Guide
 
-{% hint style="warning" %}
-If you are working on behalf of a government that is considering implementing OpenCRVS, we can help you to migrate your version of OpenCRVS.
+OpenCRVS supports **incremental upgrades**, but preparation is essential—especially for governments running live civil registration services. This guide helps you plan, test, and execute a safe migration.
 
-Please contact us at [team@opencrvs.org](mailto:team@opencrvs.org?subject:WebsiteEnquiry)
-{% endhint %}
+If you require support, please contact us at:\
+📧 **team@opencrvs.org**
 
-Before you start migrating, consider these questions and the potential impacts of upgrading, which we would ask you if we were offering support:
+***
 
-1. What version number you are currently using?
-2. What version number you wish to upgrade to?
-3. Have you made any NodeJS or React code customisations of any kind to opencrvs-core?
+## ✅ **Step 1 — Prepare for Migration**
 
-We ask these questions because OpenCRVS is designed to be migrated incrementally, from the immediately proceeding version.
+Before upgrading, confirm the following. These are the same questions we ask when supporting an implementation, as the answers significantly affect the migration effort.
 
-{% hint style="info" %}
-Some countries fork and make customisations to opencrvs-core which means they need to merge or rebase changes to core (hosting their own opencrvs-core repository) as well as the country configuration server. Normally we do not advise people to make their own core customisations but instead work with our core team to open pull requests on core for any functionality you need. However some people choose to do this independently, so make sure you also merge/rebase your core repo too.
-{% endhint %}
+***
 
-4\. Have you integrated OpenCRVS to another system using an API, or documented system client? Remember to schedule and QA any integrations after updating.
+### 🔍 1. Version analysis
 
-5\. Have you completely configured OpenCRVS? Conflicts in our countryconfig repo may not apply to your configuration. Some conflicts may be related to bug-fixes. Those are documented in the release notes.
+* **Which version of OpenCRVS are you currently running?**
+* **Which version do you want to upgrade to?**
 
-6\. Have you setup real registrar users in the system? Do they need to be trained on any new business processes introduced by new features in the release?
+> ℹ️ OpenCRVS supports upgrades **one major/minor version at a time**.\
+> Skipping versions increases complexity and risk.
 
-7\. Are you already registering real citizens in testing or production? Do you have a backup and staging environment to ensure that citizen data is backed up successfully before you start?
+***
 
-8\. Have you deployed OpenCRVS to a server environment? If so, answer these additional questions:
+### 🧩 2. Core code customisations
 
-* Please tell us if you have dedicated or shared servers
-* Do you have independent development (staging), quality assurance and production servers to incrementally test the upgrade?
-* Have you provisioned a backup server and automated staging restoration as documented?
-* How much free disk space and RAM is available on each server. Do you have enough space and power for the upgrade?
-* Are you running OpenCRVS on a cluster of 1, 3 or 5 servers? A cluster will all need re-provisioned.
+* Have you modified **opencrvs-core** (NodeJS, React, or API logic)?
+* Have you forked opencrvs-core and maintain a custom version?
 
-{% hint style="info" %}
-We ask these questions to make sure that you are aware that you should backup your data first and ensure that you can restore from a backup. We ask them to make sure you have healthy environments with enough RAM and disk space. You must test your migration first on a dedicated quality assurance and staging server before attempting to migrate a production server. You need to know that your configurations still work and your data is safe. If you have concerns, reach out to us for support.
-{% endhint %}
+If so:
 
-### Step 2: Update locally
+> ⚠️ You must merge or rebase your **core fork** as well as your **countryconfig** fork.\
+> We strongly recommend submitting PRs to the upstream opencrvs-core instead of maintaining long-lived forks.
 
-The most complex task really depends upon how much customisation you have made to your country configuration fork as you will be required to merge or rebase your fork with our release branch. **(You must be familiar with the concept of** [**Git merge**](https://git-scm.com/docs/git-merge) **or** [**Git rebase**](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase)**)**.
+***
 
-{% hint style="info" %}
-Please refer to the release notes , which contains a video of an example code upgrade process, and our [release process including Gitflow](releases/) branching approach.
-{% endhint %}
+### 🔗 3. External integrations
 
-1. Navigate to your opencrvs-core directory, checkout the **master** branch and pull latest changes. Yarn install any dependency upgrades:
+* Have you integrated OpenCRVS with external systems (e.g., population registers, ID platforms, HIS, notification services)?
 
-```
-cd <path on your environment>/opencrvs-core
-```
+> 🔄 All integrations must be **retested** after upgrading.
 
-```
+***
+
+### 📦 4. Country configuration status
+
+* Have you fully configured your country’s forms, events, locations, roles, messages, etc.?
+
+Conflicts may arise when merging countryconfig; some may simply be upstream bug fixes (see release notes).
+
+***
+
+### 👥 5. Staff readiness
+
+* Do you have real registrar or administrative users already using the system?
+* Do they need training on new business processes or UI changes in the new release?
+
+***
+
+### 🗄 6. Data considerations
+
+* Are you already registering **real citizens**?
+* Do you have reliable **backups** and a working **staging database restore pipeline**?
+
+> ⚠️ **Never upgrade production without successfully restoring a backup to staging first.**
+
+***
+
+### 🖥 7. Server environment checks
+
+If OpenCRVS is already deployed to servers:
+
+#### You must confirm:
+
+* Dedicated or shared servers?
+* Separate **Dev/Staging/QA/Production** environments?
+* Automated backup & restoration configured?
+* Available **RAM**, **disk space**, and CPU capacity?
+* Whether you are running a **cluster of 1, 3, or 5 nodes**\
+  (clusters must all be re-provisioned)
+
+***
+
+> 🚨 **Why we ask these questions**\
+> To ensure:
+>
+> * You have working backups
+> * Your infrastructure is healthy
+> * You test migration safely in QA and Staging
+> * Your data is protected\
+>   If any concerns arise, contact us for support.
+
+***
+
+## ✅ **Step 2 — Update Locally**
+
+The complexity of this stage depends on how many customisations you have made to your countryconfig fork.
+
+***
+
+### 1. Update opencrvs-core
+
+```bash
+cd <path>/opencrvs-core
 git fetch
-```
-
-```
-git checkout release-v*.*.* <-- substitute version of choice!
-```
-
-or, alternatively checkout the master branch, unless it has moved on past the release you intend to upgrade to.
-
-```
+git checkout release-v*.*.*   # or master if appropriate
 git pull
-```
-
-```
 yarn --force
 ```
 
-2\. You will now have the release opencrvs-core code locally to run alongside your updated countryconfig code. Your next step is to merge or rebase any changes you need from the country configuration repository fork.
+You now have the target OpenCRVS release code locally.
 
-3\. Navigate to your forked country configuration repo
+***
 
-```
-cd <path on your environment>/opencrvs-<your country>
-```
+### 2. Update your country configuration fork
 
-```
+```bash
+cd <path>/opencrvs-<your-country>
 git fetch --all
-```
-
-4\. Create a new branch for a PR that will be a merge or rebase from our release.
-
-```
-git checkout -b upgrade-countryconfig-v<insert new version>
-```
-
-The following command pulls from a remote named "upstream" which should already point to our countryconfig repository. You set this up when [forking countryconfig](../setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.1-fork-your-own-country-configuration-repository.md)
-
-```
-git pull upstream release-v*.*.* <-- substitute version of choice!
-```
-
-```
+git checkout -b upgrade-countryconfig-v<target-version>
+git pull upstream release-v*.*.*     # “upstream” should point to opencrvs-countryconfig
 yarn --force
 ```
 
-5\. **You will likely need to fix some conflicts.**
+***
 
-6\. If you are running OpenCRVS locally, simply [start OpenCRVS](../setup/3.-installation/3.1-set-up-a-development-environment/3.1.3-starting-and-stopping-opencrvs.md). Migrations will automatically run on your local data and you have finished upgrading OpenCRVS locally.
+### 3. Resolve merge conflicts
 
-{% hint style="info" %}
-Test your upgrade locally before proceeding
-{% endhint %}
+Most upgrades require resolving configuration conflicts.\
+Follow the release notes and upgrade video included with each release.
 
-7. Commit and push your changes to a pull request for peer review.
-8. When you are satisfied, merge your PR into your main branch for development. A Docker image with a **githash** for your upgrade will be built and sent to Dockerub.
+***
 
-### Step 3: Upgrade your Github **environments**
+### 4. Run OpenCRVS locally
 
-1. Ensure that you have a backup of all previous environment variables and secrets in your password manager software for all your server environments.
-2. Every release likely contains dev-ops improvements and changes to [Github environment secrets and variables](../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.4-create-a-github-environment). Run `yarn environment:init` for each of your environments.
-3. The script will ask you if you wish to update existing secrets. You should not update them if you are already live.
-4. If an environment variable or secret is missing in the new code, you will be asked to create it.
-5. Some environment variables or secrets are automatically generated by the script.
+Start the system; migrations run automatically on your local database.
 
-### Step 4: Upgrade your QA server **environments**
+> 🧪 **Test thoroughly before continuing.**
 
-1. Every release likely contains dev-ops improvements and bug fixes to your servers. Run the [Provision](../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers) action on your QA server environment.
-2. Run the Deploy script to your QA environment using the **new release number** for core and the **githash** for your countryconfig image, but **do not reset the environment**. There is no need. Migrations will run on your QA data, which you can monitor in Kibana, using Logstream and the **tag: migration**
-3. Log in to QA when the migrations are complete and test your upgrade. Engage your QA team to do the same. When your QA team is satisfied with the upgrade you can proceed to the next step.
+***
 
-### Step 5: Upgrade your Staging server **environments**
+### 5. Commit and push
 
-1. Run the Provision action on your Staging server environment. Then run the Deploy action.
-2. As staging contains a mirror of all your citizen data, data migrations may take hours to complete. Once again, monitor the migrations in Kibana and **do not use the staging environment until the migrations are complete.**
-3. Log in to Staging when the migrations are complete and test your upgrade. Engage your QA team to do the same. When your QA team is satisfied with the staging upgrade you can proceed to the next step.
+Create a PR for peer review, then merge to your main development branch.\
+A Docker image with the updated git hash will automatically build and push to DockerHub.
 
-### Step 6: Schedule downtime on Production & Backup for the upgrade
+***
 
-1. Use the "Email all users" feature to contact all staff and instruct them to cease operations and submit any offline drafts that they may be working on ensuring that they are synced online in the outbox by the date given when the downtime will occur. **This must be done because a user's browser cache is cleared on each upgrade requiring them to log out and log back in again.**
+## ✅ **Step 3 — Upgrade GitHub Environments**
 
-{% hint style="danger" %}
-All un-submitted draft applications only exist locally in a users browser cache and are therefore not preserved when the application is updated. The browser cache is cleared. **Inform all staff to submit in-progress drafts before updating OpenCRVS in production.**
-{% endhint %}
+Back up **all secrets and environment variables** in your password manager.
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-12-11 at 08.44.32.png" alt=""><figcaption></figcaption></figure>
+Each release may introduce:
 
-### Step 7: Upgrade your Production & Backup environments
+* new GitHub environment secrets,
+* removed/renamed variables, or
+* DevOps improvements.
 
-Before you proceed, ensure that you have understood these warnings:
+Run:
 
-{% hint style="danger" %}
-If you have hosted **AND CONFIGURED** OpenCRVS on a server and are capturing live registrations in production, **YOU MUST ENSURE THAT OPENCRVS BACKUPS ARE WORKING AND RESTORING ON A "STAGING" ENVIRONMENT. YOU SHOULD ALSO HAVE A HARD COPY OF RECENT BACKUPS.** This is so that you can restore in the event of any migration problems. [Read the backup instructions.](../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore)
-{% endhint %}
+```bash
+yarn environment:init
+```
+
+The script will:
+
+* Ask whether to overwrite existing secrets (do **not** overwrite for live environments)
+* Prompt you to add missing secrets
+* Automatically generate new values where required
+
+***
+
+## ✅ **Step 4 — Upgrade QA Servers**
+
+1. Run the **Provision** GitHub action for your QA environment.
+2. Run **Deploy** using:
+   * new _opencrvs-core_ release version
+   * the new _countryconfig_ Docker image git hash
+3. **Do not reset** the environment; migrations run automatically.
+
+Monitor migrations in Kibana:
+
+```
+tag: migration
+```
+
+> 🧪 Test thoroughly in QA before proceeding.
+
+***
+
+## ✅ **Step 5 — Upgrade Staging Servers**
+
+Repeat the steps used for QA:
+
+1. Provision
+2. Deploy
+
+Because staging contains **real citizen data** (from production backups), migrations may take hours.
 
 {% hint style="danger" %}
 A release of OpenCRVS can contain automatic database migrations. If you have been running OpenCRVS in production and you have live civil registrations for real citizens, these migrations may take several hours to complete depending on your scale. This will lead to reduced performance of OpenCRVS during this time. Therefore test your release on a "staging" environment first that has a restored backup of citizen data on it. Monitor migrations in Kibana, searching Observability > Logs using "tag: migration" to ensure there are no migration errors.
 {% endhint %}
 
-2. Run the Provision action on your Backup server environment.
-3. Run the Provision action on your Production server environment. Then run the Deploy action.
-4. Once again, monitor the migrations in Kibana and **do not use the production environment until the migrations are complete.**
-5. Log in to production when the migrations are complete and test your upgrade. Engage your QA team to do the same. When your QA team is satisfied with the production upgrade you can contact all staff to recommence operations.
+> ⚠️ Do not use staging until migrations complete.
+
+Once complete, test again with your QA team.
+
+***
+
+{% hint style="danger" %}
+If you have hosted **AND CONFIGURED** OpenCRVS on a server and are capturing live registrations in production, **YOU MUST ENSURE THAT OPENCRVS BACKUPS ARE WORKING AND RESTORING ON A "STAGING" ENVIRONMENT. YOU SHOULD ALSO HAVE A HARD COPY OF RECENT BACKUPS.** This is so that you can restore in the event of any migration problems. [Read the backup instructions.](../setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore)
+{% endhint %}
+
+## ✅ **Step 6 — Schedule Production Downtime & Notify Staff**
+
+<figure><img src="../.gitbook/assets/Screenshot 2024-12-11 at 08.44.32.png" alt=""><figcaption></figcaption></figure>
+
+Use **Email All Users** to instruct staff:
+
+* Stop work
+* Submit all **offline drafts** before the upgrade
+* Ensure their **outbox is empty**
+
+> ⚠️ Browser caches are cleared on upgrade.\
+> Drafts stored locally in the browser will be **lost forever** if not submitted first.
+
+***
+
+## ✅ **Step 7 — Upgrade Production & Backup Environments**
+
+Before proceeding:
+
+> 🚨 **Critical warnings**
+>
+> * Ensure backups restore correctly on staging
+> * Maintain a **hard copy** of recent backups
+> * Expect database migrations to take **hours**
+> * Expect reduced system performance during migration
+> * Never upgrade production without validating on staging first
+
+***
+
+#### Upgrade steps
+
+1. Provision **Backup** server
+2. Provision **Production** server
+3. Deploy using the new release and countryconfig image
+4. Monitor migrations in Kibana (`tag: migration`)
+5. Do not use production until migration finishes
+6. Log in and test with your QA team
+7. Notify staff that operations can resume
+
