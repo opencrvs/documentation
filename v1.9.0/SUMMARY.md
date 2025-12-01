@@ -100,7 +100,7 @@
       * [4.2.3.2 Prepare source file for health facilities](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.3-set-up-cr-offices-and-health-facilities/3.2.3.2-prepare-source-file-for-health-facilities.md)
     * [4.2.4 Set up employees & roles for testing or production](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.4-set-up-employees-for-testing-or-production/README.md)
       * [4.2.3.1 Prepare source file for employees](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.4-set-up-employees-for-testing-or-production/3.2.3.1-prepare-source-file-for-test-employees.md)
-      * [4.2.3.2 Configure role titles](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.4-set-up-employees-for-testing-or-production/4.2.3.2-configure-role-titles.md)
+      * [4.2.3.2 Configure user roles](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.4-set-up-employees-for-testing-or-production/4.2.3.2-configure-role-titles.md)
     * [4.2.5 Set up application settings](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.5-set-up-application-settings/README.md)
       * [4.2.5.1 Managing language content](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.5-set-up-application-settings/3.2.9.1-managing-language-content/README.md)
         * [4.2.5.1.1 Informant and staff notifications](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.5-set-up-application-settings/3.2.9.1-managing-language-content/3.3.3-provision-a-comms-gateway.md)
