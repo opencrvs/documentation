@@ -25,7 +25,7 @@ The following are the key scope categories available for configuration:
 | record.archived.reinstate                | This scope allows a user to reinstate an archived declaration. Declarations will revert to the previous status before it was archived |
 | record.declared.edit                     | This scope allows a user to edit a declaration declared by another user                                                               |
 | record.unassign-others                   | This scope is to allow a user to unassign another user who is current assigned to the record                                          |
-| record.declared.review-duplicates        | This scope allows a user to review declarations that have been flagged as a potential duplicate                                       |
+| record.review-duplicates                 | This scope allows a user to review declarations that have been flagged as a potential duplicate                                       |
 | record.register                          | This scope allows a user to register a record. Record will have the status 'Registered'                                               |
 | record.registered.print-certified-copies | This scope allows a user to print a certified copy and issue                                                                          |
 | record.registered.request-correction     | This scope allows a user to request a correction to a record                                                                          |
