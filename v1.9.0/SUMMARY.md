@@ -59,9 +59,12 @@
     * [Webhook clients](technology/interoperability/apis-requiring-oauth-credentials/webhook-clients.md)
   * [APIs for system administrators](technology/interoperability/fhir-location-rest-api.md)
   * [National ID](technology/interoperability/national-id/README.md)
-    * [MOSIP](technology/interoperability/national-id/mosip.md)
     * [Registration integration](technology/interoperability/national-id/registration-integration.md)
     * [In-form authentication / verification](technology/interoperability/national-id/in-form-authentication-verification.md)
+    * [MOSIP](technology/interoperability/national-id/mosip/README.md)
+      * [Registration integration](technology/interoperability/national-id/mosip/registration-integration.md)
+      * [In-form authentication / verification](technology/interoperability/national-id/mosip/in-form-authentication-verification.md)
+      * [Deployment](technology/interoperability/national-id/mosip/deployment.md)
 
 ## Default configuration
 
