@@ -4,7 +4,7 @@ description: >-
   offices or health facilities using FHIR.
 ---
 
-# FHIR Location REST API
+# APIs for system administrators
 
 ### FHIR Location REST API
 
@@ -59,21 +59,21 @@ You can also use the FHIR API URL parameters to search using [**FHIR identifiers
 By adding the FHIR **status=active** property, you can filter out any deactivated locations that are no longer in use.
 
 {% openapi-operation spec="fhir-location-api" path="/locations" method="get" %}
-[OpenAPI fhir-location-api](https://4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/gitbook-x-prod-openapi/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20251124%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20251124T121138Z&X-Amz-Expires=172800&X-Amz-Signature=6f3f0ef24289823a90bf35b7938d07c8ce03c38f9f98d6cde649735a5109f04e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+[OpenAPI fhir-location-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250716%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250716T105626Z&X-Amz-Expires=172800&X-Amz-Signature=3c0be4a90599402a796aa76850c20261729aee6796f6bdff1b707f2119caa60e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 {% endopenapi-operation %}
 
 {% openapi-operation spec="fhir-location-api" path="/locations/{locationId}" method="get" %}
-[OpenAPI fhir-location-api](https://4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/gitbook-x-prod-openapi/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20251124%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20251124T121138Z&X-Amz-Expires=172800&X-Amz-Signature=6f3f0ef24289823a90bf35b7938d07c8ce03c38f9f98d6cde649735a5109f04e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+[OpenAPI fhir-location-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250716%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250716T105626Z&X-Amz-Expires=172800&X-Amz-Signature=3c0be4a90599402a796aa76850c20261729aee6796f6bdff1b707f2119caa60e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 {% endopenapi-operation %}
 
 When creating a new location, **statisticalID** is the **adminPCode** or **custom id** you set when importing administrative areas or facility CSVs respectively. We call that a statisticalID because it is generally used by statistics departments in government as opposed to a FHIR id.
 
 {% openapi-operation spec="fhir-location-api" path="/locations" method="post" %}
-[OpenAPI fhir-location-api](https://4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/gitbook-x-prod-openapi/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20251124%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20251124T121138Z&X-Amz-Expires=172800&X-Amz-Signature=6f3f0ef24289823a90bf35b7938d07c8ce03c38f9f98d6cde649735a5109f04e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+[OpenAPI fhir-location-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250716%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250716T105626Z&X-Amz-Expires=172800&X-Amz-Signature=3c0be4a90599402a796aa76850c20261729aee6796f6bdff1b707f2119caa60e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 {% endopenapi-operation %}
 
 {% openapi-operation spec="fhir-location-api" path="/locations/{locationId}" method="put" %}
-[OpenAPI fhir-location-api](https://4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/gitbook-x-prod-openapi/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20251124%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20251124T121138Z&X-Amz-Expires=172800&X-Amz-Signature=6f3f0ef24289823a90bf35b7938d07c8ce03c38f9f98d6cde649735a5109f04e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+[OpenAPI fhir-location-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c4baca207f68f6a1509d9ae3c6c9aae5f68483bef52d8f2a4f2eee69b6e72197.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250716%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250716T105626Z&X-Amz-Expires=172800&X-Amz-Signature=3c0be4a90599402a796aa76850c20261729aee6796f6bdff1b707f2119caa60e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 {% endopenapi-operation %}
 
 {% hint style="info" %}
@@ -99,3 +99,4 @@ The JWT is the value for the key **"opencrvs"**
 <figure><img src="../../.gitbook/assets/Screenshot 2023-01-19 at 17.41.39.png" alt=""><figcaption></figcaption></figure>
 
 **Update or Archive a FHIR Location**
+
