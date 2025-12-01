@@ -56,7 +56,6 @@
     * [Authenticate a client](technology/interoperability/apis-requiring-oauth-credentials/authenticate-a-client.md)
     * [Event Notification clients](technology/interoperability/apis-requiring-oauth-credentials/event-notification-clients.md)
     * [Record Search clients](technology/interoperability/apis-requiring-oauth-credentials/record-search-clients.md)
-    * [Webhook clients](technology/interoperability/apis-requiring-oauth-credentials/webhook-clients.md)
   * [APIs for system administrators](technology/interoperability/fhir-location-rest-api.md)
   * [National ID](technology/interoperability/national-id/README.md)
     * [Registration integration](technology/interoperability/national-id/registration-integration.md)
