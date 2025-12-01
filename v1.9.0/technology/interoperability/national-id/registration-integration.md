@@ -9,10 +9,10 @@ In the OpenCRVS UI, when a registrar clicks the "Register" button on a fully com
 Once internal audit has taken place of that action in the "workflow" microservice, the following endpoint in the configurable countryconfig microservice is called while the registration is in a `WAITING_VALIDATION` status:
 
 ```
-/event-registration
+/trigger/events/${Event.id}/actions/${ActionType.REGISTER}`
 ```
 
-The entire registration data payload is sent to [this endpoint](https://github.com/opencrvs/opencrvs-countryconfig/blob/4d9b0081e38f11325ff47cecc3a51df85b50cffb/src/index.ts#L431) as a FHIR Bundle.
+The entire registration data payload is sent to an [onRegisterHandler](https://github.com/opencrvs/opencrvs-countryconfig/blob/6f3759980e8f18d1d25c2c7ed89e2f671928a255/src/api/registration/index.ts#L53)
 
 {% hint style="warning" %}
 The JWT token that is sent to this payload can be used in asynchronous operations explained below.
@@ -45,36 +45,7 @@ This configuration setting enables a work-queue "In external validation" that ca
 <figure><img src="../../../.gitbook/assets/Screenshot 2025-06-05 at 18.02.55.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="danger" %}
-The JWT token that is sent to the /event-registration endpoint & the birth / death registration number that is generated here, must be stored by your asynchronous process and used in the next operation.
+The JWT token that is sent to the onRegisterHandelr, must be stored by your asynchronous process and used in the next operation.
 {% endhint %}
 
-Using the JWT, you can call the gateway microservice GraphQL endpoint `confirmRegistration` resolver.
-
-You can decode the JWT and retrieve the internal record uuid - the variable `id` used in the payload.
-
-```
-POST https://gateway.<your_domain>/graphql
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-{
-  "operationName": "confirmRegistration",
-  "query": "mutation confirmRegistration(
-        $id: ID!
-        $details: ConfirmRegistrationInput!
-      ) {
-        confirmRegistration(id: $id, details: $details)
-      }",  
-  "variables": {
-      "id":"<record uuid from JWT>",
-      "details": {
-        "identifiers": [{
-          "type": "NATIONAL_ID",
-          "value": "<optionally store created natonal id at birth for use in OpenCRVS search / certificate>"
-        }],
-        "registrationNumber": "<Birth / Death Registration Number>",
-        "comment": "<optionally store an audit log comment>",
-      }
-  }
-}
-```
+Using the JWT, you can call the [acceptRequestedRegistration](https://github.com/opencrvs/opencrvs-countryconfig/blob/6f3759980e8f18d1d25c2c7ed89e2f671928a255/src/api/registration/index.ts#L102) or [rejectRequestedRegistration](https://github.com/opencrvs/opencrvs-countryconfig/blob/6f3759980e8f18d1d25c2c7ed89e2f671928a255/src/api/registration/index.ts#L129) handlers to respond to OpenCRVS asynchronously and progress the registration to a REGISTERED or REJECTED status accordingly.
