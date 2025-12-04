@@ -75,6 +75,10 @@ Notes:
 
 ### Production / staging / backup disk space requirements
 
+{% hint style="info" %}
+Calculated disk space doesn't include space for monitoring and logs. Please check "Monitoring disk space requirements" for more details.
+{% endhint %}
+
 Required disk space for production, staging and backup environments is calculated using the expected number of records per year and the estimated average number of attachments. The number of participating locations should be taken into account.
 
 Please use the following formula:\
@@ -105,6 +109,37 @@ Combining that with the minimum disk space reserved for the system, we conclude 
 For backup servers, we recommend storage size twice the size of application servers so in this case 2024.94 Gb.
 
 Work is ongoing in OpenCRVS to optimise storage in future versions.
+
+### Monitoring disk space requirements
+
+In default configuration monitoring data is stored for 30 days. Monitoring data size depends on filebeat configuration (scrape frequency, collected metrics, labels, tags). OpenCRVS is using custom filebeat configuration file, optimised to store only valuable data. Average disk size for monitoring data is 200Mb host/day. In general value can be calculated by formula:
+
+```
+Total space = 200Mb * <days> * <hosts> + 1Gb * <hosts>
+```
+
+* `200Mb`: disk size per day
+* `days`: number of days to store logs
+* `hosts`: number of hosts to store logs
+* `1Gb`: is minimal extra-space for each VM
+
+For single VM at least 7Gb of additional disk space is needed to store monitoring data for 30 days:
+
+```
+Total space = 200Mb * 30 * 1 + 1Gb * 1 = 7Gb
+```
+
+For Kubernetes cluster with 2 VMs at least 14Gb of additional disk space will be needed:
+
+```
+Total space = 200Mb * 30 * 2 + 1Gb * 2 = 14Gb
+```
+
+If scrape frequency, collected metrics, labels, tags were adjust then make sure disk size per day value is up to date.
+
+### TODO: Logging disk space requirements
+
+IN PROGRESS
 
 ### Server clusters by project
 
