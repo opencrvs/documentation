@@ -15,7 +15,7 @@ The following table provides an overview of projected delivery dates for future 
 * The beta release is typically made available after initial QA testing, but before full regression testing has been commenced. It is not intended for live use in a production environment, however it allows accredited implementation partners to test out sample configurations and to contribute to the release testing effort.
 * All dates provided are indicative and are subject to change, however OpenCRVS Product Management makes every effort to provide accurate estimates to support implementation planning.
 
-<table><thead><tr><th width="148">Release</th><th>Beta release date</th><th>Full release date</th></tr></thead><tbody><tr><td>v1.8.0</td><td>28 April 2025</td><td>21 July 2025</td></tr><tr><td>v1.9.0</td><td>05 September 2025</td><td>31 October 2025*</td></tr><tr><td>v2.0</td><td>TBC</td><td>TBC</td></tr></tbody></table>
+<table><thead><tr><th width="148">Release</th><th>Beta release date</th><th>Full release date</th></tr></thead><tbody><tr><td>v1.8.0</td><td>28 April 2025</td><td>21 July 2025</td></tr><tr><td>v1.9.0</td><td>05 September 2025</td><td>31 October 2025*</td></tr><tr><td>v2.0</td><td>27 February 2026</td><td>10 April 2026</td></tr></tbody></table>
 
 \*Date adjusted to include configuration and migration testing beyond the Farajaland default, including country reference implementations to ensure known local contexts are supported
 
