@@ -10,6 +10,10 @@ The Provision environment action will automate a number of tasks on your servers
 **IMPORTANT SERVER ACCESS NOTE**: As a security step, the Ansible script will disable root SSH access to your server and all password access for SSH users. [SSH key](https://www.ssh.com/academy/ssh-keys) authentication is enforced using the public keys for the users in your inventory files. Additionally. SSH users will be required to install [**Google Authenticator**](https://en.wikipedia.org/wiki/Google_Authenticator) and use a 2FA code to access. SSH access procedures to a server after Provisioning completes is explained [here](4.3.5.1-ssh-access.md).
 {% endhint %}
 
+{% hint style="warning" %}
+Provision scripts includes Kubernetes cluster upgrade playbook (see tags `all` and `k8s`). OpenCRVS application will not available during cluster upgrades.
+{% endhint %}
+
 ### Provision infrastructure
 
 Click on the "Actions" tab in Github and select the "Provision environment" action. Click the "Run workflow" button.
