@@ -8,9 +8,9 @@ description: >-
 
 An **Event Notification client** can submit full or partial events to an OpenCRVS office. You can find the technical documentation for the Event Notification APIs in our [Swagger documentation](https://api.opencrvs.org/develop/events/).
 
-\{% hint style="info" %\} You can use our [Postman collections](https://github.com/opencrvs/opencrvs-countryconfig/tree/master/postman) to test the Event Notification API functionality. Specifically, use the **Event Notification - v1.9.0** collection.
-
-[Postman](https://www.postman.com/) is a tool you can download to test API access before building your integrations. \{% endhint %\}
+{% hint style="info" %}
+You can use our [Postman collections](https://github.com/opencrvs/opencrvs-countryconfig/tree/master/postman) to test the Event Notification API functionality. Specifically, use the **Event Notification - v1.9.0** collection.  [Postman](https://www.postman.com/) is a tool you can download to test API access before building your integrations.&#x20;
+{% endhint %}
 
 The following images and examples use the fictional country [Farajaland](https://github.com/opencrvs/documentation/blob/0f41a2a0f97263259ea0116062255abd71e4bcf3/v1.9.0/default-configuration/intro-to-farajaland.md) and its birth registration configuration. Your actual events and workflows may vary depending on your country’s configuration.
 
@@ -55,7 +55,9 @@ Authorization: Bearer {{token}}
 }
 ```
 
-\{% hint style="info" %\} This request will return a response containing the event ID in the `id` field. You must use this `eventId` in the subsequent request. \{% endhint %\}
+{% hint style="info" %}
+This request will return a response containing the event ID in the `id` field. You must use this `eventId` in the subsequent request.
+{% endhint %}
 
 Once the event is initialized, you can submit the notification:
 
