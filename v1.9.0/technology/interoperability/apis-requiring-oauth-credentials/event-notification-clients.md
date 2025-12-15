@@ -74,7 +74,9 @@ Authorization: Bearer {{token}}
     "child.surname": "Doe",
     "child.dob": "{{yyyy-MM-dd}}"
   },
-  "annotation": {}
+  "annotation": {},
+  "createdAtLocation": "{{officeId}}", // Retrievable from the location API - See "APIs for system administrators"
+  "type": "NOTIFY"
 }
 ```
 
