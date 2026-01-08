@@ -2,19 +2,20 @@
 
 #### Before you begin
 
+Before running the script, you must complete prepation steps. Please carefully check information on this page.
+
 We have an automated script to generate [Github environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment) for you along with all the application secrets that Github needs to run the continuous provisioning and deployment scripts.
 
-Environment naming is not limited, but we recommend to use the naming convention described: Specifically: **qa, staging, production** and for training purposes a **development** (optional) server.
+Environment naming is not limited, but we recommend to use following environment names: **qa, staging, production** and for training purposes a **development** (optional) server.
 
-Github Actions use these environments to access the secret keys and configurations used when installing software on servers and deploying OpenCRVS.
-
-Before running the script, you must prepare some secrets that the script requires. Please carefully check information on this page.
+Github Actions use environment secrets and variables when installing software on servers and deploying OpenCRVS.
 
 #### 1. Fork (or clone) repositories
 
-{% hint style="info" %}
-Fork Infrastructure repository required to store infrastructure configuration and GitHub environments: [https://github.com/opencrvs/infrastructure](https://github.com/opencrvs/infrastructure).  More information how to fork and configure repositories was described here, when forking the countryconfig repo: [4.2.1 Fork your own country configuration repository](../../3.2-set-up-your-own-country-configuration/3.2.1-fork-your-own-country-configuration-repository.md)
-{% endhint %}
+Create your own forks from the following repositories:
+
+* [https://github.com/opencrvs/opencrvs-countryconfig](https://github.com/opencrvs/opencrvs-countryconfig): Repository is used to store OpenCRVS Country configuration. More information how to fork and configure repositories was described here, when forking the countryconfig repo: [4.2.1 Fork your own country configuration repository](../../3.2-set-up-your-own-country-configuration/3.2.1-fork-your-own-country-configuration-repository.md)
+* [https://github.com/opencrvs/infrastructure](https://github.com/opencrvs/infrastructure): Repository is used to store Infrastructure and CI/CD configuration (ansible inventory files and helm release values).
 
 **Steps to fork infrastructure repository:**
 
@@ -25,7 +26,7 @@ Fork Infrastructure repository required to store infrastructure configuration an
 5. Create a [Github Personal Access Token ](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)with the required permissions in order for the script to programmatically create Github environments on your forked repository. The only required scope for the token is "repo".
 
 {% hint style="warning" %}
-**Set the token expiration time as you wish. Note that the token secret will need to be updated regularly for deployment actions to function when it expires.**
+Set the token expiration time as needed. Keep in mind that the token secret must be updated regularly for deployment actions to continue working after it expires.
 {% endhint %}
 
 #### 2. Set up an individual and an organisation account on Dockerhub
@@ -36,23 +37,25 @@ A DockerHub account is required as the registry for the countryconfig docker ima
 
 You will need your DockerHub **username** and a personal DockerHub account **access tokens** as secrets. Our scripts use these credentials to login to DockerHub programmatically. This is how you create a DockerHub access token: [https://docs.docker.com/security/for-developers/access-tokens/](https://docs.docker.com/security/for-developers/access-tokens/)
 
-Please check [Build Country config docker image](../../3.2-set-up-your-own-country-configuration/4.2.10-build-country-config-docker-image.md) for more information.
+Please check [4.2.10 Build Country config docker image](../../3.2-set-up-your-own-country-configuration/4.2.10-build-country-config-docker-image.md) for more information.
 
-#### 3. Create companion service accounts for monitoring (optional, but recommended) & notifications
+#### 3. Create companion service accounts for monitoring and notifications
 
-Our code is hardcoded to optionally track bugs in [Sentry](https://www.sentry.io)&#x20;
+{% hint style="info" %}
+This step optional, but recommended
+{% endhint %}
 
-To take advantage, create a NodeJS project in Sentry for your chosen environment.
+Our code includes optional integration with [Sentry](https://www.sentry.io) for error tracking. To take advantage, create a NodeJS project in Sentry for the environment you want to monitor.
 
-In the Sentry project settings, select "Client Keys", and **copy the DSN property**.  You will use this as the SENTRY\_DSN secret.
+In the Sentry project settings, select "Client Keys", and **copy the DSN property**.  You will use this as the `SENTRY_DSN` secret later.
 
-Any service error whether caught or uncaught will be visible in application logs that you can monitor in Kibana.  Any hardware alert will be broadcast via elastalert to an email account configured using the ALERT\_EMAIL property.
+Any service error whether caught or uncaught will be visible in application logs that you can monitor in Kibana.  Any hardware alert will be broadcast via elastalert to an email account configured using the `ALERT_EMAIL` environment secret.
 
-If you wish to collate service and hardware errors into a single location you can configure Sentry Alert Rules and email forwarding from ALERT\_EMAIL to the same location, such as a Slack Channel.
+If you wish to collate service and hardware errors into a single location you can configure Sentry Alert Rules and email forwarding from `ALERT_EMAIL` to the same location, such as a Slack Channel.
 
 The benefits of using Slack, are that your entire development and quality assurance team can receive these notifications without a single individual becoming a bottleneck.
 
-Notifications therefore use email by default and you should set SMTP details.  The SENDER\_EMAIL\_ADDRESS is the from address used in automated emails from the system.
+Notifications are sent by email by default, so you should configure SMTP settings. The `SENDER_EMAIL_ADDRESS` environment secret stores the email address used as the sender for automated system emails.
 
 SMS gateway information can be configured in secrets too, but you will be required to follow the code in order to do this yourself.
 
