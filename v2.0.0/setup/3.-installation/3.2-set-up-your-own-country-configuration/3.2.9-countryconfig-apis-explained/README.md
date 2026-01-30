@@ -1,0 +1,142 @@
+---
+metaLinks:
+  alternates:
+    - >-
+      https://app.gitbook.com/s/RziAMaeBMeyiTg5hfFq5/setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.9-countryconfig-apis-explained
+---
+
+# 4.2.9 Other configurable countryconfig API endpoints explained
+
+### The registration endpoint
+
+The **registration endpoint** under `src/api/registration` in OpenCRVS country config allows you to customise registration-number format (or more) for your country implementation.
+
+* It is the final step in the workflow when a vital event (birth, death, etc.) is legally registered via core.
+* At this point, countryconfig has the opportunity to generate or assign official identifiers for that event/record — for example: the “registration number” (birth registration number, death registration number), or other auxiliary IDs (if required) before the event becomes permanently stored.
+* The endpoint can be configured to be synchronous or asynchronous: if the code (or any third-party integration you rely on) fails, the registration is rejected and the record is put into a “Requires updates” queue so that staff can fix the problem and re-submit.
+
+That means this endpoint is the **hook for your country’s legal registration logic** — identifier generation, external system integration, legacy-system synchronization, etc.
+
+***
+
+### ✅ What you can customise via this endpoint
+
+Because this is your “last chance” before a record becomes final, you can use the registration endpoint to:
+
+#### • Generate a custom registration number
+
+Instead of using a built-in (generic) identifier, you can implement any logic you want: sequential numbering, composite codes, region-prefixed numbers, checksums, timestamp-based codes, etc. This lets you match national legal/regulatory requirements.
+
+You can implement **any format** that meets your national / organisational needs, for example:
+
+* Pure alphanumeric token: `B847BVGS`
+* Prefixes by event: `B-2025-ABCD1234`, `D-2025-XYZ9876`
+* Embedded info:
+  * event type,
+  * year,
+  * district/office code,
+  * short checksum.
+
+{% hint style="danger" %}
+The OpenCRVS docs strongly recommend a **unique alphanumeric registration number** (non-sequential), especially under high load, because it scales better and avoids contention versus sequential counters.
+{% endhint %}
+
+#### • Generate additional identifiers
+
+If your country requires extra IDs (e.g. national-ID reference, UUID for cross-system linking, legacy registry number, external ID, etc.), you can produce up to three additional identifiers at this point. This supports integrations with national ID systems, legacy civil registry systems, or external ID databases.
+
+#### • Integrate with external/legacy systems at registration time
+
+If you maintain a legacy registry (paper-based or external database), or want to notify other services (e.g. population registry, identity registry, notification systems), this endpoint is where you plug that in. Because it’s synchronous, you know whether your external calls succeeded — if not, the registration is rolled back (or flagged for update).
+
+#### • Enforce business rules around registration number & identifiers
+
+For example:
+
+* Ensure uniqueness
+* Add region- or office-specific prefixes
+* Embed date, event type or administrative codes
+* Respect national formatting / check digit rules
+* Return meaningful errors if generation fails
+
+***
+
+### 🎯 How the registration flow uses the endpoint
+
+Here’s how the registration endpoint fits into the overall event flow for registering a vital event:
+
+1. A declaration has been completed, validated, reviewed, and is ready for registration.
+2. A registrar clicks **Register** in the UI.
+3. The handler executes your custom logic:
+   * e.g. generate registration numbers, perhaps call external API, run business logic/validation
+   * if successful → returns identifiers to core → event status becomes “Registered”
+   * if failure → returns error → record moves to “Requires updates” queue for manual fix and re-submit.
+4. Once registered, the record is persistent; any certificate printing or further workflows will carry the generated identifiers (registration number, etc.) and use them for lookup, printing, auditing, inter-system linking, etc.
+
+***
+
+### The `tracking-id` endpoint
+
+The **tracking-id endpoint** in `src/api/tracking-id` is used by OpenCRVS Core to generate a **Tracking ID** – a unique, human-shareable identifier that follows the record from the very first interaction (notification/declaration) all the way through review, validation, registration, certification and beyond.
+
+Key points:
+
+*   It’s typically exposed as something like:
+
+    ```http
+    POST /tracking-id
+    ```
+* OpenCRVS calls this when it needs a **new application Tracking ID** – i.e. when a record first enters the system as a notification or declaration.
+* The endpoint returns a **string** that becomes `trackingId` on the record and is:
+  * Shown in the UI (cards, workqueues, dashboards).
+  * Used in SMS/email templates to inform the citizen: “Your registration tracking ID is \{{trackingId\}}”.
+  * Available as a **search key** in the “Search for a record” UI.
+
+It is conceptually similar to the r**egistration endpoint**, but:
+
+* **Tracking ID** exists from the **very start** of the lifecycle, before the event is legally registered. **Registration number** is created only when the event is formally registered.
+
+***
+
+### 🎯 What the Tracking ID is used for (in the product)
+
+Across the product, `trackingId` is treated as the **primary “application ID”**:
+
+* **Informant notifications**\
+  SMS templates use `{{trackingId}}` to help the citizen follow their case (submitted, under review, registered, rejected etc.).
+* **Staff workflows**\
+  Tracking ID appears:
+  * in **workqueues** and “applications in your area” widgets,
+  * in record headers,
+  * in duplicate comparison UIs.
+* **Search**\
+  “Search for a record” allows searching by:
+  * Tracking ID
+* **Lifecycle**\
+  From _notify/declare_ to _review_ to _register_ and _issue certificate_, the same Tracking ID follows the record. After registration, it usually appears alongside the registration number in notifications and UIs.
+
+Because of this, the tracking-id endpoint is the **single place** where you define how that ID looks and how it’s generated.
+
+***
+
+### ✅ What you can customise via `src/api/tracking-id`
+
+You fully control the **format** and **generation logic** of Tracking IDs here. Typical customisations:
+
+#### 3.1. ID format
+
+You can implement **any format** that meets your national / organisational needs, for example:
+
+* Pure alphanumeric token: `B847BVGS`
+* Prefixes by event: `B-2025-ABCD1234`, `D-2025-XYZ9876`
+* Embedded info:
+  * event type,
+  * year,
+  * district/office code,
+  * short checksum.
+
+{% hint style="danger" %}
+The OpenCRVS docs strongly recommend a **unique alphanumeric Tracking ID** (non-sequential), especially under high load, because it scales better and avoids contention versus sequential counters.
+{% endhint %}
+
+####
