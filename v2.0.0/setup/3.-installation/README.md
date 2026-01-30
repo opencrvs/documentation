@@ -1,5 +1,8 @@
 ---
 description: Installation steps for OpenCRVS
+metaLinks:
+  alternates:
+    - https://app.gitbook.com/s/RziAMaeBMeyiTg5hfFq5/setup/3.-installation
 ---
 
 # 4. Installation
@@ -16,20 +19,18 @@ Once this section is completed a less technical system administrator can login a
 
 ### Steps
 
-
-
 {% content-ref url="quick-start.md" %}
 [quick-start.md](quick-start.md)
 {% endcontent-ref %}
 
 {% content-ref url="3.1-set-up-a-development-environment/" %}
-[3.1-set-up-a-development-environment](3.1-set-up-a-development-environment/README.md)
+[3.1-set-up-a-development-environment](3.1-set-up-a-development-environment/)
 {% endcontent-ref %}
 
 {% content-ref url="3.2-set-up-your-own-country-configuration/" %}
-[3.2-set-up-your-own-country-configuration](3.2-set-up-your-own-country-configuration//README.md)
+[3.2-set-up-your-own-country-configuration](3.2-set-up-your-own-country-configuration/)
 {% endcontent-ref %}
 
 {% content-ref url="3.3-set-up-a-server-hosted-environment/" %}
-[3.3-set-up-a-server-hosted-environment](3.3-set-up-a-server-hosted-environment//README.md)
+[3.3-set-up-a-server-hosted-environment](3.3-set-up-a-server-hosted-environment/)
 {% endcontent-ref %}
