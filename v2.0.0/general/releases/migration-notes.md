@@ -102,7 +102,7 @@ yarn --force
 
 5\. **You will likely need to fix some conflicts.**
 
-6\. If you are running OpenCRVS locally, simply [start OpenCRVS](broken-reference). Migrations will automatically run on your local data and you have finished upgrading OpenCRVS locally.
+6\. If you are running OpenCRVS locally, simply [start OpenCRVS](/broken/pages/hZ1cajiz9d0wkeWwpif9). Migrations will automatically run on your local data and you have finished upgrading OpenCRVS locally.
 
 {% hint style="info" %}
 Test your upgrade locally before proceeding

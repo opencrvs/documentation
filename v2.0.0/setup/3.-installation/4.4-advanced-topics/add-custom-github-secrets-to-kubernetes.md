@@ -1,4 +1,4 @@
-# Add GitHub secrets to Kubernetes
+# Add Custom GitHub secrets to Kubernetes
 
 GitHub secrets are widely used to store sensitive information for CI/CD and Runtime. Secrets examples are DockerHub credentials, Disk encryption key, Kibana credentials, Postgres and Elasticsearch admin passwords, etc.
 
@@ -44,8 +44,7 @@ Steps to add GitHub secrets to Kubernetes
 3.  Map values from secret to particular container in helm chart values:\
     Check documentation for more information: [Mapping secrets](https://github.com/opencrvs/infrastructure/blob/develop/charts/opencrvs-services/README.md#mapping-secrets) (Helm chart README.md)
 
-    ```yaml
-    countryconfig:
+    <pre class="language-yaml" data-title="Example of mapping secret keys from &#x22;smtp-config&#x22; secret to countryconfig service"><code class="lang-yaml">countryconfig:
       secrets:
         smtp-config:
           - ALERT_EMAIL
@@ -55,4 +54,4 @@ Steps to add GitHub secrets to Kubernetes
           - SMTP_PORT
           - SMTP_SECURE
           - SMTP_USERNAME
-    ```
+    </code></pre>

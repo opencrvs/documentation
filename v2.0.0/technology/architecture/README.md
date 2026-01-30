@@ -78,7 +78,7 @@ The hyper-efficient [Influx](https://www.influxdata.com) "time series database" 
 
 The core of OpenCRVS is a monorepo organised using [Lerna](https://github.com/lerna/lerna). Each package represents a single microservice. Following the [microservice](https://en.wikipedia.org/wiki/Microservices), 1 service per container model, every package is independently scalable in a single [docker](https://www.docker.com/) container.
 
-![](<../../.gitbook/assets/image (8).png>) ![](<../../.gitbook/assets/image (4).png>) ![](<../../.gitbook/assets/image (27).png>)\\
+![](<../../.gitbook/assets/image (8) (1).png>) ![](<../../.gitbook/assets/image (4) (1).png>) ![](<../../.gitbook/assets/image (27).png>)\\
 
 The OpenCRVS microservice architecture enables continuous evolution of its business requirements.
 

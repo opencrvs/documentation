@@ -2,6 +2,14 @@
 
 ### General information
 
+{% hint style="info" %}
+Backup and restore is automatically configured while environment creation by `yarn environment:init` script, check [4.3.1-create-a-github-environment](../../3.3-set-up-a-server-hosted-environment/4.3.1-create-a-github-environment/ "mention"). This guide dives into details:
+
+* How to configure backup and restore without GitHub integration?
+* How to perform manual backup?
+* How to perform disaster recovery?
+{% endhint %}
+
 OpenCRVS dependencies helm chart has an configuration options for automated backups and restores.
 
 OpenCRVS dependencies helm chart includes a built-in backup and restore features that supports automated backups and restores for internal components (datastores). Backups are uploaded on an external server via an SSH connection.
@@ -34,4 +42,4 @@ Here are high level concepts how backup/restore is working:
 
 Visit appropriate backup/restore documentation sections to get more details how to configure backup/restore.
 
-<figure><img src="../../../../../.gitbook/assets/Kubernetes infrastructure.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/Kubernetes infrastructure.png" alt=""><figcaption></figcaption></figure>
