@@ -117,6 +117,7 @@
     * [4.2.8 Seeding & clearing your local databases](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.8-seeding-your-local-database.md)
     * [4.2.9 Other configurable countryconfig API endpoints explained](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.9-countryconfig-apis-explained/README.md)
       * [4.2.9.1 Configurable workqueue API](setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.9-countryconfig-apis-explained/4.2.9.1-configurable-workqueue-api.md)
+    * [4.2.10 Build Country config docker image](setup/3.-installation/3.2-set-up-your-own-country-configuration/4.2.10-build-country-config-docker-image.md)
   * [4.3 Deploy: Set-up a server-hosted environment](setup/3.-installation/3.3-set-up-a-server-hosted-environment/README.md)
     * [4.3.1 Preparation steps](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-preparation-steps/README.md)
       * [4.3.1.1 Setup infrastructure](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-preparation-steps/4.3.1.1-setup-infrastructure.md)
