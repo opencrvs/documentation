@@ -7,7 +7,7 @@ Now that your Github environments are set up you can proceed to provision your s
 The Provision environment action will automate a number of tasks on your servers. The individual tasks that Ansible runs are explained in this [list](../../../../../v2.0.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers/4.3.5.3-ansible-tasks-when-provisioning.md). It is very helpful for you to understand what Ansible is doing on your servers so please refer to the list.
 
 {% hint style="danger" %}
-**IMPORTANT SERVER ACCESS NOTE**: As a security step, the Ansible script will disable root SSH access to your server and all password access for SSH users. [SSH key](https://www.ssh.com/academy/ssh-keys) authentication is enforced using the public keys for the users in your inventory files. Additionally. SSH users will be required to install [**Google Authenticator**](https://en.wikipedia.org/wiki/Google_Authenticator) and use a 2FA code to access. SSH access procedures to a server after Provisioning completes is explained [here](4.3.5.1-ssh-access.md).
+**IMPORTANT SERVER ACCESS NOTE**: As a security step, the Ansible script will disable root SSH access to your server and all password access for SSH users. [SSH key](https://www.ssh.com/academy/ssh-keys) authentication is enforced using the public keys for the users in your inventory files. Additionally. SSH users will be required to install [**Google Authenticator**](https://en.wikipedia.org/wiki/Google_Authenticator) and use a 2FA code to access. SSH access procedures to a server after Provisioning completes is explained [here](../../4.4-advanced-topics/4.3.5.1-ssh-access.md).
 {% endhint %}
 
 {% hint style="warning" %}
@@ -41,8 +41,8 @@ If the server provisioning works, you will eventually see a green tick to mark t
 ## Provision verification steps
 
 * [ ] Kubernetes self-hosted runner is visible under **Settings → Actions → Runners** on GitHub.
-* [ ] You should be able to ssh (login) on the server with any user account defined under `users` section of inventory file, check [SSH Access](4.3.5.1-ssh-access.md)
-* [ ] You should have access to kubernetes cluster after ssh (login). Command to verify: `kubectl config current-context` and locally, check [Kubernetes cluster access](4.3.5.2-kubernetes-cluster-access.md)
+* [ ] You should be able to ssh (login) on the server with any user account defined under `users` section of inventory file, check [4.3.5.1-ssh-access.md](../../4.4-advanced-topics/4.3.5.1-ssh-access.md "mention")
+* [ ] You should have access to kubernetes cluster after ssh (login). Command to verify: `kubectl config current-context` and locally, check [Kubernetes cluster access](../../4.4-advanced-topics/4.3.5.2-kubernetes-cluster-access.md)
 
 ## Ansible tasks explained
 

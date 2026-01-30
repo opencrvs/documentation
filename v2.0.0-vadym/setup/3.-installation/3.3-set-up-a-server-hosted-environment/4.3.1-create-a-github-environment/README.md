@@ -2,24 +2,30 @@
 
 #### Before you begin
 
-In this section you will run `yarn environments:init` script which will help you to create GitHub environments.
+In this section you will run `yarn environments:init` script which will help you to configure OpenCRVS:
+
+* Create GitHub environments
+* Draft commands to bootstrap new servers
+* Prepare inventory files for ansible for environment provision
+* Prepare Helm chart values for deployment
 
 GitHub environments will host all secrets and variables required for successful infrastructure configuration (users, filesystem, kubernetes cluster, etc) and OpenCRVS deployment.
 
 Make sure you completed environment preparation steps and have all required information:
 
-| Property                                | Description                                                                                                                                                                                                                                                             |
-| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GitHub Organisation                     | Own GitHub organisation with subscription.                                                                                                                                                                                                                              |
-| Country config repository               | [4.2.10-build-country-config-docker-image.md](../../3.2-set-up-your-own-country-configuration/4.2.10-build-country-config-docker-image.md "mention")                                                                                                                    |
-| Infrastructure repository               | [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention")                                                                                                               |
-| GitHub Token                            | Personal access token (Fine grained token) with access to Country config and Infrastructure repositories. See [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention") |
-| DockerHub Account, token and repository | <p><a data-mention href="../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md">4.3.1.4-create-prerequisite-accounts-and-repositories.md</a><br>Make sure Country config image was built and pushed to DockerHub</p>                      |
-| Virtual machines (servers) created      | <p><a data-mention href="../4.3.1-preparation-steps/4.3.1.1-setup-infrastructure.md">4.3.1.1-setup-infrastructure.md</a><br>Verify you have IP addresses or DNS names and you are able to login on those VMs</p>                                                        |
-| Domain names are registered             | <p><a data-mention href="../4.3.1-preparation-steps/4.3.1.2-configure-dns.md">4.3.1.2-configure-dns.md</a><br>Verify DNS names are pointed to appropriate IP addresses of VMs.</p>                                                                                      |
-| SSL Certificates issued                 | [4.3.1.3-issue-ssl-certificates.md](../4.3.1-preparation-steps/4.3.1.3-issue-ssl-certificates.md "mention")                                                                                                                                                             |
-| SMTP server configured                  | [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention")                                                                                                               |
-| Third-party accounts created            | [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention")                                                                                                               |
+| Property                                                                                | Description                                                                                                                                                                                                                                                             |
+| --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GitHub Organisation                                                                     | Own GitHub organisation with subscription.                                                                                                                                                                                                                              |
+| Country config repository                                                               | [4.2.10-build-country-config-docker-image.md](../../3.2-set-up-your-own-country-configuration/4.2.10-build-country-config-docker-image.md "mention")                                                                                                                    |
+| Virtual machines (servers) created                                                      | <p><a data-mention href="../4.3.1-preparation-steps/4.3.1.1-setup-infrastructure.md">4.3.1.1-setup-infrastructure.md</a><br>Verify you have IP addresses or DNS names and you are able to login on those VMs</p>                                                        |
+| Domain names are registered                                                             | <p><a data-mention href="../4.3.1-preparation-steps/4.3.1.2-configure-dns.md">4.3.1.2-configure-dns.md</a><br>Verify DNS names are pointed to appropriate IP addresses of VMs.</p>                                                                                      |
+| SSL Certificates issued or one of the available  Let’s Encrypt is considered to be used | [4.3.1.3-issue-ssl-certificates.md](../4.3.1-preparation-steps/4.3.1.3-issue-ssl-certificates.md "mention")                                                                                                                                                             |
+| Infrastructure repository forked                                                        | [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention")                                                                                                               |
+| GitHub Token with full code access and workflow permissions created                     | Personal access token (Fine grained token) with access to Country config and Infrastructure repositories. See [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention") |
+| DockerHub Account, token and repository are created                                     | <p><a data-mention href="../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md">4.3.1.4-create-prerequisite-accounts-and-repositories.md</a><br>Make sure Country config image was built and pushed to DockerHub</p>                      |
+| Users with their public keys to grant remote access to the servers                      | [4.3.5.1-ssh-access.md](../../4.4-advanced-topics/4.3.5.1-ssh-access.md "mention")                                                                                                                                                                                      |
+| SMTP server configured                                                                  | [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention")                                                                                                               |
+| Optionally Third-party accounts created (sentry, slack, etc)                            | [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention")                                                                                                               |
 
 
 
@@ -27,7 +33,19 @@ Make sure you completed environment preparation steps and have all required info
 
 Environments are managed by `yarn environment:init` script. The script will create files that must be pushed to Git, so it is advisable to run the script in a new branch in order to open a pull request.
 
-Script produce OpenCRVS server bootstrap command, for example:
+Re-run script for each environment:
+
+* development and (or) qa
+* staging
+* production
+
+To run the script, open terminal window and cd into your forked infrastructure repository and run the following command to start configuration wizard:
+
+<pre><code><strong>yarn install
+</strong><strong>yarn environment:init
+</strong></code></pre>
+
+You will be asked to provide values to configure key OpenCRVS components. Some actions can be automated and script will guide you to the next steps, for example script will produce OpenCRVS server bootstrap command ready for copy/paste on remote host without modifications:
 
 {% code title="Bootstrap command is automatically created by "yarn environment:init" script. This example demonstrates how bootstrap command may look like." %}
 ```
@@ -42,18 +60,6 @@ bash opencrvs-bootstrap.sh --owner opencrvs \
 {% endcode %}
 
 Output will also contain additional hints how to bootstrap kubernetes worker nodes and backup server.
-
-Re-run script for each environment:
-
-* development and (or) qa
-* staging
-* production
-
-To run the script, open terminal window and cd into your forked infrastructure repository and run the following command to start configuration wizard:
-
-<pre><code><strong>yarn install
-</strong><strong>yarn environment:init
-</strong></code></pre>
 
 ### Environments init script questions
 
@@ -102,7 +108,7 @@ Once you provide answers to the questions script will connect GitHub:
 
 *   If environment exists, script will fetch information about existing secrets and variables for particular environment and repository.<br>
 
-    <figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption><p>GitHub environment already exists</p></figcaption></figure>
+    <figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>GitHub environment already exists</p></figcaption></figure>
 * The script will fail if it cannot connect to Github for whatever reason.
 
 For environments with PII data script will ask you to answer additional questions:
@@ -123,7 +129,7 @@ The script will ask for your Dockerhub credentials or skip if they already exist
 The script will ask you to provide Kubernetes and Runtime options:
 
 * `DOMAIN`: Domain name to expose OpenCRVS application frontend.
-* `KUBE_API_HOST`: (Options property) IP address or domain Kubernetes master node. Provision script will generate Kubernetes config files for each user defined in users section of inventory file. For more details check [4.3.5.1-ssh-access.md](../4.3.5-provisioning-servers/4.3.5.1-ssh-access.md "mention") and [4.3.5.2-kubernetes-cluster-access.md](../4.3.5-provisioning-servers/4.3.5.2-kubernetes-cluster-access.md "mention") sections. Usually you may leave this field empty or set to `DOMAIN`. Value can be modified later.
+* `KUBE_API_HOST`: (Options property) IP address or domain Kubernetes master node. Provision script will generate Kubernetes config files for each user defined in users section of inventory file. For more details check [4.3.5.1-ssh-access.md](../../4.4-advanced-topics/4.3.5.1-ssh-access.md "mention") and [4.3.5.2-kubernetes-cluster-access.md](../../4.4-advanced-topics/4.3.5.2-kubernetes-cluster-access.md "mention") sections. Usually you may leave this field empty or set to `DOMAIN`. Value can be modified later.
 * `WORKER_NODES`: (Options property) Comma separated list of additional Kubernetes cluster members (Virtual Machines). Leave empty for single node setup. Worker nodes can be added later.
 
 <figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption><p>Only domain name was provided, Kubernetes cluster will be created with single node</p></figcaption></figure>
@@ -136,7 +142,7 @@ Script will ask you to create users with remote SSH access, answer following que
 * Public ssh keys: Add public key(s) for remote login. Login by password is disabled by default, keys must be provided
 * Role: User role on remote system
 
-Check documentation for more examples and detailed instructions how to manage remote access: [4.3.5.1-ssh-access.md](../4.3.5-provisioning-servers/4.3.5.1-ssh-access.md "mention")
+Check documentation for more examples and detailed instructions how to manage remote access: [4.3.5.1-ssh-access.md](../../4.4-advanced-topics/4.3.5.1-ssh-access.md "mention")
 
 <figure><img src="../../../../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
 
@@ -158,7 +164,7 @@ Questions for **Static SSL certificate**
 Full documentation about traefik configuration can be found at:
 
 * Official documentation page: [https://github.com/traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart)
-* OpenCRVS documentation: [4.3.2.2-tls-ssl-configuration-for-traefik](4.3.2.2-tls-ssl-configuration-for-traefik/ "mention")
+* OpenCRVS documentation: [4.5.1-tls-ssl-configuration-for-traefik](../../4.4-advanced-topics/4.5.1-tls-ssl-configuration-for-traefik/ "mention")
 
 #### Storage
 
@@ -263,9 +269,9 @@ Usually review is not required for files under the `.github` folder.
 
 Review modified files:
 
-* `infrastructure/server-setup/inventory/<environment name>.yml`: Configuration file for Ansible playbook responsible for server provision. For more information please follow hints inside file and [SSH Access](../4.3.5-provisioning-servers/4.3.5.1-ssh-access.md) section.
+* `infrastructure/server-setup/inventory/<environment name>.yml`: Configuration file for Ansible playbook responsible for server provision. For more information please follow hints inside file and [SSH Access](../../4.4-advanced-topics/4.3.5.1-ssh-access.md) section.
 * `environments/<environment name>`: Folder with `values,yaml` files for helm charts:
-  * `environments/<environment name>/traefik/values.yaml`: Update this file with proper configuration to handle SSL certificate. Please follow documentation under [TLS / SSL & DNS](4.3.2.2-tls-ssl-configuration-for-traefik/)
+  * `environments/<environment name>/traefik/values.yaml`: Update this file with proper configuration to handle SSL certificate. Please follow documentation under [TLS / SSL & DNS](../../4.4-advanced-topics/4.5.1-tls-ssl-configuration-for-traefik/)
   * `environments/<environment name>/opencrvs-services/values.yaml`: Review configuration and adjust according to your needs, **usually defaults are good for initial deployment**
   * `environments/<environment name>/dependencies/values.yaml`: Review configuration and adjust according to your needs, **usually defaults are good for initial deployment**.&#x20;
 

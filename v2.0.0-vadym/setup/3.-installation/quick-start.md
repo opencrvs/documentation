@@ -21,7 +21,7 @@ Quickstart scenario allows to run OpenCRVS with Farajaland demo data locally on 
 Check how to configure local Kubernetes cluster at [Docker engine and Kubernetes cluster](3.1-set-up-a-development-environment/3.1.1-install-the-required-dependencies.md#docker-engine-and-kubernetes-cluster)
 
 {% hint style="info" %}
-Quick start guide does not cover prerequisites installation. OpenCRVS team has limited capacity to test different configurations. Feel free to submit an issue on GitHub if something doesn't work in your hardware or software setup. Check GitHub repository for additional examples and hints: [opencrvs/infrastructure/examples](https://github.com/opencrvs/infrastructure/tree/develop/examples)
+Quick start guide does not cover prerequisites installation. OpenCRVS team has limited capacity to test different configurations. Feel free to submit an issue on GitHub if something doesn't work in your hardware or software setup. Check for more information: [#docker-engine-and-kubernetes-cluster](3.1-set-up-a-development-environment/3.1.1-install-the-required-dependencies.md#docker-engine-and-kubernetes-cluster "mention")
 {% endhint %}
 
 ## Step by step
@@ -66,6 +66,7 @@ helm upgrade --install opencrvs oci://ghcr.io/opencrvs/opencrvs-services \
 Next steps:
 
 * Run fully functional local development environment, see [here](3.1-set-up-a-development-environment/)
+* Install OpenCRVS on the server, see [3.3-set-up-a-server-hosted-environment](3.3-set-up-a-server-hosted-environment/ "mention")
 * Read more about advanced configurations options available here and for [Dependencies helm chart](../../../v2.0.0/setup/dependencies/)
 * Check GitHub infrastructure repository [Configuration options](http://github.com/opencrvs/infrastructure/tree/develop/charts/opencrvs-services#configuration-options) table to get brief overview of options available within helm chart. Copy and modify `examples/localhost/opencrvs-services/values.yaml` to suit your needs.
 {% endhint %}

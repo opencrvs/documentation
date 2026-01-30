@@ -1,7 +1,5 @@
 # 4.2.4 Set up employees & roles for testing or production
 
-{% embed url="https://youtu.be/FGrox2hQh90" %}
-
 The next step is for you to set up some employees that have access to your development or production OpenCRVS instance.
 
 You can also configure custom role titles to match each of the built-in OpenCRVS system roles.

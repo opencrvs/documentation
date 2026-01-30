@@ -3,7 +3,7 @@
 This section instructs you how to set-up and provision your own, local, country configuration of OpenCRVS.
 
 {% hint style="info" %}
-OpenCRVS must be configured for your country locally, before deploying to a server in the next section: [3.3 Set-up a server-hosted environment](../../../../v1.8.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment)
+OpenCRVS must be configured for your country locally, before deploying to a server in the next section: [3.3-set-up-a-server-hosted-environment](../3.3-set-up-a-server-hosted-environment/ "mention")
 {% endhint %}
 
 The instructions should be conducted sequentially as laid out in each step, and will include:
