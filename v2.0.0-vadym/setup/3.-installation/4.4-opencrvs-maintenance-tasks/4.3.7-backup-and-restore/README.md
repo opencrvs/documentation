@@ -1,0 +1,45 @@
+# 4.3.7 Backup & Restore
+
+### General information
+
+{% hint style="info" %}
+Backup and restore is automatically configured while environment creation by `yarn environment:init` script, check [4.3.1-create-a-github-environment](../../3.3-set-up-a-server-hosted-environment/4.3.1-create-a-github-environment/ "mention"). This guide dives into details:
+
+* How to configure backup and restore without GitHub integration?
+* How to perform manual backup?
+* How to perform disaster recovery?
+{% endhint %}
+
+OpenCRVS dependencies helm chart has an configuration options for automated backups and restores.
+
+OpenCRVS dependencies helm chart includes a built-in backup and restore features that supports automated backups and restores for internal components (datastores). Backups are uploaded on an external server via an SSH connection.
+
+Supported datastores:
+
+* MongoDB
+* PostgreSQL
+* MinIO
+* InfluxDB
+
+{% hint style="info" %}
+Elasticsearch doesn't support backup and restore, please use re-index job instead
+{% endhint %}
+
+Each datastore has its own backup job, configured as a Kubernetes `CronJob`. Backup settings are defined in the `backup` section of the chart values file. You can configure a separate backup (restore) schedule and remote directory for each datastore.
+
+Usually backup is configured only on production environment and restore is configured on staging environment, but there is no limitations to configure backup/restore on any other servers. E/g for testing purposes backup/restore can be configured between development and qa environments.
+
+Backup server configuration is fully automated with Ansible playbooks, you need to provide backup server IP address (or hostname) to `yarn environment:init` script and bootstrap backup server.
+
+### Backup and restore configuration flow
+
+Here are high level concepts how backup/restore is working:
+
+* Production servers should have only backup job configured.
+* Stating server has restore and optionally backup job as well.
+* Restore key should be same as backup encryption key on production.
+* Private ssh key for restore job should be same as on production
+
+Visit appropriate backup/restore documentation sections to get more details how to configure backup/restore.
+
+<figure><img src="../../../../.gitbook/assets/Kubernetes infrastructure.png" alt=""><figcaption></figcaption></figure>
