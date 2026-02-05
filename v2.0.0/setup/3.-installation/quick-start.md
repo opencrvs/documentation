@@ -124,9 +124,7 @@ opencrvs-deps   opencrvs-deps-dev       1               2026-02-05 13:19:32.6146
 
 **4. Install OpenCRVS Chart**
 
-> Timeout (`--timeout`) is set to 1 hour to avoid helm install failure on slow internet connection. Kubernetes needs to pull all OpenCRVS images, on 100Mb/s connection that takes 10 minutes or less.
->
-> OpenCRVS don't provide ARM images for each minor release. If you are MacBook M-series user please use OpenCRVS versions from `examples/localhost/opencrvs-services/values.yaml` (defaults)
+Following command will deploy all OpenCRVS services (components) in default configuration and perform data seeding. No additional steps are needed:
 
 ```
 helm upgrade --install opencrvs oci://ghcr.io/opencrvs/opencrvs-services \
@@ -136,6 +134,12 @@ helm upgrade --install opencrvs oci://ghcr.io/opencrvs/opencrvs-services \
     --atomic \
     -f https://raw.githubusercontent.com/opencrvs/infrastructure/refs/heads/develop/examples/localhost/opencrvs-services/values.yaml
 ```
+
+{% hint style="info" %}
+Timeout (`--timeout`) is set to 1 hour to avoid helm install failure on slow internet connection. Kubernetes needs to pull all OpenCRVS images, on 100Mb/s connection that takes 10 minutes or less.
+
+OpenCRVS don't provide ARM images for each minor release. If you are MacBook M-series user please use OpenCRVS versions from `examples/localhost/opencrvs-services/values.yaml` (defaults)
+{% endhint %}
 
 Use `kubectl` and `helm` to verify Dependencies installation by running following command:
 
@@ -177,7 +181,7 @@ opencrvs-deps   opencrvs-deps-dev       1
 Next steps:
 
 * Run fully functional local development environment, see [here](3.1-set-up-a-development-environment)
-* Install OpenCRVS on the server, see [3.3-set-up-a-server-hosted-environment](3.3-set-up-a-server-hosted-environment "mention")
+* Install OpenCRVS on the server, see [3.3-set-up-a-server-hosted-environment](3.3-set-up-a-server-hosted-environment/ "mention")
 * Read more about advanced configurations options available here and for [Dependencies helm chart](dependencies/)
 * Check GitHub infrastructure repository [Configuration options](http://github.com/opencrvs/infrastructure/tree/develop/charts/opencrvs-services#configuration-options) table to get brief overview of options available within helm chart. Copy and modify `examples/localhost/opencrvs-services/values.yaml` to suit your needs.
 {% endhint %}
