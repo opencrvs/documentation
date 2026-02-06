@@ -13,43 +13,52 @@ This section assumes that you are already thoroughly aware of how to deploy Open
 
 ### Docker Compose configuration
 
-Take a look at the docker-compose.deploy.yml file in our example configuration.&#x20;
+Take a look at the [docker-compose.deploy.yml](https://docker-compose.deploy.ymlhttps/github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/infrastructure/docker-compose.deploy.yml#L1108) file in our example configuration.
 
-The mosip-api middleware is configured like [this](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/aa338d2974699e56db574f7df046ca8e8638f35d/infrastructure/docker-compose.deploy.yml#L1108):
+The [mosip-api](https://github.com/opencrvs/mosip/tree/main/packages/mosip-api) middleware deployment is configured like [this](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/aa338d2974699e56db574f7df046ca8e8638f35d/infrastructure/docker-compose.deploy.yml#L1108). &#x20;
+
+All of the secrets and key files required are supplied by MOSIP for different steps of the _E-Signet, IDA Auth SDK & Packet Manager_ integration.  Communicate with your MOSIP team for these values and an understanding of why they are needed, refer to the flow at the beginning of this chapter again.
+
+Note that an SQLite database is included to store the JWT required for asynchronous registration integration with OpenCRVS once MOSIP communcations are completed.
+
+
 
 ```
 mosip-api:
     volumes:
       - '/data/sqlite:/data/sqlite'
+    # Set MOSIP_API_VERSION in Github Secrets
     image: ghcr.io/opencrvs/mosip-api:${MOSIP_API_VERSION}
     environment:
+      # OpenCRVS specific variables - ignore
       - NODE_ENV=production
+      - MOSIP_BIRTH_WEBHOOK_URL=http://mosip-mock:20240/webhooks/opencrvs/birth
+      - MOSIP_DEATH_WEBHOOK_URL=http://mosip-mock:20240/webhooks/opencrvs/death
       - OPENCRVS_GATEWAY_URL=http://gateway:7070
       - OPENCRVS_PUBLIC_KEY_URL=http://auth:4040/.well-known
       - LOCALE=en
+      - CLIENT_APP_URL=https://register.{{hostname}}
+      - SQLITE_DATABASE_PATH=/data/sqlite/mosip-api.db
+      - MOSIP_WEBSUB_CALLBACK_URL=https://mosip-api.{{hostname}}/websub/callback
+      
+      # Set these in Github Secrets after they are supplied by your E-Signet / MOSIP team
       - ESIGNET_USERINFO_URL=${ESIGNET_USERINFO_URL}
       - ESIGNET_TOKEN_URL=${ESIGNET_TOKEN_URL}
       - ESIGNET_REDIRECT_URL=${ESIGNET_REDIRECT_URL}
       - OIDP_CLIENT_PRIVATE_KEY_PATH=${OIDP_CLIENT_PRIVATE_KEY_PATH}
       - OPENID_PROVIDER_CLAIMS=${OPENID_PROVIDER_CLAIMS}
-      - DECRYPT_P12_FILE_PATH=${DECRYPT_P12_FILE_PATH}
-      - DECRYPT_P12_FILE_PASSWORD=${DECRYPT_P12_FILE_PASSWORD}
-      - ENCRYPT_CERT_PATH=${ENCRYPT_CERT_PATH}
       - IDA_AUTH_DOMAIN_URI=${IDA_AUTH_DOMAIN_URI}
       - IDA_AUTH_URL=${IDA_AUTH_URL}
       - PARTNER_APIKEY=${PARTNER_APIKEY}
       - PARTNER_ID=${PARTNER_ID}
       - PARTNER_MISP_LK=${PARTNER_MISP_LK}
-      - SIGN_P12_FILE_PATH=${SIGN_P12_FILE_PATH}
+      - DECRYPT_P12_FILE_PASSWORD=${DECRYPT_P12_FILE_PASSWORD}
       - SIGN_P12_FILE_PASSWORD=${SIGN_P12_FILE_PASSWORD}
-      - CLIENT_APP_URL=https://register.{{hostname}}
-      - SQLITE_DATABASE_PATH=/data/sqlite/mosip-api.db
       - MOSIP_PACKET_AUTH_CLIENT_ID=${MOSIP_PACKET_AUTH_CLIENT_ID}
       - MOSIP_PACKET_AUTH_CLIENT_SECRET=${MOSIP_PACKET_AUTH_CLIENT_SECRET}
       - MOSIP_WEBSUB_AUTH_CLIENT_ID=${MOSIP_WEBSUB_AUTH_CLIENT_ID}
       - MOSIP_WEBSUB_AUTH_CLIENT_SECRET=${MOSIP_WEBSUB_AUTH_CLIENT_SECRET}
       - MOSIP_AUTH_URL=${MOSIP_AUTH_URL}
-      - MOSIP_WEBSUB_CALLBACK_URL=https://mosip-api.{{hostname}}/websub/callback
       - MOSIP_WEBSUB_HUB_URL=${MOSIP_WEBSUB_HUB_URL}
       - MOSIP_WEBSUB_SECRET=${MOSIP_WEBSUB_SECRET}
       - MOSIP_WEBSUB_TOPIC=${MOSIP_WEBSUB_TOPIC}
@@ -58,6 +67,12 @@ mosip-api:
       - MOSIP_VERIFIABLE_CREDENTIAL_ALLOWLIST=${MOSIP_VERIFIABLE_CREDENTIAL_ALLOWLIST}
       - MOSIP_CENTER_ID=${MOSIP_CENTER_ID}
       - MOSIP_MACHINE_ID=${MOSIP_MACHINE_ID}
+      
+      # Set these in Github Secrets. Equal to directories on your server where your real MOSIP key files are stored.  They are supplied by your MOSIP team
+      - DECRYPT_P12_FILE_PATH=${DECRYPT_P12_FILE_PATH}
+      - ENCRYPT_CERT_PATH=${ENCRYPT_CERT_PATH}
+      - SIGN_P12_FILE_PATH=${SIGN_P12_FILE_PATH}
+      
     deploy:
       replicas: 1
       labels:
@@ -82,6 +97,7 @@ mosip-api:
       options:
         gelf-address: 'udp://127.0.0.1:12201'
         tag: 'mosip-api'
+
 ```
 
 Take a look at the docker-compose.qa-deploy.yml file in our example configuration.  This configuration is deployed to a QA server.

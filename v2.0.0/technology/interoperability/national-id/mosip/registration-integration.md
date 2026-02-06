@@ -7,10 +7,6 @@ metaLinks:
 
 # Configuration
 
-{% hint style="info" %}
-This section assumes that you have already read the general [National ID registration integration page](../).   If you have not read that page, read it first for a high level introduction to the concepts, and then return here.
-{% endhint %}
-
 The countryconfig-mosip example contains a fully operational configuration for birth and death forms that includes:
 
 * In-form authentication / verification with E-Signet
