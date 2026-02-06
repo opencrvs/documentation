@@ -1,5 +1,25 @@
 # Registration integration
 
+In the OpenCRVS UI, when a registrar clicks the "Register" button on a fully complete and validated declaration, the legal authority has been given to create a birth registration.  It is then possible to integrate with a National ID system, both synchronously and asynchronously.
+
+
+
+### Synchronous integration - birth & death
+
+Once internal audit has taken place of that action in the "workflow" microservice, the following endpoint in the configurable countryconfig microservice is called while the registration is in a `WAITING_VALIDATION` status:
+
+```
+/trigger/events/${Event.id}/actions/${ActionType.REGISTER}`
+```
+
+Refer to our [default](https://github.com/opencrvs/opencrvs-countryconfig/blob/ef1160edee76b4aa2f619d81f396c740346f6565/src/index.ts#L672) and [MOSIP](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/index.ts#L668) example.
+
+{% hint style="warning" %}
+The JWT token that is sent to this payload should be used to communicate back with OpenCRVS using a client from our toolkit: `import { createClient } from '@opencrvs/toolkit/api'`
+{% endhint %}
+
+In our example we create a birth / death registration number at this point and return the amended payload to OpenCRVS.  Any interaction with a National ID system can take place here.
+
 {% hint style="info" %}
 Based on your own business rules based on submitted bio/demographics, such as age of child / parents IDs authenticated, you need to decide whether or not to interoperate with National ID, continue to register or reject the declaration.&#x20;
 {% endhint %}
