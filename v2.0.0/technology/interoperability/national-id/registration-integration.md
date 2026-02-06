@@ -47,10 +47,11 @@ export async function onBirthActionHandler(
     pendingAction.declaration
   )
 
-  const isMotherAvailable =
-    declaration['mother.dob'] &&
-    declaration['mother.nid'] &&
-    declaration['mother.name']
+  /*
+    declaration['child.dob'] 
+    declaration['mother.nid'] 
+    declaration['mother.verified'] !== 'authenticated'
+  */
 ```
 
 Using the JWT, you can process your integration and respond to OpenCRVS as you wish, progressing the declaration to a [REGISTERED](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/api/registration/index.ts#L111) or [REJECTED](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/api/registration/index.ts#L172) status accordingly.
