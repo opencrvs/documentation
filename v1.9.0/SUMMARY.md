@@ -61,7 +61,7 @@
     * [Registration integration](technology/interoperability/national-id/registration-integration.md)
     * [In-form authentication / verification](technology/interoperability/national-id/in-form-authentication-verification.md)
     * [MOSIP](technology/interoperability/national-id/mosip/README.md)
-      * [Registration integration](technology/interoperability/national-id/mosip/registration-integration.md)
+      * [Configuration](technology/interoperability/national-id/mosip/configuration.md)
       * [In-form authentication / verification with E-Signet](technology/interoperability/national-id/mosip/in-form-authentication-verification-with-e-signet.md)
       * [Deployment](technology/interoperability/national-id/mosip/deployment.md)
 
