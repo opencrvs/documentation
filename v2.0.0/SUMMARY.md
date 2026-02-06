@@ -11,6 +11,7 @@
 
 ## Product Specifications
 
+* [Workqueues (test)](product-specifications/workqueues-test.md)
 * [Functional Architecture](product-specifications/functional-architecture.md)
 * [Workflow management](product-specifications/workflow-management.md)
 * [Status Flow Diagram](product-specifications/status-flow-diagram.md)
