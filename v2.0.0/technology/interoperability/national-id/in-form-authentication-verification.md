@@ -186,6 +186,8 @@ In this example, observe how conditionals are used to control the process, expos
 },
 ```
 
+
+
 **Redirect to NID auth portal from within an event form**
 
 A form field component of **LINK\_BUTTON** type can redirect the user to an external NID web interface for authentication.  An auuthorised token can then be returned to the form and used in a similar way to the API example above to retrieve further values from the NID system for form pre-population. &#x20;
@@ -235,4 +237,131 @@ To collect paramters from a redirect URL for use within fields in the form after
     pickParams: ['code', 'state']
   }
 },
+```
+
+A LOADER component can render a spinner in the page:
+
+```
+{
+    id: `${page}.fetch-loader`,
+    type: FieldType.LOADER,
+    parent: field(`${page}.verify-nid-http-fetch`),
+    conditionals: [
+      {
+        type: ConditionalType.SHOW,
+        conditional: not(
+          field(`${page}.verify-nid-http-fetch`).get('loading').isFalsy()
+        )
+      },
+      {
+        type: ConditionalType.DISPLAY_ON_REVIEW,
+        conditional: never()
+      }
+    ],
+    label: {
+      id: 'form.fetch-loader.label',
+      defaultMessage: "Fetching the person's data from E-Signet",
+      description:
+        'This is the label for the fetch individual information loader'
+    },
+    configuration: {
+      text: {
+        id: 'form.fetch-loader.label',
+        defaultMessage: "Fetching the person's data from E-Signet",
+        description:
+          'This is the label for the fetch individual information loader'
+      }
+    }
+  }
+```
+
+An ID\_READER that wraps components in a visually appealing way, and VERIFICATION\_STATUS component can provide valuable visual indicators to users and improve overall user experience.
+
+```
+{
+  id: `${page}.id-reader`,
+  type: FieldType.ID_READER,
+  required: false,
+  label: {
+    defaultMessage: 'QR Code',
+    description: 'This is the label for the field',
+    id: `event.birth.action.declare.form.section.${page}.field.qr.label`
+  },
+  conditionals: [
+    {
+      type: ConditionalType.SHOW,
+      conditional: existingShowConditional?.conditional
+        ? and(
+            existingShowConditional?.conditional,
+            not(
+              or(
+                field(`${page}.verified`).isEqualTo('pending'),
+                field(`${page}.verified`).isEqualTo('verified'),
+                field(`${page}.verified`).isEqualTo('authenticated'),
+                field(`${page}.verified`).isEqualTo('failed')
+              )
+            )
+          )
+        : not(
+            or(
+              field(`${page}.verified`).isEqualTo('pending'),
+              field(`${page}.verified`).isEqualTo('verified'),
+              field(`${page}.verified`).isEqualTo('authenticated'),
+              field(`${page}.verified`).isEqualTo('failed')
+            )
+          )
+    },
+    {
+      type: ConditionalType.DISPLAY_ON_REVIEW,
+      conditional: never()
+    }
+  ],
+  methods: [
+    {
+      type: FieldType.QR_READER,
+      ...
+    },
+    {
+      id: `${page}.verify`,
+      type: FieldType.LINK_BUTTON,
+      ...
+    }
+  ]
+}
+
+...
+
+{
+  id: `${page}.verified`,
+  type: FieldType.VERIFICATION_STATUS,
+  parent: [
+    field(`${page}.verify-nid-http-fetch`),
+    field(`${page}.id-reader`)
+  ],
+  label: {
+    id: `${page}.verified.status`,
+    defaultMessage: 'Verification status',
+    description: 'The title for the status field label'
+  },
+  configuration: {
+    status: {
+      id: 'verified.status.text',
+      defaultMessage:
+        '{value, select, authenticated {ID Authenticated} verified {ID Verified} failed {Unverified ID} pending {Pending verification} other {Invalid value}}',
+      description:
+        'Status text shown on the pill on both form declaration and review page'
+    },
+    description: {
+      id: 'verified.status.description',
+      defaultMessage:
+        "{value, select, authenticated {This identity has been successfully authenticated with the Farajaland’s National ID System. To make edits, please remove the authentication first.} verified {This identity data has been successfully verified with the Farajaland’s National ID System. Please note that their identity has not been authenticated using the individual's biometrics. To make edits, please remove the verification first.} pending {Identity pending verification with Farajaland’s National ID system} failed {The identity data does not match an entry in Farajaland’s National ID System} other {Invalid value}}",
+      description: 'Description text of the status'
+    }
+  },
+  conditionals: existingConditionals,
+  value: [
+    field(`${page}.verify-nid-http-fetch`).get('data.verificationStatus'),
+    field(`${page}.id-reader`).get('data.verificationStatus')
+  ]
+}
 ```
