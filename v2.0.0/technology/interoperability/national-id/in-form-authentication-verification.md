@@ -275,7 +275,7 @@ A LOADER component can render a spinner in the page:
   }
 ```
 
-An ID\_READER that wraps components in a visually appealing way, and VERIFICATION\_STATUS component can provide valuable visual indicators to users and improve overall user experience.
+An **ID\_READER** that wraps components in a visually appealing way, and **VERIFICATION\_STATUS** component can provide valuable visual indicators to users and improve overall user experience.
 
 ```
 {
