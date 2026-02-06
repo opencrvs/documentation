@@ -6,7 +6,7 @@ This section assumes that you have already read the general [National ID registr
 
 Our example shows integration with the [mosip-api](https://github.com/opencrvs/mosip/tree/main/packages/mosip-api) middleware at this point.
 
-We perform [some business logic](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/api/registration/index.ts#L195) based on props in the declaration and pendingAction and continue to MOSIP or reject.
+We perform [some business logic](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/api/registration/index.ts#L195) based on props in the `declaration` and `pendingAction` and continue to MOSIP or reject.
 
 Then we create a `createMosipInteropClient` [client](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/api/registration/index.ts#L215) to register a [birth](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/api/registration/index.ts#L221) or [death](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/api/registration/index.ts#L297).
 
