@@ -61,7 +61,7 @@
     * [Registration integration](technology/interoperability/national-id/registration-integration.md)
     * [In-form authentication / verification](technology/interoperability/national-id/in-form-authentication-verification.md)
     * [MOSIP](technology/interoperability/national-id/mosip/README.md)
-      * [Registration integration](technology/interoperability/national-id/mosip/registration-integration.md)
+      * [Configuration](technology/interoperability/national-id/mosip/registration-integration.md)
       * [In-form authentication / verification with E-Signet](technology/interoperability/national-id/mosip/in-form-authentication-verification-with-e-signet.md)
       * [Deployment](technology/interoperability/national-id/mosip/deployment.md)
 
@@ -151,7 +151,6 @@
     * [4.5.2 SSH access](setup/3.-installation/4.4-advanced-topics/4.3.5.1-ssh-access.md)
     * [4.5.3 Kubernetes cluster access](setup/3.-installation/4.4-advanced-topics/4.3.5.2-kubernetes-cluster-access.md)
     * [4.5.4 Add Custom GitHub secrets to Kubernetes](setup/3.-installation/4.4-advanced-topics/4.5.4-add-custom-github-secrets-to-kubernetes.md)
-    
 * [5. Functional configuration](setup/5.-functional-configuration/README.md)
   * [5.1 Configure application settings](setup/5.-functional-configuration/5.1-configure-application-settings.md)
   * [5.2 Configure registration periods and fees](setup/5.-functional-configuration/5.2-configure-registration-periods-and-fees.md)
