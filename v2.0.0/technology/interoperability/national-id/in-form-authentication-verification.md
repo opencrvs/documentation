@@ -14,9 +14,18 @@ It's possible to [configure](../../../setup/3.-installation/3.2-set-up-your-own-
 
 ### Offline
 
-If your user has no connectivity, and if your country issues a National ID card to users that contains a QR code, then a form field component of **ID\_READER** type can parse the contents of the QR code and pre-populate some fields in the form.
+If your user has no connectivity, and if your country issues a National ID card to users that contains a QR code, then a form field component of **QR\_READER** type can parse the contents of the QR code and pre-populate some fields in the form.
 
 ```
+{
+  type: FieldType.QR_READER,
+  label: {
+    id: `event.birth.action.declare.form.section.${page}.field.qr.label`,
+    defaultMessage: 'Scan QR code',
+    description: 'This is the label for the field'
+  },
+  id: `${page}.id-reader`
+}
 ```
 
 ### Online
@@ -25,16 +34,205 @@ If your user has connectivity, then of course it is possible to query a National
 
 **API integration within an event form**
 
-A form field component of **HTTP** type can connect with an external API. Use it along with a **BUTTON** and any relevant form pre-population field types such as **TEXT** where you may wish to store a response.&#x20;
+A form field component of **HTTP** type can connect with an external API. Use it along with a **BUTTON** allowing you to trigger the request and display progress indication to a user. where you may wish to store a response.  Use it with a component like **TEXT** to display returned results.
 
-Alternatively, we supply many display UI components to show message responses, or simply to display if someone is authenticated or verified, such as **ID\_VERIFICATION\_BANNER**.  Just adopt the copy appropriately.
+In this example, observe how conditionals are used to control the process, exposing it only to a certain user type and disabling when offline.  These are optional but introduce a better user experience.
 
 ```
+{
+  id: 'child.createNID',
+  type: FieldType.HTTP,
+  label: {
+    defaultMessage: 'iD',
+    description: 'This is the label for the field',
+    id: 'event.birth.action.declare.form.section.child.field.iD.label'
+  },
+  configuration: {
+    method: 'POST',
+    url: '/api/countryconfig/nid',
+    body: {
+      office: '$user.primaryOffice.name'
+    },
+    trigger: field('child.nidGenerator'),
+    timeout: 5000,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  },
+  conditionals: [
+    {
+      type: ConditionalType.DISPLAY_ON_REVIEW,
+      conditional: never()
+    }
+  ]
+},
+{
+  id: 'child.nidGenerator',
+  type: FieldType.BUTTON,
+  label: {
+    defaultMessage: 'NID',
+    description: 'NID',
+    id: 'event.birth.child.nid.label'
+  },
+  conditionals: [
+    {
+      type: ConditionalType.ENABLE,
+      conditional: and(
+        field('child.createNID').isUndefined(),
+        user.isOnline()
+      )
+    },
+    {
+      type: ConditionalType.SHOW,
+      conditional: and(
+        user.hasRole('LOCAL_REGISTRAR'),
+        field('child.createNID').get('loading').isFalsy(),
+        field('child.createNID').get('data').isFalsy()
+      )
+    },
+    {
+      type: ConditionalType.DISPLAY_ON_REVIEW,
+      conditional: never()
+    }
+  ],
+  configuration: {
+    icon: 'IdentificationCard',
+    text: {
+      defaultMessage: 'Generate NID',
+      description: 'Generate NID',
+      id: 'event.birth.child.nid.label'
+    }
+  }
+},
+{
+  id: 'child.nidGeneratorLoading',
+  type: FieldType.BUTTON,
+  label: {
+    defaultMessage: 'NID',
+    description: 'NID',
+    id: 'event.birth.child.nid.label'
+  },
+  conditionals: [
+    {
+      type: ConditionalType.ENABLE,
+      conditional: never()
+    },
+    {
+      type: ConditionalType.SHOW,
+      conditional: field('child.createNID').get('loading').isEqualTo(true)
+    }
+  ],
+  configuration: {
+    loading: true,
+    text: {
+      defaultMessage: 'Generating NID...',
+      description: 'Generating NID...',
+      id: 'event.birth.child.nid-generation.label'
+    }
+  }
+},
+{
+  id: 'child.nidGeneratorSuccess',
+  type: FieldType.BUTTON,
+  label: {
+    defaultMessage: 'NID',
+    description: 'NID',
+    id: 'event.birth.child.nid.label'
+  },
+  conditionals: [
+    {
+      type: ConditionalType.ENABLE,
+      conditional: never()
+    },
+    {
+      type: ConditionalType.SHOW,
+      conditional: not(field('child.http-text').isFalsy())
+    }
+  ],
+  configuration: {
+    icon: 'Check',
+    text: {
+      defaultMessage: 'NID generated',
+      description: 'NID generated',
+      id: 'event.birth.child.nid-generated.label'
+    }
+  }
+},
+{
+  id: 'child.iD',
+  type: FieldType.TEXT,
+  parent: field('child.createNID'),
+  required: true,
+  label: {
+    defaultMessage: 'NID',
+    description: 'This is the label for the field',
+    id: 'event.birth.child.nid.label'
+  },
+  conditionals: [
+    {
+      type: ConditionalType.SHOW,
+      conditional: and(
+        field('child.createNID').get('error').isFalsy(),
+        user.isOnline(),
+        user.hasRole('LOCAL_REGISTRAR')
+      )
+    },
+    {
+      type: ConditionalType.ENABLE,
+      conditional: never()
+    }
+  ],
+  value: field('child.createNID').get('data')
+},
 ```
 
 **Redirect to NID auth portal from within an event form**
 
-A form field component of **LINK\_BUTTON** type can redirect the user to an external NID web interface for authentication.  An auuthorised token can then be returned to the form and used in a similar way to the API example above to retrieve further values from the NID system for form pre-population.
+A form field component of **LINK\_BUTTON** type can redirect the user to an external NID web interface for authentication.  An auuthorised token can then be returned to the form and used in a similar way to the API example above to retrieve further values from the NID system for form pre-population. &#x20;
+
+Look at this example for an E-Signet redirect.  The param `&state=fetch-on-mount` must be returned in order to re-load the form page at the correct point.
 
 ```
+{
+  id: `${page}.verify`,
+  type: FieldType.LINK_BUTTON,
+  label: {
+    id: 'verify.label',
+    defaultMessage: 'Authenticate',
+    description: 'The title for the E-Signet verification button'
+  },
+  configuration: {
+    icon: 'Globe',
+    url: `${ESIGNET_REDIRECT_URL}?client_id=${OPENID_PROVIDER_CLIENT_ID}&response_type=code&scope=openid%20profile&acr_values=mosip:idp:acr:static-code&claims=name,family_name,given_name,middle_name,birthdate,address&state=fetch-on-mount`,
+    text: {
+      id: 'verify.label',
+      defaultMessage: 'e-Signet',
+      description: 'The title for the E-Signet verification button'
+    }
+  }
+}
+```
+
+To collect paramters from a redirect URL for use within fields in the form after redirect use **QUERY\_PARAM\_READER**.
+
+```
+{
+  id: `${page}.query-params`,
+  type: FieldType.QUERY_PARAM_READER,
+  conditionals: [
+    {
+      type: ConditionalType.DISPLAY_ON_REVIEW,
+      conditional: never()
+    }
+  ],
+  label: {
+    id: 'form.query-params.label',
+    defaultMessage: 'Query param reader',
+    description:
+      'This is the label for the query param reader field - usually this is hidden'
+  },
+  configuration: {
+    pickParams: ['code', 'state']
+  }
+},
 ```
