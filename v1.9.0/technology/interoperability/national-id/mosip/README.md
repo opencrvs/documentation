@@ -24,7 +24,7 @@ To understand the business process around the technical integration between Open
 
 In order to make life as easy as possible for developers who wish to configure the MOSIP integration, we have abstracted away all the non-customisable logic into an NPM library and created mock servers for both MOSIP and E-Signet.
 
-{% embed url="https://github.com/opencrvs/mosip/releases/tag/v1.9.0" %}
+{% embed url="https://github.com/opencrvs/mosip/releases" %}
 
 Checkout this repo and follow the README to run the middleware and mocks alongside your local instance of OpenCRVS.
 
@@ -32,13 +32,13 @@ Checkout this repo and follow the README to run the middleware and mocks alongsi
 
 The mosip-api middleware is a critical component that must be deployed.  This is explained further in the following sections.
 
-{% embed url="https://github.com/opencrvs/mosip/tree/v1.9.0/packages/mosip-api" %}
+{% embed url="https://github.com/opencrvs/mosip/tree/main/packages/mosip-api" %}
 
 ### Example countryconfig
 
 We also provide an example, forked country configuration that uses this library.  You can follow exactly how we have configured the full business logic by reading the code.
 
-{% embed url="https://github.com/opencrvs/opencrvs-countryconfig-mosip/releases/tag/v1.9.0" %}
+{% embed url="https://github.com/opencrvs/opencrvs-countryconfig-mosip/releases" %}
 
 ### Mocks:
 
