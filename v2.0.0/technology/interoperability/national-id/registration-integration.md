@@ -27,7 +27,31 @@ The JWT token that is sent to this payload should be used to communicate back wi
 
 In our example we create a birth / death registration number at this point and return the amended payload to OpenCRVS.  Any interaction with a National ID system can take place here.
 
+{% hint style="info" %}
+Based on your own business rules based on submitted bio/demographics, such as age of child / parents IDs authenticated, you need to decide whether or not to interoperate with National ID, continue to register or reject the declaration.&#x20;
+{% endhint %}
 
+You can access properties of the `declaration` and the submitting user (via `pendingAction`) to perform logical decision making like so:
+
+```
+export async function onBirthActionHandler(
+  request: ActionConfirmationRequest,
+  h: Hapi.ResponseToolkit
+) {
+  const token = request.auth.artifacts.token as string
+  const event = request.payload
+
+  const pendingAction = getPendingAction(event.actions)
+  const declaration = deepMerge(
+    aggregateActionDeclarations(event),
+    pendingAction.declaration
+  )
+
+  const isMotherAvailable =
+    declaration['mother.dob'] &&
+    declaration['mother.nid'] &&
+    declaration['mother.name']
+```
 
 Using the JWT, you can process your integration and respond to OpenCRVS as you wish, progressing the declaration to a [REGISTERED](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/api/registration/index.ts#L111) or [REJECTED](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/api/registration/index.ts#L172) status accordingly.
 
