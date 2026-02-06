@@ -19,25 +19,17 @@ Once internal audit has taken place of that action in the "workflow" microservic
 /trigger/events/${Event.id}/actions/${ActionType.REGISTER}`
 ```
 
-The entire registration data payload is sent to an [onRegisterHandler](https://github.com/opencrvs/opencrvs-countryconfig/blob/6f3759980e8f18d1d25c2c7ed89e2f671928a255/src/api/registration/index.ts#L53)
+Refer to our [default](https://github.com/opencrvs/opencrvs-countryconfig/blob/ef1160edee76b4aa2f619d81f396c740346f6565/src/index.ts#L672) and [MOSIP](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/index.ts#L668) example.
 
 {% hint style="warning" %}
-The JWT token that is sent to this payload can be used in asynchronous operations explained below.
+The JWT token that is sent to this payload should be used to communicate back with OpenCRVS using a client from our toolkit: `import { createClient } from '@opencrvs/toolkit/api'`
 {% endhint %}
 
-In our example we create a birth / death registration number at this point and return the amended payload to OpenCRVS.  Any synchronous interaction with a National ID system can take place here.
+In our example we create a birth / death registration number at this point and return the amended payload to OpenCRVS.  Any interaction with a National ID system can take place here.
 
-If a 200 is returned from this handler, the record will proceed to register, gaining a `REGISTERED` status, and appear in the Ready To Print work queue.
 
-If any error occurs such as a 500, the record will be placed in a `REJECTED` status with the reason being equal to whatever error code or message is available.  &#x20;
 
-The following library can return a graceful rejection message.
-
-```typescript
-@hapi/boom badImplementation
-```
-
-&#x20; &#x20;
+Using the JWT, you can process your integration and respond to OpenCRVS as you wish, progressing the declaration to a [REGISTERED](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/api/registration/index.ts#L111) or [REJECTED](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/api/registration/index.ts#L172) status accordingly.
 
 ### Aynchronous integration - birth & death
 
@@ -82,7 +74,5 @@ This configuration setting enables a work-queue "In external validation" that ca
 <figure><img src="../../../.gitbook/assets/Screenshot 2025-06-05 at 18.02.55.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="danger" %}
-The JWT token that is sent to the onRegisterHandelr, must be stored by your asynchronous process and used in the next operation.
+The JWT token that is sent to countryconfig must be stored by your asynchronous process in order to communicate back with OpenCRVS.  In our MOSIP example, it is stored in an SQLite DB.
 {% endhint %}
-
-Using the JWT, you can call the [acceptRequestedRegistration](https://github.com/opencrvs/opencrvs-countryconfig/blob/6f3759980e8f18d1d25c2c7ed89e2f671928a255/src/api/registration/index.ts#L102) or [rejectRequestedRegistration](https://github.com/opencrvs/opencrvs-countryconfig/blob/6f3759980e8f18d1d25c2c7ed89e2f671928a255/src/api/registration/index.ts#L129) handlers to respond to OpenCRVS asynchronously and progress the registration to a REGISTERED or REJECTED status accordingly.
