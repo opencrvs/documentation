@@ -41,10 +41,40 @@ The following library can return a graceful rejection message.
 
 ### Aynchronous integration - birth & death
 
-It is possible to use the same endpoint asynchronously.  But first, the following setting must be set to true in [application-config.ts](../../../setup/3.-installation/3.2-set-up-your-own-country-configuration/3.2.5-set-up-application-settings/):
+It is possible to use the same endpoint asynchronously.  But first, you must configure an in-external-validation workqueue in your [worqueueConfig](https://github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/api/workqueue/workqueueConfig.ts#L377C3-L399C5) and ensure that the correct users have permission to view the workqueue in [roles.ts](https://roles.tshttps/github.com/opencrvs/opencrvs-countryconfig-mosip/blob/a02aad6e0d8a8a6bfbfd31f35b77e63b409615f6/src/data-seeding/roles/roles.ts#L162C7-L162C138).
 
-```typescript
-EXTERNAL_VALIDATION_WORKQUEUE: true
+**workqueueConfig.ts**
+
+```
+{
+    slug: 'in-external-validation',
+    icon: 'FileText',
+    name: {
+      id: 'workqueues.inExternalValidation.title',
+      defaultMessage: 'In external validation',
+      description: 'Title of in external validation workqueue'
+    },
+    query: {
+      flags: {
+        anyOf: [
+          `${ActionType.REGISTER}:${ActionStatus.Requested}`.toLowerCase()
+        ]
+      },
+      updatedAtLocation: { type: 'exact', term: user('primaryOfficeId') }
+    },
+    actions: [
+      {
+        type: 'DEFAULT',
+        conditionals: []
+      }
+    ]
+  },
+```
+
+**roles.ts**
+
+```
+'workqueue[id=in-external-validation...
 ```
 
 This configuration setting enables a work-queue "In external validation" that can hold records in a `WAITING_VALIDATION` status until an asynchronous process completes.
