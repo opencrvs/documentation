@@ -1,7 +1,8 @@
-
 # Release notes
 
 ## Configuration template files
+
+{% file src="../.gitbook/assets/Configuration-template-inputs.zip" %}
 
 ## Deployment, Monitoring & Data Security
 
@@ -21,56 +22,53 @@ Dependency table, Network Diagram with VPN & approx. costs associated
 
 ### Breaking changes
 
-- `QUERY_PARAM_READER` now returns picked params under a `data` object.
-  For example, `code` and `state` are now accessed via `data.code` and `data.state`.
+*   `QUERY_PARAM_READER` now returns picked params under a `data` object. For example, `code` and `state` are now accessed via `data.code` and `data.state`.
 
-  Previously:
-  field(<page>.query-params).get('code')
-  Now:
-  field(<page>.query-params).get('data.code')
-
-- **Removed support for following scopes**
-  - `NATLSYSADMIN`
-  - `DECLARE`
-  - `VALIDATE`
-  - `CERTIFY`
-  - `PERFORMANCE`
-  - `SYSADMIN`
-  - `TEAMS`
-  - `CONFIG`
-  - `RECORD_EXPORT_RECORDS`
-  - `RECORD_DECLARATION_PRINT`
-  - `RECORD_PRINT_RECORDS_SUPPORTING_DOCUMENTS`
-  - `RECORD_REGISTRATION_PRINT`
-  - `RECORD_PRINT_CERTIFIED_COPIES`
-  - `RECORD_REGISTRATION_VERIFY_CERTIFIED_COPIES`
-  - `PROFILE_UPDATE`
+    Previously: field(.query-params).get('code') Now: field(.query-params).get('data.code')
+* **Removed support for following scopes**
+  * `NATLSYSADMIN`
+  * `DECLARE`
+  * `VALIDATE`
+  * `CERTIFY`
+  * `PERFORMANCE`
+  * `SYSADMIN`
+  * `TEAMS`
+  * `CONFIG`
+  * `RECORD_EXPORT_RECORDS`
+  * `RECORD_DECLARATION_PRINT`
+  * `RECORD_PRINT_RECORDS_SUPPORTING_DOCUMENTS`
+  * `RECORD_REGISTRATION_PRINT`
+  * `RECORD_PRINT_CERTIFIED_COPIES`
+  * `RECORD_REGISTRATION_VERIFY_CERTIFIED_COPIES`
+  * `PROFILE_UPDATE`
 
 ### New features
 
-- Add multi-field search with a single component [#10617](https://github.com/opencrvs/opencrvs-core/issues/10617)
-- **Search Field**: A new form field that allows searching previous records and using the data to pre-fill the current form. [#10131](https://github.com/opencrvs/opencrvs-core/issues/10131)
-- HTTP input now accepts `field('..')` references in the HTTP body definition.
-- **Searchable Select**: A new select component that allows searching through options. Useful for selects with a large number of options. Currently being used in address fields. [#10749](https://github.com/opencrvs/opencrvs-core/issues/10749)
+* Add multi-field search with a single component [#10617](https://github.com/opencrvs/opencrvs-core/issues/10617)
+* **Search Field**: A new form field that allows searching previous records and using the data to pre-fill the current form. [#10131](https://github.com/opencrvs/opencrvs-core/issues/10131)
+* HTTP input now accepts `field('..')` references in the HTTP body definition.
+* **Searchable Select**: A new select component that allows searching through options. Useful for selects with a large number of options. Currently being used in address fields. [#10749](https://github.com/opencrvs/opencrvs-core/issues/10749)
 
 ### Bug fixes
-- During user password reset, email address lookup is now case insensitive [#9869](https://github.com/opencrvs/opencrvs-core/issues/9869)
-- Users cannot activate or reactivate users with roles not specified in the `user.edit` scope [#9933](https://github.com/opencrvs/opencrvs-core/issues/9933)
-- Login page no longer show "Farajaland CRVS" before showing the correct title [#10958](https://github.com/opencrvs/opencrvs-core/issues/10958)
-- `ALPHA_PRINT_BUTTON` does not get disabled after first print [#10953](https://github.com/opencrvs/opencrvs-core/issues/10953)
+
+* During user password reset, email address lookup is now case insensitive [#9869](https://github.com/opencrvs/opencrvs-core/issues/9869)
+* Users cannot activate or reactivate users with roles not specified in the `user.edit` scope [#9933](https://github.com/opencrvs/opencrvs-core/issues/9933)
+* Login page no longer show "Farajaland CRVS" before showing the correct title [#10958](https://github.com/opencrvs/opencrvs-core/issues/10958)
+* `ALPHA_PRINT_BUTTON` does not get disabled after first print [#10953](https://github.com/opencrvs/opencrvs-core/issues/10953)
 
 ### OpenCRVS Country config template v1.9.0
 
 ### Breaking changes
 
-- **Remove Unused Scopes**: Removed `RECORD_PRINT_RECORDS_SUPPORTING_DOCUMENTS` and `RECORD_EXPORT_RECORDS` scopes from `REGISTRATION_AGENT`, `LOCAL_REGISTRAR` and `NATIONAL_REGISTRAR`
+* **Remove Unused Scopes**: Removed `RECORD_PRINT_RECORDS_SUPPORTING_DOCUMENTS` and `RECORD_EXPORT_RECORDS` scopes from `REGISTRATION_AGENT`, `LOCAL_REGISTRAR` and `NATIONAL_REGISTRAR`
 
 ### Improvements
 
-- Make encryption step optional [#1123](https://github.com/opencrvs/opencrvs-countryconfig/pull/1123)
-- Added validation for ENCRYPTION_KEY [#10896](https://github.com/opencrvs/opencrvs-core/issues/10896)
+* Make encryption step optional [#1123](https://github.com/opencrvs/opencrvs-countryconfig/pull/1123)
+* Added validation for ENCRYPTION\_KEY [#10896](https://github.com/opencrvs/opencrvs-core/issues/10896)
 
 ### New content keys requiring translation
+
 ```
 searchField.indicators.clearButton,Clear button text,Clear,Effacer
 searchField.indicators.clearModal.cancel,Cancel button for clear confirmation modal,Cancel,Annuler
@@ -91,30 +89,25 @@ searchField.indicators.ok,OK button text,Found {count} results,{count} résultat
 
 ### Breaking changes
 
-* Dashboard configuration through **Metabase** has been fully migrated to **countryconfig**, and the standalone dashboard package has been removed.
-  For details on configuring dashboards and information about the latest updates, refer to the [ANALYTICS.md](https://github.com/opencrvs/opencrvs-countryconfig/blob/v1.9.0/ANALYTICS.md) documentation.
-
+* Dashboard configuration through **Metabase** has been fully migrated to **countryconfig**, and the standalone dashboard package has been removed. For details on configuring dashboards and information about the latest updates, refer to the [ANALYTICS.md](https://github.com/opencrvs/opencrvs-countryconfig/blob/v1.9.0/ANALYTICS.md) documentation.
 
 ### New features
 
 #### Events V2
 
-We are excited to announce a major overhaul of our events system: **Events V2**.
-This is a complete rewrite that introduces a new level of flexibility and configurability to how life events are defined and managed across the system.
+We are excited to announce a major overhaul of our events system: **Events V2**. This is a complete rewrite that introduces a new level of flexibility and configurability to how life events are defined and managed across the system.
 
 The new Events V2 architecture is built around a set of core concepts designed to make event management more powerful and customizable.
 
-##### Events
+**Events**
 
-An **Event** represents a life event (or any kind of event), such as a birth or a marriage.
-Each event is defined by a configuration that specifies the sequence of **Actions** required to register it.
+An **Event** represents a life event (or any kind of event), such as a birth or a marriage. Each event is defined by a configuration that specifies the sequence of **Actions** required to register it.
 
-##### Actions
+**Actions**
 
-###### Declaration Actions
+**Declaration Actions**
 
-Declaration actions are used to modify an event’s declaration.
-These actions must be executed in a defined order and cannot be skipped.
+Declaration actions are used to modify an event’s declaration. These actions must be executed in a defined order and cannot be skipped.
 
 1. **DECLARE**
 2. **VALIDATE**
@@ -122,52 +115,45 @@ These actions must be executed in a defined order and cannot be skipped.
 
 Each action must be accepted by **countryconfig** before the next one can be performed.
 
-
-###### Rejecting and Archiving
+**Rejecting and Archiving**
 
 After declaration, instead of proceeding with registration, an event may be either **rejected** or **archived**.
 
-If **deduplication** is enabled for an action, performing that action may trigger a **DUPLICATE_DETECTED** action if duplicates are found.
-When this occurs, two additional actions become available:
+If **deduplication** is enabled for an action, performing that action may trigger a **DUPLICATE\_DETECTED** action if duplicates are found. When this occurs, two additional actions become available:
 
-* **MARK_AS_DUPLICATE** – archives the event.
-* **MARK_AS_NOT_DUPLICATE** – resumes the normal action flow.
+* **MARK\_AS\_DUPLICATE** – archives the event.
+* **MARK\_AS\_NOT\_DUPLICATE** – resumes the normal action flow.
 
 If an event is rejected by a user, the preceding action must be repeated before continuing.
 
-
-###### Actions Before Declaration
+**Actions Before Declaration**
 
 1. **NOTIFY** – a partial version of the `DECLARE` action.
 2. **DELETE** – an event can be deleted only if no declaration action has yet been performed.
 
+**Actions After Registration**
 
-###### Actions After Registration
+Once an event has been registered, a certificate may be printed. If a correction is required due to an error in the registered declaration, a correction workflow must be initiated.
 
-Once an event has been registered, a certificate may be printed.
-If a correction is required due to an error in the registered declaration, a correction workflow must be initiated.
+1. **PRINT\_CERTIFICATE**
+2. **REQUEST\_CORRECTION**
+3. **REJECT\_CORRECTION**
+4. **APPROVE\_CORRECTION**
 
-1. **PRINT_CERTIFICATE**
-2. **REQUEST_CORRECTION**
-3. **REJECT_CORRECTION**
-4. **APPROVE_CORRECTION**
-
-
-###### General / Meta Actions
+**General / Meta Actions**
 
 1. **READ** – appended to the action trail whenever a complete event record is retrieved.
 2. **ASSIGN** – required before any action can be performed. By default, the user is automatically unassigned after completing an action.
 3. **UNASSIGN** – triggered either automatically by the system or manually by a user (if the record is assigned to themselves or if the user has the appropriate permission).
 
-##### Forms, Pages, and Fields
+**Forms, Pages, and Fields**
 
 Event data is collected through **Forms**, which come in two types:
 
 * **Declaration Form** – collects data about the event itself
 * **Action Form** – collects data specific to a particular action, also known as annotation data in the system
 
-Forms are composed of **Pages**, and pages are composed of **Fields**.
-Fields can be shown, hidden, or enabled dynamically based on the values of other fields, allowing for a responsive and intuitive user experience.
+Forms are composed of **Pages**, and pages are composed of **Fields**. Fields can be shown, hidden, or enabled dynamically based on the values of other fields, allowing for a responsive and intuitive user experience.
 
 To simplify configuration, we’ve introduced a set of helper functions:
 
@@ -180,24 +166,24 @@ defineFormPage()
 
 All of these are available in a **type-safe** manner via the new `@opencrvs/toolkit` npm package.
 
-##### Conditionals & Validation
+**Conditionals & Validation**
 
 Validation has been significantly improved through the adoption of **AJV** and **JSON Schema**, providing standardized, robust, and extensible validation.
 
 The `field` function (exported from `@opencrvs/toolkit`) includes a set of helpers for defining complex validation rules and conditional logic.
 
-##### Available helpers include:
+**Available helpers include:**
 
 * **Boolean connectors**: `and`, `or`, `not`
 * **Basic conditions**: `alwaysTrue`, `never`
 * **Comparisons**: `isAfter`, `isBefore`, `isGreaterThan`, `isLessThan`, `isBetween`, `isEqualTo`
 * **Field state checks**: `isFalsy`, `isUndefined`, `inArray`, `matches` (regex patterns)
 * **Age-specific helpers**: `asAge`, `asDob` (to compare age or date of birth)
-* **Nested fields**:
+*   **Nested fields**:
 
-  ```ts
-  field('parent.field.name').get('nested.field').isFalsy()
-  ```
+    ```ts
+    field('parent.field.name').get('nested.field').isFalsy()
+    ```
 
 The `user` object, also exported from `@opencrvs/toolkit`, includes helpers for user-based conditions such as:
 
@@ -217,8 +203,7 @@ They can also be used to validate form data dynamically based on the current for
 
 #### Drafts
 
-The new **Drafts** feature allows users to save progress on an event that has not yet been registered.
-Drafts act as temporary storage for an action and are visible only to the user who created them.
+The new **Drafts** feature allows users to save progress on an event that has not yet been registered. Drafts act as temporary storage for an action and are visible only to the user who created them.
 
 #### Advanced Search
 
@@ -228,7 +213,6 @@ You can search across:
 
 * **Declaration Fields** – using the same `field` function from declaration forms with helpers such as `range`, `exact`, `fuzzy`, and `within`
 * **Event Metadata** – using the `event` function to search against metadata such as:
-
   * `trackingId`
   * `status`
   * `legalStatuses.REGISTERED.acceptedAt`
@@ -239,8 +223,7 @@ More details about the metadata fields are available in `packages/commons/src/ev
 
 #### Deduplication
 
-Event deduplication is now configurable **per action** via the `EventConfig.actions[].deduplication` property.
-Helpers for defining deduplication logic—such as `and`, `or`, `not`, and `field`—are available from `@opencrvs/toolkit/events/deduplication`.
+Event deduplication is now configurable **per action** via the `EventConfig.actions[].deduplication` property. Helpers for defining deduplication logic—such as `and`, `or`, `not`, and `field`—are available from `@opencrvs/toolkit/events/deduplication`.
 
 The `field` helper can reference declaration form fields and be combined with:
 
@@ -254,8 +237,7 @@ to define precise deduplication rules.
 
 #### Greater Control over Actions
 
-Each action now progresses through three possible states: **`requested`**, **`accepted`**, and **`rejected`**.
-When a user performs an action, it is first marked as **`requested`** and forwarded to **countryconfig** via the `/trigger/events/{event}/actions/{action}` route, with the complete event details included in the payload.
+Each action now progresses through three possible states: **`requested`**, **`accepted`**, and **`rejected`**. When a user performs an action, it is first marked as **`requested`** and forwarded to **countryconfig** via the `/trigger/events/{event}/actions/{action}` route, with the complete event details included in the payload.
 
 Countryconfig has full control over how the action is processed and may choose to **accept** or **reject** the action either **synchronously** or **asynchronously**.
 
@@ -266,8 +248,7 @@ By hooking into these action trigger routes, countryconfig can also:
 
 #### Configurable Workqueues
 
-Workqueues can now be configured from countryconfig using the `defineWorkqueues` function from `@opencrvs/toolkit/events`.
-This enables the creation of role- or workflow-specific queues without requiring code changes in core.
+Workqueues can now be configured from countryconfig using the `defineWorkqueues` function from `@opencrvs/toolkit/events`. This enables the creation of role- or workflow-specific queues without requiring code changes in core.
 
 * The **`actions`** property is used to define the default actions displayed for records within a workqueue.
 * The **`query`** property is used to determine which events are included in the workqueue.
@@ -275,17 +256,13 @@ This enables the creation of role- or workflow-specific queues without requiring
 
 Details on the available configuration options can be found in the `WorkqueueConfig.ts` file.
 
-
 #### Event Overview
 
-The configuration of the event overview page (formerly known as *Record Audit*) has been made customizable through the `EventConfig.summary` property.
-The record details displayed on this page can be referenced directly from the declaration form or defined as custom fields that combine multiple form values. If some value contains PII data, they can optionally be hidden via the `secured` flag so that the data will only be visible once the record is assigned to the user.
-
+The configuration of the event overview page (formerly known as _Record Audit_) has been made customizable through the `EventConfig.summary` property. The record details displayed on this page can be referenced directly from the declaration form or defined as custom fields that combine multiple form values. If some value contains PII data, they can optionally be hidden via the `secured` flag so that the data will only be visible once the record is assigned to the user.
 
 #### Quick Search
 
-The dropdown previously available in the search bar has been removed.
-Any search performed through the **Quick Search** bar is now executed against common record properties such as names, tracking ID, and registration number by default, providing a more streamlined and consistent search experience.
+The dropdown previously available in the search bar has been removed. Any search performed through the **Quick Search** bar is now executed against common record properties such as names, tracking ID, and registration number by default, providing a more streamlined and consistent search experience.
 
 #### Certificate Template Variables
 
@@ -294,55 +271,48 @@ The following variables are available for use within certificate templates:
 * **`$declaration`** – Contains the latest raw declaration form data. Typically used with the `$lookup` Handlebars helper to resolve values into human-readable text.
 * **`$metadata`** – Contains the `EventMetadata` object. Commonly used with the `$lookup` helper for resolving metadata fields into readable values.
 * **`$review`** – A boolean flag indicating whether the certificate is being rendered in review mode.
-* **`$references`** – Contains reference data for locations and users, accessible via `{{ $references.locations }}` and `{{ $references.users }}`.
-  This is useful when manually resolving values from `$declaration`, `$metadata` or `action`.
+* **`$references`** – Contains reference data for locations and users, accessible via `{{ $references.locations }}` and `{{ $references.users }}`. This is useful when manually resolving values from `$declaration`, `$metadata` or `action`.
 
-##### Handlebars Helpers
+**Handlebars Helpers**
 
 The following helpers are supported within certificate templates:
 
 * **`$lookup`** – Resolves values from `$declaration`, `$metadata`, or `action` data into a human-readable format.
-* **`$intl`** – Dynamically constructs a translation key by joining multiple string parts.
-  Example:
+*   **`$intl`** – Dynamically constructs a translation key by joining multiple string parts. Example:
 
-  ```hbs
-  {{ $intl 'constants.greeting' (lookup $declaration "child.name") }}
-  ```
-* **`$intlWithParams`** – Enables dynamic translations with parameters.
-  Takes a translation ID as the first argument, followed by parameter name–value pairs.
-  Example:
+    ```hbs
+    {{ $intl 'constants.greeting' (lookup $declaration "child.name") }}
+    ```
+*   **`$intlWithParams`** – Enables dynamic translations with parameters. Takes a translation ID as the first argument, followed by parameter name–value pairs. Example:
 
-  ```hbs
-  {{ $intlWithParams 'constants.greeting' 'name' (lookup $declaration "child.name") }}
-  ```
-* **`$actions`** – Resolves all actions for a specified action type.
-  Example:
+    ```hbs
+    {{ $intlWithParams 'constants.greeting' 'name' (lookup $declaration "child.name") }}
+    ```
+*   **`$actions`** – Resolves all actions for a specified action type. Example:
 
-  ```hbs
-  {{ $actions "PRINT_CERTIFICATE" }}
-  ```
-* **`$action`** – Retrieves the latest action data for a specific action type.
-  Example:
+    ```hbs
+    {{ $actions "PRINT_CERTIFICATE" }}
+    ```
+*   **`$action`** – Retrieves the latest action data for a specific action type. Example:
 
-  ```hbs
-  {{ $action "PRINT_CERTIFICATE" }}
-  ```
-* **`ifCond`** – Compares two values (`v1` and `v2`) using the specified operator and conditionally renders a block based on the result.
-  **Supported operators:**
+    ```hbs
+    {{ $action "PRINT_CERTIFICATE" }}
+    ```
+*   **`ifCond`** – Compares two values (`v1` and `v2`) using the specified operator and conditionally renders a block based on the result. **Supported operators:**
 
-  * `'==='` – strict equality
-  * `'!=='` – strict inequality
-  * `'<'`, `'<='`, `'>'`, `'>='` – numeric or string comparisons
-  * `'&&'` – both values must be truthy
-  * `'||'` – at least one value must be truthy
+    * `'==='` – strict equality
+    * `'!=='` – strict inequality
+    * `'<'`, `'<='`, `'>'`, `'>='` – numeric or string comparisons
+    * `'&&'` – both values must be truthy
+    * `'||'` – at least one value must be truthy
 
-  **Usage example:**
+    **Usage example:**
 
-  ```hbs
-  {{#ifCond value1 '===' value2}}
-    ...
-  {{/ifCond}}
-  ```
+    ```hbs
+    {{#ifCond value1 '===' value2}}
+      ...
+    {{/ifCond}}
+    ```
 * **`$or`** – Returns the first truthy value among the provided arguments.
 * **`$json`** – Converts any value to its JSON string representation (useful for debugging).
 
@@ -350,82 +320,68 @@ Besides the ones introduced above, all built-in [Handlebars helpers](https://han
 
 Custom helpers can also be added by exposing functions from this [file](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/src/form/common/certificate/handlebars/helpers.ts#L0-L1).
 
----
+***
 
 To see Events V2 in action, check out the example configurations in the **countryconfig** repository.
 
----
+***
 
-
-- **Redis password support with authorization and authentication** [#9338](https://github.com/opencrvs/opencrvs-core/pull/9338). By default password is disabled for local development environment and enabled on server environments.
-- **Switch back to default redis image** [#10173](https://github.com/opencrvs/opencrvs-core/issues/10173)
-- **Certificate Template Conditionals**: Certificate template conditionals allow dynamic template selection based on print history using the template conditional helpers.. [#7585](https://github.com/opencrvs/opencrvs-core/issues/7585)
-- Expose number of copies printed for a certificate template so it can be printed on the certificate. [#7586](https://github.com/opencrvs/opencrvs-core/issues/7586)
-- Add Import/Export system client and `record.export` scope to enable data migrations [#10415](https://github.com/opencrvs/opencrvs-core/issues/10415)
-- Add an Alpha version of configurable "Print" button that will be refactored in a later release - this button can be used to print certificates during declaration/correction flow. [#10039](https://github.com/opencrvs/opencrvs-core/issues/10039)
-- Add bulk import endpoint [#10590](https://github.com/opencrvs/opencrvs-core/pull/10590)
+* **Redis password support with authorization and authentication** [#9338](https://github.com/opencrvs/opencrvs-core/pull/9338). By default password is disabled for local development environment and enabled on server environments.
+* **Switch back to default redis image** [#10173](https://github.com/opencrvs/opencrvs-core/issues/10173)
+* **Certificate Template Conditionals**: Certificate template conditionals allow dynamic template selection based on print history using the template conditional helpers.. [#7585](https://github.com/opencrvs/opencrvs-core/issues/7585)
+* Expose number of copies printed for a certificate template so it can be printed on the certificate. [#7586](https://github.com/opencrvs/opencrvs-core/issues/7586)
+* Add Import/Export system client and `record.export` scope to enable data migrations [#10415](https://github.com/opencrvs/opencrvs-core/issues/10415)
+* Add an Alpha version of configurable "Print" button that will be refactored in a later release - this button can be used to print certificates during declaration/correction flow. [#10039](https://github.com/opencrvs/opencrvs-core/issues/10039)
+* Add bulk import endpoint [#10590](https://github.com/opencrvs/opencrvs-core/pull/10590)
 
 ### Improvements
 
-- **Upgrade node version to 22**
+*   **Upgrade node version to 22**
 
-  This version enforces environment to have Node 22 installed (supported until 30 April 2027) and removes support for Node 18 for better performance and using [new features](https://github.com/nodejs/node/releases/tag/v22.0.0) offered by NodeJS
+    This version enforces environment to have Node 22 installed (supported until 30 April 2027) and removes support for Node 18 for better performance and using [new features](https://github.com/nodejs/node/releases/tag/v22.0.0) offered by NodeJS
 
-  - Use nvm to upgrade your local development environment to use node version `22.x.x.`
-
-- **UI enhancements**
-
-  - Replaced the `Download` icon with a `FloppyDisk` save icon when saving an event as draft.
-
-- Use unprivileged version of nginx container image [#6501](https://github.com/opencrvs/opencrvs-core/issues/6501)
-
-- **Upgraded MinIO** to RELEASE.2025-06-13T11-33-47Z and MinIO Client (mc) to RELEASE.2025-05-21T01-59-54Z and ensured compatibility across both amd64 and arm64 architectures.
-
-- Add retry on deploy-to-feature-environment workflow at core repo [#9847](https://github.com/opencrvs/opencrvs-core/issues/9847)
-- Save certificate templateId so it can be shown in task history and made available for conditional [#9959](https://github.com/opencrvs/opencrvs-core/issues/9959)
-- Deprecate external id/ statistical id in V2. Remove external_id column from locations table and location seeding step [#9974](https://github.com/opencrvs/opencrvs-core/issues/9974)
-
-- **Updated environment variable**
-
-  - Renamed `COUNTRY_CONFIG_URL` → `COUNTRY_CONFIG_URL_EXTERNAL` in the auth service to make its purpose clearer and more explicit.
-
-- Tiltfile: Improved Kubernetes support for development environment [#10672](https://github.com/opencrvs/opencrvs-core/issues/10672)
+    * Use nvm to upgrade your local development environment to use node version `22.x.x.`
+* **UI enhancements**
+  * Replaced the `Download` icon with a `FloppyDisk` save icon when saving an event as draft.
+* Use unprivileged version of nginx container image [#6501](https://github.com/opencrvs/opencrvs-core/issues/6501)
+* **Upgraded MinIO** to RELEASE.2025-06-13T11-33-47Z and MinIO Client (mc) to RELEASE.2025-05-21T01-59-54Z and ensured compatibility across both amd64 and arm64 architectures.
+* Add retry on deploy-to-feature-environment workflow at core repo [#9847](https://github.com/opencrvs/opencrvs-core/issues/9847)
+* Save certificate templateId so it can be shown in task history and made available for conditional [#9959](https://github.com/opencrvs/opencrvs-core/issues/9959)
+* Deprecate external id/ statistical id in V2. Remove external\_id column from locations table and location seeding step [#9974](https://github.com/opencrvs/opencrvs-core/issues/9974)
+* **Updated environment variable**
+  * Renamed `COUNTRY_CONFIG_URL` → `COUNTRY_CONFIG_URL_EXTERNAL` in the auth service to make its purpose clearer and more explicit.
+* Tiltfile: Improved Kubernetes support for development environment [#10672](https://github.com/opencrvs/opencrvs-core/issues/10672)
 
 ### Bug fixes
 
-- Fix informant details not populating in API [#10311](https://github.com/opencrvs/opencrvs-core/issues/10311)
+* Fix informant details not populating in API [#10311](https://github.com/opencrvs/opencrvs-core/issues/10311)
 
 ### OpenCRVS Country config template v1.9.0
 
 ### New features
 
-- Render number of copies printed count on a certificate template. [#7586](https://github.com/opencrvs/opencrvs-core/issues/7586)
-- **Certificate Template Conditionals**: Added support for conditional filtering of certificate templates based on declaration form data and event metadata using JSON Schema validation. Templates can now be dynamically shown or hidden based on specific criteria such as demographics, registration status, action history, and regional variations. Includes helper functions for improved readability and maintainability. See [Certificate Template Conditionals documentation](docs/CERTIFICATE_TEMPLATE_CONDITIONALS.md) for implementation details. [#7585](https://github.com/opencrvs/opencrvs-core/issues/7585)
+* Render number of copies printed count on a certificate template. [#7586](https://github.com/opencrvs/opencrvs-core/issues/7586)
+* **Certificate Template Conditionals**: Added support for conditional filtering of certificate templates based on declaration form data and event metadata using JSON Schema validation. Templates can now be dynamically shown or hidden based on specific criteria such as demographics, registration status, action history, and regional variations. Includes helper functions for improved readability and maintainability. See [Certificate Template Conditionals documentation](docs/CERTIFICATE_TEMPLATE_CONDITIONALS.md) for implementation details. [#7585](https://github.com/opencrvs/opencrvs-core/issues/7585)
 
 ### Improvements
 
-- **Upgrade node version to 22**
+*   **Upgrade node version to 22**
 
-  This version enforces environment to have Node 22 installed (supported until 30 April 2027) and removes support for Node 18 for better performance and using [new features](https://github.com/nodejs/node/releases/tag/v22.0.0) offered by NodeJS
+    This version enforces environment to have Node 22 installed (supported until 30 April 2027) and removes support for Node 18 for better performance and using [new features](https://github.com/nodejs/node/releases/tag/v22.0.0) offered by NodeJS
 
-  - Use nvm to upgrade your local development environment to use node version `22.x.x.`
-  - Add conditions for the certified copy certificate to ensure it's only available to children who are 1 year or older. [#9684](https://github.com/opencrvs/opencrvs-core/issues/9684)
-  - Available disk space in root file system alert adjusted to fire when 20GB are remaining, rather than when diskspace usage is at 70%.
-
-- **Upgraded MinIO** to RELEASE.2025-06-13T11-33-47Z and MinIO Client (mc) to RELEASE.2025-05-21T01-59-54Z and ensured compatibility across both amd64 and arm64 architectures.
-
-- Remove the remnants of OpenHIM from the backup & restore scripts. [#9732](https://github.com/opencrvs/opencrvs-core/issues/9732)
-
-- Store system monitoring data for 1 month [#10515](https://github.com/opencrvs/opencrvs-core/issues/10515)
-
-- Restricted filesystem usage for journal service and file rotation strategy [#10518](https://github.com/opencrvs/opencrvs-core/issues/10518))
-
-- Tiltfile: Improved Kubernetes support for development environment [#10672](https://github.com/opencrvs/opencrvs-core/issues/10672)
+    * Use nvm to upgrade your local development environment to use node version `22.x.x.`
+    * Add conditions for the certified copy certificate to ensure it's only available to children who are 1 year or older. [#9684](https://github.com/opencrvs/opencrvs-core/issues/9684)
+    * Available disk space in root file system alert adjusted to fire when 20GB are remaining, rather than when diskspace usage is at 70%.
+* **Upgraded MinIO** to RELEASE.2025-06-13T11-33-47Z and MinIO Client (mc) to RELEASE.2025-05-21T01-59-54Z and ensured compatibility across both amd64 and arm64 architectures.
+* Remove the remnants of OpenHIM from the backup & restore scripts. [#9732](https://github.com/opencrvs/opencrvs-core/issues/9732)
+* Store system monitoring data for 1 month [#10515](https://github.com/opencrvs/opencrvs-core/issues/10515)
+* Restricted filesystem usage for journal service and file rotation strategy [#10518](https://github.com/opencrvs/opencrvs-core/issues/10518))
+* Tiltfile: Improved Kubernetes support for development environment [#10672](https://github.com/opencrvs/opencrvs-core/issues/10672)
 
 ### Bug fixes
 
-- Allow non-interactive upgrades with apt [#10204](https://github.com/opencrvs/opencrvs-core/issues/10204)
-- Don't restart events service after data cleanup [#10704](https://github.com/opencrvs/opencrvs-core/issues/10704)
+* Allow non-interactive upgrades with apt [#10204](https://github.com/opencrvs/opencrvs-core/issues/10204)
+* Don't restart events service after data cleanup [#10704](https://github.com/opencrvs/opencrvs-core/issues/10704)
 
 ### New content keys requiring translation
 
@@ -974,4 +930,3 @@ wq.noRecords.CREATED,No records messages for empty draft tab,No records in progr
 wq.noRecords.DECLARED,No records messages for ready for review tab,No records ready for review,Aucun document prêt à être examiné
 wq.noRecords.REGISTERED,No records messages for ready to print tab,No records ready to print,Aucun document prêt à être imprimé
 ```
-
