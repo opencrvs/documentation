@@ -3,6 +3,8 @@
 ## Configuration template files
 
 {% file src="../.gitbook/assets/Configuration-template-inputs.zip" %}
+Business analysis input files for completion, as guidance to development teams.
+{% endfile %}
 
 ## Deployment, Monitoring & Data Security
 
