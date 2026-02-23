@@ -1,3 +1,10 @@
+---
+metaLinks:
+  alternates:
+    - >-
+      https://app.gitbook.com/s/RziAMaeBMeyiTg5hfFq5/setup/3.-installation/3.1-set-up-a-development-environment/3.1.5-tooling
+---
+
 # 4.1.5 Tooling
 
 As part of the next step [3.2-set-up-your-own-country-configuration](../../../../../v1.8.0/setup/3.-installation/3.2-set-up-your-own-country-configuration "mention"), you are required to edit CSV, JSON, JS and Docker Compose files. Therefore, we strongly recommend that you install and use the free [VSCode](https://code.visualstudio.com/) IDE from Microsoft.

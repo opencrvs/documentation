@@ -2,7 +2,7 @@
 metaLinks:
   alternates:
     - >-
-      https://app.gitbook.com/s/RziAMaeBMeyiTg5hfFq5/technology/interoperability/national-id/mosip/registration-integration
+      https://app.gitbook.com/s/RziAMaeBMeyiTg5hfFq5/technology/interoperability/national-id/mosip/configuration
 ---
 
 # Configuration

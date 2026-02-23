@@ -1,3 +1,10 @@
+---
+metaLinks:
+  alternates:
+    - >-
+      https://app.gitbook.com/s/RziAMaeBMeyiTg5hfFq5/setup/3.-installation/3.1-set-up-a-development-environment
+---
+
 # 4.1 Set-up a local development environment
 
 {% hint style="success" %}
@@ -7,7 +14,7 @@ We strongly recommend you try [Quick start](../quick-start.md) demo before setti
 {% hint style="warning" %}
 **Important! Please read**
 
-The following instructions will guide you through setting up a **local development** environment for OpenCRVS on your desktop (laptop), using our fictional country configuration “Farajaland” for development and configuration purposes. To learn how to deploy OpenCRVS to a server host, please refer to Section [3.3-set-up-a-server-hosted-environment](../3.3-set-up-a-server-hosted-environment/ "mention").
+The following instructions will guide you through setting up a **local development** environment for OpenCRVS on your desktop (laptop), using our fictional country configuration “Farajaland” for development and configuration purposes. To learn how to deploy OpenCRVS to a server host, please refer to Section [3.3-set-up-a-server-hosted-environment](../3.3-set-up-a-server-hosted-environment "mention").
 {% endhint %}
 
 {% hint style="warning" %}
