@@ -161,8 +161,72 @@ function buildSearchParameters(
 
 We recommend that you use the Advanced Search feature in the OpenCRVS application and monitor the payload that is sent to the Gateway using the Chrome Developer Tools "Network" tab, in order to understand how these parameters are formatted. The table below lists all possible parameters with a description and example where we feel further explanation is helpful.
 
+#### Record Search Results
+
 After a search has completed and if you search for any record returned, you will see that in Record Audit, an entry shows that this client has accessed the personally identifiable citizen data on the record.
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2023-01-16 at 11.49.25 (1).png" alt=""><figcaption></figcaption></figure>
+
+```
+{
+  "results": [
+    {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "type": "string",
+      "status": "CREATED",
+      "legalStatuses": {
+        "DECLARED": {
+          "createdAt": "0029-03-30T21:00Z",
+          "createdBy": "string",
+          "createdAtLocation": "00000000-0000-0000-0000-000000000000",
+          "createdByUserType": "user",
+          "acceptedAt": "4967-02-21T23:32:46Z",
+          "createdByRole": "string",
+          "createdBySignature": "string"
+        },
+        "REGISTERED": {
+          "createdAt": "4115-02-22T10:01:56Z",
+          "createdBy": "string",
+          "createdAtLocation": "a2CC06AF-1ed0-16f3-a2Ff-ffD071b5a0fb",
+          "createdByUserType": "user",
+          "acceptedAt": "1356-11-05T23:31Z",
+          "createdByRole": "string",
+          "createdBySignature": "string",
+          "registrationNumber": "string"
+        }
+      },
+      "createdAt": "2397-11-30T23:52:10.0541149825157802403912327647707242224719807421894381681357562151736869882654670Z",
+      "dateOfEvent": "9600-02-29",
+      "placeOfEvent": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+      "createdBy": "string",
+      "createdByUserType": "user",
+      "updatedByUserRole": "string",
+      "createdAtLocation": "00000000-0000-0000-0000-000000000000",
+      "createdBySignature": "string",
+      "updatedAtLocation": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+      "updatedAt": "6072-02-29T23:09:36Z",
+      "assignedTo": "string",
+      "updatedBy": "string",
+      "trackingId": "string",
+      "potentialDuplicates": [
+        {
+          "id": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+          "trackingId": "string"
+        }
+      ],
+      "flags": [
+        "print_certificate:rejected",
+        "string"
+      ],
+      "declaration": {
+        "additionalProp1": [],
+        "additionalProp2": [],
+        "additionalProp3": []
+      }
+    }
+  ],
+  "total": 0
+}
+```
 
 For full API details, refer to the [Swagger documentation](https://api.opencrvs.org/develop/events/).
