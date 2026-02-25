@@ -26,7 +26,7 @@ To submit an Record Search, your client must first request an [authorization tok
 
 #### Record Search Requests
 
-With the token as an authorization header, the following example request will submit a record search. It utilises queries that are used buy the OpenCRVS GUI and an example integration using the Digital Convergence Initiative standard [middleware](https://github.com/opencrvs/dci-crvs-api).
+With the token as an authorization header, the following example request will submit a record search. It utilises queries that are used buy the OpenCRVS GUI and an example integration using the [Digital Convergence Initiative](https://standards.spdci.org/standards/standards-for-interoperability-interfaces/common-standards-for-interoperability-interfaces/) standard [middleware](https://github.com/opencrvs/dci-crvs-api).
 
 ```
 
