@@ -37,6 +37,10 @@ Re-run script for each environment:
 * staging
 * production
 
+{% hint style="info" %}
+Configuring a **staging** or **prodution** Github environment requires you to have a **backup server** environment in place.  No explicit **backup** _Github_ environment is required anymore as of OpenCRVS v2.0\~
+{% endhint %}
+
 To run the script, open terminal window and cd into your **forked infrastructure repository** and run the following command to start configuration wizard:
 
 <pre><code><strong>yarn install
