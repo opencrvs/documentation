@@ -13,21 +13,19 @@ GitHub environments will host all secrets and variables required for successful 
 
 Make sure you completed environment preparation steps and have all required information:
 
-| Property                                                                                | Description                                                                                                                                                                                                                                                             |
-| --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GitHub Organisation                                                                     | Own GitHub organisation with subscription.                                                                                                                                                                                                                              |
-| Country config repository                                                               | [4.2.10-build-country-config-docker-image.md](../../3.2-set-up-your-own-country-configuration/4.2.10-build-country-config-docker-image.md "mention")                                                                                                                    |
-| Virtual machines (servers) created                                                      | <p><a data-mention href="../4.3.1-preparation-steps/4.3.1.1-setup-infrastructure.md">4.3.1.1-setup-infrastructure.md</a><br>Verify you have IP addresses or DNS names and you are able to login on those VMs</p>                                                        |
-| Domain names are registered                                                             | <p><a data-mention href="../4.3.1-preparation-steps/4.3.1.2-configure-dns.md">4.3.1.2-configure-dns.md</a><br>Verify DNS names are pointed to appropriate IP addresses of VMs.</p>                                                                                      |
-| SSL Certificates issued or one of the available  Let’s Encrypt is considered to be used | [4.3.1.3-issue-ssl-certificates.md](../4.3.1-preparation-steps/4.3.1.3-issue-ssl-certificates.md "mention")                                                                                                                                                             |
-| Infrastructure repository forked                                                        | [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention")                                                                                                               |
-| GitHub Token with full code access and workflow permissions created                     | Personal access token (Fine grained token) with access to Country config and Infrastructure repositories. See [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention") |
-| DockerHub Account, token and repository are created                                     | <p><a data-mention href="../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md">4.3.1.4-create-prerequisite-accounts-and-repositories.md</a><br>Make sure Country config image was built and pushed to DockerHub</p>                      |
-| Users with their public keys to grant remote access to the servers                      | [4.3.5.1-ssh-access.md](../../4.4-advanced-topics/4.3.5.1-ssh-access.md "mention")                                                                                                                                                                                      |
-| SMTP server configured                                                                  | [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention")                                                                                                               |
-| Optionally Third-party accounts created (sentry, slack, etc)                            | [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention")                                                                                                               |
-
-
+| Property                                                                               | Description                                                                                                                                                                                                                                                             |
+| -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GitHub Organisation                                                                    | Own GitHub organisation with subscription.                                                                                                                                                                                                                              |
+| Country config repository                                                              | [4.2.10-build-country-config-docker-image.md](../../3.2-set-up-your-own-country-configuration/4.2.10-build-country-config-docker-image.md "mention")                                                                                                                    |
+| Virtual machines (servers) created                                                     | <p><a data-mention href="../4.3.1-preparation-steps/4.3.1.1-setup-infrastructure.md">4.3.1.1-setup-infrastructure.md</a><br>Verify you have IP addresses or DNS names and you are able to login on those VMs</p>                                                        |
+| Domain names are registered                                                            | <p><a data-mention href="../4.3.1-preparation-steps/4.3.1.2-configure-dns.md">4.3.1.2-configure-dns.md</a><br>Verify DNS names are pointed to appropriate IP addresses of VMs.</p>                                                                                      |
+| SSL Certificates issued or one of the available Let’s Encrypt is considered to be used | [4.3.1.3-issue-ssl-certificates.md](../4.3.1-preparation-steps/4.3.1.3-issue-ssl-certificates.md "mention")                                                                                                                                                             |
+| Infrastructure repository forked                                                       | [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention")                                                                                                               |
+| GitHub Token with full code access and workflow permissions created                    | Personal access token (Fine grained token) with access to Country config and Infrastructure repositories. See [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention") |
+| DockerHub Account, token and repository are created                                    | <p><a data-mention href="../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md">4.3.1.4-create-prerequisite-accounts-and-repositories.md</a><br>Make sure Country config image was built and pushed to DockerHub</p>                      |
+| Users with their public keys to grant remote access to the servers                     | [4.3.5.1-ssh-access.md](../../4.4-advanced-topics/4.3.5.1-ssh-access.md "mention")                                                                                                                                                                                      |
+| SMTP server configured                                                                 | [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention")                                                                                                               |
+| Optionally Third-party accounts created (sentry, slack, etc)                           | [4.3.1.4-create-prerequisite-accounts-and-repositories.md](../4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md "mention")                                                                                                               |
 
 ### Create github environments
 
@@ -39,27 +37,19 @@ Re-run script for each environment:
 * staging
 * production
 
-To run the script, open terminal window and cd into your forked infrastructure repository and run the following command to start configuration wizard:
+To run the script, open terminal window and cd into your **forked infrastructure repository** and run the following command to start configuration wizard:
 
 <pre><code><strong>yarn install
 </strong><strong>yarn environment:init
 </strong></code></pre>
 
-You will be asked to provide values to configure key OpenCRVS components. Some actions can be automated and script will guide you to the next steps, for example script will produce OpenCRVS server bootstrap command ready for copy/paste on remote host without modifications:
+{% hint style="info" icon="triangle-exclamation" %}
+Similar commands exist in a forked countryconfig repo but these exist only for backwards compatibility, e.g. OpenCRVS v1.8 or below and **should no longer be used**.  Older installations should follow the [4.3.6 Migration from Docker swarm guide](../4.3.6-migration-from-docker-swarm-guide.md)
+{% endhint %}
 
-{% code title="Bootstrap command is automatically created by "yarn environment:init" script. This example demonstrates how bootstrap command may look like." %}
-```
-curl -sfL https://raw.githubusercontent.com/opencrvs/infrastructure/refs/heads/develop/scripts/bootstrap/opencrvs-bootstrap.sh \
-     -o opencrvs-bootstrap.sh && \
-bash opencrvs-bootstrap.sh --owner opencrvs \
-            --repo my-custom-infrastructure \
-            --env qa \
-            --token gh_PARSONAL_ACCESS_TOKEN \
-            --enable-runner
-```
-{% endcode %}
+You will be asked to provide values to configure key OpenCRVS components. Some actions can be automated and the script will guide you to the next steps.
 
-Output will also contain additional hints how to bootstrap kubernetes worker nodes and backup server.
+
 
 ### Environments init script questions
 
@@ -103,9 +93,6 @@ Once you provide answers to the questions script will connect GitHub:
 *   If environment doesn't exist, script will continue it's execution
 
     <figure><img src="../../../../.gitbook/assets/after-login-to-github.png" alt=""><figcaption><p>GitHub environment doesn't exist</p></figcaption></figure>
-
-
-
 *   If environment exists, script will fetch information about existing secrets and variables for particular environment and repository.<br>
 
     <figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>GitHub environment already exists</p></figcaption></figure>
@@ -120,7 +107,7 @@ For environments with PII data script will ask you to answer additional question
 
 #### Docker Hub
 
-The script will ask for your Dockerhub credentials or skip if they already exist. GitHub doesn't allow to  fetch secret values, you will not be able to check current value, only update value is possible.
+The script will ask for your Dockerhub credentials or skip if they already exist. GitHub doesn't allow to fetch secret values, you will not be able to check current value, only update value is possible.
 
 <figure><img src="../../../../.gitbook/assets/dockerhub-existing-credentials.png" alt=""><figcaption><p>DockerHub credentials were created earlier</p></figcaption></figure>
 
@@ -164,7 +151,7 @@ Questions for **Static SSL certificate**
 Full documentation about traefik configuration can be found at:
 
 * Official documentation page: [https://github.com/traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart)
-* OpenCRVS documentation: [4.5.1-tls-ssl-configuration-for-traefik](../../4.4-advanced-topics/4.5.1-tls-ssl-configuration-for-traefik/ "mention")
+* OpenCRVS documentation: [4.5.1-tls-ssl-configuration-for-traefik](../../4.4-advanced-topics/4.5.1-tls-ssl-configuration-for-traefik "mention")
 
 #### Storage
 
@@ -183,7 +170,7 @@ By default backup is configured to run at 01:00 AM by UTC, if you need to adjust
 
 <figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption><p>Backup configuration</p></figcaption></figure>
 
-More information about backup server configuration can be found at [Backup and Restore](../../4.4-opencrvs-maintenance-tasks/4.3.7-backup-and-restore/) section.
+More information about backup server configuration can be found at [Backup and Restore](../../4.4-opencrvs-maintenance-tasks/4.3.7-backup-and-restore) section.
 
 #### Restore
 
@@ -233,9 +220,23 @@ At this point smtp server should be configured. If you are using third-party ema
 
 Once all questions are answered the script will generate strong database passwords for all the database technologies used in OpenCRVS. It will display all the secrets that the script will create and ask you if you want to continue to create the environment on Github.
 
-The script will slowly create the Github environment and upload all the secrets OpenCRVS requires to provision and deploy OpenCRVS from Github Actions.  It will create Helm chart and values files ready for committing to your repository.
+The script will slowly create the Github environment and upload all the secrets OpenCRVS requires to provision and deploy OpenCRVS from Github Actions. It will create Helm chart and values files ready for committing to your repository.
 
-On the final step the script will provide a command to bootstrap self-hosted runner on your server. **Save the command from script output to a temporal file, you will need it later**.
+On the final step the script will provide a command to bootstrap a self-hosted runner on your server. **Save the command from script output to a temporal file, you will need it later**.
+
+This is explained in the section [4.3.3 Bootstrap servers](../4.3.2-bootstrap-servers.md):
+
+{% code title="Bootstrap command is automatically created ... " %}
+```
+curl -sfL https://raw.githubusercontent.com/opencrvs/infrastructure/refs/heads/develop/scripts/bootstrap/opencrvs-bootstrap.sh \
+     -o opencrvs-bootstrap.sh && \
+bash opencrvs-bootstrap.sh --owner opencrvs \
+            --repo my-custom-infrastructure \
+            --env qa \
+            --token gh_PARSONAL_ACCESS_TOKEN \
+            --enable-runner
+```
+{% endcode %}
 
 <figure><img src="../../../../.gitbook/assets/final-message.png" alt=""><figcaption><p>Command to bootstrap self-hosted runner on newly created virtual machine. Script will provide additional commands and hints for multi-node Kubernetes cluster and for configuration with backup server</p></figcaption></figure>
 
@@ -271,24 +272,22 @@ Review modified files:
 
 * `infrastructure/server-setup/inventory/<environment name>.yml`: Configuration file for Ansible playbook responsible for server provision. For more information please follow hints inside file and [SSH Access](../../4.4-advanced-topics/4.3.5.1-ssh-access.md) section.
 * `environments/<environment name>`: Folder with `values,yaml` files for helm charts:
-  * `environments/<environment name>/traefik/values.yaml`: Update this file with proper configuration to handle SSL certificate. Please follow documentation under [TLS / SSL & DNS](../../4.4-advanced-topics/4.5.1-tls-ssl-configuration-for-traefik/)
+  * `environments/<environment name>/traefik/values.yaml`: Update this file with proper configuration to handle SSL certificate. Please follow documentation under [TLS / SSL & DNS](../../4.4-advanced-topics/4.5.1-tls-ssl-configuration-for-traefik)
   * `environments/<environment name>/opencrvs-services/values.yaml`: Review configuration and adjust according to your needs, **usually defaults are good for initial deployment**
-  * `environments/<environment name>/dependencies/values.yaml`: Review configuration and adjust according to your needs, **usually defaults are good for initial deployment**.&#x20;
-
-#### Run the script again to create other environments
+  * `environments/<environment name>/dependencies/values.yaml`: Review configuration and adjust according to your needs, **usually defaults are good for initial deployment**.
 
 ### Final notice
 
 {% hint style="danger" %}
-The provision script will disable password SSH access for all users on the server and create new users from the `infrastructure/server-setup/inventory/<environment name>.yml` file. After provisioning, SSH will only be possible using public/private key pairs. &#x20;
+The provision script will disable password SSH access for all users on the server and create new users from the `infrastructure/server-setup/inventory/<environment name>.yml` file. After provisioning, SSH will only be possible using public/private key pairs.
 {% endhint %}
 
 {% hint style="success" %}
-Users will be required to use Google Authenticator to SSH in after provisioning.  This 2FA approach is an important step to secure your infrastructure.
+Users will be required to use Google Authenticator to SSH in after provisioning. This 2FA approach is an important step to secure your infrastructure.
 {% endhint %}
 
 {% hint style="danger" %}
-If any user is utilising the 1000 group, the script will fail.  Modify your available user groups to ensure this one is available.
+If any user is utilising the 1000 group, the script will fail. Modify your available user groups to ensure this one is available.
 {% endhint %}
 
 {% hint style="danger" %}
@@ -305,4 +304,6 @@ If you made a mistake and wish to run the script for this environment again, you
 You may run this step right after "development" and "qa" environment is created or later.
 {% endhint %}
 
-Once all environments are setup feel free to continue with Provision part.
+**Repeat the process for all your required environments, e.g. qa, production, staging ...**&#x20;
+
+Once all environments are setup, feel free to continue.
