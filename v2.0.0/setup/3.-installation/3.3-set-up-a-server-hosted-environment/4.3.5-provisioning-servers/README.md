@@ -20,7 +20,7 @@ Additionally. SSH users will be required to install [**Google Authenticator**](h
 {% endhint %}
 
 {% hint style="warning" %}
-Provision scripts includes Kubernetes cluster upgrade playbook (see tags `all` and `k8s`). OpenCRVS application will not available during cluster upgrades.
+Provision scripts includes Kubernetes cluster upgrade playbook (see tags `all` and `k8s`). OpenCRVS application will not be available during cluster upgrades.
 {% endhint %}
 
 ### Provision infrastructure
@@ -37,10 +37,12 @@ The process can take anything up to around **20-30** minutes to complete.
 
 <figure><img src="../../../../.gitbook/assets/Screenshot 2024-11-13 at 08.13.37.png" alt=""><figcaption><p>Github Action logs can help you debug any issues. In this example a package installation was interrupted - perhaps due to a random Network error. ChatGPT can help you understand any errors you may encounter and potential steps to resolve them. Error messages often explain to you the solution required.</p></figcaption></figure>
 
-If you see a red cross, it means that a certain step failed and requires to be debugged. There might be a problem with your Ansible inventory files, your Github environment secrets, or there may be network connectivity issues between Github.
+If you see a red cross, it means that a certain step failed and requires to be debugged. There might be a problem with your data center, your Ansible inventory files, your Github environment secrets, or there may be network connectivity issues.
 
 {% hint style="info" %}
-Ansible will perform a huge amount of Ubuntu commands that you would normally be required to run manually one-by-one. It saves you a large amount of time as you can see by the [list](4.3.5.3-ansible-tasks-when-provisioning.md). However computers are sensitive to all sorts of conditions in your data center and errors can occur. You need experience with Ubuntu and confidence with servers to debug issues. In the above example, the solution was as simple as SSH-ing into the server and running the command as instructed in the error message, then re-running the Provision action again.
+Ansible will perform a huge amount of Ubuntu commands that you would normally be required to run manually one-by-one. It saves you a large amount of time. However computers are sensitive to all sorts of conditions in your data center and errors can occur.
+
+You will need experience with Ubuntu and confidence with servers to debug any issues. In the above example, the solution was as simple as SSH-ing into the server and running the command as instructed in the error message, then re-running the Provision action again.
 {% endhint %}
 
 <figure><img src="../../../../.gitbook/assets/Screenshot 2024-11-13 at 08.38.28.png" alt=""><figcaption><p>Success!</p></figcaption></figure>
