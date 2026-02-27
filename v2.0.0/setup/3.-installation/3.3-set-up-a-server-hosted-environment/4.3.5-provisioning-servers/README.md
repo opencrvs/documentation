@@ -32,6 +32,9 @@ Click on the "Actions" tab in Github and select the "Provision environment" acti
 * In the "Machine to provision" select your target environment, E/g: "**qa**".
 * In the "Select group tag you want to execute" select, choose "**all**". All other options will work properly after first provision
 * Click the green "Run workflow" button to commence the provisioning of this server.
+* If you have enabled the approval step for production environments, an issue will open requiring your list of users to approve the running of the action by commenting as described within the issue.  See below ...
+
+<figure><img src="../../../../.gitbook/assets/Screenshot 2026-02-27 at 15.08.00.png" alt=""><figcaption><p>An automated issue will open requiring approval for any action to run in an environment where this process has been enabled.</p></figcaption></figure>
 
 The process can take anything up to around **20-30** minutes to complete.
 
