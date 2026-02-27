@@ -11,10 +11,12 @@ metaLinks:
 
 Now that your Github environments are set up you can proceed to provision your servers using our automated ["Ansible"](https://www.ansible.com/) powered actions.
 
-The Provision environment action will automate a number of tasks on your servers. The individual tasks that Ansible runs are explained in this [list](4.3.5.3-ansible-tasks-when-provisioning.md). It is very helpful for you to understand what Ansible is doing on your servers so please refer to the list.
+The Provision environment action will automate a large number of installation and sysadmin [tasks](https://github.com/opencrvs/infrastructure/tree/develop/infrastructure/server-setup/tasks) on your servers.  Refer to the directories in order to understand each task.
 
 {% hint style="danger" %}
-**IMPORTANT SERVER ACCESS NOTE**: As a security step, the Ansible script will disable root SSH access to your server and all password access for SSH users. [SSH key](https://www.ssh.com/academy/ssh-keys) authentication is enforced using the public keys for the users in your inventory files. Additionally. SSH users will be required to install [**Google Authenticator**](https://en.wikipedia.org/wiki/Google_Authenticator) and use a 2FA code to access. SSH access procedures to a server after Provisioning completes is explained [here](../../4.4-advanced-topics/4.3.5.1-ssh-access.md).
+**IMPORTANT SERVER ACCESS NOTE**: As a security step, the Ansible script will disable root SSH access to your server and all password access for SSH users. [SSH key](https://www.ssh.com/academy/ssh-keys) authentication is then enforced using the public keys for the users in your inventory files.&#x20;
+
+Additionally. SSH users will be required to install [**Google Authenticator**](https://en.wikipedia.org/wiki/Google_Authenticator) and use a 2FA code to access. SSH access procedures to a server after Provisioning completes. This is explained [here](../../4.4-advanced-topics/4.3.5.1-ssh-access.md).
 {% endhint %}
 
 {% hint style="warning" %}
