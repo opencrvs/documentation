@@ -192,7 +192,7 @@ More information about backup server configuration can be found at [Backup and R
 
 Its possible for this environment to restore backed-up data from another environment every night.  **It is strongly recommended if you are provisioning a staging (pre-prod/mirror) environment to enable restore.**
 
-Restore configuration will ask you to provide the restore environment name from the existing environment list. **If the environment doesn't exist and will be created later, feel free to type future environment name here, but don't forget to create the environment before running OpenCRVS dependencies deployment.**
+Restore configuration will ask you to provide the restore environment name from the existing environment list. **If the environment doesn't exist and will be created later, feel free to type future environment name here, but don't forget to create the environment before running OpenCRVS** [**dependencies**](../4.3.6-deploy/4.3.5.1-running-a-dependencies-deployment.md) **deployment.**
 
 By default restore is configured to run at 00:00 AM by UTC, if you need to adjust the restore schedule, update configuration manually at `environments/<env>/dependencies/values.yaml`
 
