@@ -108,14 +108,14 @@ Once you provide answers to the questions script will connect GitHub:
 
 For environments with PII data script will ask you to answer additional questions:
 
-* `GH_APPROVERS`: Comma separated list of GitHub accounts responsible for Reviews and Approvals on OpenCRVS GitHub Actions workflows. This variable is defined at repository level.
-* `APPROVAL_REQUIRED`: Require approval for particular environment. This variable is defined at environment level.
+* `GH_APPROVERS`: Comma separated list of GitHub accounts responsible for Reviews and Approvals on OpenCRVS GitHub Actions workflows. This variable is defined at repository level.  **For  production environments, this list is strongly recommended in order to prevent accidental deployments or environment resets, resulting in deletions of citizen data.**
+* `APPROVAL_REQUIRED`: Require approval for particular environment. This variable is defined at environment level.  **For  production environments, it is strongly recommended to set this to True in order to prevent accidental deployments or environment resets, resulting in deletions of citizen data.**
 
 <figure><img src="../../../../.gitbook/assets/image (9).png" alt=""><figcaption><p>Configure production environment with required approval</p></figcaption></figure>
 
 #### Docker Hub
 
-The script will ask for your Dockerhub credentials or skip if they already exist. GitHub doesn't allow to fetch secret values, you will not be able to check current value, only update value is possible.
+The script will ask for your Dockerhub credentials or skip if they already exist. GitHub doesn't allow you to fetch secret values so you will not be able to check the current value, only updating the value is possible.
 
 <figure><img src="../../../../.gitbook/assets/dockerhub-existing-credentials.png" alt=""><figcaption><p>DockerHub credentials were created earlier</p></figcaption></figure>
 
@@ -123,7 +123,7 @@ The script will ask for your Dockerhub credentials or skip if they already exist
 
 The script will ask you to provide Kubernetes and Runtime options:
 
-* `DOMAIN`: Domain name to expose OpenCRVS application frontend.
+* `DOMAIN`: Domain name to expose the OpenCRVS application frontend and APIs.  It will be the domain after the subdomains that you configured when setting DNS.
 * `KUBE_API_HOST`: (Options property) IP address or domain Kubernetes master node. Provision script will generate Kubernetes config files for each user defined in users section of inventory file. For more details check [4.3.5.1-ssh-access.md](../../4.4-advanced-topics/4.3.5.1-ssh-access.md "mention") and [4.3.5.2-kubernetes-cluster-access.md](../../4.4-advanced-topics/4.3.5.2-kubernetes-cluster-access.md "mention") sections. Usually you may leave this field empty or set to `DOMAIN`. Value can be modified later.
 * `WORKER_NODES`: (Options property) Comma separated list of additional Kubernetes cluster members (Virtual Machines). Leave empty for single node setup. Worker nodes can be added later.
 
@@ -138,6 +138,8 @@ Script will ask you to create users with remote SSH access, answer following que
 * Role: User role on remote system
 
 Check documentation for more examples and detailed instructions how to manage remote access: [4.3.5.1-ssh-access.md](../../4.4-advanced-topics/4.3.5.1-ssh-access.md "mention")
+
+Once all the users are added, select **"Save & Exit"** in order to continue with the script.
 
 <figure><img src="../../../../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
 
