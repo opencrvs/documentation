@@ -46,7 +46,11 @@ Before proceeding to discuss network specifications, it is important to understa
 
 ### Server specifications
 
-Refer to these minimum server specifications for the above environments. Note that the hard-disk space specifications are illustrative. Depending on the population size and number of supporting documents that are required to be captured during civil registration business processes, you may require more disk-space. Regardless your system administrators must be capable of monitoring and increasing server disk-space on demand. :
+Refer to these minimum server specifications for the above environments. Note that the hard-disk space specifications are illustrative. Depending on the population size, number of records to migrate and number of supporting documents that are required to be captured during civil registration business processes, you may require more RAM / disk-space.&#x20;
+
+These are **absolute minimum specifications**.
+
+Regardless your system administrators must be capable of monitoring and increasing server disk-space on demand. :
 
 <table><thead><tr><th>Environment</th><th width="284">Specification</th></tr></thead><tbody><tr><td>development (suitable for learning or proof-of-concept) / qa</td><td>16GB RAM / 4CPUs / 320 GB Disk / Ubuntu 24.04 (LTS) x64, Headless</td></tr><tr><td>production / staging</td><td>16GB RAM / 8CPUs / diskspace calculated using formula below / Ubuntu 24.04 (LTS) x64, Headless</td></tr><tr><td>backup</td><td>1GB RAM / 2CPUs / diskspace calculated using formula below / Ubuntu 24.04 (LTS) x64, Headless</td></tr></tbody></table>
 
