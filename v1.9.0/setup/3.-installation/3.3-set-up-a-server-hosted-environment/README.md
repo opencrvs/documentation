@@ -52,6 +52,8 @@ These are **absolute minimum specifications**.
 
 Regardless your system administrators must be capable of monitoring and increasing server disk-space on demand. :
 
+### Minimum server specifications
+
 <table><thead><tr><th>Environment</th><th width="284">Specification</th></tr></thead><tbody><tr><td>development (suitable for learning or proof-of-concept) / qa</td><td>16GB RAM / 4CPUs / 320 GB Disk / Ubuntu 24.04 (LTS) x64, Headless</td></tr><tr><td>production / staging</td><td>16GB RAM / 8CPUs / diskspace calculated using formula below / Ubuntu 24.04 (LTS) x64, Headless</td></tr><tr><td>backup</td><td>1GB RAM / 2CPUs / diskspace calculated using formula below / Ubuntu 24.04 (LTS) x64, Headless</td></tr></tbody></table>
 
 {% hint style="warning" %}
