@@ -146,6 +146,7 @@
       * [4.4.3.4 Manual restore / Disaster recovery](setup/3.-installation/4.4-opencrvs-maintenance-tasks/4.3.7-backup-and-restore/4.4.3.4-manual-restore-disaster-recovery.md)
     * [4.4.4 Off-boarding from OpenCRVS](setup/3.-installation/4.4-opencrvs-maintenance-tasks/4.3.7.2-off-boarding-from-opencrvs.md)
   * [4.5 Advanced topics](setup/3.-installation/4.4-advanced-topics/README.md)
+    * [Provision settings](setup/3.-installation/4.4-advanced-topics/provision-settings.md)
     * [4.5.1 TLS/SSL Configuration for traefik](setup/3.-installation/4.4-advanced-topics/4.5.1-tls-ssl-configuration-for-traefik/README.md)
       * [4.5.1.1 LetsEncrypt https challenge in development environments](setup/3.-installation/4.4-advanced-topics/4.5.1-tls-ssl-configuration-for-traefik/4.3.3.1-letsencrypt-https-challenge-in-development-environments.md)
       * [4.5.1.2 LetsEncrypt DNS challenge in production](setup/3.-installation/4.4-advanced-topics/4.5.1-tls-ssl-configuration-for-traefik/4.3.3.2-letsencrypt-dns-challenge-in-production.md)

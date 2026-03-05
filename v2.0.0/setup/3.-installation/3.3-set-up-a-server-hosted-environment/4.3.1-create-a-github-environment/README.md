@@ -68,9 +68,12 @@ You will be asked to provide values to configure key OpenCRVS components. Some a
 The script will ask you to select the type of environment that you wish to create:
 
 ```
-? Purpose for the environment? › - Use arrow-keys. Return to submit.
-❯   Development/Quality assurance/Testing (no PII data)
-    Staging/Production (hosts PII data, requires frequent backups)
+? Choose a name and purpose for the environment?
+❯ Development
+  Quality assurance (no PII data)
+  Staging (hosts PII data, no backups)
+  Production (hosts PII data, requires frequent backups)
+  Other...
 ```
 
 Depending on your anwer different logic will be executed and some features might be not available. For example Approval workflow work only on environments with PII data.
@@ -79,12 +82,12 @@ Depending on your anwer different logic will be executed and some features might
 
 Environment name is used later to create Kubernetes namespaces and other configuration objects like backup and restore folders. Environment name is read only property.
 
-We recommend you use following environment names:
+We recommend you use following pre-configured environment names:
 
 * development
 * qa
-* staging or stg
-* production or prod
+* staging
+* production
 
 #### GitHub
 
@@ -141,7 +144,7 @@ Check documentation for more examples and detailed instructions how to manage re
 
 Once all the users are added, select **"Save & Exit"** in order to continue with the script.
 
-<figure><img src="../../../../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 #### Traefik SSL Certificate
 
@@ -161,7 +164,7 @@ Questions for **Static SSL certificate**
 Full documentation about traefik configuration can be found at:
 
 * Official documentation page: [https://github.com/traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart)
-* OpenCRVS documentation: [4.5.1-tls-ssl-configuration-for-traefik](../../4.4-advanced-topics/4.5.1-tls-ssl-configuration-for-traefik "mention")
+* OpenCRVS documentation: [4.5.1-tls-ssl-configuration-for-traefik](../../4.4-advanced-topics/4.5.1-tls-ssl-configuration-for-traefik/ "mention")
 
 #### Storage
 
