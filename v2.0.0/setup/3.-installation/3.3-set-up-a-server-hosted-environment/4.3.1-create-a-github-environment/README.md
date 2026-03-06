@@ -111,8 +111,10 @@ Once you provide answers to the questions script will connect GitHub:
 
 For environments with PII data script will ask you to answer additional questions:
 
-* `GH_APPROVERS`: Comma separated list of GitHub accounts responsible for Reviews and Approvals on OpenCRVS GitHub Actions workflows. This variable is defined at repository level.  **For  production environments, this list is strongly recommended in order to prevent accidental deployments or environment resets, resulting in deletions of citizen data.**
-* `APPROVAL_REQUIRED`: Require approval for particular environment. This variable is defined at environment level.  **For  production environments, it is strongly recommended to set this to True in order to prevent accidental deployments or environment resets, resulting in deletions of citizen data.**
+* `GH_APPROVERS`: Comma separated list of GitHub accounts responsible for Reviews and Approvals on OpenCRVS GitHub Actions workflows. This variable is defined at repository level.
+* `APPROVAL_REQUIRED`: Require approval for particular environment. This variable is defined at environment level.&#x20;
+
+**It is strongly recommended to Approval requirement in production environments to mitigate the risk of accidental deployments or environment resets, which may lead to the deletion of citizen data.**
 
 <figure><img src="../../../../.gitbook/assets/image (9).png" alt=""><figcaption><p>Configure production environment with required approval</p></figcaption></figure>
 

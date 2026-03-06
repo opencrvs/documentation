@@ -127,6 +127,7 @@
       * [4.3.1.3 Issue SSL Certificates](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-preparation-steps/4.3.1.3-issue-ssl-certificates.md)
       * [4.3.1.4 Create prerequisite accounts and repositories](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-preparation-steps/4.3.1.4-create-prerequisite-accounts-and-repositories.md)
     * [4.3.2 Create a Github environment](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-create-a-github-environment/README.md)
+      * [4.3.2.1 Approval Process for Production Environments](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-create-a-github-environment/4.3.2.1-approval-process-for-production-environments.md)
       * [4.3.2.1 Environment secrets and variables explained](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-create-a-github-environment/4.3.1.1-environment-secrets-and-variables-explained.md)
     * [4.3.3 Bootstrap servers](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.2-bootstrap-servers.md)
     * [4.3.4 Provisioning servers](setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers/README.md)
