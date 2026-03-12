@@ -154,9 +154,11 @@ Installation script does configuration for traefik helm deployment.
 
 Following options are available at configuration time:
 
-1. **Lets Encrypt certificate:** No additional questions, preconfigured file is used. Traefik will try to issue Lets encrypt certificate
-2. **Static SSL certificate:** Script will ask to provide SSL Certificate and Key for frontend. Provided values will be stored as GitHub secrets.
-3. **Custom configuration:** No additional questions, preconfigured file without lets encrypt section is used. Traefik will use its default certificate. This option should be used if you plan to configure Traefik later using helm chart values.
+1. **Lets Encrypt certificate:** No additional input is required. The installation script will automatically configure Traefik to obtain and use Let’s Encrypt SSL certificates for you.\
+   **NOTE:** Your server must be accessible from the public internet for this process to work.\
+   This option is recommended only for testing and demonstration purposes, not for production environments.
+2. **Static SSL certificate:** The script will prompt you to provide an SSL certificate and key for the frontend. The provided values will be securely stored as GitHub secrets.
+3. **Custom configuration:** No additional questions will be asked. A preconfigured file (without the Let’s Encrypt section) is used, and Traefik will use its default certificate. Choose this option if you plan to configure Traefik yourself later using Helm chart values.
 
 Questions for **Static SSL certificate**
 
