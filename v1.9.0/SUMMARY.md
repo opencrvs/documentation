@@ -7,7 +7,8 @@
 * [Understanding CRVS](crvs-systems/understanding-crvs.md)
 * [Effective digital CRVS systems](crvs-systems/effective-digital-crvs-systems.md)
 * [OpenCRVS within a government systems architecture](crvs-systems/opencrvs-within-a-government-systems-architecture.md)
-* [OpenCRVS Value Proposition](crvs-systems/opencrvs-value-proposition.md)
+* [OpenCRVS Value Proposition](crvs-systems/opencrvs-value-proposition/README.md)
+  * [Legal Compliance](crvs-systems/opencrvs-value-proposition/legal-compliance.md)
 
 ## Product Specifications
 
