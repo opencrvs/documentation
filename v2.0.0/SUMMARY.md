@@ -156,6 +156,7 @@
     * [4.5.3 Kubernetes cluster access](setup/3.-installation/4.4-advanced-topics/4.3.5.2-kubernetes-cluster-access.md)
     * [4.5.4 Add Custom GitHub secrets to Kubernetes](setup/3.-installation/4.4-advanced-topics/4.5.4-add-custom-github-secrets-to-kubernetes.md)
     * [4.5.5 Disk space management](setup/3.-installation/4.4-advanced-topics/4.5.5-disk-space-management.md)
+    * [4.5.6 Deploy OpenCRVS with external data stores](setup/3.-installation/4.4-advanced-topics/4.5.6-deploy-opencrvs-with-external-data-stores.md)
 * [5. Functional configuration](setup/5.-functional-configuration/README.md)
   * [5.1 Configure application settings](setup/5.-functional-configuration/5.1-configure-application-settings.md)
   * [5.2 Configure registration periods and fees](setup/5.-functional-configuration/5.2-configure-registration-periods-and-fees.md)
