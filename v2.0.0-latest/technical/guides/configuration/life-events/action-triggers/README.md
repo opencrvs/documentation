@@ -2,6 +2,22 @@
 
 **Action triggers** are the primary way to listen for events happening inside OpenCRVS core — for example, a birth declaration, a new event being created, or a user being created. Technically, action triggers are HTTP endpoints implemented by the country config server that OpenCRVS core calls when an action occurs.
 
+```mermaid
+sequenceDiagram
+    participant Core as OpenCRVS Core
+    participant Config as Country config server
+    participant Ext as External system / service
+
+    Note over Core: Action or event occurs
+    Core->>Config: POST /triggers/:resource/:action
+    Note over Config: Payload received (e.g. EventDocument, Recipient)
+    Config->>Ext: Send email, call MOSIP, update analytics…
+```
+
+
+
+
+
 Action triggers can be used for a variety of purposes, such as:
 
 * Collecting birth registration data into an analytics system
