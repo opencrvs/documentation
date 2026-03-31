@@ -43,7 +43,9 @@ The process can take anything up to around **20-30** minutes to complete.
 If you see a red cross, it means that a certain step failed and requires to be debugged. There might be a problem with your data center, your Ansible inventory files, your Github environment secrets, or there may be network connectivity issues.
 
 {% hint style="info" %}
-Ansible will perform a huge amount of Ubuntu commands that you would normally be required to run manually one-by-one. It saves you a large amount of time. However computers are sensitive to all sorts of conditions in your data center and errors can occur.
+Ansible will perform a huge amount of Ubuntu commands that you would normally be required to run manually one-by-one. It saves you a large amount of time.&#x20;
+
+If the Provision action fails, try re-running it before investigating further, as failures could be due to network conditions.  If it fails at the same point each time, then a legitimate bug requires investigation.
 
 You will need experience with Ubuntu and confidence with servers to debug any issues. In the above example, the solution was as simple as SSH-ing into the server and running the command as instructed in the error message, then re-running the Provision action again.
 {% endhint %}
