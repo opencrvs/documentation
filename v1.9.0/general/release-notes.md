@@ -18,6 +18,371 @@ Deployment & Monitoring checklist, Data Security Framework
 Dependency table, Network Diagram with VPN & approx. costs associated
 {% endfile %}
 
+## 1.9.12: Release notes
+
+### OpenCRVS Core v1.9.12
+
+### Infrastructure
+
+- Introduced `CONFIG_ACTION_CONFIRMATION_TOKEN_EXPIRY_SECONDS` environment variable for the auth service to control the expiry of action confirmation tokens. Defaults to `604800` seconds (7 days).
+
+### Improvements
+
+- More expressive `ADDRESS` field configuration
+
+The `fields` array in `ADDRESS` field configuration now accepts a field-override object, giving you per-level control over `required`, `conditionals`, and `label`. Only `id` and `type` are required — all other properties are optional and fall back to sensible defaults: labels default to the value from the country's admin structure configuration, and the country field falls back to a built-in "Country" label.
+
+Previously only a fixed set of string values (`'country'` / `'administrativeArea'`) were accepted. The separate `administrativeLevels` array has been removed in favor of this unified `fields` array.
+
+```ts
+{
+  id: 'applicant.address',
+  type: FieldType.ADDRESS,
+  configuration: {
+    fields: [
+      { id: 'country', type: FieldType.COUNTRY },           // uses default label
+      {
+        id: 'province',
+        type: FieldType.ADMINISTRATIVE_AREA,
+        required: true,
+        label: { id: 'custom.province', defaultMessage: 'Province', description: '' } // optional override
+      },
+      {
+        id: 'district',
+        type: FieldType.ADMINISTRATIVE_AREA,
+        required: false,
+        conditionals: [{ type: ConditionalType.SHOW, conditional: ... }]
+      }
+    ]
+  }
+}
+```
+
+> [!IMPORTANT]
+> The `id` of the object must match the administrative hierarchy id defined in `applicationConfig`.
+
+- The `ADMINISTRATIVE_AREA` field's `configuration.partOf` now uses the standard typed `FieldReference` (produced by `field(...)`) instead of the previous ad-hoc `{ $declaration: string }` shape, and its `defaultValue` now accepts `user(...)` references in addition to plain strings.
+
+### New features
+
+- Support for conditional actions "ENABLE" and "SHOW" in SELECT field options to allow the options to be hidden/disabled conditionally.
+- `COUNTRY` field now supports `optionOverrides` to conditionally hide or disable specific country options using "SHOW" and "ENABLE" conditionals. It can be used independently in a COUNTRY field or in a nested Address subfield.
+- A composite field type (`FIELD_GROUP`) that groups related child fields into a single unit with a shared label, conditionals, and validation.
+
+**Structure:**
+
+```typescript
+{
+  id: 'person.address',
+  type: fieldtype.field_group,
+  fields: [
+    { id: 'country', type: FieldType.COUNTRY },
+    { id: 'province', type: FieldType.ADMINISTRATIVE_AREA, parent: field('person.address').get('country') },
+    { id: 'district', type: FieldType.ADMINISTRATIVE_AREA, parent: field('person.address').get('province') }
+  ]
+}
+```
+
+N.B. Support for `DISPLAY_ON_REVIEW` conditionals in nested fields has not been implemented yet.
+
+### Bug fixes
+
+- Allow nested address fields to use the outer form values in conditionals.
+- Skip hidden fields when generating default values. Note: `defaultValue` only applies on the first mount of a form page — after that the field's value takes precedence, even if the `defaultValue` changes across field versions. [#11476](https://github.com/opencrvs/opencrvs-core/issues/11476)
+- Review page field conditionals have no access to form data, only review page form data. [#11410](https://github.com/opencrvs/opencrvs-core/issues/11410)
+
+### OpenCRVS Country config template v1.9.12
+
+### Improvements
+
+- Create index for analytics.event_actions.event_id field [#12182](https://github.com/opencrvs/opencrvs-core/issues/12182)
+
+## 1.9.11: Release notes
+
+### OpenCRVS Core v1.9.11
+
+### New features
+
+- Added support of `updatedByUserRole` for workqueue configuration.
+  Workqueues can now be filtered by a specific role or `user('role')`. [#11848](https://github.com/opencrvs/opencrvs-core/issues/11848)
+
+**Usage example**
+
+```ts
+query: {
+  updatedByUserRole: { type: 'exact', term: user('role') }
+}
+```
+
+### Bug fixes
+
+- Fix newly created drafts in offline mode are not accessible [#11820](https://github.com/opencrvs/opencrvs-core/issues/11820)
+- Fix the rendered date on the review page and the certificate display issue in negative UTC offset time zones. [#11955](https://github.com/opencrvs/opencrvs-core/issues/11955)
+
+### Improvements
+
+- Change reindex call to make operation non-destructive. Create endpoint to track progress of reindex. [#11877](https://github.com/opencrvs/opencrvs-core/issues/11877)
+
+- Explicitly nullify hidden field values to prevent stale data in database and fix incorrect search results [#11695](https://github.com/opencrvs/opencrvs-core/pull/11849)
+- Update accordion behavior on the review page so that only sections containing required or completed fields are expanded by default. [#10133](https://github.com/opencrvs/opencrvs-core/issues/10133)
+
+### OpenCRVS Country config template v1.9.11
+
+### Improvements
+
+- Change reindex from stream to batch API to avoid timeouts [#11877](https://github.com/opencrvs/opencrvs-core/issues/11877)
+
+## 1.9.10: Release notes
+
+### OpenCRVS Core v1.9.10
+
+### New features
+
+- Added support for `event()` helper to access event metadata in `dateOfEvent` and `summary` configuration in EventConfig. This allows for more dynamic and flexible configurations based on event metadata.
+
+Usage example:
+
+For `dateOfEvent` configuration, you can now reference an event metadata field like this:
+
+```ts
+dateOfEvent: event('legalStatuses.REGISTERED.acceptedAt')
+```
+
+For `summary` configuration, you can use event metadata fields in the value of a custom field like this:
+
+```ts
+summary: {
+  fields: [
+    {
+      id: 'registeredAt',
+      label: {
+        defaultMessage: 'Registration date',
+        description: 'This is the label for the registration date',
+        id: 'event.birth.summary.event.registeredAt.label'
+      },
+      value: '{event.legalStatuses.REGISTERED.acceptedAt, date, ::dd MMMM yyyy}'
+    }
+  ]
+}
+```
+
+### Bug fixes
+
+- Fix bug that requires users to log in when offline instead of unlocking with a PIN. [#11243](https://github.com/opencrvs/opencrvs-core/issues/11243)
+
+### Improvements
+
+- Improve BRN lookup experience by making the search field clearer and more intuitive, properly handling base/success/error states, and providing clearer, context-specific error messaging for users. [#11181](https://github.com/opencrvs/opencrvs-core/issues/11181)
+- Extended the `record.registered.print-certified-copies[event=tennis-club-membership]` scope to support an optional `templates` parameter (e.g. `templates=v2.tennis-club-membership-certificate-alpha`). When `templates` is specified, users are restricted to printing only the listed certificate templates. If `templates` is omitted, all certificate templates for the event remain available, preserving existing behavior [#11753](https://github.com/opencrvs/opencrvs-core/issues/11753)
+
+## 1.9.9: Release notes
+
+### OpenCRVS Core v1.9.9
+
+### Bug fixes
+
+- Fix E-Signet integration breaking when using “Change” links on the review page [#11603](https://github.com/opencrvs/opencrvs-core/issues/11603)
+
+## 1.9.8: Release notes
+
+### OpenCRVS Core v1.9.8
+
+### New features
+
+- Introduced `showParentFieldError` flag in NAME field configuration to consolidate validation error messages at the parent field level (instead of displaying separate errors below firstname, middlename, and surname subfields), improving UX by providing clearer, centralized validation feedback
+
+## 1.9.7: Release notes
+
+### OpenCRVS Core v1.9.7
+
+### New features
+
+- In deduplication, the dateRange matcher now supports both `AGE` and `DATE` field.
+- The dateRange matcher supports a new `matchAgainst` option, which can reference either a date field or an age field. When provided, the matcher compares the source field against the specified `matchAgainst` field instead of only matching against itself.
+
+```ts
+field('mother.dob').dateRangeMatches({
+  days: 365,
+  matchAgainst: 'mother.age'
+})
+```
+
+### Bug fixes
+
+- Ensure rejected actions are considered when detecting pending actions. [#11588](https://github.com/opencrvs/opencrvs-core/issues/11588)
+
+## 1.9.6: Release notes
+
+### OpenCRVS Core v1.9.6
+
+### New features
+
+- NUMBER_WITH_UNIT Input, which is a number input with a configurable selectable unit of measurement.
+- `now()` magic function, which can be used as a dynamic `defaultValue` for DATE and TIME inputs and resolves to the current date/time at runtime.
+- The document upload and preview feature now supports PDF files in addition to image formats (JPEG, PNG, JPG), allowing PDFs to be viewed alongside existing DECLARED and REGISTERED documents.
+
+## 1.9.5: Release notes
+
+### OpenCRVS Core v1.9.5
+
+### New features
+
+- Introduced new configuration option `maxImageSize` for `FILE` and `FILE_WITH_OPTIONS` type of form fields to limit the maximum size of uploaded images. If the uploaded image exceeds provide size in pixels, a crop and resize tool will be shown to the user to adjust the image before uploading. [#10324](https://github.com/opencrvs/opencrvs-core/issues/10324)
+
+Usage example:
+
+A file field that allows uploading an image with maximum size of 600x600 pixels:
+
+```ts
+{
+  id: 'applicant.image',
+  type: 'FILE', // or 'FILE_WITH_OPTIONS'
+  ...
+  configuration: {
+    maxImageSize: { targetSize: { height: 600, width: 600 } }
+  }
+}
+```
+
+Uploaded image files can now be rendered in certificate svg templates using the `$lookup` Handlebars helper. Below is an example of rendering the uploaded applicant image added in declaration form through a `FILE` field in a certificate template:
+
+```hbs
+<image
+  x='50'
+  y='100'
+  height='50'
+  width='50'
+  xlink:href='{{$lookup $declaration "applicant.image"}}'
+/>
+```
+
+Also for `FILE_WITH_OPTIONS` fields, the selected option can be accessed using the following syntax, you just need to provide the option value as the last part of the path:
+
+```hbs
+<image
+  x='50'
+  y='100'
+  height='50'
+  width='100'
+  xlink:href='{{$lookup $declaration "applicant.idImage.ID_FRONT"}}'
+/>
+```
+
+Annotation data from actions can also be accessed in a similar way using the `$action` or `$actions` helpers. For example, to access an uploaded image in the `PRINT_CERTIFICATE` action annotation data:
+
+```hbs
+<image
+  x='50'
+  y='100'
+  height='50'
+  width='100'
+  xlink:href='{{$lookup
+    ($action "PRINT_CERTIFICATE")
+    "annotation.collector.OTHER.signedAffidavit"
+  }}'
+/>
+```
+
+- Add registration number field to advanced search configuration so that documents can be searched by their `Registration Number`. [#10760](https://github.com/opencrvs/opencrvs-core/issues/10760)
+
+### Bug fixes
+
+- Fix quick search failing when configured with a large number of events and many searchable fields [#11397](https://github.com/opencrvs/opencrvs-core/issues/11397)
+
+- In quick search, when searching with a valid email address, the search is performed only against email fields [[#11199](https://github.com/opencrvs/opencrvs-core/issues/11199)]
+
+### Improvements
+
+#### User default values in form fields
+
+Form fields now support typed user(...) references as default values, replacing legacy string-based $user.\* template variables.
+
+TEXT fields can use the following user references as default values:
+
+- user('name')
+- user('fullHonorificName')
+- user('device')
+- user('firstname')
+- user('middlename')
+- user('surname')
+- user('role')
+
+NAME fields now support user-based default values by assigning user references per name part. The recommended approach is:
+
+```ts
+defaultValue: {
+  firstname: user('firstname'),
+  middlename: user('middlename'), // optional
+  surname: user('surname')
+}
+```
+
+Using user('name') as a default value is only supported for FieldType.TEXT.
+It represents the user’s full name and should not be used with FieldType.NAME, since full names may contain multiple words and cannot be reliably split into individual name parts.
+
+Legacy string-based user template variables (e.g. $user.name) are now deprecated in favour of user(...) references.
+
+## 1.9.4: Release notes
+
+### OpenCRVS Core v1.9.4
+
+### Bug fixes
+
+- e-Signet authentication now populates print and correction forms. An issue with FieldConfig `parent` parameter not finding action annotation field references was fixed. [#11210](https://github.com/opencrvs/opencrvs-core/issues/11210)
+
+## 1.9.3: Release notes
+
+### OpenCRVS Core v1.9.3
+
+### New features
+
+- Introduced form page level config - `requireCompletionToContinue` to enforce full completion of the form page before moving to the next page.
+
+### Improvements
+
+- Add support for validating dates before/after another date field using `isBefore` and `isAfter` validators. [#11194](https://github.com/opencrvs/opencrvs-core/issues/11194)
+
+Usage example:
+
+```ts
+// 6570 days before another field
+field('mother.dob').isBefore().days(6570).fromDate(field('child.dob'))
+
+// 6570 days after another field
+field('mother.dateOfMarriage')
+  .isAfter()
+  .days(6570)
+  .fromDate(field('mother.dob'))
+
+// 45 days before now
+field('child.dob').isBefore().days(45).fromNow()
+```
+
+### Bug fixes
+
+- Fixes an issue where `event.hasAction` was not working in form configurations [#11074](https://github.com/opencrvs/opencrvs-core/issues/11074)
+
+### OpenCRVS Core v1.9.3
+
+### New features
+
+- Introduced page-level `requireCompletionToContinue` in birth and death event config, to enforce full completion before moving to the next page, and updated navigation logic accordingly.
+
+## 1.9.2: Release notes
+
+### OpenCRVS Core v1.9.2
+
+### New features
+
+- Toolkit now exports `window().location.get` to country config that can be used as a template variable e.g. in HttpField request body.
+
+### OpenCRVS Country config template v1.9.2
+
+### New features
+
+- Certificate templates now support multi-page SVGs using <g data-page="X">...</g>, allowing implementors to configure and render multi-page certificates.
+- Birth certificate PDF export now omits header, footer, and QR code; example SVG updated for security-paper templates.
+
 ## v1.9.1: Release notes
 
 ### OpenCRVS Core v1.9.1
