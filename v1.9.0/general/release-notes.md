@@ -9,7 +9,7 @@ Business analysis input files for completion, as guidance to development teams.
 ## Deployment, Monitoring & Data Security
 
 {% file src="../.gitbook/assets/Deployment, Monitoring & Data Security.zip" %}
-Deployment & Monitoring checklist, Data Security Framework
+Pre-Deployment & Monitoring Checklists, Data Securoty Framework, Ongoing Costs & Disaster Recovery Plan
 {% endfile %}
 
 ## Dependencies & Network Diagram
