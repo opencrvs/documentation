@@ -21,3 +21,7 @@ Now that you have configured repository secrets for Dockerhub access, you will n
 If you look at the logs for each build, you can see the image tag associated with the Docker container image. You use this tag in the Deploy action.
 
 Once you are certain that your image is successfully being built and hosted on DockerHub, you can continue.
+
+{% hint style="warning" %}
+We strongly recommend that you have enabled an [approval](../4.3.1-create-a-github-environment/4.3.2.1-approval-process-for-production-environments.md) process for all deployment scripts to **production** and **staging** environments.&#x20;
+{% endhint %}
