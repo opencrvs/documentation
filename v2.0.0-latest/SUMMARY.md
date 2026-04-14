@@ -135,7 +135,18 @@
   * [Contributing](technical/guides/contributing/README.md)
     * [Core development](technical/guides/contributing/core-development.md)
 * [APIs](technical/apis/README.md)
-  * [Core APIs](technical/apis/core-apis.md)
+  * [Core APIs](technical/apis/core-apis/README.md)
+    * ```yaml
+      type: builtin:openapi
+      props:
+        models: true
+        downloadLink: true
+      dependencies:
+        spec:
+          ref:
+            kind: openapi
+            spec: events-develop
+      ```
   * [Country-config APIs](technical/apis/country-config-apis.md)
   * [Toolkit](technical/apis/toolkit.md)
 
