@@ -7,20 +7,6 @@ cover: >-
   featuring a baby computer in a crib, designed to resemble an early personal
   computer with a small, boxy shape, a monoc.png
 coverY: 75.29599999999999
-layout:
-  cover:
-    visible: true
-    size: hero
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
 ---
 
 # First steps with a fresh server
@@ -53,9 +39,9 @@ Filesystem           Size  Used Avail Use% Mounted on
 /dev/vda15           105M  6.1M   99M   6% /boot/efi
 ```
 
-We want to ensure there partition mounted to / has enough disk space. Like we se here, we have 311G in total which would be than enough. Some service providers might provide a setup where you have two physical disks: one for the OS and one for storage.&#x20;
+We want to ensure there partition mounted to / has enough disk space. Like we se here, we have 311G in total which would be than enough. Some service providers might provide a setup where you have two physical disks: one for the OS and one for storage.
 
-If you only see a smaller disk mounted to /,  check what you see in `lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL`. If you just found another another disk there, refer to Cameroon project's ansible playbook.
+If you only see a smaller disk mounted to /, check what you see in `lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL`. If you just found another another disk there, refer to Cameroon project's ansible playbook.
 
 ### Create a user named `provision`
 
@@ -66,9 +52,9 @@ The next commands will create a user named **provision**, make it a sudoer (need
 It is important to note that the provision user and group IDs should be set to 1000. These IDs are the default for OpenCRVS and are used internally by the OpenCRVS application. They should be reserved to ensure that there are no conflicts with other users or groups on the system.
 
 <pre><code>
-<strong>addgroup --gid 1000 provision</strong>
-<strong>adduser --gecos "OpenCRVS Provisioning user" --disabled-password --uid 1000 --gid 1000 provision</strong>
-usermod -aG sudo provision
+<strong>addgroup --gid 1000 provision
+</strong><strong>adduser --gecos "OpenCRVS Provisioning user" --disabled-password --uid 1000 --gid 1000 provision
+</strong>usermod -aG sudo provision
 echo 'provision ALL=(ALL) NOPASSWD:ALL' | sudo tee -a /etc/sudoers
 su - provision
 </code></pre>

@@ -7,6 +7,7 @@
 * [Page](servers/page.md)
 * [Upgrading EOL Ubuntu](servers/upgrading-eol-ubuntu.md)
 * [Debugging Github Actions with tmate](servers/debugging-github-actions-with-tmate.md)
+* [How to open a debugger to events service on Docker Swarm](servers/how-to-open-a-debugger-to-events-service-on-docker-swarm.md)
 
 ## HTTPS (Let's encrypt)
 
