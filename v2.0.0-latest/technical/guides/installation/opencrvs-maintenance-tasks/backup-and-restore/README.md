@@ -38,7 +38,7 @@ Here are high level concepts how backup/restore is configured and working:
 * Private ssh key for restore job should be same as on production.
 * Production backup and staging restore keys should be same.
 
-<figure><img src="../../../../../../.gitbook/assets/k8s-infra-backup-restore-secrets.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/k8s-infra-backup-restore-secrets.png" alt=""><figcaption></figcaption></figure>
 
 ### Backup types
 

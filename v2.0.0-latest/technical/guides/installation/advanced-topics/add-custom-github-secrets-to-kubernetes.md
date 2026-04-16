@@ -28,7 +28,7 @@ Steps to add GitHub secrets to Kubernetes
 
 1.  Create required variables at GitHub. E.g if you need SMTP configuration, make sure all variables from the list above are present under GitHub environment or repository level.&#x20;
 
-    <figure><img src="../../../../../.gitbook/assets/image (12).png" alt=""><figcaption><p>Email server secrets are defined for QA environment</p></figcaption></figure>
+    <figure><img src="../../../../.gitbook/assets/image (12).png" alt=""><figcaption><p>Email server secrets are defined for QA environment</p></figcaption></figure>
 2.  Map GitHub secrets to respective Kubernetes secret or secrets by defining secret in mapping file. One Kubernetes secret may contain multiple GitHub secrets as keys. It's reasonable to store all SMTP secrets as one Kubernetes secret `smtp-config`:<br>
 
     <pre class="language-yaml" data-title="Example for mapping all GitHub secrets required for country config SMTP configuration into single Kubermetes secret &#x22;smtp-config&#x22;"><code class="lang-yaml"># smtp-config: Kubernetes secret name
