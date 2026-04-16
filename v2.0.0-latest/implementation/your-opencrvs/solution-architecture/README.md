@@ -8,31 +8,33 @@ This document outlines the key **solution architecture requirements** for implem
 
 ***
 
-### 1. Interoperable role within Digital Public Infrastructure
+### OpenCRVS' role within Digital Public Infrastructure
 
 OpenCRVS is not a standalone system. It is part of a broader ecosystem of interoperable national systems.
 
 #### Key Characteristics
 
 * Internal-facing system for civil registration authorities
-* Provides **standardised APIs** for interoperability
-* Supports integration with:
+* Provides **standardised APIs** for interoperability with a recommended data exchange layer such as XRoad or OpenFN or direct integrations if such a layer doesnt exist.
+* OpenCRVS APIs supports integration with:
   * Self-service portals (citizen applications)
   * National ID systems
+  * KYC
+  * Payment and reconciliation gateways
+  * Messaging and notification services
   * Health systems (birth and death notifications - ICD10/ICD11 cause of death certification)
   * Social protection systems
-  * Verifiable credentials
+  * Legal and educational infrastructure
+  * Statistics
+  * Public Key Infrastructure enabling "verifiable credentials"
 
-#### DPI Context Diagram
+#### OpenCRVS within a Government System Architecture
 
-👉 Technical documentation:
-
-* OpenCRVS API documentation
-* Interoperability guides
+TODO: diagram
 
 ***
 
-### 2. Interoperability & Data Exchange Layer
+### Interoperability & Data Exchange Layer
 
 While OpenCRVS exposes APIs for direct integration, **a dedicated data exchange layer is strongly recommended**.
 
@@ -56,7 +58,7 @@ These platforms act as **Digital Public Goods (DPGs)** designed specifically for
 
 ***
 
-### 3. Verifiable Credentials & Public Key Infrastructure
+### Verifiable Credentials & Public Key Infrastructure
 
 OpenCRVS includes capabilities to **issue Verifiable Credentials (VCs)** such as digital birth certificates.
 
@@ -80,71 +82,6 @@ This includes:
 * Key management policies
 * Trust frameworks
 * Governance for credential issuance and verification
-
-👉 Technical documentation:
-
-* OpenCRVS VC implementation guide
-
-***
-
-### 4. Hosting infrastructure & Environment Requirements
-
-A robust hosting strategy is critical to ensure system reliability, data integrity, and operational continuity.
-
-#### Mandatory Environments
-
-The following environments are **non-negotiable**:
-
-1. **QA (Quality Assurance)**
-2. **Staging (Pre-Production)**
-3. **Production**
-4. **Backup Environment**
-
-#### Infrastructure Considerations
-
-**Connectivity & Security**
-
-* Assess data centre connectivity and redundancy
-* Ensure secure network architecture
-* **VPN access is essential** for secure system administration and integration
-
-**Data Security**
-
-* Evaluate whether **disk encryption** is required based on:
-  * National regulations
-  * Hosting environment (cloud vs on-premise)
-  * Threat model
-
-**Storage Planning**
-
-Storage requirements must be calculated based on:
-
-* Population size
-* Expected registration volume
-* Document storage (attachments, certificates)
-
-**Backup Strategy**
-
-Backup approach should be selected based on scale:
-
-* Incremental backups for large datasets
-* Full backups for smaller deployments
-
-**Disaster Recovery**
-
-Considerations include:
-
-* Recovery time objectives (RTO)
-* Recovery point objectives (RPO)
-* Cost vs resilience trade-offs
-
-👉 Technical documentation:
-
-* OpenCRVS deployment guide
-* OpenCRVS installation guide
-* Backup and disaster recovery best practices
-
-
 
 ***
 
