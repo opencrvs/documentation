@@ -24,11 +24,15 @@ Currently OpenCRVS supports the following default National ID integration functi
 * Configurable rules to determine whether or not a civil registration event should or should not integrate with a National ID system at the point of registration.
 * Integration with a National ID system at the point of registration synchronously and asynchronously
 
-### 📌 Recommendations on Key Scenarios
-
 ***
 
-#### 1. ⚰️ Death Registration & ID Deactivation
+#### Recommendations on Key Scenarios
+
+Some scenarios require careful consideration when integrating a civil registration system with your national ID system to minimise risks and mitigate service delivery obstacles.
+
+Consider the following scenarios:
+
+#### 1. Death Registration & ID Deactivation
 
 #### 🧩 Scenario / Issue
 
@@ -49,7 +53,7 @@ A death is registered in OpenCRVS and triggers interaction with the national ID 
 
 ***
 
-#### 2. 👶➡️🧑 Updates to Registered Data (Infant vs Adult)
+#### 2. Updates to Registered Data (Infant vs Adult)
 
 #### 🧩 Scenario / Issue
 
@@ -72,7 +76,7 @@ Civil registration data changes are requested after initial registration (e.g. n
 
 ***
 
-#### 3. 🔓 Fetching Demographic Data Without Authentication
+#### 3. Fetching Demographic Data Without Authentication
 
 #### 🧩 Scenario / Issue
 
@@ -93,7 +97,7 @@ A civil registration office or system requests demographic (biographic) data fro
 
 ***
 
-#### 4. 🧱 Size & Purpose of the ID Schema
+#### 4. Size & Purpose of the ID Schema
 
 #### 🧩 Scenario / Issue
 
@@ -114,7 +118,7 @@ Countries decide how many attributes are stored in the ID system, ranging from m
 
 ***
 
-#### 5. 🍼📄 Printing a National ID on Birth Certificates
+#### 5. Printing a National ID on Birth Certificates
 
 #### 🧩 Scenario / Issue
 
@@ -135,7 +139,7 @@ Countries request that a national identifier (UIN or VID) be printed on birth ce
 
 ***
 
-#### 6. 🌐🚫 Offline Operation & Authentication Limitations
+#### 6. Offline Operation & Authentication Limitations
 
 #### 🧩 Scenario / Issue
 
@@ -153,3 +157,13 @@ Civil registration is conducted offline (especially in remote settings), without
 * 🔄 Treat offline operation as **temporary or contextual**, with reconciliation once connectivity is restored.
 * 🚧 Avoid extending offline workflows to **high-risk identity actions** (e.g. adult updates).
 * 🛣️ Clearly communicate roadmap limitations and future enhancements.
+
+
+
+***
+
+#### Technical Guides
+
+Read the following technical guide on interoperability between OpenCRVS and a National ID system. Unlike other integrations that are purely API related, a National ID integration must make use of many user experience configuration points during demographic capture.
+
+Points where the business logic must be configured in middleware address the recommendations on key scenarios outlined above.
