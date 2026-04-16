@@ -10,11 +10,11 @@ This document outlines the key **solution architecture requirements** for implem
 
 ### OpenCRVS' role within Digital Public Infrastructure
 
-OpenCRVS is not a standalone system. It is part of a broader ecosystem of interoperable national systems.
+OpenCRVS is part of a broader ecosystem of interoperable national systems that holistically provide end-to-end services to citizens.
 
 #### Key Characteristics
 
-* Internal-facing system for civil registration authorities
+* Internal-facing system for civil registration authorities for use in office & at counter services.
 * Provides **standardised APIs** for interoperability with a recommended data exchange layer such as XRoad or OpenFN or direct integrations if such a layer doesnt exist.
 * OpenCRVS APIs supports integration with:
   * Self-service portals (citizen applications)
