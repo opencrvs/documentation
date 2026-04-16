@@ -1,2 +1,76 @@
 # Bootstrap servers
 
+## General information
+
+These are the steps you need to perform after receiving a server IP address and an SSH user before you can run the provisioning scripts for any given environment. E.G: **qa, backup, staging, production (1, 2, 3 or 5 server cluster).**
+
+Use command produced by create environment script (\`yarn environment:init) to bootstrap servers:
+
+* [#bootstrap-kubernetes-single-node-master-node](bootstrap-servers.md#bootstrap-kubernetes-single-node-master-node "mention")
+* [#bootstrap-kubernetes-worker-nodes-backup-server](bootstrap-servers.md#bootstrap-kubernetes-worker-nodes-backup-server "mention")
+
+## Bootstrap Kubernetes single node / master node
+
+{% hint style="info" %}
+Use code snippet generated on [Create GitHub environment](../../../../../v2.0.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-create-a-github-environment) step
+{% endhint %}
+
+1. SSH into your server as a user with sudo access or as root
+2.  Run the following command on the VM:
+
+    ```bash
+    curl -sfL https://raw.githubusercontent.com/opencrvs/infrastructure/refs/heads/develop/scripts/bootstrap/opencrvs-bootstrap.sh \
+         -o opencrvs-bootstrap.sh && \
+    bash opencrvs-bootstrap.sh --owner <org name> \
+                --repo <repo name> \
+                --env <env name> \
+                --token <github token> \
+                --enable-runner
+    ```
+
+{% hint style="info" %}
+The script will install a self-hosted Github runner and set up a user on your server called **provision**. At the end of this process the script will display that provision user's public SSH key, which you will need to use in the next step if you are setting up a backup integration (required for a PII - staging / production environment) or a cluster.
+
+Example output:
+
+```
+✅ Runner 'prod-runner' is installed and started!
+
+
+⚠️ ⚠️ ⚠️ ⚠️ ⚠️ Store the following public key for later usage ⚠️ ⚠️ ⚠️ ⚠️ ⚠️
+⚙️  provision SSH key pair public key (add on worker nodes if needed):
+
+ssh-ed25519 AAAAC3NzaC....F5uYOPl+ provision@prod1
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ ✅ Node bootstrap complete for tmp-prod1.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+{% endhint %}
+
+**Checklist for script execution**
+
+1.  Verify `provision` user was created:
+
+    ```
+    su - provision
+    whoami
+    ```
+
+    Example output:
+
+    ```
+    provision$ whoami 
+    provision
+    ```
+2. In your GitHub repository, navigate to **Settings → Actions → Runners** and verify that the runner appears as a self-hosted runner.
+
+## Bootstrap Kubernetes worker nodes / backup server
+
+1. SSH into your server as a user with sudo access or as root
+2.  Run following command to bootstrap server
+
+    ```
+    curl -sfL https://raw.githubusercontent.com/opencrvs/infrastructure/refs/heads/develop/scripts/bootstrap/opencrvs-bootstrap.sh -o opencrvs-bootstrap.sh && \
+        bash opencrvs-bootstrap.sh --ssh-public-key "<public key from master node>"
+    ```

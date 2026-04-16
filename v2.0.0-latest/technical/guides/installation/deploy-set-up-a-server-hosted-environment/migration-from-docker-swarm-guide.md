@@ -1,2 +1,281 @@
 # Migration from Docker swarm guide
 
+## Prerequisites and Important Information
+
+This tutorial guides you through all steps required to transform your v1.9 Docker Swarm infrastructure to Kubernetes and redeploy OpenCRVS on it. **Please carefully review this section before proceeding with the migration.**
+
+{% hint style="danger" %}
+**Before you begin**
+
+* [ ] Make sure ALL your environments are upgraded to **OpenCRVS v2.0+** before running migration.
+* [ ] Write down you current **OpenCRVS core and Country config** image versions
+{% endhint %}
+
+### Prerequisites
+
+#### 1. Infrastructure Repository
+
+OpenCRVS v2.0+ uses a dedicated repository for continuous delivery configuration:
+
+**Repository:** [https://github.com/opencrvs/infrastructure](https://github.com/opencrvs/infrastructure)
+
+**Required Action:**
+
+* Fork this repository to your organization or personal GitHub account before starting migration
+* Detailed forking steps are provided in [Broken link](/broken/pages/03CDotfjzMxY2UDbp5W4#id-4.-fork-or-clone-repositories "mention")
+* Ensure that your user has admin rights over the repository
+
+#### 2. SSH Access Configuration
+
+The `provision` user on your **production** Docker manager server must have passwordless SSH access to the backup server. You will need configure SSH key-based authentication between Docker manager and backup server.
+
+**Steps:**
+
+1.  Login on **production** docker manager as `provision` user:<br>
+
+    ```
+    sudo -i
+    su - provision
+    ```
+2.  Generate private/public key-pair:
+
+    ```
+    ssh-keygen -N "" -t ed25519 -f /home/provision/.ssh/id_ed25519 > /dev/null && \
+    echo '' && \
+    cat /home/provision/.ssh/id_ed25519.pub
+    ```
+3.  Copy public key value from output (example value):
+
+    ```
+    provision@prod-1:~$ ssh-keygen -N "" -t ed25519 -f /home/provision/.ssh/id_ed25519 && echo '' && cat /home/provision/.ssh/id_ed25519.pub
+
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5pxmslgDlhTRXKbc7mUReqhDUla+8nm8JJc6UFvRb47r provision@prod-1
+    ```
+4.  Login on worker/backup server as `provision` user and add public key from production to `/home/provision/.ssh/authorized_keys` on backup server:<br>
+
+    ```
+    sudo -i
+    su - provision
+    echo '<public key>' > /home/provision/.ssh/authorized_keys
+    ```
+
+#### 3. Migration token
+
+A classic GitHub token is required to run the migration workflow. The token should have following permissions:
+
+* `repo`: Full control of private repositories
+* `workflow`: Update GitHub Action workflows
+* expiration date should be set to manageable period (few months, year, never) established by organisation secure policies.
+
+Purpose of `MIGRATION_GH_TOKEN`&#x20;
+
+* Token is used while secrets and variables migration from Countryconfig template to infrastructure repository.
+* Token is stored as `GH_TOKEN` secret in infrastructure repository.
+* Token is used to provision Kubernetes self-hosted runner.&#x20;
+
+**Steps to create Migration token**
+
+* In your countryconfig repository navigate to repository level secrets at "Actions secrets and variables" (Settings -> Secrets & Variables -> Actions)
+* Create new secret `MIGRATION_GH_TOKEN` with value of GitHub token.
+
+### Changes between docker swarm and Kubernetes
+
+#### 1. Changes to Environments
+
+After migration **only** the following environments will appear in your new forked infrastructure repository (if they existed in your original repository):
+
+* `development`
+* `qa`
+* `staging`
+* `production`
+
+The following Gihtub environments are deprecated:
+
+* `backup` is merged into production while migration and the backup server is managed as part of a production environment by the Provision workflow.
+* `jumpbox` is not used anymore
+
+#### 2. Docker-compose migration
+
+All OpenCRVS services are deployed as helm charts during migration.
+
+All customizations must be **re-implemented using a custom Helm chart**.
+
+An example custom helm chart is published as part of the infrastructure repository, see [https://github.com/opencrvs/infrastructure/tree/develop/charts/opencrvs-mosip](https://github.com/opencrvs/infrastructure/tree/develop/charts/opencrvs-mosip)
+
+You may also choose to use [Bitnami Common Library Chart](https://github.com/bitnami/charts/tree/main/bitnami/common) for more advanced use cases.
+
+#### Migration Architecture
+
+**Single Server Deployments**
+
+* **Docker Swarm:** Single server environment
+* **Kubernetes:** Converted to single server Kubernetes environment (single-node cluster)
+
+**Multi-Node Deployments**
+
+* **Docker Swarm:** Multi-node with manager and worker nodes
+* **Kubernetes:** Converted to Kubernetes cluster with worker nodes
+
+**⚠️ Important Limitation:**
+
+* Migration script **does not support** multiple Docker manager nodes
+* Only single manager + multiple workers configuration is supported
+
+Single server docker environments are converted to single server Kubernetes environments.
+
+Multi node docker environments are converted to Kubernetes clusters with worker nodes. Migration script doesn't support multiple docker manager nodes.
+
+## Migration process
+
+Pre-migration check-list
+
+* [ ] Infrastructure repository clone
+* [ ] Passwordless access configuration between **production** docker manager and worker/backup
+* [ ] Migration token added to Countryconfig repository
+* [ ] Current OpenCRVS core and countryconfig versions are v2.0+
+
+{% hint style="danger" %}
+Make sure all preparations steps completed
+{% endhint %}
+
+**Migration steps in Country config (old repository)**
+
+1. Navigate to your countryconfig repository
+2. Run the provision workflow for each environment, e/g if you have qa, staging and production environments, you need to run workflow 3 times.  This ensures that all your servers are up to date .
+3.  Run "Migration swarm to k8s" GitHub actions workflow
+
+    <figure><img src="../../../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+
+    1. "The environment to migrate": Environment chosen for migration, you may migrate environments one by one or altogether
+    2. "The target organisation owner": GitHub organisation or your personal account who owns Infrastructure repository
+    3. "The target infrastructure repository": GitHub infrastructure repository name
+4.  Verify workflow execution results:\
+    On the screenshot execution results for single environment are shown, make sure all steps completed successfully.
+
+    <figure><img src="../../../../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+
+**Verify target repository**
+
+1. Navigate to Infrastructure repository
+2. Navigate to Settings -> Environments: Make all repository and environment level secrets and variables have been created
+3.  Navigate to Settings -> Actions -> Runners -> Self-hosted runners: Make sure self-hosted runners are available for each migrated environment. If you run migration for one environment only, you will find only one runner. NOTE: Environment name is a part of runner name and one of the runner tags, e/g "development" on the screenshot
+
+    <figure><img src="../../../../.gitbook/assets/image (4).png" alt=""><figcaption><p>Each environment will have ows self-hosted runner</p></figcaption></figure>
+4.  Navigate to "Pull requests" section: You will find PR with all changes required to deploy new environment with Kubernetes.
+
+    <figure><img src="../../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+5. Review changes within PR:
+   1. If your docker-compose file had any customisations like environment variables, please add them to `environments/<env name>/opencrvs-services/values.yaml`&#x20;
+   2. By default traefik is configured to use static ssl certificates, adjust values if needed, check documentation at [Broken link](/broken/pages/0tRt9sXOzixEtLZQot7O "mention")
+6.  Merge Pull request to main (develop) branch. If multiple environments were migrated at the same time, you will need to resolve pull request conflicts manually, usually effected section is `environment` input selector:
+
+    <figure><img src="../../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+    <figure><img src="../../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+**Kubernetes environment provision and deploy**
+
+1. Provision Kubernetes environment on top of Docker Swarm environment: Run Provision workflow from Infrastructure repository, see for more information [Broken link](/broken/pages/VxyJDdy72Mi1awNbEQTu "mention")
+2. Reboot your target server
+3. Deploy dependencies, see for more information [Broken link](/broken/pages/ludL25iSv5QmOBkwXe2D "mention")
+4. Deploy OpenCRVS: see for more information [Broken link](/broken/pages/XcATcz2Mx4xP3j8TiC6W "mention")
+   1. Use same OpenCRVS Core image tag as docker swarm
+   2. Use same Country config image tag as docker swarm
+   3.  Make sure "Enable data seeding during deployment" is unchecked
+
+       <figure><img src="../../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+## Post migration steps
+
+### Configuring Workflow Approval Process
+
+OpenCRVS now requires approval for deployment and maintenance GitHub Actions workflows on production environments. This adds an additional layer of control to prevent unexpected downtime or issues.
+
+#### Environments Requiring Approval
+
+* **Production:** Approvals required by default
+* **Staging and Other environments:** No approval required (unless explicitly configured)
+
+#### Setup Instructions
+
+**Step 1: Identify Approvers**
+
+Determine which team members should have authority to approve production deployments and maintenance tasks.
+
+**Step 2: Configure Repository Variable**
+
+Set up the `GH_APPROVERS` variable at the **repository level**:
+
+1. Navigate to your repository settings
+2. Go to **Settings → Secrets and variables → Actions → Variables**
+3. Click **New repository variable**
+4. Configure:
+   * **Name:** `GH_APPROVERS`
+   * **Value:** Comma-separated list of GitHub usernames (e.g., `alice,bob,charlie`)
+
+Set Up `APPROVAL_REQUIRED` at e**nvironment level** to control which environments require approval before workflow execution:
+
+1. Navigate to your repository settings
+2. Go to **Settings → Environments**
+3. Select the environment you want to configure (e.g., `production`, `staging`)
+4. Scroll to **Environment variables** section
+5. Click **Add variable**
+6. Configure:
+   * **Name:** `APPROVAL_REQUIRED`
+   * **Value:** `true` (to enable approval) or `false` (to disable)
+
+**Step 3: Verify Configuration**
+
+After configuration, workflows targeting production will pause for approval from designated users before execution.
+
+**Important Notes**
+
+* `GH_APPROVERS` must be defined at **repository level** (not environment level)
+* `APPROVAL_REQUIRED` must be defined at **environment level** (not repository level)
+* Use **GitHub usernames** without `@` symbol
+* Multiple approvers separated by commas with **no spaces**
+* At least one designated approver must approve the workflow to proceed
+
+### Backup & Restore
+
+{% hint style="info" %}
+Please read this section to get better understanding about changes, no actions is needed from your side
+{% endhint %}
+
+This section outlines the fundamental differences in backup and restore implementation between Docker Swarm and Kubernetes deployments. Understanding these differences is critical for migration planning and operational adjustments.
+
+#### Docker Swarm Approach
+
+**Architecture:**
+
+* Backup and restore operations run as **shell scripts on the Docker manager node**
+* Backup script scheduled as **OS cronjob** on production environment
+* Restore script scheduled as **OS cronjob** on staging environment
+* Single monolithic script handles **all datastores** (PostgreSQL, MongoDB, MinIO, InfluxDB)
+* Uses **direct filesystem access** to `/data` directory
+
+#### Kubernetes Approach
+
+**Architecture:**
+
+* Backup and restore jobs **split by datastore** (one job per database)
+* Backup and restore operations are environment-agnostic and can be configured on any deployment (development, QA, staging, production, etc.).
+* Scheduled as **Kubernetes CronJobs** (native k8s resources)
+* Scripts use **remote database connections** via network protocols
+* Each job runs as a **Kubernetes pod** with database client tools
+
+The fundamental shift is from **filesystem-based operations** to **network-based database operations**. While this introduces network overhead, it provides the flexibility and portability required for modern cloud-native deployments, including support for managed database services and multi-environment consistency.
+
+Check [Broken link](/broken/pages/ksyXmFt3UUOXzLvqFFAN "mention") for more information and configuration details.
+
+## GitHub Fine-grained token
+
+GitHub self-hosted runners could be configured to use fine-grained token.
+
+Variable name: `GH_TOKEN`
+
+Required permissions:
+
+* Actions: Read and Write
+* Administration: Read and Write
+* Metadata: Read-only
