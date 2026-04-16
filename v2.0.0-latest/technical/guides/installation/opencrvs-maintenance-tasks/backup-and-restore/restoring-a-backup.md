@@ -1,2 +1,243 @@
 # Automated restore configuration
 
+{% hint style="danger" %}
+Before going live, it's very important that you confirm that OpenCRVS is successfully backing up and restoring. Make a test registration in production with image attachments, and wait 24 hours. This test registration should exist in your staging environment the day after you created it. "View" the registration on staging and make sure that image attachments are available. To learn more about all the technical checks that you should perform before going live with your OpenCRVS installation, read the [Pre-deployment Checklist section. To reset your all your environments including production in readiness for going live, read the  section.](/broken/pages/bE7VkNapRl5ZDhP4JAZn)
+{% endhint %}
+
+### Automated restore configuration
+
+{% hint style="info" %}
+Usually restore is configured on staging server. In this way, your staging server contains citizen data that is 24 hours old. The staging server can be used as a pre-production mirror for you to test any OpenCRVS upgrades or configuration changes on real citizen data without disturbing your production environment.
+{% endhint %}
+
+Usually restore job is configured on staging environment to restore data from production backups stored on backup server. Backup server is provisioned as part of production infrastructure.
+
+**Complete following steps to configure automated restore on staging**
+
+1. [Copy backup secrets from production to staging](restoring-a-backup.md#copy-secrets-from-production-to-staging)
+2. [Enable restore in Dependencies helm chart values](restoring-a-backup.md#enable-restore-in-dependencies-helm-chart-values)
+3. [Enable reindex in OpenCRVS helm chart values](restoring-a-backup.md#enable-reindex-in-opencrvs-helm-chart-values)
+
+#### Copy secrets from production to staging
+
+Before setting up the restore jobs, make sure you copy both required secrets — `backup-server-ssh-credentials` and `restore-encryption-secret` — from the production cluster to the staging cluster.
+
+The restore job needs SSH credentials to access the backup server and download backup files. These credentials are stored in the production environment in the `opencrvs-deps-<environment>` namespace under the secret name `backup-server-ssh-credentials`.
+
+It also requires the backup encryption key, which is stored in the same namespace in the `backup-encryption-secret` secret.
+
+The steps for copying these secrets from the production cluster, adjusting them as needed, and creating them in the staging cluster are described below.
+
+{% hint style="info" %}
+Its recommended to configure connection to cluster as described at [Add new cluster to your default kubeconfig](/broken/pages/Oo19SaQmBF4hLOVclF06#option-3-add-new-cluster-to-your-default-kubeconfig) before running this task.
+{% endhint %}
+
+1.  Connect to production cluster with `kubectl` :
+
+    ```
+    kubectl config use-context <production environment context>
+    ```
+2.  Change namespace to opencrvs-deps-\<environment>, where `<environment>` is production environment name:
+
+    ```
+    kubectl config set-context --current --namespace=opencrvs-deps-<environment>
+    ```
+3.  Get secrets as yaml manifest:<br>
+
+    ```
+    kubectl get secret backup-encryption-secret \
+      backup-server-ssh-credentials -oyaml > /tmp/production-backup-secrets.yaml
+    ```
+4. Update file `/tmp/production-backup-secrets.yaml` :
+   1. Delete following fields:
+      1. creationTimestamp
+      2. resourceVersion
+      3. uid
+      4. annotations
+      5. namespace
+   2. Update `name: backup-encryption-secret` to `name: restore-encryption-secret`
+5. If you are working remotely, copy `/tmp/production-backup-secrets.yaml` to staging server
+6.  Connect to staging cluster with `kubectl` :
+
+    ```
+    kubectl config use-context <staging environment context>
+    ```
+7.  Change namespace to opencrvs-deps-\<environment>, where `<environment>` is staging environment name:
+
+    ```
+    kubectl config set-context --current --namespace=opencrvs-deps-<environment>
+    ```
+8.  Create secrets on staging cluster:
+
+    ```
+    kubectl apply -f /tmp/production-backup-secrets.yaml 
+    ```
+
+    Example output:
+
+    ```
+    secret/restore-encryption-secret created
+    secret/backup-server-ssh-credentials created
+    ```
+
+Example how your temporal file will look before your apply changes:
+
+```yaml
+apiVersion: v1
+items:
+- apiVersion: v1
+  data:
+    backup_encryption_key: dEV...SQ==
+  kind: Secret
+  metadata:
+    name: restore-encryption-secret
+  type: Opaque
+- apiVersion: v1
+  data:
+    host: M...M=
+    ssh_key: LS0hr...S0VZLS0tLS0K
+    user: YmFja3Vw
+  kind: Secret
+  metadata:
+    name: backup-server-ssh-credentials
+  type: Opaque
+kind: List
+metadata:
+  resourceVersion: ""
+```
+
+#### Enable restore in Dependencies helm chart values
+
+Add following section to `environments/<environment>/dependencies/values.yaml` and run "Deploy dependencies" workflow:
+
+* Update `backup_server_dir` value to match with your environment name, e/g `/home/backup/production`
+* Update `schedule` to reflect best time backup job to be started,
+* Set `enabled` to `true`
+
+```
+# Restore configuration
+restore:
+  enabled: true
+  # Schedule job
+  schedule: "0 0 * * *"
+  backup_server_secret: backup-server-ssh-credentials
+  backup_server_dir: /home/backup/production
+  backup_encryption_secret: restore-encryption-secret
+```
+
+Push your changes to github and Re-[Deploy Dependencies](/broken/pages/ludL25iSv5QmOBkwXe2D)
+
+#### Enable reindex in OpenCRVS helm chart values
+
+Add following section to `environments/<environment>/opencrvs-services/values.yaml` and run "Deploy OpenCRVS" workflow:
+
+* `enabled`: Enable reindex
+* `schedule`: Cronjob schedule for reindex, see [https://crontab.guru/](https://crontab.guru/)
+
+```
+elasticsearch:
+  reindex:
+    enabled: true
+    schedule "0 2 * * *"
+```
+
+Push your changes to github and Re-[Deploy OpenCRVS](/broken/pages/XcATcz2Mx4xP3j8TiC6W)
+
+## Verify restore configuration
+
+Usually to make sure restore was successful you need to verify data from Production is present on Staging environment. Additional verification steps are described here.
+
+**Verify kubernetes jobs are present:**
+
+1. Connect to your cluster with `kubectl`
+2.  Run following command:
+
+    ```
+    kubectl get cronjob -l job-type=restore -n opencrvs-deps-<environment>
+    ```
+
+    Example output:
+
+    ```
+    NAME               SCHEDULE    TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+    influxdb-restore   0 0 * * *   <none>     False     0        <none>          62s
+    minio-restore      0 0 * * *   <none>     False     0        <none>          62s
+    mongodb-restore    0 0 * * *   <none>     False     0        <none>          62s
+    postgres-restore   0 0 * * *   <none>     False     0        <none>          61s
+    ```
+
+### **Verify Kubernetes jobs were executed per schedule:**
+
+Wait at least for first job execution, usually takes at to 24 hours
+
+1. Connect to your cluster with `kubectl`
+2.  Run following command:
+
+    ```
+    kubectl get job -l job-type=restore -n opencrvs-deps-<environment>
+    ```
+
+    Example output:
+
+    ```
+    TODO: FIXME:
+    NAME                       STATUS     COMPLETIONS   DURATION   AGE
+    influxdb-backup-29381820   Complete   1/1           9s         5h11m
+    minio-backup-29381820      Complete   1/1           9s         5h11m
+    mongodb-backup-29381820    Complete   1/1           31s        5h11m
+    postgres-backup-29381820   Complete   1/1           13s        5h11m
+    ```
+
+## Disable/Enable restore
+
+In same cases during upgrade or testing restore should be disabled.
+
+**Steps to disable:**
+
+1. Connect to your cluster with `kubectl`&#x20;
+2.  Change namespace:<br>
+
+    ```
+    # Full command:
+    kubectl config set-context --current --namespace opencrvs-deps-<environment>
+    # Alias:
+    kns opencrvs-deps-<environment>
+    ```
+3.  Run following command to verify cronjob status:
+
+    ```
+    kubectl get cronjob -l job-type=restore
+    ```
+
+    Example output:
+
+    ```
+    NAME               SCHEDULE    TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+    influxdb-restore   0 0 * * *   <none>     False     0        <none>          62s
+    minio-restore      0 0 * * *   <none>     False     0        <none>          62s
+    mongodb-restore    0 0 * * *   <none>     False     0        <none>          62s
+    postgres-restore   0 0 * * *   <none>     False     0        <none>          61s
+    ```
+4.  Disable all restore cronjobs:
+
+    ```
+    for cj in $(kubectl get cronjobs -l job-type=restore -o jsonpath='{.items[*].metadata.name}'); do
+      kubectl patch cronjob "$cj" -p '{"spec":{"suspend":true}}'
+    done
+    ```
+5.  Verify status (SUSPEND should be set to `true`):<br>
+
+    ```
+    NAME               SCHEDULE    TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+    influxdb-restore   0 0 * * *   <none>     True      0        <none>          62s
+    minio-restore      0 0 * * *   <none>     True      0        <none>          62s
+    mongodb-restore    0 0 * * *   <none>     True      0        <none>          62s
+    postgres-restore   0 0 * * *   <none>     True      0        <none>          61s
+    ```
+
+
+6.  (Optionally) Disable particular cronjob:
+
+    ```
+    kubectl patch cronjob <cronjob-name> -p '{"spec":{"suspend":true}}'
+    ```
