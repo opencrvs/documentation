@@ -1,4 +1,4 @@
-# 4.5.1.2 LetsEncrypt DNS challenge in production
+# LetsEncrypt DNS challenge in production
 
 ## LetsEncrypt DNS challenge in production
 

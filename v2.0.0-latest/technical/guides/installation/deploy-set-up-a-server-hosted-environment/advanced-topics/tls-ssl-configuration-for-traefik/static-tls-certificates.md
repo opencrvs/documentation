@@ -1,4 +1,4 @@
-# 4.5.1.3 Static TLS certificates
+# Static TLS certificates
 
 
 

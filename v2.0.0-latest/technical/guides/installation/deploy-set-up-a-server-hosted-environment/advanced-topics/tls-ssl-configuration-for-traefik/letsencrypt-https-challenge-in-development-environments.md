@@ -1,4 +1,4 @@
-# 4.5.1.1 LetsEncrypt https challenge in development environments
+# LetsEncrypt https challenge in development environments
 
 
 
