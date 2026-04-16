@@ -1,106 +1,144 @@
 # Solution architecture
 
+## OpenCRVS within Government Digital Architecture
+
 ### Overview
 
-OpenCRVS is a core component of a country's **Digital Public Infrastructure (DPI)**. It is designed primarily as an **internal, staff-facing civil registration system**, supporting registrars and government officials in recording vital events such as births and deaths.
+OpenCRVS is a core component of a country’s Digital Public Infrastructure (DPI), designed as an internal, staff-facing civil registration system used by registrars and government officials to record vital events such as births and deaths.
 
-This document outlines the key **solution architecture requirements** for implementing OpenCRVS, with guidance for technical project managers. Each section links to deeper technical documentation where applicable.
+Civil registration is not an isolated system—it sits at the center of a broader government ecosystem, exchanging trusted data with identity, health, statistics, and social protection systems. As such, OpenCRVS should be implemented as part of a wider, interoperable architecture that enables secure, scalable, and sustainable service delivery.
+
+TODO: insert diagram
 
 ***
 
-### OpenCRVS' role within Digital Public Infrastructure
+### Role within Digital Public Infrastructure
 
-OpenCRVS is part of a broader ecosystem of interoperable national systems that holistically provide end-to-end services to citizens.
+#### Civil Registration as Foundational DPI
 
-#### Key Characteristics
+OpenCRVS represents more than a sectoral system—it functions as foundational infrastructure by providing a country’s **single source of legal, trusted life events data**.
 
-* Internal-facing system for civil registration authorities for use in office & at counter services.
-* Provides **standardised APIs** for interoperability with a recommended data exchange layer such as XRoad or OpenFN or direct integrations if such a layer doesnt exist.
-* OpenCRVS APIs supports integration with:
-  * Self-service portals (citizen applications)
-  * National ID systems
-  * KYC
-  * Payment and reconciliation gateways
-  * Messaging and notification services
-  * Health systems (birth and death notifications - ICD10/ICD11 cause of death certification)
-  * Social protection systems
-  * Legal and educational infrastructure
-  * Statistics
-  * Public Key Infrastructure enabling "verifiable credentials"
+This data underpins:
 
-#### OpenCRVS within a Government System Architecture
+* Identity systems (e.g. birth → ID creation, death → deactivation)
+* Public service delivery (e.g. healthcare, education, social protection)
+* National statistics and planning
+* Legal identity and individual rights
 
-TODO: diagram
+By establishing authoritative records of life events, civil registration enables both government operations and inclusive service delivery across the public and private sectors.
+
+***
+
+### System Architecture and Integration
+
+#### Interoperability by Design
+
+OpenCRVS is designed to integrate with other systems through **APIs and open standards**. It supports both direct integrations and integration via a **data exchange layer** (recommended).
+
+
+
+**Incoming data flows (receiving data into OpenCRVS):**&#x20;
+
+* Health systems: Birth and death notifications from hospitals, health facilities, and health information systems Identity systems:&#x20;
+* Verification of parent identity during registration, validation of informant credentials&#x20;
+* Address registries: Validation of locations, administrative hierarchies, and facility codes&#x20;
+* Statistical offices: Master data on reference lists such as occupations, causes of death, or ethnicity classifications&#x20;
+
+
+
+**Outgoing data flows (sharing data from OpenCRVS):**&#x20;
+
+* National ID systems: Birth and death registration data to trigger identity lifecycle events (e.g. issuance of national ID, deactivation of deceased persons)&#x20;
+* Statistical offices: Vital statistics data for demographic analysis, policy planning, and SDG monitoring&#x20;
+* Social protection systems: Eligibility verification for child grants, pensions, or other entitlements
+* Education systems: School enrollment planning based on birth cohorts&#x20;
+* Verifiable credentials platforms: Issuing digitally signed, verifiable certificates for birth, death, marriage, and other events&#x20;
+
+Additional examples: Further integration scenarios are available at opencrvs.org/product/interoperability, including interoperability with other Digital Public Goods like MOSIP (identity) and OpenSPP (social protection).
 
 ***
 
 ### Interoperability & Data Exchange Layer
 
-While OpenCRVS exposes APIs for direct integration, **a dedicated data exchange layer is strongly recommended**.
+While OpenCRVS exposes APIs, implementing a **dedicated interoperability layer** is strongly recommended.
 
-#### Why a Data Exchange Layer?
+#### Benefits
 
-A middleware or interoperability layer provides:
+* Decouples systems and reduces integration complexity
+* Enables data transformation and mapping
+* Automates data exchange workflows
+* Provides audit trails and observability
+* Improves scalability and maintainability
 
-* Automation of data flows
-* Transformation and mapping between systems
-* Audit trails and observability
-* Decoupling between systems
-* Improved scalability and maintainability
-
-Countries should implement and manage a separate interoperability platform such as:
+#### Recommended Platforms
 
 * OpenFN
 * X-Road
 * OpenHIM
 
-These platforms act as **Digital Public Goods (DPGs)** designed specifically for secure system-to-system communication.
+These platforms act as secure middleware for system-to-system communication and are themselves Digital Public Goods.
 
 ***
 
-### Verifiable Credentials & Public Key Infrastructure
+### Verifiable Credentials & PKI
 
-OpenCRVS includes capabilities to **issue Verifiable Credentials (VCs)** such as digital birth certificates.
+OpenCRVS can issue **Verifiable Credentials (VCs)** such as digital birth certificates, enabling individuals to prove life events digitally.
 
-#### Important Considerations
+#### Key Considerations
 
-* OpenCRVS is **not a Public Key Infrastructure (PKI) solution**
+* OpenCRVS is **not a Public Key Infrastructure (PKI)** solution
 * It does not manage:
   * Root certificate authorities
   * Trust registries
   * Key lifecycle management
 
-#### Requirements for VC Implementation
+#### Requirements
 
-To fully utilise VC functionality, countries must:
+To implement OpenCRVS VCs, countries must:
 
-* Establish a national PKI strategy, **or**
-* Partner with trusted external providers
+* Establish a national PKI strategy or partner with trusted providers
+* Define governance, trust frameworks, and key management policies
+* Adopt standards such as **W3C Verifiable Credentials**
 
-This includes:
+***
 
-* Key management policies
-* Trust frameworks
-* Governance for credential issuance and verification
+### How Civil Registration Enables Government Services
+
+Civil registration data enables critical functions across government:
+
+* **Identity:** Provides foundational data for unique digital identities
+* **Service delivery:** Enables targeting of healthcare, education, and social protection
+* **Consent-based data sharing:** Supports controlled access to personal data
+* **Statistics and planning:** Produces continuous, high-quality demographic data
+
+Effective implementation requires:
+
+* Clear legal and data governance frameworks
+* Secure, consent-based data sharing mechanisms
+* Automated and standardised data exchange pipelines
 
 ***
 
 ### Summary
 
-Implementing OpenCRVS requires careful alignment with national digital infrastructure strategy. Key architectural principles include:
+OpenCRVS should be implemented as a **foundational component of national Digital Public Infrastructure**, not a standalone system.
 
-* Treating OpenCRVS as part of a broader DPI ecosystem
-* Using a dedicated interoperability layer
-* Planning for PKI when implementing verifiable credentials
-* Ensuring robust, secure, and scalable hosting environments
+Key success factors include:
 
-A well-designed architecture will ensure interoperability, scalability, and long-term sustainability of civil registration services.
+* Embedding OpenCRVS within a broader interoperable ecosystem
+* Using a dedicated data exchange layer for integrations
+* Establishing PKI and governance frameworks for digital credentials
+* Designing for security, scalability, and sustainability from the outset
+
+A well-architected implementation enables trusted data flows across government, supports digital identity, and ensures that civil registration becomes a powerful enabler of inclusive, efficient public services.
 
 ***
 
 ### Further Reading
 
-* CDPI Digital Public Infrastructure principles
+* [Technical interoperability documentation (API specifications and integration patterns)](../../../technical/apis/)
+
+
 
 
 
