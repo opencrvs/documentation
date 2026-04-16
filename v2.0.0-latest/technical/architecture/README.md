@@ -5,7 +5,7 @@
 
 ### 1. Introduction
 
-OpenCRVS is built using a **modular, event-driven microservices architecture** designed for scalability, configurability, and data sovereignty. The technical architecture enables countries to deploy OpenCRVS in on-premise private tier 2/3 data centres using included **Docker Swarm** configurations, ensuring that civil registration data remains under national control.
+OpenCRVS is built using a **modular, event-driven microservices architecture** designed for scalability, configurability, and data sovereignty. The technical architecture enables countries to deploy OpenCRVS in on-premise private tier 2/3 data centres using included configurations, ensuring that civil registration data remains under national control.
 
 This section describes:
 
