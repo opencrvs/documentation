@@ -1,4 +1,6 @@
-# 4.3.1.1 Setup infrastructure
+# Setup infrastructure
+
+
 
 ### Data Center
 
@@ -295,4 +297,3 @@ Following variables are required to successfully deploy OpenCRVS on server envir
 * `SMTP_PASSWORD`: Password or API token depend on your email provider
 * `SENDER_EMAIL_ADDRESS`: All emails will be send with this email in sender field
 * `ALERT_EMAIL`: Email address for alerting, this field is often used to integrate with Slack, Google Chart or any other corporate communication tool.
-

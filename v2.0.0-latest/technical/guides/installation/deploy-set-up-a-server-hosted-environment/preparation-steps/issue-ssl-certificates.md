@@ -1,6 +1,4 @@
-# 4.3.1.3 Issue SSL Certificates
-
-
+# Issue SSL Certificates
 
 There are a number of ways you can configure TLS / SSL certificates for OpenCRVS. The options are explained in subsequent pages and all methods must be compatible with [Traefik](https://doc.traefik.io/traefik/https/overview/).
 
@@ -36,3 +34,4 @@ OpenCRVS configuration script automatically handles following SSL Certificates:
 **Example "recipes"**
 
 The following "recipes" are not meant to be exhaustive, but simply describe some examples you may wish to follow. Every country will have unique network, domain name & management considerations to pay attention to. See more examples at [4.5.1-tls-ssl-configuration-for-traefik](../../../../../../v2.0.0/setup/3.-installation/4.4-advanced-topics/4.5.1-tls-ssl-configuration-for-traefik "mention") later our documentation
+
