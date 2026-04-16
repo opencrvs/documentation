@@ -7,7 +7,6 @@
 * [CRVS Systems](general/crvs-systems/README.md)
   * [Understanding CRVS](general/crvs-systems/quickstart.md)
   * [Effective digital CRVS systems](general/crvs-systems/publish-your-docs.md)
-  * [Government systems architecture](general/crvs-systems/government-systems-architecture.md)
 * [OpenCRVS](general/opencrvs/README.md)
   * [Why OpenCRVS?](general/opencrvs/why-opencrvs.md)
   * [Value proposition](general/opencrvs/value-proposition.md)
