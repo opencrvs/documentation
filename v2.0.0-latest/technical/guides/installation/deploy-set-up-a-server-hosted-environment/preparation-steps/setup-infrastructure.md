@@ -71,7 +71,7 @@ Release:	24.04
 ...
 ```
 
-If not, either recreate the server or upgrade Ubuntu.
+If you are not using the correct version of Ubuntu, either recreate the server or upgrade Ubuntu.
 
 ### Production / staging / backup disk space requirements
 
@@ -155,6 +155,11 @@ By default OpenCRVS stores citizens records, monitoring and logging in `/data` f
 
 * **Single disk partition**: disk partition mounted as `/` has sufficient space to store all data produced by OpenCRVS. At provision time `/data` folder is created by ansible scripts.
 * **Single disk partition with encryption**: same as previous, with encryption enabled OpenCRVS will create encrypted file on disk `/cryptfs_file_sparse.img`, allocate proper file size and mount file as `/data` partition.
+
+{% hint style="warning" %}
+If your datacentre is physically secure we do not recommend encryption.  If your data cerntre is insecure and you wish to enable encryption, pay close attention to the **optional disk encryption for lower security data centres section below**
+{% endhint %}
+
 * **Dedicated disk partition for data**: System administrator may decide to use dedicated disk partition (e/g LVM, NAS) to store citizens data.
 * **Other layouts** are possible, but not supported by OpenCRVS installation scripts. OpenCRVS Dependencies helm chart allows to define other ways to store files by using Kubernetes storage classes, please check helm chart [documentation](https://github.com/opencrvs/infrastructure/tree/develop/charts/dependencies).
 
