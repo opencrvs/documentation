@@ -2,12 +2,12 @@
 
 #### Before you begin
 
-In this section you will run `yarn environments:init` script which will help you to configure OpenCRVS:
+In this section you will run the `yarn environments:init` script in **your forked infrastructure repository** which will help you to configure OpenCRVS environments. This command:
 
-* Create GitHub environments
-* Draft commands to bootstrap new servers
+* Creates GitHub environments
+* Drafts commands to bootstrap new servers
 * Prepare inventory files for ansible for environment provision
-* Prepare Helm chart values for deployment
+* Prepares Helm chart values for deployment
 
 GitHub environments will host all secrets and variables required for successful infrastructure configuration (users, filesystem, kubernetes cluster, etc) and OpenCRVS deployment.
 
@@ -24,12 +24,12 @@ Make sure you completed environment preparation steps and have all required info
 | GitHub Token with full code access and workflow permissions created                    | Personal access token (Fine grained token) with access to Country config and Infrastructure repositories. Refer to [Quick Start](../../quick-start.md) |
 | DockerHub Account, token and repository are created                                    | Make sure Country config image was built and pushed to DockerHub                                                                                       |
 | Users with their public keys to grant remote access to the servers                     | Refer to [Advanced Topics > SSH access](../../advanced-topics/ssh-access.md)                                                                           |
-| SMTP server configured                                                                 | [Broken link](/broken/pages/03CDotfjzMxY2UDbp5W4 "mention")                                                                                            |
+| SMTP server configured                                                                 | Refer to [Setup Infrastructure](../preparation-steps/setup-infrastructure.md)                                                                          |
 | Optionally Third-party accounts created (sentry, slack, etc)                           | Refer to [prerequisite accounts](../preparation-steps/create-prerequisite-accounts-and-repositories.md)                                                |
 
 ### Create github environments
 
-Environments are managed by `yarn environment:init` script. The script will create files that must be pushed to Git, so it is advisable to run the script in a new branch in order to open a pull request.
+Environments are managed by `yarn environment:init` script. The script will create files that must be pushed to Git, so it is **advisable to run the script in a new branch in order to open a pull request.**
 
 Re-run script for each environment:
 
@@ -38,21 +38,21 @@ Re-run script for each environment:
 * production
 
 {% hint style="info" %}
-_Migrating from an earlier version? ..._&#x20;
+_Migrating from an earlier version? ... Read the_ [_Migration from Docker swarm guide._](../migration-from-docker-swarm-guide.md)
 
 Configuring a **staging** or **prodution** Github environment requires you to have a **backup server** environment in place. &#x20;
 
 No explicit **backup** _Github_ environment is created by this script anymore as of OpenCRVS v2.0.
 {% endhint %}
 
-To run the script, open terminal window and cd into your **forked infrastructure repository** and run the following command to start configuration wizard:
+To run the script, open terminal window and cd into your **forked infrastructure repository** and run the following command to start the configuration wizard:
 
 <pre><code><strong>yarn install
 </strong><strong>yarn environment:init
 </strong></code></pre>
 
 {% hint style="info" icon="triangle-exclamation" %}
-Similar commands exist in a forked countryconfig repo but these exist only for backwards compatibility, e.g. OpenCRVS v1.8 or below and **should no longer be used**.  Older installations should follow the [4.3.6 Migration from Docker swarm guide](/broken/pages/KlFWcz17LDzpiUZko2t5)
+You may notice that the same commands exist in an **infrastructure** folder in **forked countryconfig repo** but these exist only for backwards compatibility, e.g. OpenCRVS v1.8 or below and **should no longer be used**.  Older installations should follow the [_Migration from Docker swarm guide_](../migration-from-docker-swarm-guide.md)
 {% endhint %}
 
 You will be asked to provide values to configure key OpenCRVS components. Some actions can be automated and the script will guide you to the next steps.
@@ -129,8 +129,8 @@ The script will ask for your Dockerhub credentials or skip if they already exist
 The script will ask you to provide Kubernetes and Runtime options:
 
 * `DOMAIN`: Domain name to expose the OpenCRVS application frontend and APIs.  It will be the domain after the subdomains that you configured when setting DNS.
-* `KUBE_API_HOST`: (Options property) IP address or domain Kubernetes master node. Provision script will generate Kubernetes config files for each user defined in users section of inventory file. For more details check [Broken link](/broken/pages/vaj9jA9IcC2Q0RNXB5pQ "mention") and [Broken link](/broken/pages/Oo19SaQmBF4hLOVclF06 "mention") sections. Usually you may leave this field empty or set to `DOMAIN`. Value can be modified later.
-* `WORKER_NODES`: (Options property) Comma separated list of additional Kubernetes cluster members (Virtual Machines). Leave empty for single node setup. Worker nodes can be added later.
+* `KUBE_API_HOST`: IP address or domain address for the Kubernetes master node. Provision script will generate Kubernetes config files for each user defined in users section of inventory file.&#x20;
+* `WORKER_NODES`: (Options property) Comma separated list of additional Kubernetes cluster members (Virtual Machines). Leave empty for a single node setup. Worker nodes can be added later.
 
 <figure><img src="../../../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption><p>Only domain name was provided, Kubernetes cluster will be created with single node</p></figcaption></figure>
 
@@ -142,7 +142,7 @@ Script will ask you to create users with remote SSH access, answer following que
 * Public ssh keys: Add public key(s) for remote login. Login by password is disabled by default, keys must be provided
 * Role: User role on remote system
 
-Check documentation for more examples and detailed instructions how to manage remote access: [Broken link](/broken/pages/vaj9jA9IcC2Q0RNXB5pQ "mention")
+Check documentation for more examples and detailed instructions how to manage remote access: [Advanced topics > SSH Access](../../advanced-topics/ssh-access.md)
 
 Once all the users are added, select **"Save & Exit"** in order to continue with the script.
 
@@ -168,7 +168,7 @@ Questions for **Static SSL certificate**
 Full documentation about traefik configuration can be found at:
 
 * Official documentation page: [https://github.com/traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart)
-* OpenCRVS documentation: [Broken link](/broken/pages/0tRt9sXOzixEtLZQot7O "mention")
+* [Advanced Topics > TLS/SSL Configuration for Traefik](../../advanced-topics/tls-ssl-configuration-for-traefik/)
 
 #### Storage
 
@@ -199,7 +199,7 @@ More information about backup server configuration can be found at [Backup and R
 
 Its possible for this environment to restore backed-up data from another environment every night.  **It is strongly recommended if you are provisioning a staging (pre-prod/mirror) environment to enable restore.**
 
-Restore configuration will ask you to provide the restore environment name from the existing environment list. **If the environment doesn't exist and will be created later, feel free to type future environment name here, but don't forget to create the environment before running OpenCRVS** [**dependencies**](/broken/pages/ludL25iSv5QmOBkwXe2D) **deployment.**
+Restore configuration will ask you to provide the restore environment name from the existing environment list. **If the environment doesn't exist and will be created later, feel free to type future environment name here, but don't forget to create that environment BEFORE running OpenCRVS** [**dependencies**](../deploy/running-a-dependencies-deployment.md) **deployment.**
 
 By default restore is configured to run at 00:00 AM by UTC, if you need to adjust the restore schedule, update configuration manually at `environments/<env>/dependencies/values.yaml`
 
@@ -231,7 +231,7 @@ Metabase provides a public web interface to access an analytics editor.
 
 #### SMTP
 
-At this point smtp server should be configured. If you are using third-party email providers like Sendgrid, please make sure that your OpenCRVS domain is in whitelist and issued credentials are correct. For more information please check [Broken link](/broken/pages/0UNnC60qfLumb2YdTcgE "mention")
+At this point smtp server should be configured. If you are using third-party email providers like Sendgrid, please make sure that your OpenCRVS domain is in whitelist and issued credentials are correct.&#x20;
 
 * `SMTP_HOST`: Hostname or IP address of your smtp server
 * `SMTP_PORT`: Port where smtp server is listening
@@ -253,7 +253,7 @@ The script will slowly create the Github environment and upload all the secrets 
 
 On the final step the script will provide a command to bootstrap a self-hosted runner on your server. **Save the command from script output to a temporal file, you will need it later**.
 
-This is explained in the section [4.3.3 Bootstrap servers](/broken/pages/yYbluGpgO03U5Ryfb4p9):
+This is explained in the section [Bootstrap servers](../bootstrap-servers.md):
 
 {% code title="Bootstrap command is automatically created ... " %}
 ```
@@ -299,9 +299,9 @@ Usually review is not required for files under the `.github` folder.
 
 Review modified files:
 
-* `infrastructure/server-setup/inventory/<environment name>.yml`: Configuration file for Ansible playbook responsible for server provision. For more information please follow hints inside file and [SSH Access](/broken/pages/vaj9jA9IcC2Q0RNXB5pQ) section.
+* `infrastructure/server-setup/inventory/<environment name>.yml`: Configuration file for Ansible playbook responsible for server provision. For more information please follow hints inside file and [SSH Access](../../advanced-topics/ssh-access.md) section.
 * `environments/<environment name>`: Folder with `values,yaml` files for helm charts:
-  * `environments/<environment name>/traefik/values.yaml`: Update this file with proper configuration to handle SSL certificate. Please follow documentation under [TLS / SSL & DNS](../../../../../../v2.0.0/setup/3.-installation/4.4-advanced-topics/4.5.1-tls-ssl-configuration-for-traefik)
+  * `environments/<environment name>/traefik/values.yaml`: Update this file with proper configuration to handle SSL certificate. Please follow documentation under [TLS / SSL & DNS](../../advanced-topics/tls-ssl-configuration-for-traefik/)
   * `environments/<environment name>/opencrvs-services/values.yaml`: Review configuration and adjust according to your needs, **usually defaults are good for initial deployment**
   * `environments/<environment name>/dependencies/values.yaml`: Review configuration and adjust according to your needs, **usually defaults are good for initial deployment**.
 
@@ -312,7 +312,7 @@ The later [provision](/broken/pages/VxyJDdy72Mi1awNbEQTu) script will disable pa
 {% endhint %}
 
 {% hint style="success" %}
-Users will be required to use Google Authenticator to SSH in after [provisioning](/broken/pages/VxyJDdy72Mi1awNbEQTu). This 2FA approach is an important step to secure your infrastructure.
+Users will be required to use Google Authenticator to SSH in after [provisioning](../provisioning-servers/). This 2FA approach is an important step to secure your infrastructure.
 {% endhint %}
 
 {% hint style="danger" %}
