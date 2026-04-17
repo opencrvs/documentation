@@ -26,7 +26,7 @@ The **essential** [**preparation steps**](preparation-steps/) guide you through 
 
 #### Fork the required repositories
 
-If you have not already done so in the Quick Start, fork the [countryconfig](https://github.com/opencrvs/opencrvs-countryconfig) repository and configure its CI process to push images to your container registry. See 4.2.1 Fork your own country configuration repository and 4.2.10 Build country config docker image
+If you have not already done so in the [Quick Start](../quick-start.md), fork the [countryconfig](https://github.com/opencrvs/opencrvs-countryconfig) repository and configure its CI process to push images to your container registry. See 4.2.1 Fork your own country configuration repository and 4.2.10 Build country config docker image
 
 Fork the [infrastructure](https://github.com/opencrvs/infrastructure) repository.
 

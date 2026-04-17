@@ -1,4 +1,4 @@
-# 4.3.2 Create a Github environment
+# Create a Github environment
 
 #### Before you begin
 
@@ -13,19 +13,19 @@ GitHub environments will host all secrets and variables required for successful 
 
 Make sure you completed environment preparation steps and have all required information:
 
-| Property                                                                               | Description                                                                                                                                                               |
-| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GitHub Organisation                                                                    | Own GitHub organisation with subscription.                                                                                                                                |
-| Country config repository                                                              | [Broken link](/broken/pages/HLISVCYPnFSFC0Iaf2Wd "mention")                                                                                                               |
-| Virtual machines (servers) created                                                     | <p><a data-mention href="/broken/pages/0UNnC60qfLumb2YdTcgE">Broken link</a><br>Verify you have IP addresses or DNS names and you are able to login on those VMs</p>      |
-| Domain names are registered                                                            | <p><a data-mention href="/broken/pages/cRLouDoqta1Zw45zScLq">Broken link</a><br>Verify DNS names are pointed to appropriate IP addresses of VMs.</p>                      |
-| SSL Certificates issued or one of the available Let’s Encrypt is considered to be used | [Broken link](/broken/pages/cBB6R0pB82Fl4KQ3LcQ9 "mention")                                                                                                               |
-| Infrastructure repository forked                                                       | [Broken link](/broken/pages/03CDotfjzMxY2UDbp5W4 "mention")                                                                                                               |
-| GitHub Token with full code access and workflow permissions created                    | Personal access token (Fine grained token) with access to Country config and Infrastructure repositories. See [Broken link](/broken/pages/03CDotfjzMxY2UDbp5W4 "mention") |
-| DockerHub Account, token and repository are created                                    | <p><a data-mention href="/broken/pages/03CDotfjzMxY2UDbp5W4">Broken link</a><br>Make sure Country config image was built and pushed to DockerHub</p>                      |
-| Users with their public keys to grant remote access to the servers                     | [Broken link](/broken/pages/vaj9jA9IcC2Q0RNXB5pQ "mention")                                                                                                               |
-| SMTP server configured                                                                 | [Broken link](/broken/pages/03CDotfjzMxY2UDbp5W4 "mention")                                                                                                               |
-| Optionally Third-party accounts created (sentry, slack, etc)                           | [Broken link](/broken/pages/03CDotfjzMxY2UDbp5W4 "mention")                                                                                                               |
+| Property                                                                               | Description                                                                                                                                            |
+| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| GitHub Organisation                                                                    | Own GitHub organisation with Team subscription.                                                                                                        |
+| Country config repository                                                              | Refer to [Quick Start](../../quick-start.md)                                                                                                           |
+| Virtual machines (servers) created                                                     | [Preparation steps: ](../preparation-steps/)Verify you have IP addresses or DNS names for each environment and you are able to login on those VMs      |
+| Domain names are registered                                                            | Verify [DNS](../preparation-steps/configure-dns.md) names are pointed to appropriate IP addresses of VMs.                                              |
+| SSL Certificates issued or one of the available Let’s Encrypt is considered to be used | [Advanced Topics > TLS/SSL Config for Traefik](../../advanced-topics/tls-ssl-configuration-for-traefik/)                                               |
+| Infrastructure repository forked                                                       | Refer to [Quick Start](../../quick-start.md)                                                                                                           |
+| GitHub Token with full code access and workflow permissions created                    | Personal access token (Fine grained token) with access to Country config and Infrastructure repositories. Refer to [Quick Start](../../quick-start.md) |
+| DockerHub Account, token and repository are created                                    | Make sure Country config image was built and pushed to DockerHub                                                                                       |
+| Users with their public keys to grant remote access to the servers                     | Refer to [Advanced Topics > SSH access](../../advanced-topics/ssh-access.md)                                                                           |
+| SMTP server configured                                                                 | [Broken link](/broken/pages/03CDotfjzMxY2UDbp5W4 "mention")                                                                                            |
+| Optionally Third-party accounts created (sentry, slack, etc)                           | Refer to [prerequisite accounts](../preparation-steps/create-prerequisite-accounts-and-repositories.md)                                                |
 
 ### Create github environments
 
