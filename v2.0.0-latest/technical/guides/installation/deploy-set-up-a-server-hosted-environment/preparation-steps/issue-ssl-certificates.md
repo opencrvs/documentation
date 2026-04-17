@@ -2,15 +2,23 @@
 
 There are a number of ways you can configure TLS / SSL certificates for OpenCRVS. The options are explained in subsequent pages and all methods must be compatible with [Traefik](https://doc.traefik.io/traefik/https/overview/).
 
+At a high-level, here is a brief intro to the subject.
+
 
 
 **Free LetsEncrypt certificates**
 
+A free approach is to use LetsEncrypt. However LetsEncrypt certificates must validate and refresh every 3 months.&#x20;
+
 {% hint style="info" %}
-The OpenCRVS installation script will automatically configure Traefik to obtain and use Let's Encrypt SSL certificates for you. However, your server must be accessible from the public internet for this process to work. This option is recommended only for testing and demonstration purposes, and not for production environments.
+The OpenCRVS installation script will automatically configure Traefik to obtain and use dynamic Let's Encrypt SSL certificates for you that automatically refresh.
+
+**This automated option is available for testing and demonstration purposes, and not for production environments.** &#x20;
+
+The server must be accessible from the public internet for this automated process to work.  Therefore, as the server is not behind a VPN, the approach isnt suitable in production.
 {% endhint %}
 
-A free approach is to use LetsEncrypt. However LetsEncrypt certificates must validate and refresh every 3 months. When installing OpenCRVS behind a VPN, **required for production and staging environments**, your VPN and DNS settings must be configured to enable this, and some techniques may not work in your network.&#x20;
+When installing OpenCRVS behind a VPN, **required for production and staging environments**, it's technically possible to create and refresh static LetsEncrypt certs every 3 months, with different approaches for certifcate validation via your DNS server.
 
 For more information see official documentation [https://letsencrypt.org/docs/challenge-types/](https://letsencrypt.org/docs/challenge-types/)
 
@@ -18,20 +26,16 @@ For more information see official documentation [https://letsencrypt.org/docs/ch
 
 **Purchasing long term certificates**
 
-Most government networks require you to purchase a long term SSL certificate per environment, and manually replacing the static .crt & .key files every 1, 2 or 3 years depending on it's lifetime.&#x20;
+Most government networks require you to purchase or use a long term SSL certificate per environment, and manually replacing the static .crt & .key files every 1, 2 or 3 years depending on it's lifetime.&#x20;
 
-The SSL certificates that you purchase must support the subdomains and each environment's domain: **qa, production & staging, see previous section** [Broken link](/broken/pages/cRLouDoqta1Zw45zScLq "mention"). You may opt for a single, multi-domain, wildcard SSL certificate that covers all of your domains regardless of the number of subdomain levels.&#x20;
+Some governments have their own public key infrastructure to issue these static certs.&#x20;
 
-You need to pay close attention to your domain and DNS requirements to understand which SSL certificate to purchase.
+The SSL certificates that you obtain must support the [DNS](configure-dns.md) subdomains for each environment's individual domain: **qa, production & staging.** &#x20;
 
-OpenCRVS configuration script automatically handles following SSL Certificates:
-
-* LetsEncrypt https challenge in development environments
-* Static TLS certificates
+You may opt for a single, wildcard SSL certificate for each domain.&#x20;
 
 
 
-**Example "recipes"**
+**Technical guide**
 
-The following "recipes" are not meant to be exhaustive, but simply describe some examples you may wish to follow. Every country will have unique network, domain name & management considerations to pay attention to. See more examples at [4.5.1-tls-ssl-configuration-for-traefik](../../../../../../v2.0.0/setup/3.-installation/4.4-advanced-topics/4.5.1-tls-ssl-configuration-for-traefik "mention") later our documentation
-
+For detailed technical guidance on how to configure the various options in helm charts read [Advance topics > TLS/SSL Configuration for traefik](../../advanced-topics/tls-ssl-configuration-for-traefik/)
