@@ -163,7 +163,6 @@
     * [Translations](technical/guides/configuration/translations.md)
     * [Integrations](technical/guides/configuration/integrations.md)
   * [Data migration](technical/guides/data-migration.md)
-  * [Deployment](technical/guides/deployment.md)
   * [Monitoring](technical/guides/monitoring.md)
   * [Upgrading](technical/guides/upgrading.md)
   * [Integration](technical/guides/integration/README.md)
