@@ -16,8 +16,5 @@ Create your own forks from the following repositories:
 
 **For CI/CD:**
 
-Create a [Github Personal Access Token ](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)with the required permissions in order for the script to programmatically create Github environments on your forked repository. Usually, the only required scope for the token is "repo".
+Create a [Github Personal Access Token ](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)with the required permissions in order for the script to programmatically create Github environments on your forked repository. The only required scope for the token is "repo".
 
-{% hint style="warning" %}
-Set the token expiration time as needed. Keep in mind that the token secret must be updated regularly for deployment actions to continue working after it expires.
-{% endhint %}
