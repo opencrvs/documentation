@@ -5,7 +5,7 @@ metaLinks:
       https://app.gitbook.com/s/RziAMaeBMeyiTg5hfFq5/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers
 ---
 
-# 4.3.4 Provisioning servers
+# Provisioning servers
 
 ## 4.3.3 Provisioning servers
 
@@ -16,7 +16,7 @@ The Provision environment action will automate a large number of installation an
 {% hint style="danger" %}
 **IMPORTANT SERVER ACCESS NOTE**: As a security step, the Ansible script will disable root SSH access to your server and all password access for SSH users. [SSH key](https://www.ssh.com/academy/ssh-keys) authentication is then enforced using the public keys for the users in your inventory files.&#x20;
 
-Additionally. SSH users will be required to install [**Google Authenticator**](https://en.wikipedia.org/wiki/Google_Authenticator) and use a 2FA code to access. SSH access procedures to a server after Provisioning completes. This is explained [here](/broken/pages/vaj9jA9IcC2Q0RNXB5pQ).
+Additionally. SSH users will be required to install [**Google Authenticator**](https://en.wikipedia.org/wiki/Google_Authenticator) and use a 2FA code to access. SSH access procedures to a server after Provisioning completes. This is explained here.  Refer to [SSH Access](../../advanced-topics/ssh-access.md)
 {% endhint %}
 
 {% hint style="warning" %}
@@ -48,6 +48,8 @@ Ansible will perform a huge amount of Ubuntu commands that you would normally be
 If the Provision action fails, try re-running it before investigating further, as failures could be due to network conditions.  If it fails at the same point each time, then a legitimate bug requires investigation.
 
 You will need experience with Ubuntu and confidence with servers to debug any issues. In the above example, the solution was as simple as SSH-ing into the server and running the command as instructed in the error message, then re-running the Provision action again.
+
+Reach out in [Github Discussions](https://github.com/opencrvs/opencrvs-core/discussions) if you have a question.
 {% endhint %}
 
 <figure><img src="../../../../../.gitbook/assets/Screenshot 2024-11-13 at 08.38.28.png" alt=""><figcaption><p>Success!</p></figcaption></figure>
@@ -57,12 +59,12 @@ If the server provisioning works, you will eventually see a green tick to mark t
 ## Provision verification steps
 
 * [ ] Kubernetes self-hosted runner is visible under **Settings → Actions → Runners** on GitHub.
-* [ ] You should be able to ssh (login) on the server with any user account defined under `users` section of inventory file, check [Broken link](/broken/pages/vaj9jA9IcC2Q0RNXB5pQ "mention")
-* [ ] You should have access to kubernetes cluster after ssh (login). Command to verify: `kubectl config current-context` and locally, check [Kubernetes cluster access](/broken/pages/Oo19SaQmBF4hLOVclF06)
+* [ ] You should be able to ssh (login) on the server with any user account defined under `users` section of the inventory file.
+* [ ] You should have access to kubernetes cluster after ssh (login). Command to verify: `kubectl config current-context` and locally, check [Kubernetes cluster access](../../advanced-topics/kubernetes-cluster-access.md)
 
 ## Ansible tasks explained
 
-In the "Select group tag you want to execute" select, when you choose "**all**", you are instructing Ansible to run every one of the infrastructure task commands listed in the [**infrastructure/server-setup/tasks**](https://github.com/opencrvs/opencrvs-countryconfig/tree/develop/infrastructure/server-setup/tasks) directory and explained in this [list](../../../../../../v2.0.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.5-provisioning-servers/4.3.5.3-ansible-tasks-when-provisioning.md).
+In the "Select group tag you want to execute" select, when you choose "**all**", you are instructing Ansible to run every one of the infrastructure task commands listed in the [**infrastructure/server-setup/tasks**](https://github.com/opencrvs/opencrvs-countryconfig/tree/develop/infrastructure/server-setup/tasks) directory and explained in this [list](ansible-tasks-when-provisioning.md).
 
-It is possible for you to choose to run any one of these tasks individually at any time, such as an example given when refreshing [static TLS certificates](../../../../../../v2.0.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/3.3.5-setup-dns-a-records/4.3.2.3-static-tls-certificates.md).
+It is possible for you to choose to run any one of these tasks individually at any time, such as an example given when refreshing [static TLS certificates](../../advanced-topics/tls-ssl-configuration-for-traefik/static-tls-certificates.md).
 
