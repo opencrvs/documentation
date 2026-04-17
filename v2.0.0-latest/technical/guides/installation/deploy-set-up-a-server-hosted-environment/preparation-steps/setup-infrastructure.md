@@ -161,7 +161,7 @@ If your datacentre is physically secure we do not recommend encryption.  If your
 {% endhint %}
 
 * **Dedicated disk partition for data**: System administrator may decide to use dedicated disk partition (e/g LVM, NAS) to store citizens data.
-* **Other layouts** are possible, but not supported by OpenCRVS installation scripts. OpenCRVS Dependencies helm chart allows to define other ways to store files by using Kubernetes storage classes, please check helm chart [documentation](https://github.com/opencrvs/infrastructure/tree/develop/charts/dependencies).
+* **Other layouts** are possible, but not supported by OpenCRVS installation scripts. OpenCRVS Dependencies helm chart allows to define other ways to store files by using Kubernetes storage classes.
 
 **Verify the disk has been partitioned correctly**
 
