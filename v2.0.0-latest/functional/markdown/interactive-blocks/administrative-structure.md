@@ -46,7 +46,7 @@ With the administrative structure, OpenCRVS supports:
 * **Custom administrative hierarchies** (for example, Country → State → District).
 * **Multiple location types** (for example, “Registration Office”, “Health Facility”, “Community Point”).
 * **Offices at any administrative level** (for example State A Office, in State A)
-* **Jurisdiction-aware access control** through integration with scopes (for example, `event_location`, `declared_in`, `registered_in`).
+* **Jurisdiction-aware access control** through integration with scopes (for example, `placeOfEvent`, `declared_in`, `registered_in`).
 * **Routing of records** based on event location, declared-in location, registered-in location.
 * **Location-based reporting and analytics** (for example, births registered per district).
 
@@ -115,7 +115,7 @@ The administrative hierarchy is tightly integrated with **Users roles and scopes
 
 Scopes can refer to a user’s **administrative area,** which is defined using the administrative hierarchy and the user assigned location. For example:
 
-> record.register\[event=birth|death, event\_location=my-administrative-area]
+> record.register\[event=birth|death, placeOfEvent=my-administrative-area]
 
 Interpretation:
 
@@ -152,7 +152,7 @@ Below are common routing scenarios with step-by-step examples.
 2. The record status becomes **Declared**.
 3. Record appears in the Pending validation workqueue filtered by:
    1. Status = Declared
-   2. User search scope eg. `search[event=birth|death notified_in=my-administrative-area declared_in=my-administrative-area`
+   2. User search scope eg. `search[event=birth|death declared_in=my-administrative-area`
 4. **Registration Officer** at the **District A Registration Office** sees the record and can validate it.
 
 **Result:**
@@ -172,7 +172,7 @@ Below are common routing scenarios with step-by-step examples.
 2. The record status becomes **Notified**.
 3. Record appears in the Notifications workqueue filtered by:
    * Status = Notified
-   * User search scope eg. `search[event=birth|death notified_in=my-administrative-area declared_in=my-administrative-area)`
+   * User search scope eg. `search[event=birth|death placeOfEvent=my-administrative-area)`
 4. **District A Registration Agents** see it and can help to progress the notification to a validated declaration
 
 **Result:**
@@ -192,7 +192,7 @@ Below are common routing scenarios with step-by-step examples.
 2. The system adds a **flag** to the record.
 3. Record appears in the Escalated workqueue filtered by:
    * Flag = Late registration
-   * `search[event=birth|death notified_in=my-administrative-area declared_in=my-administrative-area)`
+   * `search[event=birth|death declared_in=my-administrative-area)`
 4. **State A Provincial Officer** sees it and can approve or reject the late registration
 
 **Result:**
@@ -211,8 +211,6 @@ Together, these determine **who sees a record next and who can act on it**.
 ***
 
 ### 7. Worked example
-
-…
 
 #### Business requirement: Super Simple Administrative Structure
 
@@ -247,22 +245,5 @@ Farajaland has only 1 Province and 1 District with the following offices where c
 ***
 
 ### 8. Summary
-
-…
-
-### 8. Configuration considerations and constraints
-
-~~When configuring the administrative structure, implementers should consider:~~
-
-* ~~**Alignment with law and policy**~~
-  * ~~Administrative levels and office responsibilities should match national legislation and CRVS regulations.~~
-* ~~**Data migration and codes**~~
-  * ~~Location codes must align with existing national standards where possible (for example, national statistics codes).~~
-* ~~**Granularity vs manageability**~~
-  * ~~The hierarchy should be detailed enough to support operations and reporting, but not so granular that it becomes unmanageable.~~
-* ~~**Boundary changes**~~
-  * ~~Plan for how future boundary changes or new offices will be handled (for example, versioning of locations, data migration rules).~~
-* ~~**Integration needs**~~
-  * ~~Codes and structure may be reused by external systems (for example, ID systems, health information systems, statistics systems), so they should be stable and well documented.~~
 
 A clear administrative structure is a prerequisite for configuring **Users, Scopes, Workqueues and Actions** in a way that accurately reflects how civil registration is organised in the country.
