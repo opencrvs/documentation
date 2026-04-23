@@ -62,7 +62,7 @@ Quick search & advanced search is always subject to the standard access control 
 
 Access to search (quick search and advanced search) is controlled by **search scopes** on the user’s role.
 
-* `search[event=<event> event_location=my-administrative-area]` where `<event>` is the relevant event type (for example, `birth`, `death`, `marriage`).
+* `search[event=<event> placeOfEvent=my-administrative-area]` where `<event>` is the relevant event type (for example, `birth`, `death`, `marriage`).
 
 To learn more about users scopes please refer to Users, Jurisdictions
 

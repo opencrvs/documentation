@@ -108,7 +108,7 @@ When a new declaration is submitted, OpenCRVS automatically runs the configured 
 
 If one or more potential matches are found:
 
-1. A user with the scope `record.declared.review-duplicate` can perform the action: Review potential duplicates
+1. A user with the scope `record.review-duplicate` can perform the action: Review potential duplicates
 2. The system displays a **side-by-side view** of the new declaration and matching existing records.
 3. The reviewer compares key data fields (for example, child’s name, date of birth, mother’s details) and any additional context.
 4. The reviewer chooses one of the following outcomes:
