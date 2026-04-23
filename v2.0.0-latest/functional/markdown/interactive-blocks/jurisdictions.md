@@ -46,7 +46,7 @@ With jurisdictions, OpenCRVS supports:
 
 Jurisdictions in OpenCRVS are:
 
-* **Type-based** — permissions use predefined jurisdiction types (for example, “my administrative area”, “my office”, or “any”)
+* **Type-based** — permissions use predefined jurisdiction types (for example, “my administrative area”, “location”, or “any”)
 * **Applied per scope** — each permission (such as create, search, or assign) can specify its own jurisdiction rule.
 * **User-specific** — different users in the same office may have different jurisdiction boundaries.
 
@@ -63,8 +63,8 @@ The system currently supports four boundary types:
 | Type                   | Functional meaning                                                             |
 | ---------------------- | ------------------------------------------------------------------------------ |
 | my administrative area | My location and all child locations (for example, my district + all districts) |
-| my office              | Only my exact office or facility                                               |
-| me                     | Only records personally declared/registered by me                              |
+| location               | Only my exact office or facility                                               |
+| user                   | Only records personally declared/registered by me                              |
 | any                    | No location restriction                                                        |
 
 {% hint style="warning" %}
@@ -77,8 +77,7 @@ Jurisdictions can be applied to different **location characteristics** of a reco
 
 | Characteristic | What it represents                |
 | -------------- | --------------------------------- |
-| Event location | Where the event actually occurred |
-| Notified in    | Where it was first reported       |
+| Place of event | Where the event actually occurred |
 | Declared in    | Where it was formally declared    |
 | Registered in  | Where final registration happened |
 
@@ -97,20 +96,20 @@ If a record is outside their jurisdiction:
 
 Example user scopes:
 
-* `record.create[event=birth event_location=my-administrative-area]`
+* `record.create[event=birth placeOfEvent=my-administrative-area]`
   * user can only create declarations for events that occurred in their administrative area
   * place of birth locations are automatically filtered
-* `search[event=birth notified_in=my-administrative-area declared_in=my-administrative-area registered_in=my-administrative-area]`
+* `record.search[event=birth declared_in=my-administrative-area registered_in=my-administrative-area]`
   * user can only see records in search results for records either notified, declared or registered in their administrative area
 
-\<aside> 🚨
-
+{% hint style="info" %}
 As jurisdiction are enforced at the individual scope level (rather than being determined solely by the user's assigned office location). As a result:
 
 * Different users in the same office can be assigned different jurisdictions.
-* A single user role can have different jurisdictions for different scopes \</aside>
+* A single user role can have different jurisdictions for different scopes
+{% endhint %}
 
-#### 3.3 “Declared in” & “Registered In” >> better title?
+#### 3.3 “Declared in” & “Registered In”&#x20;
 
 Sometimes a single location rule is not enough.
 
@@ -122,7 +121,7 @@ For example:
 
 To support real operational needs, jurisdictions support **AND** and **OR** logic.
 
-~~Add example… declared in one jurisdiction but registered in another. can no longer view the record even tho it was originally registered in their jurisdiction~~
+
 
 **AND logic (stricter filtering)**
 
@@ -203,22 +202,12 @@ Out of all birth events, the ones that are declared within the administrative ar
 
 #### Configuration input
 
-| Permission | Event        | Jurisdiction                | Meaning                                                                                              |
-| ---------- | ------------ | --------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Create     | Birth, Death | event\_location = my-office | Can only create records of events that occurred in their facility (filters place of event locations) |
-| Search     | Birth, Death | event\_location = my-office | Can only see records for events that occurred in their facility                                      |
-| Declare    | Birth, Death | event\_location = my-office | Can only declare events that occurred in their facility                                              |
-| Edit       | Birth, Death | declared\_in = my-office    | Can only edit declarations declared be someone in their health facility                              |
+| Permission | Event        | Jurisdiction             | Meaning                                                                                              |
+| ---------- | ------------ | ------------------------ | ---------------------------------------------------------------------------------------------------- |
+| Create     | Birth, Death | placeOfEvent = location  | Can only create records of events that occurred in their facility (filters place of event locations) |
+| Search     | Birth, Death | placeOfEvent = location  | Can only see records for events that occurred in their facility                                      |
+| Declare    | Birth, Death | placeOfEvent = location  | Can only declare events that occurred in their facility                                              |
+| Edit       | Birth, Death | declared\_in = my-office | Can only edit declarations declared be someone in their health facility                              |
 
 ### 5. Summary
 
-\<aside> 📌
-
-~~In practice, **jurisdiction for mutating actions** (declare, reject, archive, register, correct, custom actions) is enforced by a combination of:~~
-
-* ~~Where records can be created (`record.create` with jurisdiction), and~~
-* ~~Which records a user is allowed to assign to themselves (`record.assign` with jurisdiction).~~
-
-~~If a user cannot assign a record because it is outside their `record.assign` jurisdiction, they cannot perform follow‑up actions on that record.~~
-
-\</aside>

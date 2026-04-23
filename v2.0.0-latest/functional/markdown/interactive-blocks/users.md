@@ -91,8 +91,7 @@ At a high level, a scope answers three questions:
 
 Record-related scopes follow this pattern:
 
-* `action[event=…]`
-* For **jurisdiction-aware** scopes (only `search`, `record.create`, and `record.assign`), an additional jurisdiction qualifier is added.
+* `action[event=event {jurisdiction}]`
 
 Where:
 
@@ -100,16 +99,17 @@ Where:
 * `event=` lists one or more event types (for example `birth`, `death`, or `birth|death`).
 *   Jurisdiction (to learn more see Jurisdiction) is expressed via qualifiers such as:
 
-    * `event_location` = based on where the event occurred
-    * `notified_in` = based on the notifying users assigned location
+    * `placeOfEvent` = based on where the event occurred
     * `declared_in` = based on the declaring users assigned location
+    * `declared_by` = based on the user who declared the event
     * `registered_in` = based on the registering users assigned location
+    * `registered_by` = based on the user who registered the event
 
-    combined with values like `my-administrative-area`, `my-office`, `any`.
+    combined with values like `my-administrative-area`, `location`, `any`. `user` for `declared_by` and `registered_by`
 
 **Example scopes:**
 
-* `search[event=birth declared_in=my-administrative-area]`
+* `record.search[event=birth declared_in=my-administrative-area]`
   * Allows quick/advanced search for birth records declared in the user’s administrative area.
 * `record.create[event=birth|death event_location=my-administrative-area]`
   * Allows the user to create birth and death declarations for events that occurred in their administrative area. The declaration form will only offer places of event within that area.
@@ -120,20 +120,19 @@ Where:
 
 Each core scope in this table maps **directly to a core record action**. If a role does not have the scope, the corresponding action is not available in the UI, regardless of status, flags, or workqueues. The table shows the default intent; implementers still control where each scope applies via `event=`.&#x20;
 
-| Scope (action)                            | Enables                                                                               |
-| ----------------------------------------- | ------------------------------------------------------------------------------------- |
-| `search`                                  | Use quick search / advanced search to find records.                                   |
-| `record.assign`                           | Assign a record to yourself. Required before mutating actions become available.       |
-| `record.read`                             | Open and view record details (non‑mutating).                                          |
-| `record.create`                           | Start a new declaration from the event form                                           |
-| `record.notify`                           | Notify (submit an incomplete declaration).                                            |
-| `record.declare`                          | Declare (submit a complete declaration)                                               |
-| `record.declared.reject`                  | Reject a declared record                                                              |
-| `record.declared.archive`                 | Archive a declared record                                                             |
-| `record.declared.review-duplicate`        | Review and decide on potential duplicates (Mark as duplicate / Mark not a duplicate). |
-| `record.register`                         | Register a record                                                                     |
-| `record.registered.print-certified-copie` | Print certified copies of a registered record                                         |
-| `record.registered.correct`               | Correct a registered record                                                           |
+| Scope (action)            | Enables                                                                               |
+| ------------------------- | ------------------------------------------------------------------------------------- |
+| `record.search`           | Use quick search / advanced search to find records.                                   |
+| `record.read`             | Open and view record details (non‑mutating).                                          |
+| `record.create`           | Start a new declaration from the event form                                           |
+| `record.notify`           | Notify (submit an incomplete declaration).                                            |
+| `record.declare`          | Declare (submit a complete declaration)                                               |
+| `record.reject`           | Reject a declared record                                                              |
+| `record.archive`          | Archive a declared record                                                             |
+| `record.review-duplicate` | Review and decide on potential duplicates (Mark as duplicate / Mark not a duplicate). |
+| `record.register`         | Register a record                                                                     |
+| `record.print`            | Print certified copies of a registered record                                         |
+| `record.correct`          | Correct a registered record                                                           |
 
 #### 4.3 Custom scopes
 
