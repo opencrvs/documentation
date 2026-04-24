@@ -21,7 +21,7 @@ layout:
 # Welcome
 
 {% hint style="warning" %}
-OpenCRVS v2.0 documentation is in production and will be completed by the official release date. You wil notice multiple unfinished pages, todo items and inserts.  Refer to the Releases page in 1.9 docs to understand the timeline for 2.0 official release dates
+OpenCRVS v2.0 documentation is work-in-progress and will be completed by the official release date. You will notice multiple unfinished pages, todo-items and inserts.  Refer to the Releases page in 1.9 docs to understand the timeline for 2.0 official release dates.
 {% endhint %}
 
 ### \<INSERT>Social thumbnail or image product / in context&#x20;
