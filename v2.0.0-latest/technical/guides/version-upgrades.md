@@ -124,6 +124,12 @@ git checkout -b upgrade-v<target-version>
 yarn add @opencrvs/toolkit@2.0.0 --exact
 ## Run codemod tool, which upgrades your countryconfig to support v2.0
 yarn opencrvs upgrade
+
+## TODO: the command above should pull changes for infrastructure/ directory
+## from opencrvs-countryconfig@release-2.0.0
+## At this point the user might run in to merge conflicts under infrastructure/ dir.
+## These must be fixed!
+
 ## At this point, we recommend autoformatting your code
 yarn prettier --write src/
 ```
