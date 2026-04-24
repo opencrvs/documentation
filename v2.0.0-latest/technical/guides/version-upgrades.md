@@ -22,6 +22,10 @@ Upgrading requires careful attention to your environment, data, integrations, an
 
 ### Upgrading overview
 
+{% hint style="warning" %}
+**Critical requirement** — OpenCRVS supports upgrading **one major/minor version at a time**. This means you must upgrade v1.9 to v2.0.
+{% endhint %}
+
 A successful OpenCRVS upgrade involves:
 
 * **Preparation** — Assessing your current setup, customisations, and readiness
@@ -29,10 +33,6 @@ A successful OpenCRVS upgrade involves:
 * **Environment upgrades** — Updating GitHub secrets and variables
 * **Staged deployment** — Testing in QA, then Staging, before Production
 * **Production upgrade** — Scheduled downtime with staff notification
-
-{% hint style="warning" %}
-**Critical requirement** — OpenCRVS supports upgrading **one major/minor version at a time**. This means you must upgrade v1.9 to v2.0.
-{% endhint %}
 
 ***
 
