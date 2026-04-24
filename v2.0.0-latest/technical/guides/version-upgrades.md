@@ -42,7 +42,7 @@ This section provides a step-by-step guide to safely upgrade OpenCRVS from one v
 
 The process moves through progressively more critical environments, from local development through QA and staging, before finally upgrading production. This staged approach ensures that any issues are caught and resolved before they impact live operations.
 
-#### Step 1 - Prepare for upgrading
+#### Step 1 — Prepare for upgrading
 
 Before upgrading, confirm the following. These are the same questions we ask when supporting an implementation, as the answers significantly affect the upgrade effort.
 
@@ -98,7 +98,7 @@ If OpenCRVS is already deployed to servers, you must confirm:
 **Why we ask these questions** — To ensure you have working backups, your infrastructure is healthy, you test upgrade safely in QA and Staging, and your data is protected. If any concerns arise, contact us for support.
 {% endhint %}
 
-#### Step 2 - Update locally
+#### Step 2 — Update locally
 
 The complexity of this stage depends on how many customizations you have made to your countryconfig fork.
 
@@ -146,7 +146,7 @@ At this point you should test your deployment thoroughly.
 
 Create a PR for peer review, then merge to your main development branch. A Docker image with the updated git hash will automatically build and push to DockerHub.
 
-#### Step 3 - Upgrade GitHub environments
+#### Step 3 — Upgrade GitHub environments
 
 Back up all secrets and environment variables in your password manager.
 
@@ -170,7 +170,7 @@ The script will:
 * Prompt you to add missing secrets
 * Automatically generate new values where required
 
-#### Step 4 - Upgrade QA servers
+#### Step 4 — Upgrade QA servers
 
 1. Run the **Provision** GitHub Action for your QA environment. On GitHub:
    1. Navigate to 'Actions' on your country configuration repository
@@ -183,20 +183,20 @@ The script will:
    * The new countryconfig Docker image git hash
 3. **Do not reset** the environment (migrations run automatically)
 
-Monitor migrations in Kibana:
-
-```
-tag: migration
-```
+Monitor migrations in Kibana (`tag: migration`)
 
 Test thoroughly in QA before proceeding.
 
-#### Step 5 - Upgrade staging servers
+#### Step 5 — Upgrade staging servers
 
 Repeat the steps used for QA, but for staging environment:
 
 1. Provision
 2. Deploy
+
+Monitor migrations in Kibana, searching **Observability > Logs** using `tag: migration` to ensure there are no migration errors.
+
+Do not use staging until migrations complete. Once complete, test again with your QA team.
 
 {% hint style="info" %}
 #### **Because staging contains real citizen data (from production backups), migrations may take hours.**
@@ -208,11 +208,11 @@ A release of OpenCRVS can contain automatic database migrations. If you have bee
 Ensure that OpenCRVS backups are working and restoring on a staging environment. You should also have a hard copy of recent backups. This is so that you can restore in the event of any migration problems. [Read the backup instructions.](../../../v1.9.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore)
 {% endhint %}
 
-Monitor migrations in Kibana, searching **Observability > Logs** using `tag: migration` to ensure there are no migration errors.
+#### Step 6 — Schedule production downtime and notify staff
 
-Do not use staging until migrations complete. Once complete, test again with your QA team.
-
-#### Step 6 - Schedule production downtime and notify staff
+{% hint style="danger" %}
+Browser caches are cleared on upgrade. Drafts stored locally in the browser will be **lost forever** if not submitted first.
+{% endhint %}
 
 Use **Email All Users** to instruct staff:
 
@@ -220,15 +220,9 @@ Use **Email All Users** to instruct staff:
 * Submit all **offline drafts** before the upgrade
 * Ensure their **outbox is empty**
 
-{% hint style="danger" %}
-Browser caches are cleared on upgrade. Drafts stored locally in the browser will be **lost forever** if not submitted first.
-{% endhint %}
+#### Step 7 — Upgrade production and backup environments
 
-#### Step 7 - Upgrade production and backup environments
-
-Before proceeding:
-
-**Critical warnings**
+**Critical checks before proceeding:**
 
 * Ensure backups restore correctly on staging
 * Maintain a **hard copy** of recent backups
@@ -240,7 +234,7 @@ Before proceeding:
 
 1. Provision **Backup** server
 2. Provision **Production** server
-3. Deploy using the new release and countryconfig image
+3. **Deploy** using the new release and countryconfig image
 4. Monitor migrations in Kibana (`tag: migration`)
 5. Do not use production until migration finishes
 6. Log in and test with your QA team
