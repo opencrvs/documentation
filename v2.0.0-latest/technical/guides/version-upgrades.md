@@ -173,8 +173,8 @@ You now have the target OpenCRVS release code locally.
 cd <path>/opencrvs-<your-country>
 git fetch --all
 git checkout -b upgrade-v<target-version>
-## Upgrade the toolkit package version to 2.0.0
-yarn add @opencrvs/toolkit@2.0.0 --exact
+## Upgrade the toolkit package version to the target version
+yarn add @opencrvs/toolkit@2.x.x --exact
 ## Run codemod tool, which upgrades your countryconfig to support v2.0
 yarn opencrvs upgrade
 
