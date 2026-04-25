@@ -132,10 +132,6 @@ All integrations must be retested after upgrading.
 * Are you already registering real citizens?
 * Do you have reliable backups and a working staging database restore pipeline?
 
-{% hint style="danger" %}
-**Never upgrade production without successfully restoring a backup to staging first.**
-{% endhint %}
-
 **Server environment checks**
 
 If OpenCRVS is already deployed to servers, you must confirm:
@@ -257,7 +253,7 @@ A release of OpenCRVS can contain automatic database migrations. If you have bee
 {% endhint %}
 
 {% hint style="warning" %}
-Ensure that OpenCRVS backups are working and restoring on a staging environment. You should also have a hard copy of recent backups. This is so that you can restore in the event of any migration problems. [Read the backup instructions.](../../../v1.9.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore)
+Ensure that OpenCRVS backups are working and restoring on a staging environment. You should also have a hard copy of recent backups. This is so that you can restore in the event of any migration problems. [Read the backup instructions.](installation/opencrvs-maintenance-tasks/backup-and-restore/)
 {% endhint %}
 
 ### Step 6 — Schedule production downtime and notify staff
@@ -273,6 +269,10 @@ Use **Email All Users** to instruct staff:
 * Ensure their **outbox is empty**
 
 ### Step 7 — Deploy to production environment
+
+{% hint style="danger" %}
+**Never upgrade production without successfully restoring a backup to staging first.**
+{% endhint %}
 
 **Critical checks before proceeding:**
 
