@@ -151,7 +151,7 @@ If deployed to servers, confirm:
 These checks ensure your infrastructure is healthy, backups are reliable, and upgrades can be safely tested before production deployment.
 {% endhint %}
 
-### Step 2 — **Update code and test locally**
+### Step 2 — Update code and test locally
 
 The complexity of this step depends on the level of customisation in your country configuration.
 
