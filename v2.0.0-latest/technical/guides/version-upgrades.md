@@ -83,13 +83,13 @@ Deploy and validate using production-like data.
 {% endstep %}
 
 {% step %}
-#### [Schedule downtime and notify staff](version-upgrades.md#step-6-schedule-production-downtime-and-notify-staff)
+#### [Schedule downtime and notify staff](version-upgrades.md#step-6-schedule-downtime-and-notify-staff)
 
 Prepare users and pause operations safely.
 {% endstep %}
 
 {% step %}
-#### [Deploy to production](version-upgrades.md#step-7-deploy-to-production-environment)
+#### [Deploy to production](version-upgrades.md#step-7-deploy-to-production)
 
 Run the upgrade in production and resume operations.
 {% endstep %}
