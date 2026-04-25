@@ -35,8 +35,8 @@ This guide walks you through planning, testing, and safely upgrading to a newer 
 Upgrades impact your infrastructure, data, integrations, and users. Following this structured process helps minimise risk and ensures a smooth transition.
 
 {% hint style="warning" %}
-**Critical requirement** — OpenCRVS supports upgrading **one version at a time**.\
-For example: v1.9 → v2.0 → v2.1 (not v1.9 → v2.1 directly).
+**Critical requirement** — OpenCRVS supports upgrading **one major/minor version at a time**.\
+For example: v1.9.x → v2.0.x → v2.1.x (not v1.9 → v2.1 directly).
 {% endhint %}
 
 **Need help?** Contact us at [**team@opencrvs.org**](mailto:team@opencrvs.org).
@@ -59,7 +59,7 @@ Review your current setup, customisations, and readiness.
 {% endstep %}
 
 {% step %}
-#### [**Update code and test locally**](version-upgrades.md#step-2-update-code-and-test-locally)
+#### [Update code and test locally](version-upgrades.md#step-2-update-code-and-test-locally)
 
 Update core and country configuration code, test locally, and commit changes.
 {% endstep %}
