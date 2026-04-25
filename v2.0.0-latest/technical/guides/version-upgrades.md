@@ -1,5 +1,21 @@
 ---
 description: Step-by-step guide for upgrading the version of your OpenCRVS deployment
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
 ---
 
 # Version upgrades
@@ -10,39 +26,75 @@ description: Step-by-step guide for upgrading the version of your OpenCRVS deplo
 If your current OpenCRVS version is v1.8 or older, please see the [v1.9 documentation](https://documentation.opencrvs.org/general/migration-notes#upgrading-opencrvs-migration-guide) instead!
 {% endhint %}
 
-### Introduction
+## Introduction
 
 OpenCRVS supports incremental upgrades between versions, but preparation is essential — especially for governments running live civil registration services. This guide helps you plan, test, and execute a safe upgrade to a newer version of OpenCRVS.
 
 Upgrading requires careful attention to your environment, data, integrations, and staff readiness. Following this structured approach minimises risk and ensures a smooth transition.
 
-**Need support?** Contact us at [**team@opencrvs.org**](mailto:team@opencrvs.org) for assistance.
-
-***
-
-### Upgrading overview
-
 {% hint style="warning" %}
 **Critical requirement** — OpenCRVS supports upgrading **one major/minor version at a time**. This means you must upgrade v1.9 to v2.0.
 {% endhint %}
 
-A successful OpenCRVS upgrade involves:
-
-* **Preparation** — Assessing your current setup, customisations, and readiness
-* **Local updates** — Updating code and resolving merge conflicts
-* **Environment upgrades** — Updating GitHub secrets and variables
-* **Staged deployment** — Testing in QA, then Staging, before Production
-* **Production upgrade** — Scheduled downtime with staff notification
+**Need support?** Contact us at [**team@opencrvs.org**](mailto:team@opencrvs.org) for assistance.
 
 ***
 
-### Upgrade process
+## Upgrade process
 
-This section provides a step-by-step guide to safely upgrade OpenCRVS from one version to another. Each step must be completed in sequence, as later steps depend on the successful completion of earlier ones.
+Provided is a step-by-step guide to safely upgrade OpenCRVS from one version to another. Each step must be completed in sequence, as later steps depend on the successful completion of earlier ones.
 
 The process moves through progressively more critical environments, from local development through QA and staging, before finally upgrading production. This staged approach ensures that any issues are caught and resolved before they impact live operations.
 
-#### Step 1 — Prepare for upgrading
+**The upgrade process contains 7 steps:**
+
+{% stepper %}
+{% step %}
+#### [Preparation](version-upgrades.md#step-1-preparation)
+
+Assessing your current setup, customisations, and readiness
+{% endstep %}
+
+{% step %}
+#### [**Update code and test locally**](version-upgrades.md#step-2-update-code-and-test-locally)
+
+Updating the core and country configuration code, testing locally and committing code to GitHub
+{% endstep %}
+
+{% step %}
+#### [Update GitHub environments](version-upgrades.md#step-3-update-github-environments)
+
+Updating GitHub secrets and variables
+{% endstep %}
+
+{% step %}
+#### [Deploy to QA environment](version-upgrades.md#step-4-deploy-to-qa-environment)
+
+Deployment of the new version to QA environment and testing the new deployment
+{% endstep %}
+
+{% step %}
+#### [Deploy to staging environment](version-upgrades.md#step-5-deploy-to-staging-environment)
+
+Deployment of the new version to staging environment and testing the new deployment
+{% endstep %}
+
+{% step %}
+#### [Schedule production downtime and notify staff](version-upgrades.md#step-6-schedule-production-downtime-and-notify-staff)
+
+Scheduling production downtime, notifying staff, etc.
+{% endstep %}
+
+{% step %}
+#### [Deploy to production environment](version-upgrades.md#step-7-deploy-to-production-environment)
+
+Ensuring backups and deploying the new version to production
+{% endstep %}
+{% endstepper %}
+
+Let's begin!
+
+### Step 1 — Preparation
 
 Before upgrading, confirm the following. These are the same questions we ask when supporting an implementation, as the answers significantly affect the upgrade effort.
 
@@ -98,7 +150,7 @@ If OpenCRVS is already deployed to servers, you must confirm:
 **Why we ask these questions** — To ensure you have working backups, your infrastructure is healthy, you test upgrade safely in QA and Staging, and your data is protected. If any concerns arise, contact us for support.
 {% endhint %}
 
-#### Step 2 — Update locally
+### Step 2 — **Update code and test locally**
 
 The complexity of this stage depends on how many customizations you have made to your countryconfig fork.
 
@@ -146,7 +198,7 @@ At this point you should test your deployment thoroughly.
 
 Create a PR for peer review, then merge to your main development branch. A Docker image with the updated git hash will automatically build and push to DockerHub.
 
-#### Step 3 — Upgrade GitHub environments
+### Step 3 — Update GitHub environments
 
 Back up all secrets and environment variables in your password manager.
 
@@ -170,7 +222,7 @@ The script will:
 * Prompt you to add missing secrets
 * Automatically generate new values where required
 
-#### Step 4 — Upgrade QA servers
+### Step 4 — Deploy to QA environment
 
 1. Run the **Provision** GitHub Action for your QA environment. On GitHub:
    1. Navigate to 'Actions' on your country configuration repository
@@ -187,7 +239,7 @@ Monitor migrations in Kibana (`tag: migration`)
 
 Test thoroughly in QA before proceeding.
 
-#### Step 5 — Upgrade staging servers
+### Step 5 — Deploy to staging environment
 
 Repeat the steps used for QA, but for staging environment:
 
@@ -208,7 +260,7 @@ A release of OpenCRVS can contain automatic database migrations. If you have bee
 Ensure that OpenCRVS backups are working and restoring on a staging environment. You should also have a hard copy of recent backups. This is so that you can restore in the event of any migration problems. [Read the backup instructions.](../../../v1.9.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.7-backup-and-restore)
 {% endhint %}
 
-#### Step 6 — Schedule production downtime and notify staff
+### Step 6 — Schedule production downtime and notify staff
 
 {% hint style="danger" %}
 Browser caches are cleared on upgrade. Drafts stored locally in the browser will be **lost forever** if not submitted first.
@@ -220,7 +272,7 @@ Use **Email All Users** to instruct staff:
 * Submit all **offline drafts** before the upgrade
 * Ensure their **outbox is empty**
 
-#### Step 7 — Upgrade production and backup environments
+### Step 7 — Deploy to production environment
 
 **Critical checks before proceeding:**
 
