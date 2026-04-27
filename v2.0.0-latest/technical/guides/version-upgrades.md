@@ -125,7 +125,7 @@ All integrations must be retested after upgrading.
 
 **Country configuration status**
 
-* Is your country configuration fully complete (forms, events, locations, roles, messages, etc.)?
+* Is your country configuration fully complete? I.e. have you gone through all the steps on [configuration](configuration/ "mention")
 
 **Staff readiness**
 
@@ -141,14 +141,14 @@ All integrations must be retested after upgrading.
 
 If deployed to servers, confirm:
 
-* Dedicated or shared infrastructure?
-* Separate environments (Dev, QA, Staging, Production)?
-* Automated backup and restore processes?
-* Sufficient RAM, disk space, and CPU capacity?
-* Cluster size (1, 3, or 5 nodes — all nodes must be reprovisioned)
+* Do you have dedicated or shared infrastructure?
+* What are your environments (dev, QA, staging, production)?
+* What are your automated backup and restore processes?
+* Do you have sufficient RAM, disk space, and CPU capacity? \<TODO: Link to correct place on docs>
+* What is the cluster size (1, 3, or 5 nodes — all nodes must be reprovisioned) \<TODO: Link to correct place on docs>
 
 {% hint style="info" %}
-These checks ensure your infrastructure is healthy, backups are reliable, and upgrades can be safely tested before production deployment.
+These checks ensure your infrastructure is healthy, backups are reliable, and upgrades can safely be tested before production deployment.
 {% endhint %}
 
 ### Step 2 — Update code and test locally
@@ -172,7 +172,10 @@ You now have the target OpenCRVS release code locally.
 ```bash
 cd <path>/opencrvs-<your-country>
 git fetch --all
+
+## Create a temporary upgrade branch
 git checkout -b upgrade-v<target-version>
+
 ## Upgrade the toolkit package version to the target version
 yarn add @opencrvs/toolkit@2.x.x --exact
 ## Run codemod tool, which upgrades your countryconfig to support v2.0
@@ -184,7 +187,7 @@ yarn opencrvs upgrade
 ## These must be fixed!
 
 ## At this point, we recommend autoformatting your code
-yarn prettier --write src/
+yarn prettier --write .
 ```
 
 **Run locally**
