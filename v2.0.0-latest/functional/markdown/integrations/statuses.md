@@ -54,11 +54,9 @@ The following core statuses are used by OpenCRVS to support standard registratio
   * The event has been formally registered according to law.
   * A registration number is assigned and certificates can be issued.
 
-\<aside> 📌
-
+{% hint style="info" %}
 Record statuses **“Registered (inactive)”** or **“Revoked”** are not currently supported. They can ben configured as a record **flag**, so the core status remains Registered while flags express that the registration is inactive or revoked.
-
-\</aside>
+{% endhint %}
 
 ***
 
@@ -91,7 +89,7 @@ Custom actions **do not** change status directly. Instead, they can add or remov
 
 Other core actions and custom actions can be mapped to and controlled be the record status. As an example:
 
-| **Status** | **Birth record actions**                                                                        |
+| Status     | Actions                                                                                         |
 | ---------- | ----------------------------------------------------------------------------------------------- |
 | Draft      | Update, Notify, Declare, Delete                                                                 |
 | Notified   | Edit, Declare, Reject, Archive                                                                  |
