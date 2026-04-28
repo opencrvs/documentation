@@ -195,7 +195,7 @@ yarn opencrvs upgrade [--docker-swarm]
 ## Now is the time to fix these!
 
 ## Finally, we recommend autoformatting your code
-yarn prettier --write .
+yarn prettier --write src/ infrastructure/
 ```
 
 **Run locally**
