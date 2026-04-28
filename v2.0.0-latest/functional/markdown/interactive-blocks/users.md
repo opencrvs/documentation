@@ -127,6 +127,7 @@ Each core scope in this table maps **directly to a core record action**. If a ro
 | `record.create`           | Start a new declaration from the event form                                           |
 | `record.notify`           | Notify (submit an incomplete declaration).                                            |
 | `record.declare`          | Declare (submit a complete declaration)                                               |
+| `record.edit`             | Edit a notified or declared record                                                    |
 | `record.reject`           | Reject a declared record                                                              |
 | `record.archive`          | Archive a declared record                                                             |
 | `record.review-duplicate` | Review and decide on potential duplicates (Mark as duplicate / Mark not a duplicate). |
