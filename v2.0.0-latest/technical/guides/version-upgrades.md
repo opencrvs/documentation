@@ -255,7 +255,7 @@ To upgrade your environment details:
 cd <path>/opencrvs-<your-country>
 
 ## IF on kubernetes
-cd <path>/infrastructure-repo
+cd <path>/opencrvs-<your-country>-infrastructure
 
 yarn environment:init
 ```
