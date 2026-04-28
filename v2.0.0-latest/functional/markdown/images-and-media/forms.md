@@ -50,7 +50,13 @@ Each form has a small set of core properties that control how it behaves.
 * **Conditionals (show / hide)**
   * Pages and fields can be shown or hidden based on:
     * Values of other fields (for example, show spouse details only if "Married").
-    * User role or scope (for example, extra questions for Registrars only).
+    * User role or scope (for example, hide fields for the Health Official).
+      *   _Role-scoped form shape:_ Role-based conditional visibility is a workflow design tool, not just a convenience feature. A single form definition can present materially different experiences to different actors: a health facility clerk sees 5 fields and submits a Notification; a Registration Agent using the same form sees 20 fields and submits a full Declaration.
+
+          Role-scoped form shape and action scopes compose:
+
+          * A role with `record.notify` scope and a shortened form (mandatory registration fields hidden) can submit what they have captured — Notify accepts incomplete data and produces a Notified record for follow-up.
+          * A role with `record.declare` scope and the full form can submit a complete declaration — Declare requires all mandatory fields before the button is enabled.
 * **Validations**
   * Field-level validations (for example, required, pattern, min / max, date ranges).
   * Error messages shown inline to guide users.
