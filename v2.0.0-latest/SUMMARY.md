@@ -59,7 +59,7 @@
 ## Implementation
 
 * [Example: Farajaland](implementation/example-farajaland/README.md)
-  * [...](implementation/example-farajaland/....md)
+  * [Overview](implementation/example-farajaland/overview.md)
   * [Background & goals](implementation/example-farajaland/background-and-goals.md)
   * [Requirements](implementation/example-farajaland/requirements.md)
   * [Configuration](implementation/example-farajaland/configuration.md)
