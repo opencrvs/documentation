@@ -97,25 +97,25 @@ Core record actions are maintained by OpenCRVS to support standard civil registr
 
 #### Core record actions
 
-| Action                    | Description                                         | Required status     | Required flag        |
-| ------------------------- | --------------------------------------------------- | ------------------- | -------------------- |
-| Create                    | Create an event record                              | -                   |                      |
-| Update                    | Update a draft declaration                          | Draft               |                      |
-| Notify                    | Submit an incomplete declaration for follow-up      | Draft               | —                    |
-| Declare                   | Submit a completed declaration                      | Draft, Notified     | —                    |
-| Mark as duplicate         | Mark a declaration as a duplicate during review     | Declared            | Potential duplicate  |
-| Mark not a duplicate      | Confirm a declaration is not a duplicate            | Declared            | Potential duplicate  |
-| Archive                   | Archive a declaration                               | Declared            | —                    |
-| Reject                    | Reject a declared or validated record               | Declared, Validated | —                    |
-| Edit                      | Edit notification or declaration data during review | Declared, Validated | —                    |
-| Register                  | Finalise and register a declaration                 | Declared            | —                    |
-| Request correction        | Flag a registered record for correction             | Registered          | —                    |
-| Review correction request | Review a submitted correction request               | Registered          | Correction requested |
-| → Reject correction       | Reject a correction request                         | Registered          | Correction requested |
-| → Approve correction      | Approve a correction request                        | Registered          | Correction requested |
-| Print                     | Generate and issue a certified copy                 | Registered          | —                    |
-| Assign                    | Assign the record to yourself                       | Any                 | —                    |
-| Unassign                  | Release or change record assignment                 | Any                 | —                    |
+| Action                                           | Description                                         | Required status    | Required flag        |
+| ------------------------------------------------ | --------------------------------------------------- | ------------------ | -------------------- |
+| Create                                           | Create an event record                              | -                  |                      |
+| Update                                           | Update a draft declaration                          | Draft              |                      |
+| Notify                                           | Submit an incomplete declaration for follow-up      | Draft              | —                    |
+| Declare                                          | Submit a completed declaration                      | Draft, Notified    | —                    |
+| Mark as duplicate                                | Mark a declaration as a duplicate during review     | Declared           | Potential duplicate  |
+| Mark not a duplicate                             | Confirm a declaration is not a duplicate            | Declared           | Potential duplicate  |
+| Archive                                          | Archive a declaration                               | Declared           | —                    |
+| Reject                                           | Reject a declared or validated record               | Declared           | —                    |
+| Edit → Declare with edits or Register with edits | Edit notification or declaration data during review | Notified, Declared | —                    |
+| Register                                         | Finalise and register a declaration                 | Declared           | —                    |
+| Request correction                               | Flag a registered record for correction             | Registered         | —                    |
+| Review correction request                        | Review a submitted correction request               | Registered         | Correction requested |
+| → Reject correction                              | Reject a correction request                         | Registered         | Correction requested |
+| → Approve correction                             | Approve a correction request                        | Registered         | Correction requested |
+| Print                                            | Generate and issue a certified copy                 | Registered         | —                    |
+| Assign                                           | Assign the record to yourself                       | Any                | —                    |
+| Unassign                                         | Release or change record assignment                 | Any                | —                    |
 
 #### Configurable flags on core actions
 

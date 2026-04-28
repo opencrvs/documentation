@@ -73,7 +73,9 @@ When a user selects **Edit**:
 
 1. The system opens the event form with the current record data pre-filled.
 2. The user can adjust any fields.
-3. On ‘Declare with edits’, the record is updated and the change is logged.
+3. On completion, the user is presented with two options depending on their scopes:
+   * **Declare with edits** (requires `record.declare` scope) — saves the changes and keeps the record in Declared status. The change is logged. Available to any user with the `record.edit` + `record.declare` scopes.
+   * **Register with edits** (requires `record.register` scope) — saves the changes _and_ registers the record in a single step, transitioning the record from Declared to Registered. Available only to users who also hold the `record.register` scope (typically a Registrar). This option allows a Registrar to review, edit, and register in one flow
 
 All edits are stored in the system’s journaled data model, and appear in audit views showing **who** changed **what** and **when**.
 
