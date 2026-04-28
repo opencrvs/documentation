@@ -141,6 +141,7 @@ All integrations must be retested after upgrading.
 
 If deployed to servers, confirm:
 
+* Are you using Docker Swarm or Kubernetes?
 * Do you have dedicated or shared infrastructure?
 * What are your environments (dev, QA, staging, production)?
 * What are your automated backup and restore processes?
@@ -171,6 +172,10 @@ You now have the target OpenCRVS release code locally.
 
 ```bash
 cd <path>/opencrvs-<your-country>
+
+## Ensure upstream points to opencrvs/infrastructure
+git remote -v
+
 git fetch --all
 
 ## Create a temporary upgrade branch
@@ -178,8 +183,12 @@ git checkout -b upgrade-v<target-version>
 
 ## Upgrade the toolkit package version to the target version
 yarn add @opencrvs/toolkit@2.x.x --exact
+
 ## Run codemod tool, which upgrades your countryconfig to support v2.0
-yarn opencrvs upgrade
+## If you are still on Docker Swarm (instead of kubernetes), use the --docker-swarm flag!
+## If this flag is set, the /infrastructure directory is kept.
+## Otherwise it is deleted in favour of a separate infrastucture repository.
+yarn opencrvs upgrade [--docker-swarm]
 
 ## TODO: the command above should pull changes for infrastructure/ directory
 ## from opencrvs-countryconfig@release-2.0.0
@@ -198,12 +207,37 @@ Start OpenCRVS locally. Database migrations will run automatically.
 
 Verify all key flows, integrations, and customisations before proceeding.
 
+**Updating infrastructure repository** (only for users on kubernetes)
+
+\<TODO>: figure out better structure for this step, since its only for kubernetes users!
+
+{% hint style="warning" %}
+Infrastructure-repository is only used for kubernetes deployments, skip this if you are on docker-swarm!
+{% endhint %}
+
+```bash
+cd <path>/opencrvs-<your-country>-infrastructure
+
+## Ensure upstream points to opencrvs/infrastructure
+git remote -v
+
+git fetch --all
+
+## Create a temporary upgrade branch
+git checkout -b upgrade-v<target-version>
+
+## Upgrade the toolkit package version to the target version
+git merge upstream/release-v2.x.x
+```
+
 **Commit and push**
 
 * Create a pull request for review
 * Merge into your main branch
 
 A new Docker image will be automatically built and pushed.
+
+
 
 ### Step 3 — Update GitHub environments
 
@@ -218,8 +252,12 @@ Each release may introduce:
 To upgrade your environment details:
 
 ```bash
-## This is ran in the root of your updated countryconfig repo
+## IF on docker swarm
 cd <path>/opencrvs-<your-country>
+
+## IF on kubernetes
+cd <path>/infrastructure-repo
+
 yarn environment:init
 ```
 
