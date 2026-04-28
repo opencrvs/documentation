@@ -194,6 +194,9 @@ yarn opencrvs upgrade [--docker-swarm]
 ## run in to merge conflicts under the /infrastructure directory.
 ## Now is the time to fix these!
 
+## Update npm dependencies
+yarn --force
+
 ## Finally, we recommend autoformatting your code
 yarn prettier --write src/ infrastructure/
 ```
