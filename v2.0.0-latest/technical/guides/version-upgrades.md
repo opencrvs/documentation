@@ -190,12 +190,11 @@ yarn add @opencrvs/toolkit@2.x.x --exact
 ## Otherwise it is deleted in favour of a separate infrastucture repository.
 yarn opencrvs upgrade [--docker-swarm]
 
-## TODO: the command above should pull changes for infrastructure/ directory
-## from opencrvs-countryconfig@release-2.0.0
-## At this point the user might run in to merge conflicts under infrastructure/ dir.
-## These must be fixed!
+## At this point, if you used the --docker-swarm flag, you might
+## run in to merge conflicts under the /infrastructure directory.
+## Now is the time to fix these!
 
-## At this point, we recommend autoformatting your code
+## Finally, we recommend autoformatting your code
 yarn prettier --write .
 ```
 
