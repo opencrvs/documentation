@@ -13,7 +13,7 @@ Prerequisites, and examples of these can be found at the end of this document:
 * E-Signet client id
 * E-Signet JWK (as Base64)
 * WireGuard access to MOSIP (in MEC this is needed for Health Services, in your installation it might be needed for all MOSIP services)
-* **(OpenCRVS responsibility:)** Hosted logo URL for E-Signet UI. You can host assets in your country config or use the country config `/content/country-logo` -endpoint.![](.gitbook/assets/image.png)
+* **(OpenCRVS responsibility:)** Hosted logo URL for E-Signet UI. You can host assets in your country config or use the country config `/content/country-logo` -endpoint.![](<.gitbook/assets/image (1).png>)
 
 ## Building blocks
 
@@ -31,8 +31,7 @@ Prerequisites, and examples of these can be found at the end of this document:
     1. for all of the prerequisites and the Wireguard access
     2. to host the MOSIP-side mediator
 
-    Note that this can take a week or two, so doing this before starting is recommended.\
-
+    Note that this can take a week or two, so doing this before starting is recommended.<br>
 2. Set up **country config** and **integration as sys admin.** You can also fork [https://github.com/opencrvs/opencrvs-mosip](https://github.com/opencrvs/opencrvs-mosip) to skip parts 1 & 2 & 3.
    1. Form customization. Use `getNIDVerificationButton` in place of the `getNationalID` field. [Example](https://github.com/opencrvs/opencrvs-mosip/blob/develop/src/form/birth/index.ts)
    2. Introduce mosipAid -handlebars: [Example](https://github.com/opencrvs/opencrvs-mosip/commit/66d441e8fee94a9256f64fbd64f211c244942af3)
@@ -40,7 +39,7 @@ Prerequisites, and examples of these can be found at the end of this document:
    4. Create a National ID integration client as a system admin. You need the client\_id, client\_secret, and sha\_secret for the MOSIP mediator, on both MOSIP & OpenCRVS sides. Remember to **provide these values to MOSIP**. [https://documentation.opencrvs.org/technology/interoperability/national-id-client](https://documentation.opencrvs.org/technology/interoperability/national-id-client)
    5. Add OpenCRVS-side MOSIP mediator and token seeder to your docker-compose -files. [Example](https://github.com/opencrvs/opencrvs-mosip/blob/develop/infrastructure/docker-compose.development-deploy.yml). This file lets you see which environment variables you must set up to GitHub Secrets. Anything NATIONAL\_ID\_OIDP\_, TOKENSEEDER\_, or MOSIP\_MEDIATOR\_, -prefixed needs to be configured.
    6. Add "ida.partner.crt", "keystore.p12", "opencrvs-priv.key", and "mosip-public.key" to your servers /data/secrets/mosip . These are the default filenames token seeder and mosip mediator expect, but they are configurable with environment variables if you wish.
-   7. Ensure your certificates can render `{{ mosipAid }}`. [Example](https://github.com/opencrvs/opencrvs-mosip/blob/develop/src/data-seeding/certificates/source/India-birth-certificate-v2.svg?short\_path=fb12ce9)
+   7. Ensure your certificates can render `{{ mosipAid }}`. [Example](https://github.com/opencrvs/opencrvs-mosip/blob/develop/src/data-seeding/certificates/source/India-birth-certificate-v2.svg?short_path=fb12ce9)
 3. Now all necessary should be set up. Test that you can see  `mosipAid` on a birth certificate. Test that you can authenticate mother and father with E-Signet. Test that you can receive the UIN card of the child. Test **with MOSIP**, that if the child is registered as dead, the UIN isn't active anymore.
 
 ## Examples of GitHub secrets

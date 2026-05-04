@@ -2,8 +2,7 @@
 
 ## Start up node debugger locally
 
-I’ve started using Node.js debugger quite a lot lately. It can be started by seeing the PID of the microservice you want to start it and then sending a SIGUSR1 signal to\
-
+I’ve started using Node.js debugger quite a lot lately. It can be started by seeing the PID of the microservice you want to start it and then sending a SIGUSR1 signal to<br>
 
 ```
 ❯ lsof -i:5050
