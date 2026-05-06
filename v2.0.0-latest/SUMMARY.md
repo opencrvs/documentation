@@ -52,6 +52,7 @@
   * [Interoperability](functional/markdown/interoperability/README.md)
     * [APIs](functional/markdown/interoperability/apis.md)
     * [Action triggers](functional/markdown/interoperability/action-triggers.md)
+    * [MOSIP ID Integration](functional/markdown/interoperability/mosip-id-integration.md)
   * [Legacy data](functional/markdown/legacy-data/README.md)
     * [Data migration](functional/markdown/legacy-data/data-migration.md)
     * [Digitise paper records](functional/markdown/legacy-data/digitise-paper-records.md)
