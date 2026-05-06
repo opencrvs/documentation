@@ -190,8 +190,7 @@ yarn add @opencrvs/toolkit@2.x.x --exact
 ## Otherwise it is deleted in favour of a separate infrastucture repository.
 yarn opencrvs upgrade [--docker-swarm]
 
-## At this point, if you used the --docker-swarm flag, you might
-## run in to merge conflicts under the /infrastructure directory.
+## At this point you might run in to merge conflicts under the /infrastructure directory.
 ## Now is the time to fix these!
 
 ## Update npm dependencies
@@ -210,8 +209,6 @@ Start OpenCRVS locally. Database migrations will run automatically.
 Verify all key flows, integrations, and customisations before proceeding.
 
 **Updating infrastructure repository** (only for users on kubernetes)
-
-\<TODO>: figure out better structure for this step, since its only for kubernetes users!
 
 {% hint style="warning" %}
 Infrastructure-repository is only used for kubernetes deployments, skip this if you are on docker-swarm!
