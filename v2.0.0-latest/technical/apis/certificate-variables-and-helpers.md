@@ -1,0 +1,3 @@
+# Certificate variables & helpers
+
+\<TODO>

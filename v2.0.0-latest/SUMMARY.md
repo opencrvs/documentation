@@ -171,6 +171,7 @@
   * [Contributing](technical/guides/contributing/README.md)
     * [Core development](technical/guides/contributing/core-development.md)
 * [APIs](technical/apis/README.md)
+  * [Certificate variables & helpers](technical/apis/certificate-variables-and-helpers.md)
   * [Core APIs](technical/apis/core-apis/README.md)
     * ```yaml
       type: builtin:openapi
