@@ -1,5 +1,7 @@
 # Technical stack
 
+## Technical Stack
+
 OpenCRVS is built as a TypeScript-first, microservices application running on Node.js. All services — frontend and backend — share a single language and a single monorepo, which reduces context-switching and allows types and validation schemas to be shared across service boundaries.
 
 ### Language & Runtime
@@ -22,12 +24,19 @@ The registration and administration interface is a **Progressive Web App (PWA)**
 | Server state         | React Query           |
 | Client state         | Zustand               |
 | Forms                | Formik                |
+| Form validation      | JSON Schema (AJV)     |
 | Internationalisation | React Intl (FormatJS) |
 | Styling              | Styled Components     |
 
 A shared component library (`@opencrvs/components`) provides the design system used across both the main client application and the login application. The component library is documented with Storybook.
 
 All user-facing strings are externalised through React Intl, which allows country configurations to provide translations without modifying application code.
+
+Form validations are defined as **JSON Schema** and evaluated at runtime using **AJV**. This keeps validation logic declarative and portable — the same schemas are enforced on both the client and the server.
+
+### Country Configuration Toolkit
+
+Country configurers work with the **`@opencrvs/toolkit`** npm package rather than directly with the application internals. The toolkit provides TypeScript helpers and higher-level constructors for the most common configuration tasks — defining forms, writing validation rules, configuring workflows, and more — without needing to understand the underlying implementation. For most implementing countries, the toolkit is the primary development surface.
 
 ### Backend Services
 
@@ -45,33 +54,23 @@ Each service is independently deployable and runs as a Docker container.
 
 #### HTTP Framework
 
-Backend services use **Hapi.js** as their HTTP framework. Hapi provides built-in request validation (via Joi), plugin-based middleware, and structured route definitions. Route schemas are published as Swagger/OpenAPI specifications.
+Backend services use **tRPC** as their primary HTTP framework. tRPC is a TypeScript-native RPC framework — because both the client and the server share TypeScript types, mismatches are caught at compile time rather than at runtime. The Events service, which contains the majority of the civil registration business logic, is built entirely on tRPC. Other microservices also use tRPC for their internal APIs.
 
-#### Client–Server Communication
+The same tRPC routes are exposed as OpenAPI-compatible REST endpoints for external integrating parties.
 
-The frontend communicates with the backend using **tRPC**, a TypeScript-native RPC framework. Because both the client and the server share TypeScript types, mismatches are caught at compile time rather than at runtime. The same tRPC routes are also exposed as OpenAPI-compatible REST endpoints for integrating parties.
+Some supporting services still use **Hapi.js**, though this will be phased out over time in favour of tRPC.
 
 ### Data Layer
 
 OpenCRVS uses purpose-specific databases rather than a single general-purpose store. Each database is chosen for what it does well:
 
-| Database          | Version | What it stores                                                      |
-| ----------------- | ------- | ------------------------------------------------------------------- |
-| **PostgreSQL**    | 17      | Civil registration events, user data, and metrics                   |
-| **Elasticsearch** | 8.16    | Search index for records and analytics queries                      |
-| **Redis**         | 8       | Session tokens, short-lived caches, rate limiting                   |
-| **MinIO**         | —       | Supporting documents and attachments (S3-compatible object storage) |
+<table><thead><tr><th width="186.42578125">Database</th><th>What it stores</th><th data-hidden>Version</th></tr></thead><tbody><tr><td><strong>PostgreSQL</strong></td><td>Civil registration events, user data, and metrics</td><td>17</td></tr><tr><td><strong>Elasticsearch</strong></td><td>Search index for records and analytics queries</td><td>8.16</td></tr><tr><td><strong>Redis</strong></td><td>Session tokens, short-lived caches, rate limiting</td><td>8</td></tr><tr><td><strong>MinIO</strong></td><td>Supporting documents and attachments (S3-compatible object storage)</td><td>—</td></tr></tbody></table>
 
 PostgreSQL is the authoritative store for all registration data. Elasticsearch is a derived store — populated from PostgreSQL — that powers fast search and reporting queries without loading the primary database.
 
 ### APIs
 
-| Surface          | Used by                                                            |
-| ---------------- | ------------------------------------------------------------------ |
-| **tRPC**         | Frontend applications (primary client–server communication)        |
-| **REST/OpenAPI** | External integrations (national systems, third-party applications) |
-
-An OpenAPI specification is generated automatically from the codebase and is the recommended integration point for country-level system integrations.
+OpenCRVS exposes a **REST/OpenAPI** interface for external integrations with national systems and third-party applications. The OpenAPI specification is generated automatically from the codebase and is the recommended integration point for country-level system integrations.
 
 ### Architecture Pattern
 
