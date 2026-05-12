@@ -2,7 +2,7 @@
 
 #### Before you begin
 
-In this section you will run the `yarn environments:init` script in **your forked infrastructure repository** which will help you to configure OpenCRVS environments. This command:
+In this section you will run the `yarn environment:init` script in **your forked infrastructure repository** which will help you to configure OpenCRVS environments. This command:
 
 * Creates GitHub environments
 * Drafts commands to bootstrap new servers
