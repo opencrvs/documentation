@@ -94,6 +94,7 @@
 
 * [Architecture](technical/architecture/README.md)
   * [Technical stack](technical/architecture/technical-stack.md)
+  * [Data architecture](technical/architecture/data-architecture.md)
   * [Standards](technical/architecture/standards.md)
   * [Infrustructure](technical/architecture/infrustructure.md)
   * [Security](technical/architecture/security.md)
