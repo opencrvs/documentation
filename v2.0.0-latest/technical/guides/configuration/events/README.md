@@ -32,7 +32,7 @@ export function getEventsHandler(_: Hapi.Request, h: Hapi.ResponseToolkit) {
 }
 ```
 
-### EventConfig schema
+## EventConfig schema
 
 {% openapi-schemas spec="events-develop" schemas="EventConfig" grouped="true" %}
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)

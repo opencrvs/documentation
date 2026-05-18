@@ -149,7 +149,7 @@
       * [Jurisidictions](technical/guides/configuration/users/jurisidictions.md)
     * [Events](technical/guides/configuration/events/README.md)
       * [Declaration & Forms](technical/guides/configuration/events/declaration-and-forms/README.md)
-        * [Validations](technical/guides/configuration/events/declaration-and-forms/validations.md)
+        * [Form Fields & Validations](technical/guides/configuration/events/declaration-and-forms/form-fields-and-validations.md)
       * [Actions](technical/guides/configuration/events/actions/README.md)
         * [Core actions](technical/guides/configuration/events/actions/core-actions.md)
         * [Custom actions](technical/guides/configuration/events/actions/custom-actions.md)

@@ -42,6 +42,14 @@ export const birthEvent = defineConfig({
   // ...
 ```
 
+## Action forms
+
+In addition to the primary form, certain actions have separate forms which are filled as part of executing the action. These include:
+
+<table><thead><tr><th width="273.4765625">Configured action type</th><th>Config property</th><th>Description</th></tr></thead><tbody><tr><td><code>ActionType.DECLARE</code></td><td><code>review</code></td><td>Fields to be filled on the review page when declaring a record.</td></tr><tr><td><code>ActionType.READ</code></td><td><code>review</code></td><td><p>Fields to be shown on the review page of a record.</p><p></p><p>This is usually the same as the <code>review</code> config on <code>ActionType.DECLARE</code>.</p></td></tr><tr><td><code>ActionType.PRINT_CERTIFICATE</code></td><td><code>printForm</code></td><td>Form pages to be filled When printing a certificate of a registered record.</td></tr><tr><td><code>ActionType.REQUEST_CORRECTION</code></td><td><code>correctionForm</code></td><td>Form pages to be filled when requesting a correction on a registered record.</td></tr><tr><td><code>ActionType.CUSTOM</code></td><td><code>form</code></td><td>Fields to be filled on the confirmation dialog of the custom action.</td></tr></tbody></table>
+
+For additional action configuration, see [actions](../actions/ "mention").
+
 ## Pages
 
 The `declaration`, `printForm` and `correctionForm` configurations use `pages` to split the different form sections in to separate pages. Each page may contain any amount of form fields.
@@ -67,11 +75,3 @@ export const child = defineFormPage({
   ]
 })
 ```
-
-
-
-### FieldConfig schema
-
-{% openapi-schemas spec="events-develop" schemas="FieldConfig" grouped="true" %}
-[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
-{% endopenapi-schemas %}
