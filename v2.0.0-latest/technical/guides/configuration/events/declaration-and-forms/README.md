@@ -54,6 +54,11 @@ For additional action configuration, see [actions](../actions/ "mention").
 
 The `declaration`, `printForm` and `correctionForm` configurations use `pages` to split the different form sections in to separate pages. Each page may contain any amount of form fields.
 
+There are two types of pages:
+
+1. `PageTypes.enum.FORM` which is a normal page with form fields and a simple continue button
+2. `PageTypes.enum.VERIFICATION` which, instead of a continue button, has the options to verify or cancel the page. Both options continue the form to the next page. The chosen option is saved to the action's details and displayed on the action audit log.
+
 When configuring pages, make sure to use the `defineFormPage()` helper.
 
 **Example:**
