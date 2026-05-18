@@ -186,8 +186,12 @@
             kind: openapi
             spec: events-develop
       ```
-  * [Country-config APIs](technical/apis/country-config-apis.md)
-  * [Toolkit](technical/apis/toolkit.md)
+  * [Toolkit](technical/apis/toolkit/README.md)
+    * [Configuration](technical/apis/toolkit/configuration/README.md)
+      * [Advanced search](technical/apis/toolkit/configuration/advanced-search.md)
+    * [Conditionals](technical/apis/toolkit/conditionals.md)
+    * [Deduplication](technical/apis/toolkit/deduplication.md)
+    * [API Client](technical/apis/toolkit/api-client.md)
 
 ## Releases
 
