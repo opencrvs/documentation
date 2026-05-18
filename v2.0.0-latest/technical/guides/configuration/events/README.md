@@ -4,11 +4,9 @@ description: How to configure life events
 
 # Events
 
-Over view of this topic from a dev perspectvie + link to product specifications
-
-TODO: [**Events**](../../../../functional/markdown/images-and-media/) are...
-
-
+{% hint style="info" %}
+This is technical documentation. To see functional definition of events, navigate to [images-and-media](../../../../functional/markdown/images-and-media/ "mention")
+{% endhint %}
 
 When configuring your event, make sure to wrap it in the `defineConfig()` helper; this ensures type safety and provides warnings for misconfigurations to the country config server console logs.
 
@@ -32,6 +30,8 @@ export function getEventsHandler(_: Hapi.Request, h: Hapi.ResponseToolkit) {
 }
 ```
 
+### OpenAPI schema
 
-
-TODO: Add OpenAPI doc for EventConfig here?
+{% openapi-schemas spec="events-develop" schemas="EventConfig" grouped="true" %}
+[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
+{% endopenapi-schemas %}
