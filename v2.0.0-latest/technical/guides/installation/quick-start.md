@@ -1,15 +1,24 @@
 # Quick Start
 
+### Create a country configuration
+
+```
+npm create @opencrvs/countryconfig <project-name>
+```
+
+This command creates a country configuration package with a minimal example configuration.
+
+
+
 ### Fork (or clone) repositories
 
-Create your own forks from the following repositories:
+Create your own forks from the following repositories:Country configuration.&#x20;
 
-* [https://github.com/opencrvs/opencrvs-countryconfig](https://github.com/opencrvs/opencrvs-countryconfig): This repository is used to store OpenCRVS Country configuration.&#x20;
 * [https://github.com/opencrvs/infrastructure](https://github.com/opencrvs/infrastructure): Repository is used to store Infrastructure and CI/CD configuration (ansible inventory files and helm release values).
 
 **Steps to fork a repository:**
 
-1. Go to [https://github.com/opencrvs/infrastructure](https://github.com/opencrvs/infrastructure) or [https://github.com/opencrvs/opencrvs-countryconfig](https://github.com/opencrvs/opencrvs-countryconfig)
+1. Go to [https://github.com/opencrvs/infrastructure](https://github.com/opencrvs/infrastructure)&#x20;
 2. In the top right corner press "Fork" button
 3. Provide "Owner" and "Repository name" values
 4. Press "Create fork" button.
