@@ -4,7 +4,7 @@ description: Configuring custom actions
 
 # Custom actions
 
-In addition to core actions, an event may implement **any number of custom actions**. These actions may be freely defined by each country to reflect its unique requirements.
+In addition to [core-actions.md](core-actions.md "mention"), an event may implement **any number of custom actions**. These actions may be freely defined by each country to reflect its unique requirements.
 
 Custom actions are also defined in the `actions` array using `ActionType.CUSTOM`.
 

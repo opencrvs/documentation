@@ -37,9 +37,10 @@ export const birthDeclarationForm = defineDeclarationForm({
 import { birthDeclarationForm } from './forms/declaration'
 
 export const birthEvent = defineConfig({
-  id: Event.Birth,
+  id: 'birth',
   declaration: birthDeclarationForm,
   // ...
+})
 ```
 
 ### Action forms
