@@ -4,7 +4,7 @@ description: How to configure the declaration and action forms
 
 # Declaration & Forms
 
-## Declaration form
+### Declaration form
 
 The `declaration` property on the [EventConfig schema](../#eventconfig-schema) includes the configuration for the primary record declaration details. For example, for a birth registration event it should contain:
 
@@ -42,7 +42,7 @@ export const birthEvent = defineConfig({
   // ...
 ```
 
-## Action forms
+### Action forms
 
 In addition to the primary form, certain actions have forms of their own, which are filled as part of executing the action. These include:
 
@@ -50,7 +50,7 @@ In addition to the primary form, certain actions have forms of their own, which 
 
 For additional action configuration, see [actions](../actions/ "mention").
 
-## Pages
+### Pages
 
 The `declaration`, `printForm` and `correctionForm` configurations use `pages` to split the different form sections in to separate pages. Each page may contain any amount of form fields.
 
@@ -83,6 +83,8 @@ export const child = defineFormPage({
 
 
 
-## PageConfig schema
+### PageConfig schema
 
-\<TODO add OpenAPI reference>
+{% openapi-schemas spec="events-develop" schemas="PageConfig" grouped="true" %}
+[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
+{% endopenapi-schemas %}

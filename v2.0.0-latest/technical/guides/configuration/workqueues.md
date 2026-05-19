@@ -1,5 +1,6 @@
 # Workqueues
 
-## WorkqueueConfig schema
+### WorkqueueConfig schema
 
 \<TODO add OpenAPI reference>
+
