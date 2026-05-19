@@ -5,34 +5,67 @@ description: How to configure life events
 # Events
 
 {% hint style="info" %}
-This is technical documentation. To see functional definition of events, navigate to [images-and-media](../../../../functional/markdown/images-and-media/ "mention")
+This is technical documentation. For the functional overview of events, see [events](../../../../functional/markdown/events/ "mention")
 {% endhint %}
 
-When configuring your event, make sure to wrap it in the `defineConfig()` helper; this ensures type safety and provides warnings for misconfigurations to the country config server log.
+An **event** is a life event your country registers in OpenCRVS (for example birth or death). You configure each event in your country config repository under `src/events/`, then expose all event configs to the client via a single API handler.
 
-**Example:**
+### File layout
+
+In a typical country config (see [opencrvs-countryconfig](https://github.com/opencrvs/opencrvs-countryconfig)):
+
+| Path                          | Purpose                                          |
+| ----------------------------- | ------------------------------------------------ |
+| `src/events/<event>/index.ts` | Event definition (`defineConfig`)                |
+| `src/events/<event>/forms/`   | Declaration, review, print, and correction forms |
+| `src/events/index.ts`         | Aggregates all events into `eventConfigs`        |
+| `src/api/events/handler.ts`   | Returns `eventConfigs` to the OpenCRVS client    |
+
+### Define an event
+
+Wrap each event in `defineConfig()`. This validates the configuration at build time and logs warnings for common misconfigurations (for example a missing `VALIDATE_DECLARATION` custom action).
+
+**Example**:
 
 ```typescript
 // src/events/birth/index.ts
-import { defineConfig } from '@opencrvs/toolkit/events'
+import { ActionType, defineConfig, field } from '@opencrvs/toolkit/events'
+import { BIRTH_DECLARATION_FORM } from './forms/declaration'
 
 export const birthEvent = defineConfig({
   id: 'birth',
-  // ... further configuration
+  label: {
+    defaultMessage: 'Birth',
+    description: 'This is what this event is referred as in the system',
+    id: 'event.birth.label'
+  },
+  declaration: BIRTH_DECLARATION_FORM,
+  dateOfEvent: field('child.dob'),
+  // actions, workqueues, flags, summary, ...
 })
+```
+
+### Register events with the API
+
+Export every event from `src/events/index.ts`, then return that array from your events handler:
+
+```typescript
+// src/events/index.ts
+import { birthEvent } from './birth'
+import { deathEvent } from './death'
+
+export const eventConfigs = [birthEvent, deathEvent]
 
 // src/api/events/handler.ts
-import { birthEvent } from '../marriage'
-import { otherEvent } from '../other'
+import * as Hapi from '@hapi/hapi'
+import { eventConfigs } from '@countryconfig/events'
 
 export function getEventsHandler(_: Hapi.Request, h: Hapi.ResponseToolkit) {
-  return h
-    .response([birthEvent, otherEvent])
-    .code(200)
+  return h.response(eventConfigs).code(200)
 }
 ```
 
-## EventConfig schema
+### EventConfig schema
 
 {% openapi-schemas spec="events-develop" schemas="EventConfig" grouped="true" %}
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)

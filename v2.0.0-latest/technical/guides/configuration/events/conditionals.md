@@ -8,4 +8,4 @@
 
 ## ActionConditional schema
 
-\<TODO>
+\<TODO add OpenAPI reference>
