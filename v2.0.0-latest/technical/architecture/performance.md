@@ -1,197 +1,80 @@
+---
+description: >-
+  OpenCRVS is built to run national-scale civil registration systems. This page
+  explains what that means in practice — how many people can use it, how fast it
+  responds, and how it handles pressure.
+---
+
 # Performance
 
-## Performance
-
-### 1. Introduction
-
-OpenCRVS has been tested to ensure its **performance and stability** under realistic workloads representing the upper end of expected concurrent users and declaration volumes. This section presents results from performance tests conducted to validate that OpenCRVS can support large-scale civil registration operations.
-
-**Birth declaration submission** was chosen as the focus of performance tests because it is the most resource-intensive operation from the perspective of processing and storing data.
-
-This section describes:
-
-* The performance testing approach and methodology.
-* Test infrastructure and configuration.
-* Target request rates and rationale.
-* Test results from OpenCRVS versions 1.1 and 1.2.
-* Performance benchmarks and success criteria.
+All numbers on this page come from load tests run against a database of **1.2 million records** on a modest two-server setup. A larger deployment would perform even better.
 
 ***
 
-### 2. Testing approach
+### At a glance
 
-#### 2.1 Testing framework
-
-Performance tests are controlled by **k6**, a performance testing framework by Grafana Labs. The k6 framework:
-
-* Creates automated requests to the backend interface.
-* Mimics actual birth declaration submission workflows.
-* Dynamically adjusts concurrent requests (Virtual Users) based on response times.
-* Adds new virtual users when the current target rate cannot be reached with existing response times.
-
-#### 2.2 Test methodology
-
-Each test run includes multiple stages with increasing load:
-
-* Configured target values determine the number of requests per minute.
-* Each stage runs for a specified duration to measure sustained performance.
-* The number of concurrent requests (Virtual Users) fluctuates dynamically.
-* Response times, throughput, and error rates are measured continuously.
+|                           |                                                     |
+| ------------------------- | --------------------------------------------------- |
+| **Simultaneous users**    | 1,000+ logged-in users at the same time             |
+| **Registration speed**    | Under 350 ms to process a birth registration        |
+| **Search speed**          | Under 60 ms to return search results                |
+| **Error rate under load** | 0.00%                                               |
+| **Spike recovery**        | Returns to normal within seconds of a traffic surge |
 
 ***
 
-### 3. Reference workload
+### How many people can use it at once?
 
-#### 3.1 Target country profile
+In testing, OpenCRVS supported **over 1,000 users working simultaneously** — registrars filling in forms, staff searching for records, and supervisors monitoring workqueues — with every operation completing well within acceptable time limits.
 
-The target request rates were chosen based on a **large reference country, Nigeria**, where approximately **seven million children are born every year**.
+To put that in context: even in a country the size of the Philippines (\~117 million people), it's unusual for more than a few hundred staff to be actively submitting registrations at the exact same moment. The system has significant headroom beyond typical peak demand.
 
-Based on this figure and the number of work days per year (250), the approximate rate required for new birth declarations per minute is **60 declarations per minute**.
+These tests simulated realistic user behaviour, including time spent reading screens, filling in forms, and the background polling that the OpenCRVS client performs automatically. The number of virtual users in the test directly represents the number of real people who could be logged in and working at the same time.
 
-#### 3.2 Test stages
+### How fast is it?
 
-The following target request rates were used in the test:
+Response times are measured server-side — the time it takes the server to process a request, not including network travel time between the user's device and the server.
 
-* **40 birth declarations per minute** — ran for 2 minutes
-* **60 birth declarations per minute** — ran for 2 minutes
-* **100 birth declarations per minute** — ran for 2 minutes
-* **150 birth declarations per minute** — ran for 2 minutes
-* **200 birth declarations per minute** — ran for 4 minutes
+| What a user does            | How long the server takes |
+| --------------------------- | ------------------------- |
+| Log in                      | \~130 ms                  |
+| Submit a birth registration | \~150 ms                  |
+| Complete a registration     | \~170 ms                  |
+| Search for a record         | \~25 ms                   |
+| Open a record               | \~75 ms                   |
+| Load the workqueue          | \~30 ms                   |
 
-The highest rate (200 declarations per minute) represents **more than three times** the baseline requirement for a country the size of Nigeria.
+For comparison, a typical web page takes 1–3 seconds to load. These server processing times are a fraction of that — most operations feel instant to the user.
 
-***
+### What happens during a traffic spike?
 
-### 4. Test infrastructure
+We tested what happens when demand suddenly jumps to **five times the normal level** — as might happen on a Monday morning, after a public holiday, or during a registration campaign.
 
-#### 4.1 Server specification
+The system handled the spike with no crashes, no errors, and no data loss. When the spike ended, response times returned to normal within seconds. There were no lingering effects — no stuck processes, no degraded performance for subsequent users.
 
-The infrastructure chosen for the test represents the **recommended minimum server setup** for OpenCRVS production deployments.
+### How big can the database get?
 
-The test setup includes **three virtual private servers** hosted on Digital Ocean with the following specification:
+The test database contained **1.2 million event records** — roughly six months of registration data for a country of 100–120 million people. At this scale, searches still returned results in under 60 ms and registrations completed in under 350 ms.
 
-* **8 GB Memory**
-* **4 Intel vCPUs**
-* **160 GB Disk**
-* **Ubuntu 20.04 (LTS) x64**
+For reference, a country registering 10,000 events per day would accumulate about 3.6 million records per year. Database maintenance strategies such as indexing and archival are available to maintain performance as the dataset grows over multiple years.
 
-This configuration represents a baseline that can be scaled up or out based on country-specific requirements.
+### What infrastructure does it need?
 
-***
+The test results above were achieved on a deliberately modest setup:
 
-### 5. Test results
+| Server    | Specification             |
+| --------- | ------------------------- |
+| Primary   | 8 CPU cores, 16 GB memory |
+| Secondary | 4 CPU cores, 8 GB memory  |
 
-#### 5.1 OpenCRVS v1.2 results
+This is a baseline configuration. National deployments can scale infrastructure up or horizontally to increase capacity further. Even on this small setup, the system never used more than half its available memory and experienced zero crashes or restarts.
 
-**Test configuration:**
+### What about the user's device?
 
-* Duration: 12 minutes 30 seconds
-* Maximum Virtual Users: 15 VUs
-* Total requests: 1,104 requests
-* Maximum throughput: 3.5 requests per second
+The performance numbers above measure **server-side speed only**. The experience on a user's device also depends on their internet connection, browser, and device capability.
 
-**Performance metrics:**
-
-* **Average response time:** 1,894 ms
-* **Average request rate:** 2 requests per second
-* **Maximum response time:** 4,779 ms (at 13 VUs)
-* **95th percentile response time:** 4,497 ms (at 13 VUs)
-* **Peak request rate:** 3.5 requests per second (at 12 VUs)
-
-**Data transfer:**
-
-* **Peak data sent:** 4 KB/s (at 13 VUs)
-* **Peak data received:** 2.39 KB/s (at 11 VUs)
-
-**Reliability:**
-
-* Total checks: 2,210
-* Failed checks: 2
-* **Success rate: 99.91%**
-
-**Summary:**
-
-The system successfully handled sustained loads with minimal errors, demonstrating stability under realistic production workloads.
-
-#### 5.2 OpenCRVS v1.1 results
-
-**Test configuration:**
-
-* Total requests: 1,267 requests
-* Highest target rate: 200 declarations per minute
-
-**Performance metrics:**
-
-* **95th percentile response time:** 3.5 seconds (at 200 declarations per minute)
-* **Average request rate:** 2.8 requests per second
-* **Average concurrent requests:** 12 VUs (at peak load)
-
-**Reliability:**
-
-* **Errors encountered:** 0
-* **Success rate: 100%**
-
-**Summary:**
-
-The system achieved zero errors across all test stages, demonstrating excellent reliability and stability.
+One known area of ongoing work is optimising how the browser handles large location datasets. In countries with tens of thousands of administrative areas (such as the Philippines with over 42,000 barangays), the client-side code that processes location data can cause slower page interactions. This is a known optimisation target and does not affect server performance or data integrity.
 
 ***
 
-### 6. Performance benchmarks
-
-Based on the test results, OpenCRVS demonstrates:
-
-**Capacity:**
-
-* The system achieved a sustained request rate of **4 requests per second** with minimal impact on response times.
-* This is approximately **four times the load** required to support a country the size of Nigeria (population 206M).
-
-**Scalability:**
-
-* The recommended minimum infrastructure (3 servers, 8GB RAM, 4 vCPUs each) can support declaration rates significantly exceeding baseline requirements for large countries.
-* Additional capacity can be achieved by scaling horizontally (adding more servers) or vertically (increasing server resources).
-
-**Reliability:**
-
-* Success rates of 99.91% to 100% demonstrate production-ready stability.
-* Response times remain acceptable even under sustained high load.
-
-***
-
-### 7. Implications for deployments
-
-#### 7.1 Country sizing
-
-Countries with birth volumes similar to or smaller than Nigeria (7 million births per year) can deploy OpenCRVS using the recommended minimum infrastructure with confidence.
-
-For countries with higher volumes or peak load requirements, infrastructure can be scaled:
-
-* **Horizontally** — add additional servers to the cluster.
-* **Vertically** — increase CPU, memory, and storage per server.
-
-#### 7.2 Infrastructure planning
-
-When planning infrastructure:
-
-* Start with the recommended minimum specification for proof-of-concept and pilot deployments.
-* Monitor actual usage patterns during pilot phases.
-* Scale infrastructure based on observed peak loads and growth projections.
-* Reserve capacity headroom (typically 2-3x expected peak load) for resilience.
-
-#### 7.3 Performance monitoring
-
-Production deployments should include:
-
-* Continuous monitoring of response times, throughput, and error rates.
-* Alerts for degraded performance or resource exhaustion.
-* Regular load testing to validate capacity as usage grows.
-
-***
-
-### 8. Related documentation
-
-For more detail on OpenCRVS performance and infrastructure, see:
-
-* **Architecture** — microservices, databases, and orchestration
-* **Non-functional requirements** — performance targets and system quality attributes
-* **Setup documentation** — detailed server specifications and deployment guidance
+\{% hint style="info" %\} **Want the full details?** The complete performance test report — including methodology, per-operation breakdowns, infrastructure health metrics, and spike recovery analysis — is available on request. Contact the OpenCRVS team for a copy. \{% endhint %\}
