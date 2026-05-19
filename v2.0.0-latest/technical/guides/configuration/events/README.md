@@ -8,7 +8,9 @@ description: How to configure life events
 This is technical documentation. For the functional overview of events, see [events](../../../../functional/markdown/events/ "mention")
 {% endhint %}
 
-An **event** is a life event your country registers in OpenCRVS (for example birth or death). You configure each event in your country config repository under `src/events/`, then expose all event configs to the client via a single API handler.
+An **event** is a life event your country registers in OpenCRVS (for example birth or death). You configure each event in your country config repository under `src/events/`, then expose all event configs to the core via a single API handler.
+
+The core fetches the event configurations from the country config server via a predefined HTTP endpoint. This means you can, for example, implement custom logic for defining your configs — as long as the endpoint exists and returns a valid array of event configurations.
 
 ### File layout
 
