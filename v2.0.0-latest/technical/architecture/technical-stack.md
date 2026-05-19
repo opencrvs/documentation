@@ -1,11 +1,6 @@
----
-description: >-
-  OpenCRVS is built as a TypeScript-first, microservices application running on
-  Node.js. All services — frontend and backend — share a single language and a
-  single monorepo, which reduces context-switch
----
-
 # Technical stack
+
+OpenCRVS is built as a TypeScript-first, microservices application running on Node.js. All services — frontend and backend — share a single language and a single monorepo, which reduces context-switch
 
 ### Language & Runtime
 
