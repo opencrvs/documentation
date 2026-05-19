@@ -77,4 +77,6 @@ One known area of ongoing work is optimising how the browser handles large locat
 
 ***
 
-\{% hint style="info" %\} **Want the full details?** The complete performance test report — including methodology, per-operation breakdowns, infrastructure health metrics, and spike recovery analysis — is available on request. Contact the OpenCRVS team for a copy. \{% endhint %\}
+{% hint style="info" %}
+**Want the full details?** The complete performance test report — including methodology, per-operation breakdowns, infrastructure health metrics, and spike recovery analysis — is available on request. Contact the OpenCRVS team for a copy.
+{% endhint %}
