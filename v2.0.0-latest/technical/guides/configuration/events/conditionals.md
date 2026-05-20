@@ -12,9 +12,9 @@ Conditionals are used in five places:
 
 | Use site                  | What it controls                                               | See                                                                        |
 | ------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Action `conditionals`     | Whether an action is shown or enabled                          | \<todo>                                                                    |
-| Field `conditionals`      | Whether a form field is shown, enabled, or displayed on review | \<todo>                                                                    |
+| Field `conditionals`      | Whether a form field is shown, enabled, or displayed on review | [form-fields.md](declaration-and-forms/form-fields.md "mention")           |
 | Field `validation`        | Whether the field's value is valid                             | [form-validations.md](declaration-and-forms/form-validations.md "mention") |
+| Action `conditionals`     | Whether an action is shown or enabled                          | [#action-conditionals](actions/#action-conditionals "mention")             |
 | Action flag `conditional` | Whether a flag is added or removed when the action is accepted | [flags.md](flags.md "mention")                                             |
 | Workqueue filters         | Whether a record appears in a queue                            | [workqueues.md](../workqueues.md "mention")                                |
 
@@ -177,80 +177,3 @@ import {
 }
 ```
 
-## ActionConditional
-
-`ActionConditional` is the wrapper used inside an action's `conditionals` array. The `type` field decides what the conditional controls:
-
-* `ConditionalType.SHOW` — Action is shown only when the conditional holds.
-* `ConditionalType.ENABLE` — Action is shown but disabled unless the conditional holds.
-
-When `conditionals` is omitted, the action is shown and enabled for everyone.
-
-**Example:**
-
-```typescript
-import {
-  ActionType,
-  ConditionalType,
-  and,
-  flag,
-  InherentFlags,
-  not,
-  status
-} from '@opencrvs/toolkit/events'
-
-{
-  type: ActionType.CUSTOM,
-  customActionType: 'VALIDATE_DECLARATION',
-  conditionals: [
-    {
-      type: ConditionalType.SHOW,
-      conditional: and(status('DECLARED'), not(flag('validated')))
-    },
-    {
-      type: ConditionalType.ENABLE,
-      conditional: not(flag(InherentFlags.POTENTIAL_DUPLICATE))
-    }
-  ]
-}
-```
-
-#### ActionConditional schema
-
-{% openapi-schemas spec="events-develop" schemas="ActionConditional" grouped="true" %}
-[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
-{% endopenapi-schemas %}
-
-## FieldConditional
-
-`FieldConditional` is the wrapper used inside a form field's `conditionals` array. The `type` field decides what the conditional controls:
-
-* `ConditionalType.SHOW` — Field is shown only when the conditional holds.
-* `ConditionalType.ENABLE` — Field is editable only when the conditional holds.
-* `ConditionalType.DISPLAY_ON_REVIEW` — Field appears on the review page only when both this conditional and the `SHOW` conditional hold.
-
-When `conditionals` is omitted, the field is shown and enabled for everyone, and is displayed on review whenever it has a value.
-
-**Example — hide a field on the review page using `never()`:**
-
-```typescript
-import { ConditionalType, never } from '@opencrvs/toolkit/events'
-
-{
-  id: 'recommender.none',
-  type: FieldType.CHECKBOX,
-  // ...
-  conditionals: [
-    {
-      type: ConditionalType.DISPLAY_ON_REVIEW,
-      conditional: never()
-    }
-  ]
-}
-```
-
-#### FieldConditional schema
-
-{% openapi-schemas spec="events-develop" schemas="FieldConditional" grouped="true" %}
-[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
-{% endopenapi-schemas %}

@@ -53,10 +53,56 @@ export const birthEvent = defineConfig({
 })
 ```
 
-### Action triggers
+## Action conditionals
+
+Every action config accepts an optional `conditionals` array which gates whether the action is shown or enabled for the current user and record. Each entry is an `ActionConditional` wrapping a conditional expression:
+
+* `ConditionalType.SHOW` — Action is shown only when the conditional holds.
+* `ConditionalType.ENABLE` — Action is shown but disabled unless the conditional holds.
+
+When `conditionals` is omitted, the action is shown and enabled for everyone.
+
+For available conditional helper functions, see [conditionals.md](../conditionals.md "mention")
+
+**Example:**
+
+```typescript
+import {
+  ActionType,
+  ConditionalType,
+  and,
+  flag,
+  InherentFlags,
+  not,
+  status
+} from '@opencrvs/toolkit/events'
+
+{
+  type: ActionType.CUSTOM,
+  customActionType: 'VALIDATE_DECLARATION',
+  conditionals: [
+    {
+      type: ConditionalType.SHOW,
+      conditional: and(status('DECLARED'), not(flag('validated')))
+    },
+    {
+      type: ConditionalType.ENABLE,
+      conditional: not(flag(InherentFlags.POTENTIAL_DUPLICATE))
+    }
+  ]
+}
+```
+
+### ActionConditional schema
+
+{% openapi-schemas spec="events-develop" schemas="ActionConditional" grouped="true" %}
+[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
+{% endopenapi-schemas %}
+
+## Action triggers
 
 For configuring action triggers, see [action-triggers](../../action-triggers/ "mention")
 
-### Scopes
+## Scopes
 
 For configuring user scopes for actions, see [users](../../users/ "mention")
