@@ -85,7 +85,7 @@ Inherent flags can also be added or removed from an action's `flags` array using
 
 Custom flags let a country model workflow states that are not covered by inherent flags — for example a "validated" step, an escalation level, or a revocation marker.
 
-A custom flag is defined once on the [EventConfig schema](../#eventconfig-schema) under `flags`, then added or removed by individual actions.
+A custom flag is defined once on the [EventConfig schema](./#eventconfig-schema) under `flags`, then added or removed by individual actions.
 
 ### Define a custom flag
 

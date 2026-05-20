@@ -154,7 +154,7 @@
       * [Actions](technical/guides/configuration/events/actions/README.md)
         * [Core actions](technical/guides/configuration/events/actions/core-actions.md)
         * [Custom actions](technical/guides/configuration/events/actions/custom-actions.md)
-        * [Flags](technical/guides/configuration/events/actions/flags.md)
+      * [Flags](technical/guides/configuration/events/flags.md)
       * [Conditionals](technical/guides/configuration/events/conditionals.md)
     * [Workqueues](technical/guides/configuration/workqueues.md)
     * [Certificates](technical/guides/configuration/certificates/README.md)
