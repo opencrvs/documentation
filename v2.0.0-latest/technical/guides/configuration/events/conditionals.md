@@ -52,21 +52,21 @@ and(
 
 Use `field(fieldId)` to inspect the value of a form field. The returned object is a chain — call one of the methods below to produce a conditional. For nested values, chain `.get(path)` first (e.g. `field('applicant.address').get('country').isEqualTo('FAR')`).
 
-| Method                              | Description                                                        |
-| ----------------------------------- | ------------------------------------------------------------------ |
-| `.isEqualTo(value \| field)`        | Value equals the given literal or the value of another field.      |
-| `.isFalsy()`                        | Value is `undefined`, `null`, `false`, or an empty string.         |
-| `.isUndefined()`                    | Value is undefined.                                                |
-| `.inArray(values)`                  | Value is one of the strings in the array.                          |
-| `.isBetween(min, max)`              | Numeric value is within `[min, max]`.                              |
-| `.isGreaterThan(value \| field)`    | Numeric value is strictly greater than the given value.            |
-| `.isLessThan(value \| field)`       | Numeric value is strictly less than the given value.               |
-| `.matches(pattern)`                 | String value matches the given regular expression.                 |
-| `.isValidEnglishName()`             | String value is a valid Latin-script name.                         |
-| `.isValidAdministrativeLeafLevel()` | Administrative area value resolves to the lowest configured level. |
-| `.isBefore()` / `.isAfter()`        | Date comparisons — see #date-conditionals.                         |
-| `.get(path)` / `.getByPath(path[])` | Drill into a nested value before applying a check.                 |
-| `.asDob()` / `.asAge()`             | Shortcuts for `.get('dob')` and `.get('age')`.                     |
+| Method                              | Description                                                                               |
+| ----------------------------------- | ----------------------------------------------------------------------------------------- |
+| `.isEqualTo(value \| field)`        | Value equals the given literal or the value of another field.                             |
+| `.isFalsy()`                        | Value is `undefined`, `null`, `false`, or an empty string.                                |
+| `.isUndefined()`                    | Value is undefined.                                                                       |
+| `.inArray(values)`                  | Value is one of the strings in the array.                                                 |
+| `.isBetween(min, max)`              | Numeric value is within `[min, max]`.                                                     |
+| `.isGreaterThan(value \| field)`    | Numeric value is strictly greater than the given value.                                   |
+| `.isLessThan(value \| field)`       | Numeric value is strictly less than the given value.                                      |
+| `.matches(pattern)`                 | String value matches the given regular expression.                                        |
+| `.isValidEnglishName()`             | String value is a valid Latin-script name.                                                |
+| `.isValidAdministrativeLeafLevel()` | Administrative area value resolves to the lowest configured level.                        |
+| `.isBefore()` / `.isAfter()`        | Date comparisons — see [#date-conditionals](conditionals.md#date-conditionals "mention"). |
+| `.get(path)` / `.getByPath(path[])` | Drill into a nested value before applying a check.                                        |
+| `.asDob()` / `.asAge()`             | Shortcuts for `.get('dob')` and `.get('age')`.                                            |
 
 **Example — show one field based on another:**
 
@@ -151,7 +151,7 @@ import {
 Two helpers inspect the current state of the record:
 
 * `status(statusValue)` — record is in the given event status (for example `'DECLARED'`, `'REGISTERED'`).
-* `flag(flagValue)` — record has the given flag set. See flags.md for the list of inherent flags and how to define custom ones.
+* `flag(flagValue)` — record has the given flag set. See [flags.md](flags.md "mention") for the list of inherent flags and how to define custom ones.
 
 **Example — show a custom action only while the record is declared and not yet validated:**
 

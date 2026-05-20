@@ -43,7 +43,7 @@ export const birthEvent = defineConfig({
   },
   declaration: birthDeclarationForm,
   dateOfEvent: field('child.dob'),
-  // actions, workqueues, flags, summary, ...
+  // title, summary, actions, flags, ...
 })
 ```
 

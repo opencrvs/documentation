@@ -15,9 +15,7 @@ Workqueues are configured to the countryconfig under `src/api/workqueue/workqueu
 Wrap your workqueue array in `defineWorkqueues()` from `@opencrvs/toolkit/events`. The helper parses each entry against `WorkqueueConfig` and warns about common misconfigurations.
 
 {% hint style="info" %}
-**Note!:** On any workqueue, a user can only see records for which they have the **`record.search` scope.**
-
-Thus, a user might only be able to access a subset of the workqueue's records.
+**Note:** Access to any workqueues requires the **`record.search`** scope. The scope's options further narrow which records the user actually sees inside the workqueue, so a user might only be able to access a subset of the workqueue's matching records.
 {% endhint %}
 
 **Example:**
