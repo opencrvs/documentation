@@ -117,7 +117,7 @@ export const birthEvent = defineConfig({
 
 ### Add or remove flags from actions
 
-Each action may include a `flags` array. Each entry is an `ActionFlagConfig`:
+Each action may include a `flags` array. Each entry is an [`ActionFlagConfig`](flags.md#actionflagconfig-schema):
 
 * `id` — the flag to add or remove. May be a custom flag id (e.g. `'validated'`) or an inherent flag (e.g. `InherentFlags.REJECTED`).
 * `operation` — `'add'` or `'remove'`.
