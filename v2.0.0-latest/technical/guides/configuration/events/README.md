@@ -25,14 +25,14 @@ In a typical country config (see [opencrvs-countryconfig](https://github.com/ope
 
 ### Define an event
 
-Wrap each event in `defineConfig()`. This validates the configuration at build time and logs warnings for common misconfigurations (for example a missing `VALIDATE_DECLARATION` custom action).
+Wrap each event in the `defineConfig()` helper.
 
 **Example**:
 
 ```typescript
 // src/events/birth/index.ts
 import { ActionType, defineConfig, field } from '@opencrvs/toolkit/events'
-import { BIRTH_DECLARATION_FORM } from './forms/declaration'
+import { birthDeclarationForm } from './forms/declaration'
 
 export const birthEvent = defineConfig({
   id: 'birth',
@@ -41,7 +41,7 @@ export const birthEvent = defineConfig({
     description: 'This is what this event is referred as in the system',
     id: 'event.birth.label'
   },
-  declaration: BIRTH_DECLARATION_FORM,
+  declaration: birthDeclarationForm,
   dateOfEvent: field('child.dob'),
   // actions, workqueues, flags, summary, ...
 })

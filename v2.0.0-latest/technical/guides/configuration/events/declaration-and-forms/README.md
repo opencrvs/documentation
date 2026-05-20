@@ -45,11 +45,11 @@ export const birthEvent = defineConfig({
 
 ### Action forms
 
-In addition to the primary form, certain actions have forms of their own, which are filled as part of executing the action. These include:
+In addition to the primary form, certain actions have forms of their own. These include:
 
-<table><thead><tr><th width="273.4765625">Configured action type</th><th>Config property</th><th>Description</th></tr></thead><tbody><tr><td><code>ActionType.DECLARE</code></td><td><code>review</code></td><td>Fields to be filled on the review page when declaring a record.</td></tr><tr><td><code>ActionType.READ</code></td><td><code>review</code></td><td><p>Fields to be shown on the review page of a record.</p><p></p><p>This is usually the same as the <code>review</code> config on <code>ActionType.DECLARE</code>.</p></td></tr><tr><td><code>ActionType.PRINT_CERTIFICATE</code></td><td><code>printForm</code></td><td>Form pages to be filled When printing a certificate of a registered record.</td></tr><tr><td><code>ActionType.REQUEST_CORRECTION</code></td><td><code>correctionForm</code></td><td>Form pages to be filled when requesting a correction on a registered record.</td></tr><tr><td><code>ActionType.CUSTOM</code></td><td><code>form</code></td><td>Fields to be filled on the confirmation dialog of the custom action.</td></tr></tbody></table>
+<table><thead><tr><th width="273.4765625">Configured action type</th><th>Config property</th><th>Description</th></tr></thead><tbody><tr><td><code>ActionType.DECLARE</code></td><td><code>review</code></td><td><p>Fields to be filled on the review page when declaring a record.</p><p></p><p>This usually includes details of the employee filling the form, such as their signature and additional comments.</p></td></tr><tr><td><code>ActionType.READ</code></td><td><code>review</code></td><td><p>Fields to be shown on the review page of a record.</p><p></p><p>This is usually the same as the <code>review</code> config on <code>ActionType.DECLARE</code>.</p></td></tr><tr><td><code>ActionType.PRINT_CERTIFICATE</code></td><td><code>printForm</code></td><td>Form pages to be filled When printing a certificate of a registered record.</td></tr><tr><td><code>ActionType.REQUEST_CORRECTION</code></td><td><code>correctionForm</code></td><td>Form pages to be filled when requesting a correction on a registered record.</td></tr><tr><td><code>ActionType.CUSTOM</code></td><td><code>form</code></td><td>Fields to be filled on the confirmation dialog of the custom action.</td></tr></tbody></table>
 
-For additional action configuration, see [actions](../actions/ "mention").
+Each of these forms are configured to the action's own configuration. For configuring actions, see [actions](../actions/ "mention")!
 
 ### Pages
 
@@ -57,18 +57,18 @@ The `declaration`, `printForm` and `correctionForm` configurations use `pages` t
 
 There are two types of pages:
 
-1. `PageTypes.enum.FORM` for pages with form fields and a simple continue button
-2. `PageTypes.enum.VERIFICATION` which, instead of a continue button, has the options to verify or cancel the page. Both options continue the form to the next page. The chosen option is saved to the action's details and displayed on the action audit log.
+1. `PageTypes.enum.FORM` for pages with form fields and a simple continue button.
+2. `PageTypes.enum.VERIFICATION` which, instead of a continue button, has the options to verify or cancel the page. Both options continue the form to the next page. The chosen option is saved to the action's details and displayed on the action audit log. **Note: Verification-pages may only be used on action forms, not the declaration form!**
 
-When configuring pages, make sure to use the `defineFormPage()` helper.
+When configuring pages, make sure to use the `definePage()` helper.
 
 **Example:**
 
 ```typescript
 // src/events/birth/forms/pages/child.ts
-import { defineFormPage } from '@opencrvs/toolkit/events'
+import { definePage } from '@opencrvs/toolkit/events'
 
-export const child = defineFormPage({
+export const child = definePage({
   id: 'child',
   type: PageTypes.enum.FORM,
   title: {
@@ -81,8 +81,6 @@ export const child = defineFormPage({
   ]
 })
 ```
-
-
 
 ### PageConfig schema
 
