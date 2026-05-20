@@ -1,4 +1,5 @@
 ---
+description: Configuring custom flags
 layout:
   width: wide
   title:
@@ -18,4 +19,10 @@ layout:
 ---
 
 # Flags
+
+### Inherent flags
+
+
+
+### Custom flags
 
