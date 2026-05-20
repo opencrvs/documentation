@@ -97,4 +97,5 @@ Validation errors on the declaration form are shown both on the form page, and t
 
 ### ValidationConfig schema
 
-\<TODO> add
+\<TODO will be added when openapi is synced>
+
