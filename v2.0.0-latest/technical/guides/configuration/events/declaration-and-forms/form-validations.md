@@ -1,12 +1,36 @@
 ---
-description: Configuring form field value validations
+description: Configuring form field validations
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
 ---
 
 # Form validations
 
 All form fields support custom validations, which are configured with the `validation` property. **If a validation does not pass, it means the form is filled incorrectly and a validation error is displayed.**
 
-The `validation` property takes an array of validations, and all of them must pass for the validation to succeed.
+The `validation` property takes an array of validations, and all of them must pass for the validation of that field to succeed.
+
+For validations, you should use the provided helpers:
+
+| Helper function | Example | Description |
+| --------------- | ------- | ----------- |
+|                 |         |             |
+|                 |         |             |
+|                 |         |             |
 
 **Example:**
 
@@ -59,6 +83,14 @@ Now both validations must succeed for the validation to pass, otherwise we will 
 
 Validation errors on the declaration form are shown both on the form page, and the review page:
 
-| Form page                                                                                                                     | Review page                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| <p></p><p><img src="../../../../../.gitbook/assets/Screenshot 2026-05-20 at 9.48.30 (1).png" alt="" data-size="original"></p> | <p><img src="../../../../../.gitbook/assets/Screenshot 2026-05-20 at 9.49.05 (2).png" alt="" data-size="original"></p><p></p> |
+{% columns %}
+{% column %}
+<figure><img src="../../../../../.gitbook/assets/Screenshot 2026-05-20 at 9.48.30 (2).png" alt=""><figcaption><p>Form page</p></figcaption></figure>
+{% endcolumn %}
+
+{% column %}
+<figure><img src="../../../../../.gitbook/assets/Screenshot 2026-05-20 at 9.49.05 (3).png" alt=""><figcaption><p>Review page</p></figcaption></figure>
+
+
+{% endcolumn %}
+{% endcolumns %}
