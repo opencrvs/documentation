@@ -46,13 +46,11 @@ These are not configured by country config. They appear when, for example, a `RE
 
 Inherent flags are built into OpenCRVS core and computed from the record's action history. You cannot define new ones, but you can reference them in conditionals and add or remove them from actions via the `InherentFlags` enum exported from `@opencrvs/toolkit/events`.
 
-| Constant                             | Value                  | When set                                                                                                          |
-| ------------------------------------ | ---------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `InherentFlags.INCOMPLETE`           | `incomplete`           | The record was declared via `NOTIFY` (status `NOTIFIED`) and the declaration is not yet complete.                 |
-| `InherentFlags.REJECTED`             | `rejected`             | The most recent non-meta action is `REJECT`.                                                                      |
-| `InherentFlags.CORRECTION_REQUESTED` | `correction-requested` | A `REQUEST_CORRECTION` is pending and has not yet been approved or rejected.                                      |
-| `InherentFlags.POTENTIAL_DUPLICATE`  | `potential-duplicate`  | A `DUPLICATE_DETECTED` action has been recorded and the record has not since been marked as not a duplicate.      |
-| `InherentFlags.EDIT_IN_PROGRESS`     | `edit-in-progress`     | The most recent action is `EDIT`. Transient — used internally to gate the next `NOTIFY`, `DECLARE` or `REGISTER`. |
+| Flag                                 | When set                                                                                                     |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `InherentFlags.REJECTED`             | The most recent non-meta action is `REJECT`.                                                                 |
+| `InherentFlags.CORRECTION_REQUESTED` | A `REQUEST_CORRECTION` is pending and has not yet been approved or rejected.                                 |
+| `InherentFlags.POTENTIAL_DUPLICATE`  | A `DUPLICATE_DETECTED` action has been recorded and the record has not since been marked as not a duplicate. |
 
 **Example — referencing an inherent flag in a conditional:**
 
