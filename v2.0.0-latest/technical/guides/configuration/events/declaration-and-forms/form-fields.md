@@ -60,3 +60,6 @@ import { ConditionalType, FieldType, never } from '@opencrvs/toolkit/events'
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
 {% endopenapi-schemas %}
 
+## Available field types
+
+\<TODO>
