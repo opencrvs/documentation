@@ -49,7 +49,7 @@ In addition to the primary form, certain actions have forms of their own. These 
 
 <table><thead><tr><th width="273.4765625">Configured action type</th><th>Config property</th><th>Description</th></tr></thead><tbody><tr><td><code>ActionType.DECLARE</code></td><td><code>review</code></td><td><p>Fields to be filled on the review page when declaring a record.</p><p></p><p>This usually includes details of the employee filling the form, such as their signature and additional comments.</p></td></tr><tr><td><code>ActionType.READ</code></td><td><code>review</code></td><td><p>Fields to be shown on the review page of a record.</p><p></p><p>This is usually the same as the <code>review</code> config on <code>ActionType.DECLARE</code>.</p></td></tr><tr><td><code>ActionType.PRINT_CERTIFICATE</code></td><td><code>printForm</code></td><td>Form pages to be filled When printing a certificate of a registered record.</td></tr><tr><td><code>ActionType.REQUEST_CORRECTION</code></td><td><code>correctionForm</code></td><td>Form pages to be filled when requesting a correction on a registered record.</td></tr><tr><td><code>ActionType.CUSTOM</code></td><td><code>form</code></td><td>Fields to be filled on the confirmation dialog of the custom action.</td></tr></tbody></table>
 
-Each of these forms are configured to the action's own configuration. For configuring actions, see [actions](../actions/ "mention")!
+Each of these forms are configured to the action's own configuration. For configuring actions, see [actions](../actions/ "mention")
 
 ### Pages
 
