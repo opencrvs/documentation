@@ -77,7 +77,7 @@ import {
 }
 ```
 
-Inherent flags can also be added or removed from an action's `flags` array using the same shape as custom flags — see #add-or-remove-flags-from-actions.
+Inherent flags can also be added or removed from an action's `flags` array using the same shape as custom flags — see [#add-or-remove-flags-from-actions](flags.md#add-or-remove-flags-from-actions "mention").
 
 ## Custom flags
 
