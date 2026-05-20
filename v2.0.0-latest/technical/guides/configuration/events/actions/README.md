@@ -46,7 +46,7 @@ export const birthEvent = defineConfig({
     ActionType.UNASSIGN
   ],
   actions: [
-    // actions must contain all core action configurations,
+    // 'actions' must contain all core action configurations,
     // and additionally it may contain any number of custom action configurations
   ],
   // label, declaration, workqueues, flags, summary, ...
