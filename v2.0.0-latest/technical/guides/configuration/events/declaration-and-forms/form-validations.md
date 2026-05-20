@@ -24,21 +24,19 @@ All form fields support custom validations, which are configured with the `valid
 
 The `validation` property takes an array of validations, and all of them must pass for the validation of that field to succeed.
 
-For configuring validations, you should use the provided helpers: \<TODO>
+{% hint style="info" %}
+Validators are conditionals. Each `validator` has the similar expressions as you would write for a `SHOW` / `ENABLE` conditional — most commonly built from the `field(...)` chain, optionally combined with `and` / `or` / `not`. See [conditionals.md](../conditionals.md "mention") for the full list of helpers.
+{% endhint %}
 
-| Helper function | Example | Description |
-| --------------- | ------- | ----------- |
-|                 |         |             |
-|                 |         |             |
-|                 |         |             |
+The `validation` property is only used for content checks on a filled-in value. To mark a field as mandatory, use the separate `required` property on the field configuration.
 
 **Example:**
 
 In this example, we have a father's date-of-birth field with two custom validations:
 
-1. The inputted date must be before today
-2. The inputted datemust be before the inputted child's date-of-birth `child.dob`
-   1. For the validation to work correctly, we expect that the `child.dob` field has is configured on the form (but it may be on a different page).
+1. The inputted date must be before today.
+2. The inputted date must be before the inputted child's date of birth, `child.dob`.
+   1. For the validation to work correctly, we expect that the `child.dob` field is configured on the form (but it may be on a different page).
 
 ```typescript
 import { field, defineFormPage, FieldType } from '@opencrvs/toolkit/events'
@@ -94,3 +92,9 @@ Validation errors on the declaration form are shown both on the form page, and t
 
 {% endcolumn %}
 {% endcolumns %}
+
+
+
+### ValidationConfig schema
+
+\<TODO> add
