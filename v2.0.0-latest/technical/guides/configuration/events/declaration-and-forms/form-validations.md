@@ -24,7 +24,7 @@ All form fields support custom validations, which are configured with the `valid
 
 The `validation` property takes an array of validations, and all of them must pass for the validation of that field to succeed.
 
-For validations, you should use the provided helpers:
+For configuring validations, you should use the provided helpers: \<TODO>
 
 | Helper function | Example | Description |
 | --------------- | ------- | ----------- |
