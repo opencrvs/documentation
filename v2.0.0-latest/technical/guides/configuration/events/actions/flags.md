@@ -36,13 +36,13 @@ There are three categories of flag:
 | **Inherent flag** | Computed by core from the action history        | `incomplete`, `rejected`, `correction-requested`            |
 | **Custom flag**   | Defined and managed by country config           | `validated`, `revoked`, `escalated-to-provincial-registrar` |
 
-### Action flags
+## Action flags
 
 Action flags are generated automatically whenever an action is in a status other than `Accepted`. They follow the pattern `<actionType>:<actionStatus>` in lowercase — for example `register:requested` or `register:rejected`.
 
 These are not configured by country config. They appear when, for example, a `REGISTER` action has been triggered but your country config `/trigger/...` handler has not yet accepted it (see actions for action confirmation). They disappear once the action is accepted or replaced.
 
-### Inherent flags
+## Inherent flags
 
 Inherent flags are built into OpenCRVS core and computed from the record's action history. You cannot define new ones, but you can reference them in conditionals and add or remove them from actions via the `InherentFlags` enum exported from `@opencrvs/toolkit/events`.
 
@@ -81,13 +81,13 @@ import {
 
 Inherent flags can also be added or removed from an action's `flags` array using the same shape as custom flags — see #add-or-remove-flags-from-actions.
 
-### Custom flags
+## Custom flags
 
 Custom flags let a country model workflow states that are not covered by inherent flags — for example a "validated" step, an escalation level, or a revocation marker.
 
 A custom flag is defined once on the [EventConfig schema](../#eventconfig-schema) under `flags`, then added or removed by individual actions.
 
-#### Define a custom flag
+### Define a custom flag
 
 A custom flag has:
 
@@ -118,7 +118,13 @@ export const birthEvent = defineConfig({
 })
 ```
 
-#### Add or remove flags from actions
+#### FlagConfig schema
+
+{% openapi-schemas spec="events-develop" schemas="FlagConfig" grouped="true" %}
+[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
+{% endopenapi-schemas %}
+
+### Add or remove flags from actions
 
 Each action may include a `flags` array. Each entry is an `ActionFlagConfig`:
 
@@ -203,3 +209,6 @@ The `remove` operation clears a flag if it is currently set on the record. It is
 }
 ```
 
+{% openapi-schemas spec="events-develop" schemas="ActionFlagConfig" grouped="true" %}
+[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
+{% endopenapi-schemas %}
