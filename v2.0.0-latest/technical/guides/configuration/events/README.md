@@ -67,6 +67,14 @@ export function getEventsHandler(_: Hapi.Request, h: Hapi.ResponseToolkit) {
 }
 ```
 
+### Advanced search
+
+For advanced search, see [advanced-search.md](../../../apis/toolkit/configuration/advanced-search.md "mention")
+
+### Deduplication
+
+For deduplication, see [deduplication.md](../../../apis/toolkit/deduplication.md "mention")
+
 ### EventConfig schema
 
 {% openapi-schemas spec="events-develop" schemas="EventConfig" grouped="true" %}

@@ -8,15 +8,16 @@ A **conditional** is a rule that OpenCRVS evaluates at runtime to decide whether
 
 You write conditionals using helpers exported from `@opencrvs/toolkit/events`. Under the hood, the helpers compile down to JSON-Schema, which means the same expression can be reused in many places — for example, the same `field('father.dob').isBefore().now()` expression is valid both as a field-show conditional and as a validator.
 
-Conditionals are used in five places:
+Conditionals are used in six places:
 
-| Use site                  | What it controls                                               | See                                                                        |
-| ------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Field `conditionals`      | Whether a form field is shown, enabled, or displayed on review | [form-fields.md](declaration-and-forms/form-fields.md "mention")           |
-| Field `validation`        | Whether the field's value is valid                             | [form-validations.md](declaration-and-forms/form-validations.md "mention") |
-| Action `conditionals`     | Whether an action is shown or enabled                          | [#action-conditionals](actions/#action-conditionals "mention")             |
-| Action flag `conditional` | Whether a flag is added or removed when the action is accepted | [flags.md](flags.md "mention")                                             |
-| Workqueue filters         | Whether a record appears in a queue                            | [workqueues.md](../workqueues.md "mention")                                |
+| Use site                   | What it controls                                                        | See                                                                        |
+| -------------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Field `conditionals`       | Whether a form field is shown, enabled, or displayed on review          | [form-fields.md](declaration-and-forms/form-fields.md "mention")           |
+| Field `validation`         | Whether the field's value is valid                                      | [form-validations.md](declaration-and-forms/form-validations.md "mention") |
+| Action `conditionals`      | Whether an action is shown or enabled                                   | [#action-conditionals](actions/#action-conditionals "mention")             |
+| Action flag `conditional`  | Whether a flag is added or removed when the action is accepted          | [flags.md](flags.md "mention")                                             |
+| Workqueue filters          | Whether a record appears in a queue                                     | [workqueues.md](../workqueues.md "mention")                                |
+| Event summary conditionals | Whether a summary row is displayed or hidden on the event overview page | [#eventconfig-schema](./#eventconfig-schema "mention")                     |
 
 ## Combinators
 
@@ -148,10 +149,11 @@ import {
 
 ## Record-state conditionals
 
-Two helpers inspect the current state of the record:
+Three helpers inspect the current state of the record:
 
-* `status(statusValue)` — record is in the given event status (for example `'DECLARED'`, `'REGISTERED'`).
+* `status(statusValue)` — record is in the given state. Valid statuses: `CREATED`, `NOTIFIED`, `DECLARED`, `REGISTERED`, `ARCHIVED`.
 * `flag(flagValue)` — record has the given flag set. See [flags.md](flags.md "mention") for the list of inherent flags and how to define custom ones.
+* `event.hasAction(actionType)` — record's action history contains an action of the given type. Chainable with `.minCount(n)` or `.maxCount(n)` to assert a specific number of occurrences, and `.withFields({ ... })` / `.withTemplate(id)` to narrow on action-payload fields.
 
 **Example — show a custom action only while the record is declared and not yet validated:**
 
@@ -177,3 +179,18 @@ import {
 }
 ```
 
+**Example — only allow the first certificate print:**
+
+```typescript
+import { ActionType, ConditionalType, event, not } from '@opencrvs/toolkit/events'
+
+{
+  type: ActionType.PRINT_CERTIFICATE,
+  conditionals: [
+    {
+      type: ConditionalType.SHOW,
+      conditional: not(event.hasAction(ActionType.PRINT_CERTIFICATE))
+    }
+  ]
+}
+```

@@ -97,5 +97,7 @@ Validation errors on the declaration form are shown both on the form page, and t
 
 ### ValidationConfig schema
 
-\<TODO will be added when openapi is synced>
+{% openapi-schemas spec="events-develop" schemas="ValidationConfig" grouped="true" %}
+[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
+{% endopenapi-schemas %}
 

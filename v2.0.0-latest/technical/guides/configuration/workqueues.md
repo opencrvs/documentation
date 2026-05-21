@@ -117,4 +117,3 @@ For the full scope configuration, see [users](users/ "mention").
 
 ### WorkqueueConfig schema
 
-\<TODO will be added when openapi is synced>
