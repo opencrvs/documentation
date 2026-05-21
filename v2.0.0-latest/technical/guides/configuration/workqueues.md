@@ -1,12 +1,41 @@
 ---
 description: Configuring workqueues
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
 ---
 
 # Workqueues
 
-A **workqueue** is a filtered list of records shown in the OpenCRVS UI. Each workqueue applies a query against the event index and presents the matching records in a table. To learn more, see [workqueues.md](../../../functional/markdown/workflows/workqueues.md "mention")
+{% hint style="info" %}
+This is technical documentation. For the functional overview of workqueues, see [Workqueues](../../../functional/markdown/workflows/workqueues.md)
+{% endhint %}
+
+A **workqueue** is a filtered list of records shown in the OpenCRVS UI. Each workqueue applies a query against the event index and presents the matching records in a table.
 
 <div align="center"><figure><img src="../../../.gitbook/assets/Screenshot 2026-05-20 at 14.38.43.png" alt="" width="563"><figcaption><p>A list of configured workqueues</p></figcaption></figure></div>
+
+### Default workqueues
+
+OpenCRVS core provides two workqueues that you do not need to configure. They are not affected by the `workqueue` scope's `ids` list — their visibility is determined by the role's record scopes instead.
+
+| Workqueue  | Shown when                             | Contents                                                                                                                                                    |
+| ---------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Drafts** | The role has the `record.create` scope | Records the user has started filling in but not yet submitted. Stored locally on the client until declared.                                                 |
+| **Outbox** | The role has any `record.*` scope      | Records the user has triggered actions on that are queued for synchronization with the server. Useful for offline work — the queue drains once back online. |
 
 ### Configuring workqueues
 
@@ -65,15 +94,6 @@ export const Workqueues = defineWorkqueues([
   }
 ])
 ```
-
-### Default workqueues
-
-OpenCRVS core provides two workqueues that you do not need to configure. They are not affected by the `workqueue` scope's `ids` list — their visibility is determined by the role's record scopes instead.
-
-| Workqueue  | Shown when                             | Contents                                                                                                                                                    |
-| ---------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Drafts** | The role has the `record.create` scope | Records the user has started filling in but not yet submitted. Stored locally on the client until declared.                                                 |
-| **Outbox** | The role has any `record.*` scope      | Records the user has triggered actions on that are queued for synchronization with the server. Useful for offline work — the queue drains once back online. |
 
 ### Controlling visibility of workqueues
 
