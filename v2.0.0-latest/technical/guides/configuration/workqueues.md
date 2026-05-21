@@ -137,4 +137,7 @@ For the full scope configuration, see [users](users/ "mention").
 
 ### WorkqueueConfig schema
 
-\<TODO: add this when openapi has synced>
+{% openapi-schemas spec="events-develop" schemas="WorkqueueConfig" grouped="true" %}
+[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
+{% endopenapi-schemas %}
+
