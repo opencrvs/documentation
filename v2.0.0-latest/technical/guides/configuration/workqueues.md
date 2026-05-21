@@ -39,12 +39,12 @@ OpenCRVS core provides two workqueues that you do not need to configure. They ar
 
 ### Configuring workqueues
 
-Workqueues are configured to the countryconfig under `src/api/workqueue/workqueueConfig.ts`.
+Workqueues are configured in the countryconfig under `src/api/workqueue/workqueueConfig.ts`.
 
 Wrap your workqueue array in `defineWorkqueues()` from `@opencrvs/toolkit/events`. The helper parses each entry against `WorkqueueConfig` and warns about common misconfigurations.
 
 {% hint style="info" %}
-**Note:** Access to any workqueues requires the **`record.search`** scope. The scope's options further narrow which records the user actually sees inside the workqueue, so a user might only be able to access a subset of the workqueue's matching records.
+**Note:** Access to any workqueue requires the **`record.search`** scope. The scope's options further narrow which records the user actually sees inside the workqueue, so a user might only be able to access a subset of the workqueue's matching records.
 {% endhint %}
 
 **Example:**

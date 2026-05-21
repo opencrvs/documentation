@@ -83,7 +83,7 @@ A custom flag is defined once on the [EventConfig schema](./#eventconfig-schema)
 A custom flag has:
 
 * `id` — the string identifier you'll reference from actions and conditionals. It must not match an inherent flag value or the `actionType:actionStatus` action flag pattern.
-* `requiresAction` — when `true`, indicates the flag is meant to be cleared by a follow-up action. This property does not affect any functionality, it is only a indicator for developers.
+* `requiresAction` — when `true`, indicates the flag is meant to be cleared by a follow-up action. This property does not affect any functionality, it is only an indicator for developers.
 * `label` — translatable label shown wherever the flag is displayed.
 
 **Example — defining custom flags on a birth event:**

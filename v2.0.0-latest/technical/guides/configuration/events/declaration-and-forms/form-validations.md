@@ -25,7 +25,7 @@ All form fields support custom validations, which are configured with the `valid
 The `validation` property takes an array of validations, and all of them must pass for the validation of that field to succeed.
 
 {% hint style="info" %}
-Validators are conditionals. Each `validator` has the similar expressions as you would write for a `SHOW` / `ENABLE` conditional — most commonly built from the `field(...)` chain, optionally combined with `and` / `or` / `not`. See [conditionals.md](../conditionals.md "mention") for the full list of helpers.
+Validators are conditionals. Each `validator` has the similar expressions you would write for a `SHOW` / `ENABLE` conditional — most commonly built from the `field(...)` chain, optionally combined with `and` / `or` / `not`. See [conditionals.md](../conditionals.md "mention") for the full list of helpers.
 {% endhint %}
 
 The `validation` property is only used for content checks on a filled-in value. To mark a field as mandatory, use the separate `required` property on the field configuration.

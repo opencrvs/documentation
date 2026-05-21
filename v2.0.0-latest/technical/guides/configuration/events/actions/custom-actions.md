@@ -21,7 +21,7 @@ export const birthEvent = defineConfig({
       icon: 'FileArrowUp',
       label: {
         defaultMessage: 'Escalate',
-        description: 'This is shown when the escalate action can be triggered from the action from',
+        description: 'The label shown on the action menu for Escalate-action',
         id: 'event.birth.action.escalate.label'
       },
       supportingCopy: {

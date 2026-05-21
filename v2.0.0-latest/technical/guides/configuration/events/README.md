@@ -69,11 +69,11 @@ export function getEventsHandler(_: Hapi.Request, h: Hapi.ResponseToolkit) {
 
 ### Advanced search
 
-For advanced search, see [advanced-search.md](../../../apis/toolkit/configuration/advanced-search.md "mention")
+The `advancedSearch` property defines the tabs and searchable fields shown on the advanced search page for an event. See [advanced-search.md](../../../apis/toolkit/configuration/advanced-search.md "mention") for the helper reference.
 
 ### Deduplication
 
-For deduplication, see [deduplication.md](../../../apis/toolkit/deduplication.md "mention")
+The `deduplication` property on the declare and register actions defines a query used to flag potential duplicate records on submission. See [deduplication.md](../../../apis/toolkit/deduplication.md "mention") for the helper reference.
 
 ### EventConfig schema
 
