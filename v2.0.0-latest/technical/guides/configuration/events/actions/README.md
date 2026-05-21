@@ -95,7 +95,7 @@ import {
 
 ### ActionConditional schema
 
-{% openapi-schemas spec="events-develop" schemas="ActionConditional" grouped="false" %}
+{% openapi-schemas spec="events-develop" schemas="ActionConditional" grouped="true" %}
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
 {% endopenapi-schemas %}
 

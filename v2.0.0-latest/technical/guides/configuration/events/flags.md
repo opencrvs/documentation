@@ -111,7 +111,7 @@ export const birthEvent = defineConfig({
 
 ### FlagConfig schema
 
-{% openapi-schemas spec="events-develop" schemas="FlagConfig" grouped="false" %}
+{% openapi-schemas spec="events-develop" schemas="FlagConfig" grouped="true" %}
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
 {% endopenapi-schemas %}
 
@@ -202,7 +202,7 @@ The `remove` operation clears a flag if it is currently set on the record. It is
 
 ### ActionFlagConfig schema
 
-{% openapi-schemas spec="events-develop" schemas="ActionFlagConfig" grouped="false" %}
+{% openapi-schemas spec="events-develop" schemas="ActionFlagConfig" grouped="true" %}
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
 {% endopenapi-schemas %}
 
