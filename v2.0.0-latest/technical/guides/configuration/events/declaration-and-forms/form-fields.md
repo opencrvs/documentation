@@ -78,7 +78,7 @@ A multi-line text input.
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
 {% endopenapi-schemas %}
 
-### EmailFieldx§
+### EmailField
 
 An email input.
 
