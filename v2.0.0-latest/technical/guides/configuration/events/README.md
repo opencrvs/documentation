@@ -77,7 +77,6 @@ The `deduplication` property on the declare and register actions defines a query
 
 ### EventConfig schema
 
-{% openapi-schemas spec="events-develop" schemas="EventConfig" grouped="false" %}
+{% openapi-schemas spec="events-develop" schemas="EventConfig" grouped="true" %}
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
 {% endopenapi-schemas %}
-
