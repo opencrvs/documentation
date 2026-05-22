@@ -12,21 +12,9 @@ function defineConfig(config: EventConfigInput): EventConfig
 
 **Parameters**
 
-| Parameter        | Type                         | Description                                                                                                   |
-| ---------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `id`             | `string`                     | Machine-readable identifier, e.g. `'birth'`, `'death'`.                                                       |
-| `label`          | `TranslationConfig`          | Human-readable name shown in the UI.                                                                          |
-| `title`          | `TranslationConfig`          | Title template; supports field variable interpolation (e.g. `'{child.name.firstname} {child.name.surname}'`). |
-| `fallbackTitle`  | `TranslationConfig?`         | Shown when `title` resolves to an empty string.                                                               |
-| `declaration`    | `DeclarationFormConfigInput` | Form pages and fields used to capture event data.                                                             |
-| `actions`        | `ActionConfig[]`             | Ordered list of actions available for this event (declare, register, print certificate, …).                   |
-| `actionOrder`    | `string[]?`                  | Explicit rendering order for the action menu.                                                                 |
-| `summary`        | `SummaryConfig`              | Fields displayed in the event summary view.                                                                   |
-| `dateOfEvent`    | `FieldReference?`            | Points to the field that stores the event date (e.g. `field('child.dob')`).                                   |
-| `placeOfEvent`   | `FieldReference?`            | Points to the field that stores the event location.                                                           |
-| `advancedSearch` | `AdvancedSearchConfig[]?`    | Search accordion groups exposed in the advanced search panel.                                                 |
-| `flags`          | `FlagConfig[]?`              | Named flags that can be set on records of this event type.                                                    |
-| `analytics`      | `boolean?`                   | Whether records are included in analytics (default `true`).                                                   |
+{% openapi-schemas spec="events-develop" schemas="EventConfig" grouped="false" %}
+[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
+{% endopenapi-schemas %}
 
 **Example 1 — marriage event**
 
@@ -73,7 +61,3 @@ export const birthEvent = defineConfig({
   ]
 })
 ```
-
-{% openapi-schemas spec="events-develop" schemas="TranslationConfig,DeclarationFormConfig,ActionConfig,SummaryConfig,AdvancedSearchConfig,FlagConfig" grouped="true" %}
-[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
-{% endopenapi-schemas %}
