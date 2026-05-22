@@ -73,3 +73,7 @@ export const birthEvent = defineConfig({
   ]
 })
 ```
+
+{% openapi-schemas spec="events-develop" schemas="TranslationConfig,DeclarationFormConfig,ActionConfig,SummaryConfig,AdvancedSearchConfig,FlagConfig" grouped="true" %}
+[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
+{% endopenapi-schemas %}
