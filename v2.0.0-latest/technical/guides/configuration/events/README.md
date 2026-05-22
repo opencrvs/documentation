@@ -49,7 +49,7 @@ export const birthEvent = defineConfig({
 
 ### Register events with the API
 
-Export every event from `src/events/index.ts`, then return that array from your events handler:
+First, export every event from `src/events/index.ts`, then return that array from your events handler:
 
 ```typescript
 // src/events/index.ts
@@ -57,7 +57,11 @@ import { birthEvent } from './birth'
 import { deathEvent } from './death'
 
 export const eventConfigs = [birthEvent, deathEvent]
+```
 
+Then, import and use them in the `getEventsHandler()`:
+
+```typescript
 // src/api/events/handler.ts
 import * as Hapi from '@hapi/hapi'
 import { eventConfigs } from '@countryconfig/events'
