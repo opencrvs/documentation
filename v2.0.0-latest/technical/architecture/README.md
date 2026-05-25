@@ -1,21 +1,16 @@
 # Architecture
 
-<mark style="background-color:$warning;">This page is an overview to Architecture</mark> \
-\ <mark style="background-color:$warning;">Exsiting content here. Copy where relevane tinto sub sections</mark>
-
 ### 1. Introduction
 
 OpenCRVS is built using a **modular, event-driven microservices architecture** designed for scalability, configurability, and data sovereignty. The technical architecture enables countries to deploy OpenCRVS in on-premise private tier 2/3 data centres using included configurations, ensuring that civil registration data remains under national control.
 
 This section describes:
 
-* The core architectural principles and technology choices.
-* Infrastructure components (databases, orchestration, networking).
-* Microservices structure and organisation.
-* Client application architecture.
+* High-level core architectural principles and technology choices.
+* How OpenCRVS stores life events and other data
+* Infrastructure components (databases, orchestration, networking)
+* Client application architecture
 * Deployment and hosting considerations.
-
-For detailed guidance on server hosting and network architecture, visit the [setup documentation](../../../v1.9.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment).
 
 ***
 
@@ -38,20 +33,9 @@ OpenCRVS architecture is designed to deliver a **low total cost of ownership** w
 
 #### 3.1 Container orchestration
 
-**Docker Swarm** is the default orchestration platform for OpenCRVS deployments as of version 1.9.
-
-Docker Swarm was chosen in 2018 because, at the time, dependencies supporting bare-metal installations for Kubernetes architectures were in their infancy and difficult to understand. Many countries cannot legally support international data storage of citizen data on a public cloud, so were dependent on something quick and easy to install in a tier 2 data centre.
-
-Docker Swarm enables:
-
-* Simple deployment and management in tier 2/3 data centres.
-* Independent scaling of each microservice container.
-* Rapid upskilling for system administrators.
-* Low operational complexity compared to alternatives.
-
 **Kubernetes available in OpenCRVS 2.0**
 
-Since 2018, Kubernetes bare-metal tooling has advanced significantly. The work-in-progress **Kubernetes** installation will be easier to use and configure. As of OpenCRVS 1.9, Docker Swarm remains the supported deployment mechanism.
+From version 2.0, OpenCRVS can be deployed to any Kubernetes cluster. Our previous platform technology Docker Swarm will still remain supported, at least until OpenCRVS v2.1 is released. All OpenCRVS services and the deployment is defined as Helm charts, as defined in the [opencrvs-core](https://github.com/opencrvs/opencrvs-core/tree/develop/charts) repository.&#x20;
 
 #### 3.2 Databases
 
@@ -71,15 +55,9 @@ OpenCRVS uses multiple database technologies, each optimised for specific purpos
 * Powers de-duplication management to ensure data integrity.
 * Used with Kibana for application and server health monitoring.
 
-**MongoDB** (legacy)
+**Redis**
 
-* Some legacy code in OpenCRVS 1.9 still uses MongoDB.
-* This dependency will be deprecated in future releases.
-
-**InfluxData** (legacy)
-
-* Used in some legacy monitoring components.
-* This dependency will be deprecated in future releases.
+* Used for storing quickly expiring data like 2FA codes.
 
 #### 3.3 Object storage
 
@@ -94,7 +72,7 @@ OpenCRVS uses multiple database technologies, each optimised for specific purpos
 **Metabase**
 
 * Default BI tool for analytics and performance dashboards.
-* Can be substituted with any BI tool that connects to PostgreSQL.
+* Can be substituted with any BI tool as long as there is a way to share data from the country config node.js process to the tool, typically via a country-operated database.
 * Provides pre-configured operational views (workload, timeliness, completion rates).
 
 #### 3.5 Security and networking
@@ -246,12 +224,6 @@ The deployment includes:
 * Internal service mesh for inter-service communication.
 * External API gateway for integrations.
 * Firewall and network segmentation for security.
-
-***
-
-### 9. Visual architecture overview
-
-…
 
 ***
 
