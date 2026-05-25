@@ -33,11 +33,9 @@ Security in OpenCRVS is:
 * **Layered** — multiple controls protect data at different levels (authentication, access control, encryption, monitoring).
 * **Auditable** — all access to records and infrastructure is logged immutably.
 
-\<aside> 💡
-
+{% hint style="info" %}
 **Security posture** — As Gofore's Cyber Security Consultant noted: _"Already from the results of the first assessment, it was evident that the OpenCRVS web application had a good security posture. The web application security fundamentals were sound."_
-
-\</aside>
+{% endhint %}
 
 ***
 
@@ -114,11 +112,9 @@ OpenCRVS automatically provisions secure infrastructure with multiple layers of 
 * **SSH 2FA** — SSH users are configured to use Google Authenticator 2FA when connecting via a Terminal.
 * **Automated alerts** — every SSH access prompts an automated alert to technical teams via Slack.
 
-\<aside> 🚨
-
+{% hint style="warning" %}
 **VPN requirement** — OpenCRVS should only be installed behind a separately configured and managed, government-owned VPN.
-
-\</aside>
+{% endhint %}
 
 #### 5.2 TLS certificate
 
