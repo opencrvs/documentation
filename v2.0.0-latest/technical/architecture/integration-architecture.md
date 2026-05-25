@@ -16,7 +16,7 @@ Country config is owned, maintained and customised by each country. It is the br
 
 ```mermaid
 flowchart LR
-  User[Field user / Registrar] --> Core[OpenCRVS Core]
+  User[Field agent / Registrar] --> Core[OpenCRVS Core]
   Core <-->|HTTP webhooks| CountryConfig[Country config package]
   CountryConfig <--> SMS[SMS / Email provider]
   CountryConfig <--> NID[National ID system]
@@ -50,7 +50,7 @@ These are events tied to the lifecycle of a record — for example, _birth decla
 Integrations across government systems are rarely perfectly available, so Core treats every outbound call to country config as a request that **must eventually succeed**.
 
 * Core retries the request to country config until it receives a `2xx` response. Any other status code, or a network error, is treated as a transient failure and retried.
-* For requests originating from a user action in the UI, the request **does not leave the user's outbox** until Core has fully processed the event end-to-end. This means a field user working offline, or one whose request is blocked behind a slow integration, will see the action remain in their outbox until it is durably accepted.
+* For requests originating from a user action in the UI, the request **does not leave the user's outbox** until Core has fully processed the event end-to-end. This means a field agent working offline, or one whose request is blocked behind a slow integration, will see the action remain in their outbox until it is durably accepted.
 * Country config endpoints should therefore be designed to be **idempotent**. Country config may receive the same event more than once and must produce the same outcome.
 
 ```mermaid
