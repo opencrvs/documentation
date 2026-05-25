@@ -43,7 +43,7 @@ Core does not know how to send an SMS or email. It simply emits the event to cou
 
 #### 2. Action triggers (interceptable events)
 
-These are events tied to the lifecycle of a record — for example, _birth declared_, _birth registered_, _death certified_. Country config may **intercept** these events, perform additional work (such as validating against a National ID database), and then approve or reject the original action. See [Action interception](https://claude.ai/epitaxy/local_6c5cf8de-a2d6-4e31-8b9a-0fa294c8120c#action-interception) below.
+These are events tied to the lifecycle of a record — for example, _birth declared_, _birth registered_, _death certified_. Country config may **intercept** these events, perform additional work (such as validating against a National ID database), and then approve or reject the original action. See [#action-interception](integration-architecture.md#action-interception "mention") below.
 
 ### Webhook reliability
 
@@ -114,8 +114,6 @@ Country config frequently needs to read or write data in Core — for example, t
 
 * **User JWT** — country config reuses the JWT of the human user who triggered the original event. The call is performed _as that user_, with that user's permissions. This is appropriate when country config is acting on behalf of a specific human action.
 * **System client token** — a service-to-service token issued through the OpenCRVS admin UI for a registered system client. This is appropriate for background work, scheduled jobs, or any flow where no human user is in the loop.
-
-> A more detailed treatment of the auth model lives on the [authentication page](https://claude.ai/epitaxy/local_6c5cf8de-a2d6-4e31-8b9a-0fa294c8120c) — this page only covers how the two token types fit into the integration model.
 
 ### Why third parties should not call Core directly
 
