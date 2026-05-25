@@ -78,7 +78,10 @@ When Core dispatches an interceptable event, the action is recorded in Core as a
 * Core continues to be the source of truth for the action's state
 * Country config may take as long as it needs to coordinate with external systems
 
-Country config eventually resolves the pending action by calling back into Core, either to **approve** (the action proceeds and its effects are applied) or **reject** (the action is abandoned and reasons may be surfaced back to the user).
+Once country config acknowledges the event with a `2xx`, Core informs the user that the action has been safely received by the backend. From the user's point of view the submission is done — their outbox can clear. Whether and when the record reappears in a workqueue depends on how country config eventually resolves the pending action:
+
+* **Approve** — the action's effects are applied and the record moves forward in its lifecycle.
+* **Reject** — the action is marked rejected and the record returns to an appropriate workqueue for follow-up.
 
 ```mermaid
 sequenceDiagram
@@ -91,18 +94,17 @@ sequenceDiagram
   Core->>Core: Record pending action
   Core->>CC: POST event (interceptable)
   CC-->>Core: 2xx (acknowledged)
+  Core-->>User: Acknowledged — safe to clear outbox
 
   CC->>NID: Validate / register
   NID-->>CC: Result
 
   alt Validation passes
     CC->>Core: Approve pending action
-    Core->>Core: Apply action
-    Core-->>User: Success
+    Core->>Core: Apply action (record progresses)
   else Validation fails
     CC->>Core: Reject pending action
-    Core->>Core: Discard / mark rejected
-    Core-->>User: Rejection surfaced
+    Core->>Core: Mark rejected (returns to a workqueue)
   end
 ```
 
