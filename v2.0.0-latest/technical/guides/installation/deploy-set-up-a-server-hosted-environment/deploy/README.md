@@ -10,9 +10,9 @@ This deployment guide covers deployment processes for the following components:
 
 All OpenCRVS images except the country configuration template are hosted in the [GitHub container registry](https://github.com/orgs/opencrvs/packages?ecosystem=container).
 
-### Publishing your countryconfig container to Dockerhub
+### Publishing your countryconfig image to Dockerhub
 
-The default country configuration container is hosted on our DockerHub.
+The default country configuration image is hosted on our DockerHub.
 
 You will need to register your own DockerHub account and create a private repository.
 
@@ -25,5 +25,5 @@ If you look at the logs for each build, you can see the image tag associated wit
 Once you are certain that your image is successfully being built and hosted on DockerHub, you can continue.
 
 {% hint style="warning" %}
-We strongly recommend that you have enabled an [approval](/broken/pages/WMQcGxLMRv5zwOleQjRV) process for all deployment scripts to **production** and **staging** environments.&#x20;
+We strongly recommend that you have enabled an [approval](../create-a-github-environment/approval-process-for-production-environments.md) process for all deployment scripts to **production** and **staging** environments.&#x20;
 {% endhint %}

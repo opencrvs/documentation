@@ -31,5 +31,5 @@ You can deploy to your server using the automated **"Deploy OpenCRVS"** Github A
     ```
     kubectl get jobs
     ```
-* Access opencrvs in browser: `https://<your domain>` , see [Login to an OpenCRVS server](/broken/pages/ztqRF48zpvzwtCgJDpSY)
+* Access opencrvs in browser: `https://<your domain>` , see [Login to an OpenCRVS server](./login-to-an-opencrvs-server.md)
 

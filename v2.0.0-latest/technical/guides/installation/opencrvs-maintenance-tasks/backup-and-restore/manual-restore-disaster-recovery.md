@@ -28,7 +28,7 @@ Usually reasons for manual restore:
 ### Manual restore when Automated restore is configured
 
 {% hint style="info" %}
-Its recommended to configure connection to cluster as described at [Add new cluster to your default kubeconfig](/broken/pages/Oo19SaQmBF4hLOVclF06#option-3-add-new-cluster-to-your-default-kubeconfig) before running this task.
+Its recommended to configure connection to cluster as described at [Add new cluster to your default kubeconfig](../../advanced-topics/kubernetes-cluster-access.md#option-3-add-new-cluster-to-your-default-kubeconfig) before running this task.
 {% endhint %}
 
 1. From your laptop SSH (login) to backup server and make sure latest backup exists, if for some reasons backup is not there, please follow **Manual restore** scenario.
@@ -78,7 +78,7 @@ Its recommended to configure connection to cluster as described at [Add new clus
 ### Manual restore / Disaster recovery
 
 {% hint style="info" %}
-Its recommended to configure connection to cluster as described at [Add new cluster to your default kubeconfig](/broken/pages/Oo19SaQmBF4hLOVclF06#option-3-add-new-cluster-to-your-default-kubeconfig) before running this task.
+Its recommended to configure connection to cluster as described at [Add new cluster to your default kubeconfig](../../advanced-topics/kubernetes-cluster-access.md#option-3-add-new-cluster-to-your-default-kubeconfig) before running this task.
 {% endhint %}
 
 * From your laptop SSH (login) to backup server

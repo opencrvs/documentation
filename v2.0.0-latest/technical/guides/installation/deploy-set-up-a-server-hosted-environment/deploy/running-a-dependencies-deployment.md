@@ -9,7 +9,7 @@ A deployment to a **staging** environment is not permitted unless a **production
 This section explains how to deploy OpenCRVS dependencies grouped in 2 helm charts:
 
 * **Ingress controller:** [Traefik](https://doc.traefik.io/traefik/) helm chart
-* **Datastores** (via the [OpenCRVS dependencies Helm chart](https://github.com/opencrvs/infrastructure/tree/develop/charts/opencrvs-services)):
+* **Datastores** (via the [OpenCRVS dependencies Helm chart](https://github.com/opencrvs/opencrvs-core/tree/develop/charts/opencrvs-services)):
   * MongoDB
   * PostgreSQL
   * Elasticsearch
@@ -39,7 +39,7 @@ A default configuration, created by the `yarn environments:init` script, is suff
 
 1. Navigate to GitHub Actions within `infrastructure` repository
 2. Select "Deploy Dependencies" action
-3. Select "Target environment" from dropdown menu, all environments created at [Broken link](/broken/pages/Ar8Os7JHqW6KnBmoDslD "mention") step should be listed here.
+3. Select "Target environment" from dropdown menu, all environments created at [Create a GitHub Environment](../create-a-github-environment/README.md) step should be listed here.
 4. Click "Run workflow" button
 
 ### Verification steps
@@ -47,7 +47,7 @@ A default configuration, created by the `yarn environments:init` script, is suff
 * Verify workflow was completed successfully
 * Verify resources are up and running after deployment:
   * `kubectl get namespaces` : You should see 2 new namespaces created (`traefik`, `opencrvs-deps-<env>`).\
-    NOTE: Check how to run `kubectl` at [Kubernetes cluster access](/broken/pages/Oo19SaQmBF4hLOVclF06).
+    NOTE: Check how to run `kubectl` at [Kubernetes cluster access](../../advanced-topics/kubernetes-cluster-access.md).
   * `kubectl get pods -n traefik`: Make sure traefik pod is up and running
   *   `kubectl get pods -n opencrvs-deps-<environment>` : make sure datastores are up and running.\
       Example output: If monitoring is enabled, you will also see filebeat, metricbeat, kibana pods.

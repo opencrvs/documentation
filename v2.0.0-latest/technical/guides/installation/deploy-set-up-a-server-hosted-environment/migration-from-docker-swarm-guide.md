@@ -15,14 +15,13 @@ This tutorial guides you through all steps required to transform your v1.9 Docke
 
 #### 1. Infrastructure Repository
 
-OpenCRVS v2.0+ uses a dedicated repository for continuous delivery configuration:
+OpenCRVS v2.0+ uses a dedicated **repository** for continuous delivery configuration: [https://github.com/opencrvs/infrastructure](https://github.com/opencrvs/infrastructure)
 
-**Repository:** [https://github.com/opencrvs/infrastructure](https://github.com/opencrvs/infrastructure)
+**Repository:** 
 
 **Required Action:**
 
 * Fork this repository to your organization or personal GitHub account before starting migration
-* Detailed forking steps are provided in [Broken link](/broken/pages/03CDotfjzMxY2UDbp5W4#id-4.-fork-or-clone-repositories "mention")
 * Ensure that your user has admin rights over the repository
 
 #### 2. SSH Access Configuration
@@ -100,7 +99,7 @@ All OpenCRVS services are deployed as helm charts during migration.
 
 All customizations must be **re-implemented using a custom Helm chart**.
 
-An example custom helm chart is published as part of the infrastructure repository, see [https://github.com/opencrvs/infrastructure/tree/develop/charts/opencrvs-mosip](https://github.com/opencrvs/infrastructure/tree/develop/charts/opencrvs-mosip)
+An example custom helm chart is published at OpenCRVS Core repository, see [https://github.com/opencrvs/opencrvs-core/tree/develop/charts/opencrvs-mosip](https://github.com/opencrvs/opencrvs-core/tree/develop/charts/opencrvs-mosip)
 
 You may also choose to use [Bitnami Common Library Chart](https://github.com/bitnami/charts/tree/main/bitnami/common) for more advanced use cases.
 
@@ -166,7 +165,7 @@ Make sure all preparations steps completed
     <figure><img src="../../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 5. Review changes within PR:
    1. If your docker-compose file had any customisations like environment variables, please add them to `environments/<env name>/opencrvs-services/values.yaml`&#x20;
-   2. By default traefik is configured to use static ssl certificates, adjust values if needed, check documentation at [Broken link](/broken/pages/0tRt9sXOzixEtLZQot7O "mention")
+   2. By default traefik is configured to use static ssl certificates, adjust values if needed, check documentation at [TLS/SSL Configuration for traefik](../advanced-topics/tls-ssl-configuration-for-traefik/README.md)
 6.  Merge Pull request to main (develop) branch. If multiple environments were migrated at the same time, you will need to resolve pull request conflicts manually, usually effected section is `environment` input selector:
 
     <figure><img src="../../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
@@ -175,10 +174,10 @@ Make sure all preparations steps completed
 
 **Kubernetes environment provision and deploy**
 
-1. Provision Kubernetes environment on top of Docker Swarm environment: Run Provision workflow from Infrastructure repository, see for more information [Broken link](/broken/pages/VxyJDdy72Mi1awNbEQTu "mention")
+1. Provision Kubernetes environment on top of Docker Swarm environment: Run Provision workflow from Infrastructure repository, see for more information [Provisioning servers](./provisioning-servers/README.md)
 2. Reboot your target server
-3. Deploy dependencies, see for more information [Broken link](/broken/pages/ludL25iSv5QmOBkwXe2D "mention")
-4. Deploy OpenCRVS: see for more information [Broken link](/broken/pages/XcATcz2Mx4xP3j8TiC6W "mention")
+3. Deploy dependencies, see for more information [Running Dependencies deployment](./deploy/running-a-dependencies-deployment.md)
+4. Deploy OpenCRVS: see for more information [Running an OpenCRVS deployment](./deploy/running-a-opencrvs-deployment.md)
    1. Use same OpenCRVS Core image tag as docker swarm
    2. Use same Country config image tag as docker swarm
    3.  Make sure "Enable data seeding during deployment" is unchecked
@@ -265,8 +264,6 @@ This section outlines the fundamental differences in backup and restore implemen
 * Each job runs as a **Kubernetes pod** with database client tools
 
 The fundamental shift is from **filesystem-based operations** to **network-based database operations**. While this introduces network overhead, it provides the flexibility and portability required for modern cloud-native deployments, including support for managed database services and multi-environment consistency.
-
-Check [Broken link](/broken/pages/ksyXmFt3UUOXzLvqFFAN "mention") for more information and configuration details.
 
 ## GitHub Fine-grained token
 

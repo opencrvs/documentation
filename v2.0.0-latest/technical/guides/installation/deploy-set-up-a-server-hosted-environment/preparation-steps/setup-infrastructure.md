@@ -202,7 +202,7 @@ disk_encryption_key_path: /root/disk-encryption-key.txt
 ```
 
 {% hint style="success" %}
-All the secrets are explained in more detail in the section [4.3.1.1 Environment secrets and variables explained.](/broken/pages/m3JwlnOGzTYIpoXdEwyu)
+All the secrets are explained in more detail in the section [Environment secrets and variables explained.](../create-a-github-environment/environment-secrets-and-variables-explained.md)
 {% endhint %}
 
 ### Server clusters by project

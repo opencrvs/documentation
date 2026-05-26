@@ -29,7 +29,7 @@ It also requires the backup encryption key, which is stored in the same namespac
 The steps for copying these secrets from the production cluster, adjusting them as needed, and creating them in the staging cluster are described below.
 
 {% hint style="info" %}
-Its recommended to configure connection to cluster as described at [Add new cluster to your default kubeconfig](/broken/pages/Oo19SaQmBF4hLOVclF06#option-3-add-new-cluster-to-your-default-kubeconfig) before running this task.
+Its recommended to configure connection to cluster as described at [Add new cluster to your default kubeconfig](../../advanced-topics/kubernetes-cluster-access.md#option-3-add-new-cluster-to-your-default-kubeconfig) before running this task.
 {% endhint %}
 
 1.  Connect to production cluster with `kubectl` :
@@ -125,7 +125,7 @@ restore:
   backup_encryption_secret: restore-encryption-secret
 ```
 
-Push your changes to github and Re-[Deploy Dependencies](/broken/pages/ludL25iSv5QmOBkwXe2D)
+Push your changes to github and Re-[Deploy Dependencies](../../deploy-set-up-a-server-hosted-environment/deploy/running-a-dependencies-deployment.md)
 
 #### Enable reindex in OpenCRVS helm chart values
 
@@ -141,7 +141,7 @@ elasticsearch:
     schedule "0 2 * * *"
 ```
 
-Push your changes to github and Re-[Deploy OpenCRVS](/broken/pages/XcATcz2Mx4xP3j8TiC6W)
+Push your changes to github and Re-[Deploy OpenCRVS](../../deploy-set-up-a-server-hosted-environment/deploy/running-a-opencrvs-deployment.md)
 
 ## Verify restore configuration
 
