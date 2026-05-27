@@ -48,7 +48,7 @@ Seeding users
 Done in 9.15s.
 ```
 
-If for some reason data seed job was not executed or failed at installation time, please check [Seeding a server environment](/broken/pages/3VuIbK6io13npPWymc1x) to get more information how to re-run job.
+If for some reason data seed job was not executed or failed at installation time, please check [Seeding a server environment](../../opencrvs-maintenance-tasks/seeding-a-server-environment.md) to get more information how to re-run job.
 
 ### Debugging SMTP
 
@@ -62,4 +62,4 @@ As the SMTP API was configured in the countryconfig service, you can filter the 
 kubernetes.container.name : "countryconfig"
 ```
 
-As you browse the logs you are looking for 500 errors and you can respond to any SMTP service error messages that you see appropriately. Perhaps you need to change the Github Action secrets. [Running a deployment ](/broken/pages/XcATcz2Mx4xP3j8TiC6W)of OpenCRVS will refresh all microservices and so this is required when secrets are updated.
+As you browse the logs you are looking for 500 errors and you can respond to any SMTP service error messages that you see appropriately. Perhaps you need to change the Github Action secrets. [Running a deployment ](./running-a-opencrvs-deployment.md)of OpenCRVS will refresh all microservices and so this is required when secrets are updated.

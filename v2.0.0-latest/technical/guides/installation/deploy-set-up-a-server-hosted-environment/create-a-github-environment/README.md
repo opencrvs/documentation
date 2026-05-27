@@ -308,7 +308,7 @@ Review modified files:
 ### Final notice
 
 {% hint style="danger" %}
-The later [provision](/broken/pages/VxyJDdy72Mi1awNbEQTu) script will disable password SSH access for all users on the server and create new users from the `infrastructure/server-setup/inventory/<environment name>.yml` file. After provisioning, SSH will only be possible using public/private key pairs.
+The later [provision](../provisioning-servers/README.md) script will disable password SSH access for all users on the server and create new users from the `infrastructure/server-setup/inventory/<environment name>.yml` file. After provisioning, SSH will only be possible using public/private key pairs.
 {% endhint %}
 
 {% hint style="success" %}

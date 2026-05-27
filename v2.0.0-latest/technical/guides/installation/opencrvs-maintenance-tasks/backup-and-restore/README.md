@@ -5,7 +5,7 @@
 ### General information
 
 {% hint style="info" %}
-Backup and restore is automatically configured while environment creation by `yarn environment:init` script, check [Broken link](/broken/pages/Ar8Os7JHqW6KnBmoDslD "mention"). This guide dives into details:
+Backup and restore is automatically configured while environment creation by `yarn environment:init` script, check [Create a Github environment](../../deploy-set-up-a-server-hosted-environment/create-a-github-environment/README.md). This guide dives into details:
 
 * How to configure backup and restore without GitHub integration?
 * How to perform manual backup?

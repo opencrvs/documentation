@@ -16,9 +16,9 @@ backup:
   backup_server_dir: /home/backup/<environment>
 ```
 
-Push your changes to GitHub and Re-[Deploy Dependencies](/broken/pages/ludL25iSv5QmOBkwXe2D)
+Push your changes to GitHub and Re-[Deploy Dependencies](../../deploy-set-up-a-server-hosted-environment/deploy/running-a-dependencies-deployment.md)
 
-If backup server was provisioned as part of any other environments or is a third-party server, then please follow guide from helm chart, see [Backup configuration](https://github.com/opencrvs/infrastructure/blob/develop/charts/dependencies/README.md#backup-configuration).
+If backup server was provisioned as part of any other environments or is a third-party server, then please follow guide from helm chart, see [Backup configuration](https://github.com/opencrvs/opencrvs-core/blob/develop/charts/dependencies/README.md#backup-configuration).
 
 ### Verify backup configuration
 
@@ -81,7 +81,7 @@ Verify backup files are present on backup server
     Example output:
 
     ```
-    backup@tmp-backup:~$ ls -l /home/backup/production/2025-11-12
+    backup@backup-01:~$ ls -l /home/backup/production/2025-11-12
     total 25972
     -rw-r--r-- 1 backup backup    74704 Nov 12 01:00 influxdb_backup_2025-11-12.tar.gz.enc
     -rw-r--r-- 1 backup backup 26506864 Nov 12 01:00 minio_backup_2025-11-12.tar.gz.enc

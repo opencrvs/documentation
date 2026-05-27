@@ -22,7 +22,7 @@ Country config image requires SMTP server configuration for emails. Following en
 * SMTP\_USERNAME
 * ALERT\_EMAIL
 
-Full description is at [4.3.1.1 Environment secrets and variables explained](/broken/pages/m3JwlnOGzTYIpoXdEwyu)
+Full description is at [Environment secrets and variables explained](../deploy-set-up-a-server-hosted-environment/create-a-github-environment/environment-secrets-and-variables-explained.md)
 
 Steps to add GitHub secrets to Kubernetes
 
@@ -38,7 +38,7 @@ Steps to add GitHub secrets to Kubernetes
       # data: Mapping between particular GitHub secret 
       # and Secret key inside kubernetes secret
       # Format is &#x3C;GH Secret>:[Kubernetes secret key],
-      # if Kubernetes secret key then it's key will be the same as GitHub secret
+      # If the Kubernetes Secret key is omitted, the GitHub secret name will be used as the key.
       data:
         - SENDER_EMAIL_ADDRESS
         - SMTP_HOST
@@ -51,7 +51,7 @@ Steps to add GitHub secrets to Kubernetes
 
     1. For mapping secrets in dependencies: [.github/TEMPLATES/secret-mapping-opencrvs-deps.yml](https://github.com/opencrvs/infrastructure/blob/develop/.github/TEMPLATES/secret-mapping-opencrvs-deps.yml)
     2. For mapping secrets in OpenCRVS: [.github/TEMPLATES/secret-mapping-opencrvs.yml](https://github.com/opencrvs/infrastructure/blob/develop/.github/TEMPLATES/secret-mapping-opencrvs.yml)
-    3.  Map values from secret to particular container in helm chart values:\
+3.  Map values from secret to particular container in helm chart values:\
     Check documentation for more information: [Mapping secrets](https://github.com/opencrvs/opencrvs-core/blob/develop/charts/opencrvs-services/README.md#mapping-secrets) (Helm chart README.md)
 
     <pre class="language-yaml" data-title="Example of mapping secret keys from &#x22;smtp-config&#x22; secret to countryconfig service"><code class="lang-yaml">countryconfig:

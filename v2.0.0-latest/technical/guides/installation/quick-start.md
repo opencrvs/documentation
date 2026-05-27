@@ -8,25 +8,30 @@ npm create @opencrvs/countryconfig <project-name>
 
 This command creates a country configuration package with a minimal example configuration.
 
+### Run local development environment
 
+Make sure all prerequisites are installed, see [opencrvs-coutnryconfig](https://github.com/opencrvs/opencrvs-countryconfig/#prerequisites)
 
-### Fork (or clone) repositories
+Navigate to `<project-name>-countryconfig`
 
-Create your own forks from the following repositories:Country configuration.&#x20;
+Start development environemnt:
+```
+tilt up
+```
 
-* [https://github.com/opencrvs/infrastructure](https://github.com/opencrvs/infrastructure): Repository is used to store Infrastructure and CI/CD configuration (ansible inventory files and helm release values).
+Open the Tilt UI:
+```
+http://localhost:10350
+```
+Wait until the main resources are running.
 
-**Steps to fork a repository:**
+Then run the data seed task from the Tilt UI:
+1. Open http://localhost:10350
+2. Find the `2.Data-tasks` section
+3. Run the `seed-data` or `clean-&-seed` resource
+4. Wait until the job completes
 
-1. Go to [https://github.com/opencrvs/infrastructure](https://github.com/opencrvs/infrastructure)&#x20;
-2. In the top right corner press "Fork" button
-3. Provide "Owner" and "Repository name" values
-4. Press "Create fork" button.
+Open OpenCRVS: http://opencrvs.localhost
 
-**For CI/CD:**
+Thats it! 🎉
 
-Create a [Github Personal Access Token ](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)with the required permissions in order for the script to programmatically create Github environments on your forked repository. Usually, the only required scope for the token is "repo".
-
-{% hint style="warning" %}
-Set the token expiration time as needed. Keep in mind that the token secret must be updated regularly for deployment actions to continue working after it expires.
-{% endhint %}
