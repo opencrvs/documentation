@@ -11,12 +11,12 @@ metaLinks:
 
 Now that your Github environments are set up you can proceed to provision your servers using our automated ["Ansible"](https://www.ansible.com/) powered actions.
 
-The Provision environment action will automate a large number of installation and sysadmin [tasks](https://github.com/opencrvs/infrastructure/tree/develop/infrastructure/server-setup/tasks) on your servers.  Refer to the directories in order to understand each task.
+The Provision environment action will automate a large number of installation and sysadmin [tasks](https://github.com/opencrvs/infrastructure/tree/develop/infrastructure/server-setup/tasks) on your servers. Refer to the directories in order to understand each task.
 
 {% hint style="danger" %}
-**IMPORTANT SERVER ACCESS NOTE**: As a security step, the Ansible script will disable root SSH access to your server and all password access for SSH users. [SSH key](https://www.ssh.com/academy/ssh-keys) authentication is then enforced using the public keys for the users in your inventory files.&#x20;
+**IMPORTANT SERVER ACCESS NOTE**: As a security step, the Ansible script will disable root SSH access to your server and all password access for SSH users. [SSH key](https://www.ssh.com/academy/ssh-keys) authentication is then enforced using the public keys for the users in your inventory files.
 
-Additionally. SSH users will be required to install [**Google Authenticator**](https://en.wikipedia.org/wiki/Google_Authenticator) and use a 2FA code to access. SSH access procedures to a server after Provisioning completes. This is explained here.  Refer to [SSH Access](../../advanced-topics/ssh-access.md)
+Additionally. SSH users will be required to install [**Google Authenticator**](https://en.wikipedia.org/wiki/Google_Authenticator) and use a 2FA code to access. SSH access procedures to a server after Provisioning completes. This is explained here. Refer to [SSH Access](../../advanced-topics/ssh-access.md)
 {% endhint %}
 
 {% hint style="warning" %}
@@ -27,12 +27,14 @@ Provision scripts includes Kubernetes cluster upgrade playbook (see tags `all` a
 
 Click on the "Actions" tab in Github and select the "Provision environment" action. Click the "Run workflow" button.
 
-<figure><img src="../../../../../.gitbook/assets/Screenshot 2024-11-11 at 16.48.25.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
 
 * In the "Machine to provision" select your target environment, E/g: "**qa**".
 * In the "Select group tag you want to execute" select, choose "**all**". All other options will work properly after first provision
 * Click the green "Run workflow" button to commence the provisioning of this server.
-* If you have enabled the approval step for production environments, an issue will open requiring your list of users to approve the running of the action by commenting as described within the issue.  See below ...
+* If you have enabled the approval step for production environments, an issue will open requiring your list of users to approve the running of the action by commenting as described within the issue. See below ...
+
+<figure><img src="../../../../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../../../.gitbook/assets/Screenshot 2026-02-27 at 15.08.00.png" alt=""><figcaption><p>An automated issue will open requiring approval for any action to run in an environment where this process has been enabled.</p></figcaption></figure>
 
@@ -43,9 +45,9 @@ The process can take anything up to around **20-30** minutes to complete.
 If you see a red cross, it means that a certain step failed and requires to be debugged. There might be a problem with your data center, your Ansible inventory files, your Github environment secrets, or there may be network connectivity issues.
 
 {% hint style="info" %}
-Ansible will perform a huge amount of Ubuntu commands that you would normally be required to run manually one-by-one. It saves you a large amount of time.&#x20;
+Ansible will perform a huge amount of Ubuntu commands that you would normally be required to run manually one-by-one. It saves you a large amount of time.
 
-If the Provision action fails, try re-running it before investigating further, as failures could be due to network conditions.  If it fails at the same point each time, then a legitimate bug requires investigation.
+If the Provision action fails, try re-running it before investigating further, as failures could be due to network conditions. If it fails at the same point each time, then a legitimate bug requires investigation.
 
 You will need experience with Ubuntu and confidence with servers to debug any issues. In the above example, the solution was as simple as SSH-ing into the server and running the command as instructed in the error message, then re-running the Provision action again.
 
@@ -67,4 +69,3 @@ If the server provisioning works, you will eventually see a green tick to mark t
 In the "Select group tag you want to execute" select, when you choose "**all**", you are instructing Ansible to run every one of the infrastructure task commands listed in the [**infrastructure/server-setup/tasks**](https://github.com/opencrvs/opencrvs-countryconfig/tree/develop/infrastructure/server-setup/tasks) directory and explained in this [list](ansible-tasks-when-provisioning.md).
 
 It is possible for you to choose to run any one of these tasks individually at any time, such as an example given when refreshing [static TLS certificates](../../advanced-topics/tls-ssl-configuration-for-traefik/static-tls-certificates.md).
-
