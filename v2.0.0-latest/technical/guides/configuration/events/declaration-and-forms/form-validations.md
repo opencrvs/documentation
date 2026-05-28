@@ -16,6 +16,8 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # Form validations
@@ -83,21 +85,16 @@ Validation errors on the declaration form are shown both on the form page, and t
 
 {% columns %}
 {% column %}
-<figure><img src="../../../../../.gitbook/assets/Screenshot 2026-05-20 at 9.48.30 (2).png" alt=""><figcaption><p>Form page</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/Screenshot 2026-05-20 at 9.48.30.png" alt=""><figcaption><p>Form page</p></figcaption></figure>
 {% endcolumn %}
 
 {% column %}
-<figure><img src="../../../../../.gitbook/assets/Screenshot 2026-05-20 at 9.49.05 (3).png" alt=""><figcaption><p>Review page</p></figcaption></figure>
-
-
+<figure><img src="../../../../../.gitbook/assets/Screenshot 2026-05-20 at 9.49.05.png" alt=""><figcaption><p>Review page</p></figcaption></figure>
 {% endcolumn %}
 {% endcolumns %}
-
-
 
 ### ValidationConfig schema
 
 {% openapi-schemas spec="events-develop" schemas="ValidationConfig" grouped="true" %}
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
 {% endopenapi-schemas %}
-
