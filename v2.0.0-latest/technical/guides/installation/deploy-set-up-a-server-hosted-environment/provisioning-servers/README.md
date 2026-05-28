@@ -27,7 +27,7 @@ Provision scripts includes Kubernetes cluster upgrade playbook (see tags `all` a
 
 Click on the "Actions" tab in Github and select the "Provision environment" action. Click the "Run workflow" button.
 
-<figure><img src="../../../../../.gitbook/assets/image (15).png" alt=""><figcaption><p>An automated issue will open requiring approval for any action to run in an environment where this process has been enabled.</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
 * In the "Machine to provision" select your target environment, E/g: "**qa**".
 * In the "Select group tag you want to execute" select, choose "**all**". All other options will work properly after first provision
