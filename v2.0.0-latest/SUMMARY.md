@@ -161,7 +161,7 @@
     * [Certificates](technical/guides/configuration/certificates/README.md)
       * [Template variables](technical/guides/configuration/certificates/template-variables.md)
       * [Custom template variables](technical/guides/configuration/certificates/custom-template-variables.md)
-      * [Multiple  templates](technical/guides/configuration/certificates/multiple-templates.md)
+      * [Multiple templates](technical/guides/configuration/certificates/multiple-templates.md)
     * [Action triggers](technical/guides/configuration/action-triggers/README.md)
       * [Email notifications](technical/guides/configuration/action-triggers/email-notifications.md)
     * [Analytics](technical/guides/configuration/analytics.md)
@@ -172,16 +172,17 @@
   * [Version upgrades](technical/guides/version-upgrades.md)
   * [Integration](technical/guides/integration/README.md)
     * [Integration: ID systems](technical/guides/integration/integration-id-systems.md)
+    * [Authenticate a client](technical/guides/integration/authenticate-a-client.md)
   * [Contributing](technical/guides/contributing/README.md)
     * [Core development](technical/guides/contributing/core-development.md)
 * [APIs](technical/apis/README.md)
   * [Certificate variables & helpers](technical/apis/certificate-variables-and-helpers.md)
   * [Core APIs](technical/apis/core-apis/README.md)
     * ```yaml
-      type: builtin:openapi
       props:
         models: true
         downloadLink: true
+      type: builtin:openapi
       dependencies:
         spec:
           ref:
