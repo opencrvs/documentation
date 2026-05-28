@@ -10,7 +10,7 @@ Now that you have created a client, when you want to perform an API request you 
 
 Client access tokens are valid for a maximum of 10 minutes. After it expires you must authenticate again to retrieve a new access token.
 
-You can use our Postman collections to test all client functionality. Postman is a tool you can download to test API access before building your integrations.
+
 
 **URL**
 
