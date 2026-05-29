@@ -32,7 +32,7 @@ Then run the data seed task from the Tilt UI:
 
 1. Open http://localhost:10350
 2. Find the `2.Data-tasks` section
-3. Run the `seed-data` or `clean-&-seed` resource
+3. Run the `data-seed` or `clean-&-seed` resource
 4. Wait until the job completes
 
 Open OpenCRVS: http://opencrvs.localhost
