@@ -7,7 +7,7 @@ description: >-
 
 # Performance
 
-All numbers on this page come from load tests run against a database of **1.2 million records** on a modest two-server setup. A larger deployment would perform even better.
+All numbers on this page come from load tests run against a database of **1.2 million records** on a modest two-server (primary + secondary) setup. A larger deployment would perform even better.
 
 ***
 
