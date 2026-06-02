@@ -1,3 +1,7 @@
+---
+description: Please spend the time to read this if you need to debug VCs
+---
+
 # Verifiable credentials
 
 > **Current scope:** Birth events only.
@@ -35,9 +39,9 @@ A registrar opens a **REGISTERED** birth record and selects **"Issue a verifiabl
 * The action is **visible** only when the record status is `REGISTERED` and `vc-issued` is absent.
 * The `vc-issued` flag is added to the record when the action is submitted, preventing re-issuance.
 
-#### 2.3 Form configuration
+#### 2.3 [Form configuration](https://github.com/opencrvs/opencrvs-farajaland/blob/release-v2.0.0/src/verifiable-credentials/issue-birth-credential-action.ts)
 
-#### 2.4 SD-JWT payload template
+#### 2.4 [SD-JWT payload template](https://github.com/opencrvs/opencrvs-farajaland/blob/release-v2.0.0/src/verifiable-credentials/birth-credential-template.ts)
 
 ### 3. Paper VC (raw JWT) - issuance flow
 
@@ -45,12 +49,12 @@ This path produces a signed JWT that is rendered as a QR code directly on the pr
 
 #### 3.1 Trigger
 
-When a registrar initiates **"Print" → "Birth Certificate"**, the print form is opened. The `print-birth-credential-action.ts` module injects two hidden fields into the **Collect Payment** page of the print workflow.
+When a registrar initiates **"Print" -> "Birth Certificate"**, the print form is opened. The `print-birth-credential-action.ts` module injects two hidden fields into the **Collect Payment** page of the print workflow.
 
 #### 3.2 Hidden field sequence
 
-1. **`verifiable-credential-creation-http-request`** (FieldType.HTTP) — Automatically fires a POST to `PAPER_CREDENTIAL_HANDLER_URL` → `POST /api/countryconfig/verifiable-credentials/paper-credential`.
-2. **`verifiable-credential`** (FieldType.ALPHA\_HIDDEN) — Stores the result at `data.credential_qr` (a data URL of the QR code).
+1. **`verifiable-credential-creation-http-request`** (FieldType.HTTP) - Automatically fires a POST to `PAPER_CREDENTIAL_HANDLER_URL` → `POST /api/countryconfig/verifiable-credentials/paper-credential`.
+2. **`verifiable-credential`** (FieldType.ALPHA\_HIDDEN) - Stores the result at `data.credential_qr` (a data URL of the QR code).
 
 Both fields use `DISPLAY_ON_REVIEW` with `never()` to remain invisible throughout the UI.
 
@@ -64,9 +68,9 @@ The birth certificate SVG template references the credential QR code via a handl
 
 The `$lookup` helper retrieves the `verifiable-credential` annotation from the `PRINT_CERTIFICATE` action, which contains the QR code data URL.
 
-#### 3.4 Form configuration
+#### 3.4[ Form configuration](https://github.com/opencrvs/opencrvs-farajaland/blob/release-v2.0.0/src/verifiable-credentials/print-birth-credential-action.ts)
 
-#### 3.5 Paper VC payload template
+#### 3.5 [Paper VC payload template](https://github.com/opencrvs/opencrvs-farajaland/blob/release-v2.0.0/src/verifiable-credentials/paper-birth-credential-template.ts)
 
 **Notable design choices:**
 
@@ -97,7 +101,7 @@ The flag:
 
 ***
 
-### 6. Farajaland deployment configuration
+### 6. Farajaland/Integrationland deployment configuration
 
 #### Environment variables
 
@@ -106,7 +110,7 @@ The flag:
 | `VERIFIABLE_CREDENTIALS_SDJWT_ISSUE_URL`  | `http://localhost:3040/_demo-issuer/openid4vc/sdjwt/issue` | `https://proxy.issuer.opencrvs.dev/openid4vc/sdjwt/issue` |
 | `VERIFIABLE_CREDENTIALS_RAW_JWT_SIGN_URL` | `http://localhost:3040/_demo-issuer/raw/jwt/sign`          | `https://proxy.issuer.opencrvs.dev/raw/jwt/sign`          |
 
-### 7. [Farajaland issuer deployment](https://github.com/opencrvs/verifiable-credential-issuer)
+### 7. [Farajaland/Integrationland issuer deployment](https://github.com/opencrvs/verifiable-credential-issuer)
 
 Farajaland uses Walt.id to issue VCs. The issuer service is not deployed within the Farajaland deployment - the infrastructure is not yet properly secured and the setup is maintained separately.
 
