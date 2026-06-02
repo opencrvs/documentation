@@ -214,38 +214,3 @@ This is the way in Collab:
 * zone -> country value
 
 Note that the addresses will not work properly before the address unification in https://github.com/mosip/address-standard-unification is done in both MOSIP & OpenCRVS.
-
-## Local env variables for mosip-api with Collab
-
-```
-MOSIP_WEBSUB_SECRET=oDoJv13RqD0ohn6ykA7kZNSlo1hB6GP2
-MOSIP_WEBSUB_TOPIC=crvs_partner/CREDENTIAL_ISSUED
-MOSIP_CREATE_PACKET_URL=https://api-internal.collab.mosip.net/commons/v1/packetmanager/createPacket
-MOSIP_PROCESS_PACKET_URL=https://api-internal.collab.mosip.net/registrationprocessor/v1/workflowmanager/workflowinstance
-MOSIP_VERIFIABLE_CREDENTIAL_ALLOWLIST=https://api.collab.mosip.net/.well-known/public-key.json
-
-MOSIP_CENTER_ID=10001
-MOSIP_MACHINE_ID=20042
-MOSIP_PACKET_AUTH_CLIENT_ID=mosip-crvs1-client
-MOSIP_PACKET_AUTH_CLIENT_SECRET=wqYUQ3lSLt3BzSvncnYKQ29hnuo2OfFh
-MOSIP_WEBSUB_AUTH_CLIENT_ID=crvs_partner
-MOSIP_WEBSUB_AUTH_CLIENT_SECRET=oDoJv13RqD0ohn6ykA7kZNSlo1hB6GP2
-MOSIP_AUTH_CLIENT_APP_ID=ida
-MOSIP_WEBSUB_CALLBACK_URL=https://47f9-91-152-187-244.ngrok-free.app/websub/callback
-PARTNER_APIKEY=177629
-PARTNER_ID=9FChkkfixwsSFSvBaA7oCOkfNnBUj2XIZObAtyOGHsIAyG0JOG
-PARTNER_MISP_LK=opencrvs-auth-partner
-IDA_AUTH_DOMAIN_URI=https://api-internal.collab.mosip.net
-IDA_AUTH_URL=https://api.collab.mosip.net/idauthentication/v1/auth
-MOSIP_AUTH_URL=https://api-internal.collab.mosip.net/v1/authmanager/authenticate/clientidsecretkey
-
-ESIGNET_USERINFO_URL=https://esignet-mosipid.collab.mosip.net/v1/esignet/oidc/userinfo
-ESIGNET_TOKEN_URL=https://esignet-mosipid.collab.mosip.net/v1/esignet/oauth/v2/token
-
-ENCRYPT_CERT_PATH=../../certs/2026-mosip-connect/ida-partner.crt
-DECRYPT_P12_FILE_PATH=../../certs/2026-mosip-connect/keystore.p12
-DECRYPT_P12_FILE_PASSWORD=mosip123
-SIGN_P12_FILE_PATH=../../certs/2026-mosip-connect/keystore.p12
-OIDP_CLIENT_PRIVATE_KEY_PATH=../../certs/2026-mosip-connect/esignet-jwk.txt
-MOSIP_WEBSUB_HUB_URL=https://api-internal.collab.mosip.net/hub
-```
