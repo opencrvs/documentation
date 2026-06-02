@@ -136,6 +136,8 @@ To-do:
 * Walt.id [now supports](https://github.com/walt-id/waltid-identity/issues/1591) expiration & other JWT attributes in raw JWT signing since v0.18.2. It is unclear whether the currently deployed version includes these attributes in the paper VC; the **demo portals** (see **Demo portals** below) do not validate for them either.
 * Walt.id [now supports](https://github.com/walt-id/waltid-identity/issues/1693) top-level `display` in the issuer-api config. This should improve the wallet experience but has not yet been configured.
 
+Walt.id has public APIs in [https://issuer-api.issuer.opencrvs.dev/swagger/index.html](https://issuer-api.issuer.opencrvs.dev/swagger/index.html) & [https://verifier-api2.issuer.opencrvs.dev/swagger/index.html](https://verifier-api2.issuer.opencrvs.dev/swagger/index.html)
+
 ### 8. [Farajaland demo portals](https://github.com/opencrvs/farajaland-demo-portals)
 
 A demo portal that can verify paper and digital VCs using **offline verification** (JavaScript JWT check with public key) and **online verification** (connects to `issuer.opencrvs.dev`).
