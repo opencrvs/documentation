@@ -13,7 +13,6 @@
 * [VPNs - Wireguard & OpenVPN](vpns-wireguard-and-openvpn/README.md)
   * [Connect Github Actions with Wireguard](vpns-wireguard-and-openvpn/connect-github-actions-with-wireguard.md)
   * [Setup a Wireguard server](vpns-wireguard-and-openvpn/setup-a-wireguard-server.md)
-* [Setting up MOSIP - OpenCRVS](setting-up-mosip-opencrvs.md)
 * [Verifiable credentials](verifiable-credentials.md)
 * [Advanced debugging tips & tricks](advanced-debugging-tips-and-tricks/README.md)
   * [Connecting to remote MongoDB from a local machine](advanced-debugging-tips-and-tricks/connecting-to-remote-mongodb-from-a-local-machine.md)
