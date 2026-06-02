@@ -1,7 +1,5 @@
 # Verifiable credentials
 
-## Verifiable Credentials
-
 > **Current scope:** Birth events only.
 
 OpenCRVS supports two distinct issuance paths: 1) a **digital** SD-JWT / OID4VC credential delivered via a QR code link for digital wallets, and a **paper** raw JWT credential embedded as a QR code on printed birth certificates.
