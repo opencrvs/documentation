@@ -159,9 +159,9 @@
       * [Conditionals](technical/guides/configuration/events/conditionals.md)
     * [Workqueues](technical/guides/configuration/workqueues.md)
     * [Certificates](technical/guides/configuration/certificates/README.md)
-      * [Template variables](technical/guides/configuration/certificates/template-variables.md)
-      * [Custom template variables](technical/guides/configuration/certificates/custom-template-variables.md)
-      * [Multiple templates](technical/guides/configuration/certificates/multiple-templates.md)
+      * [Built-in helpers and template variables](technical/guides/configuration/certificates/built-in-helpers-and-template-variables.md)
+      * [Custom Handlebars.js helpers](technical/guides/configuration/certificates/custom-handlebars.js-helpers.md)
+      * [Multi-Page Certificate Templates](technical/guides/configuration/certificates/multi-page-certificate-templates.md)
     * [Action triggers](technical/guides/configuration/action-triggers/README.md)
       * [Email notifications](technical/guides/configuration/action-triggers/email-notifications.md)
     * [Analytics](technical/guides/configuration/analytics.md)
@@ -176,7 +176,6 @@
   * [Contributing](technical/guides/contributing/README.md)
     * [Core development](technical/guides/contributing/core-development.md)
 * [APIs](technical/apis/README.md)
-  * [Certificate variables & helpers](technical/apis/certificate-variables-and-helpers.md)
   * [Core APIs](technical/apis/core-apis/README.md)
     * ```yaml
       props:

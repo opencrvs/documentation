@@ -11,7 +11,7 @@ Use this guide when you are:
 * Controlling which roles can access which dashboards.
 * Configuring which event data flows into Metabase.
 
-For an overview of what dashboards show and who uses them, see the [**Performance dashboards**](/broken/pages/aOjs4gC5WzIpifbjuGsn) page in the Functional section.
+For an overview of what dashboards show and who uses them, see the [**Performance dashboards**](https://app.gitbook.com/s/TIJguU5Pzi7HeHrkXa4I/functional) page in the Functional section.
 
 
 
