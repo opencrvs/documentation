@@ -1,3 +1,7 @@
+---
+description: Configuring multi-page PDF certificates
+---
+
 # Multi-Page Certificate Templates
 
 OpenCRVS supports certificate templates that render as multiple PDF pages. Each page is defined as a `<g data-page="N">` group inside a single SVG file.

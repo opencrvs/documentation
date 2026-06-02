@@ -1,3 +1,7 @@
+---
+description: How to use the built-in certificate helpers
+---
+
 # Built-in helpers and template variables
 
 Reference for everything available in a certificate SVG template — the four context objects and all built-in Handlebars helpers.

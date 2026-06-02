@@ -1,3 +1,7 @@
+---
+description: How to add custom certificate helpers
+---
+
 # Custom Handlebars.js helpers
 
 Custom helpers let your country config add new Handlebars functions to certificate templates — anything from simple text formatting to complex multi-language address rendering. They are the escape hatch when the built-in helpers (`$lookup`, `$join`, `$intl`, etc.) aren't enough.

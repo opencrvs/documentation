@@ -1,3 +1,7 @@
+---
+description: Configuring your printable PDF documents
+---
+
 # Certificates
 
 Certificates in OpenCRVS are printable PDF documents generated from registered event records. They are built from SVG templates that use Handlebars syntax — a familiar `{{expression}}` format — to pull in record data at print time. Core handles the rendering pipeline; everything else (which templates exist, what data they show, how they look) is configured in countryconfig.
