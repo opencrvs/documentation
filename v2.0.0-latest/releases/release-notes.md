@@ -1,8 +1,6 @@
 # Release notes
 
-## Release notes
-
-### 1. Introduction
+## Introduction
 
 OpenCRVS release notes document changes, improvements, and fixes delivered in each version. These notes help implementation teams understand what has changed, plan migrations, and take advantage of new features.
 
@@ -10,9 +8,9 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 
 ***
 
-### 2. Releases
+## Releases
 
-#### v2.1 (Planned Q3 2026)
+### v2.1 (Planned Q3 2026)
 
 **Focus:** …
 
@@ -34,7 +32,7 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 
 ***
 
-#### v2.0 (8 May 2026)
+### v2.0 (8 May 2026)
 
 **Focus:** …
 
