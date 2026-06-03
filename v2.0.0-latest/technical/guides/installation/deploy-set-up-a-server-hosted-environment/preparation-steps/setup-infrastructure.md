@@ -1,7 +1,5 @@
 # Setup infrastructure
 
-
-
 ### Data Center
 
 OpenCRVS should only be provisioned on servers located in an equivalent minimum of a [certified Tier 2 or 3 Datacenter](https://uptimeinstitute.com/tier-certification/tier-certification-list).
@@ -38,7 +36,7 @@ Before proceeding to discuss network specifications, it is important to understa
 
 ### Server specifications
 
-Refer to these minimum server specifications for the above environments. Note that the hard-disk space specifications are illustrative. Depending on the population size, number of records to migrate and number of supporting documents that are required to be captured during civil registration business processes, you may require more RAM / disk-space.&#x20;
+Refer to these minimum server specifications for the above environments. Note that the hard-disk space specifications are illustrative. Depending on the population size, number of records to migrate and number of supporting documents that are required to be captured during civil registration business processes, you may require more RAM / disk-space.
 
 These are **absolute minimum specifications**.
 
@@ -49,7 +47,7 @@ Regardless your system administrators must be capable of monitoring and increasi
 | Environment (use)                              | Minimum specification                                                                                                                  |
 | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | development (learning / proof-of-concept) / qa | 16 GB RAM · 4 vCPU · 320 GB disk · Ubuntu 24.04 LTS x64 (headless)                                                                     |
-| production / staging                           | 16 GB RAM · 8 vCPU · disk space calculated using formula above · Ubuntu 24.04 LTS x64 (headless)                                       |
+| production / staging                           | 32 GB RAM · 8 vCPU · disk space calculated using formula above · Ubuntu 24.04 LTS x64 (headless)                                       |
 | backup                                         | 1 GB RAM · 2 vCPU · disk space calculated using formula above (recommend 2× application server size) · Ubuntu 24.04 LTS x64 (headless) |
 
 Notes:
@@ -157,7 +155,7 @@ By default OpenCRVS stores citizens records, monitoring and logging in `/data` f
 * **Single disk partition with encryption**: same as previous, with encryption enabled OpenCRVS will create encrypted file on disk `/cryptfs_file_sparse.img`, allocate proper file size and mount file as `/data` partition.
 
 {% hint style="warning" %}
-If your datacentre is physically secure we do not recommend encryption.  If your data cerntre is insecure and you wish to enable encryption, pay close attention to the **optional disk encryption for lower security data centres section below**
+If your datacentre is physically secure we do not recommend encryption. If your data cerntre is insecure and you wish to enable encryption, pay close attention to the **optional disk encryption for lower security data centres section below**
 {% endhint %}
 
 * **Dedicated disk partition for data**: System administrator may decide to use dedicated disk partition (e/g LVM, NAS) to store citizens data.
@@ -180,9 +178,7 @@ Filesystem           Size  Used Avail Use% Mounted on
 /dev/vda15           105M  6.1M   99M   6% /boot/efi
 ```
 
-This server has 280GB available after the operating system has been deployed. You should set aside a further 50-75GB for Docker images. So only 205GB - 230GB is available.  It is important to remember this value if you plan to configure disk encryption.
-
-
+This server has 280GB available after the operating system has been deployed. You should set aside a further 50-75GB for Docker images. So only 205GB - 230GB is available. It is important to remember this value if you plan to configure disk encryption.
 
 **Regarding optional disk encryption for lower security data centres**
 
