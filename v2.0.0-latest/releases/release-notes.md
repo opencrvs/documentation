@@ -48,7 +48,8 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 
 **Breaking changes**
 
-* …
+* **Webhook integration client removed.** The Webhook integration client and its `webhooks` service have been removed and are not migrated automatically. Country configurations that previously relied on webhook subscriptions must instead react to events via Action triggers in the country configuration code. Any webhook-style fan-out to external systems must be implemented inside those handlers.
+* **Event Notification API endpoint renamed.** `POST /api/events/events/notifications` has been renamed to `POST /api/events/events/{eventId}/notify`. Existing integration clients must update their request paths. A new single-request convenience endpoint `POST /api/events/events/notify` is also available for system clients that need to create and notify in one call.
 
 **Bug fixes**
 

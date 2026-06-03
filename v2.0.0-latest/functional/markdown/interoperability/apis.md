@@ -62,10 +62,15 @@ The following sections document **System-Authenticated API operations** that are
 
 API for creating and notifying vital event records.
 
-| **Operation**  | **Description**                         |
-| -------------- | --------------------------------------- |
-| Action: Create | Create a new vital event record         |
-| Action: Notify | Submit a notification for a vital event |
+| **Operation**   | **Endpoint**                                                           | **Description**                         |
+| --------------- | ---------------------------------------------------------------------- | --------------------------------------- |
+| Action: Create  | `POST /api/events/events`                                              | Create a new vital event record         |
+| Action: Notify  | `POST /api/events/events/{eventId}/notify`                             | Submit a notification for a vital event |
+| Create & Notify | `POST /api/events/events/notify` (single-request convenience endpoint) | Create and notify in one call           |
+
+{% hint style="warning" %}
+**Breaking change in v2.0:** the Notify endpoint has been renamed from `POST /api/events/events/notifications` (v1.x) to `POST /api/events/events/{eventId}/notify`. Existing integration clients must update their request paths.
+{% endhint %}
 
 #### 3.2 Search
 
