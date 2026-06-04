@@ -14,7 +14,7 @@ Client access tokens are valid for a maximum of 10 minutes. After it expires you
 
 **URL**
 
-`POST https://auth.<your_domain>/token`
+`POST https://gateway.<your_domain>/auth/token`
 
 **Request payload**
 
