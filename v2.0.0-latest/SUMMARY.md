@@ -188,6 +188,18 @@
             kind: openapi
             spec: events-develop
       ```
+  * [Country-config APIs](technical/apis/country-config-apis/README.md)
+    * ```yaml
+      type: builtin:openapi
+      props:
+        models: true
+        downloadLink: true
+      dependencies:
+        spec:
+          ref:
+            kind: openapi
+            spec: cc-develop
+      ```
   * [Toolkit](technical/apis/toolkit/README.md)
     * [Configuration](technical/apis/toolkit/configuration/README.md)
       * [Advanced search](technical/apis/toolkit/configuration/advanced-search.md)
