@@ -6,7 +6,9 @@ Configuration is where your **to-be design becomes a working system**. You take 
 
 This page is a high-level, non-technical overview of how configuration works and what it involves. The step-by-step technical instructions live in the [technical configuration guides](https://documentation.opencrvs.org/v2.0/technical/guides/configuration).
 
-\{% hint style="info" %\} **Where this sits:** Configuration follows [Gathering requirements](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/gathering-requirements) — specifically [Design & Specification](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/gathering-requirements/design-and-specification), where the configuration inputs are created — and comes before [Deployment](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/deployment) and go-live. \{% endhint %\}
+{% hint style="info" %}
+**Where this sits:** Configuration follows [Gathering requirements](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/gathering-requirements) — specifically [Design & Specification](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/gathering-requirements/design-and-specification), where the configuration inputs are created — and comes before [Deployment](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/deployment) and go-live.
+{% endhint %}
 
 ***
 
@@ -24,7 +26,9 @@ Configuration starts from the **signed-off configuration inputs** produced in [D
 * Certified-copy templates
 * Analytics and vital statistics dashboards
 
-\{% hint style="info" %\} **Don't start before sign-off.** Configuration implements decisions that have already been agreed. If the requirements are not yet signed off, you risk building — and then rebuilding — against a moving target. Confirm sign-off first. \{% endhint %\}
+{% hint style="info" %}
+**Don't start before sign-off.** Configuration implements decisions that have already been agreed. If the requirements are not yet signed off, you risk building — and then rebuilding — against a moving target. Confirm sign-off first.
+{% endhint %}
 
 ***
 

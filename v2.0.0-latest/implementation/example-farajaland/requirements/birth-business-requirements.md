@@ -1,4 +1,4 @@
-# Requirements
+# Birth business requirements
 
 ### 1. Introduction
 
@@ -7,6 +7,13 @@ OpenCRVS ships with an example country configuration called **Farajaland**. Fara
 This page summarises the **key civil registration business rules** for Farajaland, focused on births. These rules drive how events are declared, validated, registered, printed, corrected, and revoked.
 
 ***
+
+### 2. Notifications.>>
+
+\
+...
+
+<br>
 
 ### 2. Declarations
 
