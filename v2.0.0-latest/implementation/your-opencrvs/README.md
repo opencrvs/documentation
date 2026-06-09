@@ -48,11 +48,3 @@ A typical OpenCRVS implementation moves through five broad phases: **plan and pr
 Implementing OpenCRVS is led by a small, multidisciplinary team that grows with the scope of your work — a proof of concept may need only a couple of core roles, while a national programme draws in technical, design, change-management, training and monitoring roles. See [Establish project & team](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/establish-project-and-team) for the full set of roles and how to size your team.
 
 \{% hint style="info" %\} **Embed your own people.** Wherever an implementing partner supports the work, include government staff throughout. Their knowledge keeps the implementation grounded, and their involvement is what makes the system sustainable after handover. \{% endhint %\}
-
-***
-
-### 4. Resources and support
-
-For broader guidance on CRVS digitisation, see the [CRVS Digitisation Guidebook](http://www.crvs-dgb.org/).
-
-For any questions about implementing OpenCRVS, contact [**team@opencrvs.org**](mailto:team@opencrvs.org).
