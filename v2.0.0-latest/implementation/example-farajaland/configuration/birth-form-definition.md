@@ -427,19 +427,3 @@
 | `father_date_of_birth` | `father.dateOfBirth` | REGISTER (creation)                      | —                                                                                         |
 | `mother_nationality`   | —                    | UIN eligibility condition on REGISTER    | Not a direct attribute mapping — used to determine citizen parent for UIN creation. A4.3. |
 | `father_nationality`   | —                    | UIN eligibility condition on REGISTER    | Same as above.                                                                            |
-
-***
-
-### Open questions
-
-| ID    | Description                                                                                                                                          | Owner          | Status   |
-| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | -------- |
-| BFF-1 | Should informant date of birth allow age substitution when exact DOB is unknown? (BS-22)                                                             | Country team   | Open     |
-| BFF-2 | Should informant place of residence use structured ADDRESS?                                                                                          | Country team   | Open     |
-| BFF-3 | Should place-of-birth options be hidden or disabled for hospital-official/embassy-officer? (BS-22)                                                   | Country team   | Open     |
-| BFF-4 | mother\_details\_unavailable hidden for hospital-official but father\_details\_unavailable is not — intentional? (BS-22)                             | Country team   | Open     |
-| BFF-5 | Father's passport number optional but mother's is mandatory — intentional? (BS-22)                                                                   | Country team   | Open     |
-| BFF-6 | Should father\_details\_unavailable also be hidden for hospital-official? (BS-22)                                                                    | Country team   | Open     |
-| BFF-7 | Confirm eSignet state names for document upload visibility conditions (BS-22)                                                                        | Technical lead | Open     |
-| BFF-8 | Person name fields use `NAME` type with separate field IDs per component (firstname, lastname). Resolved — keep separate field IDs, use `NAME` type. | Technical lead | Resolved |
-| BFF-9 | Address fields keep separate rows per component with `ADDRESS` type. Resolved — keep as-is.                                                          | Technical lead | Resolved |
