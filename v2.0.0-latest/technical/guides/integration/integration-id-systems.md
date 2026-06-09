@@ -12,7 +12,7 @@ The partnership of Civil Registration and National ID is what collectively const
 
 OpenCRVS is agnostic regarding which National ID system it integrates with. This section is first organised around the main business use cases.
 
-As of OpenCRVS v1.8.0, OpenCRVS has a production ready integration library dedicated to interoperating with [MOSIP](https://www.mosip.io/)and [E-Signet](https://docs.esignet.io/), fellow OpenSource Digital Public Goods. A dedicated section exists that builds on the same agnostic integration points specifically for integrating with MOSIP.
+As of OpenCRVS v1.8.0, OpenCRVS has a production ready integration library dedicated to interoperating with [MOSIP](https://www.mosip.io/) and [eSignet](https://docs.esignet.io/), fellow OpenSource Digital Public Goods. A dedicated section exists that builds on the same agnostic integration points specifically for integrating with MOSIP.
 
 In the past, OpenCRVS has delivered proof-of-concept (not production ready) integrations with [INGroupe](https://ingroupe.com/) and [OSIA standard](https://secureidentityalliance.org/osia) National ID systems
 
@@ -157,8 +157,6 @@ Civil registration is conducted offline (especially in remote settings), without
 * 🔄 Treat offline operation as **temporary or contextual**, with reconciliation once connectivity is restored.
 * 🚧 Avoid extending offline workflows to **high-risk identity actions** (e.g. adult updates).
 * 🛣️ Clearly communicate roadmap limitations and future enhancements.
-
-
 
 ***
 
