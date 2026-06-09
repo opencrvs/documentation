@@ -1,8 +1,12 @@
 # Technical stack
 
-OpenCRVS is built as a TypeScript-first, microservices application running on Node.js. All services — frontend and backend — share a single language and a single monorepo, which reduces context-switch
+### 1. Introduction
 
-### Language & Runtime
+OpenCRVS is built as a TypeScript-first, microservices application running on Node.js. All services — frontend and backend — share a single language and a single monorepo, which reduces context-switching.
+
+***
+
+### 2. Language & runtime
 
 |              |                |
 | ------------ | -------------- |
@@ -11,7 +15,9 @@ OpenCRVS is built as a TypeScript-first, microservices application running on No
 
 TypeScript is used throughout: frontend applications, backend services, database migrations, and configuration tooling. This makes it possible to share types and schema definitions between services without duplication, and catches integration errors at compile time rather than at runtime.
 
-### Frontend
+***
+
+### 3. Frontend
 
 The registration and administration interface is a **Progressive Web App (PWA)** built with **React 18**. It is designed to work offline — field agents can continue registering vital events without an active internet connection, with data synchronised to the server once connectivity is restored. It connects to the backend exclusively through the API gateway.
 
@@ -32,11 +38,15 @@ All user-facing strings are externalised through React Intl, which allows countr
 
 Form validations are defined as **JSON Schema** and evaluated at runtime using **AJV**. This keeps validation logic declarative and portable — the same schemas are enforced on both the client and the server.
 
-### Country Configuration Toolkit
+***
+
+### 4. Country configuration toolkit
 
 Country configurers work with the **`@opencrvs/toolkit`** npm package rather than directly with the application internals. The toolkit provides TypeScript helpers and higher-level constructors for the most common configuration tasks — defining forms, writing validation rules, configuring workflows, and more — without needing to understand the underlying implementation. For most implementing countries, the toolkit is the primary development surface.
 
-### Backend Services
+***
+
+### 5. Backend services
 
 OpenCRVS is composed of several focused services, each owning a specific domain:
 
@@ -50,7 +60,7 @@ OpenCRVS is composed of several focused services, each owning a specific domain:
 
 Each service is independently deployable and runs as a Docker container.
 
-#### HTTP Framework
+#### 5.1 HTTP framework
 
 Backend services use **tRPC** as their primary HTTP framework. tRPC is a TypeScript-native RPC framework — because both the client and the server share TypeScript types, mismatches are caught at compile time rather than at runtime. The Events service, which contains the majority of the civil registration business logic, is built entirely on tRPC. Other microservices also use tRPC for their internal APIs.
 
@@ -58,7 +68,9 @@ The same tRPC routes are exposed as OpenAPI-compatible REST endpoints for extern
 
 Some supporting services still use **Hapi.js**, though this will be phased out over time in favour of tRPC.
 
-### Data Layer
+***
+
+### 6. Data layer
 
 OpenCRVS uses purpose-specific databases rather than a single general-purpose store. Each database is chosen for what it does well:
 
@@ -66,11 +78,15 @@ OpenCRVS uses purpose-specific databases rather than a single general-purpose st
 
 PostgreSQL is the authoritative store for all registration data. Elasticsearch is a derived store — populated from PostgreSQL — that powers fast search and reporting queries without loading the primary database.
 
-### APIs
+***
+
+### 7. APIs
 
 OpenCRVS exposes a **REST/OpenAPI** interface for external integrations with national systems and third-party applications. The OpenAPI specification is generated automatically from the codebase and is the recommended integration point for country-level system integrations.
 
-### Architecture Pattern
+***
+
+### 8. Architecture pattern
 
 OpenCRVS follows an **event-sourced microservices** architecture:
 
@@ -80,11 +96,15 @@ OpenCRVS follows an **event-sourced microservices** architecture:
 
 This pattern means registration records have a full, tamper-evident audit trail by design.
 
-### Monorepo Structure
+***
+
+### 9. Monorepo structure
 
 All services and packages live in a single repository managed with **Lerna** and **Yarn Workspaces**. This allows shared packages (`@opencrvs/commons`, `@opencrvs/components`) to be used across services without publishing them to a registry during development, and ensures that all services are always tested against compatible versions of shared code.
 
-### Required Skills
+***
+
+### 10. Required skills
 
 The skills required depend on what your team is doing.
 
