@@ -176,6 +176,7 @@
     * [MOSIP Deployment](technical/guides/integration/mosip-deployment.md)
     * [MOSIP Form Authentication](technical/guides/integration/mosip-form-authentication.md)
     * [MOSIP Registration Integration](technical/guides/integration/mosip-registration-integration.md)
+    * [Verifiable Credentials](technical/guides/integration/verifiable-credentials.md)
   * [Contributing](technical/guides/contributing/README.md)
     * [Core development](technical/guides/contributing/core-development.md)
 * [APIs](technical/apis/README.md)
