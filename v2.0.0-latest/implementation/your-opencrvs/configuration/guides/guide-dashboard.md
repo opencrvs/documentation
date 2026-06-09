@@ -230,7 +230,7 @@ WITH RECURSIVE administrative_area_path AS (
         aa.name,
         aa.name::text AS administrative_area_path,
         1 AS level
-    FROM app.administrative_areas aa
+    FROM analytics.administrative_areas aa
     WHERE aa.parent_id IS NULL
 
     UNION ALL
@@ -242,7 +242,7 @@ WITH RECURSIVE administrative_area_path AS (
         aa.name,
         aap.administrative_area_path || ',' || aa.name,
         aap.level + 1
-    FROM app.administrative_areas aa
+    FROM analytics.administrative_areas aa
     JOIN administrative_area_path aap
         ON aa.parent_id = aap.id
 ),
@@ -268,13 +268,8 @@ pivot AS (
 SELECT
 	l.id::text AS id,
     l.name,
-    l.created_at,
-    l.updated_at,
-    l.deleted_at,
     l.location_type,
-    l.valid_until,
     l.administrative_area_id,
-    l.external_id,
 
     aa.name AS administrative_area_name,
 
@@ -299,9 +294,9 @@ SELECT
     p.level_9_name,
     p.level_10_name
 
-FROM app.locations l
+FROM analytics.locations l
 
-LEFT JOIN app.administrative_areas aa
+LEFT JOIN analytics.administrative_areas aa
     ON aa.id = l.administrative_area_id
 
 LEFT JOIN administrative_area_path aap
