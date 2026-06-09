@@ -92,45 +92,5 @@ The configuration templates produced here are used in the [Configuration](https:
 For broader guidance on CRVS digitisation, see the [CRVS Digitisation Guidebook](http://www.crvs-dgb.org/). For any questions, contact [**team@opencrvs.org**](mailto:team@opencrvs.org).
 
 {% hint style="info" %}
-**Next:** this is the last stage of requirements gathering. With approved designs and completed configuration templates in hand, you move on to [Configuration](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/configuration) to build the system.
+**Next:** this is the last stage of requirements gathering. With approved designs and completed configuration templates in hand, you move on to [Configuration](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/configuration) to build the system.rpose
 {% endhint %}
-
-##
-
-## Purpose
-
-Transform validated concepts into tangible design artefacts and technical specifications for implementation.
-
-## **Objectives**
-
-Implementation-ready mock-ups, prototypes, and configuration templates that development teams can use to build the solution.
-
-_**\[ Configuration templates ]**_
-
-1. **XXX**
-
-## **Key outputs**
-
-### Mockups and prototypes
-
-**Visual mock-ups of registration forms**: XXX
-
-**Visual mock-up of correction and print record flows**: XXX
-
-**Visual mock-up of vital event certificates**: XXX
-
-**Visual mock-ups of UI components required for integrations**: XXX
-
-**Prototypes of new features**: XXX
-
-###
-
-### Configuration templates
-
-**Configuration files for vital events implementation**: XXX
-
-**Templates of certified copies**: XXX
-
-**Configuration files for users, roles and scopes**: XXX
-
-###
