@@ -1,4 +1,8 @@
-# Guide: Dashboard
+---
+description: Configuring your analytics dashboards
+---
+
+# Dashboards
 
 #### 1. Introduction
 
