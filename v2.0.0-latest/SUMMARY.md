@@ -64,7 +64,7 @@
   * [Background & goals](implementation/example-farajaland/background-and-goals.md)
   * [Requirements](implementation/example-farajaland/requirements/README.md)
     * [Birth business requirements](implementation/example-farajaland/requirements/birth-business-requirements.md)
-    * [Birth business process flows](implementation/example-farajaland/requirements/birth-business-process-flows.md)
+    * [Birth Journeys  — Farajaland](implementation/example-farajaland/requirements/birth-journeys-farajaland.md)
   * [Configuration](implementation/example-farajaland/configuration.md)
 * [Your OpenCRVS](implementation/your-opencrvs/README.md)
   * [Project planning](implementation/your-opencrvs/project-planning.md)
