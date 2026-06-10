@@ -1,12 +1,12 @@
 # MOSIP Registration Integration
 
 {% hint style="info" %}
-This section assumes that you are already familiar with the [general registration integration concepts](../../../functional/markdown/interoperability/mosip-id-integration.md). If you have not read that page, read it first for a high-level introduction to the concepts, and then return here.
+This section assumes that you are already familiar with the [general registration integration concepts](../../../../functional/markdown/interoperability/mosip-id-integration.md). If you have not read that page, read it first for a high-level introduction to the concepts, and then return here.
 {% endhint %}
 
 #### Architecture
 
-In OpenCRVS v2.0.0, MOSIP registration integration is implemented through **action confirmation handlers** registered in the country configuration server. When a registrar performs a `REGISTER` action, OpenCRVS core calls the country configuration's registered action trigger. [Learn more about action triggers](../configuration/action-triggers/). The trigger can respond synchronously (HTTP 200) or defer the response for asynchronous external validation (HTTP 202).
+In OpenCRVS v2.0.0, MOSIP registration integration is implemented through **action confirmation handlers** registered in the country configuration server. When a registrar performs a `REGISTER` action, OpenCRVS core calls the country configuration's registered action trigger. [Learn more about action triggers](../action-triggers/). The trigger can respond synchronously (HTTP 200) or defer the response for asynchronous external validation (HTTP 202).
 
 The reference implementation is in [opencrvs-integrationland](https://github.com/opencrvs/opencrvs-integrationland).
 
@@ -180,7 +180,7 @@ if (isMotherAvailable && declaration['mother.verified'] !== 'authenticated') {
 ```
 
 {% hint style="warning" %}
-**ID Auth verification is not enabled in the reference implementation.** The `verifyNid()` calls are **commented out** in the opencrvs-integrationland example because MOSIP does not recommend offline ID Auth verification as a substitute for real-time biometric or eSignet authentication. Verifying identity by matching biographic data (name, DOB, NID) against MOSIP records provides weak assurance — it confirms the data exists in the ID system but does not authenticate the person presenting it. eSignet authentication ([§4.1 of the functional guide](../../../functional/markdown/interoperability/mosip-id-integration.md#id-4.1-e-signet-authentication-flow)) is the preferred approach.
+**ID Auth verification is not enabled in the reference implementation.** The `verifyNid()` calls are **commented out** in the opencrvs-integrationland example because MOSIP does not recommend offline ID Auth verification as a substitute for real-time biometric or eSignet authentication. Verifying identity by matching biographic data (name, DOB, NID) against MOSIP records provides weak assurance — it confirms the data exists in the ID system but does not authenticate the person presenting it. eSignet authentication ([§4.1 of the functional guide](../../../../functional/markdown/interoperability/mosip-id-integration.md#id-4.1-e-signet-authentication-flow)) is the preferred approach.
 
 The commented-out blocks in [`src/api/events/handler.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/api/events/handler.ts) serve as a reference showing how `verifyNid()` would integrate in a production context that has chosen to accept this trade-off. They are retained as documentation of the integration surface rather than as a recommended pattern.
 {% endhint %}
@@ -235,4 +235,4 @@ When the handler returns HTTP 202, the record enters a `Requested` state and app
 MOSIP does not return failure responses. Records that stall in "Pending external validation" must be investigated directly with MOSIP and may need to be manually resolved by the system implementer.
 {% endhint %}
 
-To read more about configuring workqueues, see [the technical guide on workqueues](../configuration/workqueues.md).
+To read more about configuring workqueues, see [the technical guide on workqueues](../workqueues.md).

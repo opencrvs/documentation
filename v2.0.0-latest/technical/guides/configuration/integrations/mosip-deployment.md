@@ -1,7 +1,7 @@
 # MOSIP Deployment
 
 {% hint style="warning" %}
-This section assumes that you are already thoroughly aware of how to deploy OpenCRVS. If you are not, complete a basic deployment first following [the deployment guide](../installation/deploy-set-up-a-server-hosted-environment/).
+This section assumes that you are already thoroughly aware of how to deploy OpenCRVS. If you are not, complete a basic deployment first following [the deployment guide](../../installation/deploy-set-up-a-server-hosted-environment/).
 {% endhint %}
 
 #### Kubernetes / Helm deployment

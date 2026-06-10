@@ -172,7 +172,7 @@ OpenCRVS is designed to integrate with other systems through **APIs and open sta
 
 **Outgoing data flows (sharing data from OpenCRVS):**
 
-* [National ID systems](../../technical/guides/integration/integration-id-systems.md): Birth and death registration data to trigger identity lifecycle events (e.g. issuance of national ID, deactivation of deceased persons)
+* [National ID systems](../../technical/guides/configuration/integrations/integration-id-systems.md): Birth and death registration data to trigger identity lifecycle events (e.g. issuance of national ID, deactivation of deceased persons)
 * Statistical offices: Vital statistics data for demographic analysis, policy planning, and SDG monitoring
 * Social protection systems: Eligibility verification for child grants, pensions, or other entitlements
 * Education systems: School enrollment planning based on birth cohorts
@@ -260,5 +260,5 @@ A well-architected implementation enables trusted data flows across government, 
 
 ### Further Reading
 
-* [Technical Integration Guide](../../technical/guides/configuration/integrations.md)
+* [Technical Integration Guide](/broken/pages/jRxZi40olAVhNzyCPetO)
 * [OpenCRVS APIs](../../technical/apis/)

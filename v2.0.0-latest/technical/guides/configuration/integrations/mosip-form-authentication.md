@@ -1,7 +1,7 @@
 # MOSIP Form Authentication
 
 {% hint style="info" %}
-This section assumes that you are familiar with the [MOSIP identity authentication flow](../../../functional/markdown/interoperability/mosip-id-integration.md) at the functional level. If you have not read that section, read it first for a high-level introduction, and then return here.
+This section assumes that you are familiar with the [MOSIP identity authentication flow](../../../../functional/markdown/interoperability/mosip-id-integration.md) at the functional level. If you have not read that section, read it first for a high-level introduction, and then return here.
 {% endhint %}
 
 #### Overview
