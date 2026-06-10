@@ -1,6 +1,6 @@
 # Administrative areas
 
-Administrative areas divide a country into hierarchical jurisdictions. Areas are dynamic and configurable per country. See how administrative area configuration affects [Roles, scopes and jurisidictions](https://app.gitbook.com/o/zub8C4BetmW3a9Bj4Cd4/s/TIJguU5Pzi7HeHrkXa4I/~/edit/~/changes/126/technical/guides/configuration/users/roles-and-scopes).
+Administrative areas divide a country into hierarchical jurisdictions. Areas are dynamic and configurable per country. See how administrative area configuration affects [Roles, scopes and jurisidictions](../users/roles-and-scopes.md).
 
 
 

@@ -5,7 +5,7 @@ Record scopes manage access to event-related actions. A persisted event is calle
 \
 You can find [available scopes and their definitions here](https://github.com/opencrvs/opencrvs-core/blob/v2.0.0-beta/packages/commons/src/scopes.ts)
 
-For a scope to grant access, every option must match. Scope options are specific to each scope type. Most options control access based on the user or their jurisdiction. [See administrative hierarchy to understand how jurisdictions work](../locations/).\
+For a scope to grant access, every option must match. Scope options are specific to each scope type. Most options control access based on the user or their jurisdiction. [See administrative hierarchy to understand how jurisdictions work](../administrative-hierarchy/).\
 \
 **Example 1: Searching for records**
 

@@ -7,7 +7,7 @@ At a high level, a scope has two properties:
 * **Type** — which action the user can take with the scope (e.g. `record.create`, `record.read`, `user.create`).
 * **Options** — the limitations under which the action can be performed (e.g. a user can only search birth events that took place in their administrativeArea: `{ type: 'record.search', options: { event: ['birth'], placeOfEvent: 'administrativeArea' } }`).
 
-A user is always assigned to a location. The location's position in the administrative hierarchy determines the jurisdiction the scope grants. Learn [how to configure place of event](../locations/how-to-configure-place-of-event.md).\
+A user is always assigned to a location. The location's position in the administrative hierarchy determines the jurisdiction the scope grants. Learn [how to configure place of event](../administrative-hierarchy/how-to-configure-place-of-event.md).\
 \
 **Example 1: Jurisdiction based on administrative area** `{ placeOfEvent: 'administrativeArea' }`&#x20;
 

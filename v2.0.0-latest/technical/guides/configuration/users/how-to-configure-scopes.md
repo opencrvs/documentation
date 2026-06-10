@@ -15,8 +15,8 @@ To get started, let's [look at the example configuration](https://github.com/ope
 
 Example:  scope that allows user to search for **birth** records which took place within their **administrative area.**&#x20;
 
-* [Learn what administrative areas are](../locations/administrative-structure.md)
-* [Learn how to configure place of event](../locations/how-to-configure-place-of-event.md)
+* [Learn what administrative areas are](../administrative-hierarchy/administrative-areas.md)
+* [Learn how to configure place of event](../administrative-hierarchy/how-to-configure-place-of-event.md)
 
 ```
 import { defineScopes } from '@opencrvs/toolkit/scopes'

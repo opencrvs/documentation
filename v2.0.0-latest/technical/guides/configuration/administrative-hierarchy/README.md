@@ -25,7 +25,7 @@ The administrative hierarchy models a country's jurisdictional structure. A user
 \
 ![](<../../../../.gitbook/assets/Screenshot 2026-05-06 at 12.05.28.png>)<br>
 
-In this example of a 3-level hierarchy, each administrative area contains physical location(s), and each location has one or more users assigned to it. User jurisdiction is based on [scopes](https://app.gitbook.com/o/zub8C4BetmW3a9Bj4Cd4/s/TIJguU5Pzi7HeHrkXa4I/~/edit/~/changes/126/technical/guides/configuration/users/roles-and-scopes) given to their role.
+In this example of a 3-level hierarchy, each administrative area contains physical location(s), and each location has one or more users assigned to it. User jurisdiction is based on [scopes](../users/roles-and-scopes.md) given to their role.
 
 Administrative areas form a hierarchy independently of locations. District A is the parent of Village A. Locations belong to administrative areas but do not have their own hierarchy — District Office A is not a parent of Village Office A. \
 \

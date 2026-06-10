@@ -28,7 +28,7 @@ In production environments, users are created manually by other users. The locat
 
 <figure><img src="../../../../.gitbook/assets/Screenshot 2026-05-22 at 14.39.37.png" alt="" width="375"><figcaption></figcaption></figure>
 
-2. **Available locations** are limited to those within the `LOCAL_SYSTEM_ADMIN`'s administrative area. [See how scopes relate to jurisdictions](jurisidictions.md).
+2. **Available locations** are limited to those within the `LOCAL_SYSTEM_ADMIN`'s administrative area. [See how scopes relate to jurisdictions](roles-and-scopes.md).
 
 <figure><img src="../../../../.gitbook/assets/Screenshot 2026-05-22 at 14.41.37.png" alt="" width="375"><figcaption></figcaption></figure>
 

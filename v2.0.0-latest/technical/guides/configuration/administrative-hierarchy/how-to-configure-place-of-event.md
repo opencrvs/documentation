@@ -4,7 +4,7 @@
 
 Each event has a `placeOfEvent` property in its indexed format (`EventIndex`). All jurisdiction questions are resolved against this property. `placeOfEvent` is a metadata field that defaults to the user's location.
 
-For some events, it may be more appropriate to specify a different field to determine where the event took place. This [field is defined at the root of the event configuration.<br>](https://github.com/opencrvs/opencrvs-countryconfig/blob/release-v2.0.0/src/events/birth/index.ts#L49)
+For some events, it may be more appropriate to specify a different field to determine where the event took place. This [field is defined at the root of the event configuration.](https://github.com/opencrvs/opencrvs-countryconfig/blob/release-v2.0.0/src/events/birth/index.ts#L49)
 
 ### Field types for `placeOfEvent`
 
