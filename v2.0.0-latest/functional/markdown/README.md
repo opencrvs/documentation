@@ -154,8 +154,8 @@ Includes:
 ~~**Business rules** determine:~~
 
 * ~~Which actions are available in each status.~~
-* ~~Who can perform those actions (role, scope, jurisdiction).~~
-* ~~Which flags are set or cleared when actions complete.~~
+* ~~Who can perform those action~~s (role, scope, jurisdiction).
+* Which flags are set or cleared when actions complete.
 
 ***
 
