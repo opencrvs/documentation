@@ -21,7 +21,7 @@ The architecture is organised into a small number of **modules**, shown in the d
 
 Each module summarised here has its own documentation section with fuller detail.
 
-> _**\[ Functional architecture diagram ]**_
+<figure><img src="../../.gitbook/assets/OpenCRVS — Functional Architecture.png" alt=""><figcaption></figcaption></figure>
 
 ***
 
