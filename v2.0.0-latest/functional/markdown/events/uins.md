@@ -6,7 +6,7 @@ In OpenCRVS, **UINs (Unique Identification Numbers)** are identifiers that make 
 
 * Track a declaration during the registration process. (Tracking ID)
 * Uniquely identify a registered event record. (Registration no)
-* O~~ptionally link a person in OpenCRVS to an external National ID system~~. (National ID)
+* Optionally link a person in OpenCRVS to an external National ID system eg MOSIP. (National ID)
 
 OpenCRVS supports multiple identifiers, each with a clear purpose and lifecycle.
 
