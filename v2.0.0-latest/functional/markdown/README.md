@@ -2,166 +2,168 @@
 
 ### 1. Introduction
 
-The OpenCRVS **functional architecture** provides a generic model for understanding how the application works, so that it can be configured to support the specific civil registration needs of any country.
+The OpenCRVS **functional architecture** is a generic, country-agnostic model of how the application works. It describes the system in terms of its **functional building blocks** rather than its infrastructure, so that the same core product can be configured to meet the specific civil registration needs of any country.
 
-This section:
+This page:
 
 * Defines the **core concepts and vocabulary** used throughout the documentation.
-* Describes the main **functional modules** (Events, Records, Workflows, Access, Aggregate Data, Interoperability).
-* Summarises the **record lifecycle** from notification to certification.
+* Describes the main **functional modules** — Events, Workflows, Records, Search, Access, Aggregate Data, Interoperability, and Legacy Data.
+* Summarises the **record lifecycle**, from notification through to certification and beyond.
 * Clarifies the boundary between **configuration** and **customisation**.
 
-The focus here is on the **functional model**, not infrastructure or deployment.
+The focus is deliberately on the **functional model**. Infrastructure, deployment, and technology choices are covered in other sections of the documentation.
 
 ***
 
-### << DIAGRAM >>
+### 2. How to read this section
 
-### 2. Audience
+The architecture is organised into a small number of **modules**, shown in the diagram below. The first five modules describe the journey of a record — from the definition of an event, through the workflow that moves it, to the record itself, how it is found, and how its data is aggregated. The remaining modules — Access, Interoperability, and Legacy Data — are **cross-cutting foundations** that support the whole system rather than sitting at a single point in the lifecycle.
 
-The functional architecture is intended for:
+Each module summarised here has its own documentation section with fuller detail.
+
+> _**\[ Functional architecture diagram ]**_
+
+***
+
+### 3. Audience
+
+The functional architecture is written for:
 
 * **Product owners** defining the civil registration solution.
 * **Business analysts** translating law and policy into requirements.
-* **Solution architects** designing how OpenCRVS fits into the wider ecosystem.
+* **Solution architects** designing how OpenCRVS fits into the wider digital ecosystem.
 * **Implementation teams** configuring and operating OpenCRVS for a country.
+
+No prior knowledge of the OpenCRVS codebase is assumed; the concepts below are sufficient to reason about the product.
 
 ***
 
-### 3. Core concepts and vocabulary
+### 4. Core concepts and vocabulary
 
-OpenCRVS uses a consistent set of concepts across modules:
+OpenCRVS uses a consistent vocabulary across every module. The terms below recur throughout the documentation.
 
-* **Event** – a civil registration event type such as birth, death, marriage, etc.
-* **Record** – the data instance for a single event.
-* **Notification** – a preliminary capture of event details that may form the basis of a formal declaration.
-* **Declaration** – a formal statement that an event has taken place.
-* **Registration** – the process by which an event record is reviewed and legally registered.
-* **Certified copy / certificate** – an official document representing a registered event.
-* **Informant** – the person who formally reports the event.
-* **Workflow** – the ordered steps and rules that govern a record through its lifecycle.
-* **Status** – the state of a record in the workflow (for example, Draft, Notified, Declared, Registered).
-* **Action** – a user or system operation that changes a record or its status (for example, Notify, Declare, Validate, Register, Correct, Issue certificate).
-* **Form** – the structured data capture for an event, defined by fields, conditional logic, and validations.
-* **Business rule** – a configurable rule that validates data or controls workflow behaviour.
-* **Administrative unit** – the organisational unit responsible for services for a specific area.
-* **User / role** – the authenticated user and their permission set.
+| Term                             | Meaning                                                                                                                                       |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Event**                        | A civil registration event type, such as a birth, death, or marriage.                                                                         |
+| **Record**                       | The data instance for a single occurrence of an event.                                                                                        |
+| **Notification**                 | A preliminary capture of event details that may form the basis of a formal declaration.                                                       |
+| **Declaration**                  | A formal statement that an event has taken place.                                                                                             |
+| **Registration**                 | The process by which an event record is reviewed and legally registered.                                                                      |
+| **Certificate / certified copy** | An official document representing a registered event.                                                                                         |
+| **Informant**                    | The person who formally reports the event.                                                                                                    |
+| **Workflow**                     | The ordered steps and rules that govern a record through its lifecycle.                                                                       |
+| **Status**                       | The state of a record within the workflow (for example Draft, Notified, Declared, Registered).                                                |
+| **Action**                       | A user or system operation that changes a record or its status (for example Notify, Declare, Validate, Register, Correct, Issue certificate). |
+| **Form**                         | The structured data capture for an event, defined by fields, conditional logic, and validations.                                              |
+| **Business rule**                | A configurable rule that validates data or controls workflow behaviour.                                                                       |
+| **Administrative unit**          | An organisational unit responsible for delivering services to a specific area.                                                                |
+| **User / role**                  | An authenticated user and the permission set (scopes) attached to their role.                                                                 |
 
 These concepts underpin the modules described below.
 
 ***
 
-### 4. Functional modules
+### 5. Functional modules
 
-The functional architecture is organised into a small set of modules. Each module has its own documentation section with more detail.
+#### 5.1 Events module — _defines what can be registered_
 
-#### 4.1 Events module
+The Events module is the configurable catalogue of everything OpenCRVS can register and the rules that shape each event type.
 
-Defines **what** can be registered.
+* **Types** — the event catalogue and the type-specific behaviour for each registrable event.
+* **Forms** — event forms built from fields, conditional logic, and validation, used for Notify/Declare, Correct, and other actions.
+* **Business rules** — configurable rules that control eligibility, late registration, approvals, and other event-specific behaviour.
 
-Includes:
+#### 5.2 Workflows module — _how records move through the system and how users interact with them_
 
-* **Types** – event catalogue and type-specific behaviour.
-* **Forms** – event forms and validation rules for Notify/Declare, Correct, and other actions.
-* **Business rules** – rules that control eligibility, late registration, approvals, and other event-specific behaviour.
-* **UINs** – unique identifiers associated with events and persons (for example, Tracking ID, Registration number, National ID integration).
+The Workflows module governs the path a record takes and what each user is permitted to do with it.
 
-#### 4.2 Workflows module
+* **Administrative structure** — the hierarchy of administrative units and offices responsible for delivering services in each area.
+* **Users** — roles, scopes, jurisdictions, and the workqueue access that determine what each user can see and do.
+* **Jurisdictions** — the geographic and organisational boundaries that control which records a user can view and action.
+* **Actions** — the configured operations users can perform on records (Notify, Declare, Validate, Register, Correct, Issue, and so on).
+* **Workqueues** — pre-filtered lists of records that require a user's attention or action.
+* **Offline working** — record assignment, the Outbox, and predictable synchronisation behaviour when devices reconnect.
+* **Deduplication** — detection and review of potential duplicate records before they are registered.
+* **Comms** — SMS and email notifications to informants and users, linked to actions.
 
-Describes **how records move through the system and how users interact with them**.
+#### 5.3 Records module — _how a single event record is represented and evolves over time_
 
-Includes:
+The Records module describes the record itself: its data, its state, and its complete history.
 
-* **Administrative structure**
-* **Users** – roles, scopes, jurisdictions, and workqueue access.
-* **Actions** – configured operations that users can perform on records.
-* **Workqueues** – pre-filtered lists of records that require action.
-* **Jurisdictions** -
-* **Offline working** – assignment, Outbox, and sync behaviour.
-* **Deduplication** – detection and review of potential duplicate records.
-* **Comms** – SMS/email notifications linked to actions.
+* **Record data** — the journaled data model holding event content, supporting documents, and action metadata.
+* **Statuses** — lifecycle states such as Draft, Notified, Declared, Validated, Registered, and Corrected.
+* **Flags** — additional workflow markers that complement status, such as late-registration, pending-attestation, or protected.
+* **Certificates** — official certificates and certified copies generated from registered records.
+* **Verifiable Credentials** — cryptographically verifiable digital proofs issued from registered records.
+* **Protected data** — mechanisms for hiding sensitive records or fields from general search and view.
+* **Audit** — an immutable history of every action taken on the record.
 
-#### 4.3 Records module
+#### 5.4 Search module — _finding and retrieving records_
 
-Describes **how a single event record is represented and evolves over time**.
+A civil registration system must reliably store, file, archive, and retrieve records. The Search module lets users narrow the search scope to find a record quickly.
 
-Includes:
+* **Quick search** — look up a record by a unique identifier, such as a Tracking ID, Registration number, National ID, or phone number.
+* **Advanced search** — used when no unique identifier is available; search by record status, place of registration, date of registration, and any configurable event parameters (for example child, mother, or father details).
 
-* **Record data** – the journaled data model for event content and action metadata.
-* **Statuses** – lifecycle states such as Draft, Notified, Declared, Registered, Corrected.
-* **Flags** – additional workflow markers (for example, late-registration, pending-attestation, protected) that complement status.
-* **Certificates** – outputs generated from registered records.
-* **Verifiable Credentials** – outputs generated from registered records.
-* **Protected data** – mechanisms for hiding sensitive records or fields from general search.
-* **Audit** – immutable history of actions taken on records.
+Search results respect the user's scope: a user may be permitted to search all records of an event type, or only those within their own jurisdiction.
 
-#### 4.4 Search module
+#### 5.5 Access module — _who can do what, and see which data_
 
-...
+The Access module governs authentication, accounts, and security.
 
-#### 4.5 Access module
+* **User management** — user accounts, role assignment, and assignment to offices.
+* **Applications** — the client applications through which users reach OpenCRVS, including the core web and mobile interfaces and any country-specific custom apps.
+* **Security** — authentication, two-factor authentication, screen-lock PIN, and the audit of security-relevant actions.
 
-Describes **who can do what and see which data**.
+#### 5.6 Aggregate Data module — _how operational data is aggregated for performance and statistics_
 
-Includes:
+The Aggregate Data module turns the record store into operational insight and statistical output.
 
-* **User management** – user accounts, roles, assignment to offices.
-* **Applications**
-* **Security** – authentication, 2FA, screen lock PIN, and audit of security-relevant actions.
+* **Performance views** — operational dashboards covering workload, timeliness, and rejection and correction rates.
+* **Vital statistics export** — structured, non-personally-identifiable outputs for the production of vital statistics.
+* **Person centricity** — person-level views that link multiple records together where identifiers permit.
 
-#### 4.6 Aggregate Data module
+#### 5.7 Interoperability module — _how OpenCRVS exchanges data with other systems_
 
-Describes **how operational data is aggregated for performance and statistics**.
+The Interoperability module connects OpenCRVS to the wider digital government ecosystem.
 
-Includes:
+* **APIs** — ...
+* **Action triggrers** — ...
+* **MOSIP** — ...
 
-* **Performance views** – operational dashboards (for example, workload, timeliness, rejection and correction rates).
-* **Vital statistics export** – structured outputs for vital statistics production.
-* **Person centricity** – person-level views linking multiple records where identifiers permit.
+#### 5.8 Legacy data module — _how existing records are brought into the system_
 
-#### 4.7 Interoperability module
+The Legacy Data module covers the transformation of pre-existing records so they can be used within OpenCRVS.
 
-Describes **how OpenCRVS exchanges data with other systems**.
-
-Includes:
-
-* **Inbound APIs** – receiving notifications or data from external systems (for example, health, ID).
-* **Outbound APIs** – exposing events, certificates, and statistics to other systems.
-* **Event notifications & verifiable credentials** – pushing structured updates and reusable proofs beyond OpenCRVS.
-
-#### 4.8 Legacy data module
-
-...
+* **Legacy data import** — import existing digital records for ongoing use.
+* **Legacy paper import** — capture and digitise paper records for ongoing use.
 
 ***
 
-### ~~5. Lifecycle model~~
+### 6. Lifecycle model
 
-~~Each event type has a **state machine** that describes how records move through the system.~~
+Each event type has a **state machine** that describes how its records move through the system. A typical flow is:
 
-~~A typical flow is:~~
+> **Draft → Notified → Declared → Registered**
 
-> ~~**Draft → Notified → Declared → Registered**~~
+with auxiliary flows for:
 
-~~with auxiliary flows for:~~
+* **Editing** — amending a declared record before registration.
+* **Correction** — correcting data after registration through a governed process.
+* **Archiving** — archiving erroneous or invalid declarations.
+* **Revocation** — revoking erroneous or invalid registrations.
 
-* ~~**Editing** – editing a declared record~~
-* ~~**Correction** – correcting data after registration through a governed process.~~
-* ~~**Archiving -** archiving erroneous or invalid declarations.~~
-* ~~**Revocation** – revoking erroneous or invalid registrations.~~
-* ~~**Re‑issue** – issuing replacement certificates or additional certified copie~~s.
+**Business rules** determine, at every step:
 
-~~**Business rules** determine:~~
-
-* ~~Which actions are available in each status.~~
-* ~~Who can perform those action~~s (role, scope, jurisdiction).
-* Which flags are set or cleared when actions complete.
+* Which actions are available in each status.
+* Who can perform those actions, based on role, scope, and jurisdiction.
+* Which flags are set or cleared when an action completes.
 
 ***
 
-### 6. Configuration vs customisation
+### 7. Configuration vs customisation
 
-Country implementations should meet requirements primarily through the **configuration package**, which covers:
+Country implementations should meet their requirements primarily through the **configuration package**, which covers:
 
 * Event types, forms, and validation rules.
 * Business rules and workflows.
@@ -169,7 +171,7 @@ Country implementations should meet requirements primarily through the **configu
 * Certificates, communications, and aggregate data views.
 * Deduplication logic and offline behaviour.
 
-Custom code should be considered only when configuration cannot reasonably meet a requirement. When customisation is necessary, it should:
+**Custom code** should be considered only when configuration cannot reasonably meet a requirement. When customisation is necessary, it should:
 
 * Follow the core architecture patterns.
 * Minimise divergence from the standard product.
@@ -177,14 +179,14 @@ Custom code should be considered only when configuration cannot reasonably meet 
 
 ***
 
-### 7. Cross‑cutting concerns
+### 8. Cross-cutting concerns
 
-Several concerns apply across all modules:
+Several concerns apply across every module:
 
-* **Security and privacy** – role-based access, audit trails for all changes, data minimisation, field-level validation, and configurable retention policies.
-* **Offline and synchronisation** – predictable sync behaviour, idempotent writes, and conflict resolution when devices come back online.
-* **Internationalisation and localisation** – support for multiple languages and country-specific formatting.
-* **Accessibility and usability** – consistent, usable interfaces for all user types.
-* **Logging, monitoring, and performance** – observability of system health and adherence to performance expectations.
+* **Security and privacy** — role-based access, audit trails for all changes, data minimisation, field-level validation, and configurable retention policies.
+* **Offline and synchronisation** — predictable sync behaviour, idempotent writes, and conflict resolution when devices come back online.
+* **Internationalisation and localisation** — support for multiple languages and country-specific formatting.
+* **Accessibility and usability** — consistent, usable interfaces for every type of user.
+* **Logging, monitoring, and performance** — observability of system health and adherence to performance expectations.
 
-Together, these modules and cross‑cutting concerns form the OpenCRVS functional architecture that other documentation sections build on.
+Together, these modules and cross-cutting concerns form the OpenCRVS functional architecture that the rest of the documentation builds upon.
