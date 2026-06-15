@@ -53,16 +53,10 @@ User Management is:
 
 These scopes grant users the ability to browse the administrative structure and view office team pages
 
-| Scope          | Description                   |
-| -------------- | ----------------------------- |
-| `organisation` | View all office locations     |
-| `organisation` | View only their team location |
-
-\<aside> 🚨
-
-Please note that searching for an office and searching for a user are backlog features.
-
-\</aside>
+| Scope           | Description                   |
+| --------------- | ----------------------------- |
+| `organisation`  | View all office locations     |
+| `organisation:` | View only their team location |
 
 ***
 
@@ -128,12 +122,6 @@ From the **Office view**, authorised administrators can create new user accounts
 | Digital signature | Required for Registrar or National Registrar roles              |
 | Device            | Assigned mobile or web device (if device assignment is enabled) |
 
-\<aside> 🚨
-
-User creation form is not currently configurable …!
-
-\</aside>
-
 **Output**
 
 * Username is generated automatically (e.g. Jane Smith → `j.smith`)
@@ -143,7 +131,7 @@ User creation form is not currently configurable …!
 
 ***
 
-#### 4.2 Editing users
+#### 4.2 Updating users
 
 Administrators can update user information from the **Office view** or **User Audit**.
 
@@ -241,9 +229,18 @@ Access is restored according to the user’s current:
 
 ### 5. User onboarding
 
-…
+New accounts are created in a **pending** state. The user activates their account by completing onboarding at first login.
 
+**Steps**
 
+1. Receive username and temporary password (via SMS or email)
+2. Log in and create a new password
+3. Set security questions
+4. Confirm profile details, assigned office, and role
+
+Once complete, the account becomes **active** and the user signs in with their new password.
+
+***
 
 ### 6. Audit and Accountability
 
