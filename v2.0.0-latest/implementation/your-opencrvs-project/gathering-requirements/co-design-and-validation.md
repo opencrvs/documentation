@@ -70,9 +70,9 @@ Then place each feature into a MoSCoW category — **Must**, **Should**, **Could
 
 **Output:** a prioritised feature list with a clear, evidenced rationale and milestones.
 
-#### 3.3 Capture service-concept epics
+#### 3.3 Capture unsupported service-concept epics
 
-For each priority service, write a one-page concept that gives stakeholders a high-level view of the new service: the problem it addresses, the main use cases, the current challenges, a short epic statement, and the initial design and development principles. **Output:** a set of service-concept epics ready to take into design.
+For each priority service not currently supported by OpenCRVS, write a one-page concept that gives stakeholders a high-level view of the new service: the problem it addresses, the main use cases, the current challenges, a short epic statement, and the initial design and development principles. **Output:** a set of service-concept epics ready to take into design.
 
 ***
 
