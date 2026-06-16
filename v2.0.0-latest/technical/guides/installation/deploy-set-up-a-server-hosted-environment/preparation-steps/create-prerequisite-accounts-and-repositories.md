@@ -8,7 +8,7 @@ OpenCRVS is hardcoded to use the following 3rd party services which require subs
 2. An organisation Github account in a minimum of a ["Team"](https://github.com/pricing) plan to configure automated provisioning and CI/CD for the require repositories explained below.
 3. System alerts can be broadcast to an email address. It's usually important that alert notifications are not silo-ed to a single individual for auditing purposes, therefore it is optional, but recommended to have a team messaging system such as Slack to receive these notifications: A Slack Pro account [https://app.slack.com/plans](https://app.slack.com/plans)
 4. Application bug reports can be delivered to a [Sentry](https://sentry.io/welcome/) Team account. A free plan is fine for development / proof-of-concept, or if you are less worried about report volume and longevity.
-5. Critical server secrets and passwords are created when initialising an environment and creating National System Admin users.  A password manager such as 1Password Team [https://1password.com/business-pricing](https://1password.com/business-pricing) or Bitwarden Team [https://bitwarden.com/pricing](https://bitwarden.com/pricing) is an industry standard location to store such secrets safely, providing sufficient governance.
+5. Critical server secrets and passwords are created when initialising an environment and creating National System Admin users. A password manager such as 1Password Team [https://1password.com/business-pricing](https://1password.com/business-pricing) or Bitwarden Team [https://bitwarden.com/pricing](https://bitwarden.com/pricing) is an industry standard location to store such secrets safely, providing sufficient governance.
 
 ### 2. Set up an individual and an organisation account on Dockerhub
 
@@ -17,8 +17,6 @@ A DockerHub account is required as the registry for the countryconfig docker ima
 {% endhint %}
 
 You will need your DockerHub **username** and a personal DockerHub account **access tokens** as secrets. Our scripts use these credentials to login to DockerHub programmatically. This is how you create a DockerHub access token: [https://docs.docker.com/security/for-developers/access-tokens/](https://docs.docker.com/security/for-developers/access-tokens/)
-
-
 
 ### 3. Create companion service accounts for monitoring and notifications
 
@@ -40,3 +38,20 @@ Notifications are sent by email by default, so you should configure SMTP setting
 
 Notification gateways via SMS or other platform such as WhatsApp are configurable in countryconfig code.
 
+### 4. Enforce two-factor authentication and PR approvals on your GitHub organisation
+
+The GitHub organisation hosting your opencrvs-countryconfig fork holds the keys to your production deployment: CI/CD workflows, environment secrets, infrastructure-as-code, and the ability to deploy. Treat compromise of a single member account as compromise of your production environment, and apply organisation-level controls accordingly.
+
+#### 4.1 Require two-factor authentication for every member
+
+Enable organisation-wide 2FA enforcement so that no member, outside collaborator, or owner can access the org without a second factor. Existing members who do not have 2FA configured will be removed when enforcement is enabled, so plan a short grace period and notify the team first.
+
+&#x20;GitHub's documentation: [Requiring two-factor authentication in your organization](https://docs.github.com/en/organizations/keeping-your-organization-secure/managing-two-factor-authentication-for-your-organization/requiring-two-factor-authentication-in-your-organization).
+
+#### 4.2 Require reviewed pull requests on protected branches
+
+Configure a branch protection rule (or repository ruleset) on the default branch — typically main — and on any branch used to deploy to a production environment, with at least the following:
+
+* Require a pull request before merging — direct pushes to the protected branch are disallowed.
+* Require at least 2 approving reviews from organisation members before a PR can be merged.
+* Require status checks to pass before merging — at minimum the CI test suite.
