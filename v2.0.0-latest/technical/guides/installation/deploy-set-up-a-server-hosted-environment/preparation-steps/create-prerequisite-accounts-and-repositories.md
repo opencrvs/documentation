@@ -55,3 +55,5 @@ Configure a branch protection rule (or repository ruleset) on the default branch
 * Require a pull request before merging — direct pushes to the protected branch are disallowed.
 * Require at least 2 approving reviews from organisation members before a PR can be merged.
 * Require status checks to pass before merging — at minimum the CI test suite.
+
+GitHub's documentation: [About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) and [Managing rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets).
