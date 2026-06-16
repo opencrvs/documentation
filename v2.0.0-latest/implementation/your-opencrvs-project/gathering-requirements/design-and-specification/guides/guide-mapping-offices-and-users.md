@@ -1,6 +1,6 @@
 # Guide: Mapping offices and users
 
-#### 1. Introduction
+### 1. Introduction
 
 This guide helps you turn the validated office hierarchy and user roles from **Co-Design & Validation** into the configuration inputs that the build team needs. Working through it produces two of the inputs listed in [Design & specification](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs-project/gathering-requirements/design-and-specification):
 
@@ -15,7 +15,7 @@ Use this page when you are deciding how your country's administrative geography,
 
 ***
 
-#### 2. What's different in 2.0
+### 2. What's different in 2.0
 
 If you are coming from earlier versions, three shifts change how you do this mapping:
 
@@ -27,7 +27,7 @@ For the full model — the scope catalogue, jurisdiction qualifiers and values, 
 
 ***
 
-#### 3. The key principle: offices carry no behaviour, users do
+### 3. The key principle: offices carry no behaviour, users do
 
 This is the idea country teams most often need to unlearn:
 
@@ -39,9 +39,9 @@ So when stakeholders draw "this office sends records to that office", that flow 
 
 ***
 
-#### 4. Do's and don'ts
+### 4. Do's and don'ts
 
-**4.1 Do**
+#### **4.1 Do**
 
 1. **Model the administrative hierarchy on the country's real geography.** It drives address capture and the aggregation of vital statistics, not just registration — so it must match the official structure and the levels at which you need to report.
 2. **Place offices at the level they genuinely operate.** National, provincial, district or sub-district — or directly under the country (for an HQ or embassy). Let jurisdiction follow from the hierarchy.
@@ -49,7 +49,7 @@ So when stakeholders draw "this office sends records to that office", that flow 
 4. **Choose the narrowest jurisdiction each scope needs.** Tune jurisdiction per scope: a Registrar might search across a province but register only in their own district.
 5. **Assign every participating user to one location and one role.** Anyone who performs an OpenCRVS action — including a health administrator or court clerk acting as a field agent — is a user assigned to a location.
 
-**4.2 Don't**
+#### **4.2 Don't**
 
 1. **Don't try to give an office permissions.** Capability comes from users' roles and scopes, never from the office itself.
 2. **Don't force staff into generic roles.** With unlimited custom roles, model the role that matches the real job rather than approximating it.
@@ -59,7 +59,7 @@ So when stakeholders draw "this office sends records to that office", that flow 
 
 ***
 
-#### 5. How to approach the mapping
+### 5. How to approach the mapping
 
 Work through these in order with your stakeholders. Each step produces part of the input set.
 
@@ -73,7 +73,7 @@ Work through these in order with your stakeholders. Each step produces part of t
 
 ***
 
-#### 6. Questions to guide your mapping
+### 6. Questions to guide your mapping
 
 * **Hierarchy** — Does the structure match the country's real geography _and_ the levels at which vital statistics must aggregate?
 * **Offices** — At which level does each office genuinely operate? Are any best placed directly under the country?
