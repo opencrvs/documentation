@@ -16,6 +16,8 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # Version upgrades
@@ -236,8 +238,6 @@ git merge upstream/release-v2.x.x
 
 A new Docker image will be automatically built and pushed.
 
-
-
 ### Step 3 — Update GitHub environments
 
 Back up all existing secrets and variables before making changes.
@@ -315,6 +315,8 @@ Use **Email All Users** to instruct staff to:
 * Stop work before the upgrade
 * Submit all **offline drafts**
 * Ensure their **outbox is empty**
+
+<div align="center"><figure><img src="../../.gitbook/assets/Screenshot 2026-06-18 at 17.00.24.png" alt="" width="563"><figcaption><p>Email all users - available to users with the <code>config.update-all</code> scope</p></figcaption></figure></div>
 
 ### Step 7 — Deploy to production
 
