@@ -128,11 +128,14 @@ The script will ask you to provide Kubernetes and Runtime options:
 
 * `DOMAIN`: Domain name to expose the OpenCRVS application frontend and APIs.  It will be the domain after the subdomains that you configured when setting DNS.
 * `KUBE_API_HOST`: IP address or domain address for the Kubernetes master node. Provision script will generate Kubernetes config files for each user defined in users section of inventory file. Leave empty to use the default address of the provisioned master node.
-* `KUBE_API_ALLOWED_CIDRS` : Comma-separated list of CIDR ranges allowed to access the Kubernetes API. Default: 0.0.0.0/0 (no restrictions).
+* `KUBE_API_ALLOWED_CIDRS` : Comma-separated list of CIDR ranges allowed to access the Kubernetes API. Default: `KUBE_API_HOST` (Allow connections from master node only).
 * `KUBE_WORKER_NODES`: Comma separated list of additional Kubernetes cluster members (Virtual Machines). Leave empty for a single node setup. Worker nodes can be added later. Default: no worker nodes.
-* `KUBE_CLUSTER_NODE_CIDR`: Network CIDR range used for communication between Kubernetes nodes. Default: `0.0.0.0/0` (no restrictions).
 
-<figure><img src="../../../../../.gitbook/assets/image (17).png" alt=""><figcaption><p>On screenshot access to Kubernetes API is limited to private subnet 10.0.0.0/8. Cluster doesn't have worker nodes and network CIDR set to 10.0.1.8/32 that is IP address of the master node.</p></figcaption></figure>
+{% hint style="info" %}
+The values of `KUBE_API_HOST` , `KUBE_API_ALLOWED_CIDRS` and `KUBE_WORKER_NODES` are used to generate the firewall configuration during provisioning, check [ubuntu-firewall-configuration.md](../../advanced-topics/ubuntu-firewall-configuration.md "mention")
+{% endhint %}
+
+<figure><img src="../../../../../.gitbook/assets/image (19).png" alt=""><figcaption><p>On screenshot access to Kubernetes API is limited to master node only.</p></figcaption></figure>
 
 #### SSH Users
 
