@@ -16,7 +16,7 @@ Audit information is used to:
 * Demonstrate **compliance** with laws and policies during audits or reviews.
 * Inform **management and quality improvement**, by highlighting patterns such as high rejection rates or repeated corrections.
 
-~~Audit information is only visible to **authorised users** (for example, supervisors, system administrators), according to their scopes. Countries can define which roles are permitted to view audit details, in line with their own governance and data protection requirements.~~
+
 
 ***
 
@@ -97,7 +97,6 @@ The **User Audit** provides a **complete, chronological history of activity rela
 * **Logged in** — user successfully logged in.
 * **Logged out** — user logged out.
 * **Username reminder requested** — a username reminder was triggered.
-* ~~**Password reset** — a password reset process was initiated.~~
 * **Password changed** — the user changed their password.
 * **Profile updated ??!?** — the user’s account details were edited (for example name, phone, email, role, office, or device assignment)
 
@@ -113,7 +112,7 @@ For users with the scope to create and update other users. Their user audit log 
 
 * **Created user** — a new user account was created.
 * **Edited user details** — user details (such as role, location, contact information) were updated.
-* **Username name reminder sent**  — a username reminder was sent for a user&#x20;
+* **Username name reminder sent** — a username reminder was sent for a user
 * **Password reset**— a user password was reset
 * **Deactivated user** — a user’s access to OpenCRVS was revoked.
 * **Reactivated user** — a previously deactivated user’s access was restored.
