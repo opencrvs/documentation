@@ -15,6 +15,8 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # Offline working
@@ -77,25 +79,17 @@ If a form includes fields that require **online validation** (for example, natio
 * Countries are encouraged to configure a **fallback option** so that a declaration can still be completed and submitted offline when online validation is not possible, with follow-up checks performed later.
 {% endhint %}
 
-#### 2.2. Registration and certification offline
-
-..
-
-#### 2.3 Working on assigned records
+#### 2.2 Working on assigned records
 
 Users can also work offline on records that have been assigned to them:
 
 * When a record is **assigned** to a user, it is downloaded to their device for offline access.
-* Depending on the user’s role and permissions, they can **update, review, or approve** the record while offline (for example, using Edit, Correct, or other configured actions).
+* Depending on the user’s role and permissions, they can **edit, validate, approve, print or correct** or other configured actions to the record while offline.
 * All offline actions are added to the **Outbox** and synchronised when connectivity is restored.
 
 {% hint style="danger" %}
 While you can complete all assigned record actions (such as Register, Edit, or Approve) while offline, the action should not be considered "legally final" until the users device has synchronised with the backend central e-registry
 {% endhint %}
-
-#### 2.4 Search results
-
-User will only be able to search for records they have already assigned whilst offline
 
 ***
 
@@ -139,8 +133,3 @@ Important characteristics:
 
 For further detail on how this is represented in the data model and audit trails, see the **Record data** and **Audit** documentation pages.
 
-
-
-### 6. User management actions
-
-...
