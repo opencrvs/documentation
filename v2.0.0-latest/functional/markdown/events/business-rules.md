@@ -72,17 +72,10 @@ The examples below illustrate the kinds of rules that can be configured. The exa
 
 #### 3.4 Correction rules
 
-* Require capture of requester’s details and identity before processing a correction.
+* Require capture of requester’s details and identity before processing a correction
 * Allow correction requests to be submitted by a Registration Agent and approved by a Registrar.
 * Permit direct corrections by a Registrar in defined scenarios.
 * Require senior approval for sensitive corrections (for example, changing a child’s date of birth).
-
-#### 3.5 Post-registration and access rules
-
-* Allow additional information to be added after registration (for example, cause of death when confirmed later).
-* ~~Allow notes to be added for audit or operational purposes.~~
-* ~~Restrict search and record access based on where the event occurred, was declared, or was registered.~~
-* ~~Restrict access to protected or sensitive records to specially permissioned users.~~
 
 ***
 

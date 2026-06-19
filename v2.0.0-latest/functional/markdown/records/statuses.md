@@ -121,5 +121,3 @@ Configuration can then ensure that:
 * The **Register** action is only available once this flag has been cleared by the **Approve** action.
 
 This approach keeps the status model **simple and consistent** (Draft → Notified → Declared → Registered), while flags and actions handle country-specific business rules and sub-states such as late registrations, special approvals, or escalation reviews. Please see the documentation of Flags for more details documentation and examples.
-
-### Summary
