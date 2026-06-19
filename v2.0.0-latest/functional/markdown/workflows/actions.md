@@ -15,6 +15,8 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # Actions
@@ -84,8 +86,6 @@ The action menu would display:
 * Correct
 * Issue verifiable credential
 * Unassign
-
-_(Insert example screenshot or diagram here)_
 
 Actions remain disabled until the user assigns the record to themselves. This supports safe offline working and prevents conflicting updates.
 

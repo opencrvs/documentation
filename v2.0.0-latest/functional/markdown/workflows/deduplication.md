@@ -15,6 +15,8 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # Deduplication
@@ -122,8 +124,6 @@ All review outcomes are audited, including:
 * Who made the decision.
 * The decision taken (duplicate / not duplicate).
 
-_(Insert example screenshot or diagram here)_
-
 ***
 
 ### 5. Worked example
@@ -151,7 +151,7 @@ Because these are not intentional duplicates, we expect:
 
 #### Configuration input
 
-<table><thead><tr><th valign="top">Check</th><th valign="top">Reason for check</th><th>Required matching criteria</th></tr></thead><tbody><tr><td valign="top"><p>Standard check</p><p></p></td><td valign="top">Mistaken redeclaration</td><td><ul><li>Similar child's first name(s)</li><li>Similar child's last name</li><li>Date of birth within ±5 days</li><li>Similar mother's first name(s)</li><li>Similar mother's last name</li><li>Similar mother's date of birth or same age</li><li>Exact mother's national ID |</li></ul></td></tr></tbody></table>
+<table><thead><tr><th valign="top">Check</th><th valign="top">Reason for check</th><th>Required matching criteria</th></tr></thead><tbody><tr><td valign="top">Standard check</td><td valign="top">Mistaken redeclaration</td><td><ul><li>Similar child's first name(s)</li><li>Similar child's last name</li><li>Date of birth within ±5 days</li><li>Similar mother's first name(s)</li><li>Similar mother's last name</li><li>Similar mother's date of birth or same age</li><li>Exact mother's national ID |</li></ul></td></tr></tbody></table>
 
 #### Name matching configuration
 
