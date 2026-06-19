@@ -16,15 +16,15 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # Welcome
 
 {% hint style="warning" %}
-OpenCRVS v2.0 documentation is work-in-progress and will be completed by the official release date. You will notice multiple unfinished pages, todo-items and inserts.  Refer to the Releases page in 1.9 docs to understand the timeline for 2.0 official release dates.
+OpenCRVS v2.0 documentation is work-in-progress and will be completed by the official release date. You will notice multiple unfinished pages, todo-items and inserts. Refer to the Releases page in 1.9 docs to understand the timeline for 2.0 official release dates.
 {% endhint %}
-
-### \<INSERT>Social thumbnail or image product / in context&#x20;
 
 ### 1. Introduction
 
@@ -57,25 +57,25 @@ This functional documentation is written for **governments, business analysts, s
 
 *   **Quick Start:** Run OpenCRVS on your laptop for development
 
-    👉&#x20;
+    👉
 *   **Architecture:** Understand how OpenCRVS works technically
 
-    👉&#x20;
+    👉
 *   **Configuration:** Technically configure OpenCRVS for your country context
 
-    👉&#x20;
+    👉
 *   **Deployment:** Deploy a configured version of OpenCRVS to a server
 
-    👉&#x20;
+    👉
 
 #### 2.4. Project setup and planning
 
 *   **Setup:** Establish your OpenCRVS project and team
 
-    👉&#x20;
+    👉
 *   **Product Roadmap:** See what's coming next for OpenCRVS
 
-    👉&#x20;
+    👉
 *   **Upgrading:** Update your instance to the latest OpenCRVS release
 
     👉 Upgrading to new OpenCRVS release
