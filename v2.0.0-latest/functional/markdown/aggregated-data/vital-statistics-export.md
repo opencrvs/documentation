@@ -34,7 +34,7 @@ Vital statistics exports are:
 
 ***
 
-### 3. Vital statistics exports confgiuration overview
+### 3. Vital statistics exports configuration overview
 
 Vital statistics exports are configured as **tabular dashboards in Metabase** that present rows and columns of data ready for download. They draw on the same underlying OpenCRVS data as performance dashboards.
 

@@ -10,7 +10,7 @@ This command creates a country configuration package with a minimal example conf
 
 ### Run local development environment
 
-Make sure all prerequisites are installed, see [opencrvs-counyryconfig](https://github.com/opencrvs/opencrvs-countryconfig/#prerequisites)
+Make sure all prerequisites are installed, see [opencrvs-countryconfig](https://github.com/opencrvs/opencrvs-countryconfig/#prerequisites)
 
 Navigate to `<project-name>-countryconfig`
 

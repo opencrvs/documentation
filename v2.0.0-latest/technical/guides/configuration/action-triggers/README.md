@@ -14,17 +14,15 @@ sequenceDiagram
     Config->>Ext: Send email, call MOSIP, update analytics…
 ```
 
-
-
-
-
 Action triggers can be used for a variety of purposes, such as:
 
 * Collecting birth registration data into an analytics system
 * Sending the birth informant an email when a birth is registered
 * Integrating with third-party systems — for instance, requesting a UIN from MOSIP or submitting death information to a social protection system
 
-> **Note:** Starting from OpenCRVS 2.0, the country config package is responsible for sending all email and SMS messages.
+{% hint style="info" %}
+Starting from OpenCRVS 2.0, the country config package is responsible for sending all email and SMS messages.
+{% endhint %}
 
 Every trigger request targets a path following the schema `/triggers/:resource/:action` (e.g. `/triggers/user/user-updated`). For resources with subresources — such as events containing actions — the schema is `/triggers/:resource/:subresource/:action` (e.g. `/triggers/events/birth/actions/REGISTER`). All requests use the `POST` method and include a payload.
 
