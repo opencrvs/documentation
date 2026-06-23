@@ -87,7 +87,7 @@
   * [Go-live](implementation/your-opencrvs-project/go-live.md)
   * [Operational support](implementation/your-opencrvs-project/operational-support.md)
   * [Monitoring](implementation/your-opencrvs-project/monitoring.md)
-  * [Upgrading](implementation/your-opencrvs-project/upgrading.md)
+  * [Version upgrades](implementation/your-opencrvs-project/version-upgrades.md)
 
 ## Technical
 
