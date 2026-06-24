@@ -32,14 +32,9 @@ All dates provided are subject to change, however OpenCRVS Product Management ma
 
 ### 3. Future product scope
 
-| Release | Planned Scope                                     |
-| ------- | ------------------------------------------------- |
-| v2.1    | Workflow configurability enhancements             |
-| v2.1    | Audit and compliance improvements                 |
-| v2.1    | Registration status management enhancements       |
-| v2.1    | Technical debt reduction and platform maintenance |
+Future releases are expected to evolve based on implementation feedback, country priorities, and emerging technical or regulatory requirements. The items outlined in this section represent potential areas of enhancement and should be treated as indicative rather than committed scope.
 
-**Note:** The scope of future releases is subject to change based on emerging implementation requirements, country priorities, and critical technical needs.
+<table><thead><tr><th width="358.7999267578125">Area</th><th>Description</th></tr></thead><tbody><tr><td>Workflow Configuration</td><td>Enable configurable form fields on core actions and and provide greater control over record flag management during notification workflows</td></tr><tr><td>Notification Management</td><td>Add notification-based filtering to scopes, enabling records to be filtered by where notifications were issued and by the user who issued them</td></tr><tr><td>Registration Lifecycle Management</td><td>Introduce "Registered (Inactive)" and "Revoked" statuses, along with related workflow actions for managing registered records</td></tr><tr><td>Platform Modernisation</td><td>Modernise the platform by removing deprecated components and improving long-term maintainability</td></tr><tr><td>Audit &#x26; Compliance</td><td>Improvements to audit logging and audit log retrieval capabilities.</td></tr></tbody></table>
 
 ***
 
@@ -74,4 +69,4 @@ To stay up to date with OpenCRVS releases and roadmap changes:
 
 * **GitHub Discussions** — Follow feature request discussions and provide feedback
 * **Release notes** — Review detailed release notes for each version
-* **Community updates** — Join the OpenCRVS community for announcements and updates
+
