@@ -1,7 +1,5 @@
 # Data migration
 
-### PENDING REVIEW!
-
 
 
 ### 1. Introduction
