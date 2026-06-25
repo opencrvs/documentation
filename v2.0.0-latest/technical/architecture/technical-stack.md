@@ -119,5 +119,5 @@ The skills required depend on what your team is doing.
 | Node.js             | Backend services                          |
 | PostgreSQL          | Events data, migrations, queries          |
 | Elasticsearch       | Search configuration and index management |
-| Docker & Kuberentes | Container operation and deployment        |
+| Docker & Kubernetes | Container operation and deployment        |
 | REST/OpenAPI        | External system integration               |
