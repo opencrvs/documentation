@@ -176,6 +176,8 @@
     * [Integrations](technical/guides/configuration/integrations/README.md)
       * [Authenticate a client](technical/guides/configuration/integrations/authenticate-a-client.md)
       * [Integration: ID systems](technical/guides/configuration/integrations/integration-id-systems.md)
+      * [Integration: Health notifications / Self-service portal](technical/guides/configuration/integrations/integration-health-notifications-self-service-portal.md)
+      * [Integration: Location management](technical/guides/configuration/integrations/integration-location-management.md)
       * [MOSIP Overview](technical/guides/configuration/integrations/mosip-overview.md)
       * [MOSIP Deployment](technical/guides/configuration/integrations/mosip-deployment.md)
       * [MOSIP Form Authentication](technical/guides/configuration/integrations/mosip-form-authentication.md)
