@@ -10,9 +10,9 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 
 ## Releases
 
-### v2.1 (Planned Q3 2026)
+### v2.1 (Upcoming Q3 2026)
 
-**Key highlights**
+#### **Key highlights**
 
 * Support for custom form fields on action dialogs ([#11951](https://github.com/opencrvs/opencrvs-core/issues/11951))
 * Support for `notifiedIn` and `notifiedBy` properties on scopes ([#11875](https://github.com/opencrvs/opencrvs-core/issues/11875))
@@ -22,7 +22,7 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 
 ***
 
-### v2.0 (25th of June 2026)
+### v2.0 - 25/06/2026
 
 #### **Key highlights**
 
