@@ -80,7 +80,7 @@ These decisions are captured within the solution architecture before technical i
 For further guidance, see:
 
 * [**Solution Architecture**](../../../implementation/your-opencrvs-project/solution-architecture.md) – understanding how OpenCRVS fits within the wider government ecosystem.
-* [**Integration Architecture**](../../../technical/architecture/integration-architecture.md) – .
+* [**Integration Architecture**](../../../technical/architecture/integration-architecture.md) – defines how OpenCRVS connects securely with a country's wider digital ecosystem, enabling it to exchange information with external systems while remaining agnostic.
 * [**Integration Configuration**](../../../technical/guides/configuration/integrations/) – technical guidance on configuring event-driven integrations with external systems.
 
 These guides describe how to implement secure integrations using these capabilities while following OpenCRVS architectural principles.
