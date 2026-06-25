@@ -36,7 +36,6 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 #### Improvements
 
 * **Configurable record flags.** Actions can add or remove flags on a record, so workqueues and status indicators are driven by configuration rather than core code.
-* **Jurisdiction-aware search and configurable place of event.** Each record is indexed with its full administrative hierarchy, so records can be searched at any level (office, health facility, village, district, province). Events can define multiple location fields, with one resolved as the place of event per record through conditionals — enabling, for example, search by birth location, child's home address, or place of death.
 * **Kubernetes deployment.** OpenCRVS can now be deployed to any Kubernetes cluster using the Helm charts shipped in `opencrvs-core`. Docker Swarm remains supported until v2.1.
 * **Improved offline/online recovery.** The app now recovers automatically if the network changes or drops while it is still initialising.
 * **Performance improvements.** Performance improvements to e.g. workqueue load times.
@@ -47,9 +46,9 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 * **Event Notification API endpoint renamed.** `POST /api/events/events/notifications` has been renamed to `POST /api/events/events/{eventId}/notify`. Existing integration clients must update their request paths. A new single-request convenience endpoint `POST /api/events/events/notify` is also available for system clients that need to create and notify in one call.
 * **Auth service is no longer exposed on its own subdomain.** The public `auth.{hostname}` Traefik route has been removed — the auth service is now reachable only through the gateway proxy at `gateway.{hostname}/auth/*`. Remove the `auth.*` DNS record and TLS certificate from your deployment. The gateway's `/auth/authenticate-super-user` route is now rate limited on a constant key (it previously keyed on a `username` field that super user auth does not send).
 * **Configuration model rewritten.** Events, forms, workflows, and actions are now defined in TypeScript with the `@opencrvs/toolkit` package (`defineConfig`). v1 country configurations are not compatible with v2.0 and must be migrated to the new model.
-  * These required changes can be automatically applied to an existing country config using `yarn opencrvs upgrade`, see [#update-code-and-test-locally](../technical/guides/version-upgrades.md#update-code-and-test-locally "mention")
+  * These required changes can be automatically applied to an existing country config using `yarn opencrvs upgrade`, see [#step-2-update-code-and-test-locally](../technical/guides/version-upgrades.md#step-2-update-code-and-test-locally "mention")
 * **Other configuration changes.** `InherentFlags.PENDING_CERTIFICATION` has been removed (implement it as a custom flag instead); workqueue configuration uses `action: { … }` rather than `actions: [ … ]` and no longer accepts `'DEFAULT'`; and `FieldType.PARAGRAPH` no longer takes a `fontVariant` — use the new `FieldType.HEADING` where a heading style is needed.
-  * These required changes can be automatically applied to an existing country config using `yarn opencrvs upgrade`, see [#update-code-and-test-locally](../technical/guides/version-upgrades.md#update-code-and-test-locally "mention")
+  * These required changes can be automatically applied to an existing country config using `yarn opencrvs upgrade`, see [#step-2-update-code-and-test-locally](../technical/guides/version-upgrades.md#step-2-update-code-and-test-locally "mention")
 
 #### **Bug fixes**
 
