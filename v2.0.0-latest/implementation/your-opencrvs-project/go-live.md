@@ -161,6 +161,4 @@ Project managers should work with infrastructure and operational teams to define
 
 OpenCRVS provides technical guidance for configuring backups and supporting disaster recovery, but each government is responsible for developing, maintaining and testing its own disaster recovery procedures to meet local policies and operational requirements.
 
-For further guidance, see:
-
-* **Technical Disaster Recovery Guide** (step-by-step instructions for configuring backups, restoring services and validating recovery procedures).
+For technical guidance, see [Manual Restore / Disaster recovery](../../technical/guides/installation/opencrvs-maintenance-tasks/backup-and-restore/manual-restore-disaster-recovery.md)
