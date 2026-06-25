@@ -31,7 +31,7 @@ Every integration should have a clearly defined business purpose and should exch
 
 ### 3. Interoperability and solution architecture
 
-Before any integrations are developed, the project's [**Solution Architecture**](../../../implementation/your-opencrvs-project/solution-architecture.md) defines how OpenCRVS fits within the wider government technology landscape.
+Before any integrations are developed, the project's [Solution Architecture](../../../implementation/your-opencrvs-project/solution-architecture.md) defines how OpenCRVS fits within the wider government technology landscape.
 
 The solution architecture helps identify:
 
@@ -51,9 +51,9 @@ OpenCRVS provides a flexible interoperability framework that allows external sys
 
 At a high level, interoperability is achieved through two complementary mechanisms:
 
-[**Application Programming Interfaces (APIs)**](apis.md) — OpenCRVS provides a range of APIs designed for different consumers and business use cases. These APIs allow authorised systems to securely retrieve information from OpenCRVS, submit information to OpenCRVS or perform approved business operations.
+[Application Programming Interfaces (APIs)](apis.md) — OpenCRVS provides a range of APIs designed for different consumers and business use cases. These APIs allow authorised systems to securely retrieve information from OpenCRVS, submit information to OpenCRVS or perform approved business operations.
 
-[**Action Triggers**](action-triggers.md) — OpenCRVS can automatically notify external systems when defined business events occur, such as the registration or certification of a vital event. This enables other government systems to respond automatically without requiring manual intervention.
+[Action Triggers](action-triggers.md) — OpenCRVS can automatically notify external systems when defined business events occur, such as the registration or certification of a vital event. This enables other government systems to respond automatically without requiring manual intervention.
 
 Together, APIs and Action Triggers enable OpenCRVS to participate in event-driven government architectures while maintaining clear security boundaries and auditability.
 
@@ -79,9 +79,9 @@ These decisions are captured within the solution architecture before technical i
 
 For further guidance, see:
 
-* [**Solution Architecture**](../../../implementation/your-opencrvs-project/solution-architecture.md) – understanding how OpenCRVS fits within the wider government ecosystem.
-* [**Integration Architecture**](../../../technical/architecture/integration-architecture.md) – defines how OpenCRVS connects securely with a country's wider digital ecosystem, enabling it to exchange information with external systems while remaining agnostic.
-* [**Integration Configuration**](../../../technical/guides/configuration/integrations/) – technical guidance on configuring event-driven integrations with external systems.
-* [**ID Integration & MOSIP**](mosip-id-integration.md) - Integrating OpenCRVS with a National ID system creates a trusted foundation for legal identity, ensuring that vital events automatically support accurate and secure identity management throughout life.
+* [Solution Architecture](../../../implementation/your-opencrvs-project/solution-architecture.md) – understanding how OpenCRVS fits within the wider government ecosystem.
+* [Integration Architecture](../../../technical/architecture/integration-architecture.md) – defines how OpenCRVS connects securely with a country's wider digital ecosystem, enabling it to exchange information with external systems while remaining agnostic.
+* [Integration Configuration](../../../technical/guides/configuration/integrations/) – technical guidance on configuring event-driven integrations with external systems.
+* [ID Integration & MOSIP](mosip-id-integration.md) - Integrating OpenCRVS with a National ID system creates a trusted foundation for legal identity, ensuring that vital events automatically support accurate and secure identity management throughout life.
 
 These guides describe how to implement secure integrations using these capabilities while following OpenCRVS architectural principles.
