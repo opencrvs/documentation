@@ -1,6 +1,71 @@
-# MOSIP ID Integration
+# ID Integration
 
 ### 1. Introduction
+
+Civil registration and national identity systems are complementary components of a country's digital public infrastructure. While civil registration provides the legal record of vital events throughout a person's life, a National ID system provides individuals with a trusted means of proving their identity when accessing government and private sector services.
+
+This page provides a high-level overview of why countries integrate OpenCRVS with National ID systems and how OpenCRVS supports these integrations. The detailed implementation guidance is provided in the technical interoperability documentation.
+
+**Where this sits:** National ID integration requirements are identified during **Design & Specification** as part of the solution architecture and implemented during **Configuration** and **Deployment**.
+
+***
+
+### 2. Why integrate OpenCRVS with a National ID system?
+
+Civil registration provides the authoritative source of truth for vital events. Every birth, death and other legally recognised event recorded in OpenCRVS represents trusted information that can be shared with other government systems.
+
+Integrating civil registration with a National ID system enables governments to automate important identity lifecycle processes. For example:
+
+* following the registration of a birth, OpenCRVS can notify the National ID system so that a unique identity can be created for the child at birth
+* following the registration of a death, OpenCRVS can notify the National ID system that the individual is deceased, helping to prevent identity fraud and the continued use of a deceased person's credentials
+
+This close relationship between civil registration and National ID forms the foundation of a nation's identity infrastructure. Together they establish trusted legal identity from birth, support efficient public service delivery and improve the integrity of government records.
+
+***
+
+### 3. Which National ID systems can OpenCRVS integrate with?
+
+OpenCRVS is designed to be **National ID agnostic**. It does not depend on any particular identity platform and provides standard interoperability mechanisms that allow it to integrate with whichever National ID solution a country has adopted.
+
+The interoperability guidance is organised around common business use cases rather than specific products, allowing the same architectural approach to be applied regardless of the chosen National ID platform.
+
+OpenCRVS includes a production-ready integration library for [**MOSIP**](https://www.mosip.io/) and [**e-Signet**](https://www.mosip.io/eSignet) identity verification, both Open Source Digital Public Goods. Dedicated implementation guidance is available for these integrations, building on the same standard interoperability capabilities available to all National ID systems.
+
+***
+
+### 4. National ID integration capabilities
+
+OpenCRVS provides configurable integration capabilities that support a range of National ID business processes.
+
+At a high level, these include:
+
+**Identity verification** — authenticate and verify the identity of informants, parents or other participants during the registration process, whether services are delivered online or in person.
+
+**Configurable business rules** — determine which civil registration events should trigger interaction with the National ID system based on country-specific policies and legislation.
+
+**Registration integration** — exchange information with the National ID system when a civil registration event is completed. Integrations can operate synchronously where an immediate response is required, or asynchronously where processing occurs independently.
+
+These capabilities allow countries to implement National ID integration in a manner that aligns with their own legislation, operational processes and technical architecture.
+
+***
+
+### 5. Designing National ID integrations
+
+Successful National ID integration begins with clearly defined business requirements rather than technical interfaces.
+
+Implementation teams should first determine:
+
+* the business events that should trigger identity processes
+* which system is authoritative for each item of information
+* how identity verification should occur
+* what information should be exchanged
+* the security, privacy and consent requirements governing the integration
+
+These requirements are captured during solution architecture before technical implementation begins.
+
+***
+
+### 6. MOSIP integration
 
 MOSIP Integration Phase 3 establishes a configurable, event-driven integration framework between OpenCRVS (civil registration) and MOSIP (digital identity). All integration behaviour is driven by country-level configuration, the OpenCRVS core contains no country-specific logic.
 
@@ -11,7 +76,7 @@ MOSIP Integration Phase 3 establishes a configurable, event-driven integration f
 
 ***
 
-### 2. Feature Overview
+
 
 Regardless of country configuration, the OpenCRVS core evaluates every civil registration action against the country’s configured MOSIP integration rules and triggers the appropriate operation.
 
@@ -23,7 +88,7 @@ For every civil registration event, OpenCRVS:
 * Handles success and technical failure states.
 * Logs resulting outcomes to the record audit history.
 
-#### 2.1 Configuration Overview
+#### 6.1 Configuration Overview
 
 | Event type                         | Action type        | Eligibility rule                                                                                                          | MOSIP operation        | Response handling                                    |
 | ---------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ---------------------------------------------------- |
@@ -38,9 +103,9 @@ Eligibility rules are evaluated at the point of action execution. If no rule is 
 
 ***
 
-### 3. ID Lifecycle Management
+#### 6.2. ID Lifecycle Management
 
-#### 3.1 UIN Creation on Registration
+#### 6.2.1 UIN Creation on Registration
 
 The primary UIN creation trigger is confirmation of a birth registration by an authorised Registrar. Countries define configurable eligibility rules that determine whether and when a UIN is created.
 
@@ -50,7 +115,7 @@ The primary UIN creation trigger is confirmation of a birth registration by an a
 | Action type       | Register                                                                                   |
 | Eligibility       | Configurable per country (e.g. child at birth where MOSIP is enabled)                      |
 | Data shared       | Configurable set of birth data fields (schema), sent via the MOSIP Packet Manager          |
-| Response handling | Record moves to  ‘Awaiting external validation’ work queue                                 |
+| Response handling | Record moves to ‘Awaiting external validation’ work queue                                  |
 | On success        | On MOSIP confirmation: record moves to 'registered' and a VID is issued to the individual. |
 
 {% hint style="warning" %}
@@ -61,7 +126,7 @@ MOSIP does not return failure responses. Records that stall in 'Awaiting externa
 
 ***
 
-#### 3.2 UIN Creation on Correction
+#### 6.2.2 UIN Creation on Correction
 
 A UIN may not have been created at the time of original registration. For example, if eligibility conditions were not met. Phase 3 supports deferred UIN creation, triggered when an approved correction satisfies the eligibility rules.
 
@@ -124,7 +189,7 @@ Authentication is currently available in all event declaration forms. Support fo
 Authentication is initiated from within the OpenCRVS declaration form. On success, a configurable set of form fields is pre-populated from the individual’s MOSIP ID schema data.
 
 {% hint style="info" %}
-The field mapping from MOSIP ID schema to OpenCRVS form fields is defined in country configuration.&#x20;
+The field mapping from MOSIP ID schema to OpenCRVS form fields is defined in country configuration.
 {% endhint %}
 
 | UI State                    | Behaviour                                                                                           |
