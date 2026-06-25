@@ -1,4 +1,4 @@
-# Forking the repos
+# Fork and build the countryconfig repo
 
 The first step towards maintaining your own country configuration is to fork the OpenCRVS [country configuration](https://github.com/opencrvs/opencrvs-countryconfig) repo on GitHub, which is based on the demonstration country **Farajaland**.
 
@@ -87,6 +87,10 @@ You will need your Dockerhub **username** and a personal Dockerhub account **acc
 #### 7. Ensure your Docker image can be built successfully
 
 When you merge any pull request into the "main", "master" or "develop" branch, or if you explicitly run the "Publish image to Dockerhub" Gthub Action, a docker container image will be built and pushed to Dockerhub for your **countryconfig** microservice.
+
+{% hint style="info" %}
+The image will automatically be tagged with the Git commit hash.  You will use this hash when deploying.
+{% endhint %}
 
 In [Github repository secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets), set the following values and the above will occur.
 
