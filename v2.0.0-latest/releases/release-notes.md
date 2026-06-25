@@ -37,9 +37,9 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 
 * **Configurable record flags.** Actions can add or remove flags on a record, so workqueues and status indicators are driven by configuration rather than core code.
 * **Jurisdiction-aware search and configurable place of event.** Each record is indexed with its full administrative hierarchy, so records can be searched at any level (office, health facility, village, district, province). Events can define multiple location fields, with one resolved as the place of event per record through conditionals — enabling, for example, search by birth location, child's home address, or place of death.
-* **Form and certificate enhancements.** New Autocomplete input (suggestions served by country config); rich-text formatting directly in translation messages (`MessageDescriptor.defaultMessage`); and certificate-template helpers, including a `$join` helper and an address `administrativeHierarchy` variable for rendering address hierarchies cleanly.
 * **Kubernetes deployment.** OpenCRVS can now be deployed to any Kubernetes cluster using the Helm charts shipped in `opencrvs-core`. Docker Swarm remains supported until v2.1.
 * **Improved offline/online recovery.** The app now recovers automatically if the network changes or drops while it is still initialising.
+* **Performance improvements.** Performance improvements to e.g. workqueue load times.
 
 #### **Breaking changes**
 
