@@ -2,7 +2,7 @@
 
 The first step towards maintaining your own country configuration is to fork the OpenCRVS [country configuration](https://github.com/opencrvs/opencrvs-countryconfig) repo on Github, which is based on the demonstration country **Farajaland**.
 
-You can then commit all changes to this repo and build your countryconfig Docker image using the built in Github Actions and [**Dockerhub**](https://hub.docker.com/) account.
+You can then commit all changes to this repo and build your countryconfig Docker image using the Github Actions and a [**Dockerhub**](https://hub.docker.com/) account.
 
 
 
