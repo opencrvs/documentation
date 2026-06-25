@@ -102,7 +102,7 @@
 * [Guides](technical/guides/README.md)
   * [Installation](technical/guides/installation/README.md)
     * [Quick Start](technical/guides/installation/quick-start.md)
-    * [Fork the countryconfig repo and build a Docker image](technical/guides/installation/fork-the-countryconfig-repo-and-build-a-docker-image.md)
+    * [Fork and build the countryconfig repo](technical/guides/installation/fork-and-build-the-countryconfig-repo.md)
     * [Deploy: Set-up a server-hosted environment](technical/guides/installation/deploy-set-up-a-server-hosted-environment/README.md)
       * [Preparation steps](technical/guides/installation/deploy-set-up-a-server-hosted-environment/preparation-steps/README.md)
         * [Setup infrastructure](technical/guides/installation/deploy-set-up-a-server-hosted-environment/preparation-steps/setup-infrastructure.md)
