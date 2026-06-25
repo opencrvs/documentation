@@ -6,9 +6,9 @@
 
 OpenCRVS separates the core product from the country-specific configuration required to run it in a real national context. This means the same OpenCRVS Core can be used by different countries, while each implementation defines its own events, forms, reference data, content, certificates, integrations and deployment settings.
 
-This page provides a high-level overview of the configuration options enabled by the OpenCRVS country configuration and infrastructure repositories. The detailed implementation steps are covered in the technical configuration and deployment guides.
+This page provides a high-level overview of the configuration options enabled by the OpenCRVS country configuration and infrastructure repositories. The detailed implementation steps are covered in the following guides.
 
-**Where this sits:** Country configuration is defined during Design & Specification, implemented during Configuration, and deployed through the project’s infrastructure environments.
+**Where this sits:** Country configuration is defined during Design & Specification, implemented during Configuration, and deployed through the project’s infrastructure environments in [installation](../installation/deploy-set-up-a-server-hosted-environment/).
 
 ***
 
