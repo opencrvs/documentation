@@ -143,7 +143,6 @@
       * [Disk space management](technical/guides/installation/advanced-topics/disk-space-management.md)
       * [Deploy OpenCRVS with external data stores](technical/guides/installation/advanced-topics/deploy-opencrvs-with-external-data-stores.md)
   * [Configuration](technical/guides/configuration/README.md)
-    * [General](technical/guides/configuration/general.md)
     * [Administrative hierarchy](technical/guides/configuration/administrative-hierarchy/README.md)
       * [Administrative areas](technical/guides/configuration/administrative-hierarchy/administrative-areas.md)
       * [Locations](technical/guides/configuration/administrative-hierarchy/locations.md)
