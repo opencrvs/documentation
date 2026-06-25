@@ -26,6 +26,10 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 
 **Release date: 25th of June 2026**
 
+**Core changelog:** [**https://github.com/opencrvs/opencrvs-core/blob/develop/CHANGELOG.md#200-release-candidate**](https://github.com/opencrvs/opencrvs-core/blob/develop/CHANGELOG.md#200-release-candidate)
+
+**Countryconfig changelog:** [**https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/CHANGELOG.md#200**](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/CHANGELOG.md#200)
+
 #### **Key highlights**
 
 * **Redesigned administrative hierarchy and jurisdiction.** A country is now modelled as a hierarchy of **administrative areas** (e.g. province → district → village) that _contain_ physical **locations** (CRVS offices, health facilities). Read more: [administrative-structure.md](../functional/markdown/workflows/administrative-structure.md "mention") and [administrative-hierarchy](../technical/guides/configuration/administrative-hierarchy/ "mention")
