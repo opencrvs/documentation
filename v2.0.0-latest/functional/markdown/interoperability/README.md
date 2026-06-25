@@ -26,7 +26,9 @@ A civil registration system forms part of a wider government digital ecosystem. 
 
 Interoperability enables information to be shared electronically, reducing manual processes, improving data accuracy and allowing government services to operate more efficiently.
 
-Every integration should have a clearly defined business purpose and should exchange only the information required to support that purpose.
+{% hint style="info" %}
+Every integration should have a clearly defined business purpose and should exchange only the information required to support that purpose.  Integration should not be "gamified" at the expense of privacy and consent.
+{% endhint %}
 
 ***
 
