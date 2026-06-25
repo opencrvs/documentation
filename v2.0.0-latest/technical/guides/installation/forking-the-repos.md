@@ -90,5 +90,4 @@ When you merge any pull request into the "main", "master" or "develop" branch, o
 
 In [Github repository secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets), set the following values and the above will occur.
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2026-06-25 at 20.05.51.png" alt=""><figcaption></figcaption></figure>
-
+<figure><img src="../../../.gitbook/assets/repo-secrets.png" alt=""><figcaption></figcaption></figure>
