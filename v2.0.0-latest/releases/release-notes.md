@@ -30,6 +30,12 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 
 **Countryconfig changelog:** [**https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/CHANGELOG.md#200**](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/CHANGELOG.md#200)
 
+**opencrvs-demoland source:**&#x20;
+
+{% file src="../.gitbook/assets/opencrvs-demoland-release-v2.0.0.zip" %}
+
+**Test report:** [**https://docs.google.com/spreadsheets/d/1r2CFnnhpKcwO5z-tgcFlPirrmGfH8dZxCTXSSHXBs38/edit?usp=sharing**](https://docs.google.com/spreadsheets/d/1r2CFnnhpKcwO5z-tgcFlPirrmGfH8dZxCTXSSHXBs38/edit?usp=sharing)
+
 #### **Key highlights**
 
 * **Redesigned administrative hierarchy and jurisdiction.** A country is now modelled as a hierarchy of **administrative areas** (e.g. province → district → village) that _contain_ physical **locations** (CRVS offices, health facilities). Read more: [administrative-structure.md](../functional/markdown/workflows/administrative-structure.md "mention") and [administrative-hierarchy](../technical/guides/configuration/administrative-hierarchy/ "mention")
