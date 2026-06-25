@@ -22,17 +22,16 @@ The **essential** [**preparation steps**](preparation-steps/) guide you through 
   * 1Password (or another secrets manager)
   * Optional: other services such as Slack and Sentry
 
-
-
 #### Fork the required repositories
 
 If you have not already done so in the [Quick Start](../quick-start.md), fork the [countryconfig](https://github.com/opencrvs/opencrvs-countryconfig) repository and configure its CI process to push images to your container registry. See 4.2.1 Fork your own country configuration repository and 4.2.10 Build country config docker image
 
 Fork the [infrastructure](https://github.com/opencrvs/infrastructure) repository.
 
+{% hint style="info" %}
+The country configuration repository contains an [infrastructure](https://github.com/opencrvs/opencrvs-countryconfig/tree/develop/infrastructure) folder which supports: **Backwards compatibility for OpenCRVS versions 1.9 and below still using DockerSwarm.  Docker Swarm will be deprecated in 2.1.**  [**MIGRATE TO KUBERNETES IN TIME!**](migration-from-docker-swarm-guide.md)
+{% endhint %}
+
 All steps are described in detail in this chapter.
 
-
-
 **Once the preparation steps are complete,** proceed with the installation steps **in order, starting with creating a Github environment**.
-
