@@ -16,6 +16,8 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # Workqueues
@@ -47,7 +49,7 @@ Wrap your workqueue array in `defineWorkqueues()` from `@opencrvs/toolkit/events
 **Note:** Access to any workqueue requires the **`record.search`** scope. The scope's options further narrow which records the user actually sees inside the workqueue, so a user might only be able to access a subset of the workqueue's matching records.
 {% endhint %}
 
-**Example:**
+**Example workqueue config from** [**`src/api/workqueue/workqueueConfig.ts`**](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/src/api/workqueue/workqueueConfig.ts)**:**
 
 ```typescript
 // src/api/workqueue/workqueueConfig.ts
@@ -140,4 +142,3 @@ For the full scope configuration, see [users](users/ "mention").
 {% openapi-schemas spec="events-develop" schemas="WorkqueueConfig" grouped="true" %}
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
 {% endopenapi-schemas %}
-
