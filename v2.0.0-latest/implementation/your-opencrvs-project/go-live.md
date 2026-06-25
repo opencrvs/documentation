@@ -121,7 +121,7 @@ Is there a rollout plan with sufficient resources to scale up the use of the app
 
 ### 4. Pre-deployment checklist
 
-The following << [Pre-Deployment Checklist](https://documentation.opencrvs.org/setup/6.-go-live/3.3.4-set-up-an-smtp-server-for-opencrvs-monitoring-alerts)  >> should be completed by the **production** environment server administrator before going live.
+The [Pre-Deployment Checklist](../../technical/guides/installation/deploy-set-up-a-server-hosted-environment/3.3.4-set-up-an-smtp-server-for-opencrvs-monitoring-alerts.md) should be completed by the **production** environment server administrator before going live.
 
 This checklist covers technical infrastructure requirements including:
 
