@@ -28,8 +28,8 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 
 #### **Key highlights**
 
-* **Custom actions.** Beyond the core actions (declare, validate, register, reject, print certificate), each event can now define its own **custom actions**. Read more: [custom-actions.md](../technical/guides/configuration/events/actions/custom-actions.md "mention")
 * **Redesigned administrative hierarchy and jurisdiction.** A country is now modelled as a hierarchy of **administrative areas** (e.g. province → district → village) that _contain_ physical **locations** (CRVS offices, health facilities). Read more: [administrative-structure.md](../functional/markdown/workflows/administrative-structure.md "mention") and [administrative-hierarchy](../technical/guides/configuration/administrative-hierarchy/ "mention")
+* **Custom actions.** Beyond the core actions, each event can now define its own **custom actions**. Read more: [custom-actions.md](../technical/guides/configuration/events/actions/custom-actions.md "mention")
 * **Redesigned record editing**. The editing of a previously notified or declared record has been reworked to a completely new "Edit" action flow.
 * **Technical architecture rework.** The technical architecture has been simplified, drastically reducing the amount of required services ran on k8s or docker-swarm.
 
