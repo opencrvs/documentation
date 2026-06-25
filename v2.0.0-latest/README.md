@@ -28,7 +28,7 @@ OpenCRVS v2.0 documentation is work-in-progress and will be completed by the off
 
 ### 1. Introduction
 
-OpenCRVS is an open-source digital solution for civil registration, designed specifically for low-resource settings and available as a Digital Public Good.
+OpenCRVS is an open-source digital solution for civil registration and available as a Digital Public Good.
 
 This functional documentation is written for **governments, business analysts, systems Integrators, and development partners** to design, configure, operate, and maintain an OpenCRVS system that meets your country's needs.
 
