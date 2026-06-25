@@ -48,7 +48,7 @@ The country configuration repository contains an [infrastructure](https://github
 
 ### 3. What the infrastructure repository enables
 
-The [infrastructure](https://github.com/opencrvs/infrastructure) repository supports the deployment and operation of OpenCRVS across environments.  Follow the [installation > deploy](../installation/deploy-set-up-a-server-hosted-environment/) guides .
+The [infrastructure](https://github.com/opencrvs/infrastructure) repository supports the **OpenCRVS 2.0+ Kubernetes** deployment and operation of OpenCRVS across environments.  Follow the [installation > deploy](../installation/deploy-set-up-a-server-hosted-environment/) guides .
 
 At a high level, it enables configuration of:
 
