@@ -40,6 +40,10 @@ At a high level, it enables configuration of:
 
 **Hosted assets** — country logos, maps and other files required by the application, emails or dashboards.
 
+{% hint style="info" %}
+The country configuration repository contains an [infrastructure](https://github.com/opencrvs/opencrvs-countryconfig/tree/develop/infrastructure) folder which supports: **Backwards compatibility for OpenCRVS versions 1.9 and below still using DockerSwarm.  It will be deprecated in 2.1**
+{% endhint %}
+
 ***
 
 ### 3. What the infrastructure repository enables
