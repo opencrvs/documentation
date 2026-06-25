@@ -16,7 +16,7 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 
 * Support for custom form fields on action dialogs ([#11951](https://github.com/opencrvs/opencrvs-core/issues/11951))
 * Support for `notifiedIn` and `notifiedBy` properties on scopes ([#11875](https://github.com/opencrvs/opencrvs-core/issues/11875))
-* Add legal statuses: "Registered (Inactive)" and "Revoked", and related core actions ([#11952](https://github.com/orgs/opencrvs/projects/4/views/88))
+* Add legal statuses: "Registered (Inactive)" and "Revoked", and related core actions ([#11952](https://github.com/opencrvs/opencrvs-core/issues/11952))
 * Add audit log retrieval endpoint ([#11909](https://github.com/opencrvs/opencrvs-core/issues/11909))
 * ...and miscellaneous bug fixes and improvements
 
