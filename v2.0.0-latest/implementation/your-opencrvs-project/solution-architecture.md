@@ -6,7 +6,7 @@ OpenCRVS is a core component of a country's Digital Public Infrastructure (DPI),
 
 Civil registration is not an isolated system — it sits at the centre of a broader government ecosystem, exchanging trusted data with identity, health, statistics and social-protection systems. OpenCRVS should therefore be implemented as part of a wider, interoperable architecture that enables secure, scalable and sustainable service delivery.
 
-_Diagram: OpenCRVS within the wider government digital architecture (to be added)._
+<figure><img src="../../.gitbook/assets/solution-architecture.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 **Where this sits:** Solution architecture follows [Gathering requirements](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/gathering-requirements) and informs [Configuration](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/configuration). It is where you decide how OpenCRVS fits into your country's wider systems landscape before you build.&#x20;
