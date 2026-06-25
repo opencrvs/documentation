@@ -22,7 +22,9 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 
 ***
 
-### v2.0 - 25/06/2026
+### v2.0
+
+**Release date: 25th of June 2026**
 
 #### **Key highlights**
 
