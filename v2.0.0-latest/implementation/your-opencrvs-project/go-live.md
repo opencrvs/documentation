@@ -119,7 +119,7 @@ Is there a rollout plan with sufficient resources to scale up the use of the app
 
 ***
 
-### 4. Pre-deployment checklist
+#### 4. Pre-deployment checklist
 
 The [Pre-Deployment Checklist](../../technical/guides/installation/deploy-set-up-a-server-hosted-environment/3.3.4-set-up-an-smtp-server-for-opencrvs-monitoring-alerts.md) should be completed by the **production** environment server administrator before going live.
 
@@ -132,3 +132,21 @@ This checklist covers technical infrastructure requirements including:
 * Performance optimization
 
 Completing this checklist ensures that the technical infrastructure is properly configured and secured before launch.
+
+#### 5. Data security
+
+Upgrading OpenCRVS is only one part of maintaining a secure civil registration system. Project managers and operational teams must also understand the wider data security landscape in which OpenCRVS operates.
+
+Digitising civil registration introduces new risks alongside its many benefits. These include cyber attacks, social engineering, unauthorised access, malware, vulnerable infrastructure and data breaches. While OpenCRVS incorporates industry-standard security controls and is regularly penetration tested, no software can eliminate these risks on its own. Effective security also depends on robust infrastructure, operational procedures, staff awareness and good governance.
+
+{% file src="../../.gitbook/assets/OpenCRVS Data Security Framework.docx" %}
+
+All implementation teams should familiarise themselves with the **OpenCRVS Data Security Framework**, which explains:
+
+* the most common threats to digital civil registration systems
+* the technical security measures built into OpenCRVS
+* the responsibilities of governments and implementation teams
+* recommended policies and procedures for protecting citizen data
+* security considerations throughout implementation, operation and ongoing maintenance.
+
+Project managers do not need to become cybersecurity specialists, but they should understand the risks that exist, ensure that appropriate security policies are developed, and work with technical and operational teams to embed good security practices throughout the lifetime of the system. The Data Security Framework should be used alongside local government cybersecurity policies and recognised international guidance when planning and operating an OpenCRVS implementation.
