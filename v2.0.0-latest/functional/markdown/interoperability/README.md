@@ -2,7 +2,7 @@
 
 ### 1. Introduction
 
-Civil registration systems rarely operate in isolation. They exchange information with other government systems to support public services, improve data quality and reduce duplicate data entry. OpenCRVS has been architected from its inception to interoperate with other e-Government systems in a standardised, safe and secure manner.
+Civil registration systems do not operate in isolation. They exchange information with other government systems to support public services, improve data quality and reduce duplicate data entry. OpenCRVS has been architected from its inception to interoperate with other e-Government systems in a standardised, safe and secure manner.
 
 This page provides a high-level overview of interoperability in OpenCRVS and how it relates to [solution architecture](../../../implementation/your-opencrvs-project/solution-architecture.md). The detailed technical guidance for implementing integrations is provided in the [integration architecture](../../../technical/architecture/integration-architecture.md) and [configuration](../../../technical/guides/configuration/integrations/) documentation.
 
