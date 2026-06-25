@@ -150,3 +150,17 @@ All implementation teams should familiarise themselves with the **OpenCRVS Data 
 * security considerations throughout implementation, operation and ongoing maintenance.
 
 Project managers do not need to become cybersecurity specialists, but they should understand the risks that exist, ensure that appropriate security policies are developed, and work with technical and operational teams to embed good security practices throughout the lifetime of the system. The Data Security Framework should be used alongside local government cybersecurity policies and recognised international guidance when planning and operating an OpenCRVS implementation.
+
+#### 6. Disaster recovery
+
+A disaster recovery plan helps ensure that civil registration services can be restored quickly following a major incident such as hardware failure, cyber attack, natural disaster or accidental data loss. Planning for disaster recovery is an essential part of operating a national digital civil registration system and should be considered from the start of an implementation.
+
+{% file src="../../.gitbook/assets/OpenCRVS_Disaster_recovery_plan.docx" %}
+
+Project managers should work with infrastructure and operational teams to define disaster recovery objectives, including how quickly services should be restored and how much data loss is acceptable. This should include documented backup procedures, recovery processes, regular testing of recovery plans and clearly defined operational responsibilities.
+
+OpenCRVS provides technical guidance for configuring backups and supporting disaster recovery, but each government is responsible for developing, maintaining and testing its own disaster recovery procedures to meet local policies and operational requirements.
+
+For further guidance, see:
+
+* **Technical Disaster Recovery Guide** (step-by-step instructions for configuring backups, restoring services and validating recovery procedures).
