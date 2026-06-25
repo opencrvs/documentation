@@ -15,13 +15,14 @@ This page provides a high-level overview of interoperability in OpenCRVS and how
 A civil registration system forms part of a wider government digital ecosystem. Depending on national requirements, OpenCRVS may exchange information with systems such as:
 
 * National identity systems
+* Social protection systems
 * Population registers
 * Health information systems
 * Immigration systems
 * Statistics platforms
 * Notification services
 * Digital identity and authentication providers
-* Other government applications
+* Other government & private sector applications
 
 Interoperability enables information to be shared electronically, reducing manual processes, improving data accuracy and allowing government services to operate more efficiently.
 
