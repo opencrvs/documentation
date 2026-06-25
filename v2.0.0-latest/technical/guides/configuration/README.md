@@ -41,7 +41,7 @@ At a high level, it enables configuration of:
 **Hosted assets** — country logos, maps and other files required by the application, emails or dashboards.
 
 {% hint style="info" %}
-The country configuration repository contains an [infrastructure](https://github.com/opencrvs/opencrvs-countryconfig/tree/develop/infrastructure) folder which supports: **Backwards compatibility for OpenCRVS versions 1.9 and below still using DockerSwarm.  Docker Swarm will be deprecated in 2.1**
+The country configuration repository contains an [infrastructure](https://github.com/opencrvs/opencrvs-countryconfig/tree/develop/infrastructure) folder which supports: **Backwards compatibility for OpenCRVS versions 1.9 and below still using DockerSwarm.  Docker Swarm will be deprecated in 2.1.**  [**MIGRATE TO KUBERNETES IN TIME!**](../installation/deploy-set-up-a-server-hosted-environment/migration-from-docker-swarm-guide.md)
 {% endhint %}
 
 ***
