@@ -82,5 +82,6 @@ For further guidance, see:
 * [**Solution Architecture**](../../../implementation/your-opencrvs-project/solution-architecture.md) – understanding how OpenCRVS fits within the wider government ecosystem.
 * [**Integration Architecture**](../../../technical/architecture/integration-architecture.md) – defines how OpenCRVS connects securely with a country's wider digital ecosystem, enabling it to exchange information with external systems while remaining agnostic.
 * [**Integration Configuration**](../../../technical/guides/configuration/integrations/) – technical guidance on configuring event-driven integrations with external systems.
+* [**ID Integration & MOSIP**](mosip-id-integration.md) - Integrating OpenCRVS with a National ID system creates a trusted foundation for legal identity, ensuring that vital events automatically support accurate and secure identity management throughout life.
 
 These guides describe how to implement secure integrations using these capabilities while following OpenCRVS architectural principles.
