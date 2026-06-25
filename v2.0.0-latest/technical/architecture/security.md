@@ -50,6 +50,7 @@ Penetration tests have been performed by:
 * [**MDSec**](https://www.mdsec.co.uk/) — CREST certified security testing firm.
 * [**The Guardian Project**](https://guardianproject.info/code/) — on behalf of UNICEF.
 * [**Gofore**](https://gofore.com/) — NORAD's preferred security testing provider, CyberEssentials certified.
+* [**Orange Cyberdefense**](https://www.orangecyberdefense.com/) — -- a leading European cybersecurity company providing managed security, threat intelligence and cyber defence services.
 
 #### Testing methodology
 
