@@ -8,7 +8,7 @@ It is possible to amend all text copy in OpenCRVS and introduce as as many conte
 
 The multi-lingual text content approach for OpenCRVS is developed using [FormatJS](https://formatjs.io/) . It is worthwhile reading their documentation to understand how this technically works, particularly this [page](https://formatjs.io/docs/core-concepts/basic-internationalization-principles).
 
-In the [OpenCRVS country config](https://github.com/opencrvs/opencrvs-countryconfig), all text content is defined in CSV files inside the [src/translations](https://github.com/opencrvs/opencrvs-countryconfig/tree/master/src/translations) directory. The contents of these files can be edited in a spreadsheet program like Microsoft Excel or Numbers. Import the file you want to edit and export it back to a CSV once all changes have been made. Alternatively you can use a code editor like VSCode to modify the files, explained in step [3.1.5 Tooling](../../../../v1.9.0/setup/3.-installation/3.1-set-up-a-development-environment/3.1.5-tooling).
+In the [OpenCRVS country config](https://github.com/opencrvs/opencrvs-countryconfig), all text content is defined in CSV files inside the [src/translations](https://github.com/opencrvs/opencrvs-countryconfig/tree/master/src/translations) directory. The contents of these files can be edited in a spreadsheet program like Microsoft Excel or Numbers. Import the file you want to edit and export it back to a CSV once all changes have been made. Alternatively you can use a code editor like VSCode to modify the files, explained in step [3.1.5 Tooling](../../../../../v1.9.0/setup/3.-installation/3.1-set-up-a-development-environment/3.1.5-tooling).
 
 #### **Editing text content**
 
