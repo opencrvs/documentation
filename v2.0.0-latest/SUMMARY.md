@@ -172,7 +172,7 @@
     * [Action triggers](technical/guides/configuration/action-triggers/README.md)
       * [Email notifications](technical/guides/configuration/action-triggers/email-notifications.md)
     * [Dashboards](technical/guides/configuration/dashboards.md)
-    * [Translations](technical/guides/configuration/translations.md)
+    * [Translations](technical/guides/configuration/3.2.9.1-managing-language-content.md)
     * [Integrations](technical/guides/configuration/integrations/README.md)
       * [Authenticate a client](technical/guides/configuration/integrations/authenticate-a-client.md)
       * [Integration: ID systems](technical/guides/configuration/integrations/integration-id-systems.md)
