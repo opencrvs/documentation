@@ -86,12 +86,14 @@ You will need your Dockerhub **username** and a personal Dockerhub account **acc
 
 #### 7. Ensure your Docker image can be built successfully
 
+When you create a [Github environment](deploy-set-up-a-server-hosted-environment/create-a-github-environment/), you enter these Dockerhub login values, and they are saved into Github repository secrets.
+
 When you merge any pull request into the "main", "master" or "develop" branch, or if you explicitly run the "Publish image to Dockerhub" Gthub Action, a docker container image will be built and pushed to Dockerhub for your **countryconfig** microservice.
 
 {% hint style="info" %}
 The image will automatically be tagged with the Git commit hash.  You will use this hash when deploying.
 {% endhint %}
 
-In [Github repository secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets), set the following values and the above will occur.
+In [Github repository secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets), you can also manually set the following values and the above will occur.
 
 <figure><img src="../../../.gitbook/assets/repo-secrets.png" alt=""><figcaption></figcaption></figure>
