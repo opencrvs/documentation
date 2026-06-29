@@ -1,4 +1,4 @@
-# Legacy Data migration
+# Legacy data migration
 
 {% hint style="info" %}
 This guide is about importing historical records from legacy sources into OpenCRVS. It is not the same as OpenCRVS version-upgrade database migrations. For version upgrades, see Version upgrades.
@@ -65,7 +65,7 @@ The migration mapping should cover:
 * target status and action route
 * required and optional form fields
 * legacy registration number and source record ID
-* national ID, PIN, UIN or other person identifiers
+* national ID, UIN or other person identifiers
 * place of event, place of registration and source office
 * original registration date, registrar and source register details
 * attachments or source images
@@ -86,6 +86,7 @@ Pre-load validation should check:
 * attachment availability
 * source record ID uniqueness
 * values required for certificates, search, reports and integrations
+* approved transformation rule for any systematic correction
 
 Records that fail validation should be written to an exception file with a reason code. They should not be silently dropped.
 
@@ -129,15 +130,15 @@ Reports should include:
 
 Run a full test migration in a non-production environment before production. Production loading should only proceed after the test load, reconciliation report and exception handling approach have been signed off.
 
-For low-connectivity or island settings, plan batch size, upload windows, support coverage and recovery steps in case a batch is interrupted.
+For low-connectivity settings, plan batch size, upload windows, support coverage and recovery steps in case a batch is interrupted.
 
 ### Related pages
 
-* Data migration — functional capability and architecture principles.
-* Digitise paper records — functional capability for paper-derived sources.
-* Migrate legacy data — project planning, ownership, readiness and sign-off.
-* APIs — overview of Core APIs.
-* Authenticate a client — system client authentication.
-* Events — event configuration.
-* Locations — configured locations and facilities.
+* [Data migration](https://documentation.opencrvs.org/v2.0/functional/markdown/legacy-data/data-migration) — functional capability and architecture principles.
+* [Digitise paper records](https://documentation.opencrvs.org/v2.0/functional/markdown/legacy-data/digitise-paper-records) — functional capability for paper-derived sources.
+* [Migrate legacy data](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs-project/migrate-legacy-data) — project planning, ownership, readiness and sign-off.
+* [APIs](https://documentation.opencrvs.org/v2.0/functional/markdown/interoperability/apis) — overview of Core APIs.
+* [Authenticate a client](https://documentation.opencrvs.org/v2.0/technical/guides/configuration/integrations/authenticate-a-client) — system client authentication.
+* [Events](https://documentation.opencrvs.org/v2.0/technical/guides/configuration/events) — event configuration.
+* [Locations](https://documentation.opencrvs.org/v2.0/technical/guides/configuration/administrative-hierarchy/locations) — configured locations and facilities.
 
