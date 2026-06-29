@@ -172,29 +172,15 @@ Migrated historical records must follow the same configured access, search, corr
 
 ***
 
-### 11. Planning and phasing
+### 11. Planning and implementation boundaries
 
-Treat migration as a controlled, repeatable process, not a single bulk dump.&#x20;
+Data migration should be treated as a controlled capability, not as a one-off database dump. OpenCRVS supports migration through its Core APIs, so migration can be delivered in controlled batches or phases according to the country’s approved migration approach.
 
-A migration plan should normally include these gates:
+This Functional Architecture page describes what OpenCRVS supports and the principles that apply to migrated records. The migration plan, readiness gates, cutover approach, exception handling and reconciliation sign-off are project activities.
 
-1. Source assessment approved.
-2. Migration scope approved.
-3. Field, identifier, and location mapping signed off.
-4. Test migration completed in a non-production environment.
-5. Reconciliation and exception report signed off.
-6. Cutover rehearsal completed.
-7. Final load or delta load completed.
-8. Post-load verification completed.
-9. Controlled legacy access plan confirmed.
+For project planning and readiness activities, see [Migrate legacy data](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs-project/migrate-legacy-data).
 
-
-
-* **Pilot first.** Migrate a small, representative subset, validate and reconcile it, and confirm records render, search and certify correctly before scaling.
-* **Batch the full load.** Run the migration in controlled batches with validation and reconciliation at each step.
-* **Test against a non-production environment.** Verify the full pipeline — extract, transform, load, reconcile — before touching production.
-* **Sequence around go-live.** Decide whether migration completes before go-live, runs alongside an initial small launch, or continues in phases, and how that interacts with deduplication and live registration. The cutover plan should define data freeze timing, final delta migration, rollback or contingency arrangements, staff instructions for using legacy systems, and how late-arriving records are handled after go-live.
-* **Account for volume.** Countries often hold very large historical volumes; performance, scheduling and infrastructure load are part of the plan.
+For technical batching, validation, loading and reconciliation guidance, see [Legacy data migration](https://documentation.opencrvs.org/v2.0/technical/guides/data-migration).
 
 ***
 
