@@ -185,7 +185,7 @@
       * [MOSIP Registration Integration](technical/guides/configuration/integrations/mosip-registration-integration.md)
       * [Verifiable Credentials](technical/guides/configuration/integrations/verifiable-credentials.md)
   * [Monitoring](technical/guides/monitoring.md)
-  * [Legacy Data migration](technical/guides/data-migration.md)
+  * [Legacy data migration](technical/guides/data-migration.md)
   * [Version upgrades](technical/guides/version-upgrades.md)
   * [Contributing](technical/guides/contributing/README.md)
     * [Core development](technical/guides/contributing/core-development.md)
