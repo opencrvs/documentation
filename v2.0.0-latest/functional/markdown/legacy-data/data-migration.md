@@ -102,28 +102,13 @@ Both patterns write through the same Core APIs, so the resulting records are ord
 
 ### 5. Mapping legacy data to the OpenCRVS model
 
-Every legacy field must be mapped to a field in the configured OpenCRVS form for that event, or deliberately dropped. Before field mapping, complete a source assessment for each dataset:
+Migrated records must map to the configured OpenCRVS event model. This means the migration must use the country’s configured event types, form fields, identifiers, locations, statuses and attachment rules.
 
-| Assessment area       | Questions to answer                                                                                     |
-| --------------------- | ------------------------------------------------------------------------------------------------------- |
-| Source owner          | Who owns the data and can approve migration decisions?                                                  |
-| Legal status          | Is this a legal civil register, notification source, index, statistics dataset, or supporting evidence? |
-| Event coverage        | Which event types are included?                                                                         |
-| Date range and volume | What period and how many records are covered?                                                           |
-| Field coverage        | Which mandatory OpenCRVS fields are present or missing?                                                 |
-| Identifiers           | What registration numbers, book/page references, PINs/UINs, National IDs, or legacy IDs exist?          |
-| Locations             | Can places of event and registration be mapped to configured locations?                                 |
-| Attachments           | Are scanned documents or evidence files available?                                                      |
-| Amendments            | Are corrections, name changes, adoptions, or other amendments represented?                              |
-| Data quality          | What duplicate, missing, inconsistent, or implausible data is known?                                    |
-| Access constraints    | Are there technical, legal, privacy, or vendor constraints on extraction?                               |
-| Migration decision    | Migrate, migrate for review, quarantine, retain legacy access, or exclude?                              |
+OpenCRVS does not provide a generic legacy-data store for unmapped historical data. Data that cannot be mapped to the configured model should either be excluded, retained in the legacy source, or handled through an approved configuration decision.
 
-* **Field-by-field mapping** — build a mapping from each legacy column to its OpenCRVS form field, per event type.
-* **Mandatory fields** — OpenCRVS forms have required fields. Legacy data frequently lacks some of them. Missing mandatory values must be handled by an approved rule: source the value from another trusted dataset, import the record at a status that allows completion, quarantine the record, exclude it, or apply an agreed default only where legally acceptable. Importing incomplete records directly as Registered is rarely appropriate.
-* **Reference data** — values such as place of event must resolve to **configured locations and facilities**, not free text (see Section 8).
-* **Supporting documents** — scanned images from the legacy system can be attached where the migration captures them. Scanned documents and evidence files require retention, storage, privacy, and access-control decisions before migration. Do not attach sensitive historical documents unless the country has confirmed who may view them.
-* **Unmappable data** — decide what happens to legacy fields that have no home in the OpenCRVS model; do not invent fields to hold them without a configuration decision.
+Detailed source assessment, mapping sign-off and exception handling are project activities. See [Migrate legacy data](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs-project/migrate-legacy-data).
+
+Technical mapping, validation and loading steps are covered in [Legacy data migration](https://documentation.opencrvs.org/v2.0/technical/guides/data-migration).
 
 ***
 
