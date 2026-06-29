@@ -16,6 +16,8 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # Actions
@@ -95,8 +97,8 @@ import {
 
 ### ActionConditional schema
 
-{% openapi-schemas spec="events-develop" schemas="ActionConditional" grouped="true" %}
-[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
+{% openapi-schemas spec="events-v20" schemas="ActionConditional" grouped="true" %}
+[OpenAPI events-v20](https://api.opencrvs.org/release-v2.0.0/events/openapi.yml)
 {% endopenapi-schemas %}
 
 ## Action triggers

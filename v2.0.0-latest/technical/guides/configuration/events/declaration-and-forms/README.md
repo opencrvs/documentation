@@ -1,5 +1,23 @@
 ---
 description: How to configure the declaration and action forms
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+  actions:
+    visible: true
 ---
 
 # Declaration & Forms
@@ -92,6 +110,6 @@ export const child = definePage({
 
 ### PageConfig schema
 
-{% openapi-schemas spec="events-develop" schemas="PageConfig" grouped="true" %}
-[OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
+{% openapi-schemas spec="events-v20" schemas="PageConfig" grouped="true" %}
+[OpenAPI events-v20](https://api.opencrvs.org/release-v2.0.0/events/openapi.yml)
 {% endopenapi-schemas %}

@@ -192,15 +192,16 @@
 * [APIs](technical/apis/README.md)
   * [Core APIs](technical/apis/core-apis/README.md)
     * ```yaml
+      type: builtin:openapi
       props:
         models: true
         downloadLink: true
-      type: builtin:openapi
+        grouping: by-tag
       dependencies:
         spec:
           ref:
             kind: openapi
-            spec: events-develop
+            spec: events-v20
       ```
   * [Country-config APIs](technical/apis/country-config-apis/README.md)
     * ```yaml
@@ -208,11 +209,12 @@
       props:
         models: true
         downloadLink: true
+        grouping: by-tag
       dependencies:
         spec:
           ref:
             kind: openapi
-            spec: cc-develop
+            spec: cc-v20
       ```
   * [Toolkit](technical/apis/toolkit/README.md)
     * [Configuration](technical/apis/toolkit/configuration/README.md)
