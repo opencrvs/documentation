@@ -89,7 +89,8 @@ All confirm / reject decisions will be:
 
 * Controlled by **scopes** and **roles** (for example, only certain roles can confirm cross‑event links).
 * Written to the **audit log** so that future reviews can see who linked which records, and when.
-*
+
+
 
 ***
 
