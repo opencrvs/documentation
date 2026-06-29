@@ -4,13 +4,15 @@
 This guide is about importing historical records from legacy sources into OpenCRVS. It is not the same as OpenCRVS version-upgrade database migrations. For version upgrades, see Version upgrades.
 {% endhint %}
 
-### Introduction
+### 1. Introduction
 
 Legacy data migration is the technical process of transforming records from an approved legacy source and loading them into OpenCRVS through the Core APIs.
 
 This guide assumes the country has already completed the project decisions described in Migrate legacy data, including source scope, target status, identifier policy, location mapping, exception handling and reconciliation requirements.
 
-### Before you begin
+***
+
+### 2. Before you begin
 
 You should have:
 
@@ -21,7 +23,9 @@ You should have:
 * access to the source data and any supporting files
 * agreed validation, exception and reconciliation outputs
 
-### Required migration inputs
+***
+
+### 3. Required migration inputs
 
 | Input               | Purpose                                                                               |
 | ------------------- | ------------------------------------------------------------------------------------- |
@@ -34,7 +38,9 @@ You should have:
 | Exception rules     | Defines which records are loaded, quarantined or excluded.                            |
 | Reconciliation plan | Defines the reports used to confirm the load.                                         |
 
-### Migration sequence
+***
+
+### 4. Migration sequence
 
 A direct API migration usually follows this sequence:
 
@@ -49,13 +55,17 @@ A direct API migration usually follows this sequence:
 9. Reconcile OpenCRVS records against the source.
 10. Produce exception and reconciliation reports.
 
-### Authentication
+***
+
+### 5. Authentication
 
 Migration clients should authenticate as a system client. See Authenticate a client for the client credentials flow.
 
 The migration client should use only the permissions required for the migration route, such as creating records, submitting the required action and uploading attachments.
 
-### Mapping records
+***
+
+### 6. Mapping records
 
 Each source record should be transformed into the configured OpenCRVS event model for the relevant event type.
 
@@ -73,7 +83,9 @@ The migration mapping should cover:
 
 Do not create new OpenCRVS fields only to store unmapped legacy data unless that field has been approved as part of configuration.
 
-### Validation before load
+***
+
+### 7. Validation before load
 
 Pre-load validation should check:
 
@@ -90,7 +102,9 @@ Pre-load validation should check:
 
 Records that fail validation should be written to an exception file with a reason code. They should not be silently dropped.
 
-### Batching and idempotency
+***
+
+### 8. Batching and idempotency
 
 Run migration in controlled batches. Each source record should have a stable migration transaction ID or idempotency key so that interrupted or repeated runs do not create duplicate records.
 
@@ -104,13 +118,17 @@ For each batch, store:
 * error message, where applicable
 * timestamp
 
-### Attachments and source images
+***
+
+### 9. Attachments and source images
 
 Where legacy records include scanned documents or paper source images, upload them through the Attachments API and link them to the migrated record.
 
 Before loading attachments, confirm file availability, format, size, storage impact and access control. Sensitive historical documents should not be attached unless the country has approved who may view them.
 
-### Reconciliation outputs
+***
+
+### 10. Reconciliation outputs
 
 After loading, produce reconciliation reports that compare the source extract with records created in OpenCRVS.
 
@@ -126,11 +144,15 @@ Reports should include:
 * sample searches by legacy registration number
 * sample certificate rendering checks
 
-### Production run
+***
+
+### 11. Production run
 
 Run a full test migration in a non-production environment before production. Production loading should only proceed after the test load, reconciliation report and exception handling approach have been signed off.
 
 For low-connectivity settings, plan batch size, upload windows, support coverage and recovery steps in case a batch is interrupted.
+
+***
 
 ### Related pages
 
