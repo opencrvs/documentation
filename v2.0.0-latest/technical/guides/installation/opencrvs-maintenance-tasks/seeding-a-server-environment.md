@@ -1,5 +1,9 @@
 # Seeding a server environment
 
+### Introduction
+
+Seeding, is the process of installing reference data created in configuration onto servers before they are ready to go-live.  Seeding is a one-time only operation and can only be reverted by re-setting.  After going live, configuration reference data is only manageable via APIs. &#x20;
+
 ### Before you begin
 
 OpenCRVS helm chart seeds data at installation time and can be performed only on empty database.
