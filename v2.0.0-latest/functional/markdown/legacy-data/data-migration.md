@@ -59,31 +59,23 @@ For target-status assessment and sign-off, see [Migrate legacy data](https://doc
 
 ### 4. How migration works
 
-Records are migrated through the OpenCRVS **Core APIs** — principally the Events API, which is the authoritative source of truth for every record. A migration is, in essence, an automated client that authenticates, then creates and submits records on behalf of the registration authority. There are two common delivery patterns:
+Records are migrated through the OpenCRVS **Core APIs** — principally the Events API, which is the authoritative source of truth for every record. Migration uses the same record model, actions and audit principles as records created through the OpenCRVS applications.
 
-**4.1 Direct API migration (system client)**
+There are two common delivery patterns:
 
-A migration script or middleware authenticates as a trusted **system client** and submits records directly to the Events API in batches. This is the typical approach for a one-off migration of a structured legacy database: the legacy data is extracted, transformed to match the OpenCRVS model, and loaded through the API. Each event is first initialised and then submitted with its full data and the appropriate action.
+#### **4.1 Direct API migration (system client)**
 
-A direct API migration usually follows an extract-transform-load pattern:
+A migration script or middleware authenticates as a trusted system client and submits records directly to the Events API. This is the usual approach where the source is already structured, such as a legacy database, spreadsheet, or export from another CRVS system.
 
-1. Extract source data.
-2. Profile the data for completeness, duplicates, formats, identifiers, locations, and attachments.
-3. Clean systematic issues where there is an approved rule.
-4. Map source fields, identifiers, statuses, and locations to the configured OpenCRVS event model.
-5. Validate records before load.
-6. Load records in controlled batches.
-7. Reconcile loaded records against the source.
-8. Produce exception reports.
-9. Re-run safely using stable transaction identifiers where needed.
+#### **4.2 Migration via a custom application**
 
-**4.2 Migration via a custom application**
-
-Where records need human capture or review — most often for paper registers, but sometimes for messy legacy data — a **custom side application** can be built against the same APIs. It provides high-throughput data-entry forms that map to the OpenCRVS event model, validates locally, captures supporting images, and submits records into the eRegistry as declarations or as directly registered events. It records who captured each record and when. This complements the core OpenCRVS interface rather than replacing it.
+Where records need human capture or review, a custom side application can be built against the same APIs. This may be useful for messy legacy data or paper-derived capture where operators need a dedicated high-throughput workflow.
 
 {% hint style="info" %}
-Both patterns write through the same Core APIs, so the resulting records are ordinary OpenCRVS records. The choice between them is about **how records are sourced and reviewed**, not about what they become.
+Both patterns write through the same Core APIs, so the resulting records are ordinary OpenCRVS records. The choice between them is about how records are sourced and reviewed, not about what they become.
 {% endhint %}
+
+For technical extraction, transformation, validation, loading, idempotency and reconciliation steps, see [Legacy data migration](https://documentation.opencrvs.org/v2.0/technical/guides/data-migration).
 
 ***
 
@@ -128,13 +120,15 @@ Migrated records may reference several different location concepts: place of eve
 
 ### 8. Data quality, validation and reconciliation
 
-Migration is as much a data-cleaning exercise as a technical one. The go-live checklist requires migrated data to be validated and cleaned, and the migration itself to be tested and verified.
+Migrated records should only become usable in OpenCRVS when they meet the country’s approved quality, legal and business rules for the target status.
 
-* **Validate before load.** Pre-load validation should check completeness, formats, date plausibility, duplicate risk, identifier uniqueness, valid target status, required legal fields, attachment availability, and referential integrity for event types and locations before submitting.
-* **Clean at source where possible.** Correct systematic legacy errors in transformation rather than carrying them into OpenCRVS. Note: Migration should not rewrite legally meaningful historical facts without an approved correction policy.
-* **Handle errors explicitly.** Records that fail validation should be quarantined and reported with an appropriate reason code, not silently dropped.
-* **Make loads idempotent.** Use stable transaction identifiers so interrupted or repeated migration runs do not create duplicates.
-* **Reconcile after load.** Reconciliation should include counts by event type, year, location, and source; key field comparison between the legacy source and OpenCRVS; search by legacy registration number; sample certificate rendering; duplicate-detection checks; reporting/statistics checks; and sign-off of accepted exceptions.
+OpenCRVS supports importing records through its APIs, but the migration programme is responsible for deciding what level of completeness, consistency, identifier matching and exception handling is acceptable. Records that do not meet approved rules should be reviewed, quarantined, excluded, or retained in controlled legacy access rather than silently loaded.
+
+Migration should not rewrite legally meaningful historical facts unless an approved correction policy exists.
+
+For migration governance, exception ownership and sign-off, see [Migrate legacy data](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs-project/migrate-legacy-data).
+
+For technical validation, batching, idempotency and reconciliation outputs, see [Legacy data migration](https://documentation.opencrvs.org/v2.0/technical/guides/data-migration).
 
 ***
 
