@@ -1,226 +1,171 @@
+---
+description: >-
+  Create a team that has the skills to be able to setup, implement, manage and
+  maintain your OpenCRVS instance.
+---
+
 # Establish project & team
 
 ### 1. Introduction
 
-OpenCRVS is designed to minimise technical effort for setup and configuration, but a small, well-structured team is still essential for a successful implementation.
+Before any technical configuration begins, it's important to establish a clear project structure, define business objectives, and assemble a multidisciplinary team capable of delivering a successful CRVS digital transformation.
 
-This page defines the roles and skills required to set up, configure, develop, and maintain OpenCRVS effectively.
-
-***
-
-### 2. Core roles to set up OpenCRVS
-
-At a minimum, countries should identify **two core roles** to install and configure OpenCRVS:
-
-#### 2.1 Technical System Administrator
-
-**Responsible for:** Installing, running, and maintaining the OpenCRVS infrastructure.
-
-**Required skills and knowledge:**
-
-* Working knowledge of **Linux / Unix operating systems** and ability to run terminal commands
-* Familiarity with **Docker** and containerised deployments
-* Understanding of **Node.js** web application concepts (OpenCRVS consists of multiple servers running in Docker containers and requires Node.js)
-* Basic understanding of DevOps practices for deployment and monitoring
-
-**Key responsibilities:**
-
-* Install and configure OpenCRVS on servers (development, staging, production environments)
-* Manage system infrastructure, including databases, storage, and networking
-* Perform system upgrades and apply security patches
-* Monitor system performance and troubleshoot technical issues
-* Implement backup and disaster recovery procedures
-
-#### 2.2 Business Analyst / National System Administrator
-
-**Responsible for:** Configuring application details, forms, workflows, and vital event certificates.
-
-**Required skills and knowledge:**
-
-* Strong **business analysis skills** and deep understanding of CRVS processes
-* Experience in managing systems for **enterprise-level organisations**
-* Ability to translate legal and policy requirements into functional specifications
-* Understanding of data standards and reference data management
-* Strong stakeholder engagement and requirements gathering skills
-
-**Key responsibilities:**
-
-* Analyse current CRVS processes and define future-state workflows
-* Configure OpenCRVS forms, certificates, and workflows to meet country requirements
-* Define user roles, permissions, and scope-based access control
-* Manage application reference data (locations, facilities, occupations, etc.)
-* Document configuration decisions and maintain business rules
-* Coordinate with stakeholders to validate configuration against requirements
-
-{% hint style="info" %}
-**Getting started:** These two roles are sufficient to set up and configure OpenCRVS for a Proof of Concept or pilot implementation.
-{% endhint %}
+OpenCRVS implementations are not simply software deployments — they are national transformation initiatives requiring alignment between policy, operations, technology, and change management. Investing time upfront to define objectives and identify the right team significantly reduces implementation risk.
 
 ***
 
-### 2. Additional technical roles (when custom development is needed)
+### 2. **Define the Project Initiation Document (PID)**
 
-When countries plan to extend OpenCRVS with custom development or significant technical modifications, consider building a team with the following additional skills:
+The first step is developing a PID that gives all stakeholders a shared understanding of the programme. It should define:
 
-#### 2.1 Designer (UI/UX)
+* **Business objectives** — the strategic outcomes the country expects, such as increasing registration coverage, reducing delays, improving citizen experience, or strengthening data quality. Objectives should be measurable where possible.
+* **Project scope** — which vital events will be implemented, geographic coverage (pilot, phased, national), systems requiring integration, and infrastructure hosting approach.
+* **Governance structure** — executive sponsors, a steering committee, a project manager, and clear decision-making and escalation processes.
+* **Success criteria** — key milestones, timelines, adoption targets, and service quality expectations.
 
-**Purpose:** Translate business and system requirements into user interfaces and experiences that reflect local needs.
+### 3. **Establish the implementation team**
 
-**Required skills:**
+Successful OpenCRVS programmes require a multidisciplinary team with expertise spanning policy, operations, technology, user experience, deployment, and service improvement.
 
-* UI and UX design experience
-* Familiarity with design tools (Figma, Sketch, etc.)
-* Understanding of accessibility and usability principles
+The exact size of the team will depend on the country context, implementation scope, and available resources. In smaller programmes, individuals may perform multiple roles.
 
-**Key responsibilities:**
+#### 3.1 **Core project leadership**
 
-* Design user interfaces for custom features using the OpenCRVS component library
-* Conduct user research and usability testing
-* Ensure design consistency with the core OpenCRVS product
-* Create design specifications for developers
+**Project Manager**\
+Provides overall coordination and oversight of the programme.\
+Responsible for:
 
-#### 2.2 Scrum Master
+* Managing scope, timelines, budget, risks, and dependencies
+* Coordinating activities across all workstreams
+* Tracking delivery against objectives
+* Managing stakeholder communication
+* Reporting progress to governance bodies
 
-**Purpose:** Manage agile delivery of additional features and functionality in line with OpenCRVS standards.
+#### **3.2 Business Analysis and Service Design**
 
-**Required skills:**
+This workstream ensures that OpenCRVS is configured and implemented in a way that reflects national laws, policies, and operational realities.
 
-* Qualified Scrum Master certification
-* Experience managing software development teams
-* Understanding of agile methodologies
+**Business Analyst(s)**\
+Responsible for:
 
-**Key responsibilities:**
+* Mapping existing registration processes
+* Identifying inefficiencies and improvement opportunities
+* Gathering functional and non-functional requirements
+* Documenting business rules and workflows
+* Ensuring requirements are translated into implementable solutions
 
-* Facilitate sprint planning, daily stand-ups, and retrospectives
-* Remove blockers and manage dependencies
-* Coordinate with the OpenCRVS core team on technical standards
-* Track progress and manage the development backlog
+**Design Researchers / Qualitative Researchers**\
+Responsible for:
 
-#### 2.3 Full-stack Developers
+* Understanding the experiences of registrars, health workers, courts, communities, and citizens
+* Conducting interviews, workshops, and field observations
+* Identifying user needs, pain points, and service barriers
+* Supporting user-centred service design
 
-**Purpose:** Develop custom features, integrations, and extensions to OpenCRVS.
+#### **3.3 Infrastructure and Platform Management**
 
-**Required skills:**
+**Technical System Administrator / DevOps Engineer**\
+Responsible for:
 
-* Expertise in **Node.js** (HapiJS or Express)
-* Strong experience with **React** and **TypeScript**
-* Working knowledge of Unix operating systems (macOS / Linux)
-* Proficiency with **Git**, **MongoDB**, and **Docker**
-* Familiarity with DevOps and software testing practices
-* Understanding of RESTful APIs and microservices architecture
+* Infrastructure provisioning
+* OpenCRVS installation and configuration
+* Managing cloud or on-premise environments
+* Security and access management
+* Monitoring system performance and availability
+* Backup and disaster recovery planning
+* Ongoing maintenance and operational support
 
-**Key responsibilities:**
+#### **3.4 Design and Development**
 
-* Develop custom features and integrations
-* Write automated tests (unit, integration, end-to-end)
-* Participate in code reviews and maintain code quality
-* Work with the Technical System Administrator on deployments
-* Document custom code and integration specifications
+Where additional localisation or feature development is required, a dedicated design and development team should be established.
 
-**Team size:** The number of developers required depends on the scope of custom work and available timeline.
+**UX/UI Designer**\
+Responsible for:
 
-#### 2.4 Quality Assurance Engineer(s)
+* Translating requirements into intuitive user experiences
+* Designing interfaces consistent with OpenCRVS design standards
+* Supporting usability testing and design validation
 
-**Purpose:** Perform comprehensive testing of configuration and custom code before implementation.
+**Technical Architect**\
+Responsible for:
 
-**Required skills:**
+* Defining technical solution architecture
+* Reviewing integrations and interoperability requirements
+* Ensuring scalability, maintainability, and compliance with OpenCRVS architecture principles
 
-* Experience in software testing methodologies
-* Ability to write test cases and test plans
-* Familiarity with automated testing tools
-* Understanding of CRVS business processes
+**Software Developers**\
+Responsible for:
 
-**Key responsibilities:**
+* Developing additional features and integrations
+* Implementing country-specific customisations
+* Maintaining locally developed components
 
-* Develop test plans and test cases for configuration and custom features
-* Perform functional, integration, and regression testing
-* Document and track defects
-* Validate that system behaviour meets requirements
-* Support user acceptance testing (UAT) activities
+#### **3.5 Quality Assurance**
 
-***
+**Test Lead / Quality Assurance Engineers**\
+Responsible for:
 
-### 4. Programme and change management roles
+* Defining testing strategy and planning functional and non-functional testing activities
+* Executing test cases and performing regression testing
+* Validating configurations and localisations
+* Managing defect resolution processes
+* Supporting user acceptance testing (UAT)
+* Determining deployment readiness
 
-Technology alone cannot transform civil registration services. Integrated programme components are required to ensure effective buy-in, adoption, and long-term sustainability of the new system and services.
+Comprehensive testing is critical before pilot and production deployments.
 
-#### 4.1 Change Management Lead
+#### **3.6 Training and Capacity Building**
 
-**Purpose:** Design and implement an effective change management strategy that ensures buy-in and take-up of the new system and services.
+**Training Lead / Trainers**\
+Responsible for:
 
-**Required skills:**
+* Developing the national training strategy and designing training materials
+* Defining training-of-trainers approaches
+* Delivering training to end users and supporting onboarding activities
+* Monitoring training effectiveness and gathering feedback to improve materials
 
-* Change management certification or extensive experience
-* Stakeholder engagement and communication skills
-* Understanding of organisational change processes
+Training should account for varying levels of digital literacy and operational experience.
 
-**Key responsibilities:**
+#### **3.7 Deployment and Rollout**
 
-* Develop and implement change management strategy
-* Engage stakeholders and secure leadership buy-in
-* Design communication and awareness campaigns
-* Support staff transition to new processes and systems
-* Monitor adoption and address resistance
+**Deployment Team**\
+Responsible for:
 
-#### 4.2 Training Lead
+* Developing deployment strategies and rollout plans
+* Coordinating pilot and national deployment activities
+* Preparing implementation sites and ensuring site readiness
+* Supporting training activities and assisting users during rollout
+* Coordinating deployment resources and validating operational readiness
 
-**Purpose:** Design and implement an effective training programme that equips users with the skills required to efficiently use the system and deliver excellent services.
+#### **3.8 Change Management**
 
-**Required skills:**
+Technology alone does not transform civil registration services. Sustainable adoption requires structured change management.
 
-* Training design and delivery experience
-* Adult learning principles
-* Ability to develop training materials and job aids
+**Change Management Lead**\
+Responsible for:
 
-**Key responsibilities:**
+* Developing a change management strategy and conducting stakeholder analysis
+* Designing communication and engagement activities
+* Managing organisational readiness and monitoring user adoption
+* Promoting the programme and supporting colleagues during transition
+* Gathering feedback from users and encouraging adoption of new ways of working
 
-* Conduct training needs assessment
-* Design scalable training curriculum (for different user roles)
-* Develop training materials, user guides, and job aids
-* Deliver train-the-trainer sessions
-* Establish ongoing capacity building mechanisms
-* Monitor training effectiveness and adjust approach
+#### **3.9 Monitoring, Evaluation and Continuous Improvement**
 
-#### 4.3 Deployment Lead
+**Monitoring & Evaluation Lead**\
+Responsible for:
 
-**Purpose:** Design and implement a deployment approach and plan that enables efficient rollout of the system across the country.
+* Defining programme indicators and success metrics
+* Establishing monitoring frameworks
+* Measuring operational performance
+* Conducting periodic reviews
+* Supporting continuous improvement initiatives
 
-**Required skills:**
-
-* Project management experience
-* Logistics and coordination skills
-* Understanding of phased implementation approaches
-
-**Key responsibilities:**
-
-* Develop national rollout plan and schedule
-* Coordinate logistics for new site activation (hardware, connectivity, user setup)
-* Manage site readiness assessments
-* Support go-live activities at new sites
-* Track rollout progress and resolve issues
-
-#### 4.4 Monitoring & Evaluation Lead
-
-**Purpose:** Design and implement a continuous improvement approach that allows you to continuously learn and improve both the product and implementation approach over time.
-
-**Required skills:**
-
-* M\&E methodology and data analysis skills
-* Understanding of performance indicators and KPIs
-* Experience with data visualisation and reporting
-
-**Key responsibilities:**
-
-* Define key performance indicators (KPIs) for the implementation
-* Design data collection and monitoring frameworks
-* Analyse system usage data and identify improvement opportunities
-* Produce regular performance reports for stakeholders
-* Support evidence-based decision making
-* Document lessons learned and best practices
+Indicators may include: registration coverage, registration timeliness, system utilisation, service turnaround times, data quality measures, and user satisfaction.
 
 ***
 
-### 5. Resources and support
+### 4. Resources and support
 
 For broader guidance on skills and roles in CRVS digitisation, see the [CRVS Digitisation Guidebook](http://www.crvs-dgb.org/en/skills-required/).
 
