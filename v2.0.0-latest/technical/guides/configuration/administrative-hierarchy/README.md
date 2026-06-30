@@ -2,7 +2,7 @@
 
 **TL;DR**
 
-1. A country consists of a hierarchy of administrative areas.
+1. A country consists of a hierarchy of administrative areas and associated office and facility locations.
 2. The hierarchy structure is defined per country.
 3. Not every level of the hierarchy needs to appear in every branch of the hierarchy tree (e.g. Province → Village).
 4. Any level of the hierarchy may contain physical locations (e.g. hospitals, offices).
