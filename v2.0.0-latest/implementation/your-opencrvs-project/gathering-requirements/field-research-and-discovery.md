@@ -23,6 +23,10 @@ The goal is to document the gaps between formal policy and day-to-day reality. T
 * a legal-parameter register, with open questions flagged for the field
 * a stakeholder map and a discussion guide for each audience.
 
+
+
+<figure><img src="../../../.gitbook/assets/image (24).png" alt=""><figcaption><p>In-office observation and interviews with civil registration agents to gain real qualitative insights on how vital events are registered, challenges and opportunities for improvement.</p></figcaption></figure>
+
 ***
 
 ### 2. Conduct the research

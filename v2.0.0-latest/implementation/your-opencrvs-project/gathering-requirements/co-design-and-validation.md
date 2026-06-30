@@ -24,6 +24,8 @@ The work is workshop-driven. By the end you should have a shared, evidence-backe
 * a findings readout to anchor the workshops
 * confirmed availability of the stakeholders you need in the room.
 
+<figure><img src="../../../.gitbook/assets/image (26).png" alt=""><figcaption><p>Multiple national stakeholders during co-design workshops to align on priorities for future service delivery models.</p></figcaption></figure>
+
 ***
 
 ### 2. Validate and align
@@ -51,6 +53,8 @@ With problems agreed, co-design the future service, check what OpenCRVS already 
 #### **3.1 Shape the future Service Delivery Model (SDM)**
 
 A Service Delivery Model describes how the future service works end to end: the roles involved, the channels citizens use to interact (in person, online, mobile), and the process steps for each event. Aim beyond incremental fixes — design a model that adapts to demographic and technological change and is organised around life events. Useful techniques include scenario planning (for example, mobile-first), service design (journey maps) and rapid prototyping, blending global good practice with local realities. **Output:** an agreed future SDM for each in-scope event.
+
+<figure><img src="../../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
 
 #### **3.2 Map requirements to OpenCRVS use cases**
 
