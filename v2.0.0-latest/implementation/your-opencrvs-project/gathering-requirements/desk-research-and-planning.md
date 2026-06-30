@@ -22,6 +22,10 @@ Doing this well means your time with registrars, health workers and citizens is 
 * the list of vital events the implementation will cover (for example: birth, death, marriage — and possibly divorce, adoption or stillbirth)
 * government agreement to request documents from, and later engage, registry, health and statistics bodies.
 
+
+
+<figure><img src="../../../.gitbook/assets/image (23).png" alt=""><figcaption><p>Registration Agent sharing examples of vital event records, declaration forms and certificate templates.</p></figcaption></figure>
+
 ***
 
 ### 2. Desk research
