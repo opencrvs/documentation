@@ -1,4 +1,4 @@
-# Your OpenCRVS
+# Your OpenCRVS Project
 
 ### 1. Introduction
 
@@ -6,7 +6,9 @@ This section is your guide to implementing OpenCRVS in your country — from the
 
 It is organised as a sequence of stages. If you are at the start of your journey, work through them in order; if you are already underway, jump to the stage you are in. Each stage page explains what it involves, what you need to begin, and what it produces for the next stage.
 
-\{% hint style="info" %\} **Where to start:** if you are beginning a new implementation, start with [Project planning](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/project-planning) and [Establish project & team](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/establish-project-and-team). Everything else builds on those foundations. \{% endhint %\}
+{% hint style="info" %}
+**Where to start:** if you are beginning a new implementation, start with [Project planning](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/project-planning) and [Establish project & team](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/establish-project-and-team). Everything else builds on those foundations.
+{% endhint %}
 
 ***
 
@@ -47,4 +49,6 @@ A typical OpenCRVS implementation moves through five broad phases: **plan and pr
 
 Implementing OpenCRVS is led by a small, multidisciplinary team that grows with the scope of your work — a proof of concept may need only a couple of core roles, while a national programme draws in technical, design, change-management, training and monitoring roles. See [Establish project & team](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/establish-project-and-team) for the full set of roles and how to size your team.
 
-\{% hint style="info" %\} **Embed your own people.** Wherever an implementing partner supports the work, include government staff throughout. Their knowledge keeps the implementation grounded, and their involvement is what makes the system sustainable after handover. \{% endhint %\}
+{% hint style="info" %}
+&#x20;**Embed your own people.** Wherever an implementing partner supports the work, include government staff throughout. Their knowledge keeps the implementation grounded, and their involvement is what makes the system sustainable after handover.
+{% endhint %}
