@@ -27,7 +27,7 @@ If for some reason data seed was not executed at OpenCRVS installation time, ple
 
 1. Navigate to GitHub Actions within `infrastructure` repository
 2. Select "Seed data" action
-3. Select "Target environment" from dropdown menu, all environments created at [4.3.1-create-a-github-environment](../../../../../v2.0.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-create-a-github-environment "mention") step should be listed here.
+3. Select "Target environment" from dropdown menu, all environments created at the [Create a Github Environment](../deploy-set-up-a-server-hosted-environment/create-a-github-environment/) step should be listed here.
 4. Click "Run workflow" button
 
 If an error occurs, the environment must be reset before it can be seeded again. Resetting an environment is explained [here](resetting-a-server-environment.md).  **Resetting clears all data on the server.  Only a backup can restore a previous configuration.  Use with caution and see warning below.**
