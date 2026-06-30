@@ -1,10 +1,10 @@
-# 4.3.5.2 Running an OpenCRVS deployment
+# Running an OpenCRVS deployment
 
 ### Preparation steps
 
-Before you can deploy, you need to make sure that your country configuration Docker image has compiled and has been pushed to your container registry (E.G. Dockerhub). This was explained previously in [Building, pushing & releasing your countryconfig code](/broken/pages/HLISVCYPnFSFC0Iaf2Wd)
+Before you can deploy, you need to make sure that your country configuration Docker image has compiled and has been pushed to your container registry (E.G. Dockerhub). This was explained previously in [Fork and buld the countryconfig repo](../../fork-and-build-the-countryconfig-repo.md)
 
-Copy the tag associated with your **countryconfig** Docker container image because you will use it in the next step.
+Copy the githash tag associated with your **countryconfig** Docker container image because you will use it in the next step.
 
 <figure><img src="../../../../../.gitbook/assets/Screenshot 2023-01-10 at 15.51.12.png" alt=""><figcaption></figcaption></figure>
 
@@ -31,5 +31,9 @@ You can deploy to your server using the automated **"Deploy OpenCRVS"** Github A
     ```
     kubectl get jobs
     ```
-* Access opencrvs in browser: `https://<your domain>` , see [Login to an OpenCRVS server](./login-to-an-opencrvs-server.md)
+* Access opencrvs in browser: `https://<your domain>`&#x20;
 
+### Next steps
+
+* [Seed OpenCRVS databases with reference data so that you can login](../../opencrvs-maintenance-tasks/seeding-a-server-environment.md)
+* &#x20;[Login to an OpenCRVS server](login-to-an-opencrvs-server.md)
