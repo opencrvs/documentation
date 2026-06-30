@@ -3,7 +3,7 @@
 ## LetsEncrypt DNS challenge in production
 
 {% hint style="info" %}
-Before you begin please make sure github environment was created using `yarn environment:init` script, check [4.3.1-create-a-github-environment](../../../../../../../v2.0.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-create-a-github-environment "mention")
+Before you begin please make sure github environment was created using `yarn environment:init` script, check the [Create a Github Environment](../../deploy-set-up-a-server-hosted-environment/create-a-github-environment/) step.
 {% endhint %}
 
 If you are provisioning a **qa, staging** or **production** environment **behind a VPN** and wish to use LetsEncrypt there are 2 options depending on your DNS server provider.
@@ -132,4 +132,3 @@ value(s) you've just added.
 At this point you need to go to control panel of your DNS server and create the TXT record for the domains as instructed.
 
 Once the process succeeds, it should write 2 certificate files `fullchain.pem` and `privkey.pem` to your local machine. The content of these files must be provided to the traefik service at runtime. The process required to implement this is equivalent to the next step: Static TLS certificates.
-

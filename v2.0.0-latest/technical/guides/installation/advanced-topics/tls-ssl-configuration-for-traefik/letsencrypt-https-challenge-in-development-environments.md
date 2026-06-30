@@ -1,13 +1,11 @@
 # LetsEncrypt https challenge in development environments
 
-
-
 ## LetsEncrypt https challenge in development environments
 
 #### LetsEncrypt HTTPS Challenge
 
 {% hint style="info" %}
-`yarn environment:init` script automatically handles this configuration you, check [4.3.1-create-a-github-environment](../../../../../../../v2.0.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-create-a-github-environment "mention")
+`yarn environment:init` script automatically handles this configuration you, check the [Create a Github Environment](../../deploy-set-up-a-server-hosted-environment/create-a-github-environment/) step.
 {% endhint %}
 
 If you are provisioning a **development** environment for learning purposes **outside of a VPN**, then this block is all you need in order to configure the LetsEncrypt HTTPS challenge mechanism for SSL cert generation.
