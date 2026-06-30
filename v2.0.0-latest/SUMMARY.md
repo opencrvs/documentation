@@ -175,6 +175,7 @@
     * [Translations](technical/guides/configuration/3.2.9.1-managing-language-content/README.md)
       * [Informant and staff notifications](technical/guides/configuration/3.2.9.1-managing-language-content/3.3.3-provision-a-comms-gateway.md)
     * [Integrations](technical/guides/configuration/integrations/README.md)
+      * [Create a client](technical/guides/configuration/integrations/create-a-client.md)
       * [Authenticate a client](technical/guides/configuration/integrations/authenticate-a-client.md)
       * [Integration: ID systems](technical/guides/configuration/integrations/integration-id-systems.md)
       * [Integration: Health notifications / Self-service portal](technical/guides/configuration/integrations/integration-health-notifications-self-service-portal.md)
