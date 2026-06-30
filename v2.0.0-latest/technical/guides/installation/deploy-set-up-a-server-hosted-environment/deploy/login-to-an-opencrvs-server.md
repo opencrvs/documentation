@@ -1,6 +1,4 @@
-# 4.3.5.3 Login to an OpenCRVS server
-
-
+# Login to an OpenCRVS server
 
 Now that your database is seeded with your users you should be able to browse to OpenCRVS to login.
 
@@ -22,7 +20,7 @@ Once logged in, the National System Administrator can create team members throug
 
 ### Debugging first login issues and data-seeding
 
-On fresh environments login issue may happen due to unsuccessful data seeding.
+On fresh environments login issue may happen due to unsuccessful [data seeding](../../opencrvs-maintenance-tasks/seeding-a-server-environment.md).
 
 Check data seed logs in Kibana **Observability > Discover** by filtering:
 
@@ -62,4 +60,4 @@ As the SMTP API was configured in the countryconfig service, you can filter the 
 kubernetes.container.name : "countryconfig"
 ```
 
-As you browse the logs you are looking for 500 errors and you can respond to any SMTP service error messages that you see appropriately. Perhaps you need to change the Github Action secrets. [Running a deployment ](./running-a-opencrvs-deployment.md)of OpenCRVS will refresh all microservices and so this is required when secrets are updated.
+As you browse the logs you are looking for 500 errors and you can respond to any SMTP service error messages that you see appropriately. Perhaps you need to change the Github Action secrets. [Running a deployment ](running-a-opencrvs-deployment.md)of OpenCRVS will refresh all microservices and so this is required when secrets are updated.
