@@ -1,14 +1,14 @@
 # Legacy data migration
 
 {% hint style="info" %}
-This guide is about importing historical records from legacy sources into OpenCRVS. It is not the same as OpenCRVS version-upgrade database migrations. For version upgrades, see Version upgrades.
+This guide is about importing historical records from legacy sources into OpenCRVS. It is not the same as OpenCRVS version-upgrade database migrations. For version upgrades, see [Version upgrades](https://documentation.opencrvs.org/v2.0/technical/guides/version-upgrades).
 {% endhint %}
 
 ### 1. Introduction
 
 Legacy data migration is the technical process of transforming records from an approved legacy source and loading them into OpenCRVS through the Core APIs.
 
-This guide assumes the country has already completed the project decisions described in Migrate legacy data, including source scope, target status, identifier policy, location mapping, exception handling and reconciliation requirements.
+This guide assumes the country has already completed the project decisions described in [Migrate legacy data](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs-project/migrate-legacy-data), including source scope, target status, identifier policy, location mapping, exception handling and reconciliation requirements.
 
 ***
 
@@ -27,16 +27,19 @@ You should have:
 
 ### 3. Required migration inputs
 
-| Input               | Purpose                                                                               |
-| ------------------- | ------------------------------------------------------------------------------------- |
-| Source extract      | The legacy records to be migrated.                                                    |
-| Field mapping       | Maps each source field to the configured OpenCRVS event model.                        |
-| Identifier mapping  | Defines how legacy registration numbers, source IDs and other identifiers are stored. |
-| Location mapping    | Resolves source places, offices and facilities to configured OpenCRVS locations.      |
-| Status mapping      | Defines whether records are loaded as `Registered`, `Declared` or `Notified`.         |
-| Attachment mapping  | Links scanned documents or source images to the correct record.                       |
-| Exception rules     | Defines which records are loaded, quarantined or excluded.                            |
-| Reconciliation plan | Defines the reports used to confirm the load.                                         |
+| Input                    | Purpose                                                                                   |
+| ------------------------ | ----------------------------------------------------------------------------------------- |
+| Source extract           | The legacy records to be migrated.                                                        |
+| Field mapping            | Maps each source field to the configured OpenCRVS event model.                            |
+| Identifier mapping       | Defines how legacy registration numbers, source IDs and other identifiers are stored.     |
+| Location mapping         | Resolves source places, offices and facilities to configured OpenCRVS locations.          |
+| Status mapping           | Defines whether records are loaded as `Registered`, `Declared` or `Notified`.             |
+| Attachment mapping       | Links scanned documents or source images to the correct record.                           |
+| Exception rules          | Defines which records are loaded, quarantined or excluded.                                |
+| Reconciliation plan      | Defines the reports used to confirm the load.                                             |
+| Approved business rules  | Defines approved rules for target status, corrections, exclusions and exception handling. |
+
+
 
 ***
 
@@ -80,6 +83,8 @@ The migration mapping should cover:
 * original registration date, registrar and source register details
 * attachments or source images
 * unmapped fields and exclusion decisions
+* canonical registration number policy
+* original registration date, registrar, office, source register/system, book/page/folio and amendment notes
 
 Do not create new OpenCRVS fields only to store unmapped legacy data unless that field has been approved as part of configuration.
 
