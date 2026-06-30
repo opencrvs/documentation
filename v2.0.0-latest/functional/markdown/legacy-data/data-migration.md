@@ -47,26 +47,13 @@ Migration is NOT:
 
 ### 3. What migration produces
 
-The goal of migration is that a legacy record becomes a **native OpenCRVS record**, subject to the same status model, actions and access control as any other.
+The goal of migration is that a legacy record becomes a **native OpenCRVS record**, subject to the same status model, actions, access control, audit and search behaviour as any other record.
 
-In practice this means deciding, per record, where it should sit in the OpenCRVS [record lifecycle](https://documentation.opencrvs.org/v2.0/functional/markdown/workflows). OpenCRVS uses a fixed set of statuses, and a migrated record must arrive at one of them:
+A migrated record must arrive at a valid OpenCRVS status. A legacy record that represents a completed legal registration may be imported as `Registered`. A record that is incomplete, uncertain, or requires staff review may be imported as `Declared` or `Notified`, depending on the configured workflow and approved business rules.
 
-* A legacy record that represents a **completed legal registration** should arrive as **Registered** — it can then be searched, certified and corrected like any registered record.
-* A legacy record that is **incomplete** or that the country wants staff to review before it becomes legal should arrive as a **Declaration** (or a notification), so it flows through the normal validation and registration workflow.
+A digital legacy record is not automatically a completed legal registration. The target status is a registration-authority decision and may vary by source, event type, date range, location or data-quality band.
 
-A useful target-status decision matrix is:
-
-| Legacy source / record type                                           | Usual migration treatment                                                                                                                                                                                               |
-| --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Legally completed civil registration record                           | Import as `Registered`, if the registration authority confirms the source is legally authoritative.                                                                                                                     |
-| Incomplete record requiring staff review                              | Import as `Declared` or `Notified`, depending on completeness and workflow design.                                                                                                                                      |
-| Health notification, hospital spreadsheet, or local notification list | Use for reconciliation, duplicate checking, or import as `Notified` only if the country confirms it should enter the workflow. Do not import as `Registered` unless it is legally accepted as a completed registration. |
-| Uncertain, conflicting, or low-quality record                         | Quarantine, report as an exception, or retain in controlled legacy access until resolved.                                                                                                                               |
-| Source outside migration scope                                        | Do not migrate; document the reason and how staff can access it if needed.                                                                                                                                              |
-
-This decision may vary by source, event type, date range, location, or data-quality band. For example, recent records in a structured database may be migrated as `Registered`, while older partial records from local books may require review.
-
-This decision is a business-rule choice, not a technical one, and it is usually made per legacy data source rather than per record (see Section 5).
+For target-status assessment and sign-off, see [Migrate legacy data](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs-project/migrate-legacy-data).
 
 ***
 
