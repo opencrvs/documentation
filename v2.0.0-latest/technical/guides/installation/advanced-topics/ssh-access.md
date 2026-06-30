@@ -1,11 +1,9 @@
 # SSH access
 
-
-
 ### Managing ssh access
 
 {% hint style="info" %}
-`yarn environment:init` script automatically handles this configuration you, check [4.3.1-create-a-github-environment](../../../../../v2.0.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-create-a-github-environment "mention")
+`yarn environment:init` script automatically handles this configuration you, check the [Create a Github Environment](../deploy-set-up-a-server-hosted-environment/create-a-github-environment/) step.
 {% endhint %}
 
 SSH Access is configured at inventory file (`infrastructure/server-setup/inventory/<environment>.yml`)
