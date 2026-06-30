@@ -18,5 +18,5 @@ In default configuration GitHub action will require at least 3 approvals for Pro
 
 1. Navigate to GitHub Actions within `infrastructure` repository
 2. Select "Reset environment" action
-3. Select "Target environment" from dropdown menu, all environments created at [4.3.1-create-a-github-environment](../../../../../../v2.0.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.1-create-a-github-environment "mention") step should be listed here.
+3. Select "Target environment" from dropdown menu, all environments created in the [Create a Github Environment](../deploy-set-up-a-server-hosted-environment/create-a-github-environment/) step, should be listed here.
 4. Click "Run workflow" button
