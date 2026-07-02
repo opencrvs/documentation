@@ -1,10 +1,24 @@
 # Create a client
 
-In order to interoperate with OpenCRVS' record search, event notification and webhooks, you must first create an OAuth client.
 
-Only a National System Administrator role can create a client.
+
+#### Introduction
+
+In order to interoperate with OpenCRVS' via APIs, you must create a system client.
+
+You can create a system client to perform record search & event notifications from a health system via the National System Administrator UI.
+
+In 2.0.1 you can create other clients with whatever scope you wish via country configuration.  Docs TBC.
+
+The option to create clients for managing Locations, Importing Legacy Records or integrating with Citizen Portals via the UI has been deprecated for security reasons in 2.0, as these clients are extremely powerful.
+
+Docs will be updated in this section by Aug 2026 to include information on the creation of those types of client.&#x20;
 
 <figure><img src="../../../../.gitbook/assets/Screenshot 2023-01-11 at 11.34.03.png" alt=""><figcaption></figcaption></figure>
+
+***
+
+#### Process of creation via the UI
 
 Click **+ Create client**
 
@@ -14,12 +28,10 @@ You will see a modal overlay where you can select the type of client you wish to
 
 You must give each client a unique name.
 
-<figure><img src="../../../../.gitbook/assets/Screenshot 2023-01-11 at 11.34.17.png" alt=""><figcaption><p>Creating an Event notification client</p></figcaption></figure>
-
 When you click "Create", you will be shown the authentication details for the client along with a SHA Secret used to sign, encrypt, decrypt and verify the authenticity of payloads.
 
 {% hint style="warning" %}
-**You must copy these keys now! The Client Secret will never be displayed to you again and it cannot be retrieved from our database as it is encrypted.**
+**You must copy these keys now! The Client Secret will never be displayed to you again and it cannot be retrieved from our database as it is encrypted.  It can only be refreshed in the UI.**
 {% endhint %}
 
 <figure><img src="../../../../.gitbook/assets/Screenshot 2023-01-11 at 11.35.15.png" alt=""><figcaption></figcaption></figure>
