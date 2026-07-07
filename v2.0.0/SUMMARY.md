@@ -62,8 +62,8 @@
 * [Example: Farajaland](implementation/example-farajaland/README.md)
   * [Background & goals](implementation/example-farajaland/background-and-goals.md)
   * [Requirements](implementation/example-farajaland/requirements/README.md)
-    * [Birth Requirements  — Farajaland](implementation/example-farajaland/requirements/birth-requirements-farajaland.md)
-    * [Birth Journeys  — Farajaland](implementation/example-farajaland/requirements/birth-journeys-farajaland.md)
+    * [Birth Requirements — Farajaland](implementation/example-farajaland/requirements/birth-requirements-farajaland.md)
+    * [Birth Journeys — Farajaland](implementation/example-farajaland/requirements/birth-journeys-farajaland.md)
   * [Demo](implementation/example-farajaland/demo.md)
 * [Your OpenCRVS Project](implementation/your-opencrvs-project/README.md)
   * [Project planning](implementation/your-opencrvs-project/project-planning.md)
@@ -192,11 +192,11 @@
 * [APIs](technical/apis/README.md)
   * [Core APIs](technical/apis/core-apis/README.md)
     * ```yaml
-      type: builtin:openapi
       props:
         models: true
         downloadLink: true
         grouping: by-tag
+      type: builtin:openapi
       dependencies:
         spec:
           ref:
@@ -205,11 +205,11 @@
       ```
   * [Country-config APIs](technical/apis/country-config-apis/README.md)
     * ```yaml
-      type: builtin:openapi
       props:
         models: true
         downloadLink: true
         grouping: by-tag
+      type: builtin:openapi
       dependencies:
         spec:
           ref:
