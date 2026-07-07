@@ -36,6 +36,8 @@ const scopeByEvent = z
 
 Scope options with truncated record metadata — ([Find the full type here](https://github.com/opencrvs/opencrvs-core/blob/v2.0.0-beta/packages/commons/src/events/EventMetadata.ts))
 
+Scope options now also support **`notifiedIn`** and **`notifiedBy`**, following the same pattern as `declaredIn`/`declaredBy` and `registeredIn`/`registeredBy`.
+
 ```ts
 // Simplified type for readability.
 type RecordSearchScope = {
@@ -43,79 +45,47 @@ type RecordSearchScope = {
  options: {
     event: scopeByEvent,
     placeOfEvent: JurisdictionFilter.optional(),
+    notifiedIn: JurisdictionFilter.optional(),
+    notifiedBy: UserFilter.optional(),
     declaredIn: JurisdictionFilter.optional(),
-    declaredBy: UserFilter.optional(),
+    declaredBy: UserFilter.optional()
     registeredIn: JurisdictionFilter.optional(),
     registeredBy: UserFilter.optional()
  }
 }
+```
 
-const eventMetadata = {
-  "id": "0bac5df6-4b5f-4bad-99eb-23fbbd09f2a7",
-  "type": "birth", // Type must be in the options.event array.
-    "placeOfEvent": [
+The corresponding `legalStatuses.NOTIFIED` entry is populated whenever a Notify action is dispatched — before the event has been declared or registered:
+
+```ts
+"legalStatuses": {
+  "NOTIFIED": {
     /**
-     options.placeOfEvent = 'all' means the same as undefined.
-     options.placeOfEvent = 'administrativeArea' ensures user's administrativeAreaId is in the array.
-     options.placeOfEvent = 'location' ensures user's primaryOfficeId is in the array.
-
-     When place of event is 'location', events that happened within administrative area (e.g. birth took place in residential address),
-     in a location without location id, are filtered out.
+     options.notifiedBy = 'user' ensures user's id matches the one who sent the notification.
     */
-    "9e93fbbb-a904-4d5e-ac0b-f77b969b964f",
-    "18c5b1a3-49e5-4ff8-8096-8c856575e6d0",
-    "f7461bf7-b6d9-436a-a66d-5191e6ef6586",
-    "ab1f6257-6d3f-492c-8442-21b761b0036d"
-  ],
-  "status": "REGISTERED",
-  /** 
-   NOTE: 
-     1. declaredIn and declaredBy implies that record has been declared.
-     2. registeredIn and registeredBy implies that record has been registered.
-  */
-  "legalStatuses": {
-    "DECLARED": {
+    "createdBy": "c05e1c4f-20fa-4e69-af72-819b535d6242",
+    "createdAtLocation": [
       /**
-       options.declaredBy = 'user' ensures user's id matches the one who declared it.
+       options.notifiedIn = 'all' means the same as undefined.
+       options.notifiedIn = 'administrativeArea' ensures user's administrativeAreaId is in the array.
+       options.notifiedIn = 'location' ensures user's primaryOfficeId is in the array.
+
+       Notified location is defined by the location of the user performing the action.
       */
-      "createdBy": "c05e1c4f-20fa-4e69-af72-819b535d6242",
-      "createdAtLocation": [
-        /**
-         options.declaredIn = 'all' means the same as undefined.
-         options.declaredIn = 'administrativeArea' ensures user's administrativeAreaId is in the array.
-         options.declaredIn = 'location' ensures user's primaryOfficeId is in the array.
-         
-         Declared location is defined by the location of the user performing the action.
-        */
-        "9e93fbbb-a904-4d5e-ac0b-f77b969b964f",
-        "18c5b1a3-49e5-4ff8-8096-8c856575e6d0",
-        "f7461bf7-b6d9-436a-a66d-5191e6ef6586",
-        "ab1f6257-6d3f-492c-8442-21b761b0036d"
-      ],
-    },
-    "REGISTERED": {
-      /**
-       options.registeredBy = 'user' ensures user's id matches the one who registered it.
-      */
-      "createdBy": "c05e1c4f-20fa-4e69-af72-819b535d6242",
-       /**
-         options.registeredIn = 'all' means the same as undefined.
-         options.registeredIn = 'administrativeArea' ensures user's administrativeAreaId is in the array.
-         options.registeredIn = 'location' ensures user's primaryOfficeId is in the array.
-         
-         Registered location is defined by the location of the user performing the action.
-       */
-      "createdAtLocation": [
-        "9e93fbbb-a904-4d5e-ac0b-f77b969b964f",
-        "18c5b1a3-49e5-4ff8-8096-8c856575e6d0",
-        "f7461bf7-b6d9-436a-a66d-5191e6ef6586",
-        "ab1f6257-6d3f-492c-8442-21b761b0036d"
-      ],
-    }
+      "9e93fbbb-a904-4d5e-ac0b-f77b969b964f",
+      "18c5b1a3-49e5-4ff8-8096-8c856575e6d0",
+      "f7461bf7-b6d9-436a-a66d-5191e6ef6586",
+      "ab1f6257-6d3f-492c-8442-21b761b0036d"
+    ],
   },
-  "declaration": {},
+  "DECLARED": { ... },
+  "REGISTERED": { ... }
 }
 ```
+
+{% hint style="info" %}
+As with `declaredBy`/`registeredIn`, using `notifiedBy` on a scope for an action that occurs before notification is possible (e.g. `record.create`) will always resolve to `forbidden`.
+{% endhint %}
 
 **Example 2: Declaring records — why options are limited**\
 \
