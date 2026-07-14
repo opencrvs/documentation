@@ -25,7 +25,7 @@ layout:
 {% hint style="danger" %}
 ### **Notice: This guide applies only to upgrading from v1.9 onwards.**
 
-If you are running OpenCRVS v1.8 or earlier, follow the [v1.9 migration guide](https://documentation.opencrvs.org/general/migration-notes#upgrading-opencrvs-migration-guide) instead.
+If you are running OpenCRVS v1.8 or earlier, follow the [v1.9 migration guide](https://documentation.opencrvs.org/v1.9/general/migration-notes) instead.
 {% endhint %}
 
 ## Introduction
