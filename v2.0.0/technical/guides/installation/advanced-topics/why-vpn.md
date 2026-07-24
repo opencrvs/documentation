@@ -6,7 +6,7 @@ Penetration testing demonstrates that the out-the-box system was secure against 
 
 
 
-**Protects sensitive personal data**
+**A VPN protects sensitive personal data**
 
 Civil registration systems contain some of the most sensitive government information:
 
@@ -20,7 +20,7 @@ Minimising access aligns with the principle of least exposure.
 
 
 
-**Reduces automated attacks**
+**It reduces automated attacks**
 
 Public services are constantly subjected to:
 
@@ -34,7 +34,7 @@ Private services simply do not receive the same volume of hostile traffic.
 
 
 
-**Greatly reduces the attack surface**
+**It greatly reduces the attack surface**
 
 * A VPN means only authenticated users and trusted systems can even reach the OpenCRVS endpoints.
 * Anonymous internet scanning, reconnaissance and automated attacks never reach the application.
@@ -48,7 +48,7 @@ Private services simply do not receive the same volume of hostile traffic.
 
 
 
-**Protects against unknown vulnerabilities**
+**It protects against unknown vulnerabilities**
 
 * New CVEs are discovered continuously in operating systems, Kubernetes, reverse proxies, databases and application frameworks.
 * A VPN provides protection even before security patches are available or deployed.
@@ -62,7 +62,7 @@ Private services simply do not receive the same volume of hostile traffic.
 
 
 
-**Protects operational infrastructure**
+**It protects operational infrastructure**
 
 * Internal APIs used by OpenCRVS components are less likely to be accidentally exposed.
 * Administrative interfaces, monitoring endpoints and debugging services remain inaccessible from the internet.
@@ -76,14 +76,14 @@ Private services simply do not receive the same volume of hostile traffic.
 
 
 
-**Helps satisfy government security policies**
+**It helps satisfy government security policies**
 
 * Many ministries already require government systems handling identity data to operate only over government networks or approved VPNs.
 * This often simplifies accreditation and security approval.
 
 
 
-**Reduces internet dependency**
+**Fianlly, it reduces internet dependency**
 
 * Internal government traffic can continue operating even if public internet routing experiences issues or attacks.
 
