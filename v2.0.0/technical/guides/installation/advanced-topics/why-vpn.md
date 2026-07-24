@@ -1,6 +1,6 @@
 # Why VPN?
 
-Even though OpenCRVS has already undergone hardening, and publicly hosted penetration testing and passed, there are still strong architectural, operational and trust reasons to deploy it behind a VPN or private network wherever possible.&#x20;
+Even though OpenCRVS regularly undergoes hardening, and publicly hosted penetration testing, there are still strong architectural, operational and trust reasons to deploy it behind a VPN or private network wherever possible.&#x20;
 
 Penetration testing demonstrates that the out-the-box system was secure against a defined set of tests at a point in time—it does not eliminate future vulnerabilities, configuration mistakes or supply chain risks.  Some key points are:
 
