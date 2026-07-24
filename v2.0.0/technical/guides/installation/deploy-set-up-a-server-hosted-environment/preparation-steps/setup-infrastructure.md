@@ -30,7 +30,7 @@ Before proceeding to discuss server specifications, it is important to understan
 
 Before proceeding to discuss network specifications, it is important to understand the following other concepts:
 
-* **vpn:** All servers must be protected behind a government virtual private network (VPN). Users must authenticate via the VPN to access OpenCRVS in a browser. The country should provide and operate the VPN. When using self-hosted GitHub Actions runners, place those runners inside the VPN or on the internal network so they can reach servers directly; no VPN tunnel from GitHub-hosted services is required.
+* **vpn:** All servers must be protected behind a government virtual private network (VPN). [_Learn why a VPN is important._](https://documentation.opencrvs.org/technical/guides/installation/advanced-topics/why-vpn) Users must authenticate via the VPN to access OpenCRVS in a browser. The country should provide and operate the VPN. When using self-hosted GitHub Actions runners, place those runners inside the VPN or on the internal network so they can reach servers directly; no VPN tunnel from GitHub-hosted services is required.
 * **Continuous provisioning & deployment via GitHub Actions:** OpenCRVS provides GitHub Actions workflows for automated provisioning and deployment. A GitHub organisation is required. Self-hosted runners deployed within your VPN/internal network (recommended).
 * **bastion** or **jump:** An optional bastion (jump) host can consolidate and control SSH access to servers behind the VPN without distributing VPN credentials. Bastions are useful for administrative SSH access, auditing and as an alternative deployment hop even when using self-hosted runners inside the VPN.
 
