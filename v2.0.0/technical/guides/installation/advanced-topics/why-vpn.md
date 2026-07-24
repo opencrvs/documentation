@@ -135,9 +135,7 @@ A private network helps establish this trust by ensuring the source itself resid
 
 ### Public deployment is still possible
 
-Hosting OpenCRVS publicly is not inherently insecure. With appropriate controls—including independent, and regular, penetration testing,, continuous monitoring, rapid patching of updates and rigorous operational security—it can be operated safely.
-
-However, from a security architecture perspective, exposing OpenCRVS only to trusted government networks or via a VPN remains the preferred deployment model because it follows the principle of defence in depth and minimises the overall attack surface. This is particularly important for systems that handle national civil registration data and integrate with high-trust government platforms such as MOSIP.
+Hosting OpenCRVS publicly is not inherently insecure. With appropriate controls—including independent, and regular, penetration testing, continuous monitoring, rapid patching of updates and rigorous operational security—it can be operated safely.
 
 If a country decides to expose OpenCRVS to the public internet, there are a number of compensating controls that can significantly reduce risk.
 
@@ -171,7 +169,7 @@ If a country decides to expose OpenCRVS to the public internet, there are a numb
 
 *   **Restrict administrative interfaces**
 
-    * Remove web access or whitelist access to Kibana, Minio & Metabase clients - these monitoring tools are critical.
+    * Restrict access to Kibana, MinIO and Metabase administrative consoles to trusted system administrator IP addresses or a private network/VPN only.
     * SSH Administration should always require VPN or bastion-host access.
 
 
