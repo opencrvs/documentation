@@ -16,7 +16,7 @@ Civil registration systems contain some of the most sensitive government informa
 * addresses
 * family relationships
 
-Minimising exposure aligns with the principle of least exposure.
+Minimising access aligns with the principle of least exposure.
 
 
 
