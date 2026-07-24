@@ -139,4 +139,5 @@ Hosting OpenCRVS publicly is not inherently insecure. With appropriate controlsâ
 
 However, from a security architecture perspective, exposing OpenCRVS only to trusted government networks or via a VPN remains the preferred deployment model because it follows the principle of defence in depth and minimises the overall attack surface. This is particularly important for systems that handle national civil registration data and integrate with high-trust government platforms such as MOSIP.
 
-<br>
+
+

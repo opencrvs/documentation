@@ -68,6 +68,12 @@ Testing is conducted in two rounds:
 
 All tests are conducted to UK government standards and follow proven ethical hacking methodologies.
 
+{% hint style="warning" %}
+You should always conduct your own penetration test of your configuration and installation before going live.&#x20;
+
+Penetration testing demonstrates that a system was secure against a defined set of tests at a point in time—it does not eliminate future vulnerabilities, configuration mistakes or supply chain risks.
+{% endhint %}
+
 ***
 
 ### 4. Authentication and access control
