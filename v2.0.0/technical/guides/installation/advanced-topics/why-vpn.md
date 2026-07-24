@@ -171,7 +171,7 @@ If a country decides to expose OpenCRVS to the public internet, there are a numb
 
 *   **Restrict administrative interfaces**
 
-    * Remove web access or whitelist access to Kibana, Minio & Metabase clients only to static IP addresses within Tahaluf / Technoforte - these monitoring tools are critical.
+    * Remove web access or whitelist access to Kibana, Minio & Metabase clients - these monitoring tools are critical.
     * SSH Administration should always require VPN or bastion-host access.
 
 
