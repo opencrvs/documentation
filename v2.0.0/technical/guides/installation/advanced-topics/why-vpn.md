@@ -83,7 +83,7 @@ Private services simply do not receive the same volume of hostile traffic.
 
 
 
-**Fianlly, it reduces internet dependency**
+**Finally, it reduces internet dependency**
 
 * Internal government traffic can continue operating even if public internet routing experiences issues or attacks.
 
