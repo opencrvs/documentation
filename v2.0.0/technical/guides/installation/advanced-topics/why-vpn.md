@@ -4,20 +4,21 @@ Even though OpenCRVS has already undergone hardening, and publicly hosted penetr
 
 Penetration testing demonstrates that the out-the-box system was secure against a defined set of tests at a point in time—it does not eliminate future vulnerabilities, configuration mistakes or supply chain risks.  Some key points are:
 
-**Greatly reduces the attack surface**
 
-* A VPN means only authenticated users and trusted systems can even reach the OpenCRVS endpoints.
-* Anonymous internet scanning, reconnaissance and automated attacks never reach the application.
 
-**Provides defence in depth**
+**Protects sensitive personal data**
 
-* Security should never rely solely on application security.
-* A VPN adds a network security layer in addition to authentication, authorisation, encryption and auditing.
+Civil registration systems contain some of the most sensitive government information:
 
-**Protects against unknown vulnerabilities**
+* births
+* deaths
+* personal identities
+* addresses
+* family relationships
 
-* New CVEs are discovered continuously in operating systems, Kubernetes, reverse proxies, databases and application frameworks.
-* A VPN provides protection even before security patches are available or deployed.
+Minimising exposure aligns with the principle of least exposure.
+
+
 
 **Reduces automated attacks**
 
@@ -31,39 +32,62 @@ Public services are constantly subjected to:
 
 Private services simply do not receive the same volume of hostile traffic.
 
+
+
+**Greatly reduces the attack surface**
+
+* A VPN means only authenticated users and trusted systems can even reach the OpenCRVS endpoints.
+* Anonymous internet scanning, reconnaissance and automated attacks never reach the application.
+
+
+
+**Provides defence in depth**
+
+* Security should never rely solely on application security.
+* A VPN adds a network security layer in addition to authentication, authorisation, encryption and auditing.
+
+
+
+**Protects against unknown vulnerabilities**
+
+* New CVEs are discovered continuously in operating systems, Kubernetes, reverse proxies, databases and application frameworks.
+* A VPN provides protection even before security patches are available or deployed.
+
+
+
 **Limits exposure of authentication endpoints**
 
 * Login and MFA endpoints are valuable attack targets.
 * Keeping them private reduces opportunities for brute force, social engineering and enumeration attacks.
+
+
 
 **Protects operational infrastructure**
 
 * Internal APIs used by OpenCRVS components are less likely to be accidentally exposed.
 * Administrative interfaces, monitoring endpoints and debugging services remain inaccessible from the internet.
 
+
+
 **Reduces the impact of configuration mistakes**
 
 * Even well-managed environments occasionally expose ports or misconfigure firewalls.
 * A VPN makes accidental exposure significantly less damaging.
+
+
 
 **Helps satisfy government security policies**
 
 * Many ministries already require government systems handling identity data to operate only over government networks or approved VPNs.
 * This often simplifies accreditation and security approval.
 
-**Protects sensitive personal data**
 
-* Civil registration systems contain some of the most sensitive government information:
-* births
-* deaths
-* personal identities
-* addresses
-* family relationships
-* Minimising exposure aligns with the principle of least exposure.
 
 **Reduces internet dependency**
 
 * Internal government traffic can continue operating even if public internet routing experiences issues or attacks.
+
+
 
 ***
 
