@@ -4,8 +4,6 @@ Even though OpenCRVS has already undergone hardening, and publicly hosted penetr
 
 Penetration testing demonstrates that the out-the-box system was secure against a defined set of tests at a point in time—it does not eliminate future vulnerabilities, configuration mistakes or supply chain risks.  Some key points are:
 
-
-
 **Greatly reduces the attack surface**
 
 * A VPN means only authenticated users and trusted systems can even reach the OpenCRVS endpoints.
@@ -23,13 +21,15 @@ Penetration testing demonstrates that the out-the-box system was secure against 
 
 **Reduces automated attacks**
 
-* Public services are constantly subjected to:
+Public services are constantly subjected to:
+
 * credential stuffing
 * password spraying
 * bot traffic
 * vulnerability scanning
 * denial of service attempts
-* Private services simply do not receive the same volume of hostile traffic.
+
+Private services simply do not receive the same volume of hostile traffic.
 
 **Limits exposure of authentication endpoints**
 
