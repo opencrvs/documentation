@@ -139,5 +139,79 @@ Hosting OpenCRVS publicly is not inherently insecure. With appropriate controlsâ
 
 However, from a security architecture perspective, exposing OpenCRVS only to trusted government networks or via a VPN remains the preferred deployment model because it follows the principle of defence in depth and minimises the overall attack surface. This is particularly important for systems that handle national civil registration data and integrate with high-trust government platforms such as MOSIP.
 
+If a country decides to expose OpenCRVS to the public internet, there are a number of compensating controls that can significantly reduce risk.
+
+
+
+*   **Geofence & restrict access to known IP addresses wherever possible**
+
+    * Whitelist government IP ranges.
+    * If the system is intended for use only within a single country, consider allowing access only from IP addresses geolocated to that country.
+    * Whitelist static IP addresses used by embassies, overseas missions and trusted partner organisations.
+    * Avoid exposing the service to the entire internet if only a subset of users require access.
+
+
+*   **Use a Web Application Firewall (WAF)**
+
+    * Protect against common web attacks (OWASP Top 10).
+    * Block known malicious traffic before it reaches OpenCRVS.
+    * Enable managed rule sets and bot protection.
+
+
+*   **Implement DDoS protection**
+
+    * Use services such as Cloudflare, Azure DDoS Protection or AWS Shield.
+    * Prevent the system becoming unavailable during attacks.
+
+
+*   **Continue enforcing multi-factor authentication**
+
+    * Do not disable OpenCRVS 2FA on any circumstance.
+
+
+*   **Restrict administrative interfaces**
+
+    * Remove web access or whitelist access to Kibana, Minio & Metabase clients only to static IP addresses within Tahaluf / Technoforte - these monitoring tools are critical.
+    * SSH Administration should always require VPN or bastion-host access.
+
+
+*   **Apply security patches rapidly**
+
+    * Maintain a process for monitoring security advisories.
+    * Patch not only OpenCRVS, but also Kubernetes, container images, operating systems, ingress controllers, databases and other infrastructure components.
+
+
+*   **Implement continuous security monitoring**
+
+    * Centralise logs.
+    * Detect unusual login patterns.
+    * Alert on repeated failed authentication attempts and suspicious API activity.
+
+
+*   **Perform regular vulnerability scanning**
+
+    * Scan both infrastructure and applications.
+    * Schedule periodic penetration testing rather than treating it as a one-off exercise.
+
+
+*   **Use mutual TLS (mTLS) for system-to-system integrations**
+
+    * Especially for integrations with systems such as MOSIP.
+    * Ensure APIs authenticate both the client and the server.
+
+
+*   **Maintain tested backup and disaster recovery procedures**
+
+    * Ensure backups are encrypted and offline or immutable.
+    * Regularly test restoration.
+
+
+*   **Develop and rehearse an incident response plan**
+
+    * Know who responds to security incidents.
+    * Define communication, containment and recovery procedures in advance.
+
+
+
 
 
