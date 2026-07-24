@@ -141,6 +141,7 @@
       * [Kubernetes cluster access](technical/guides/installation/advanced-topics/kubernetes-cluster-access.md)
       * [Add Custom GitHub secrets to Kubernetes](technical/guides/installation/advanced-topics/add-custom-github-secrets-to-kubernetes.md)
       * [Disk space management](technical/guides/installation/advanced-topics/disk-space-management.md)
+      * [Why VPN?](technical/guides/installation/advanced-topics/why-vpn.md)
       * [Deploy OpenCRVS with external data stores](technical/guides/installation/advanced-topics/deploy-opencrvs-with-external-data-stores.md)
   * [Configuration](technical/guides/configuration/README.md)
     * [Administrative hierarchy](technical/guides/configuration/administrative-hierarchy/README.md)
