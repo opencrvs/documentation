@@ -77,8 +77,8 @@ A deduplication configuration typically defines:
   * **Names (strings):** fuzzy match using edit distance (Levenshtein), with allowed edits depending on name length.
   * **Dates:** exact or within a configured range (for example, ±5 days or ±3 years).
   * **IDs:** exact match.
-* **Boosting and weighting** — certain fields can be given higher weight in the overall match score (for example, national ID vs name similarity). IS THIS TRUE?!?
-* **Thresholds** — only matches above a certain relevance score are presented for review. IS THIS TRUE?!?
+* **Boosting and weighting** — certain fields can be given higher weight in the overall match score (for example, national ID vs name similarity).&#x20;
+* **Thresholds** — only matches above a certain relevance score are presented for review.&#x20;
 
 Business owners define **what should be considered “close enough”** for each field and event type, and technical teams implement that as Elasticsearch queries and scoring.
 
