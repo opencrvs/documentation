@@ -15,6 +15,8 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # Communications
@@ -22,8 +24,6 @@ layout:
 ### 1. Introduction
 
 Communications in OpenCRVS keep both system users and informants informed about key steps in the civil registration process. Notifications can be triggered by record actions (for example, Notify, Declare, Register) or by system events (for example, onboarding a new user), and can be delivered via SMS and/or email.
-
-
 
 ***
 
@@ -127,8 +127,6 @@ Key characteristics:
 * Use of placeholders (for example, `name`, `trackingId`).
 * Country-specific guidance on timeframes and required documents.
 
-To learn more ..>
-
 #### 5.3 Email configuration
 
 Email notifications require integration with an email service (for example, SMTP server or cloud email provider).
@@ -182,7 +180,5 @@ Please visit \{{crvsOffice\}} with your ID to collect the birth certificate. You
 Best regards, \{{applicationName\}}
 
 _This is an automated message. Please do not reply._ |
-
-
 
 > insrt html/svg code
