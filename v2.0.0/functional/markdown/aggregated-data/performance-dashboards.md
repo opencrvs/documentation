@@ -136,8 +136,6 @@ Dashboards are designed to evolve as country needs change. Teams can:
 
 Because dashboards are configuration-driven rather than hard-coded, updates can be made without changes to the core OpenCRVS application.
 
-< Example dashbaords >
-
 ***
 
 ### 5. Use and interpretation
