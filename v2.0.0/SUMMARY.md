@@ -122,6 +122,7 @@
       * [Migration from Docker swarm guide](technical/guides/installation/deploy-set-up-a-server-hosted-environment/migration-from-docker-swarm-guide.md)
       * [Pre-Deployment Checklist](technical/guides/installation/deploy-set-up-a-server-hosted-environment/3.3.4-set-up-an-smtp-server-for-opencrvs-monitoring-alerts.md)
     * [OpenCRVS maintenance tasks](technical/guides/installation/opencrvs-maintenance-tasks/README.md)
+      * [Reindexing](technical/guides/installation/opencrvs-maintenance-tasks/reindexing.md)
       * [Seeding a server environment](technical/guides/installation/opencrvs-maintenance-tasks/seeding-a-server-environment.md)
       * [Resetting a server environment](technical/guides/installation/opencrvs-maintenance-tasks/resetting-a-server-environment.md)
       * [Backup & Restore](technical/guides/installation/opencrvs-maintenance-tasks/backup-and-restore/README.md)
