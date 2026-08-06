@@ -127,7 +127,8 @@ The script will ask for your Dockerhub credentials or skip if they already exist
 The script will ask you to provide Kubernetes and Runtime options:
 
 * `DOMAIN`: Domain name to expose the OpenCRVS application frontend and APIs.  It will be the domain after the subdomains that you configured when setting DNS.
-* `KUBE_API_HOST`: IP address or domain address for the Kubernetes master node. Provision script will generate Kubernetes config files for each user defined in users section of inventory file. Leave empty to use the default address of the provisioned master node.
+* `KUBE_MASTER_NODE`: IP address for the Kubernetes master node.
+* `KUBE_API_HOST`: IP address or domain address to expose Kubernetes API. Provision script will generate Kubernetes config files for each user defined in users section of inventory file. Leave empty to use the default address of the provisioned master node.
 * `KUBE_API_ALLOWED_CIDRS` : Comma-separated list of CIDR ranges allowed to access the Kubernetes API. Default: `KUBE_API_HOST` (Allow connections from master node only).
 * `KUBE_WORKER_NODES`: Comma separated list of additional Kubernetes cluster members (Virtual Machines). Leave empty for a single node setup. Worker nodes can be added later. Default: no worker nodes.
 
