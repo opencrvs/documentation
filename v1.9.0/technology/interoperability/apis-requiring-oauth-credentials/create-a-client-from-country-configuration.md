@@ -92,7 +92,9 @@ If the country configuration is not yet reachable when the events service starts
 
 ## Optional: seed pre-shared credentials
 
-When the integrating system already carries a client id and secret in its own environment — `OPENCRVS_CLIENT_ID` and `OPENCRVS_CLIENT_SECRET` in `mosip-api`, for example — you can seed OpenCRVS with the same pair so that nobody has to copy a secret between two systems by hand:
+When the integrating system already carries a client id and secret in its own environment — `OPENCRVS_CLIENT_ID` and `OPENCRVS_CLIENT_SECRET` in `mosip-api`, for example — you can seed OpenCRVS with the same pair so that nobody has to copy a secret between two systems by hand.
+
+OpenCRVS accepts an optional `clientId` and `clientSecret` alongside the name and scopes. The reference country configuration does not send them, so to use this you also need to add the two fields to the `IntegrationConfig` interface in `src/api/integration/handler.ts` and include them in the request body when they are set:
 
 ```typescript
 const INTEGRATIONS: IntegrationConfig[] = [
