@@ -54,6 +54,7 @@
 * [Security](technology/security.md)
 * [Interoperability](technology/interoperability/README.md)
   * [APIs requiring OAuth credentials](technology/interoperability/apis-requiring-oauth-credentials/README.md)
+    * [Create a client from the country configuration](technology/interoperability/apis-requiring-oauth-credentials/create-a-client-from-country-configuration.md)
     * [Authenticate a client](technology/interoperability/apis-requiring-oauth-credentials/authenticate-a-client.md)
     * [Event Notification clients](technology/interoperability/apis-requiring-oauth-credentials/event-notification-clients.md)
     * [Record Search clients](technology/interoperability/apis-requiring-oauth-credentials/record-search-clients.md)
