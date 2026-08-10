@@ -4,6 +4,10 @@ In order to interoperate with OpenCRVS' record search, event notification and we
 
 Only a National System Administrator role can create a client. E.G. In our example for our fake country Farajaland, this is the user: **j.campbell**
 
+{% hint style="info" %}
+From OpenCRVS **1.9.16** you can also declare clients in your country configuration rather than creating them here, which lets you grant any combination of record scopes and lets the integrating system authenticate as itself. See [Create a client from the country configuration](create-a-client-from-country-configuration.md).
+{% endhint %}
+
 1. Login to OpenCRVS as the user: **j.campbell**
 2. Use the left navigation to select the **Configuration** > **Integrations** section.
 
