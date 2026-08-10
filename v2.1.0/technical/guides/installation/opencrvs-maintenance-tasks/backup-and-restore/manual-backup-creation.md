@@ -2,9 +2,11 @@
 
 ### Before you begin
 
+{% hint style="info" %}
 Manual backup process assumes automated backup workflow is already configured and working properly.
 
 Manual backup process invokes same Kubernetes cronjobs as for automated process.
+{% endhint %}
 
 Reasons for manual backup:
 
@@ -15,10 +17,8 @@ Reasons for manual backup:
 
 Following components are backed up:
 
-* MongoDB
 * PostgreSQL
 * MinIO
-* InfluxDB
 
 ### Running all components backup
 
@@ -40,12 +40,8 @@ Following components are backed up:
     Example output:
 
     ```
-    job.batch "influxdb-backup-job" deleted
-    job.batch/influxdb-backup-job created
     job.batch "minio-backup-job" deleted
     job.batch/minio-backup-job created
-    job.batch "mongodb-backup-job" deleted
-    job.batch/mongodb-backup-job created
     job.batch "postgres-backup-job" deleted
     job.batch/postgres-backup-job created
     ```
@@ -60,18 +56,14 @@ Following components are backed up:
     ```
     NB01NSTL012:~ vmudryi$ kubectl get job -ljob-type=backup
     NAME                       STATUS     COMPLETIONS   DURATION   AGE
-    influxdb-backup-29384700   Complete   1/1           12s        6h9m
-    influxdb-backup-job        Complete   1/1           12s        2m31s
     minio-backup-29384700      Complete   1/1           9s         6h9m
     minio-backup-job           Complete   1/1           10s        2m30s
-    mongodb-backup-29384700    Complete   1/1           18s        6h9m
-    mongodb-backup-job         Complete   1/1           16s        2m29s
     postgres-backup-29384700   Complete   1/1           12s        6h9m
     postgres-backup-job        Complete   1/1           12s        2m28s
     ```
 5. SSH (Login) to backup server and verify backup was completed successfully.
 
-### Running Single component (MongoDB) backup
+### Running Single component (Postgers) backup
 
 1. Connect to your cluster with `kubectl`
 2.  Change namespace to opencrvs-deps-\<environment>:
@@ -83,26 +75,26 @@ Following components are backed up:
 
     ```
     kubectl create job \
-      --from cronjob/mongodb-backup mongodb-backup-manual
+      --from cronjob/postgres-backup postgres-backup-manual
     ```
 
     Example output:
 
     ```
-    job.batch/mongodb-backup-manual created
+    job.batch/postgres-backup-manual created
     ```
 4.  Verify MongoDB backup completed successfully:
 
     ```
-    kubectl logs -f job/mongodb-backup-manual
+    kubectl logs -f job/postgres-backup-manual
     ```
 
     Example output:
 
     ```
-    [2025-11-12 07:01:38] Starting MongoDB backup script
+    [2025-11-12 07:01:38] Starting Postgres backup script
     ...
-    [2025-11-12 07:01:52] Encrypted backup file /tmp/mongo_backup_2025-11-12.tar.gz.enc transferred to backup host 10.2.0.3:/home/backup/production/2025-11-12
+    [2025-11-12 07:01:52] Encrypted backup file /tmp/postgres_backup_2025-11-12.tar.gz.enc transferred to backup host 10.2.0.3:/home/backup/production/2025-11-12
     ```
 
 ### Verify backup was created
@@ -126,8 +118,6 @@ Following components are backed up:
     ```
     backup@tmp-backup:~$ ls -l /home/backup/production/2025-11-12
     total 25972
-    -rw-r--r-- 1 backup backup    74704 Nov 12 01:00 influxdb_backup_2025-11-12.tar.gz.enc
     -rw-r--r-- 1 backup backup 26506864 Nov 12 01:00 minio_backup_2025-11-12.tar.gz.enc
-    -rw-r--r-- 1 backup backup      464 Nov 12 01:00 mongo_backup_2025-11-12.tar.gz.enc
     -rw-r--r-- 1 backup backup      448 Nov 12 01:00 postgres_backup_2025-11-12.tar.gz.enc
     ```

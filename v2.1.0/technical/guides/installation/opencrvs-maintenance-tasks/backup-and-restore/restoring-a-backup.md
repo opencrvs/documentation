@@ -160,9 +160,7 @@ Usually to make sure restore was successful you need to verify data from Product
 
     ```
     NAME               SCHEDULE    TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
-    influxdb-restore   0 0 * * *   <none>     False     0        <none>          62s
     minio-restore      0 0 * * *   <none>     False     0        <none>          62s
-    mongodb-restore    0 0 * * *   <none>     False     0        <none>          62s
     postgres-restore   0 0 * * *   <none>     False     0        <none>          61s
     ```
 
@@ -182,9 +180,7 @@ Wait at least for first job execution, usually takes at to 24 hours
     ```
     TODO: FIXME:
     NAME                       STATUS     COMPLETIONS   DURATION   AGE
-    influxdb-backup-29381820   Complete   1/1           9s         5h11m
     minio-backup-29381820      Complete   1/1           9s         5h11m
-    mongodb-backup-29381820    Complete   1/1           31s        5h11m
     postgres-backup-29381820   Complete   1/1           13s        5h11m
     ```
 
@@ -213,9 +209,7 @@ In same cases during upgrade or testing restore should be disabled.
 
     ```
     NAME               SCHEDULE    TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
-    influxdb-restore   0 0 * * *   <none>     False     0        <none>          62s
     minio-restore      0 0 * * *   <none>     False     0        <none>          62s
-    mongodb-restore    0 0 * * *   <none>     False     0        <none>          62s
     postgres-restore   0 0 * * *   <none>     False     0        <none>          61s
     ```
 4.  Disable all restore cronjobs:
@@ -229,9 +223,7 @@ In same cases during upgrade or testing restore should be disabled.
 
     ```
     NAME               SCHEDULE    TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
-    influxdb-restore   0 0 * * *   <none>     True      0        <none>          62s
     minio-restore      0 0 * * *   <none>     True      0        <none>          62s
-    mongodb-restore    0 0 * * *   <none>     True      0        <none>          62s
     postgres-restore   0 0 * * *   <none>     True      0        <none>          61s
     ```
 6.  (Optionally) Disable particular cronjob:

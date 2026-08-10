@@ -10,12 +10,10 @@ This section explains how to deploy OpenCRVS dependencies grouped in 2 helm char
 
 * **Ingress controller:** [Traefik](https://doc.traefik.io/traefik/) helm chart
 * **Datastores** (via the [OpenCRVS dependencies Helm chart](https://github.com/opencrvs/opencrvs-core/tree/develop/charts/opencrvs-services)):
-  * MongoDB
   * PostgreSQL
   * Elasticsearch
   * Redis
   * MinIO
-  * InfluxDB
 
 Environment configuration script (`yarn environment:init`) prepared configuration files (`values.yaml`) for deployment with default parameters. Navigate to `environments` folder inside infrastructure repository and review configuration files.
 
@@ -55,9 +53,7 @@ A default configuration, created by the `yarn environments:init` script, is suff
       ```
       NAME                             READY   STATUS      RESTARTS     AGE
       elasticsearch-0                  1/1     Running     0            8d
-      influxdb-0                       1/1     Running     0            8d
       minio-0                          1/1     Running     0            8d
-      mongodb-0                        1/1     Running     0            8d
       postgres-0                       1/1     Running     0            8d
       redis-0                          1/1     Running     0            8d
       ```

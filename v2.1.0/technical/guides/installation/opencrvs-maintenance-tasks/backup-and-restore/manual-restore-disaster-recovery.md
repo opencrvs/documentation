@@ -6,10 +6,8 @@ Manual restore process assumes automated backup workflow was already configured 
 
 Following components are supported by restore process:
 
-* MongoDB
 * PostgreSQL
 * MinIO
-* InfluxDB
 
 Manual restore process invokes same Kubernetes cronjobs as for automated process. Manual restore process can be executed on environment with configured automated restore or even without automated restore configured.
 
@@ -50,9 +48,7 @@ Its recommended to configure connection to cluster as described at [Add new clus
     Example output:<br>
 
     ```
-    job.batch/influxdb-restore-job created
     job.batch/minio-restore-job created
-    job.batch/mongodb-restore-job created
     job.batch/postgres-restore-job created
     ```
 5.  Verify all jobs completed without issues:
@@ -65,12 +61,8 @@ Its recommended to configure connection to cluster as described at [Add new clus
 
     ```
     NAME                        STATUS     COMPLETIONS   DURATION   AGE
-    influxdb-restore-29384640   Complete   1/1           10s        7h16m
-    influxdb-restore-job        Complete   1/1           9s         2m3s
     minio-restore-29384640      Complete   1/1           11s        7h16m
     minio-restore-job           Complete   1/1           8s         2m2s
-    mongodb-restore-29384640    Complete   1/1           16s        7h16m
-    mongodb-restore-job         Complete   1/1           15s        2m1s
     postgres-restore-29384640   Complete   1/1           11s        7h16m
     postgres-restore-job        Complete   1/1           10s        2m
     ```
@@ -101,7 +93,7 @@ Its recommended to configure connection to cluster as described at [Add new clus
 *   Run following command to trigger restore jobs for all components:
 
     ```bash
-    jobs=(influxdb minio mongo postgres)
+    jobs=(minio postgres)
     for job in ${jobs[@]}; do
       echo "Starting $job service..."
       kubectl delete job ${job}-restore --ignore-not-found;
@@ -119,8 +111,6 @@ Its recommended to configure connection to cluster as described at [Add new clus
     Example output:
 
     ```
-    job.batch/influxdb-restore-job created
     job.batch/minio-restore-job created
-    job.batch/mongodb-restore-job created
     job.batch/postgres-restore-job created
     ```

@@ -62,8 +62,8 @@
 * [Example: Farajaland](implementation/example-farajaland/README.md)
   * [Background & goals](implementation/example-farajaland/background-and-goals.md)
   * [Requirements](implementation/example-farajaland/requirements/README.md)
-    * [Birth Requirements  — Farajaland](implementation/example-farajaland/requirements/birth-requirements-farajaland.md)
-    * [Birth Journeys  — Farajaland](implementation/example-farajaland/requirements/birth-journeys-farajaland.md)
+    * [Birth Requirements — Farajaland](implementation/example-farajaland/requirements/birth-requirements-farajaland.md)
+    * [Birth Journeys — Farajaland](implementation/example-farajaland/requirements/birth-journeys-farajaland.md)
   * [Demo](implementation/example-farajaland/demo.md)
 * [Your OpenCRVS Project](implementation/your-opencrvs-project/README.md)
   * [Project planning](implementation/your-opencrvs-project/project-planning.md)
@@ -118,13 +118,15 @@
       * [Deploy](technical/guides/installation/deploy-set-up-a-server-hosted-environment/deploy/README.md)
         * [Running Dependencies deployment](technical/guides/installation/deploy-set-up-a-server-hosted-environment/deploy/running-a-dependencies-deployment.md)
         * [Running an OpenCRVS deployment](technical/guides/installation/deploy-set-up-a-server-hosted-environment/deploy/running-a-opencrvs-deployment.md)
+        * [Running validation checks](technical/guides/installation/deploy-set-up-a-server-hosted-environment/deploy/running-validation-checks.md)
         * [Login to an OpenCRVS server](technical/guides/installation/deploy-set-up-a-server-hosted-environment/deploy/login-to-an-opencrvs-server.md)
       * [Migration from Docker swarm guide](technical/guides/installation/deploy-set-up-a-server-hosted-environment/migration-from-docker-swarm-guide.md)
       * [Pre-Deployment Checklist](technical/guides/installation/deploy-set-up-a-server-hosted-environment/3.3.4-set-up-an-smtp-server-for-opencrvs-monitoring-alerts.md)
     * [OpenCRVS maintenance tasks](technical/guides/installation/opencrvs-maintenance-tasks/README.md)
       * [Seeding a server environment](technical/guides/installation/opencrvs-maintenance-tasks/seeding-a-server-environment.md)
       * [Resetting a server environment](technical/guides/installation/opencrvs-maintenance-tasks/resetting-a-server-environment.md)
-      * [Backup & Restore](technical/guides/installation/opencrvs-maintenance-tasks/backup-and-restore/README.md)
+      * [Run backup and restore](technical/guides/installation/opencrvs-maintenance-tasks/run-backup-and-restore.md)
+      * [Backup & Restore configuration](technical/guides/installation/opencrvs-maintenance-tasks/backup-and-restore/README.md)
         * [Automated backup configuration](technical/guides/installation/opencrvs-maintenance-tasks/backup-and-restore/automated-backup-configuration.md)
         * [Manual backup creation](technical/guides/installation/opencrvs-maintenance-tasks/backup-and-restore/manual-backup-creation.md)
         * [Automated restore configuration](technical/guides/installation/opencrvs-maintenance-tasks/backup-and-restore/restoring-a-backup.md)
@@ -192,11 +194,11 @@
 * [APIs](technical/apis/README.md)
   * [Core APIs](technical/apis/core-apis/README.md)
     * ```yaml
-      type: builtin:openapi
       props:
         models: true
         downloadLink: true
         grouping: by-tag
+      type: builtin:openapi
       dependencies:
         spec:
           ref:
@@ -205,11 +207,11 @@
       ```
   * [Country-config APIs](technical/apis/country-config-apis/README.md)
     * ```yaml
-      type: builtin:openapi
       props:
         models: true
         downloadLink: true
         grouping: by-tag
+      type: builtin:openapi
       dependencies:
         spec:
           ref:
