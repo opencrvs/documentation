@@ -48,7 +48,7 @@ A registrar opens a **REGISTERED** birth record and selects **"Issue a verifiabl
 
 **2.3 Form configuration**
 
-[issue-birth-credential-action.ts](https://github.com/opencrvs/opencrvs-farajaland/blob/release-v2.0.0/src/verifiable-credentials/issue-birth-credential-action.ts)
+[issue-birth-credential-action.ts](https://github.com/opencrvs/opencrvs-farajaland/blob/release/v2.0.0/src/verifiable-credentials/issue-birth-credential-action.ts)
 
 The form follows a step-by-step flow controlled by conditionals — most fields are hidden until the previous step completes.
 
@@ -58,7 +58,7 @@ Note that the `flags` array in the reference implementation is commented out. Th
 
 **2.4 SD-JWT payload template**
 
-[birth-credential-template.ts](https://github.com/opencrvs/opencrvs-farajaland/blob/release-v2.0.0/src/verifiable-credentials/birth-credential-template.ts)
+[birth-credential-template.ts](https://github.com/opencrvs/opencrvs-farajaland/blob/release/v2.0.0/src/verifiable-credentials/birth-credential-template.ts)
 
 The template maps declaration data into the SD-JWT claim set that gets sent to `VERIFIABLE_CREDENTIALS_SDJWT_ISSUE_URL`.
 
@@ -97,13 +97,13 @@ The `$lookup` helper retrieves the `verifiable-credential` annotation from the `
 
 **3.4 Form configuration**
 
-[print-birth-credential-action.ts](https://github.com/opencrvs/opencrvs-farajaland/blob/release-v2.0.0/src/verifiable-credentials/print-birth-credential-action.ts)
+[print-birth-credential-action.ts](https://github.com/opencrvs/opencrvs-farajaland/blob/release/v2.0.0/src/verifiable-credentials/print-birth-credential-action.ts)
 
 This module exports two hidden fields that are injected into the **Collect Payment** page of the print workflow. The field chaining is straightforward: the HTTP field fires automatically on page load, and the ALPHA\_HIDDEN field reads the QR code data URL from the response. Both use `DISPLAY_ON_REVIEW` with `never()` to stay invisible.
 
 **3.5 Paper VC payload template**
 
-[paper-birth-credential-template.ts](https://github.com/opencrvs/opencrvs-farajaland/blob/release-v2.0.0/src/verifiable-credentials/paper-birth-credential-template.ts)
+[paper-birth-credential-template.ts](https://github.com/opencrvs/opencrvs-farajaland/blob/release/v2.0.0/src/verifiable-credentials/paper-birth-credential-template.ts)
 
 Three constants at the top of the file must be customised per country:
 
@@ -163,7 +163,7 @@ The issuer URLs must point to infrastructure that **you** operate. OpenCRVS does
 
 #### 7. Reference files
 
-All files referenced above live in the [Farajaland reference country configuration repository](https://github.com/opencrvs/opencrvs-farajaland/tree/release-v2.0.0/src/verifiable-credentials). Use them as a starting point for your own implementation:
+All files referenced above live in the [Farajaland reference country configuration repository](https://github.com/opencrvs/opencrvs-farajaland/tree/release/v2.0.0/src/verifiable-credentials). Use them as a starting point for your own implementation:
 
 | File                                                            | Purpose                       |
 | --------------------------------------------------------------- | ----------------------------- |
