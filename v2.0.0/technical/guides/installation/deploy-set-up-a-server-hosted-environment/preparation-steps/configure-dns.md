@@ -1,7 +1,5 @@
 # Configure DNS
 
-
-
 #### Setup Domain A records
 
 Using your domain management system, A records will need to be created for all the services which are publicly exposed for **qa, production & staging** environments.
@@ -26,10 +24,6 @@ A total of 36 A Records are required for this option, 12 for each environment's 
 
 _\<your\_domain>_
 
-_auth.\<your\_domain>_
-
-_config.\<your\_domain>_
-
 _countryconfig.\<your\_domain>_
 
 _metabase.\<your\_domain>_
@@ -45,5 +39,3 @@ _kibana.\<your\_domain>_
 _login.\<your\_domain>_
 
 _register.\<your\_domain>_
-
-_webhooks.\<your\_domain>_
