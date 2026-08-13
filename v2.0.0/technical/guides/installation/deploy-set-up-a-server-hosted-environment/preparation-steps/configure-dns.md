@@ -19,7 +19,7 @@ _\*.\<your\_domain>_
 **Option 2: Individual A Records:**
 
 {% hint style="info" %}
-A total of 36 A Records are required for this option, 12 for each environment's domain: **qa, production & staging**
+A total of 27 A Records are required for this option, 9 for each environment's domain: **qa, production & staging**
 {% endhint %}
 
 _\<your\_domain>_
