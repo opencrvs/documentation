@@ -25,9 +25,9 @@ Assumptions made:
 
 1. Modify GitHub secrets for your environment:
    1. `POSTGRES_USER`
-   2. `POSTGRES_PASSWORD`&#x20;
+   2. `POSTGRES_PASSWORD`
 2. Modify Dependencies helm chart configuration:
-   1.  Open `environments/<environment>/dependencies/values.override.yaml`  and add following lines to disable postgres:
+   1.  Open `environments/<environment>/dependencies/values.override.yaml` and add following lines to disable postgres:
 
        ```yaml
        postgres:
@@ -75,9 +75,9 @@ Assumptions made:
 
 1. Modify GitHub secrets for your environment:
    1. `MINIO_ROOT_USER`
-   2. `MINIO_ROOT_PASSWORD`&#x20;
+   2. `MINIO_ROOT_PASSWORD`
 2. Modify Dependencies helm chart configuration:
-   1.  Open `environments/<environment>/dependencies/values.override.yaml`  and add following lines to disable MinIO:
+   1.  Open `environments/<environment>/dependencies/values.override.yaml` and add following lines to disable MinIO:
 
        ```yaml
        minio:
@@ -94,7 +94,7 @@ Assumptions made:
 4. Deploy Dependencies
 5. Deploy OpenCRVS
 
-### Elasticsearch
+## Elasticsearch
 
 Assumptions made:
 
@@ -103,12 +103,10 @@ Assumptions made:
 
 ### Configure OpenCRVS to use external Elasticsearch
 
-
-
 1. Modify GitHub secret for your environment:
    1. `ELASTICSEARCH_SUPERUSER_PASSWORD`
 2. Modify Dependencies helm chart configuration:
-   1.  Open `environments/<environment>/dependencies/values.override.yaml`  and add following lines to disable Elasticsearch:
+   1.  Open `environments/<environment>/dependencies/values.override.yaml` and add following lines to disable Elasticsearch:
 
        ```yaml
        elasticsearch:
@@ -123,6 +121,3 @@ Assumptions made:
 3. Commit your changes to GitHub
 4. Deploy Dependencies
 5. Deploy OpenCRVS
-
-
-

@@ -126,7 +126,7 @@ The script will ask for your Dockerhub credentials or skip if they already exist
 
 The script will ask you to provide Kubernetes and Runtime options:
 
-* `DOMAIN`: Domain name to expose the OpenCRVS application frontend and APIs.  It will be the domain after the subdomains that you configured when setting DNS.
+* `DOMAIN`: Domain name to expose the OpenCRVS application frontend and APIs. It will be the domain after the subdomains that you configured when setting DNS.
 * `KUBE_API_HOST`: IP address or domain address for the Kubernetes master node. Provision script will generate Kubernetes config files for each user defined in users section of inventory file. Leave empty to use the default address of the provisioned master node.
 * `KUBE_API_ALLOWED_CIDRS` : Comma-separated list of CIDR ranges allowed to access the Kubernetes API. Default: `KUBE_API_HOST` (Allow connections from master node only).
 * `KUBE_WORKER_NODES`: Comma separated list of additional Kubernetes cluster members (Virtual Machines). Leave empty for a single node setup. Worker nodes can be added later. Default: no worker nodes.
@@ -135,7 +135,7 @@ The script will ask you to provide Kubernetes and Runtime options:
 The values of `KUBE_API_HOST` , `KUBE_API_ALLOWED_CIDRS` and `KUBE_WORKER_NODES` are used to generate the firewall configuration during provisioning, check [ubuntu-firewall-configuration.md](../../advanced-topics/ubuntu-firewall-configuration.md "mention")
 {% endhint %}
 
-<figure><img src="../../../../../.gitbook/assets/image (19).png" alt=""><figcaption><p>On screenshot access to Kubernetes API is limited to master node only.</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (18).png" alt=""><figcaption><p>On screenshot access to Kubernetes API is limited to master node only.</p></figcaption></figure>
 
 #### SSH Users
 
@@ -196,7 +196,7 @@ By default backup is configured to run at 01:00 AM by UTC, if you need to adjust
 
 <figure><img src="../../../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption><p>Backup configuration</p></figcaption></figure>
 
-More information about backup server configuration can be found at [Backup and Restore](../../../../../../v2.0.0/setup/3.-installation/4.4-opencrvs-maintenance-tasks/4.3.7-backup-and-restore) section.
+More information about backup server configuration can be found at [Backup and Restore](../../../../../setup/3.-installation/4.4-opencrvs-maintenance-tasks/4.3.7-backup-and-restore) section.
 
 #### Restore
 

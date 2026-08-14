@@ -32,7 +32,7 @@ Once the environment is installed, the monitoring suite can be accessed using th
 
 #### Login credentials
 
-The login credentials are the ones you used as `KIBANA_USERNAME` and `KIBANA_PASSWORD` as part of the [deployment](../../../v1.9.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/3.3.6-deploy-automated-and-manual), or the username "elastic" and `ELASTICSEARCH_SUPERUSER_PASSWORD`.
+The login credentials are the ones you used as `KIBANA_USERNAME` and `KIBANA_PASSWORD` as part of the [deployment](../../../../v1.9.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/3.3.6-deploy-automated-and-manual), or the username "elastic" and `ELASTICSEARCH_SUPERUSER_PASSWORD`.
 
 ***
 
@@ -74,19 +74,19 @@ These logs can be viewed in real-time from **Observability** → **Logs** → **
 
 The following pages provide detailed guidance on specific monitoring topics:
 
-#### [Application logs](https://www.notion.so/Application-logs-5ba9f9becf264795b1e37ec92fb017bf?pvs=21)
+#### [application-logs.md](application-logs.md "mention")
 
 Learn how to access, search, and trace application logs to debug issues and understand system behavior.
 
-#### [Infrastructure health](https://www.notion.so/Infrastructure-health-99780f13f8514e5c9370d977253803cd?pvs=21)
+#### [infrastructure-health.md](infrastructure-health.md "mention")
 
 Monitor critical infrastructure metrics such as disk space, CPU usage, and memory consumption to proactively manage resources.
 
-#### [Routine monitoring](https://www.notion.so/Routine-monitoring-f4a3af731bf94edea755b4fa4db4f8ee?pvs=21)
+#### [routine-monitoring.md](routine-monitoring.md "mention")
 
 Establish daily monitoring practices and understand the built-in alerts to maintain a healthy installation.
 
-#### [Setting up alerts](https://www.notion.so/Setting-up-alerts-8fdb6ad7f78144d1adac3a2439d1c9e9?pvs=21)
+#### [setting-up-alerts.md](setting-up-alerts.md "mention")
 
 Configure custom alerts to notify you when critical conditions occur, ensuring rapid response to issues.
 
@@ -94,5 +94,7 @@ Configure custom alerts to notify you when critical conditions occur, ensuring r
 
 ### 6. Read more
 
-* [Kibana — your window into Elastic](https://www.elastic.co/guide/en/kibana/current/introduction.html#introduction)
-* [Application Performance Monitoring (APM)](https://www.elastic.co/observability/application-performance-monitoring)
+* [elasticsearch-disk-management.md](../installation/advanced-topics/elasticsearch-disk-management.md "mention")
+* ​[OpenCRVS Dependencies and monitoring helm chart README.md](https://github.com/opencrvs/opencrvs-core/blob/develop/charts/dependencies/README.md)​
+* ​[Kibana — your window into Elastic](https://www.elastic.co/guide/en/kibana/current/introduction.html#introduction)​
+* ​[Application Performance Monitoring (APM)](https://www.elastic.co/observability/application-performance-monitoring)

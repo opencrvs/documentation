@@ -6,13 +6,11 @@ Deployment is the process of making your configured OpenCRVS system available fo
 
 This page is a high-level, non-technical overview of what deployment involves and the activities required before go-live. The detailed technical procedures for installing, upgrading and operating OpenCRVS are covered in the technical deployment guides.
 
-
-
 ***
 
 ### 2. What goes into deployment
 
-Deployment brings together everything needed to run and maintain OpenCRVS.&#x20;
+Deployment brings together everything needed to run and maintain OpenCRVS.
 
 This includes:
 
@@ -26,8 +24,6 @@ This includes:
 * Security configuration (secrets & secrets management, SSH access controls)
 * Monitoring, logging and alerting services
 
-
-
 ***
 
 ### 3. How deployment works
@@ -36,13 +32,11 @@ OpenCRVS is deployed using containerised services that can run either in cloud i
 
 At a high level, deployment consists of:
 
-
-
 **Prepare the supporting services & networking** — Confirm the hosting provider and/or data center meets the required specifications, set up code repositories, set up SMTP or communications APIs, define required environments, configure DNS networking for each environment following your desired URL pattern, purchase TLS certificates, select containerisation directory provider.
 
 **Prepare the infrastructure** — Provision the servers, networking, storage and security required for the target environment, whether development, QA, staging or production.
 
-**Deploy the OpenCRVS core and country configuration** — install the OpenCRVS services, databases and supporting infrastructure.  Build & deploy the validated country configuration, including forms, business rules, workflows, certificates and dashboards.
+**Deploy the OpenCRVS core and country configuration** — install the OpenCRVS services, databases and supporting infrastructure. Build & deploy the validated country configuration, including forms, business rules, workflows, certificates and dashboards.
 
 **Configure integrations** — connect OpenCRVS to any external services such as identity providers, authentication services, notification systems, health information systems or national data platforms.
 
@@ -59,6 +53,6 @@ Each of these activities is described in detail in the technical deployment guid
 * [Technical installation guides](https://documentation.opencrvs.org/v2.0/technical/guides/configuration) — step-by-step instructions for installing OpenCRVS on servers
 * [Maintenance tasks](../../technical/guides/installation/opencrvs-maintenance-tasks/) — guides for backup, database seeding & disaster recovery
 * [Advanced topics](../../technical/guides/installation/advanced-topics/) — guides regarding networking and TLS
-* [Monitoring](../../technical/guides/monitoring.md) — guides for monitoring & logging
+* [Monitoring](../../technical/guides/monitoring/) — guides for monitoring & logging
 
 If you require assistance with deployment planning, infrastructure design or production operations, contact the OpenCRVS community or your implementation partner for guidance.
