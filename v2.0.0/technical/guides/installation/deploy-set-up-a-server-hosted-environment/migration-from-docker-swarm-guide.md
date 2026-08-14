@@ -17,7 +17,7 @@ This tutorial guides you through all steps required to transform your v1.9 Docke
 
 OpenCRVS v2.0+ uses a dedicated **repository** for continuous delivery configuration: [https://github.com/opencrvs/infrastructure](https://github.com/opencrvs/infrastructure)
 
-**Repository:** 
+**Repository:**
 
 **Required Action:**
 
@@ -66,11 +66,11 @@ A classic GitHub token is required to run the migration workflow. The token shou
 * `workflow`: Update GitHub Action workflows
 * expiration date should be set to manageable period (few months, year, never) established by organisation secure policies.
 
-Purpose of `MIGRATION_GH_TOKEN`&#x20;
+Purpose of `MIGRATION_GH_TOKEN`
 
 * Token is used while secrets and variables migration from Countryconfig template to infrastructure repository.
 * Token is stored as `GH_TOKEN` secret in infrastructure repository.
-* Token is used to provision Kubernetes self-hosted runner.&#x20;
+* Token is used to provision Kubernetes self-hosted runner.
 
 **Steps to create Migration token**
 
@@ -95,13 +95,121 @@ The following Gihtub environments are deprecated:
 
 #### 2. Docker-compose migration
 
-All OpenCRVS services are deployed as helm charts during migration.
+All OpenCRVS services are deployed as Helm charts during migration.
 
-All customizations must be **re-implemented using a custom Helm chart**.
+The migration creates a vanilla Kubernetes configuration from the standard OpenCRVS Helm charts. It does **not** automatically migrate custom changes that were previously added to `docker-compose.deploy.yml` or environment-specific compose files.
 
-An example custom helm chart is published at OpenCRVS Core repository, see [https://github.com/opencrvs/opencrvs-core/tree/develop/charts/opencrvs-mosip](https://github.com/opencrvs/opencrvs-core/tree/develop/charts/opencrvs-mosip)
+If your Docker Swarm deployment contains custom changes, you must review and transfer them one by one.
 
-You may also choose to use [Bitnami Common Library Chart](https://github.com/bitnami/charts/tree/main/bitnami/common) for more advanced use cases.
+Common customisations include:
+
+* extra environment variables for OpenCRVS services
+* third-party integration configuration, such as MOSIP, Verifiable Credentials, ICD-10/ICD-11, or OpenID providers
+* additional containers or services added to Docker Compose
+* custom images, image tags, ports, secrets, volumes, or routes
+
+All customisations must be **re-implemented using Helm values or a custom Helm chart**.
+
+An example custom Helm chart is published in the OpenCRVS Core repository:\
+[https://github.com/opencrvs/opencrvs-core/tree/develop/charts/opencrvs-mosip](https://github.com/opencrvs/opencrvs-core/tree/develop/charts/opencrvs-mosip)
+
+You may also choose to use the Bitnami Common Library Chart for more advanced use cases:\
+[https://github.com/bitnami/charts/tree/main/bitnami/common](https://github.com/bitnami/charts/tree/main/bitnami/common)
+
+**Migrating custom environment variables**
+
+In Docker Swarm, custom environment variables may have been added directly to a service in `docker-compose.deploy.yml`.
+
+For example, a Docker Compose configuration might add OpenID or MOSIP-related variables to `countryconfig`:
+
+```
+countryconfig:
+  deploy:
+    ...
+  environment:
+    - ESIGNET_REDIRECT_URL=https://esignet-mock.{{hostname}}/authorize
+    - MOSIP_API_USERINFO_URL=https://mosip-api.{{hostname}}/esignet/get-oidp-user-info
+    - OPENID_PROVIDER_CLAIMS=name,family_name,given_name,middle_name,birthdate,address
+    - OPENID_PROVIDER_CLIENT_ID=mock-client_id
+```
+
+These values are ignored by the automated Swarm-to-Kubernetes migration unless you explicitly add them to your Helm configuration.
+
+In Kubernetes, add service-specific environment variables to the relevant Helm values override file, for example:
+
+```
+# environments/<env>/opencrvs-services/values.override.yaml
+countryconfig:
+  env:
+    ESIGNET_REDIRECT_URL: "https://esignet-mock.{{hostname}}/authorize"
+    MOSIP_API_USERINFO_URL: "https://mosip-api.{{hostname}}/esignet/get-oidp-user-info"
+    OPENID_PROVIDER_CLAIMS: "name,family_name,given_name,middle_name,birthdate,address"
+    OPENID_PROVIDER_CLIENT_ID: "mock-client_id"
+```
+
+Use the same approach for other OpenCRVS services. Find the matching service in your old Docker Compose file, then move its custom environment variables into the corresponding service block in the Helm values override file.
+
+**Migrating additional Docker Compose services**
+
+Some Docker Swarm deployments include extra services that are not part of the vanilla OpenCRVS deployment.
+
+For example, a Docker Compose file might include an additional MOSIP mock service:
+
+```
+mosip-mock:
+  image: ghcr.io/opencrvs/mosip-mock:1.9.2-mock.1
+  depends_on:
+    - mosip-api
+  environment:
+    - NODE_ENV=production
+    - SENDER_EMAIL_ADDRESS=${SENDER_EMAIL_ADDRESS}
+    - ALERT_EMAIL=${ALERT_EMAIL}
+```
+
+Additional services like this are not automatically migrated.
+
+To run them in Kubernetes, create or extend a custom Helm chart that defines the required Kubernetes resources, usually:
+
+* `Deployment`
+* `Service`
+* `IngressRoute`, if the service must be externally reachable
+* `Secret` or `ConfigMap`, if the service needs configuration files or sensitive values
+
+The [charts/opencrvs-mosip](https://github.com/opencrvs/opencrvs-core/tree/develop/charts/opencrvs-mosip) chart is a useful example because it deploys additional services such as `mosip-api`, `mosip-mock`, and `esignet-mock`, and passes their configuration through Helm values.
+
+A simplified values structure could look like this:
+
+```
+mosip_mock:
+  enabled: true
+  image:
+    repository: ghcr.io/opencrvs/mosip-mock
+    tag: 2.0.0
+  env:
+    NODE_ENV: "production"
+    SENDER_EMAIL_ADDRESS: "test@opencrvs.org"
+    ALERT_EMAIL: "test@opencrvs.org"
+```
+
+The custom Helm chart should then render those values into the Kubernetes `Deployment`.
+
+**Customisation Migration checklist**
+
+Before completing the migration, compare your old Docker Compose configuration with your new Helm configuration.
+
+Check each custom Docker Compose change and decide where it belongs in Kubernetes:
+
+| Docker Compose customisation                 | Kubernetes / Helm destination                                                                      |
+| -------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Environment variables on an OpenCRVS service | `environments/<env>/opencrvs-services/values.override.yaml` under the matching service `env` block |
+| Additional container or service              | Custom Helm chart                                                                                  |
+| Custom image or tag                          | Helm image values                                                                                  |
+| Secrets or credentials                       | Kubernetes `Secret`, referenced by Helm values or templates                                        |
+| Mounted files or certificates                | Kubernetes `Secret`, `ConfigMap`, or volume                                                        |
+| Public route / hostname                      | `IngressRoute` in a custom Helm chart                                                              |
+| Internal-only service dependency             | Kubernetes `Service` with cluster-local DNS                                                        |
+
+Do not assume that a successful Kubernetes deployment means all Docker Compose customisations have been migrated. The application may start successfully while integration-specific configuration is still missing.
 
 #### Migration Architecture
 
@@ -140,7 +248,7 @@ Make sure all preparations steps completed
 **Migration steps in Country config (old repository)**
 
 1. Navigate to your countryconfig repository
-2. Run the provision workflow for each environment, e/g if you have qa, staging and production environments, you need to run workflow 3 times.  This ensures that all your servers are up to date .
+2. Run the provision workflow for each environment, e/g if you have qa, staging and production environments, you need to run workflow 3 times. This ensures that all your servers are up to date .
 3.  Run "Migration swarm to k8s" GitHub actions workflow
 
     <figure><img src="../../../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
@@ -164,9 +272,9 @@ Make sure all preparations steps completed
 
     <figure><img src="../../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 5. Review changes within PR:
-   1. If your docker-compose file had any customisations like environment variables, please add them to `environments/<env name>/opencrvs-services/values.yaml`&#x20;
-   2. By default traefik is configured to use static ssl certificates, adjust values if needed, check documentation at [TLS/SSL Configuration for traefik](../advanced-topics/tls-ssl-configuration-for-traefik/README.md)
-6.  Merge Pull request to main (develop) branch. If multiple environments were migrated at the same time, you will need to resolve pull request conflicts manually, usually effected section is `environment` input selector:
+   1. If your docker-compose file had any customisations like environment variables, please add them to `environments/<env name>/opencrvs-services/values.yaml`
+   2. By default traefik is configured to use static ssl certificates, adjust values if needed, check documentation at [TLS/SSL Configuration for traefik](../advanced-topics/tls-ssl-configuration-for-traefik/)
+6.  Merge Pull request to your release branch, (e/g release/2.0.0). If multiple environments were migrated at the same time, you will need to resolve pull request conflicts manually, usually effected section is `environment` input selector:
 
     <figure><img src="../../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
@@ -174,10 +282,10 @@ Make sure all preparations steps completed
 
 **Kubernetes environment provision and deploy**
 
-1. Provision Kubernetes environment on top of Docker Swarm environment: Run Provision workflow from Infrastructure repository, see for more information [Provisioning servers](./provisioning-servers/README.md)
+1. Provision Kubernetes environment on top of Docker Swarm environment: Run Provision workflow from Infrastructure repository, see for more information [Provisioning servers](provisioning-servers/)
 2. Reboot your target server
-3. Deploy dependencies, see for more information [Running Dependencies deployment](./deploy/running-a-dependencies-deployment.md)
-4. Deploy OpenCRVS: see for more information [Running an OpenCRVS deployment](./deploy/running-a-opencrvs-deployment.md)
+3. Deploy dependencies, see for more information [Running Dependencies deployment](deploy/running-a-dependencies-deployment.md)
+4. Deploy OpenCRVS: see for more information [Running an OpenCRVS deployment](deploy/running-a-opencrvs-deployment.md)
    1. Use same OpenCRVS Core image tag as docker swarm
    2. Use same Country config image tag as docker swarm
    3.  Make sure "Enable data seeding during deployment" is unchecked
