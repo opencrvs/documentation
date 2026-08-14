@@ -126,7 +126,7 @@ The script will ask for your Dockerhub credentials or skip if they already exist
 
 The script will ask you to provide Kubernetes and Runtime options:
 
-* `DOMAIN`: Domain name to expose the OpenCRVS application frontend and APIs.  It will be the domain after the subdomains that you configured when setting DNS.
+* `DOMAIN`: Domain name to expose the OpenCRVS application frontend and APIs. It will be the domain after the subdomains that you configured when setting DNS.
 * `KUBE_MASTER_NODE`: IP address for the Kubernetes master node.
 * `KUBE_API_HOST`: IP address or domain address to expose Kubernetes API. Provision script will generate Kubernetes config files for each user defined in users section of inventory file. Leave empty to use the default address of the provisioned master node.
 * `KUBE_API_ALLOWED_CIDRS` : Comma-separated list of CIDR ranges allowed to access the Kubernetes API. Default: `KUBE_API_HOST` (Allow connections from master node only).
@@ -136,7 +136,7 @@ The script will ask you to provide Kubernetes and Runtime options:
 The values of `KUBE_API_HOST` , `KUBE_API_ALLOWED_CIDRS` and `KUBE_WORKER_NODES` are used to generate the firewall configuration during provisioning, check [ubuntu-firewall-configuration.md](../../advanced-topics/ubuntu-firewall-configuration.md "mention")
 {% endhint %}
 
-<figure><img src="../../../../../.gitbook/assets/image (24).png" alt=""><figcaption><p>On screenshot access to Kubernetes API is limited to master node only.</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (23).png" alt=""><figcaption><p>On screenshot access to Kubernetes API is limited to master node only.</p></figcaption></figure>
 
 #### SSH Users
 

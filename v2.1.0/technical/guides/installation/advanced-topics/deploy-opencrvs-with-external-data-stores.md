@@ -94,7 +94,7 @@ Assumptions made:
 4. Deploy Dependencies
 5. Deploy OpenCRVS
 
-### Elasticsearch
+## Elasticsearch
 
 Assumptions made:
 

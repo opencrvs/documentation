@@ -18,6 +18,6 @@ The [Advanced topics](../../advanced-topics/) section gives you important detail
 
 The [OpenCRVS maintenance tasks](../../opencrvs-maintenance-tasks/) section explains how to manage data and disaster recovery.
 
-The [Monitoring](../../../monitoring.md) section explains how to use the ELK stack to track server and application health and respond to issues.
+The [Monitoring](../../../monitoring/) section explains how to use the ELK stack to track server and application health and respond to issues.
 
 This further reading guides you through how to configure, provision, deploy and maintain OpenCRVS server deployments technically.

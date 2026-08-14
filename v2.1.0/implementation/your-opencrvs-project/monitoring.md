@@ -4,7 +4,7 @@
 
 Monitoring is an essential operational activity for every OpenCRVS implementation. Effective monitoring enables support teams to identify and resolve issues before they affect users, helping to maximise system availability and minimise service disruption.
 
-This page provides a high-level overview of monitoring and alerting within OpenCRVS. The [technical monitoring guidance](../../technical/guides/monitoring.md) explains how to configure monitoring tools, create alerts and investigate operational issues.
+This page provides a high-level overview of monitoring and alerting within OpenCRVS. The [technical monitoring guidance](../../technical/guides/monitoring/) explains how to configure monitoring tools, create alerts and investigate operational issues.
 
 **Where this sits:** Monitoring begins immediately after Go-live and continues throughout the lifetime of the system as part of routine operations and support.
 
@@ -74,4 +74,4 @@ Monitoring should be considered an integral part of the L1-L3 support process, h
 
 Understand [operational support](operational-support.md) service level expectations
 
-Technical [monitoring guides](../../technical/guides/monitoring.md)
+Technical [monitoring guides](../../technical/guides/monitoring/)
