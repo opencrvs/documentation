@@ -6,13 +6,9 @@ Monitoring is essential for maintaining a healthy, reliable, and performant Open
 
 OpenCRVS comes with a pre-installed suite of tools for monitoring and debugging a live installation. The [Elastic Stack](https://www.elastic.co/elastic-stack) is used to monitor the infrastructure, applications, and dependencies, and also for sending alerts on application errors and system health. All of these tools are accessed using [Kibana](https://www.elastic.co/kibana), a free and open user interface that lets you access all your Elasticsearch data, including metrics, logs, and other monitoring information.
 
-\<aside> ℹ️
-
+{% hint style="info" %}
 **Server-hosted environments only** — These tools are only available for server-hosted environments and are not part of the development environment.
-
-\</aside>
-
-***
+{% endhint %}
 
 ### 2. Monitoring features
 
