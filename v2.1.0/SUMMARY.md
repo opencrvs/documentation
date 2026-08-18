@@ -98,6 +98,7 @@
   * [Infrastructure](technical/architecture/infrastructure.md)
   * [Security](technical/architecture/security.md)
   * [Performance](technical/architecture/performance.md)
+  * [Telemetry](technical/architecture/telemetry.md)
 * [Guides](technical/guides/README.md)
   * [Installation](technical/guides/installation/README.md)
     * [Quick Start](technical/guides/installation/quick-start.md)
