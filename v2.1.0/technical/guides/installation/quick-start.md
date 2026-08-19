@@ -38,3 +38,11 @@ Then run the data seed task from the Tilt UI:
 Open OpenCRVS: http://opencrvs.localhost
 
 Thats it! 🎉
+
+### Further reading on data seeding
+
+Data seeding is the process of installing into OpenCRVS databases, the reference data for general configuration of the application. Seeding is a one-time process. A server or your localhost must be entirely cleared of all data before it can be seeded again.
+
+Data seeding uses a temporary superuser and our APIs to create all of the above. This superuser is created in data migrations that run when OpenCRVS starts up. At the end of data seeding, the superuser is deactivated.
+
+On a deployed server environment, Github Action workflows perform this task. You will learn about them later when provisioning a server.
