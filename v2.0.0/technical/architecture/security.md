@@ -181,7 +181,7 @@ These policies and procedures should be:
 
 OpenCRVS provides a **Data Security Framework** document to support governments in developing their own policies and procedures.
 
-This document is available in the [**Pre-Deployment Checklist**](../guides/installation/deploy-set-up-a-server-hosted-environment/3.3.4-set-up-an-smtp-server-for-opencrvs-monitoring-alerts.md) page.
+This document is available in the [configuration inputs](../../releases/release-notes.md), "Technical" folder, available in release notes.
 
 The purpose of this document is to provide organizations with:
 
