@@ -21,3 +21,5 @@ The [OpenCRVS maintenance tasks](../../opencrvs-maintenance-tasks/) section expl
 The [Monitoring](../../../monitoring/) section explains how to use the ELK stack to track server and application health and respond to issues.
 
 This further reading guides you through how to configure, provision, deploy and maintain OpenCRVS server deployments technically.
+
+The [configuration inputs](../../../../../releases/release-notes.md) in our release notes contain Excel sheets helping you calculate required disk space, and track the acquisition of the required, country owned dependencies.
