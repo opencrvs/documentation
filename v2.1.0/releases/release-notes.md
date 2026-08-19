@@ -8,6 +8,14 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 
 ***
 
+## Config Inputs
+
+{% hint style="warning" %}
+TODO: Insert zip of 2.1 Config files
+{% endhint %}
+
+***
+
 ## Releases
 
 ### v2.1 (Upcoming Q3 2026)
@@ -30,7 +38,7 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 
 **Countryconfig changelog:** [**https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/CHANGELOG.md#200**](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/CHANGELOG.md#200)
 
-**opencrvs-demoland source:**&#x20;
+**opencrvs-demoland source:**
 
 {% file src="../.gitbook/assets/opencrvs-demoland-release-v2.0.0.zip" %}
 
@@ -65,4 +73,3 @@ Each release includes breaking changes, new features, improvements, and bug fixe
 #### **Bug fixes**
 
 * A broad set of fixes and improvements across the record workflows, record search, notifications, and deployment accompanies.
-
