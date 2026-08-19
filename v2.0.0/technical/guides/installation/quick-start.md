@@ -39,7 +39,7 @@ Open OpenCRVS: http://opencrvs.localhost
 
 Thats it! 🎉
 
-### Further reading
+### Further reading on data seeding
 
 Data seeding is the process of installing into OpenCRVS databases, the reference data for general configuration of the application. Seeding is a one-time process. A server or your localhost must be entirely cleared of all data before it can be seeded again.
 
