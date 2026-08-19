@@ -60,9 +60,7 @@ The guides below sit under this stage as your inputs. Each documents what OpenCR
 * [**Mapping offices and users**](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/gathering-requirements/design-and-specification/guides/guide-mapping-offices-and-users) — defining the administrative structure, offices, user roles and scopes.
 * [**Dashboard**](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/gathering-requirements/design-and-specification/guides/guide-dashboard) — defining the analytics and vital-statistics dashboards.
 
-
-
-**The configuration inputs** you produce, and the guide that supports each:
+**The configuration inputs** you produce, and the guide that supports each.  Example configuration inputs that we produce for Farajaland exist in our [**release notes**](/broken/pages/zIr3Hh2mVho4a9eAyA2D).:
 
 | Configuration input                                    | What it defines                                                          | Guide                     |
 | ------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------- |
