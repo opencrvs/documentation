@@ -10,23 +10,20 @@ The roadmap is primarily determined based on confirmed system requirements comin
 
 ### 2. Release Schedule
 
-The following table provides an overview of projected delivery dates for future releases.
+This website provides an overview of projected delivery dates for future releases.
 
-| **Release** | **Beta release date** | **Full release date** |
-| ----------- | --------------------- | --------------------- |
-| v2.0        | 30 April 2026         | 25 June 2026          |
-| v2.1        | Late August 2026      | Late September 2026   |
+{% hint style="info" %}
+### **📆 Dates are indicative**
+
+All dates provided are subject to change, however OpenCRVS Product Management makes every effort to provide accurate estimates to support implementation planning.
+{% endhint %}
+
+{% embed url="https://roadmap.opencrvs.org/" %}
 
 #### Release types
 
 * **Beta release** — Made available after initial QA testing, but before full regression testing has been commenced. It is not intended for live use in a production environment, however it allows accredited implementation partners to test out sample configurations and to contribute to the release testing effort.
 * **Full release** — Production-ready release that has passed full regression testing and is ready for live use.
-
-{% hint style="info" %}
-### **📆 Dates are indicative**&#x20;
-
-All dates provided are subject to change, however OpenCRVS Product Management makes every effort to provide accurate estimates to support implementation planning.
-{% endhint %}
 
 ***
 
@@ -69,4 +66,3 @@ To stay up to date with OpenCRVS releases and roadmap changes:
 
 * **GitHub Discussions** — Follow feature request discussions and provide feedback
 * **Release notes** — Review detailed release notes for each version
-
