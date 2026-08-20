@@ -53,7 +53,7 @@ If you would like to request a new feature or enhancement based on your country'
 
 Perform detailed business analysis on the use case so that you can open a GitHub Issue with a **Feature** label (for functional requirements) or **Tech** label (for non-functional requirements).
 
-Search through existing [issues](https://github.com/opencrvs/opencrvs-core/issues), or our [GitHub Project Backlog](https://github.com/orgs/opencrvs/projects/4) to see if we already have an issue for this requirement.
+Search through existing [issues](https://github.com/opencrvs/opencrvs-core/issues), to see if we already have an issue for this requirement.
 
 #### Reporting bugs
 
@@ -112,6 +112,8 @@ If a UI component or template does not exist, discuss with us what you need and 
 #### Step 6: Await our internal triage
 
 Every Thursday, our "Impact Expansion Team" reviews incoming community requests.  Based on your project need and our internal roadmap, we assign priority to the issue and set the release milestone.
+
+{% embed url="https://roadmap.opencrvs.org/" %}
 
 Clicking on a milestone tells you the due date allowing you to project plan [version upgrades](../version-upgrades.md).
 
