@@ -28,7 +28,7 @@ The one common exception is purely technical work that doesn't change behaviour 
 
 ### 2. Branch naming
 
-Create your branch from the latest `develop`:
+Create your branch from the latest `develop` when contributing to the upcoming minor release, or use `release/<number>` for the appropriate hotfix of an existing release.
 
 ```
 git checkout develop
@@ -81,8 +81,12 @@ Request a review from one or more core contributors. You'll typically get a fast
 
 You're responsible for your PR through to merge. That means responding to review comments, rebasing or resolving conflicts against `develop`, and keeping CI green as the branch evolves.
 
+{% hint style="warning" %}
+PRs with 100s of changed files and many commits may be rejected outright.  You may need to split your feature into multiple PRs.
+{% endhint %}
+
 PRs that go quiet are closed automatically after 30 days. If yours is stalled because you're waiting on something from us, ping a reviewer — we'd rather unblock you than have the PR time out.
 
 ***
 
-Once your PR merges into `develop`, it will be included in the next release. Thanks for contributing.
+Once your PR merges into `develop`, or appropriate release branch, it will be included in the next release. Thanks for contributing.
