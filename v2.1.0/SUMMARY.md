@@ -122,7 +122,7 @@
         * [Running validation checks](technical/guides/installation/deploy-set-up-a-server-hosted-environment/deploy/running-validation-checks.md)
         * [Login to an OpenCRVS server](technical/guides/installation/deploy-set-up-a-server-hosted-environment/deploy/login-to-an-opencrvs-server.md)
       * [Migration from Docker swarm guide](technical/guides/installation/deploy-set-up-a-server-hosted-environment/migration-from-docker-swarm-guide.md)
-      * [Pre-Deployment Checklist](technical/guides/installation/deploy-set-up-a-server-hosted-environment/3.3.4-set-up-an-smtp-server-for-opencrvs-monitoring-alerts.md)
+      * [Pre-Deployment Checklist](technical/guides/installation/deploy-set-up-a-server-hosted-environment/pre-deployment-checklist.md)
     * [OpenCRVS maintenance tasks](technical/guides/installation/opencrvs-maintenance-tasks/README.md)
       * [Seeding a server environment](technical/guides/installation/opencrvs-maintenance-tasks/seeding-a-server-environment.md)
       * [Resetting a server environment](technical/guides/installation/opencrvs-maintenance-tasks/resetting-a-server-environment.md)
