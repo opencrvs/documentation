@@ -10,12 +10,15 @@ The roadmap is primarily determined based on confirmed system requirements comin
 
 ### 2. Release Schedule
 
-The following table provides an overview of projected delivery dates for future releases.
+This website provides an overview of projected delivery dates for future releases.
 
-| **Release** | **Beta release date** | **Full release date** |
-| ----------- | --------------------- | --------------------- |
-| v2.0        | 30 April 2026         | 25 June 2026          |
-| v2.1        | Late August 2026      | Late September 2026   |
+{% hint style="info" %}
+### **📆 Dates are indicative**
+
+All dates provided are subject to change, however OpenCRVS Product Management makes every effort to provide accurate estimates to support implementation planning.
+{% endhint %}
+
+{% embed url="https://roadmap.opencrvs.org/" %}
 
 #### Release types
 
@@ -23,22 +26,16 @@ The following table provides an overview of projected delivery dates for future 
 * **Full release** — Production-ready release that has passed full regression testing and is ready for live use.
 
 {% hint style="info" %}
-### **📆 Dates are indicative**&#x20;
+### **📆 Dates are indicative**
 
 All dates provided are subject to change, however OpenCRVS Product Management makes every effort to provide accurate estimates to support implementation planning.
 {% endhint %}
 
 ***
 
-### 3. Future product scope
-
-Future releases are expected to evolve based on implementation feedback, country priorities, and emerging technical or regulatory requirements. The items outlined in this section represent potential areas of enhancement and should be treated as indicative rather than committed scope.
-
-<table><thead><tr><th width="358.7999267578125">Area</th><th>Description</th></tr></thead><tbody><tr><td>Workflow Configuration</td><td>Enable configurable form fields on core actions and and provide greater control over record flag management during notification workflows</td></tr><tr><td>Notification Management</td><td>Add notification-based filtering to scopes, enabling records to be filtered by where notifications were issued and by the user who issued them</td></tr><tr><td>Registration Lifecycle Management</td><td>Introduce "Registered (Inactive)" and "Revoked" statuses, along with related workflow actions for managing registered records</td></tr><tr><td>Platform Modernisation</td><td>Modernise the platform by removing deprecated components and improving long-term maintainability</td></tr><tr><td>Audit &#x26; Compliance</td><td>Improvements to audit logging and audit log retrieval capabilities.</td></tr></tbody></table>
-
 ***
 
-### 4. How Roadmap Priorities Are Determined
+### 3. How Roadmap Priorities Are Determined
 
 Roadmap priorities are informed by:
 
@@ -50,7 +47,7 @@ Roadmap priorities are informed by:
 
 ***
 
-### 5. Influence the Roadmap
+### 4. Influence the Roadmap
 
 Get in touch via [OpenCRVS GitHub Discussions](https://github.com/opencrvs/opencrvs-core/discussions/categories/feature-requests) to share your priority feature requests.
 
@@ -63,10 +60,9 @@ Your input helps us:
 
 ***
 
-### 6. Stay informed
+### 5. Stay informed
 
 To stay up to date with OpenCRVS releases and roadmap changes:
 
 * **GitHub Discussions** — Follow feature request discussions and provide feedback
 * **Release notes** — Review detailed release notes for each version
-
