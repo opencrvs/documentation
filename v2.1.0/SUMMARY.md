@@ -28,7 +28,7 @@
     * [Certificates](functional/markdown/records/certificates.md)
     * [Verifiable Credentials](functional/markdown/records/verifiable-credentials.md)
     * [Audit](functional/markdown/records/audit.md)
-    * [Protected data (backlog)](functional/markdown/records/protected-data-backlog.md)
+    * [Sealed Records](functional/markdown/records/protected-data-backlog.md)
   * [Workflows](functional/markdown/workflows/README.md)
     * [Administrative structure](functional/markdown/workflows/administrative-structure.md)
     * [Users](functional/markdown/workflows/users.md)

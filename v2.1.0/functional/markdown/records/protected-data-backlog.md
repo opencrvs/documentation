@@ -1,74 +1,95 @@
-# Protected data (backlog)
+# Sealed Records
 
 ### 1. Introduction
 
-Some records in OpenCRVS may contain especially sensitive information, or be subject to special safeguarding rules (for example, adoption, domestic or gender-based violence cases, or court-ordered restrictions). To support stronger privacy controls in these situations, OpenCRVS allows certain records to be marked as **protected**.
+Some records in OpenCRVS may contain especially sensitive information, or be subject to special safeguarding rules (for example, adoption, witness protection, gender recognition, or court-ordered restrictions). To support stronger privacy controls in these situations, OpenCRVS allows certain records to be marked as **sealed**.
 
-When a record is protected:
+Sealing is independent of the record's status. A sealed record can remain **Registered**, or a country can configure sealing to trigger a separate status transition where required by law.
 
-* It is **removed from all standard search results** (quick search and advanced search) for most users.
-* Only users with a specific **protected-search scope** can find and open the record.
-
-This helps countries comply with data protection requirements and safeguarding policies by ensuring that highly sensitive records are only accessible to authorised roles.
+This helps countries meet legal, privacy, and safeguarding requirements by ensuring that sensitive records remain within the registry while their visibility and use are restricted to appropriately authorised users.
 
 ***
 
-### 2. What it means for a record to be protected
+### 2. What it means for a record to be Sealed?
 
-A **protected record** behaves differently from ordinary records in three main ways:
+A **sealed record** remains part of the legal registry, but access to it is restricted to authorised users.
 
-1. **Hidden from search results**
-   * The record does not appear in quick search or advanced search results for users who do not have the required protected-search scope.
-2. **Restricted retrieval**
-   * Only users with the correct `search` scope (including the `protected` qualifier) can retrieve and view the record.
-3. **Audited access**
-   * Access to protected records is logged in **User Audit** for traceability and oversight.
+A sealed record:
 
-Protected status does **not** change the underlying data of the record itself; it changes **who can find and view it** through the application.
+1. **Has restricted visibility**
+   * It is not visible in normal search results, workqueues, listings, or counts to users who are not authorised to access sealed records.
+   * Authorised users can still locate the record when required.
+2. **Has restricted access**
+   * Being able to find a sealed record does not necessarily mean the user can view its contents.
+   * Users without permission to view the record see a **masked version** instead.
+3. **Is clearly identified as sealed**
+   * Authorised users who can find a sealed record can distinguish it from an ordinary record through a clear sealed indicator.
+4. **Is subject to audit**
+   * Sealing, unsealing, and access to sealed records are recorded for traceability.
+
+Sealing does not change the underlying record data. It controls **who can find, view, and perform** certain actions on the record.
 
 ***
 
-### 3. Controlling access with search scopes
+### 3. Controlling access to sealed records
 
-Access to protected records is controlled through the user’s **search scope configuration**.
+Access to sealed records is controlled through separate **search and read permissions**.
 
-For each event type that may include protected records (for example, birth, death, marriage), countries can define scopes of the form:
+For each event type that may contain sealed records (for example, birth, death, or marriage), countries can grant users permission to search for and/or view sealed records.
 
-* `search[event=<event> protected]`
+**Search access**
 
-Where `<event>` is the event type, such as `birth`, `death`, or `marriage`.
+Users who are authorised to search for sealed records can locate them in search results, workqueues, listings, and counts.
 
-#### 3.1 Examples
+For example:
 
-* A specialist role that must be able to search protected birth records:
-  * `search[event=birth protected]`
-* A national-level role that can search all protected birth and death records:
-  * `search[event=birth protected]`
-  * `search[event=death protected]`
+* `record.search[event=birth incl=sealed]`
+* `record.search[event=death incl=sealed]`
 
-Only users whose roles include the appropriate `protected` search scopes will see protected records in their search results and be able to open them.
+Users without the appropriate permission will not see sealed records in these areas.
+
+**Read access**
+
+Being able to find a sealed record does **not** automatically give a user permission to view its contents.
+
+Users who are authorised to view sealed records can see the **full record**, with a clear **Sealed** indicator to show that they are viewing restricted information.
+
+Users who can search for a sealed record but do not have permission to view it see a **fully masked version**, showing only the minimum information needed to identify the record.
+
+For example:
+
+* A specialist role that needs to locate sealed birth records may have:
+  * `record.search[event=birth incl=sealed]`
+* A role that also needs to view those records may additionally have:
+  * `record.read[event=birth incl=sealed]`
+
+All views of sealed records by authorised users are **audited** for traceability.
+
+**Key principle:** Search and read access to sealed records are separate permissions. Being able to locate a sealed record does not necessarily mean the user can view its contents.
 
 ***
 
 ### 4. Interaction with other search scopes and jurisdiction
 
-Protected search always **builds on top of** existing search and jurisdiction rules:
+Access to sealed records follows the user's existing **event and jurisdiction permissions**. The `incl=sealed` qualifier determines whether sealed records are included in the search.
 
-* A user must still have the **underlying event search scope and jurisdiction** for the record (for example, `search[event=birth declared_in=my-administrative-area registered_in=my-administrative-area]`).
-* The `protected` qualifier further restricts access to only those users explicitly allowed to include protected records in their searches.
+For example, a user authorised to search birth records within their administrative area may have:
 
-In practice, a role that can search both ordinary and protected birth records in its own administrative area might combine scopes like:
+* `record.search[event=birth declared_in=my-administrative-area registered_in=my-administrative-area]`
 
-* `search[event=birth declared_in=my-administrative-area registered_in=my-administrative-area]`
-* `search[event=birth protected]`
+To also include sealed birth records within the same scope, the user must have permission to search sealed records:
 
-Countries can decide whether protected access should be limited to national-level users, specific supervisory roles, or specialised units (for example, a data protection officer).
+* `record.search[event=birth declared_in=my-administrative-area registered_in=my-administrative-area incl=sealed]`
+
+This means a user cannot gain access to sealed records outside the **event types or jurisdictions** they are otherwise authorised to access.
+
+Countries can therefore control sealed-record search access based on both **role** and **jurisdiction**, for example limiting it to national-level users, supervisory roles, or specialised units
 
 ***
 
-### 5. Reasons for protecting records
+### 5. Reasons for sealing records
 
-Countries may choose to protect records, or specific data within a record, in situations such as:
+Countries may choose to seal records, in situations such as:
 
 * **Adoption** — the original birth record is hidden once a child is legally adopted. Only the new birth record (showing adoptive parents) and the associated adoption record can be found in search. Access to the original record is restricted to authorised roles.
 * **Domestic or gender-based violence cases** — records where disclosure of a parent's or informant's identity or address could put someone at risk.
@@ -76,54 +97,57 @@ Countries may choose to protect records, or specific data within a record, in si
 * **Court-ordered restrictions** — records that must be hidden or limited following a court decision (for example, sealed records).
 * **Special safeguarding policies** — any other category defined in national policy (for example, children in alternative care, humanitarian protection cases).
 
-These examples are illustrative. Each country should define its own criteria for when records or specific fields should be protected, and how long protection should apply.
+These examples are illustrative. Each country should define its own criteria for when records or specific fields should be sealed, and how long sealing should apply.
 
 ***
 
-### 6. Marking a record as protected or no longer protected
+### 6. Sealing and unsealing a record
 
-Protected status is typically controlled through a **custom action** on the record, for example **Mark protected**.
+A record can be sealed or unsealed through dedicated custom actions on the record, such as `Seal` and `Unseal`.
 
-#### 6.1 Marking a record as protected
+#### 6.1 Marking a record as sealed
 
-A user with the appropriate permissions can mark a record as protected from the record view:
+A user with the appropriate permissions can mark a record as sealed from the record overview:
 
 1. Open the event record (for example, a birth record).
-2. Select the **Mark protected** custom action.
-3. Confirm the action (for example, in a confirmation dialog explaining that the record will be hidden from general search).
+2. Select the **Seal** custom action.
+3. If a country-configured form is available, provide the required information, such as the reason for sealing, legal basis, or court order reference.
+4. Confirm the action
 
-When **Mark protected** is applied:
+When **Seal** is applied:
 
-* The system automatically adds a **Protected** flag (for example, `protected`) to the record.
-* The record immediately behaves as a protected record:
-  * It is removed from standard search results for users without the protected-search scope.
-  * It remains visible only to users who have the relevant `search[event=<event> protected]` scope and the necessary jurisdiction.
+* The system automatically adds a **Sealed** flag to the record.
+* The record immediately behaves as a sealed record:
+  * It is excluded from search results for users who are not authorised to search for sealed records.
+  * It remains visible only to users who have the relevant `search[event=<event> incl=sealed]` scope and the necessary jurisdiction.
+* If configured by the country, sealing can also trigger a status transition, such as **Registered → Revoked**
 * The action, including who performed it and when, is recorded in **Audit**.
 
-#### 6.2 Removing protected status
+#### 6.2 Unsealing a record
 
-When a record should no longer be treated as protected (for example, after a policy-defined period or following a supervisory decision), authorised users can reverse the protection:
+When a record should no longer be treated as sealed(for example, after a policy-defined period or following a supervisory decision), authorised users can unseal the record:
 
-1. Open the event record.
-2. Select a corresponding custom action (for example, **Remove protected status**).
-3. Confirm the change.
+1. Open the sealed event record.
+2. Select a the unseal custom action.
+3. Complete any required country-configured form and confirm the action.
 
-When protected status is removed:
+When a record is unsealed:
 
-* The **Protected** flag is cleared from the record.
-* The record returns to normal search behaviour and can be found by any user whose search scopes and jurisdiction allow access to that event.
-* The change is logged in **Audit**, alongside the original protection action.
+* The **Sealed** flag is removed from the record.
+* The record returns to the normal access and search rules based on the user's scopes and jurisdiction.
+* Any actions that were disabled while the record was sealed become available again.
+* The unsealing action is recorded in **Audit**, alongside the original sealing action.
 
 These actions ensure that protection of records is explicit, auditable, and reversible only by appropriately authorised users.
 
 ***
 
-### 6. Configuration considerations
+### 7. Configuration considerations
 
-When introducing protected records, countries should decide:
+When introducing Sealed records, countries should decide:
 
-* **Which event types** can have protected records.
-* **Which roles** should be allowed to search protected records (and in which jurisdictions).
+* **Which event types** can have selaled records.
+* **Which roles** should be allowed to search sealed records (and in which jurisdictions).
 * How to align protected access with broader **privacy and safeguarding policies** (for example, adoption law, child protection guidelines, or data protection legislation).
 
-By carefully configuring protected records and the associated `search[event=<event> protected]` scopes, OpenCRVS helps ensure that only appropriately authorised users can retrieve and view the most sensitive records, while keeping them hidden from general search.
+By carefully configuring sealed records and the associated `search[event=<event> incl=sealed]` scopes, OpenCRVS helps ensure that only appropriately authorised users can retrieve and view the most sensitive records, while keeping them hidden from general search.
