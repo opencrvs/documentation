@@ -3,7 +3,7 @@
 ### Create a country configuration
 
 ```
-npm create @opencrvs/countryconfig <project-name>
+npm create @opencrvs/countryconfig@latest <project-name>
 ```
 
 This command creates a country configuration package with a minimal example configuration.
