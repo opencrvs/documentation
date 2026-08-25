@@ -174,4 +174,10 @@ Your issue will be fixed much faster if you spend about half an hour preparing i
    * Version (for example, 22)
 9. **Possible fixes** — if you can, link to the line of code that might be responsible for the problem.
 
-Following this format ensures that the OpenCRVS team has all the information needed to investigate and resolve the issue efficiently.
+Following this format ensures that the development team has all the information needed to investigate and resolve the issue efficiently.
+
+
+
+**L3 next steps:** Now your development team can effectively track, investigate and resolve the issue.
+
+**L4 next steps:** Refer to the [Contributing](../../technical/guides/contributing/) guide to understand how to escalate this report to the OpenCRVS Core team.
