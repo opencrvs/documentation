@@ -154,7 +154,7 @@ If you suspect that you have discovered a defect in the OpenCRVS Core Product, p
 
 You can view existing issues and raise new ones at [https://github.com/opencrvs/opencrvs-core/issues](https://github.com/opencrvs/opencrvs-core/issues).
 
-#### How to prepare a defect report
+#### How to prepare a defect report for L3 or L4 support
 
 Your issue will be fixed much faster if you spend about half an hour preparing it, including the exact reproduction steps and a demo.
 
@@ -178,4 +178,8 @@ Your issue will be fixed much faster if you spend about half an hour preparing i
    * Version (for example, 22)
 9. **Possible fixes** — if you can, link to the line of code that might be responsible for the problem.
 
-Following this format ensures that the OpenCRVS team has all the information needed to investigate and resolve the issue efficiently.
+
+
+**L3 next steps:** Now your development team can effectively track, investigate and resolve the issue.
+
+**L4 next steps:** Refer to the [Contributing](../../technical/guides/contributing/) guide to understand how to escalate this report to the OpenCRVS Core team.
