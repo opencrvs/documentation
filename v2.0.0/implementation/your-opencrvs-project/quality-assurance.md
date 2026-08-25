@@ -148,11 +148,7 @@ Check out the [Configuration, testing and technical configuration files](../../.
 
 ### 6. Raising OpenCRVS defects
 
-If you suspect that you have discovered a defect in the OpenCRVS Core Product, please share details with the OpenCRVS team using the following procedure.
-
-#### Where to report issues
-
-You can view existing issues and raise new ones at [https://github.com/opencrvs/opencrvs-core/issues](https://github.com/opencrvs/opencrvs-core/issues).
+If you suspect that you have discovered a defect you will need to raise an issue for L3 or L4 support.  Read the [Operational support](operational-support.md) guide for info on what these tiers mean and who is responsible for resolution.
 
 #### How to prepare a defect report for L3 or L4 support
 
