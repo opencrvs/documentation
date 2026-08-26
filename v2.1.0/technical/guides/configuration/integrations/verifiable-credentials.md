@@ -2,6 +2,10 @@
 
 {% hint style="warning" %}
 This guide covers the **country-configuration side** of issuing Verifiable Credentials (VCs). Setting up a credential issuer, managing signing keys, hosting DID documents, and operating verification infrastructure are **out of scope** and the responsibility of the implementer. OpenCRVS does **not** include a credential issuer; it delegates signing to external endpoints and simply relays the response. Signing key material never enters the OpenCRVS deployment.
+
+Because a printed certificate's VC QR code is signed once and can't be updated after it leaves the printer, its signing key must remain valid — and its public key resolvable — for as long as that physical document is expected to be verifiable, so any key rotation strategy has to retain (not revoke) old verification keys since retiring one invalidates every certificate printed under it; for this reason, maintaining that PKI infrastructure and VC issuance sits outside OpenCRVS's scope and needs to be owned by a national DPI identity / PKI strategic framework.
+
+Should you wish to investigate issuance providers and prototype with OpenCRVS VCs, [Walt.id](https://walt.idhttps/walt.id/) & [Inji](https://www.inji.io/) are OpenSource issuance / wallet options, with [Vault](https://www.hashicorp.com/en/products/vault) an option for PKI infrastructure.  Our VCs are compatible with any digital wallet such as [Inji](https://www.inji.io/) or [Paradym](https://paradym.id/).
 {% endhint %}
 
 OpenCRVS supports two issuance paths for **birth events**:
