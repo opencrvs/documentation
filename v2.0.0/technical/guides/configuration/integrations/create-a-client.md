@@ -1,18 +1,16 @@
 # Create a client
 
-
-
 #### Introduction
 
 In order to interoperate with OpenCRVS' via APIs, you must create a system client.
 
 You can create a system client to perform record search & event notifications from a health system via the National System Administrator UI.
 
-From 2.0.1 you can also create clients with whatever scopes you wish from your country configuration, without going through the UI. See [Process of creation via the country configuration](#process-of-creation-via-the-country-configuration) below.
+From 1.9.16 & 2.0.1 you can also create clients with whatever scopes you wish from your country configuration, without going through the UI. See [Process of creation via the country configuration](create-a-client.md#process-of-creation-via-the-country-configuration) below.
 
 The option to create clients for managing Locations, Importing Legacy Records or integrating with Citizen Portals via the UI has been deprecated for security reasons in 2.0, as these clients are extremely powerful.
 
-Docs will be updated in this section by Aug 2026 to include information on the creation of those types of client.&#x20;
+Docs will be updated in this section by Aug 2026 to include information on the creation of those types of client.
 
 <figure><img src="../../../../.gitbook/assets/Screenshot 2023-01-11 at 11.34.03.png" alt=""><figcaption></figcaption></figure>
 
@@ -31,7 +29,7 @@ You must give each client a unique name.
 When you click "Create", you will be shown the authentication details for the client along with a SHA Secret used to sign, encrypt, decrypt and verify the authenticity of payloads.
 
 {% hint style="warning" %}
-**You must copy these keys now! The Client Secret will never be displayed to you again and it cannot be retrieved from our database as it is encrypted.  It can only be refreshed in the UI.**
+**You must copy these keys now! The Client Secret will never be displayed to you again and it cannot be retrieved from our database as it is encrypted. It can only be refreshed in the UI.**
 {% endhint %}
 
 <figure><img src="../../../../.gitbook/assets/Screenshot 2023-01-11 at 11.35.15.png" alt=""><figcaption></figcaption></figure>
@@ -136,10 +134,10 @@ export async function systemReadyHandler(
 
 **Request payload**
 
-| Parameter | Type       | Description                                                     |
-| --------- | ---------- | --------------------------------------------------------------- |
-| `name`    | string     | A unique name for the client, shown in the Integrations list      |
-| `scopes`  | string\[]  | At least one encoded scope string (see below)                     |
+| Parameter | Type      | Description                                                  |
+| --------- | --------- | ------------------------------------------------------------ |
+| `name`    | string    | A unique name for the client, shown in the Integrations list |
+| `scopes`  | string\[] | At least one encoded scope string (see below)                |
 
 **Response**
 
@@ -181,6 +179,3 @@ Grant only the scopes the integration genuinely needs. A client that can registe
 **3. Authenticate as the integration**
 
 Nothing special: the integration exchanges its client id and secret for an access token exactly like a client created in the UI. See [Authenticate a client](authenticate-a-client.md).
-
-
-
