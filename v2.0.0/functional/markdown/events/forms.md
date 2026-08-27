@@ -221,22 +221,6 @@ Use these elements to:
 
 ***
 
-Worked example:
-
-2 pager
-
-…
-
-#### Configuration input
-
-..
-
-
-
-
-
-***
-
 ### 6. Record review
 
 When reviewing a declaration or registration, OpenCRVS presents:
@@ -250,7 +234,5 @@ The review experience is designed so that users can see data and documents **sid
 * Spot inconsistencies or missing information before validation or registration.
 * Capture additional notes if something requires follow-up.
 * Capture informant signature.
-
-\<image>
 
 ***
