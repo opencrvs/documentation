@@ -14,6 +14,6 @@ Other core action types (for example `ActionType.ASSIGN`, `ActionType.CREATE`) a
 
 ### Core action config schemas
 
-{% openapi-schemas spec="events-develop" schemas="ReadActionConfig,DeclareActionConfig,EditActionConfig,RejectActionConfig,RegisterActionConfig,PrintCertificateActionConfig,RequestCorrectionActionConfig,ArchiveActionConfig" grouped="true" %}
+{% openapi-schemas spec="events-develop" schemas="ReadActionConfig,DeclareActionConfig,EditActionConfig,RejectActionConfig,RegisterActionConfig,PrintCertificateActionConfig,RequestCorrectionActionConfig,ArchiveActionConfig,UnarchiveActionConfig" grouped="true" %}
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
 {% endopenapi-schemas %}

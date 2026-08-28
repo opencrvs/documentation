@@ -87,6 +87,18 @@ The corresponding `legalStatuses.NOTIFIED` entry is populated whenever a Notify 
 As with `declaredBy`/`registeredIn`, using `notifiedBy` on a scope for an action that occurs before notification is possible (e.g. `record.create`) will always resolve to `forbidden`.
 {% endhint %}
 
+Scope options also support **`status`**, restricting the scope to records currently in one of the given statuses:
+
+```ts
+{ type: 'record.edit', options: { status: ['DECLARED'] } }
+```
+
+Full-access scope types (e.g. `record.search`, `record.read`, `record.review-duplicates`) also support **`flags`**, restricting the scope to records whose current flags satisfy the given `anyOf`/`noneOf`/`allOf` condition:
+
+```ts
+{ type: 'record.search', options: { flags: { noneOf: ['REJECTED'] } } }
+```
+
 **Example 2: Declaring records — why options are limited**\
 \
 As shown in the previous example, using properties like `declared*` or `registered*` implies the event has already reached that state. For an event to be declared, it must be in a `NOTIFIED` or `CREATED` state. Including `declaredBy` or `registeredIn` in a declare scope would cause it to fail the necessary access checks, so the system limits these options accordingly.

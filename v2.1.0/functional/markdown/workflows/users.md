@@ -132,6 +132,7 @@ Each core scope in this table maps **directly to a core record action**. If a ro
 | `record.edit`             | Edit a notified or declared record                                                    |
 | `record.reject`           | Reject a declared record                                                              |
 | `record.archive`          | Archive a declared record                                                             |
+| `record.unarchive`        | Restore an archived record to its pre-archive status                                  |
 | `record.review-duplicate` | Review and decide on potential duplicates (Mark as duplicate / Mark not a duplicate). |
 | `record.register`         | Register a record                                                                     |
 | `record.print`            | Print certified copies of a registered record                                         |

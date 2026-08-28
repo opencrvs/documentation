@@ -106,6 +106,7 @@ Core record actions are maintained by OpenCRVS to support standard civil registr
 | Mark as duplicate                                | Mark a declaration as a duplicate during review     | Declared           | Potential duplicate  |
 | Mark not a duplicate                             | Confirm a declaration is not a duplicate            | Declared           | Potential duplicate  |
 | Archive                                          | Archive a declaration                               | Declared           | —                    |
+| Unarchive                                        | Restore an archived record to its pre-archive status | Archived          | —                    |
 | Reject                                           | Reject a declared or validated record               | Declared           | —                    |
 | Edit → Declare with edits or Register with edits | Edit notification or declaration data during review | Notified, Declared | —                    |
 | Register                                         | Finalise and register a declaration                 | Declared           | —                    |
@@ -137,7 +138,7 @@ The table below summarises which actions are available at each stage of the reco
 | Draft         | Update, Notify, Declare                                                            |
 | Notified      | Assign, Unassign, Declare, Edit                                                    |
 | Declared      | Assign, Unassign, Archive, Reject, Edit, Mark duplicate, Mark not a duplicate      |
-| Archived      | Assign, Unassign                                                                   |
+| Archived      | Assign, Unassign, Unarchive                                                        |
 | Registered    | Assign, Unassign, Request correction, Approve correction, Reject correction, Print |
 
 ***
