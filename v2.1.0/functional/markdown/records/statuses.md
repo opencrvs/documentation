@@ -81,6 +81,7 @@ Core record actions (see the **Actions** page) are responsible for moving a reco
 * **Notify** ⇒ sets status to **Notified**.
 * **Declare** ⇒ sets status to **Declared**.
 * **Archive** ⇒ sets status to **Archived**.
+* **Unarchive** ⇒ restores status to whatever it was before the record was archived.
 * **Register** ⇒ sets status to **Registered**.
 
 Custom actions **do not** change status directly. Instead, they can add or remove **flags** and capture additional metadata while the record remains in the same status.
@@ -94,7 +95,7 @@ Other core actions and custom actions can be mapped to and controlled be the rec
 | Draft      | Update, Notify, Declare, Delete                                                                 |
 | Notified   | Edit, Declare, Reject, Archive                                                                  |
 | Declared   | Edit, Validate, Reject, Archive, Approve, Escalate, Register, Mark as duplicate / not duplicate |
-| Archived   | Reinstate                                                                                       |
+| Archived   | Unarchive                                                                                       |
 | Registered | Correct, Print, Issue Verifiable Credential, Revoke                                             |
 
 The exact set of actions will vary by country and event type, but the **status model remains the same**, providing a stable backbone for workflows.
