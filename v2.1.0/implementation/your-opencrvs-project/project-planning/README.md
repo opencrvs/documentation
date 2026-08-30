@@ -124,7 +124,7 @@ At a minimum, countries should identify **two core roles**:
 
 For a full digitisation programme, additional skills are usually required, including designers, developers, QA engineers, and programme management roles. These roles may sit within government, an implementation partner, or another delivery organisation, but ownership must be explicit. The OpenCRVS team can advise and support, but the project should not assume that the OpenCRVS team will perform all business analysis, configuration, migration, training, deployment or operational support activities unless this is agreed in the project scope.
 
-For detailed guidance on roles, skills, and team composition, see [establish-project-and-team.md](establish-project-and-team.md "mention")
+For detailed guidance on roles, skills, and team composition, see [establish-project-and-team.md](../establish-project-and-team.md "mention")
 
 ***
 
