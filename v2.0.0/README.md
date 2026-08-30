@@ -68,7 +68,7 @@ This functional documentation is written for **governments, business analysts, s
 
 *   **Setup:** Establish your OpenCRVS project and team
 
-    👉 [Project planning](implementation/your-opencrvs-project/project-planning.md)
+    👉 [Project planning](implementation/your-opencrvs-project/project-planning/)
 *   **Product Roadmap:** See what's coming next for OpenCRVS
 
     👉 [Product roadmap](releases/roadmap.md)
