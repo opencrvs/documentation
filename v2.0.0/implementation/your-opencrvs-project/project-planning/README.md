@@ -128,7 +128,17 @@ For detailed guidance on roles, skills, and team composition, see [establish-pro
 
 ***
 
-### 7. Pre‑configuration checklist
+### 7. Building the work plan&#x20;
+
+Alongside establishing the team, the Project Manager should prepare a work plan that turns the agreed scope into a coherent schedule of phases, deliverables, resources, and checkpoints. The work plan is the shared source of truth the programme uses during delivery — a country stakeholder, the Project Manager, and the OpenCRVS Support team should all be able to read it and see the same picture.
+
+The tool used varies by organisation (Microsoft Project, Excel, Notion, Jira, PowerPoint). What matters is the discipline of keeping the plan complete and current.
+
+For detailed guidance on what the work plan should cover and common oversights to avoid, see [Building an implementation work plan](building-an-implementation-work-plan.md).&#x20;
+
+***
+
+### 8. Pre‑configuration checklist
 
 Before starting detailed OpenCRVS configuration, countries should consider:
 
