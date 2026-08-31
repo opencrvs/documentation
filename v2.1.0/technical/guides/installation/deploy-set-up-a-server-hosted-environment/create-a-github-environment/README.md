@@ -322,7 +322,7 @@ If any user is utilising the 1000 group, the script will fail. Modify your avail
 {% endhint %}
 
 {% hint style="danger" %}
-The .env.\<your environment> file outputted by this script contains sensitive information about your environment configuration. Copy the content of this file into a secure place or password manager such as [Bitwarden](https://bitwarden.com/) or [1Password](https://1password.com/) and delete this file. **YOU MUST NEVER SHARE THIS FILE, NOR COMMIT IT TO GIT!!!** This file is not required by OpenCRVS.
+This script prints your environment's secrets and variables directly to your terminal. Copy them into a secure place or password manager such as [Bitwarden](https://bitwarden.com/) or [1Password](https://1password.com/) immediately, as they will not be shown again. **YOU MUST NEVER SHARE THESE VALUES, NOR PASTE THEM SOMEWHERE THEY COULD BE COMMITTED TO GIT!!!**
 {% endhint %}
 
 You will notice that an environment now exists in your Github repo containing all the secrets required.
