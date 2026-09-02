@@ -181,13 +181,53 @@ By contributing to the OpenCRVS code, you are conforming to the terms of the [li
 
 ***
 
-### Community support & direct contact
+### 5. Contribute to the security of OpenCRVS
 
-#### GitHub Community
+Our mission is to ensure that **every person on the planet is recognised, protected and provided for from birth**. Keeping the sensitive personal information held in civil registration systems secure is fundamental to that mission.
+
+By reporting potential vulnerabilities responsibly and applying security updates promptly, you help protect the details of children, parents and families—and maintain the trust placed in OpenCRVS.&#x20;
+
+#### 5.1 Reporting vulnerabilities
+
+If you believe you have discovered a security issue in OpenCRVS, please report it privately through **Security → Report a vulnerability** in the [`opencrvs-core`](https://github.com/opencrvs/opencrvs-core/security)[ GitHub repository](https://github.com/opencrvs/opencrvs-core/security).
+
+Please do not post details in a public GitHub issue, Discussion or community channel. Private reporting gives our team time to investigate the issue, develop a fix and help implementations upgrade safely.
+
+Every responsible report makes a meaningful contribution—not only to the security of the software, but also to protecting the people whose information is entrusted to OpenCRVS. Thank you for helping us maintain that trust. 🙏
+
+#### 5.2 Join our security notification list
+
+We are establishing a restricted notification list for:
+
+* 🌍 Countries operating or actively implementing OpenCRVS; and
+* 🛠️ System integrators formally supporting an OpenCRVS implementation.
+
+Verified contacts may receive confidential advance notice of important security updates, giving their teams an opportunity to plan and apply an upgrade before details of the vulnerability are made public.
+
+Because these notifications may contain sensitive information, this is not a general mailing list for individual developers or community members. Applicants will need to provide documentation confirming their organisation, their involvement in an OpenCRVS implementation and their authority to receive security information on its behalf.
+
+#### 5.3 How to apply
+
+To request access, please email: [team@opencrvs.org](mailto:team@opencrvs.org) and provide:
+
+* Your name, role and organisational email address;
+* The country or system integrator you represent;
+* Your relationship to the OpenCRVS implementation; and
+* Supporting documentation or a contact who can verify your role.
+
+All applications will be reviewed and verified by the OpenCRVS team. Approved recipients must keep advance security information confidential and share it only with authorised colleagues responsible for securing or upgrading their implementation.
+
+Thank you for helping us keep children’s and families’ details safe—and for contributing to a world where every person is recognised, protected and provided for from birth.
+
+***
+
+### 6. Community support & direct contact
+
+#### 6.1 GitHub Community
 
 If you need to talk to us at any time regarding technical issues or feature ideas, please join our community in [GitHub Discussions](https://github.com/opencrvs/opencrvs-core/discussions).
 
-#### Direct contact
+#### 6.2 Direct contact
 
 For urgent matters or detailed discussions about your implementation:
 
