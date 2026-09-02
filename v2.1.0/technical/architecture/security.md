@@ -195,5 +195,5 @@ Data security policies and procedures must be defined, implemented, and updated 
 
 Our mission is to ensure that every person on the planet is **recognised, protected and provided for from birth**. By reporting potential vulnerabilities responsibly and applying security updates promptly, you help us keep children’s and families’ personal details safe.If you discover a potential security issue, please report it privately through [GitHub Security Advisories](https://github.com/opencrvs/opencrvs-core/security). Countries using OpenCRVS and their authorised system integrators may also apply to join our restricted security notification list and receive advance notice of important upgrades.​
 
-[Learn how to contribute to the security of OpenCRVS.](../guides/contributing/)
+[Learn how to contribute to the security of OpenCRVS.](../guides/contributing/#id-5.-contribute-to-the-security-of-opencrvs)
 
