@@ -14,7 +14,11 @@ This page provides a high-level overview of the configuration options enabled by
 
 ### 2. What the country configuration repository enables
 
-The [country configuration](https://github.com/opencrvs/opencrvs-countryconfig) repository contains the country-specific logic, files and APIs required by OpenCRVS Core.
+A country configuration contains the country-specific logic, files and APIs required by OpenCRVS Core. You create one by scaffolding from the [`countryconfig-template`](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0-beta/packages/countryconfig-template) package in `opencrvs-core`:
+
+```
+npm create @opencrvs/countryconfig <your-country>
+```
 
 At a high level, it enables configuration of:
 
@@ -114,7 +118,7 @@ When beginning configuration it is worthwhile finding and replacing all settings
 
 For further guidance, see:
 
-* [**opencrvs-countryconfig**](https://github.com/opencrvs/opencrvs-countryconfig) — the template repository for defining country-specific configuration, APIs, forms, content and reference data.
-* [**opencrvs/infrastructure**](https://github.com/opencrvs/infrastructure) — the repository for deploying and operating OpenCRVS infrastructure using the supported deployment approach.
+* [**packages/countryconfig-template**](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0-beta/packages/countryconfig-template) — the template, in `opencrvs-core`, for defining country-specific configuration, APIs, forms, content and reference data.
+* [**opencrvs/infrastructure**](https://github.com/opencrvs/infrastructure) — the source of the `-infrastructure` directory scaffolded alongside it, for deploying and operating OpenCRVS using the supported deployment approach.
 * **Technical configuration guides** — step-by-step guidance **in this section** for implementing country configuration.
 * [**Installation**](../installation/) — step-by-step guidance for deploying OpenCRVS into each environment.

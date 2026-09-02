@@ -51,18 +51,9 @@ If you would like to request a new feature or enhancement based on your country'
 
 #### Step 1: Research and identify the need
 
-Perform detailed business analysis on the use case so that you can open a GitHub Issue with a **Feature** label (for functional requirements) or **Tech** label (for non-functional requirements).
+Perform detailed business analysis on the use case so that you can open a GitHub issue of appropriate type. For example: **Feature** (for functional requirements) or **DevOps** (for infrastructure and deployment work).
 
 Search through existing [issues](https://github.com/opencrvs/opencrvs-core/issues), to see if we already have an issue for this requirement.
-
-#### Reporting bugs
-
-If you would like to report a problem:
-
-1. **Search existing issues** — Check [GitHub Issues](https://github.com/opencrvs/opencrvs-core/issues) to see if someone has already reported the same problem
-2. **Discuss on GitHub** — Chat with us on [GitHub Discussions](https://github.com/opencrvs/opencrvs-core/discussions)
-
-
 
 #### Step 2: Contact the OpenCRVS team
 
@@ -76,28 +67,23 @@ Get in touch with us by opening a [GitHub Discussion](https://github.com/opencrv
 
 #### Step 3: Create a detailed issue
 
-Open an issue with the correct template and complete as much information as possible.  Issues lacking in required information are unlikely to be understood.
+Open an issue from the [issue chooser](https://github.com/opencrvs/opencrvs-core/issues/new/choose) and complete as much information as possible. Issues lacking in required information are unlikely to be understood.
+
+The chooser offers six types:
+
+* **Feature** — a body of work that needs scoping, broken out into Task sub-issues
+* **Improvement** — a refinement to existing UX or UI
+* **Task** — a single piece of development work, usually a sub-issue of a Feature or a Configuration
+* **Configuration** — country or application configuration: declaration forms, certificates, roles and scopes, system settings
+* **DevOps** — infrastructure, CI/CD and deployment work
+* **Bug** — something is broken or is not behaving as expected
+
+Whichever you pick:
 
 * Issues must be written from a user perspective (we operate a human-centric approach to all user experience design)
 * For non-functional requirements, a descriptive title is required
 * Include [Acceptance Criteria](https://www.atlassian.com/work-management/project-management/acceptance-criteria) so that QA teams can write test cases and developers can write unit tests
 * Link to your issue in the GitHub discussion
-
-When creating a bug report, include:
-
-* **Release number** of OpenCRVS (critical information)
-* **Screenshots or screen recording** — [Loom](https://www.loom.com/) is a great tool to record a video
-* **Steps to reproduce** — Include all steps required to reproduce the bug
-* **Expected behavior** — Describe what should have happened
-* **Actual behavior** — Describe what actually happened
-* **Create a bug issue** — If you are certain this is a new, unreported bug, open an issue using the [Bug template](https://github.com/opencrvs/opencrvs-core/issues/new?template=---bug.md)
-
-To determing bug severity and priority, in your GitHub Discussion explain:
-
-* Your issue and the issue number
-* The country implementation you are working on
-* The severity of your problem
-* Your project timeline and dependencies
 
 #### Step 4: Submit test cases
 
@@ -117,8 +103,6 @@ Every Thursday, our "Impact Expansion Team" reviews incoming community requests.
 
 Clicking on a milestone tells you the due date allowing you to project plan [version upgrades](../version-upgrades.md).
 
-We need to understand bug severity factors in order to expedite the priority of a hotfix. Please be as honest as you can in order to be respectful to all other contributors and country needs.
-
 If your issue is triaged and a release number is **not** assigned, either there is a workaround proposed to you in GitHub discussion, or your issue is not deemed high priority enough to be included in the product. &#x20;
 
 You can decide to fork our repositories to code what you want at any time.  But we will not support any forked code nor help debug any forked configuration without being officially engaged as a delivery partner.
@@ -137,17 +121,16 @@ The assigned milestone tells you which base branch in GitHub to use for developm
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2026-08-19 at 15.10.46.png" alt=""><figcaption><p>The linked pull request is based from the release/1.9.16 branch</p></figcaption></figure>
 
-You may be required to open similar pull requests in any of `opencrvs-core`, `opencrvs-countryconfig`, `opencrvs-testland` (used for our regression testing), or `opencrvs-infrastructure` repositories depending on the requirements of the task.
-
 Your development team can begin work on the tasks only when **all of the above steps have been completed**. The issue will be added to the release backlog and moved into a **Ready to build** status.
 
-#### Step 9: Write tests
+#### Step 9: Write tests and open a pull request
 
 We operate Test-Driven-Development methodology:
 
 * **Unit tests** for business functionality must be written (for both front and backend logic)
 * **End-to-end tests** must be written for functional requirements using [Playwright](https://playwright.dev/)
-* All current E2E tests are located in the [Farajaland repository](https://github.com/opencrvs/opencrvs-farajaland/tree/develop/e2e)
+
+[**Core development**](core-development.md) covers branch naming, PR titles, which country configuration package to change, where the end-to-end tests live, and what CI expects of you.
 
 #### Step 10: Submit for code review
 
@@ -175,7 +158,37 @@ Once all other issues in the release train are ready, the release regression QA 
 
 **Become a maintainer** — If you successfully complete the above steps to contribute new functionality to the global community, and become a maintainer contributing to this global public good by code-reviewing other features, you will receive wonderful honour and recognition
 
-#### License
+***
+
+### 5. Reporting a bug
+
+If you would like to report a problem, start by checking whether we already know about it:
+
+1. **Search existing issues** — Check [GitHub Issues](https://github.com/opencrvs/opencrvs-core/issues) to see if someone has already reported the same problem
+2. **Discuss on GitHub** — Chat with us on [GitHub Discussions](https://github.com/opencrvs/opencrvs-core/discussions)
+
+If you are certain this is a new, unreported bug, open a **Bug** issue from the [issue chooser](https://github.com/opencrvs/opencrvs-core/issues/new/choose) and include:
+
+* **Release number** of OpenCRVS (critical information)
+* **Screenshots or screen recording** — [Loom](https://www.loom.com/) is a great tool to record a video
+* **Steps to reproduce** — Include all steps required to reproduce the bug
+* **Expected behavior** — Describe what should have happened
+* **Actual behavior** — Describe what actually happened
+
+To help us determine bug severity and priority, explain the following in your GitHub Discussion:
+
+* Your issue and the issue number
+* The country implementation you are working on
+* The severity of your problem
+* Your project timeline and dependencies
+
+We need to understand bug severity factors in order to expedite the priority of a hotfix. Please be as honest as you can in order to be respectful to all other contributors and country needs.
+
+Once triaged, a bug follows the same path as any other issue — see [**Core development**](core-development.md) for how to open the fix as a pull request.
+
+***
+
+### 6. License
 
 By contributing to the OpenCRVS code, you are conforming to the terms of the [license](https://github.com/opencrvs/opencrvs-core/blob/develop/LICENSE).
 
