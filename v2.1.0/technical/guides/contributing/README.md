@@ -51,7 +51,7 @@ If you would like to request a new feature or enhancement based on your country'
 
 #### Step 1: Research and identify the need
 
-Perform detailed business analysis on the use case so that you can open a GitHub issue of type **Feature** (for functional requirements) or **DevOps** (for infrastructure and deployment work).
+Perform detailed business analysis on the use case so that you can open a GitHub issue of appropriate type. For example: **Feature** (for functional requirements) or **DevOps** (for infrastructure and deployment work).
 
 Search through existing [issues](https://github.com/opencrvs/opencrvs-core/issues), to see if we already have an issue for this requirement.
 
