@@ -189,7 +189,7 @@ By reporting potential vulnerabilities responsibly and applying security updates
 
 #### 5.1 Reporting vulnerabilities
 
-If you believe you have discovered a security issue in OpenCRVS, please report it privately through **Security → Report a vulnerability** in the [`opencrvs-core`](https://github.com/opencrvs/opencrvs-core/security)[ GitHub repository](https://github.com/opencrvs/opencrvs-core/security).
+If you believe you have discovered a security issue in OpenCRVS, please report it privately through **Security → Report a vulnerability** through [GitHub Security Advisories](https://github.com/opencrvs/opencrvs-core/security)
 
 Please do not post details in a public GitHub issue, Discussion or community channel. Private reporting gives our team time to investigate the issue, develop a fix and help implementations upgrade safely.
 
