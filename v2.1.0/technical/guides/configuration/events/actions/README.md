@@ -22,7 +22,7 @@ layout:
 
 # Actions
 
-Actions are the workflow steps users can take on a record (declare, validate, register, reject, print a certificate, and so on). You configure them on each event inside `defineConfig()` under the `actions` array. This means that the action configuration is event-specific.
+Actions are the workflow steps users perform on an event (e.g. declare, validate, register, reject, print a certificate). Each action is defined as part of the event configuration using `defineConfig()` under the `actions` array. Action configurations are specific to the event.
 
 [core-actions.md](core-actions.md "mention") are actions defined by the OpenCRVS core and which all events must implement. In addition to core actions, an event may implement any number of [custom-actions.md](custom-actions.md "mention"). These actions may be freely defined by each country to meet its unique requirements.
 
