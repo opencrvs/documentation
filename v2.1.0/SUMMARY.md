@@ -136,6 +136,7 @@
         * [Manual restore / Disaster recovery](technical/guides/installation/opencrvs-maintenance-tasks/backup-and-restore/manual-restore-disaster-recovery.md)
       * [Off-boarding from OpenCRVS](technical/guides/installation/opencrvs-maintenance-tasks/off-boarding-from-opencrvs.md)
     * [Advanced topics](technical/guides/installation/advanced-topics/README.md)
+      * [Ingress/Egress access](technical/guides/installation/advanced-topics/ingress-egress-access.md)
       * [Ubuntu Firewall configuration](technical/guides/installation/advanced-topics/ubuntu-firewall-configuration.md)
       * [Ubuntu unattended-upgrades](technical/guides/installation/advanced-topics/ubuntu-unattended-upgrades.md)
       * [TLS/SSL Configuration for traefik](technical/guides/installation/advanced-topics/tls-ssl-configuration-for-traefik/README.md)
