@@ -246,7 +246,9 @@ A record stays in this workqueue when MOSIP never sends the credential back. MOS
 3. Remove the transaction from `mosip-api`.
 
 {% hint style="info" %}
-The examples below use localhost. In a deployed environment, use `https://mosip-api.<your-domain>` instead of `http://localhost:2024`, `https://gateway.<your-domain>` instead of `http://localhost:7070` and `https://auth.<your-domain>` instead of `http://localhost:4040`.
+The examples below use localhost. In a deployed environment, use `https://gateway.<your-domain>` instead of `http://localhost:7070` and `https://mosip-api.<your-domain>` instead of `http://localhost:2024`. Auth and events are reached through the gateway, not directly.
+
+Every command runs on your own machine, against the deployed APIs. Only the `kubectl exec` in step 1 runs inside the cluster.
 {% endhint %}
 
 **1. Find the pending transaction**
@@ -287,7 +289,7 @@ Rows much older than a normal MOSIP round trip are the stuck ones. Take the `id`
 Use the integration's own credentials, `OPENCRVS_CLIENT_ID` and `OPENCRVS_CLIENT_SECRET`. These are the values `mosip-api` is configured with, and a National System Admin can read them from the OpenCRVS **Integrations** page. The client already has the `record.read`, `record.register` and `record.correct` scopes, which is everything the next steps need.
 
 ```sh
-curl -X POST http://localhost:4040/token \
+curl -X POST http://localhost:7070/auth/token \
   -d grant_type=client_credentials \
   -d client_id=<OPENCRVS_CLIENT_ID> \
   -d client_secret=<OPENCRVS_CLIENT_SECRET>
@@ -304,11 +306,20 @@ Read the event and take the `id` of the `REGISTER` action that is still `Request
 ```sh
 curl -G http://localhost:7070/events/event.get \
   --data-urlencode 'input={"json":{"eventId":"<EVENT_ID>"}}' \
-  -H "Authorization: Bearer <SYSTEM_TOKEN>" \
-  | jq -r '.result.data.json.actions[]
-           | select(.type == "REGISTER" and .status == "Requested")
-           | .id'
+  -H "Authorization: Bearer <SYSTEM_TOKEN>"
 ```
+
+The event document comes back under `result.data.json`. If you have `jq`, pipe the response through it to print the id directly:
+
+```sh
+jq -r '.result.data.json.actions[]
+       | select(.type == "REGISTER" and .status == "Requested")
+       | .id'
+```
+
+Without `jq`, read the `actions` array yourself and take the `id` of the entry whose `type` is `REGISTER` and whose `status` is `Requested`.
+
+If there is more than one such action, the record has been through registration before. Pick the one that no other action refers to in its `originalActionId` — that is the pending one.
 
 **4. Reject the registration**
 
