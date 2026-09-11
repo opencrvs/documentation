@@ -15,7 +15,7 @@ Both allowlists are empty by default, which leaves the corresponding routes publ
 * `ingress.admin_console_allowlist` - restricts the admin consoles:
   * MinIO and Kibana (`dependencies` chart)
   * Metabase dashboards console (`opencrvs-services` chart).
-* `ingress.application_allowlist` - restricts the whole OpenCRVS application. `admin_console_allowlist` is always merged into the effective `application_allowlist`, so an IP address trusted for the admin consoles is never accidentally locked out of the application itself.
+* `ingress.application_allowlist` - restricts the whole OpenCRVS application and API access. `admin_console_allowlist` is always merged into the effective `application_allowlist`, so an IP address trusted for the admin consoles is never accidentally locked out of the application itself.
 
 {% hint style="warning" %}
 This is a plain IP allowlist, not geo-aware. It admits any request from the listed ranges regardless of where it actually originates, and rejects everything else regardless of origin. True country-level geoblocking would need a Traefik plugin or a CDN/WAF in front of the cluster.
@@ -24,12 +24,22 @@ This is a plain IP allowlist, not geo-aware. It admits any request from the list
 ```mermaid
 flowchart LR
     I((Internet)) --> T[Traefik]
-    T -->|"application_allowlist + admin_console_allowlist"| APP["OpenCRVS frontend  (opencrvs-services)"]
-    T -->|"admin_console_allowlist"| DASH["Metabase <br>(opencrvs-services)"]
-    T -->|"admin_console_allowlist"| CONS["MinIO / Kibana (dependencies)"]
+
+    subgraph SVC["OpenCRVS"]
+        APP["client / login / gateway / countryconfig"]
+        DASH["Metabase"]
+    end
+
+    subgraph DEP["Dependencies"]
+        MINIO["MinIO S3 API"]
+        CONS["MinIO console / Kibana"]
+    end
+
+    T -->|"application_allowlist + admin_console_allowlist"| APP
+    T -->|"admin_console_allowlist"| DASH
+    T -->|"application_allowlist + admin_console_allowlist"| MINIO
+    T -->|"admin_console_allowlist"| CONS
 ```
-
-
 
 #### Configuration options
 
@@ -59,6 +69,15 @@ ingress:
     - 198.51.100.42/32
     - 203.0.113.0/24
 ```
+
+#### Configuration options
+
+| Value                             | Chart               | Description                                                                                |
+| --------------------------------- | ------------------- | ------------------------------------------------------------------------------------------ |
+| `ingress.application_allowlist`   | `opencrvs-services` | Source IP ranges (CIDR) allowed to reach `client`, `login`, `gateway` and `countryconfig`. |
+| `ingress.application_allowlist`   | `dependencies`      | Source IP ranges (CIDR) allowed to reach the MinIO S3 API route.                           |
+| `ingress.admin_console_allowlist` | `opencrvs-services` | Source IP ranges (CIDR) allowed to reach the Metabase dashboards console.                  |
+| `ingress.admin_console_allowlist` | `dependencies`      | Source IP ranges (CIDR) allowed to reach the MinIO console and Kibana.                     |
 
 #### Behaviour
 
