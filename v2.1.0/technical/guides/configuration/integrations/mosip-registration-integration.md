@@ -310,8 +310,6 @@ curl -G http://localhost:7070/events/event.get \
            | .id'
 ```
 
-If this prints more than one id, the record has been through registration before. Pick the one that no other action refers to in its `originalActionId` — that is the pending one.
-
 **4. Reject the registration**
 
 ```sh
