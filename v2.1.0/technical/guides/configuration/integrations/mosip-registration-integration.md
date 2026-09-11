@@ -6,7 +6,7 @@ This section assumes that you are already familiar with the [general registratio
 
 #### Architecture
 
-In OpenCRVS v2.0.0, MOSIP registration integration is implemented through **action confirmation handlers** registered in the country configuration server. When a registrar performs a `REGISTER` action, OpenCRVS core calls the country configuration's registered action trigger. [Learn more about action triggers](../action-triggers/). The trigger can respond synchronously (HTTP 200) or defer the response for asynchronous external validation (HTTP 202).
+From OpenCRVS v2.0.0, MOSIP registration integration is implemented through **action confirmation handlers** registered in the country configuration server. When a registrar performs a `REGISTER` action, OpenCRVS core calls the country configuration's registered action trigger. [Learn more about action triggers](../action-triggers/). The trigger can respond synchronously (HTTP 200) or defer the response for asynchronous external validation (HTTP 202).
 
 The reference implementation is in [opencrvs-integrationland](https://github.com/opencrvs/opencrvs-integrationland).
 
@@ -236,3 +236,104 @@ MOSIP does not return failure responses. Records that stall in "Pending external
 {% endhint %}
 
 To read more about configuring workqueues, see [the technical guide on workqueues](../workqueues.md).
+
+#### **Debugging a record stuck in "Pending external validation"**
+
+A record stays in this workqueue when MOSIP never sends the credential back. MOSIP does not report failures, so first check with the MOSIP team whether the packet failed. When it did, an implementer has to close the record by hand:
+
+1. Find the pending transaction in `mosip-api`.
+2. Reject the registration in OpenCRVS.
+3. Remove the transaction from `mosip-api`.
+
+{% hint style="info" %}
+The examples below use localhost. In a deployed environment, use `https://mosip-api.<your-domain>` instead of `http://localhost:2024`, `https://gateway.<your-domain>` instead of `http://localhost:7070` and `https://auth.<your-domain>` instead of `http://localhost:4040`.
+{% endhint %}
+
+**1. Find the pending transaction**
+
+`mosip-api` keeps one row per record it is waiting for. The row holds the MOSIP transaction `id`, the OpenCRVS `event_id` and the registration number.
+
+If you have a token with the `record.search` scope (a registrar has one), list the rows over HTTP. The integration's own token does not work here — it has no search scope, and the route answers `403`:
+
+```sh
+curl http://localhost:2024/debug/transactions \
+  -H "Authorization: Bearer <TOKEN>"
+```
+
+```json
+[
+  {
+    "eventId": "1c4c2208-79ff-47c7-ae4d-e55cfcf4e6e4",
+    "id": "100013380723500",
+    "registration_number": "EE008OLG4317",
+    "created_at": "2025-09-10 13:15:13"
+  }
+]
+```
+
+Otherwise, read the SQLite database directly. It lives at `SQLITE_DATABASE_PATH`, which is `/data/sqlite/mosip-api.db` in the Helm chart and `data/sqlite/mosip-api.db` under the repository root in local development. The image has no `sqlite3` command, so query it with Node:
+
+```sh
+kubectl exec -n <namespace> deploy/mosip-api -- node -e "
+  const db = require('better-sqlite3')('/data/sqlite/mosip-api.db')
+  console.log(db.prepare('SELECT id, event_id, registration_number, created_at FROM transactions ORDER BY created_at').all())
+"
+```
+
+Rows much older than a normal MOSIP round trip are the stuck ones. Take the `id` and the `event_id` of the row you want to close.
+
+**2. Get a token for the integration**
+
+Use the integration's own credentials, `OPENCRVS_CLIENT_ID` and `OPENCRVS_CLIENT_SECRET`. These are the values `mosip-api` is configured with, and a National System Admin can read them from the OpenCRVS **Integrations** page. The client already has the `record.read`, `record.register` and `record.correct` scopes, which is everything the next steps need.
+
+```sh
+curl -X POST http://localhost:4040/token \
+  -d grant_type=client_credentials \
+  -d client_id=<OPENCRVS_CLIENT_ID> \
+  -d client_secret=<OPENCRVS_CLIENT_SECRET>
+```
+
+The response contains the token in `access_token`. It is used as `<SYSTEM_TOKEN>` below.
+
+Rejecting as the integration also keeps the audit trail honest: no registrar rejected the record, it was closed because MOSIP never answered.
+
+**3. Find the action to reject**
+
+Read the event and take the `id` of the `REGISTER` action that is still `Requested`:
+
+```sh
+curl -G http://localhost:7070/events/event.get \
+  --data-urlencode 'input={"json":{"eventId":"<EVENT_ID>"}}' \
+  -H "Authorization: Bearer <SYSTEM_TOKEN>" \
+  | jq -r '.result.data.json.actions[]
+           | select(.type == "REGISTER" and .status == "Requested")
+           | .id'
+```
+
+If this prints more than one id, the record has been through registration before. Pick the one that no other action refers to in its `originalActionId` — that is the pending one.
+
+**4. Reject the registration**
+
+```sh
+curl -X POST http://localhost:7070/events/event.actions.register.reject \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer <SYSTEM_TOKEN>" \
+  -d '{"json":{"eventId":"<EVENT_ID>","actionId":"<ACTION_ID>","transactionId":"<ANY_UNIQUE_STRING>"}}'
+```
+
+The record leaves the workqueue and is unassigned. Calling this again for the same action is safe: the second call returns the event unchanged.
+
+**5. Remove the transaction**
+
+Finally, drop the row so `mosip-api` stops waiting for it:
+
+```sh
+curl -X DELETE http://localhost:2024/debug/transactions/<ID> \
+  -H "Authorization: Bearer <SYSTEM_TOKEN>"
+```
+
+This route needs the `record.register` scope, which the integration's token has. If MOSIP does answer later, the callback no longer finds the transaction and is logged as an error instead of confirming the record.
+
+{% hint style="warning" %}
+Both `/debug` routes exist for this support workflow only. They require an OpenCRVS token and expose event ids and registration numbers, so treat their output as record data.
+{% endhint %}
