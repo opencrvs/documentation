@@ -90,3 +90,24 @@ const child =  {
 
 <div><figure><img src="../../../../.gitbook/assets/Screenshot 2026-05-22 at 9.52.05.png" alt=""><figcaption></figcaption></figure> <figure><img src="../../../../.gitbook/assets/Screenshot 2026-05-22 at 9.51.50.png" alt=""><figcaption></figcaption></figure></div>
 
+## Limiting options by version status and date
+
+`LOCATION` and `ADMINISTRATIVE_AREA` fields (and the admin-area selectors embedded in an `ADDRESS` field) also accept two options tied to [location versioning](updates-and-versioning.md):
+
+* `activeOnly` — offer only locations/areas that are active at the resolved anchor date. Inactive or not-yet-effective versions are excluded from the options.
+* `anchorToDateOfEvent` — resolve which version is offered against the event's date of event (falling back to the record's creation date when that field is empty) instead of today. This does not by itself exclude inactive versions — combine it with `activeOnly` for that.
+
+```
+{
+  id: 'child.birthLocation',
+  type: FieldType.LOCATION,
+  configuration: {
+    locationTypes: ['HEALTH_FACILITY'],
+    activeOnly: true,
+    anchorToDateOfEvent: true
+  }
+}
+```
+
+With both set, a birth declaration only offers health facilities that were active on the child's date of birth, rather than facilities active today.
+
