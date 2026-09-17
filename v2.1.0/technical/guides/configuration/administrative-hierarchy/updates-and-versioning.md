@@ -37,8 +37,8 @@ Because a location's name and status vary over time, any UI or API that renders 
 Resolution takes the version with the greatest `effectiveFrom` that is still on or before the anchor, falling back to the earliest version when the anchor precedes all of them. In practice this means:
 
 - A record captured before a rename shows the old name in the record view and on the certificate, even after the location has since been renamed.
-- A record captured before a location is deactivated still shows it as it was, even though it's no longer selectable in new declarations.
-- A location doesn't appear at all as an option in forms until its first version's `effectiveFrom` has arrived — a location scheduled for the future stays hidden until then.
+- A record captured before a location is deactivated still shows it as it was, even though fields configured with [`activeOnly`](how-to-limit-location-and-administrative-area-options-in-event-declaration.md#limiting-options-by-version-status-and-date) no longer offer it in new declarations.
+- A location whose first version's `effectiveFrom` has not yet arrived is likewise hidden from fields configured with `activeOnly` — a location scheduled for the future stays hidden until then. Fields that don't set the flag keep listing every location regardless of version status.
 
 Client applications never read a flat `name`/`status` off a cached location — that would go stale the moment a version takes effect without the device re-syncing. Every read is resolved from `versions` against the anchor at render time.
 
