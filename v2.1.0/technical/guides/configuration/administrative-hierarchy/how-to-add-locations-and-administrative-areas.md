@@ -34,6 +34,10 @@ Creating an administrative area works the same way, via `POST /api/events/admini
 
 Both endpoints accept an optional `id` in the request. Supplying it lets a retried request after a network failure be recognised as the same creation rather than producing a duplicate: if a location or area with that `id` already exists and its identity and initial version match the request, the existing one is returned rather than erroring. An optional `versionId` may also be supplied for the initial version, but it is not itself compared for idempotency — only `id` and the rest of the payload are.
 
+## Errors
+
+A successful create returns `200`, not `201`. Beyond `401` (invalid/missing token) and `403` (missing the `location.edit` scope), `400` covers a malformed payload. `409` covers a conflicting write: an `id` that already exists with **different** identity or initial-version values than the request (a matching `id` with matching values is the idempotent-retry case above, and isn't an error), or an `externalId` already active elsewhere on or after the given `effectiveFrom`.
+
 ## What this does not cover
 
 - Renaming, recoding or deactivating an existing location or area — see [How to update & deactivate locations & administrative areas](how-to-update-and-deactivate-locations-and-administrative-areas.md).
