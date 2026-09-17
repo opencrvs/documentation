@@ -29,7 +29,10 @@ Everything else about a location or administrative area — its `id`, its parent
 
 ### Resolving a version — the anchor date
 
-Because a location's name and status vary over time, any UI or API that renders one needs an **anchor date**: the date the name/status should be resolved at. The anchor is the record's own date of event, or `createdAt` when the configured date-of-event field is empty (e.g. a partial notification) — the same fallback convention used elsewhere for date-of-event resolution.
+Because a location's name and status vary over time, any UI or API that renders one needs an **anchor date**: the date the name/status should be resolved at. Which anchor applies depends on the surface:
+
+- Record views, review screens and a certificate's declaration fields use the **record anchor** — the record's own date of event, or `createdAt` when the configured date-of-event field is empty (e.g. a partial notification), the same fallback convention used elsewhere for date-of-event resolution.
+- Form selectors resolve against **today** unless the field opts in with [`anchorToDateOfEvent`](how-to-limit-location-and-administrative-area-options-in-event-declaration.md#limiting-options-by-version-status-and-date).
 
 Resolution takes the version with the greatest `effectiveFrom` that is still on or before the anchor, falling back to the earliest version when the anchor precedes all of them. In practice this means:
 
