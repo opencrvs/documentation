@@ -25,7 +25,7 @@ Deactivating uses the same update endpoint, sending `status: 'inactive'`. Once i
 
 - stops appearing as a selectable option on form fields configured with [`activeOnly: true`](how-to-limit-location-and-administrative-area-options-in-event-declaration.md#limiting-options-by-version-status-and-date),
 - keeps appearing in existing records and certificates dated before it, resolved to whatever version was in effect then,
-- keeps appearing in office/health-facility search selectors (so past records assigned to it remain findable), even though it can no longer be selected going forward.
+- keeps appearing in office/health-facility search selectors (so past records assigned to it remain findable), even though it can no longer be selected on form fields configured with [`activeOnly: true`](how-to-limit-location-and-administrative-area-options-in-event-declaration.md#limiting-options-by-version-status-and-date) going forward.
 
 ## Scheduling a future change
 

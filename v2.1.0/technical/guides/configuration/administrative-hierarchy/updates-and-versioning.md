@@ -46,7 +46,7 @@ The wire format for a location or administrative area still carries flat `name`/
 
 ### Withdrawing a pending change
 
-A version that has not taken effect yet (its `effectiveFrom` is strictly in the future) can be withdrawn — this removes it from the history outright, as if it had never been scheduled. Once a version's `effectiveFrom` is today or earlier it counts as already in effect and can no longer be withdrawn; a further version must be appended instead to change course.
+A version that has not taken effect yet (its `effectiveFrom` is strictly in the future) can be withdrawn — this removes it from the history outright, as if it had never been scheduled. Once a version's `effectiveFrom` is today or earlier it counts as already in effect and can no longer be withdrawn; a further version must be appended instead to change course. A version can only be withdrawn if it is not the only one a location or administrative area has — a row must always keep at least one version, so withdrawing the last remaining one is rejected instead.
 
 ### Transfers: no re-parenting
 
