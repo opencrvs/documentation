@@ -12,20 +12,20 @@ This guide covers adding a **new** location or administrative area to an already
 Send a request to create the location, either via the REST endpoint `POST /api/events/locations` or the equivalent tRPC `locations.create` mutation:
 
 - `name` — the location's name.
-- `administrativeAreaId` — the administrative area it belongs to, or `null` for a location placed directly under the country.
-- `locationType` — a country-defined type string (e.g. `CRVS_OFFICE`, `HEALTH_FACILITY`).
+- `administrativeAreaId` — the administrative area it belongs to, or `null` for a location placed directly under the country. An unknown id is not rejected with a clean validation error, so double-check it beforehand.
+- `locationType` — a country-defined type string (e.g. `CRVS_OFFICE`, `HEALTH_FACILITY`). Not validated against the country's configured types — any string, or `null`, is accepted as-is.
 - `externalId` (optional) — an external reference code. Must not already be active on another location from the same date onward.
 - `status` (optional) — defaults to `active`.
 - `effectiveFrom` (optional) — defaults to the beginning-of-time sentinel, meaning the location is considered to have always existed. Set this explicitly if the location should only become selectable from a specific future date.
 
-The response is the created location, with a single initial version in its `versions` history.
+The response is the created location. A location created with a future `effectiveFrom` comes back with its top-level `status` already resolved as `inactive` — even though the version itself is `active` — since it isn't in effect yet, and it's excluded from `list({ isActive: true })` until that date arrives. An idempotent replay against an existing location returns that location as it now stands, with its complete `versions` history — which may hold more than the one initial version, if it's since been updated.
 
 ## Creating an administrative area
 
 Creating an administrative area works the same way, via `POST /api/events/administrative-areas` (or `administrativeAreas.create`), with `parentId` in place of `administrativeAreaId` and no `locationType`:
 
 - `name`
-- `parentId` — the parent administrative area, or `null` for a top-level area.
+- `parentId` — the parent administrative area, or `null` for a top-level area. An unknown id is not rejected with a clean validation error, so double-check it beforehand.
 - `externalId` (optional)
 - `status` (optional, defaults to `active`)
 - `effectiveFrom` (optional, defaults to the beginning-of-time sentinel)
