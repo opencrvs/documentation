@@ -9,7 +9,7 @@ This guide covers adding a **new** location or administrative area to an already
 
 ## Creating a location
 
-Send a request to create the location, either via the REST endpoint `POST /locations` or the equivalent tRPC `locationRouter.create` mutation:
+Send a request to create the location, either via the REST endpoint `POST /api/events/locations` or the equivalent tRPC `locations.create` mutation:
 
 - `name` — the location's name.
 - `administrativeAreaId` — the administrative area it belongs to, or `null` for a location placed directly under the country.
@@ -22,7 +22,7 @@ The response is the created location, with a single initial version in its `vers
 
 ## Creating an administrative area
 
-Creating an administrative area works the same way, via `POST /administrative-areas` (or `administrativeAreaRouter.create`), with `parentId` in place of `administrativeAreaId` and no `locationType`:
+Creating an administrative area works the same way, via `POST /api/events/administrative-areas` (or `administrativeAreas.create`), with `parentId` in place of `administrativeAreaId` and no `locationType`:
 
 - `name`
 - `parentId` — the parent administrative area, or `null` for a top-level area.

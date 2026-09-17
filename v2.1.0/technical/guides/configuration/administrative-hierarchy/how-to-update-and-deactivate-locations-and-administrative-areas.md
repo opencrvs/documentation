@@ -8,7 +8,7 @@ Your user or system client holds the `location.edit` scope. This scope must be a
 
 ## Appending a new version
 
-Updating a location or administrative area works by appending a new version to its history — nothing in an existing version is edited or removed. Send the update via the REST endpoint `PUT /locations/{id}` (or `PUT /administrative-areas/{id}`; tRPC `locationRouter.update` / `administrativeAreaRouter.update`), with a **full snapshot** of every versioned field:
+Updating a location or administrative area works by appending a new version to its history — nothing in an existing version is edited or removed. Send the update via the REST endpoint `PUT /api/events/locations/{id}` (or `PUT /api/events/administrative-areas/{id}`; tRPC `locations.update` / `administrativeAreas.update`), with a **full snapshot** of every versioned field:
 
 - `name`
 - `externalId` (optional)
@@ -32,7 +32,7 @@ Setting `effectiveFrom` to a future date schedules the new version without it ta
 
 ## Withdrawing a scheduled change
 
-A version that hasn't taken effect yet can be withdrawn — send `DELETE /locations/{id}/versions/{versionId}` (or the administrative-area equivalent) with the pending version's `versionId`. This removes the scheduled version entirely, as if it had never been added. Once its `effectiveFrom` date has passed, a version can no longer be withdrawn; append a further version instead.
+A version that hasn't taken effect yet can be withdrawn — send `DELETE /api/events/locations/{id}/versions/{versionId}` (or `DELETE /api/events/administrative-areas/{id}/versions/{versionId}`) with the pending version's `versionId`. This removes the scheduled version entirely, as if it had never been added. Once its `effectiveFrom` date has passed, a version can no longer be withdrawn; append a further version instead.
 
 ## Moving a location or area to a different parent (transfer)
 
