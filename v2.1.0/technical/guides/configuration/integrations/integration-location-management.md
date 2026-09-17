@@ -84,7 +84,7 @@ Using the APIs preserves existing UUIDs while allowing the location hierarchy to
 
 Locations can be deactivated using the available APIs. However, this should be undertaken with extreme caution.
 
-Deactivated locations are no longer visible within OpenCRVS, but historical events will continue to reference the UUID of the original location.
+Deactivating a location does not remove it or hide historical records — a record captured before deactivation keeps showing the location as it was at the time, and historical events continue to reference the UUID of the original location. See [Updates & versioning](../administrative-hierarchy/updates-and-versioning.md) for how deactivation and historical resolution work.
 
 If records need to be reassigned to a different office or administrative area, this cannot be achieved simply by deactivating a location. A **custom data migration** must be developed to update all affected historical records so that they reference the new location UUID.
 
@@ -101,14 +101,6 @@ To minimise future maintenance and avoid complex data migrations:
 * Avoid deleting or replacing locations after production deployment.
 * Use the APIs to add or update locations while preserving existing UUIDs.
 * Carefully assess the impact of deactivating any location that has historical records.
-
-***
-
-#### Future enhancements
-
-OpenCRVS includes a roadmap item to support **time-aware management of administrative hierarchies**, allowing administrative boundary changes and organisational restructuring to be managed without requiring manual migration of historical data.
-
-Until this capability is available, countries should treat production location data as long-lived reference data and manage changes through the supported APIs and carefully planned migration activities where necessary.
 
 ***
 

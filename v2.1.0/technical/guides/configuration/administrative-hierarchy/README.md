@@ -9,7 +9,7 @@
 5. Each user must be assigned to a physical location.
 6. Each user can belong to only one location.
 7. Each location has a UUI associated, created during data seeding.
-8. After going live, locations must be [managed via APIs](../integrations/integration-location-management.md).
+8. After going live, locations and administrative areas must be managed via APIs — see [Updates & versioning](updates-and-versioning.md), [How to add new locations & administrative areas](how-to-add-locations-and-administrative-areas.md) and [How to update & deactivate locations & administrative areas](how-to-update-and-deactivate-locations-and-administrative-areas.md).
 
 
 
