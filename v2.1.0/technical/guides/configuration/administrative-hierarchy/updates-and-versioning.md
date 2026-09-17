@@ -2,7 +2,7 @@
 
 **TL;DR**
 
-1. Every location and administrative area keeps a `versions` history — an ordered list of `{ name, externalId, status, effectiveFrom }` entries.
+1. Every location and administrative area keeps a `versions` history — an ordered list of `{ versionId, name, externalId, status, effectiveFrom }` entries.
 2. Identity (`id`, parent/administrative area, location type) is fixed at creation and never changes. Only name, code and status are versioned.
 3. Each record and certificate resolves the version that was in effect at the record's own date (its anchor), not the current name.
 4. Updates only append a new version — nothing is edited or removed in place. A future-dated version can be withdrawn before it takes effect.
@@ -34,13 +34,15 @@ Because a location's name and status vary over time, any UI or API that renders 
 - Record views, review screens and a certificate's declaration fields use the **record anchor** — the record's own date of event, or `createdAt` when the configured date-of-event field is empty (e.g. a partial notification), the same fallback convention used elsewhere for date-of-event resolution.
 - Form selectors resolve against **today** unless the field opts in with [`anchorToDateOfEvent`](how-to-limit-location-and-administrative-area-options-in-event-declaration.md#limiting-options-by-version-status-and-date).
 
+"Today" isn't the same clock everywhere: the events service resolves it as the UTC calendar date, while a client anchoring to today uses the browser's local calendar date. The two can differ by a day for a user near midnight UTC.
+
 Resolution takes the version with the greatest `effectiveFrom` that is still on or before the anchor, falling back to the earliest version when the anchor precedes all of them. In practice this means:
 
 - A record captured before a rename shows the old name in the record view and on the certificate, even after the location has since been renamed.
 - A record captured before a location is deactivated still shows it as it was, even though fields configured with [`activeOnly`](how-to-limit-location-and-administrative-area-options-in-event-declaration.md#limiting-options-by-version-status-and-date) no longer offer it in new declarations.
 - A location whose first version's `effectiveFrom` has not yet arrived is likewise hidden from fields configured with `activeOnly` — a location scheduled for the future stays hidden until then. Fields that don't set the flag keep listing every location regardless of version status.
 
-Client applications never read a flat `name`/`status` off a cached location — that would go stale the moment a version takes effect without the device re-syncing. Every read is resolved from `versions` against the anchor at render time.
+The wire format for a location or administrative area still carries flat `name`/`status`/`externalId` fields (resolved as of today) alongside `versions` — some consumers read these directly; the reference country config's analytics sync, for instance, writes the flat fields straight into its own database rather than resolving per-record history. The registrar-facing client is stricter: its cached location map strips the flat fields entirely, so no client code can read a location's current name without going through `resolveVersion`/`resolvePath` at the anchor. That cache is kept for up to a day (a 24-hour stale time), so a location created or renamed elsewhere can take up to a day to reach a given device.
 
 ### Withdrawing a pending change
 
@@ -55,9 +57,23 @@ A location's administrative area, and an administrative area's parent, are part 
 
 Both operations are idempotent and safe to retry individually; they are not combined into a single atomic call.
 
+Nothing in this recipe carries over automatically. Say District Office A closes and District Office B opens as its replacement, same jurisdiction:
+
+- **No cascade.** Anything that pointed at District Office A — locations assigned to it, or sub-areas beneath it, if it's an administrative area — keeps pointing at District Office A. None of it is moved or relinked to District Office B.
+- **No data migration.** Records already registered at District Office A keep referencing District Office A's UUID forever. They do not move to District Office B, even though B is meant to replace A.
+- **`externalId` reuse is order-sensitive.** If both offices share the same reference code, inactivate District Office A first, then create District Office B. Create B before A is inactive (or with an earlier `effectiveFrom` than A's inactivation) and the request is rejected — the code is still active at A.
+
 ### Point-in-time code uniqueness
 
-Where an `externalId` (an external reference code) is set, it must be unique among **active** holders at any given point in time — not across all of history. A new location can reuse a code that a different, since-inactivated location used to hold, but it cannot take over a code that's still active (or scheduled to become active) elsewhere from the same date onward.
+Where an `externalId` (an external reference code) is set, it must be unique among **active** holders at any given point in time — not across all of history. A new location can reuse a code that a different, since-inactivated location used to hold, but it cannot take over a code that's still active (or scheduled to become active) elsewhere from the same date onward. Locations and administrative areas enforce this independently, each only against its own kind — a location and an administrative area may hold the same `externalId` at the same time without conflict.
+
+### Where history comes from
+
+Existing rows didn't always have a `versions` history. The upgrade to this model backfilled every location and administrative area with a `0001-01-01` active version built from its old flat name and code, plus — for a row that had a legacy `valid_until` date set — a further `inactive` version dated at that cutover. The initial hierarchy seed (see [How to populate administrative hierarchy](how-to-populate-administrative-hierarchy.md)) can also supply a pre-built `versions` array directly; re-running the seed against the same row **replaces** its stored history wholesale rather than merging into it, so a caller that means to keep a history it built has to resend it every time.
+
+### Audit trail
+
+Every create, update and withdraw is written to the audit log. An idempotent replay — the request was already applied before — is deliberately not re-audited, since nothing new happened.
 
 ### Configuring form selectors
 
