@@ -32,7 +32,7 @@ Creating an administrative area works the same way, via `POST /api/events/admini
 
 ## Idempotent retries
 
-Both endpoints accept an optional `id` and `versionId` in the request. Supplying them lets a retried request after a network failure be recognised as the same creation rather than producing a duplicate — generate and reuse the same `id`/`versionId` pair for a given creation attempt.
+Both endpoints accept an optional `id` in the request. Supplying it lets a retried request after a network failure be recognised as the same creation rather than producing a duplicate: if a location or area with that `id` already exists and its identity and initial version match the request, the existing one is returned rather than erroring. An optional `versionId` may also be supplied for the initial version, but it is not itself compared for idempotency — only `id` and the rest of the payload are.
 
 ## What this does not cover
 

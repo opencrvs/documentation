@@ -23,7 +23,7 @@ Each element of `versions` has:
 - `externalId` — optional, used for point-in-time code uniqueness (see below).
 - `status` — `active` or `inactive`.
 
-Versions are sorted ascending by `effectiveFrom`. The very first version of a location is dated `0001-01-01` — a beginning-of-time sentinel — so that every location always resolves to _some_ version, however far back a record's date reaches.
+Versions are sorted ascending by `effectiveFrom`. Unless an explicit `effectiveFrom` is given at creation, a location's first version defaults to `0001-01-01` — a beginning-of-time sentinel — so that every location always resolves to _some_ version, however far back a record's date reaches.
 
 Everything else about a location or administrative area — its `id`, its parent (`administrativeAreaId` / `parentId`), and a location's `locationType` — is set once at creation and cannot change. Renames and status changes only ever append a new version; nothing is edited or deleted in place.
 
@@ -44,7 +44,7 @@ Client applications never read a flat `name`/`status` off a cached location — 
 
 ### Withdrawing a pending change
 
-A version that has not taken effect yet (its `effectiveFrom` is still in the future) can be withdrawn — this removes it from the history outright, as if it had never been scheduled. Once a version's `effectiveFrom` has passed, it can no longer be withdrawn; a further version must be appended instead to change course.
+A version that has not taken effect yet (its `effectiveFrom` is strictly in the future) can be withdrawn — this removes it from the history outright, as if it had never been scheduled. Once a version's `effectiveFrom` is today or earlier it counts as already in effect and can no longer be withdrawn; a further version must be appended instead to change course.
 
 ### Transfers: no re-parenting
 

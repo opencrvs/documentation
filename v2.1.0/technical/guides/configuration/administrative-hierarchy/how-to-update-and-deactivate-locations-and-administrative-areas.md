@@ -13,8 +13,8 @@ Updating a location or administrative area works by appending a new version to i
 - `name`
 - `externalId` (optional)
 - `status` — `active` or `inactive`
-- `effectiveFrom` (optional) — defaults to today. Set a future date to schedule the change ahead of time.
-- `lastVersionId` — the `versionId` of the version you last observed, used as an optimistic-concurrency check.
+- `effectiveFrom` (optional) — defaults to today, and must be **strictly later** than the `effectiveFrom` of the latest version already in the history. Set a future date to schedule the change ahead of time.
+- `lastVersionId` — the `versionId` of the **last element** in the entity's `versions` array, used as an optimistic-concurrency check.
 
 Fields are not merged with the previous version — if you're only changing the status, you still need to send the current `name` and `externalId` alongside it. Identity fields (`administrativeAreaId`/`parentId`, `locationType`) cannot be included in this request; they are rejected outright since they can't change after creation.
 
@@ -32,7 +32,7 @@ Setting `effectiveFrom` to a future date schedules the new version without it ta
 
 ## Withdrawing a scheduled change
 
-A version that hasn't taken effect yet can be withdrawn — send `DELETE /api/events/locations/{id}/versions/{versionId}` (or `DELETE /api/events/administrative-areas/{id}/versions/{versionId}`) with the pending version's `versionId`. This removes the scheduled version entirely, as if it had never been added. Once its `effectiveFrom` date has passed, a version can no longer be withdrawn; append a further version instead.
+A version that hasn't taken effect yet can be withdrawn — send `DELETE /api/events/locations/{id}/versions/{versionId}` (or `DELETE /api/events/administrative-areas/{id}/versions/{versionId}`) with the pending version's `versionId`. This removes the scheduled version entirely, as if it had never been added. Once its `effectiveFrom` is today or earlier, a version can no longer be withdrawn; append a further version instead. A change made today cannot be withdrawn the same day.
 
 ## Moving a location or area to a different parent (transfer)
 
