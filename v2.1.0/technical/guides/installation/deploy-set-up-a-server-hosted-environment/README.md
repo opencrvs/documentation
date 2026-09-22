@@ -21,6 +21,10 @@ If you have not already done so in the [Quick Start](../quick-start.md), fork yo
 
 Fork the [infrastructure](https://github.com/opencrvs/infrastructure) repository.
 
+{% hint style="info" %}
+**Docker Swarm has been deprecated in 2.1.** [**See the migration guide!**](migration-from-docker-swarm-guide.md)
+{% endhint %}
+
 All steps are described in detail in this chapter.
 
 **Once the preparation steps are complete,** proceed with the installation steps **in order, starting with creating a Github environment**.

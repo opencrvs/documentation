@@ -44,6 +44,10 @@ At a high level, it enables configuration of:
 
 **Hosted assets** — country logos, maps and other files required by the application, emails or dashboards.
 
+{% hint style="info" %}
+**Docker Swarm has been deprecated in 2.1.** [**See the migration guide!**](../installation/deploy-set-up-a-server-hosted-environment/migration-from-docker-swarm-guide.md)
+{% endhint %}
+
 ---
 
 ### 3. What the infrastructure repository enables
