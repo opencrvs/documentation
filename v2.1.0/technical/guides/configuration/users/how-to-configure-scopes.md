@@ -9,7 +9,7 @@ Scopes are the mechanism that grants users access to perform role-specific actio
 To perform actions, a user must be assigned to a role with appropriate scopes. You can find the [available scopes here](https://github.com/opencrvs/opencrvs-core/blob/v2.0.0-beta/packages/commons/src/scopes.ts).
 
 \
-To get started, let's [look at the example configuration](https://github.com/opencrvs/opencrvs-countryconfig/blob/release-v2.0.0/src/data-seeding/roles/roles.ts). `opencrvs-core`  exposes a helper for defining scopes, and provides type information.
+To get started, let's [look at the example configuration](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/countryconfig-template/src/data-seeding/roles/roles.ts). `opencrvs-core`  exposes a helper for defining scopes, and provides type information.
 
 
 

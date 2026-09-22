@@ -4,7 +4,7 @@
 
 A number of automated tasks are run on your servers when the Ansible Provision action runs. It can be important to understand exactly what Ansible is doing to your servers to help you debug any issues or contribute any improvements to the process.
 
-The Ansible tasks are located in [**infrastructure/server-setup/tasks**](https://github.com/opencrvs/opencrvs-countryconfig/tree/develop/infrastructure/server-setup/tasks)**. Tasks are structured by folders:**
+The Ansible tasks are located in [**infrastructure/server-setup/tasks**](https://github.com/opencrvs/infrastructure/tree/develop/infrastructure/server-setup/tasks)**. Tasks are structured by folders:**
 
 * `all`: tasks are executed on all hosts defined in ansible inventory
 * `backups`: tasks to provision backup server

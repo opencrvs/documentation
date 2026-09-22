@@ -36,7 +36,7 @@ TODO: Insert zip of 2.1 Config files
 
 **Core changelog:** [**https://github.com/opencrvs/opencrvs-core/blob/develop/CHANGELOG.md#200-release-candidate**](https://github.com/opencrvs/opencrvs-core/blob/develop/CHANGELOG.md#200-release-candidate)
 
-**Countryconfig changelog:** [**https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/CHANGELOG.md#200**](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/CHANGELOG.md#200)
+**Countryconfig changelog:** [**https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/countryconfig-template/CHANGELOG.md#200**](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/countryconfig-template/CHANGELOG.md#200)
 
 **opencrvs-demoland source:**
 

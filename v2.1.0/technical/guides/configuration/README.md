@@ -10,7 +10,7 @@ This page provides a high-level overview of the configuration options enabled by
 
 **Where this sits:** Country configuration is defined during Design & Specification, implemented during Configuration, and deployed through the project’s infrastructure environments in [installation](../installation/deploy-set-up-a-server-hosted-environment/).
 
-***
+---
 
 ### 2. What the country configuration repository enables
 
@@ -44,11 +44,7 @@ At a high level, it enables configuration of:
 
 **Hosted assets** — country logos, maps and other files required by the application, emails or dashboards.
 
-{% hint style="info" %}
-The country configuration repository contains an [infrastructure](https://github.com/opencrvs/opencrvs-countryconfig/tree/develop/infrastructure) folder which supports: **Backwards compatibility for OpenCRVS versions 1.9 and below still using DockerSwarm. Docker Swarm will be deprecated in 2.1.** [**MIGRATE TO KUBERNETES IN TIME!**](../installation/deploy-set-up-a-server-hosted-environment/migration-from-docker-swarm-guide.md)
-{% endhint %}
-
-***
+---
 
 ### 3. What the infrastructure repository enables
 
@@ -68,7 +64,7 @@ At a high level, it enables configuration of:
 
 **Local development tooling** — developer environments that allow technical teams to build, test and iterate on country configuration safely before deploying it.
 
-***
+---
 
 ### 4. How the repositories work together
 
@@ -76,49 +72,49 @@ The country configuration repository defines what makes OpenCRVS specific to a c
 
 Together, they allow an implementation team to:
 
-* configure OpenCRVS without changing OpenCRVS Core
-* test country-specific changes in local and non-production environments
-* seed the system with the required reference data
-* deploy the validated configuration consistently across environments
-* maintain a clear separation between product code, country configuration and infrastructure
+- configure OpenCRVS without changing OpenCRVS Core
+- test country-specific changes in local and non-production environments
+- seed the system with the required reference data
+- deploy the validated configuration consistently across environments
+- maintain a clear separation between product code, country configuration and infrastructure
 
 This separation is important because it allows countries to tailor OpenCRVS to their legal, operational and technical context while still benefiting from upgrades to the shared OpenCRVS Core platform.
 
-***
+---
 
 ### 5. When country configuration is complete
 
 Country configuration is complete when:
 
-* [ ] the required application settings have been defined
-* [ ] administrative locations and reference data have been loaded
-* [ ] users, roles and scopes have been configured
-* [ ] event forms, validation rules and conditional logic have been implemented
-* [ ] language content and country assets have been added
-* [ ] certificate templates have been configured
-* [ ] notifications and required integrations have been implemented
-* [ ] infrastructure settings are ready for each environment
-* [ ] the complete configuration has been tested against the signed-off requirements
+- [ ] the required application settings have been defined
+- [ ] administrative locations and reference data have been loaded
+- [ ] users, roles and scopes have been configured
+- [ ] event forms, validation rules and conditional logic have been implemented
+- [ ] language content and country assets have been added
+- [ ] certificate templates have been configured
+- [ ] notifications and required integrations have been implemented
+- [ ] infrastructure settings are ready for each environment
+- [ ] the complete configuration has been tested against the signed-off requirements
 
-***
+---
 
 ### 6. Application settings
 
-A number of files must have some initial values set for correct initialisation of the application.  The application-config.ts file allows you to set application name, timezone, currency, administrative hierarchy used in addresses and control some feature flags, occasionally for new roadmapped requirements currently in beta.
+A number of files must have some initial values set for correct initialisation of the application. The application-config.ts file allows you to set application name, timezone, currency, administrative hierarchy used in addresses and control some feature flags, occasionally for new roadmapped requirements currently in beta.
 
 The client-static directory contains favicons, icons and manifest for the PWA.
 
-login-config.ts and client-config.ts set settings that help the React application initialise in the browser when running in localhost.  login-config.prod.ts and client-config.prod.ts perform the same job on a deployed server environment.
+login-config.ts and client-config.ts set settings that help the React application initialise in the browser when running in localhost. login-config.prod.ts and client-config.prod.ts perform the same job on a deployed server environment.
 
 When beginning configuration it is worthwhile finding and replacing all settings for our example country "Farajaland" and it's fake country code "FAR" with your country requirements in these files.
 
-***
+---
 
 ### 7. Resources and support
 
 For further guidance, see:
 
-* [**packages/countryconfig-template**](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0-beta/packages/countryconfig-template) — the template, in `opencrvs-core`, for defining country-specific configuration, APIs, forms, content and reference data.
-* [**opencrvs/infrastructure**](https://github.com/opencrvs/infrastructure) — the source of the `-infrastructure` directory scaffolded alongside it, for deploying and operating OpenCRVS using the supported deployment approach.
-* **Technical configuration guides** — step-by-step guidance **in this section** for implementing country configuration.
-* [**Installation**](../installation/) — step-by-step guidance for deploying OpenCRVS into each environment.
+- [**packages/countryconfig-template**](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0-beta/packages/countryconfig-template) — the template, in `opencrvs-core`, for defining country-specific configuration, APIs, forms, content and reference data.
+- [**opencrvs/infrastructure**](https://github.com/opencrvs/infrastructure) — the source of the `-infrastructure` directory scaffolded alongside it, for deploying and operating OpenCRVS using the supported deployment approach.
+- **Technical configuration guides** — step-by-step guidance **in this section** for implementing country configuration.
+- [**Installation**](../installation/) — step-by-step guidance for deploying OpenCRVS into each environment.

@@ -49,7 +49,7 @@ Wrap your workqueue array in `defineWorkqueues()` from `@opencrvs/toolkit/events
 **Note:** Access to any workqueue requires the **`record.search`** scope. The scope's options further narrow which records the user actually sees inside the workqueue, so a user might only be able to access a subset of the workqueue's matching records.
 {% endhint %}
 
-**Example workqueue config from** [**`src/api/workqueue/workqueueConfig.ts`**](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/src/api/workqueue/workqueueConfig.ts)**:**
+**Example workqueue config from** [**`src/api/workqueue/workqueueConfig.ts`**](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/countryconfig-template/src/api/workqueue/workqueueConfig.ts)**:**
 
 ```typescript
 // src/api/workqueue/workqueueConfig.ts
