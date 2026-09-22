@@ -100,8 +100,11 @@ data_file_path: /cryptfs_file_sparse.img
 Provisioning validates available disk space before Kubernetes installation.
 
 ```yaml
-min_free_disk_size: "30g"
+min_free_disk_size: "50g"
+min_free_disk_percent: 10
 ```
 
 This helps avoid installation failures caused by insufficient storage.
+
+When disk encryption is enabled, provisioning reserves the greater of `min_free_disk_size` or `min_free_disk_percent` of the encrypted partition size outside the encrypted partition. See **Extra headroom required when using disk encryption** in [Setup infrastructure](../preparation-steps/setup-infrastructure.md#disk-layout-requirements).
 
