@@ -1,4 +1,4 @@
-# Ingress/Egress access
+# Kubernetes Network Policy
 
 ### Overview
 
@@ -30,7 +30,7 @@ Default posture per chart:
 
 | Chart               | `ingress_mode` | `egress_mode` |
 | ------------------- | -------------- | ------------- |
-| `dependencies`      | `deny`         | `deny`        |
+| `dependencies`      | `private`      | `deny`        |
 | `opencrvs-services` | `deny`         | `private`     |
 
 `opencrvs-services` ships with `egress_mode: private` rather than `deny` so the application can reach the `dependencies` chart and other in-VPC services without every deployment having to configure `allowed_namespaces` up front.
@@ -63,11 +63,15 @@ flowchart LR
   B -. "ingress: allowed_namespaces: opencrvs-{env}" .-> A
 ```
 
-`{env}` in this diagram refers to the environment name (e.g. `production`, `qa`).
+`{env}` in this diagram refers to the environment name (e.g. `production`, `qa`)
 
 {% hint style="info" %}
-Both sides must be configured. Setting `allowed_namespaces` on only one chart opens that chart's side of the connection but not the other — traffic still won't flow until both are set.
+Both sides are configured by default while running `yarn environment:init`.&#x20;
+
+Setting `allowed_namespaces` on only one chart opens that chart's side of the connection but not the other — traffic still won't flow until both are set.
 {% endhint %}
+
+Configuration example for `allowed_namespaces`:
 
 ```yaml
 # dependencies chart values.override.yaml
@@ -86,16 +90,15 @@ network_policy:
 Recommended for production:
 
 1. Set `egress_mode: deny` on the `opencrvs-services` chart (ships as `private`).
-2. Set `network_policy.allowed_namespaces` on both charts, pointing at each other's namespace (see above).
-3. Review any service still on `ingress_mode`/`egress_mode: full` (`countryconfig` defaults to `egress_mode: full`, for SMTP/SMS provider integrations) and replace it with a `custom_rules` entry scoped to known IPs where possible.
+2. Set `ingress_mode: deny` on the `dependencies` chart (ships as `private`).
+3. Set `network_policy.allowed_namespaces` on both charts, pointing at each other's namespace (see above).
+4. Countryconfig service has `egress_mode: full` for SMTP/SMS provider integrations) and replace it with a `custom_rules` entry scoped to known IPs
+5. Deployment jobs (`deployment_jobs`) have `egress_mode: full`. Apply same `custom_rules` as for countryconfig.
+6. Build custom Postgres image with pgbackrest and other utilities, see [#postgres-preinstalling-backup-restore-utility-packages](air-gap-installation.md#postgres-preinstalling-backup-restore-utility-packages "mention") and set `postgres.networ_policy.rules: []`
 
-```yaml
-# opencrvs-services chart values.override.yaml
-network_policy:
-  egress_mode: deny
-  allowed_namespaces:
-    - opencrvs-deps-production
-```
+{% hint style="info" %}
+Check "Custom rules" section for more information
+{% endhint %}
 
 ### Cloud-native deployments
 
@@ -136,6 +139,18 @@ countryconfig:
             ports:
               - protocol: TCP
                 port: 443
+      - name: allow-smtp-egress
+        policyTypes:
+          - Egress
+        egress:
+          - to:
+              # Replace with the SMTP server's actual IP/CIDR — NetworkPolicy
+              # can only match IPs, not hostnames like smtp.example.com.
+              - ipBlock:
+                  cidr: 203.0.113.10/32
+            ports:
+              - protocol: TCP
+                port: 587 # submission (STARTTLS) — use 465 for SMTPS, or 25 if the provider requires it
 ```
 
 ### Configuration options
