@@ -8,7 +8,7 @@ description: Configuring email notifications
 
 From OpenCRVS 2.0, the **country config server is responsible for sending all email and SMS messages**. OpenCRVS Core never talks to an email provider directly — instead it calls action triggers on your country config server, and your country config decides whether and how to turn each trigger into a message.
 
-This guide explains how email delivery is implemented in the reference country config (`opencrvs-countryconfig`), how to configure it, and how to customise the messages. All paths below are in the `opencrvs-countryconfig` repository unless stated otherwise.
+This guide explains how email delivery is implemented in the reference country config (`packages/countryconfig-template` in `opencrvs-core`), how to configure it, and how to customise the messages. All paths below are in the `packages/countryconfig-template` package unless stated otherwise.
 
 There are two families of email notifications:
 

@@ -2,7 +2,7 @@
 
 Scopes serve two purposes: keeping the system secure by granting only the necessary access, and making declarations easy and intuitive to fill in. In this example, a `HOSPITAL_CLERK` can only declare births at their own location.
 
-&#x20;[See other roles to help you configure your own.](https://github.com/opencrvs/opencrvs-countryconfig/blob/release-v2.0.0/src/data-seeding/roles/roles.ts#L199)\
+&#x20;[See other roles to help you configure your own.](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/countryconfig-template/src/data-seeding/roles/roles.ts)\
 \
 **Example: `HOSPITAL_CLERK`** <br>
 
@@ -27,7 +27,7 @@ Scopes serve two purposes: keeping the system secure by granting only the necess
 
 **Step 2: Configure the event form**
 
-[See the full event example for context.](https://github.com/opencrvs/opencrvs-countryconfig/blob/release-v2.0.0/src/events/birth/forms/pages/child.ts)
+[See the full event example for context.](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/countryconfig-template/src/events/birth/forms/pages/child.ts)
 
 <pre><code><strong>// 1. Other dropdown options are not shown for the HOSPITAL_CLERK. Only HEALTH_FACILITY is visible.
 </strong>const placeOfBirthOptions = [

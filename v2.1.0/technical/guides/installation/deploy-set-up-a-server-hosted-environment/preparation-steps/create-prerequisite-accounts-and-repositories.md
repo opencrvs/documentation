@@ -40,7 +40,7 @@ Notification gateways via SMS or other platform such as WhatsApp are configurabl
 
 ### 4. Enforce two-factor authentication and PR approvals on your GitHub organisation
 
-The GitHub organisation hosting your opencrvs-countryconfig fork holds the keys to your production deployment: CI/CD workflows, environment secrets, infrastructure-as-code, and the ability to deploy. Treat compromise of a single member account as compromise of your production environment, and apply organisation-level controls accordingly.
+The GitHub organisation hosting your OpenCRVS country configuration repository holds the keys to your production deployment: CI/CD workflows, environment secrets, infrastructure-as-code, and the ability to deploy. Treat compromise of a single member account as compromise of your production environment, and apply organisation-level controls accordingly.
 
 #### 4.1 Require two-factor authentication for every member
 

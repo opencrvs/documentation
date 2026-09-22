@@ -4,7 +4,7 @@
 
 Each event has a `placeOfEvent` property in its indexed format (`EventIndex`). All jurisdiction questions are resolved against this property. `placeOfEvent` is a metadata field that defaults to the user's location.
 
-For some events, it may be more appropriate to specify a different field to determine where the event took place. This [field is defined at the root of the event configuration.](https://github.com/opencrvs/opencrvs-countryconfig/blob/release-v2.0.0/src/events/birth/index.ts#L49)
+For some events, it may be more appropriate to specify a different field to determine where the event took place. This [field is defined at the root of the event configuration.](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/countryconfig-template/src/events/birth/index.ts)
 
 ### Field types for `placeOfEvent`
 
@@ -33,7 +33,7 @@ Since a birth can happen anywhere, relying solely on locations available in the 
 
 As of OpenCRVS v2.0, `placeOfEvent` does not directly support arrays.
 
-In the [example birth event](https://github.com/opencrvs/opencrvs-countryconfig/blob/release-v2.0.0/src/events/birth/forms/pages/child.ts#L438), the form renders different fields based on the `SELECT` field `child.placeOfBirth`.
+In the [example birth event](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/countryconfig-template/src/events/birth/forms/pages/child.ts), the form renders different fields based on the `SELECT` field `child.placeOfBirth`.
 
 The following shows the available options for birth location and how `placeOfEvent` is configured to reference a single field:
 

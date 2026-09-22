@@ -4,11 +4,11 @@ Now that your database is seeded with your users you should be able to browse to
 
 **https://login.\<your-domain>**
 
-For **development** & **qa** environments, your test employees ([default-employees.csv](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/src/data-seeding/employees/source/default-employees.csv)) can log straight into your application with 2FA and notifications disabled and the username and password that exists in the csv.
+For **development** & **qa** environments, your test employees ([default-employees.csv](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/countryconfig-template/src/data-seeding/employees/source/default-employees.csv)) can log straight into your application with 2FA and notifications disabled and the username and password that exists in the csv.
 
 ### Staging or production environments
 
-For **staging** & **production** environments, your production National System Administrator employee ([prod-employees.csv](https://github.com/opencrvs/opencrvs-countryconfig/blob/develop/src/data-seeding/employees/source/prod-employees.csv)) must immediately login and change the csv password to a strong, minimum 12 character long password.
+For **staging** & **production** environments, your production National System Administrator employee ([prod-employees.csv](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/countryconfig-template/src/data-seeding/employees/source/production-employees.csv)) must immediately login and change the csv password to a strong, minimum 12 character long password.
 
 Then the user will be logged out and will have to login again with 2FA and notifications enabled.
 

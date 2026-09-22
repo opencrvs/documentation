@@ -14,7 +14,7 @@ The core fetches the event configurations from the country config server via a p
 
 ### File layout
 
-In a typical country config (see [opencrvs-countryconfig](https://github.com/opencrvs/opencrvs-countryconfig)):
+In a typical country config (see [packages/countryconfig-template](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0-beta/packages/countryconfig-template)):
 
 | Path                          | Purpose                                          |
 | ----------------------------- | ------------------------------------------------ |

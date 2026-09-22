@@ -57,6 +57,6 @@ If the server provisioning works, you will eventually see a green tick to mark t
 
 ## Ansible tasks explained
 
-In the "Select group tag you want to execute" select, when you choose "**all**", you are instructing Ansible to run every one of the infrastructure task commands listed in the [**infrastructure/server-setup/tasks**](https://github.com/opencrvs/opencrvs-countryconfig/tree/develop/infrastructure/server-setup/tasks) directory and explained in this [list](ansible-tasks-when-provisioning.md).
+In the "Select group tag you want to execute" select, when you choose "**all**", you are instructing Ansible to run every one of the infrastructure task commands listed in the [**infrastructure/server-setup/tasks**](https://github.com/opencrvs/infrastructure/tree/develop/infrastructure/server-setup/tasks) directory and explained in this [list](ansible-tasks-when-provisioning.md).
 
 It is possible for you to choose to run any one of these tasks individually at any time, such as an example given when refreshing [static TLS certificates](../../advanced-topics/tls-ssl-configuration-for-traefik/static-tls-certificates.md).
