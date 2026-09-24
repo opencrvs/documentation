@@ -58,18 +58,27 @@ Notes:
 
 ### Ubuntu version
 
-First, login as root, or if you only have sudoer access, do `sudo -i`.
-
-```
-riku@farajaland-prod:~$ lsb_release -a
-No LSB modules are available.
-Distributor ID:	Ubuntu
-Description:	Ubuntu 24.04 LTS
-Release:	24.04
-...
-```
-
+{% hint style="danger" %}
 If you are not using the correct version of Ubuntu, either recreate the server or upgrade Ubuntu.
+{% endhint %}
+
+OpenCRVS v2.0 supports the Ubuntu Server LTS release 24.04
+
+Verify your release version using following command:
+
+```
+lsb_release -a
+```
+
+Example output
+
+```
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 24.04.4 LTS
+Release:        24.04
+Codename:       noble
+```
 
 ### Production / staging / backup disk space requirements
 
