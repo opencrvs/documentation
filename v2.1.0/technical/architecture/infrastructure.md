@@ -86,7 +86,7 @@ While OpenCRVS provides the deployment automation and application infrastructure
 These typically include:
 
 * Network infrastructure
-* VPN
+* [VPN](https://documentation.opencrvs.org/technical/guides/installation/advanced-topics/why-vpn)
 * DNS configuration
 * TLS certificates
 * SMTP email service
@@ -123,3 +123,4 @@ Manual deployments or significant modifications to the automation should only be
 * [Automation to configure a Github environment](../guides/installation/deploy-set-up-a-server-hosted-environment/create-a-github-environment/)
 * [Ansible automations to provision servers](../guides/installation/deploy-set-up-a-server-hosted-environment/provisioning-servers/)
 * [Github self-hosted runners used when deploying](../guides/installation/deploy-set-up-a-server-hosted-environment/deploy/)
+* [Advanced topics: Why VPN?](../guides/installation/advanced-topics/why-vpn.md)

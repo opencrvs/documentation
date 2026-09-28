@@ -138,6 +138,7 @@
     * [Advanced topics](technical/guides/installation/advanced-topics/README.md)
       * [Air-gap installation](technical/guides/installation/advanced-topics/air-gap-installation.md)
       * [Ubuntu unattended-upgrades](technical/guides/installation/advanced-topics/ubuntu-unattended-upgrades.md)
+      * [Why VPN?](technical/guides/installation/advanced-topics/why-vpn.md)
       * [Ubuntu Firewall configuration](technical/guides/installation/advanced-topics/ubuntu-firewall-configuration.md)
       * [IP Allowlisting](technical/guides/installation/advanced-topics/ip-allowlisting.md)
       * [Kubernetes Network Policy](technical/guides/installation/advanced-topics/kubernetes-network-policy.md)
