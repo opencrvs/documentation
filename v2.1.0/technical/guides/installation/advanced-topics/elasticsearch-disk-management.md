@@ -33,14 +33,14 @@ Before starting, make sure Elasticsearch is using `host_path` storage type, chec
 3.  Scale down the Elasticsearch StatefulSet to stop Elasticsearch before moving its data.&#x20;
 
     ```
-    kubectl scale statefulset elasticsearch --replicas=0 -n opencrvs-dev-<environment>
+    kubectl scale statefulset elasticsearch --replicas=0 -n opencrvs-deps-<environment>
     ```
 4.  Copy the existing Elasticsearch data from the default location to the new mount point:
 
     ```
     rsync -rpv /data/elasticsearch /data2/elasticsearch
     ```
-5.  Update `values.override.yaml` for the appropriate environment and set the new host data path. The path is configured with `elasticsearch.host_data_path`, as described in the [dependencies chart README](https://github.com/opencrvs/opencrvs-core/blob/release/2.0.1/charts/dependencies/README.md#elasticsearch):
+5.  Update `values.override.yaml` for the appropriate environment and set the new host data path. The path is configured with `elasticsearch.host_data_path`, as described in the [dependencies chart README](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/charts/dependencies/README.md#elasticsearch):
 
     ```
     elasticsearch:
@@ -52,7 +52,7 @@ After deployment, Elasticsearch will mount the new host path and continue storin
 
 #### Option 3: Reduce logs storage by Helm chart
 
-OpenCRVS allows you to reduce Elasticsearch storage usage by lowering the retention period for observability data. This is configured in the dependencies Helm chart values.
+OpenCRVS allows you to reduce Elasticsearch storage usage by lowering the retention period for observability data. This is configured in the dependencies Helm chart values. By default, application logs and monitoring metrics are retained for 30 days. APM data (traces and errors) is retained for 7 days and is not affected by these settings.
 
 Use this option when Elasticsearch is running correctly, but disk usage is growing because logs or metrics are retained for longer than required.
 

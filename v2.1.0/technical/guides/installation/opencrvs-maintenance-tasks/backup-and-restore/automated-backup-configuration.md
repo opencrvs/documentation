@@ -6,6 +6,7 @@ If backup server is in your environment inventory file then add following sectio
 
 * Update `backup_server_dir` value to match with your environment name, e/g `development`
 * Update `schedule` to reflect best time backup job to be started,
+* Update `host` to the backup server IP address or hostname
 * Set `enabled` to `true`
 
 ```
@@ -13,8 +14,14 @@ If backup server is in your environment inventory file then add following sectio
 backup:
   enabled: true
   schedule: "0 1 * * *"
+  backup_server_secret: backup-server-ssh-credentials
   backup_server_dir: /home/backup/<environment>
+  host: <backup server IP address or hostname>
 ```
+
+{% hint style="info" %}
+The backup server hostname is configured with `backup.host` and is no longer read from the `backup-server-ssh-credentials` secret. When the environment is managed by the `yarn environment:init` script, the value is populated from the `BACKUP_HOST` GitHub environment variable. A different host can be set per datastore with `postgres.backup.host` or `minio.backup.host`.
+{% endhint %}
 
 Push your changes to GitHub and Re-[Deploy Dependencies](../../deploy-set-up-a-server-hosted-environment/deploy/running-a-dependencies-deployment.md)
 

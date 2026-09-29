@@ -50,9 +50,9 @@ OpenCRVS provides recommended tools to support operational monitoring.
 
 Kibana also provides searchable historical logs for each OpenCRVS service, allowing support teams to investigate incidents over a configurable retention period.
 
-**Sentry** monitors application errors from the user's perspective. It captures software exceptions and performance issues as they occur, enabling support teams to identify defects, understand their impact and prioritise corrective action.
+**Application Performance Monitoring (APM)** in Kibana shows errors and request traces for each OpenCRVS service. OpenCRVS core services send this data using the OpenTelemetry standard, enabling support teams to identify defects, understand their impact and prioritise corrective action.
 
-Together, these tools provide a comprehensive view of both infrastructure health and user experience.
+Together, these views provide a comprehensive picture of both infrastructure health and user experience.
 
 ***
 

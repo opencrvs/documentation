@@ -4,7 +4,7 @@
 
 Migrating legacy data is the project activity of preparing historical civil registration records for use in OpenCRVS. It includes deciding which sources are in scope, what legal status they have, how fields and identifiers will map, how exceptions will be handled, and how the migration will be tested and signed off.
 
-For the functional capability, see [Data migration](https://documentation.opencrvs.org/v2.0/functional/markdown/legacy-data/data-migration). For technical implementation guidance, see [Legacy data migration](https://documentation.opencrvs.org/v2.0/technical/guides/data-migration).
+For the functional capability, see [Data migration](../../functional/markdown/legacy-data/data-migration.md). For technical implementation guidance, see [Legacy data migration](../../technical/guides/data-migration.md).
 
 ***
 

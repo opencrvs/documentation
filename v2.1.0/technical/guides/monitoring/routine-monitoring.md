@@ -19,7 +19,7 @@ Download the Monitoring & Maintenance document and Excel checklist from the "Tec
 * Tracking the OpenCRVS release and upgrading when required
 * Monitoring system upgrades such as for the server operating system
 * Refreshing expiring TLS/SSL certificates
-* Reacting to automatic alerts from Sentry or Kibana
+* Reacting to automatic alerts from Kibana
 
 ### 3. Built-in alerts from Kibana
 

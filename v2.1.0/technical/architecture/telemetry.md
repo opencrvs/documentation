@@ -114,6 +114,10 @@ To disable it, set `TELEMETRY_ENABLED=false` (or leave it unset — it defaults 
 
 Because sends are gated on production, telemetry from staging/QA/local instances is never transmitted regardless of these settings.
 
+{% hint style="info" %}
+When telemetry is enabled, the countryconfig service in production needs outbound HTTPS access to `status.opencrvs.dev`. If your network restricts egress traffic, add this domain to your allowlist.
+{% endhint %}
+
 #### Scaffolding and upgrades
 
 * **New country configs** — `create-countryconfig` asks for your organisation, ISO alpha-3 country code, and whether to enable telemetry, then writes them as the environment defaults.
@@ -129,5 +133,3 @@ Each countryconfig instance logs its telemetry configuration once at startup:
 * **Disabled** — logs a notice explaining what would be shared and how to opt in.
 
 This makes it easy to confirm, from the logs alone, whether an instance is reporting and exactly what it would report.
-
-###

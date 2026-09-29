@@ -35,7 +35,7 @@ Elasticsearch holds the **current state** of every record — i.e. the reduced v
 
 Records are expected to accumulate well under 100 actions over their lifetime (typically around 20), which keeps the fold trivially fast both on the server and in the browser. The same reducer code runs in both places.
 
-PostgreSQL is backed up nightly to a separate server.
+PostgreSQL and MinIO (attachments) are backed up nightly to a separate server. Elasticsearch is not backed up; after a restore its index is rebuilt from PostgreSQL by the reindex job.
 
 ***
 
