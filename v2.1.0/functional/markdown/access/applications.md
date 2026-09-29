@@ -42,8 +42,6 @@ Side apps are optional. They should only be introduced where there is a clear ne
 
 #### 3.1 Example custom app: digitisation app for historical records
 
-<< UPDATE TO DESCRIBE EXAMPLE BUILT >>
-
 A common side app use case is **digitising old paper civil registration records**.
 
 In this scenario:

@@ -27,6 +27,13 @@ All dates provided are subject to change, however OpenCRVS Product Management ma
 
 ***
 
+#### Release types
+
+* **Beta release** — Made available after initial QA testing, but before full regression testing has been commenced. It is not intended for live use in a production environment, however it allows accredited implementation partners to test out sample configurations and to contribute to the release testing effort.
+* **Full release** — Production-ready release that has passed full regression testing and is ready for live use.
+
+***
+
 ***
 
 ### 3. How Roadmap Priorities Are Determined

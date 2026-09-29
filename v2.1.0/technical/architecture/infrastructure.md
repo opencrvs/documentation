@@ -93,7 +93,7 @@ These typically include:
 
 These services are considered prerequisites for a successful implementation and are outside the scope of the OpenCRVS infrastructure repository.
 
-Read more:&#x20;
+Read more:
 
 [Preparation steps](../guides/installation/deploy-set-up-a-server-hosted-environment/preparation-steps/)
 

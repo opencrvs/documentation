@@ -169,18 +169,16 @@ If you would like to report a problem, start by checking whether we already know
 
 If you are certain this is a new, unreported bug, open a **Bug** issue from the [issue chooser](https://github.com/opencrvs/opencrvs-core/issues/new/choose) and include:
 
-* **Release number** of OpenCRVS (critical information)
-* **Screenshots or screen recording** — [Loom](https://www.loom.com/) is a great tool to record a video
-* **Steps to reproduce** — Include all steps required to reproduce the bug
-* **Expected behavior** — Describe what should have happened
-* **Actual behavior** — Describe what actually happened
+Because these notifications may contain sensitive information, this is not a general mailing list for individual developers or community members. Applicants will need to provide documentation confirming their organisation, their involvement in an OpenCRVS implementation and their authority to receive security information on its behalf.
 
 To help us determine bug severity and priority, explain the following in your GitHub Discussion:
 
-* Your issue and the issue number
-* The country implementation you are working on
-* The severity of your problem
-* Your project timeline and dependencies
+* Your name, role and organisational email address;
+* The country or system integrator you represent;
+* Your relationship to the OpenCRVS implementation; and
+* Supporting documentation or a contact who can verify your role.
+
+All applications will be reviewed and verified by the OpenCRVS team. Approved recipients must keep advance security information confidential and share it only with authorised colleagues responsible for securing or upgrading their implementation.
 
 We need to understand bug severity factors in order to expedite the priority of a hotfix. Please be as honest as you can in order to be respectful to all other contributors and country needs.
 

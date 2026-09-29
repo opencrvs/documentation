@@ -8,6 +8,8 @@ Because a printed certificate's VC QR code is signed once and can't be updated a
 Should you wish to investigate issuance providers and prototype with OpenCRVS VCs, [Walt.id](https://walt.idhttps/walt.id/) & [Inji](https://www.inji.io/) are OpenSource issuance / wallet options, with [Vault](https://www.hashicorp.com/en/products/vault) an option for PKI infrastructure.  Our VCs are compatible with any digital wallet such as [Inji](https://www.inji.io/) or [Paradym](https://paradym.id/).
 {% endhint %}
 
+
+
 OpenCRVS supports two issuance paths for **birth events**:
 
 * **Digital VC (SD-JWT / OID4VC)** — delivered as an `openid-credential-offer://` URI that a citizen scans with a compliant digital wallet.
