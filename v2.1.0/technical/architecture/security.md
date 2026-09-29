@@ -68,6 +68,12 @@ Testing is conducted in two rounds:
 
 All tests are conducted to UK government standards and follow proven ethical hacking methodologies.
 
+{% hint style="warning" %}
+You should always conduct your own penetration test of your configuration and installation before going live.&#x20;
+
+Penetration testing demonstrates that a system was secure against a defined set of tests at a point in time—it does not eliminate future vulnerabilities, configuration mistakes or supply chain risks.
+{% endhint %}
+
 ***
 
 ### 4. Authentication and access control
@@ -195,9 +201,10 @@ Data security policies and procedures must be defined, implemented, and updated 
 
 ***
 
-#### 8. Contribute to the security of OpenCRVS <a href="#id-8.-contribute-to-the-security-of-opencrvs" id="id-8.-contribute-to-the-security-of-opencrvs"></a>
+### 8. Contribute to the security of OpenCRVS
 
-Our mission is to ensure that every person on the planet is **recognised, protected and provided for from birth**. By reporting potential vulnerabilities responsibly and applying security updates promptly, you help us keep children’s and families’ personal details safe.If you discover a potential security issue, please report it privately through [GitHub Security Advisories](https://github.com/opencrvs/opencrvs-core/security). Countries using OpenCRVS and their authorised system integrators may also apply to join our restricted security notification list and receive advance notice of important upgrades.​
+Our mission is to ensure that every person on the planet is **recognised, protected and provided for from birth**. By reporting potential vulnerabilities responsibly and applying security updates promptly, you help us keep children’s and families’ personal details safe.
+
+If you discover a potential security issue, please report it privately through [GitHub Security Advisories](https://github.com/opencrvs/opencrvs-core/security). Countries using OpenCRVS and their authorised system integrators may also apply to join our restricted security notification list and receive advance notice of important upgrades.
 
 [Learn how to contribute to the security of OpenCRVS.](../guides/contributing/#id-5.-contribute-to-the-security-of-opencrvs)
-

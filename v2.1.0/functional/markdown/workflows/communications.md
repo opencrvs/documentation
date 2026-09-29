@@ -127,8 +127,6 @@ Key characteristics:
 * Use of placeholders (for example, `name`, `trackingId`).
 * Country-specific guidance on timeframes and required documents.
 
-To learn more ..>
-
 #### 5.3 Email configuration
 
 Email notifications require integration with an email service (for example, SMTP server or cloud email provider).

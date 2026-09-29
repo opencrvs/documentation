@@ -1,4 +1,4 @@
-# Core development
+# PR development
 
 This page describes how to contribute changes to [opencrvs-core](https://github.com/opencrvs/opencrvs-core). It assumes you already have a running OpenCRVS installation; see the setup guides if not.
 
@@ -117,6 +117,8 @@ You're responsible for your PR through to merge. That means responding to review
 {% hint style="warning" %}
 PRs with 100s of changed files and many commits may be rejected outright.  You may need to split your feature into multiple PRs.
 {% endhint %}
+
+PRs that go quiet are closed automatically after 30 days. If yours is stalled because you're waiting on something from us, ping a reviewer — we'd rather unblock you than have the PR time out.
 
 A PR that goes quiet is labelled `Stale` after 20 days and closed automatically after 30. If yours is stalled because you're waiting on something from us, ping a reviewer — we'd rather unblock you than have the PR time out.
 

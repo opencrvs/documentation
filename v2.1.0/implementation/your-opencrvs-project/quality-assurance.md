@@ -150,7 +150,7 @@ Check out the [Configuration, testing and technical configuration files](https:/
 
 If you suspect that you have discovered a defect you will need to raise an issue for L3 or L4 support.  Read the [Operational support](operational-support.md) guide for info on what these tiers mean and who is responsible for resolution.
 
-#### How to prepare a defect report
+#### How to prepare a defect report for L3 or L4 support
 
 Your issue will be fixed much faster if you spend about half an hour preparing it, including the exact reproduction steps and a demo.
 
@@ -173,8 +173,6 @@ Your issue will be fixed much faster if you spend about half an hour preparing i
    * Browser (for example, Chrome, Firefox, Safari)
    * Version (for example, 22)
 9. **Possible fixes** — if you can, link to the line of code that might be responsible for the problem.
-
-Following this format ensures that the development team has all the information needed to investigate and resolve the issue efficiently.
 
 
 

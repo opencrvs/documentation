@@ -121,7 +121,7 @@ Filters can apply to individual charts or entire dashboards to support flexible 
 Role-based permissions determine:
 
 * Which dashboards a user can open
-* What event data they can view based on their jurisidciton ?!?!!?! (think there is a complex solution)
+* What event data they can view based on their jurisdiction
 
 This ensures that sensitive operational insights are visible only to authorised users while supporting decentralised monitoring.
 
@@ -136,17 +136,15 @@ Dashboards are designed to evolve as country needs change. Teams can:
 
 Because dashboards are configuration-driven rather than hard-coded, updates can be made without changes to the core OpenCRVS application.
 
-< Example dashbaords >
-
 ***
 
 ### 5. Use and interpretation
 
 Performance dashboards should be interpreted in context:
 
-* **\~\~Data lags** — some indicators may be based on partial data if registrations are still being processed.\~\~
+* **Data lags** — some indicators may be based on partial data if registrations are still being processed.
 * **Population denominators** — coverage estimates depend on the quality of population estimates or target numbers.
-* **\~\~Operational factors** — spikes in workload or outages can affect short-term trends.\~\~
+* **Operational factors** — spikes in workload or outages can affect short-term trends.
 
 Dashboards are most powerful when used as part of a regular **review and action cycle**, for example:
 

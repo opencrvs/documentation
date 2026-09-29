@@ -62,9 +62,13 @@ Requirements gathering is led by a small, multidisciplinary team. The discipline
 
 For the full set of roles across the whole implementation — including the change management, training, deployment and monitoring roles you will need later — see [Establish project & team](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs/establish-project-and-team).
 
-\{% hint style="info" %\} **Sizing guidance:** A focused discovery for a proof of concept or single-province pilot — one or two vital events, a handful of sites — typically takes **6–12 weeks** end to end. A national programme covering all vital events, multiple administrative tiers and several integrations takes considerably longer and usually runs some activities (for example, desk research and fieldwork logistics) in parallel. Plan the stages to overlap where it is safe to do so, but do not start Co-Design before your field findings are validated. \{% endhint %\}
+{% hint style="info" %}
+**Sizing guidance:** A focused discovery for a proof of concept or single-province pilot — one or two vital events, a handful of sites — typically takes **6–12 weeks** end to end. A national programme covering all vital events, multiple administrative tiers and several integrations takes considerably longer and usually runs some activities (for example, desk research and fieldwork logistics) in parallel. Plan the stages to overlap where it is safe to do so, but do not start **Co-Design** before your field findings are validated.
+{% endhint %}
 
-\{% hint style="info" %\} **Embed your own people.** Wherever an implementing partner leads this work, include government staff (registrars, statisticians, IT) in the team throughout. They hold the contextual knowledge that makes findings accurate, and their involvement is what makes the resulting system sustainable after handover. \{% endhint %\}
+{% hint style="info" %}
+**Embed your own people.** Wherever an implementing partner leads this work, include government staff (registrars, statisticians, IT) in the team throughout. They hold the contextual knowledge that makes findings accurate, and their involvement is what makes the resulting system sustainable after handover.
+{% endhint %}
 
 ***
 
