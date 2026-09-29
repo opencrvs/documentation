@@ -103,6 +103,21 @@ We recommend you use following pre-configured environment names:
 * staging
 * production
 
+**Enable two-factor authentication (2FA)?**
+
+The script asks whether to enable two-factor authentication for user login: `? Enable two-factor authentication (2FA)? (Y/n)`
+
+The default answer follows the **purpose** of the environment:
+
+* Environments that host PII data (`staging`, `production`, or any custom environment created with the "Staging/Production" purpose) default to **Yes**.
+* Environments without PII data (`development`, `qa`, or any custom "Development/QA/Testing" environment) default to **No**.
+
+With 2FA enabled, login requires a real verification code delivered by email or SMS. With it disabled, login accepts the fixed test code `000000` — convenient for development, but it means a password alone grants access, so **never disable 2FA on an environment that holds real citizen data**.
+
+{% hint style="warning" %}
+Enabling 2FA requires working email/SMS delivery on that environment. With `TWO_FA_ENABLED=true`, the pre-deploy validation fails if `SMTP_HOST`/`SMTP_PORT` are missing, and the post-deploy validation fails if SMTP is unreachable or `SENDER_EMAIL_ADDRESS`/`ALERT_EMAIL` are unset. Configure email delivery before deploying a production or staging environment — see [running-validation-checks.md](../deploy/running-validation-checks.md "mention").
+{% endhint %}
+
 #### GitHub
 
 **What is the name of your Github organisation?** Type your organisation.
