@@ -1,14 +1,14 @@
 # Legacy data migration
 
 {% hint style="info" %}
-This guide is about importing historical records from legacy sources into OpenCRVS. It is not the same as OpenCRVS version-upgrade database migrations. For version upgrades, see [Version upgrades](https://documentation.opencrvs.org/v2.0/technical/guides/version-upgrades).
+This guide is about importing historical records from legacy sources into OpenCRVS. It is not the same as OpenCRVS version-upgrade database migrations. For version upgrades, see [Version upgrades](version-upgrades.md).
 {% endhint %}
 
 ### 1. Introduction
 
 Legacy data migration is the technical process of transforming records from an approved legacy source and loading them into OpenCRVS through the Core APIs.
 
-This guide assumes the country has already completed the project decisions described in [Migrate legacy data](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs-project/migrate-legacy-data), including source scope, target status, identifier policy, location mapping, exception handling and reconciliation requirements.
+This guide assumes the country has already completed the project decisions described in [Migrate legacy data](../../implementation/your-opencrvs-project/migrate-legacy-data.md), including source scope, target status, identifier policy, location mapping, exception handling and reconciliation requirements.
 
 ***
 
@@ -161,11 +161,11 @@ For low-connectivity settings, plan batch size, upload windows, support coverage
 
 ### Related pages
 
-* [Data migration](https://documentation.opencrvs.org/v2.0/functional/markdown/legacy-data/data-migration) — functional capability and architecture principles.
-* [Digitise paper records](https://documentation.opencrvs.org/v2.0/functional/markdown/legacy-data/digitise-paper-records) — functional capability for paper-derived sources.
-* [Migrate legacy data](https://documentation.opencrvs.org/v2.0/implementation/your-opencrvs-project/migrate-legacy-data) — project planning, ownership, readiness and sign-off.
-* [APIs](https://documentation.opencrvs.org/v2.0/functional/markdown/interoperability/apis) — overview of Core APIs.
-* [Authenticate a client](https://documentation.opencrvs.org/v2.0/technical/guides/configuration/integrations/authenticate-a-client) — system client authentication.
-* [Events](https://documentation.opencrvs.org/v2.0/technical/guides/configuration/events) — event configuration.
-* [Locations](https://documentation.opencrvs.org/v2.0/technical/guides/configuration/administrative-hierarchy/locations) — configured locations and facilities.
+* [Data migration](../../functional/markdown/legacy-data/data-migration.md) — functional capability and architecture principles.
+* [Digitise paper records](../../functional/markdown/legacy-data/digitise-paper-records.md) — functional capability for paper-derived sources.
+* [Migrate legacy data](../../implementation/your-opencrvs-project/migrate-legacy-data.md) — project planning, ownership, readiness and sign-off.
+* [APIs](../../functional/markdown/interoperability/apis.md) — overview of Core APIs.
+* [Authenticate a client](configuration/integrations/authenticate-a-client.md) — system client authentication.
+* [Events](configuration/events/README.md) — event configuration.
+* [Locations](configuration/administrative-hierarchy/locations.md) — configured locations and facilities.
 

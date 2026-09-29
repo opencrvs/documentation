@@ -32,7 +32,7 @@ Administrative areas are organised into a hierarchy (for example, Province → D
 
 When individual addresses are returned from the Search API, they contain an **`administrativeAreaId`**, which identifies the **leaf-level administrative area** associated with the address.
 
-Each administrative area also stores a **`parent_id`**, allowing applications to navigate from the leaf node back through the hierarchy to determine the complete administrative path.
+Each administrative area also stores a **`parentId`**, allowing applications to navigate from the leaf node back through the hierarchy to determine the complete administrative path.
 
 This hierarchical structure enables reporting, searching, and integration without storing the full address hierarchy on every record.
 
@@ -86,6 +86,8 @@ Locations can be deactivated using the available APIs. However, this should be u
 
 Deactivating a location does not remove it or hide historical records — a record captured before deactivation keeps showing the location as it was at the time, and historical events continue to reference the UUID of the original location. See [Updates & versioning](../administrative-hierarchy/updates-and-versioning.md) for how deactivation and historical resolution work.
 
+Locations and administrative areas returned by the API no longer carry a `validUntil` field. Use the top-level `status` and the `versions` history instead.
+
 If records need to be reassigned to a different office or administrative area, this cannot be achieved simply by deactivating a location. A **custom data migration** must be developed to update all affected historical records so that they reference the new location UUID.
 
 Such migrations should be carefully planned, tested, and executed to preserve data integrity.
@@ -106,4 +108,5 @@ To minimise future maintenance and avoid complex data migrations:
 
 #### APIs
 
-* [Locations](https://documentation.opencrvs.org/technical/apis/core-apis/locations)
+* [Core APIs](../../../apis/core-apis/README.md) — the `Locations` and `Administrative areas` endpoints (`GET`, `POST`, `PUT /{id}` and `DELETE /{id}/versions/{versionId}`). Writing requires the `location.edit` scope.
+* [How to add new locations & administrative areas](../administrative-hierarchy/how-to-add-locations-and-administrative-areas.md) and [How to update & deactivate locations & administrative areas](../administrative-hierarchy/how-to-update-and-deactivate-locations-and-administrative-areas.md)

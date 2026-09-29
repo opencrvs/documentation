@@ -11,6 +11,12 @@ This tutorial guides you through all steps required to transform your v1.9 Docke
 * [ ] Write down you current **OpenCRVS core and Country config** image versions
 {% endhint %}
 
+{% hint style="danger" %}
+**Migrate before upgrading to v2.1**
+
+Run the Docker Swarm to Kubernetes migration while your country config is still on **v2.0.x**. When you upgrade your country config to v2.1 with `npx @opencrvs/toolkit upgrade`, the `infrastructure/` directory, which contains the "Migration swarm to k8s" workflow, is deleted unless you pass the `--docker-swarm` flag.
+{% endhint %}
+
 ### Prerequisites
 
 #### 1. Infrastructure Repository
@@ -111,7 +117,7 @@ Common customisations include:
 All customisations must be **re-implemented using Helm values or a custom Helm chart**.
 
 An example custom Helm chart is published in the OpenCRVS Core repository:\
-[https://github.com/opencrvs/opencrvs-core/tree/develop/charts/opencrvs-mosip](https://github.com/opencrvs/opencrvs-core/tree/develop/charts/opencrvs-mosip)
+[https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/charts/opencrvs-mosip](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/charts/opencrvs-mosip)
 
 You may also choose to use the Bitnami Common Library Chart for more advanced use cases:\
 [https://github.com/bitnami/charts/tree/main/bitnami/common](https://github.com/bitnami/charts/tree/main/bitnami/common)
@@ -175,7 +181,7 @@ To run them in Kubernetes, create or extend a custom Helm chart that defines the
 * `IngressRoute`, if the service must be externally reachable
 * `Secret` or `ConfigMap`, if the service needs configuration files or sensitive values
 
-The [charts/opencrvs-mosip](https://github.com/opencrvs/opencrvs-core/tree/develop/charts/opencrvs-mosip) chart is a useful example because it deploys additional services such as `mosip-api`, `mosip-mock`, and `esignet-mock`, and passes their configuration through Helm values.
+The [charts/opencrvs-mosip](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/charts/opencrvs-mosip) chart is a useful example because it deploys additional services such as `mosip-api`, `mosip-mock`, and `esignet-mock`, and passes their configuration through Helm values.
 
 A simplified values structure could look like this:
 

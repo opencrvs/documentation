@@ -4,11 +4,11 @@ Now that your database is seeded with your users you should be able to browse to
 
 **https://login.\<your-domain>**
 
-For **development** & **qa** environments, your test employees ([default-employees.csv](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/countryconfig-template/src/data-seeding/employees/source/default-employees.csv)) can log straight into your application with 2FA and notifications disabled and the username and password that exists in the csv.
+For **development** & **qa** environments, your test employees ([default-employees.csv](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/countryconfig-template/src/data-seeding/employees/source/default-employees.csv)) can log straight into your application with 2FA and notifications disabled and the username and password that exists in the csv.
 
 ### Staging or production environments
 
-For **staging** & **production** environments, your production National System Administrator employee ([prod-employees.csv](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/countryconfig-template/src/data-seeding/employees/source/production-employees.csv)) must immediately login and change the csv password to a strong, minimum 12 character long password.
+For **staging** & **production** environments, your production National System Administrator employee ([production-employees.csv](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/countryconfig-template/src/data-seeding/employees/source/production-employees.csv)) must immediately login and change the csv password to a strong, minimum 12 character long password.
 
 Then the user will be logged out and will have to login again with 2FA and notifications enabled.
 
@@ -25,7 +25,7 @@ On fresh environments login issue may happen due to unsuccessful [data seeding](
 Check data seed logs in Kibana **Observability > Discover** by filtering:
 
 ```
-kubernetes.container.name : "data-seed"
+container.name : "data-seed"
 ```
 
 Data seed is short living job and sometimes logs might be missed from Kibana, in that case check container logs by running:
@@ -57,7 +57,7 @@ To learn more about OpenCRVS monitoring and maintenance, visit the [monitoring](
 As the SMTP API was configured in the countryconfig service, you can filter the appropriate logs in Kibana in the **Observability > Discover** section like so:
 
 ```
-kubernetes.container.name : "countryconfig"
+container.name : "countryconfig"
 ```
 
 As you browse the logs you are looking for 500 errors and you can respond to any SMTP service error messages that you see appropriately. Perhaps you need to change the Github Action secrets. [Running a deployment ](running-a-opencrvs-deployment.md)of OpenCRVS will refresh all microservices and so this is required when secrets are updated.

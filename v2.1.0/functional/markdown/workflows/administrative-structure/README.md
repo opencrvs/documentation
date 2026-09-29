@@ -56,7 +56,7 @@ The administrative structure is:
 
 * **Shared** across features such as Users, Workqueues, Actions, and Reports.
 * **Configurable** per deployment to reflect country specific adminstrative structures.
-* **\~\~Stable** over time, but able to support **historical changes** (for example, boundary changes) via configuration and data migration.\~\~
+* **Versioned** over time — locations and administrative areas can be renamed, recoded or closed while historical records keep showing the details that applied at the time. See [Lifecycle & Versioning](lifecycle-and-versioning.md).
 
 ***
 

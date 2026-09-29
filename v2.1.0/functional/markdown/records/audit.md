@@ -63,12 +63,13 @@ For offline working, the **action timestamp** reflects the moment the user trigg
 * **Created** — a declaration was created.
 * **Notified** — an incomplete declaration was submitted.
 * **Declared** — a complete declaration was submitted.
-* **Updated** — a declaration was edited.
+* **Edited** — a declaration was edited (notified, declared or registered with edits).
 * **Rejected** — a declaration was rejected and sent back for updates.
 * **Flagged as potential duplicate** — the system flagged a declaration as a potential duplicate.
 * **Marked as a duplicate** — a user confirmed the declaration is a duplicate.
 * **Marked not a duplicate** — a user confirmed the declaration is not a duplicate.
 * **Archived** — a declaration was archived
+* **Unarchived** — an archived record was restored to its pre-archive status.
 * **Registered** — an event was registered.
 * **Certified** — a certificate or certified copy was issued.
 * **Correction requested** — a correction request was submitted.

@@ -3,13 +3,13 @@
 \
 Record scopes manage access to event-related actions. A persisted event is called record.\
 \
-You can find [available scopes and their definitions here](https://github.com/opencrvs/opencrvs-core/blob/v2.0.0-beta/packages/commons/src/scopes.ts)
+You can find [available scopes and their definitions here](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/commons/src/scopes.ts)
 
 For a scope to grant access, every option must match. Scope options are specific to each scope type. Most options control access based on the user or their jurisdiction. [See administrative hierarchy to understand how jurisdictions work](../administrative-hierarchy/).\
 \
 **Example 1: Searching for records**
 
-`record.search` accepts up to six options. When searching for records, scopes act as an additional filter — results are returned based on your search query, excluding any records you do not have access to. Undefined options are ignored.
+`record.search` accepts every record scope option. When searching for records, scopes act as an additional filter — results are returned based on your search query, excluding any records you do not have access to. Undefined options are ignored.
 
 ```typescript
 export const JurisdictionFilter = z
@@ -34,7 +34,7 @@ const scopeByEvent = z
 
 ```
 
-Scope options with truncated record metadata — ([Find the full type here](https://github.com/opencrvs/opencrvs-core/blob/v2.0.0-beta/packages/commons/src/events/EventMetadata.ts))
+Scope options with truncated record metadata — ([Find the full type here](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/commons/src/events/EventMetadata.ts))
 
 Scope options now also support **`notifiedIn`** and **`notifiedBy`**, following the same pattern as `declaredIn`/`declaredBy` and `registeredIn`/`registeredBy`.
 
@@ -45,12 +45,16 @@ type RecordSearchScope = {
  options: {
     event: scopeByEvent,
     placeOfEvent: JurisdictionFilter.optional(),
+    createdBy: UserFilter.optional(),
+    createdIn: JurisdictionFilter.optional(),
     notifiedIn: JurisdictionFilter.optional(),
     notifiedBy: UserFilter.optional(),
     declaredIn: JurisdictionFilter.optional(),
-    declaredBy: UserFilter.optional()
+    declaredBy: UserFilter.optional(),
+    status: EventStatus[] (optional),
     registeredIn: JurisdictionFilter.optional(),
-    registeredBy: UserFilter.optional()
+    registeredBy: UserFilter.optional(),
+    flags: { anyOf?: Flag[], noneOf?: Flag[], allOf?: Flag[] } (optional)
  }
 }
 ```
@@ -87,17 +91,22 @@ The corresponding `legalStatuses.NOTIFIED` entry is populated whenever a Notify 
 As with `declaredBy`/`registeredIn`, using `notifiedBy` on a scope for an action that occurs before notification is possible (e.g. `record.create`) will always resolve to `forbidden`.
 {% endhint %}
 
-Scope options also support **`status`**, restricting the scope to records currently in one of the given statuses:
+Scope options also support **`status`**, restricting the scope to records currently in one of the given statuses — `CREATED`, `NOTIFIED`, `DECLARED`, `REGISTERED` or `ARCHIVED`. It is available on every record scope except `record.create`, `record.declare` and `record.notify`:
 
 ```ts
 { type: 'record.edit', options: { status: ['DECLARED'] } }
+// 'type=record.edit&status=DECLARED'
 ```
 
-Full-access scope types (e.g. `record.search`, `record.read`, `record.review-duplicates`) also support **`flags`**, restricting the scope to records whose current flags satisfy the given `anyOf`/`noneOf`/`allOf` condition:
+The following scope types also support **`flags`**, restricting the scope to records whose current flags satisfy the given `anyOf`/`noneOf`/`allOf` condition: `record.search`, `record.read`, `record.request-correction`, `record.correct`, `record.unassign-others`, `record.review-duplicates`, `record.custom-action`, `record.print-certified-copies`, `record.action.accept` and `record.action.reject`.
 
 ```ts
-{ type: 'record.search', options: { flags: { noneOf: ['REJECTED'] } } }
+{ type: 'record.search', options: { flags: { noneOf: ['rejected'] } } }
 ```
+
+{% hint style="warning" %}
+Flag values are matched exactly and are case-sensitive. Built-in flags are lowercase — `incomplete`, `rejected`, `correction-requested`, `potential-duplicate`, `edit-in-progress` — and action flags have the form `<action type>:<action status>` in lowercase, e.g. `register:requested`. Any other value is treated as a custom flag, so a mistyped value such as `'REJECTED'` never matches: with `noneOf` it silently restricts nothing.
+{% endhint %}
 
 **Example 2: Declaring records — why options are limited**\
 \
@@ -110,6 +119,8 @@ type RecordDeclareScope = {
  options: {
     event: scopeByEvent,
     placeOfEvent: JurisdictionFilter.optional(),
+    createdBy: UserFilter.optional(),
+    createdIn: JurisdictionFilter.optional(),
  }
 }
 ```

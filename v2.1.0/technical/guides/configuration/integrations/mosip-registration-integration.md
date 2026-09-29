@@ -8,11 +8,11 @@ This section assumes that you are already familiar with the [general registratio
 
 From OpenCRVS v2.0.0, MOSIP registration integration is implemented through **action confirmation handlers** registered in the country configuration server. When a registrar performs a `REGISTER` action, OpenCRVS core calls the country configuration's registered action trigger. [Learn more about action triggers](../action-triggers/). The trigger can respond synchronously (HTTP 200) or defer the response for asynchronous external validation (HTTP 202).
 
-The reference implementation is in [opencrvs-integrationland](https://github.com/opencrvs/opencrvs-integrationland).
+The reference implementation is the [testland](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/testland) country configuration in the OpenCRVS Core repository.
 
 #### Route registration
 
-Routes for MOSIP integration are registered in [`src/index.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/index.ts):
+Routes for MOSIP integration are registered in [`src/index.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/index.ts):
 
 ```typescript
 server.route({
@@ -30,7 +30,7 @@ server.route({
 
 #### Birth registration handler
 
-The `onMosipBirthRegisterHandler` is defined in [`src/api/registration/index.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/api/registration/index.ts).
+The `onMosipBirthRegisterHandler` is defined in [`src/api/registration/index.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/api/registration/index.ts).
 
 The handler:
 
@@ -38,7 +38,7 @@ The handler:
 2. Generates a registration number.
 3. Evaluates eligibility via `shouldForwardBirthRegistrationToMosip`.
 4. If eligible, creates a `createMosipInteropClient` and calls `mosipInteropClient.register(...)` with the child's biographic data.
-5. Returns HTTP 202 (deferred) to place the record in the "Awaiting external validation" work queue while MOSIP processes the packet.
+5. Returns HTTP 202 (deferred) to place the record in the "Awaiting external validation" work queue while MOSIP processes the packet. When MOSIP issues the credential, mosip-api accepts the registration in OpenCRVS with its own system client (`OPENCRVS_CLIENT_ID` / `OPENCRVS_CLIENT_SECRET`, holding `record.action.accept` and `record.read`) — see [MOSIP Deployment](mosip-deployment.md) and [Action confirmation](../action-triggers/action-confirmation.md).
 6. If not eligible, returns HTTP 200 with the registration number for immediate acceptance.
 
 ```typescript
@@ -62,6 +62,7 @@ export async function onMosipBirthRegisterHandler(
   )
 
   await mosipInteropClient.register({
+    eventId: event.id,
     trackingId: event.trackingId,
     requestFields: { /* child's biographic data */ },
     notification: { /* informant contact */ },
@@ -76,7 +77,7 @@ export async function onMosipBirthRegisterHandler(
 
 #### Birth correction handler
 
-The `onBirthCorrectionActionHandler` in [`src/api/events/handler.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/api/events/handler.ts) handles two scenarios:
+The `onBirthCorrectionActionHandler` in [`src/api/events/handler.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/api/events/handler.ts) handles two scenarios:
 
 * **UIN creation on correction**: If the child has no existing NID and eligibility rules pass, a new packet is sent to MOSIP via `mosipInteropClient.register(...)`.
 * **Biographic update**: If the child already has a NID, `mosipInteropClient.updateBiographics(...)` is called instead.
@@ -95,7 +96,7 @@ if (!childHasNid) {
 
 #### Death registration handler
 
-The `onMosipDeathRegisterHandler` in [`src/api/registration/index.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/api/registration/index.ts) follows the same pattern:
+The `onMosipDeathRegisterHandler` in [`src/api/registration/index.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/api/registration/index.ts) follows the same pattern:
 
 1. Evaluates eligibility via `shouldForwardDeathRegistrationToMosip`.
 2. If eligible, sends the deceased's information to MOSIP via `mosipInteropClient.register(...)` with UIN and death details.
@@ -103,7 +104,7 @@ The `onMosipDeathRegisterHandler` in [`src/api/registration/index.ts`](https://g
 
 #### Eligibility rules
 
-Eligibility rules are defined in [`src/events/mosip.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/events/mosip.ts).
+Eligibility rules are defined in [`src/events/mosip.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/events/mosip.ts).
 
 **`shouldForwardBirthRegistrationToMosip`**
 
@@ -156,7 +157,7 @@ The death registration is forwarded to MOSIP when the informant or spouse (if th
 
 #### Identity verification on action (ID Auth)
 
-Beyond the dedicated MOSIP register handlers, the general `onBirthActionHandler` and `onDeathActionHandler` in [`src/api/events/handler.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/api/events/handler.ts) fire on every event action (DECLARE, VALIDATE, REGISTER, etc.). They can be used to verify identity data submitted offline against the MOSIP ID Auth SDK when the system comes online.
+Beyond the dedicated MOSIP register handlers, the general `onBirthActionHandler` and `onDeathActionHandler` in [`src/api/events/handler.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/api/events/handler.ts) fire on every event action (DECLARE, VALIDATE, REGISTER, etc.). They can be used to verify identity data submitted offline against the MOSIP ID Auth SDK when the system comes online.
 
 In a production implementation, the handler would call `mosipInteropClient.verifyNid()` for each available individual:
 
@@ -180,9 +181,9 @@ if (isMotherAvailable && declaration['mother.verified'] !== 'authenticated') {
 ```
 
 {% hint style="warning" %}
-**ID Auth verification is not enabled in the reference implementation.** The `verifyNid()` calls are **commented out** in the opencrvs-integrationland example because MOSIP does not recommend offline ID Auth verification as a substitute for real-time biometric or eSignet authentication. Verifying identity by matching biographic data (name, DOB, NID) against MOSIP records provides weak assurance — it confirms the data exists in the ID system but does not authenticate the person presenting it. eSignet authentication ([§4.1 of the functional guide](../../../../functional/markdown/interoperability/mosip-id-integration.md#id-4.1-e-signet-authentication-flow)) is the preferred approach.
+**ID Auth verification is not recommended for production.** The `verifyNid()` calls in the testland reference configuration exist so the flow can be exercised against the MOSIP mock; do not copy them into production as-is, because MOSIP does not recommend offline ID Auth verification as a substitute for real-time biometric or eSignet authentication. Verifying identity by matching biographic data (name, DOB, NID) against MOSIP records provides weak assurance — it confirms the data exists in the ID system but does not authenticate the person presenting it. eSignet authentication ([§4.1 of the functional guide](../../../../functional/markdown/interoperability/mosip-id-integration.md#id-4.1-e-signet-authentication-flow)) is the preferred approach.
 
-The commented-out blocks in [`src/api/events/handler.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/api/events/handler.ts) serve as a reference showing how `verifyNid()` would integrate in a production context that has chosen to accept this trade-off. They are retained as documentation of the integration surface rather than as a recommended pattern.
+The `verifyNid()` calls in [`src/api/events/handler.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/api/events/handler.ts) serve as a reference showing how `verifyNid()` would integrate in a production context that has chosen to accept this trade-off. They document the integration surface rather than a recommended pattern.
 {% endhint %}
 
 #### The `createMosipInteropClient`
@@ -195,9 +196,15 @@ import { MOSIP_INTEROP_URL } from '@countryconfig/constants'
 
 const mosipInteropClient = createMosipInteropClient(
   MOSIP_INTEROP_URL,   // e.g. http://mosip-api:2024
-  `Bearer ${token}`     // OpenCRVS JWT for callback authentication
+  `Bearer ${token}`     // token OpenCRVS sent to the trigger; authenticates the call to mosip-api
 )
 ```
+
+The token passed here only proves to mosip-api that the request came from OpenCRVS. It carries no scopes and is not used to confirm the registration — mosip-api authenticates with its own system client for that.
+
+{% hint style="warning" %}
+From OpenCRVS 2.1, `register(...)` requires `eventId` — the ID of the OpenCRVS record being registered (`event.id`). mosip-api stores it to confirm the registration when MOSIP issues the credential. It previously travelled inside an exchanged token, which no longer exists.
+{% endhint %}
 
 The client provides:
 
@@ -206,7 +213,7 @@ The client provides:
 
 #### Asynchronous flow and the "Awaiting external validation" workqueue
 
-When the handler returns HTTP 202, the record enters a `Requested` state and appears in the **"Pending external validation"** workqueue. This workqueue is configured in [`src/api/workqueue/workqueueConfig.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/api/workqueue/workqueueConfig.ts):
+When the handler returns HTTP 202, the record enters a `Requested` state and appears in the **"Pending external validation"** workqueue. This workqueue is configured in [`src/api/workqueue/workqueueConfig.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/api/workqueue/workqueueConfig.ts):
 
 ```typescript
 {
@@ -286,7 +293,7 @@ Rows much older than a normal MOSIP round trip are the stuck ones. Take the `id`
 
 **2. Get a token for the integration**
 
-Use the integration's own credentials, `OPENCRVS_CLIENT_ID` and `OPENCRVS_CLIENT_SECRET`. These are the values `mosip-api` is configured with, and a National System Admin can read them from the OpenCRVS **Integrations** page. The client already has the `record.read`, `record.register` and `record.correct` scopes, which is everything the next steps need.
+Use the integration's own credentials, `OPENCRVS_CLIENT_ID` and `OPENCRVS_CLIENT_SECRET`. These are the values `mosip-api` is configured with, and a National System Admin can read them from the OpenCRVS **Integrations** page. The client has the `record.read`, `record.action.accept` and `record.action.reject` scopes, which is what steps 3 and 4 need.
 
 ```sh
 curl -X POST http://localhost:7070/auth/token \

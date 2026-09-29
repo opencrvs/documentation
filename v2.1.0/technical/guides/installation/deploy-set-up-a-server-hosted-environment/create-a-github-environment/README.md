@@ -25,7 +25,7 @@ Make sure you completed environment preparation steps and have all required info
 | DockerHub Account, token and repository are created                                    | Make sure Country config image was built and pushed to DockerHub                                                                                       |
 | Users with their public keys to grant remote access to the servers                     | Refer to [Advanced Topics > SSH access](../../advanced-topics/ssh-access.md)                                                                           |
 | SMTP server configured                                                                 | Refer to [Setup Infrastructure](../preparation-steps/setup-infrastructure.md)                                                                          |
-| Optionally Third-party accounts created (sentry, slack, etc)                           | Refer to [prerequisite accounts](../preparation-steps/create-prerequisite-accounts-and-repositories.md)                                                |
+| Optionally Third-party accounts created (slack, etc)                                   | Refer to [prerequisite accounts](../preparation-steps/create-prerequisite-accounts-and-repositories.md)                                                |
 
 ### Create github environments
 
@@ -56,6 +56,22 @@ You may notice that the same commands exist in an **infrastructure** folder in *
 {% endhint %}
 
 You will be asked to provide values to configure key OpenCRVS components. Some actions can be automated and the script will guide you to the next steps.
+
+#### Environment management commands
+
+The `yarn environment:*` scripts in the infrastructure repository run the `opencrvs` command line tool shipped with the `@opencrvs/toolkit` package (version `2.1.0`):
+
+| Command                             | Runs                                  | Purpose                                                                                                   |
+| ----------------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `yarn environment:init`             | `opencrvs environment init`           | Create or update a GitHub environment, its secrets and variables, Ansible inventory and Helm chart values |
+| `yarn environment:upgrade`          | `opencrvs environment upgrade`        | Upgrade the repository layout of existing environments to the current version (see below)                 |
+| `yarn environment:users`            | `opencrvs environment users`          | Manage SSH users in the Ansible inventory, see [SSH access](../../advanced-topics/ssh-access.md)          |
+| `yarn environment:update-workflows` | `opencrvs environment update-workflows` | Refresh the "Target environment" dropdown in all GitHub Actions workflows from the `environments/` folder |
+| `yarn environment:swarm-to-k8s`     | `opencrvs environment swarm-to-k8s`   | Used by the Docker Swarm to Kubernetes migration                                                          |
+
+{% hint style="warning" %}
+**Upgrading from v2.0?** Ansible inventory files have moved from `infrastructure/server-setup/inventory/<environment name>.yml` to `environments/<environment name>/inventory.yml`, so each environment is self-contained in its own folder. `yarn environment:init` refuses to run while the old layout exists. Run `yarn environment:upgrade` once first: it moves every inventory file to its new location and updates the environment lists in the workflows.
+{% endhint %}
 
 ### Environments init script questions
 
@@ -188,12 +204,14 @@ Disk Encryption: If disk encryption is enabled, provision GitHub Actions workflo
 
 Its possible for this environment to back up its data to another server e.g. backup every night. **It is strongly recommended if you are provisioning a production environment to enable backup.**
 
-* `BACKUP_HOST`: Backup server IP address or hostname.
+* `BACKUP_HOST`: Backup server **IP address**. A hostname is not supported, because the Kubernetes network policy only allows backup jobs to connect to this IP address.
 * `BACKUP_SERVER_USER`: User to connect to backup server. At this point you may choose any username, provision script will create user for you. E/g If you would like to use shared server to store backups from qa and production, you may want to have separate users for security reasons.
 
 Script will add backup host to ansible inventory files and configure appropriate values for helm release. Script will create private/public key-pair for backup server user.
 
-By default backup is configured to run at 01:00 AM by UTC, if you need to adjust backup schedule, update configuration manually at `environments/<env>/dependencies/values.yaml`
+* `BACKUP_ENVIRONMENT_MODE`: Backup mode, `dump` (daily full database backup) or `differential` (weekly full, daily differential backup).
+
+By default backup is configured to run at 01:00 AM by UTC, if you need to adjust backup schedule, override `backup.schedule` in `environments/<env>/dependencies/values.override.yaml`
 
 <figure><img src="../../../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption><p>Backup configuration</p></figcaption></figure>
 
@@ -205,7 +223,12 @@ Its possible for this environment to restore backed-up data from another environ
 
 Restore configuration will ask you to provide the restore environment name from the existing environment list. **If the environment doesn't exist and will be created later, feel free to type future environment name here, but don't forget to create that environment BEFORE running OpenCRVS** [**dependencies**](../deploy/running-a-dependencies-deployment.md) **deployment.**
 
-By default restore is configured to run at 00:00 AM by UTC, if you need to adjust the restore schedule, update configuration manually at `environments/<env>/dependencies/values.yaml`
+The script will then ask you to:
+
+* Select the backup mode of the environment you restore from (`dump` or `differential`). It must match the `BACKUP_ENVIRONMENT_MODE` of that environment.
+* `RESTORE_HOST`: **IP address** of the backup server to restore from. Restore jobs fail if this value is not set.
+
+By default restore is configured to run at 00:00 AM by UTC, if you need to adjust the restore schedule, override `restore.schedule` in `environments/<env>/dependencies/values.override.yaml`
 
 <figure><img src="../../../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption><p>Restore configuration</p></figcaption></figure>
 
@@ -217,12 +240,6 @@ The script will proceed to ask you to set database and monitoring passwords. Str
 * `KIBANA_PASSWORD`: (Default: random value): Kibana password
 
 <figure><img src="../../../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption><p>Database and monitoring sections. In this example disk encryption is already enabled</p></figcaption></figure>
-
-#### Sentry
-
-`SENTRY_DSN`: The DSN tells the SDK where to send bug events to. OpenCRVS application has built-in Sentry support.
-
-<figure><img src="../../../../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Metabase admin
 
@@ -283,34 +300,43 @@ You should get a number of files modified:
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
+        modified:   .github/workflows/backup.yml
+        modified:   .github/workflows/clear-all-data.yml
         modified:   .github/workflows/deploy-dependencies.yml
         modified:   .github/workflows/deploy-opencrvs.yml
         modified:   .github/workflows/github-to-k8s-sync-env.yml
-        modified:   .github/workflows/k8s-reindex.yml
-        modified:   .github/workflows/k8s-reset-data.yml
-        modified:   .github/workflows/k8s-seed-data.yml
         modified:   .github/workflows/provision.yml
+        modified:   .github/workflows/reindex.yml
         modified:   .github/workflows/reset-2fa.yml
+        modified:   .github/workflows/restore.yml
+        modified:   .github/workflows/seed-data.yml
+        modified:   .github/workflows/validate-opencrvs.yml
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
         environments/development/
-        infrastructure/server-setup/inventory/development.yml
 ```
 
 Usually review is not required for files under the `.github` folder.
 
 Review modified files:
 
-* `infrastructure/server-setup/inventory/<environment name>.yml`: Configuration file for Ansible playbook responsible for server provision. For more information please follow hints inside file and [SSH Access](../../advanced-topics/ssh-access.md) section.
-* `environments/<environment name>`: Folder with `values,yaml` files for helm charts:
-  * `environments/<environment name>/traefik/values.yaml`: Update this file with proper configuration to handle SSL certificate. Please follow documentation under [TLS / SSL & DNS](../../advanced-topics/tls-ssl-configuration-for-traefik/)
-  * `environments/<environment name>/opencrvs-services/values.yaml`: Review configuration and adjust according to your needs, **usually defaults are good for initial deployment**
-  * `environments/<environment name>/dependencies/values.yaml`: Review configuration and adjust according to your needs, **usually defaults are good for initial deployment**.
+* `environments/<environment name>/inventory.yml`: Configuration file for Ansible playbook responsible for server provision. For more information please follow hints inside file and [SSH Access](../../advanced-topics/ssh-access.md) section.
+* `environments/<environment name>`: Folder with `values.yaml` files for helm charts:
+  * `environments/<environment name>/traefik/values.yaml`: Traefik configuration, including SSL certificate handling. Please follow documentation under [TLS / SSL & DNS](../../advanced-topics/tls-ssl-configuration-for-traefik/)
+  * `environments/<environment name>/opencrvs-services/values.yaml`: OpenCRVS configuration, **usually defaults are good for initial deployment**
+  * `environments/<environment name>/dependencies/values.yaml`: Datastores and monitoring configuration, **usually defaults are good for initial deployment**.
+  * `environments/<environment name>/opentelemetry/values.yaml`: OpenTelemetry Collector configuration. The collector receives traces from OpenCRVS services, Traefik and NGINX and forwards them to Elastic APM.
+
+{% hint style="warning" %}
+`values.yaml` files are generated and **overwritten every time you run** `yarn environment:init`. Put all your customisations in the `values.override.yaml` file next to each `values.yaml`, keeping the same YAML hierarchy. The script creates empty `values.override.yaml` files and never overwrites them. To remove a generated section, set its top-level key to `null` in `values.override.yaml`.
+{% endhint %}
+
+The generated values apply a hardened default configuration: Kubernetes network policies deny all traffic between namespaces except between `opencrvs-<environment name>` and `opencrvs-deps-<environment name>` (see [Kubernetes Network Policy](../../advanced-topics/kubernetes-network-policy.md)), OpenTelemetry tracing is enabled, and `OPENCRVS_ENVIRONMENT` is set to the environment name.
 
 ### Final notice
 
 {% hint style="danger" %}
-The later [provision](../provisioning-servers/) script will disable password SSH access for all users on the server and create new users from the `infrastructure/server-setup/inventory/<environment name>.yml` file. After provisioning, SSH will only be possible using public/private key pairs.
+The later [provision](../provisioning-servers/) script will disable password SSH access for all users on the server and create new users from the `environments/<environment name>/inventory.yml` file. After provisioning, SSH will only be possible using public/private key pairs.
 {% endhint %}
 
 {% hint style="success" %}

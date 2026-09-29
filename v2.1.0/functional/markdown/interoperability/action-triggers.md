@@ -93,7 +93,9 @@ Triggers can temporarily **hold the workflow** while processing:
 
 * return `202 Accepted` to pause
 * perform async validation or external calls
-* confirm completion later
+* accept or reject the action later
+
+Accepting or rejecting a paused action is done with the country configuration's own system client, which needs the `record.action.accept` or `record.action.reject` scope. A user's token cannot confirm an action, so the person who requested an action can never also approve it.
 
 This ensures data integrity before registration is finalised.
 
@@ -103,10 +105,12 @@ This ensures data integrity before registration is finalised.
 
 Triggers are also available for system users.
 
-| Endpoint                             | Purpose                                      |
-| ------------------------------------ | -------------------------------------------- |
-| `POST /triggers/user/user-created`   | Send welcome or onboarding messages          |
-| `POST /triggers/user/reset-password` | Send customised password reset notifications |
+| Endpoint                                  | Purpose                                                        |
+| ----------------------------------------- | -------------------------------------------------------------- |
+| `POST /trigger/user/user-created`         | Send welcome or onboarding messages                            |
+| `POST /trigger/user/reset-password`       | Send customised password reset notifications                   |
+| `POST /trigger/user/password-reset-link`  | Send a single-use link to a user who forgot their password     |
+| `POST /trigger/user/username-reminder-link` | Send a single-use link to a user who forgot their username   |
 
 ***
 
@@ -126,7 +130,7 @@ When a marriage is registered:
 Register trigger endpoint
 
 ```
-POST /triggers/events/marriage/actions/register
+POST /trigger/events/marriage/actions/REGISTER
 ```
 
 Implement logic
@@ -134,7 +138,7 @@ Implement logic
 ```jsx
 server.route({
   method: 'POST',
-  path: '/triggers/events/marriage/actions/register',
+  path: '/trigger/events/marriage/actions/REGISTER',
   handler: async (request, h) => {
     const record = request.payload
 

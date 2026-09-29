@@ -76,23 +76,29 @@ If a location is later **inactivated or closed**, existing records that use that
 
 ### 5. Locations in Forms and Selectors
 
-When a user selects a location from a dropdown in a form, OpenCRVS shows the locations that are **valid for the date relevant to that field**. This ensures that users select locations based on the appropriate point in time.
+Which locations a form dropdown offers is configured per field, using two options:
 
-The locations available in a new registration depend on what the field represents:
+* **Active only** — offer only locations that are active, hiding closed locations and locations scheduled to open in the future.
+* **Anchor to date of event** — decide which locations are active, and which name to show, based on the event date entered on the form instead of today's date.
 
-| Field                                                         | Locations are based on             |
-| ------------------------------------------------------------- | ---------------------------------- |
-| **Place of event / place of delivery**                        | The event date entered on the form |
-|  **Residential address**                                      | The event date entered on the form |
-| **Other addresses** (such as the informant's current address) | The current date                   |
+Without these options, a dropdown lists every location, including closed ones, under its current name.
+
+The reference country configuration sets them as follows (all of these fields are active only):
+
+| Field                                                                                  | Locations are based on             |
+| -------------------------------------------------------------------------------------- | ---------------------------------- |
+| **Place of event / place of delivery** (health facility, private home or other address) | The event date entered on the form |
+| **Residential and other addresses** (such as the mother's or informant's address)      | The current date                   |
 
 For example, if an event occurred in 1995, the **Place of Event** dropdown will show the locations that were active in 1995, rather than only showing locations that are active today.
 
-A location that is scheduled to become active or inactive in the future is stored in OpenCRVS but is **not available for selection until its effective date**.
+On fields configured as active only, a location that is scheduled to become active in the future is stored in OpenCRVS but is **not available for selection until its effective date**.
+
+If the event date is changed after a location has been picked, and the picked location resolves differently at the new date (for example, it was closed or renamed), the selection is cleared and the user must choose again.
 
 **Correcting an Existing Record**
 
-When correcting an existing record, location dropdowns are expected to show the locations that were **valid on the original date of the record**, rather than the locations that are active today.
+When correcting an existing record, fields anchored to the date of event show the locations that were **valid on the date of the event**, rather than the locations that are active today — the same behaviour as in a new declaration.
 
 For example, when correcting a record for an event that occurred on **1 January 2020**, the location options would be based on the administrative structure that was valid on that date.
 
@@ -109,7 +115,7 @@ Whether a search filter includes inactive places depends on what kind of locatio
 | Residential address                    | ❌ No — active only           |
 | Other address filters                  | ❌ No — active only           |
 
-Selecting a closed office or health institution in a search filter returns every record ever created there — inactivation never removes records from being found. Address-type filters, by contrast, only ever list currently active administrative areas, since they describe present-day jurisdictions rather than a historical event location.
+Selecting a closed office or health institution in a search filter returns every record ever created there — inactivation never removes records from being found. A renamed office or health institution is listed under every name it has had, so it can be found by its old name as well as its current one; all names return the same records. Address-type filters, by contrast, only ever list currently active administrative areas, since they describe present-day jurisdictions rather than a historical event location.
 
 ### 7. Workqueues & User Access
 
@@ -133,9 +139,9 @@ OpenCRVS keeps location information accurate even when staff are working offline
 
 **Guidance for country implementation teams**
 
-* **Plan how changes will be requested and applied.** Since locations cannot currently be created, renamed, or inactivated through the OpenCRVS user interface, country teams should establish an internal process for managing these changes, such as a support or configuration request.
+* **Plan how changes will be requested and applied.** Locations cannot currently be created, renamed, or inactivated through the OpenCRVS user interface. Changes are made through the location API by a user or system client with the `location.edit` scope, so country teams should establish an internal process for requesting and applying them.
 * **Plan for office closures.** Before closing an office, clear or redirect any pending work in its queue, as pending work is not automatically moved to another office.
-* **Validate location codes.** If your country requires location codes to be unique among active locations, include this validation in your import or configuration process.
+* **Plan location codes.** OpenCRVS rejects a change that would give two active locations (or two active administrative areas) the same reference code at the same time. A code can be reused once the location holding it has been inactivated, so close the old location before giving its code to a replacement.
 * **Test offline synchronisation.** Before a large-scale rollout, test offline synchronisation using the size and structure of your country's actual administrative hierarchy.
 
 #### Current Functional Limitations
@@ -144,7 +150,7 @@ OpenCRVS keeps location information accurate even when staff are working offline
 * **Splitting or merging places:** A place cannot be split into multiple places or multiple places merged into one as tracked operations.
 * **Linking replaced places:** OpenCRVS does not currently link an inactivated place to the new place that replaces it. They remain separate locations in the system.
 * **Statistics and reporting:** Changes to locations do not affect how statistics or reporting figures are calculated.
-* **Managing locations through the user interface:** Locations cannot currently be created, renamed, or inactivated through an on-screen administrative tool. These changes are managed through platform configuration.
+* **Managing locations through the user interface:** Locations cannot currently be created, renamed, or inactivated through an on-screen administrative tool. These changes are made through the location API, which requires the `location.edit` scope.
 * **Historical information before versioning:** OpenCRVS does not reconstruct the history of existing locations. Existing locations start with their current name and status as their initial version.
 * **Viewing location change history:** The system records changes to locations, but there is currently no user interface for viewing who made a change and when.
 

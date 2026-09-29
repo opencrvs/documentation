@@ -100,13 +100,18 @@ Its recommended to configure connection to cluster as described at [Add new clus
       helm template \
       --set restore.enabled=true \
       --set restore.cronjob=false \
+      --set restore.host=<BACKUP SERVER IP ADDRESS OR HOSTNAME> \
       --set backup_encryption_secret=backup-encryption-secret \
       --set env.RESTORE_DATE=<YYYY-MM-DD: PUT YOUR DATE> \
       -s templates/${job}-restore-cronjob.yaml \
       -f /tmp/opencrvs-deps.$(date +%F).yaml \
-      oci://ghcr.io/opencrvs/opencrvs-dependencies-chart | k apply -f -
+      oci://ghcr.io/opencrvs/opencrvs-dependencies-chart | kubectl apply -f -
     done
     ```
+
+    {% hint style="info" %}
+    The backup server hostname is not read from the `backup-server-ssh-credentials` secret. Always pass `restore.host`, because the values of an environment that only runs backups do not contain it.
+    {% endhint %}
 
     Example output:
 

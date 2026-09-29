@@ -47,6 +47,8 @@ OpenCRVS is designed as a core component of Digital Public Infrastructure and is
 ### 5. Authentication & authorisation
 
 * **JWT** is used for session tokens, signed with **RS256** (RSA + SHA-256). The signing key is loaded from the filesystem at service startup, and the matching public key is published at the `/.well-known` endpoint so downstream services can verify tokens without sharing secrets.
+* **Short-lived access tokens with rotating refresh tokens.** A user's access token lives for `CONFIG_TOKEN_EXPIRY_SECONDS` (default 600 seconds) and is renewed in the background with a refresh token that lives for `CONFIG_REFRESH_TOKEN_EXPIRY_SECONDS` (default one week, counted from the last renewal). Every renewal issues a new refresh token; presenting an already-used refresh token after the `CONFIG_REFRESH_TOKEN_GRACE_SECONDS` window (default 60 seconds) revokes the whole session. System client tokens live for `CONFIG_SYSTEM_TOKEN_EXPIRY_SECONDS` (default 600 seconds) and have no refresh token.
+* **OAuth 2.0 client credentials** for system clients. Parameters must be sent in the request body, not the URL query string (RFC 6749 §2.3.1).
 * **Two-factor authentication** is required for sign-in. The 2FA delivery channel is country-configurable — SMS, email, or any transport the country wishes to wire up.
 * **Role-based access control.** Roles and the actions they may perform are defined by country configuration; the core enforces them on every action.
 
@@ -71,7 +73,7 @@ Tamper-evident hashing of audit entries is on the roadmap rather than in the cur
 
 ### 8. Transport & at-rest encryption
 
-OpenCRVS treats transport security and at-rest encryption as **deployment-layer concerns**. The platform does not pin specific TLS versions or key-management systems in code; it expects the operator to terminate TLS at the ingress, enforce encrypted connections to managed PostgreSQL, MongoDB and S3-compatible storage, and configure disk/volume encryption and KMS-managed keys according to local policy.
+OpenCRVS treats transport security and at-rest encryption as **deployment-layer concerns**. The platform does not pin specific TLS versions or key-management systems in code; it expects the operator to terminate TLS at the ingress, enforce encrypted connections to managed PostgreSQL, Elasticsearch and S3-compatible storage, and configure disk/volume encryption and KMS-managed keys according to local policy.
 
 This is a deliberate choice: it keeps OpenCRVS portable across the cloud and on-premise environments that different country deployments require, and lets each country meet its own data-residency and key-custody mandates. Recommended deployment configurations are covered in the operations documentation.
 

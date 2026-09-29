@@ -94,7 +94,6 @@ items:
   type: Opaque
 - apiVersion: v1
   data:
-    host: M...M=
     ssh_key: LS0hr...S0VZLS0tLS0K
     user: YmFja3Vw
   kind: Secret
@@ -106,12 +105,17 @@ metadata:
   resourceVersion: ""
 ```
 
+{% hint style="info" %}
+The backup server hostname is not read from the `backup-server-ssh-credentials` secret. If your secret still contains a `host` key, it is ignored. The hostname is configured with `restore.host` in the helm chart values, see below.
+{% endhint %}
+
 #### Enable restore in Dependencies helm chart values
 
-Add following section to `environments/<environment>/dependencies/values.yaml` and run "Deploy dependencies" workflow:
+Add following section to `environments/<environment>/dependencies/values.override.yaml` and run "Deploy dependencies" workflow:
 
 * Update `backup_server_dir` value to match with your environment name, e/g `/home/backup/production`
 * Update `schedule` to reflect best time backup job to be started,
+* Update `host` to the backup server IP address or hostname
 * Set `enabled` to `true`
 
 ```
@@ -123,13 +127,18 @@ restore:
   backup_server_secret: backup-server-ssh-credentials
   backup_server_dir: /home/backup/production
   backup_encryption_secret: restore-encryption-secret
+  host: <backup server IP address or hostname>
 ```
+
+{% hint style="warning" %}
+Restore jobs fail if `restore.host` is not set. When the environment is managed by the `yarn environment:init` script, the value is populated from the `RESTORE_HOST` GitHub environment variable. Re-run `yarn environment:init` for the environment if `RESTORE_HOST` is missing.
+{% endhint %}
 
 Push your changes to github and Re-[Deploy Dependencies](../../deploy-set-up-a-server-hosted-environment/deploy/running-a-dependencies-deployment.md)
 
 #### Enable reindex in OpenCRVS helm chart values
 
-Add following section to `environments/<environment>/opencrvs-services/values.yaml` and run "Deploy OpenCRVS" workflow:
+Add following section to `environments/<environment>/opencrvs-services/values.override.yaml` and run "Deploy OpenCRVS" workflow:
 
 * `enabled`: Enable reindex
 * `schedule`: Cronjob schedule for reindex, see [https://crontab.guru/](https://crontab.guru/)
@@ -138,7 +147,7 @@ Add following section to `environments/<environment>/opencrvs-services/values.ya
 elasticsearch:
   reindex:
     enabled: true
-    schedule "0 2 * * *"
+    schedule: "0 2 * * *"
 ```
 
 Push your changes to github and Re-[Deploy OpenCRVS](../../deploy-set-up-a-server-hosted-environment/deploy/running-a-opencrvs-deployment.md)
@@ -178,10 +187,9 @@ Wait at least for first job execution, usually takes at to 24 hours
     Example output:
 
     ```
-    TODO: FIXME:
-    NAME                       STATUS     COMPLETIONS   DURATION   AGE
-    minio-backup-29381820      Complete   1/1           9s         5h11m
-    postgres-backup-29381820   Complete   1/1           13s        5h11m
+    NAME                        STATUS     COMPLETIONS   DURATION   AGE
+    minio-restore-29384640      Complete   1/1           11s        7h16m
+    postgres-restore-29384640   Complete   1/1           11s        7h16m
     ```
 
 ## Disable/Enable restore

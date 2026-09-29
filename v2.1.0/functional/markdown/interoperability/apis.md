@@ -85,6 +85,8 @@ Requests are authenticated in one of two ways:
 * **User JWT** — a token representing a signed-in user. The request is performed as that user, with that user's permissions. Appropriate when acting on behalf of a specific human action.
 * **System client token** — a service-to-service token issued for a registered system client. Appropriate for background jobs and any flow with no human user in the loop.
 
+Accepting or rejecting an action that country config has paused can only be done with a system client token holding the `record.action.accept` or `record.action.reject` scope. A user JWT is refused for these calls, whatever permissions the user has.
+
 Tokens are signed with RS256, and the matching public key is published at the `/.well-known` endpoint so downstream services can verify them without sharing secrets.
 
 ***

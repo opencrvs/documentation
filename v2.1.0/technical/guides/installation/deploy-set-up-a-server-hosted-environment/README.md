@@ -13,11 +13,11 @@ The **essential** [**preparation steps**](preparation-steps/) guide you through 
   - GitHub organisation
   - Docker Hub
   - 1Password (or another secrets manager)
-  - Optional: other services such as Slack and Sentry
+  - Optional: other services such as Slack
 
 #### Fork the required repositories
 
-If you have not already done so in the [Quick Start](../quick-start.md), fork your country configuration repository, scaffolded from [countryconfig-template](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0-beta/packages/countryconfig-template), and configure its CI process to push images to your container registry. See [**Fork and build the countryconfig repo**](../set-up-github-and-dockerhub-accounts.md)
+If you have not already done so in the [Quick Start](../quick-start.md), fork your country configuration repository, scaffolded from [countryconfig-template](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/countryconfig-template), and configure its CI process to push images to your container registry. See [**Fork and build the countryconfig repo**](../set-up-github-and-dockerhub-accounts.md)
 
 Fork the [infrastructure](https://github.com/opencrvs/infrastructure) repository.
 

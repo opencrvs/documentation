@@ -43,6 +43,7 @@ Each form has a small set of core properties that control how it behaves.
   * **Declaration / record forms**, **Print** forms, and **Correction** forms can all have one or more pages.
   * Pages are used to group related questions and improve usability.
   * **Custom action forms** are shown in a dialog and are limited to a **single page**, but can still use conditional show / hide logic for individual fields.
+  * The **Notify**, **Declare**, **Register**, **Archive** and **Reject** actions can also show an optional single-page form in their confirmation dialog (for example, a comment or a "supporting documents reviewed?" question). The answers are saved with the action and shown in the record audit.
 * **Inputs (fields)**
   * Each page contains one or more input fields.
   * Each input can have an optional **label** and **hint/help text** to explain what should be entered.

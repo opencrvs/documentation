@@ -89,6 +89,7 @@ Workqueues are powered by a flexible query system. Multiple filters can be combi
 | **Updated by**          | Exact                                           | Filters by the user who last updated the record.                                         | <p>User ID: 123-123<br>Me</p>                                                                            |
 | **Updated by role**     | <p>Exact role<br>Any role</p>                   | Filters by the role of the user who last updated the record.                             | Registrar                                                                                                |
 | **Record data fields**  | Field-type dependent                            | Filters on values within the record data. Available operations depend on the field type. | <p>Child age > 1 year<br>Event location = Ilanga District Hospital<br>Date of event between 2023–202</p> |
+| **Flags**               | <p>Any of<br>All of<br>None of</p>              | Filters by the flags currently on the record. The options can be combined.               | <p>All of (Validated, Approval required for late registration)<br>None of (Potential duplicate)</p>   |
 
 #### 3.3 Filter type options
 
@@ -97,6 +98,8 @@ The following matching types are used across filters:
 * **Exact** – Matches a single, precise value (e.g. a specific date, user, or location).
 * **Within** – Matches a location and all of its child locations in the administrative hierarchy.
 * **Any of** – Matches at least one value from a selected set.
+* **All of** – Matches only when every value in a selected set is present (used for flags).
+* **None of** – Matches only when none of the values in a selected set are present (used for flags).
 * **Range / Relative** – Matches a date range or a period relative to the current date (e.g. “last 14 days”).
 * **Me** – A special selector representing the currently logged-in user.
 

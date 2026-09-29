@@ -10,11 +10,11 @@ Copy the githash tag associated with your **countryconfig** Docker container ima
 
 ### Run OpenCRVS Deployment
 
-You can deploy to your server using the automated **"Deploy OpenCRVS"** Github Action for any environment created at [Create a GitHub Environment](https://github.com/opencrvs/documentation/blob/master/v2.0.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment/4.3.4-create-a-github-environment) step.
+You can deploy to your server using the automated **"Deploy OpenCRVS"** Github Action for any environment created at [Create a GitHub Environment](../create-a-github-environment/) step.
 
 1. Navigate to **GitHub Actions** within **`infrastructure`** repository
 2. Select **"Deploy OpenCRVS"** workflow
-3. Enter the **Tag of the core image**. This usually corresponds to the OpenCRVS release tag, e.g. `v2.0.0`.
+3. Enter the **Tag of the core image**. This usually corresponds to the OpenCRVS release tag, e.g. `v2.1.0`.
 4. Enter the **Tag of the country config image**. Use the tag of the image built from your fork of the country config repository.
 5. For the initial deployment, enable the **“Data seeding during deployment”** option. Note: You can also seed the environment later.
 6. Select **"Target environment"** from dropdown menu.
@@ -24,7 +24,7 @@ You can deploy to your server using the automated **"Deploy OpenCRVS"** Github A
 
 ### Verification steps
 
-* Verify workflow was completed successfully
+* Verify workflow was completed successfully, including the pre-deployment and post-deployment validation jobs, see [Running validation checks](running-validation-checks.md)
 * Verify resources are up and running after deployment: `kubectl get pods -n opencrvs-<env>`
 *   Make sure all helm pre-/post-deploy hooks completed successfully:<br>
 

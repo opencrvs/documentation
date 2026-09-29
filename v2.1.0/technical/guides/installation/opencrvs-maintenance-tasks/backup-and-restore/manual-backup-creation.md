@@ -63,7 +63,7 @@ Following components are backed up:
     ```
 5. SSH (Login) to backup server and verify backup was completed successfully.
 
-### Running Single component (Postgers) backup
+### Running Single component (PostgreSQL) backup
 
 1. Connect to your cluster with `kubectl`
 2.  Change namespace to opencrvs-deps-\<environment>:
@@ -71,7 +71,7 @@ Following components are backed up:
     ```
     kubectl config set-context --current --namespace=opencrvs-deps-<environment>
     ```
-3.  Run following command to trigger MongoDB backup:
+3.  Run following command to trigger PostgreSQL backup:
 
     ```
     kubectl create job \
@@ -83,7 +83,7 @@ Following components are backed up:
     ```
     job.batch/postgres-backup-manual created
     ```
-4.  Verify MongoDB backup completed successfully:
+4.  Verify PostgreSQL backup completed successfully:
 
     ```
     kubectl logs -f job/postgres-backup-manual

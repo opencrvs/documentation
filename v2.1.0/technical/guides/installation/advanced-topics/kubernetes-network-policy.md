@@ -35,6 +35,10 @@ Default posture per chart:
 
 `opencrvs-services` ships with `egress_mode: private` rather than `deny` so the application can reach the `dependencies` chart and other in-VPC services without every deployment having to configure `allowed_namespaces` up front.
 
+{% hint style="info" %}
+The table above shows the chart defaults. Environments created with `yarn environment:init` use a stricter configuration: the generated `values.yaml` files set `ingress_mode: deny` and `egress_mode: deny` on **both** charts, together with `allowed_namespaces` pointing at each other's namespace (see Cross-namespace access). Hardening steps 1-3 below are therefore already applied on these environments.
+{% endhint %}
+
 ### Public entry points
 
 The following services are allowed to accept connections from any private subnet:
@@ -46,6 +50,8 @@ The following services are allowed to accept connections from any private subnet
 * `dashboards`
 
 Every other service accepts ingress only from its own namespace.
+
+The MOSIP integration chart (`opencrvs-mosip`) is usually deployed into the same namespace as `opencrvs-services`. It ships a `mosip-allow-all` NetworkPolicy that exempts `mosip-api`, `mosip-mock` and `esignet-mock` from the default-deny policy.
 
 ### Cross-namespace access
 
@@ -94,11 +100,15 @@ Recommended for production:
 3. Set `network_policy.allowed_namespaces` on both charts, pointing at each other's namespace (see above).
 4. Countryconfig service has `egress_mode: full` for SMTP/SMS provider integrations) and replace it with a `custom_rules` entry scoped to known IPs
 5. Deployment jobs (`deployment_jobs`) have `egress_mode: full`. Apply same `custom_rules` as for countryconfig.
-6. Build custom Postgres image with pgbackrest and other utilities, see [#postgres-preinstalling-backup-restore-utility-packages](air-gap-installation.md#postgres-preinstalling-backup-restore-utility-packages "mention") and set `postgres.networ_policy.rules: []`
+6. Build custom Postgres image with pgbackrest and other utilities, see [#postgres-preinstalling-backup-restore-utility-packages](air-gap-installation.md#postgres-preinstalling-backup-restore-utility-packages "mention") and set `postgres.network_policy.rules: []`
 
 {% hint style="info" %}
 Check "Custom rules" section for more information
 {% endhint %}
+
+### Backup and restore server
+
+When backup or restore is enabled, the `dependencies` chart allows Postgres and MinIO to connect to the backup server over SSH (TCP port 22) only. The rule is built from `backup.host` / `restore.host` (set from the `BACKUP_HOST` / `RESTORE_HOST` GitHub environment variables) as a `/32` IP block, because Kubernetes NetworkPolicy cannot match hostnames. **`BACKUP_HOST` and `RESTORE_HOST` must be IP addresses.**
 
 ### Cloud-native deployments
 
@@ -163,11 +173,12 @@ Reference for the `opencrvs-services` chart:
 | `network_policy.ingress_mode`                           | `deny`    | `deny` / `private` / `full`, see above.                                          |
 | `network_policy.egress_mode`                            | `private` | `deny` / `private` / `full`, see above.                                          |
 | `network_policy.allow_same_namespace`                   | `true`    | Allow pods in the same namespace to reach each other.                            |
-| `network_policy.allowed_namespaces`                     | `[]`      | Namespaces allowed to reach the dependencies chart — see Cross-namespace access. |
-| `<service>.network_policy.ingress_mode` / `egress_mode` | `deny`    | Per-service override, same modes.                                                |
-| `<service>.network_policy.rules` / `custom_rules`       | `[]`      | Explicit NetworkPolicy rules for one service.                                    |
+| `network_policy.allowed_namespaces`                     | `[]`      | Namespaces OpenCRVS pods are allowed to reach (egress), e.g. the dependencies namespace — see Cross-namespace access. |
+| `network_policy.annotations` / `labels`                 | `{}`      | Extra annotations/labels on every generated NetworkPolicy. Can be overridden per service.                         |
+| `<service>.network_policy.ingress_mode` / `egress_mode` | global    | Per-service override, same modes. Unset values inherit the global setting. Chart defaults: `ingress_mode: private` for `client`, `gateway`, `login`, `countryconfig` and `dashboards`; `egress_mode: full` for `countryconfig`; `ingress_mode: deny` / `egress_mode: full` for `deployment_jobs`. |
+| `<service>.network_policy.rules` / `custom_rules`       | `[]`      | Explicit NetworkPolicy rules for one service.                                                                     |
 
 For the complete reference, see:
 
-* [`charts/dependencies/README.md`](https://github.com/opencrvs/opencrvs-core/blob/develop/charts/dependencies/README.md#network-policies)
-* [`charts/opencrvs-services/README.md`](https://github.com/opencrvs/opencrvs-core/blob/develop/charts/opencrvs-services/README.md#network-policies)
+* [`charts/dependencies/README.md`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/charts/dependencies/README.md#network-policies)
+* [`charts/opencrvs-services/README.md`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/charts/opencrvs-services/README.md#network-policies)

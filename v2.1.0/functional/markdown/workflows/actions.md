@@ -105,9 +105,9 @@ Core record actions are maintained by OpenCRVS to support standard civil registr
 | Declare                                          | Submit a completed declaration                      | Draft, Notified    | —                    |
 | Mark as duplicate                                | Mark a declaration as a duplicate during review     | Declared           | Potential duplicate  |
 | Mark not a duplicate                             | Confirm a declaration is not a duplicate            | Declared           | Potential duplicate  |
-| Archive                                          | Archive a declaration                               | Declared           | —                    |
+| Archive                                          | Archive a declaration                               | Notified, Declared | —                    |
 | Unarchive                                        | Restore an archived record to its pre-archive status | Archived          | —                    |
-| Reject                                           | Reject a declared or validated record               | Declared           | —                    |
+| Reject                                           | Reject a declared or validated record               | Notified, Declared | —                    |
 | Edit → Declare with edits or Register with edits | Edit notification or declaration data during review | Notified, Declared | —                    |
 | Register                                         | Finalise and register a declaration                 | Declared           | —                    |
 | Request correction                               | Flag a registered record for correction             | Registered         | —                    |
@@ -129,6 +129,16 @@ Core actions can be configured to conditionally add or remove flags based on the
 
 This configuration allows countries to adapt core workflows to their specific requirements without modifying the core action definitions.
 
+#### Configurable confirmation forms on core actions
+
+The **Notify**, **Declare**, **Register**, **Archive** and **Reject** actions can show an optional form in their confirmation dialog, in the same way as custom actions. The form appears wherever the action is performed, including "Declare with edits" and "Register with edits" (where the form of the final action is shown). Values entered are saved with the action and shown in the record audit. Mandatory fields must be completed before the action can be confirmed.
+
+For example, a country can ask the registrar to confirm that supporting documents were reviewed before registering, or collect a comment when a declaration is edited. The edit dialogs do not include a comment field by default.
+
+#### Configurable labels, icons and conditions on all core actions
+
+Every core action shown to users — including Assign, Unassign, Delete, Mark as duplicate, Mark not a duplicate, Approve correction, Reject correction and Unarchive — can have its label, icon and show/enable conditions configured, and (except Assign and Unassign) can add or remove flags. Approve correction and Reject correction are configured separately from Request correction.
+
 #### Core actions by status
 
 The table below summarises which actions are available at each stage of the record lifecycle.
@@ -136,7 +146,7 @@ The table below summarises which actions are available at each stage of the reco
 | Record status | Available actions                                                                  |
 | ------------- | ---------------------------------------------------------------------------------- |
 | Draft         | Update, Notify, Declare                                                            |
-| Notified      | Assign, Unassign, Declare, Edit                                                    |
+| Notified      | Assign, Unassign, Declare, Edit, Archive, Reject                                   |
 | Declared      | Assign, Unassign, Archive, Reject, Edit, Mark duplicate, Mark not a duplicate      |
 | Archived      | Assign, Unassign, Unarchive                                                        |
 | Registered    | Assign, Unassign, Request correction, Approve correction, Reject correction, Print |

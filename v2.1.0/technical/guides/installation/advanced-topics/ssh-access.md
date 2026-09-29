@@ -6,7 +6,7 @@
 `yarn environment:init` script automatically handles this configuration you, check the [Create a Github Environment](../deploy-set-up-a-server-hosted-environment/create-a-github-environment/) step.
 {% endhint %}
 
-SSH Access is configured at inventory file (`infrastructure/server-setup/inventory/<environment>.yml`)
+SSH Access is configured at inventory file (`environments/<environment>/inventory.yml`). You can edit the `users` section by hand or manage it with `yarn environment:users`.
 
 Configuration file has special section `users`, following options are available:
 

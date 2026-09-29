@@ -56,6 +56,8 @@ Please check helm chart documentation and `values.yaml` for more information abo
 
 Each datastore has its own backup job, implemented as a Kubernetes `CronJob`. Backup and restore settings are defined in the `backup` (`restore`) section of the chart values file. Each datastore can have its own schedule and remote directory on the backup server.
 
+The backup server hostname is set with `backup.host` (`restore.host`) in the chart values, while the SSH user and key are stored in the `backup-server-ssh-credentials` secret. The `yarn environment:init` script populates the hostnames from the `BACKUP_HOST` and `RESTORE_HOST` GitHub environment variables.
+
 Example:
 
 ```yml
