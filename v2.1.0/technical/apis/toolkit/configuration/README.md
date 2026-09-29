@@ -34,8 +34,8 @@ export const marriageEvent = defineConfig({
   summary: { fields: [{ fieldId: 'marriage.date' }, { fieldId: 'marriage.placeOfMarriage' }] },
   declaration: MARRIAGE_DECLARATION_FORM,
   actions: [
-    { type: ActionType.DECLARE, label: { id: 'event.marriage.declare', defaultMessage: 'Declare', description: '' }, review: MARRIAGE_REVIEW_FORM, form: MARRIAGE_DECLARATION_FORM },
-    { type: ActionType.REGISTER, label: { id: 'event.marriage.register', defaultMessage: 'Register', description: '' }, review: MARRIAGE_REVIEW_FORM, form: MARRIAGE_DECLARATION_FORM }
+    { type: ActionType.DECLARE, label: { id: 'event.marriage.declare', defaultMessage: 'Declare', description: '' }, review: MARRIAGE_REVIEW_FORM },
+    { type: ActionType.REGISTER, label: { id: 'event.marriage.register', defaultMessage: 'Register', description: '' } }
   ]
 })
 ```
@@ -57,7 +57,11 @@ export const birthEvent = defineConfig({
   summary: { fields: [{ fieldId: 'child.dob' }] },
   declaration: BIRTH_DECLARATION_FORM,
   actions: [
-    { type: ActionType.DECLARE, label: { id: 'event.birth.declare', defaultMessage: 'Declare', description: '' }, review: BIRTH_REVIEW_FORM, form: BIRTH_DECLARATION_FORM }
+    { type: ActionType.DECLARE, label: { id: 'event.birth.declare', defaultMessage: 'Declare', description: '' }, review: BIRTH_REVIEW_FORM }
   ]
 })
 ```
+
+{% hint style="info" %}
+On `NOTIFY`, `DECLARE`, `REGISTER`, `ARCHIVE` and `REJECT`, the optional `form` key is an array of fields shown on the action's confirmation dialog — not the declaration form. The declaration form belongs in `declaration`. See [Core actions](../../../guides/configuration/events/actions/core-actions.md#confirmation-dialog-form-fields).
+{% endhint %}

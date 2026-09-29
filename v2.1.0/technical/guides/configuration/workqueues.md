@@ -97,6 +97,26 @@ export const Workqueues = defineWorkqueues([
 ])
 ```
 
+### Filtering by flags
+
+The `flags` filter in a workqueue `query` accepts three lists of [flags](events/flags.md), which can be combined:
+
+* `anyOf` — the record has at least one of the listed flags.
+* `allOf` — the record has every one of the listed flags.
+* `noneOf` — the record has none of the listed flags.
+
+When more than one list is given, a record must satisfy all of them. For example, a "Pending approval" workqueue that shows only declarations that are both validated and flagged for late-registration approval:
+
+```typescript
+query: {
+  status: { type: 'exact', term: EventStatus.enum.DECLARED },
+  flags: {
+    allOf: ['validated', 'approval-required-for-late-registration'],
+    noneOf: [InherentFlags.POTENTIAL_DUPLICATE]
+  }
+}
+```
+
 ### Controlling visibility of workqueues
 
 A configured workqueue is only visible to users whose role grants the **`workqueue` scope** for its `slug`. The scope carries an `ids` option listing the slugs the role may see.

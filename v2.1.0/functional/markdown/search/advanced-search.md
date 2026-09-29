@@ -30,6 +30,7 @@ With advanced search, OpenCRVS supports:
 * **Configurable search forms** per event type, grouped into logical sections (for example, registration, child, mother, father).
 * **Scope- and jurisdiction-aware results**, aligned with the wider access control model.
 * Efficient triage and investigation when users only have partial or approximate information.
+* **Historical location search** — office and health facility filters list a renamed location under every name it has had, and keep listing closed locations, so records created under an old name or at a closed office remain findable. Address filters list only currently active administrative areas. See [Lifecycle & Versioning](../workflows/administrative-structure/lifecycle-and-versioning.md).
 * Complementary behaviour with **quick search**, so users can move between identifier-based and data-based search.
 
 Advanced search is:

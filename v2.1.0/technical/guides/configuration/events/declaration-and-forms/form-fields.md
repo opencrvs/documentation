@@ -204,6 +204,8 @@ A composite input for capturing a person's name (firstname / middlename / surnam
 
 A field for selecting an administrative area from the country's location hierarchy.
 
+Supports the `activeOnly` and `anchorToDateOfEvent` configuration options, which control which versions of an area are offered — see [How to limit location and administrative area options in event declaration](../../administrative-hierarchy/how-to-limit-location-and-administrative-area-options-in-event-declaration.md#limiting-options-by-version-status-and-date).
+
 {% openapi-schemas spec="events-develop" schemas="AdministrativeAreaField" grouped="true" %}
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
 {% endopenapi-schemas %}
@@ -212,6 +214,8 @@ A field for selecting an administrative area from the country's location hierarc
 
 A field for selecting a specific location (e.g. health facility, CRVS office). Filterable by location type.
 
+Supports the `activeOnly` and `anchorToDateOfEvent` configuration options, which control which versions of a location are offered — see [How to limit location and administrative area options in event declaration](../../administrative-hierarchy/how-to-limit-location-and-administrative-area-options-in-event-declaration.md#limiting-options-by-version-status-and-date).
+
 {% openapi-schemas spec="events-develop" schemas="LocationInput" grouped="true" %}
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
 {% endopenapi-schemas %}
@@ -219,6 +223,8 @@ A field for selecting a specific location (e.g. health facility, CRVS office). F
 ### Address
 
 A composite address input combining country, administrative-area selectors, and free-text address lines.
+
+Supports the `activeOnly` and `anchorToDateOfEvent` configuration options on the address field's own `configuration`; they apply to the embedded administrative-area selectors — see [How to limit location and administrative area options in event declaration](../../administrative-hierarchy/how-to-limit-location-and-administrative-area-options-in-event-declaration.md#limiting-options-by-version-status-and-date).
 
 {% openapi-schemas spec="events-develop" schemas="Address" grouped="true" %}
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
@@ -403,6 +409,32 @@ A select dropdown automatically populated with the user roles configured in the 
 ### FieldGroup
 
 A wrapper that groups several fields together, supporting nested `FieldConfig` entries.
+
+The optional `configuration` object controls how the group is rendered as output — on record review, in audit history and in search criteria pills:
+
+* `separator` — joins the subfield values into a single line, e.g. `', '`. By default each subfield is shown on its own line.
+* `hideEmptyFields` — leaves subfields without a value out of the output. Defaults to `false`. Pair it with `separator` so the separator does not double up around the gaps.
+
+A group that sets neither renders one subfield per line, blanks included.
+
+```typescript
+{
+  id: 'child.placeOfBirthGroup',
+  type: FieldType.FIELD_GROUP,
+  label: {
+    id: 'event.birth.child.placeOfBirthGroup.label',
+    defaultMessage: 'Place of birth',
+    description: 'Label for the place of birth group'
+  },
+  fields: [
+    // nested FieldConfig entries
+  ],
+  configuration: {
+    separator: ', ',
+    hideEmptyFields: true
+  }
+}
+```
 
 {% openapi-schemas spec="events-develop" schemas="FieldGroup" grouped="true" %}
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)

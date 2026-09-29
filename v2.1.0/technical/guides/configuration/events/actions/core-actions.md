@@ -262,9 +262,73 @@ Example 2: `PRINT_CERTIFICATE` configures complete form with two fields:
 1. `annotation` fields are inside red box. Defined in `ActionConfig`&#x20;
 2. `content` fields inside blue box. Defined outside `ActionConfig`
 
+### Configuring core actions
 
+Every core action accepts the same base keys: `label`, `icon`, `supportingCopy`, `conditionals` and `flags`. Each action type resolves to its own configuration entry. When an action has no entry in `actions`, OpenCRVS uses its built-in label and icon.
 
-{% openapi-schemas spec="events-develop" schemas="ReadActionConfig,DeclareActionConfig,EditActionConfig,RejectActionConfig,RegisterActionConfig,PrintCertificateActionConfig,RequestCorrectionActionConfig,ArchiveActionConfig,UnarchiveActionConfig" grouped="true" %}
+| Action                                                                                                         | Configurable keys                                                                                   |
+| -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `DELETE`, `MARK_AS_DUPLICATE`, `MARK_AS_NOT_DUPLICATE`, `APPROVE_CORRECTION`, `REJECT_CORRECTION`, `UNARCHIVE` | `label`, `icon`, `supportingCopy`, `conditionals`, `flags`                                          |
+| `ASSIGN`, `UNASSIGN`                                                                                           | `label`, `icon`, `supportingCopy`, `conditionals` (no `flags` — meta actions are excluded from flag resolution) |
+| `DUPLICATE_DETECTED`                                                                                           | `flags` only — the action is system-generated and never shown as a button                           |
+| `READ`                                                                                                         | `label`, `icon`, `supportingCopy`, `review` (no `conditionals`, no `flags`)                         |
+| `NOTIFY`, `DECLARE`, `REGISTER`, `ARCHIVE`, `REJECT`                                                           | base keys plus an optional confirmation dialog `form` (see below)                                   |
+
+`NOTIFY` uses its own configuration when present and otherwise falls back to the `DECLARE` configuration for label, flags, icon and conditionals. Its confirmation dialog `form` never falls back to `DECLARE`.
+
+{% hint style="warning" %}
+`APPROVE_CORRECTION` and `REJECT_CORRECTION` no longer inherit the `REQUEST_CORRECTION` configuration. If your country config relies on `flags` or `conditionals` configured on `REQUEST_CORRECTION` also applying when a correction is approved or rejected, add explicit `APPROVE_CORRECTION` and `REJECT_CORRECTION` entries with the same values. `npx @opencrvs/toolkit upgrade` adds them for you when `REQUEST_CORRECTION` has `flags` or `conditionals`.
+{% endhint %}
+
+#### Unarchive
+
+`ActionType.UNARCHIVE` restores an `ARCHIVED` record to the status it had before it was archived. It is only available on archived records and requires the `record.unarchive` scope, which you must add to the relevant roles. Flags are not changed by archiving or unarchiving unless you configure `flags` on either action — see [flags.md](../flags.md "mention").
+
+#### Confirmation dialog form fields
+
+`NOTIFY`, `DECLARE`, `REGISTER`, `ARCHIVE` and `REJECT` accept an optional `form: FieldConfig[]`, the same shape custom actions use. The fields are rendered on the action's confirmation dialog wherever the action is triggered — directly, as a quick action, or as "Declare/Register with edits". A combined action shows only the final action's fields (for example, registering with edits shows the `REGISTER` fields). Submitted values are stored in the action's `annotation` and shown in the record's audit history. A required field disables the dialog's confirm button until it is completed. On `REJECT`, the fields are shown alongside the built-in rejection reason.
+
+The edit dialogs no longer contain a built-in comment field. To collect a comment when a declaration is edited, configure a `TEXTAREA` field in the `form` of `NOTIFY`, `DECLARE` and/or `REGISTER`.
+
+```typescript
+actions: [
+  {
+    type: ActionType.REGISTER,
+    label: {
+      id: 'event.birth.action.register.label',
+      defaultMessage: 'Register',
+      description: 'This is shown as the action name anywhere the user can trigger the action from'
+    },
+    form: [
+      {
+        id: 'register.comment',
+        type: FieldType.TEXTAREA,
+        required: false,
+        label: {
+          id: 'event.birth.action.register.field.comment.label',
+          defaultMessage: 'Comment',
+          description: 'Label for the comment field on the register dialog'
+        }
+      }
+    ]
+  },
+  {
+    type: ActionType.UNARCHIVE,
+    label: {
+      id: 'event.birth.action.unarchive.label',
+      defaultMessage: 'Unarchive',
+      description: 'This is shown as the action name anywhere the user can trigger the action from'
+    }
+  },
+  {
+    type: ActionType.DUPLICATE_DETECTED,
+    // Only flags can be configured for DUPLICATE_DETECTED
+    flags: [{ id: 'needs-dedup-review', operation: 'add' }]
+  }
+]
+```
+
+{% openapi-schemas spec="events-develop" schemas="ReadActionConfig,AssignActionConfig,UnassignActionConfig,DeleteActionConfig,NotifyActionConfig,DeclareActionConfig,DuplicateDetectedActionConfig,MarkAsDuplicateActionConfig,MarkAsNotDuplicateActionConfig,EditActionConfig,RejectActionConfig,RegisterActionConfig,PrintCertificateActionConfig,RequestCorrectionActionConfig,ApproveCorrectionActionConfig,RejectCorrectionActionConfig,ArchiveActionConfig,UnarchiveActionConfig" grouped="true" %}
 [OpenAPI events-develop](https://api.opencrvs.org/develop/events/openapi.yml)
 {% endopenapi-schemas %}
 

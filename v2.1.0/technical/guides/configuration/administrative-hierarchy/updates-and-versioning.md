@@ -44,6 +44,10 @@ Resolution takes the version with the greatest `effectiveFrom` that is still on 
 
 The wire format for a location or administrative area still carries flat `name`/`status`/`externalId` fields (resolved as of today) alongside `versions` — some consumers read these directly; the reference country config's analytics sync, for instance, writes the flat fields straight into its own database rather than resolving per-record history. The registrar-facing client is stricter: its cached location map strips the flat fields entirely, so no client code can read a location's current name without going through `resolveVersion`/`resolvePath` at the anchor. That cache is kept for up to a day (a 24-hour stale time), so a location created or renamed elsewhere can take up to a day to reach a given device.
 
+{% hint style="warning" %}
+**Changed in v2.1:** the `validUntil` field has been removed from the `Location` and `AdministrativeArea` wire models. Read the top-level `status` for whether an entity is active today, or derive when a version stopped applying from the `effectiveFrom` of the next element in `versions`.
+{% endhint %}
+
 ### Withdrawing a pending change
 
 A version that has not taken effect yet (its `effectiveFrom` is strictly in the future) can be withdrawn — this removes it from the history outright, as if it had never been scheduled. Once a version's `effectiveFrom` is today or earlier it counts as already in effect and can no longer be withdrawn; a further version must be appended instead to change course. A version can only be withdrawn if it is not the only one a location or administrative area has — a row must always keep at least one version, so withdrawing the last remaining one is rejected instead.

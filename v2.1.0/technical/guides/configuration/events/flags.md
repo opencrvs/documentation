@@ -27,7 +27,7 @@ A **flag** is a string label that describes the state of a record at a given poi
 Flags are surfaced in three places:
 
 * **Conditionals** — to show, hide or enable actions and form fields, via the `flag()` helper (`flag('validated')`, `not(flag(InherentFlags.POTENTIAL_DUPLICATE))`).
-* **Workqueues** — to filter records, via `anyOf` / `noneOf` (`flags: { anyOf: [InherentFlags.INCOMPLETE], noneOf: [InherentFlags.REJECTED] }`).
+* **Workqueues** — to filter records, via `anyOf` / `noneOf` / `allOf` (`flags: { anyOf: [InherentFlags.INCOMPLETE], noneOf: [InherentFlags.REJECTED] }`). See [workqueues.md](../workqueues.md "mention").
 * **Action availability** — core uses certain flags to gate which actions can be taken on a record (for example, `PRINT_CERTIFICATE` is hidden while a correction is pending).
 
 There are two categories of flags:
@@ -43,9 +43,15 @@ Inherent flags are built into OpenCRVS core and computed from the record's actio
 
 | Flag                                 | When set                                                                                                     |
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `InherentFlags.REJECTED`             | The most recent non-meta action is `REJECT`.                                                                 |
+| `InherentFlags.INCOMPLETE`           | Set by `NOTIFY`. Cleared by `DECLARE` or `REGISTER`. `ARCHIVE` and `UNARCHIVE` leave it unchanged.            |
+| `InherentFlags.REJECTED`             | Set by `REJECT`. Cleared by `NOTIFY`, `DECLARE`, `EDIT` or `REGISTER`.                                       |
 | `InherentFlags.CORRECTION_REQUESTED` | A `REQUEST_CORRECTION` is pending and has not yet been approved or rejected.                                 |
 | `InherentFlags.POTENTIAL_DUPLICATE`  | A `DUPLICATE_DETECTED` action has been recorded and the record has not since been marked as not a duplicate. |
+| `InherentFlags.EDIT_IN_PROGRESS`     | Set by `EDIT`. Cleared by the next action (the notify, declare or register that completes the edit).         |
+
+{% hint style="info" %}
+`ARCHIVE` does not clear the `incomplete` flag. An archived notification keeps the flag, and `UNARCHIVE` returns the record with its flags exactly as they were before it was archived. To clear the flag when archiving, add `{ id: InherentFlags.INCOMPLETE, operation: 'remove' }` to the `ARCHIVE` action's `flags`.
+{% endhint %}
 
 **Example — referencing an inherent flag in a conditional:**
 

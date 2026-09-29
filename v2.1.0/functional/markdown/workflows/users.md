@@ -225,6 +225,14 @@ OpenCRVS also provides system-level actions for managing user accounts themselve
 
 <table><thead><tr><th valign="top">Scope</th><th>Action</th><th>Description</th></tr></thead><tbody><tr><td valign="top"><code>user.create</code></td><td>Create new user</td><td>Create a new user account, assign a role, and set initial credentials.</td></tr><tr><td valign="top"><code>user.read.audit</code></td><td>Read</td><td>View a user profile page</td></tr><tr><td valign="top"><code>user.update</code></td><td>Edit user</td><td>Update user details such as role, location, status, or contact details.</td></tr><tr><td valign="top"><code>user.update</code></td><td>Deactivate user</td><td>Disable a user account so the user can no longer log in.</td></tr><tr><td valign="top"><code>user.update</code></td><td>Reactivate user</td><td>Restore access for a previously deactivated user.</td></tr><tr><td valign="top"><code>user.update</code></td><td>Reset user password</td><td>Initiate password recovery for a user who cannot log in.</td></tr><tr><td valign="top"><code>user.update</code></td><td>Send username reminder</td><td>Send the username to the user via configured communication channels.</td></tr></tbody></table>
 
+#### Location management
+
+| Scope           | Enables                                                                                                                                     |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `location.edit` | Create, rename, recode, inactivate and schedule changes to locations and administrative areas through the location API. No role has it by default. |
+
+See [Lifecycle & Versioning](administrative-structure/lifecycle-and-versioning.md).
+
 ***
 
 ### 8. Summary
