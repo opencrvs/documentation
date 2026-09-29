@@ -4,6 +4,8 @@
 
 OpenCRVS can be deployed on decoupled infrastructure with clear permissions and responsibilities segregation. Default environment configuration script doesn't support advanced deployment scenario.
 
+On managed Kubernetes you can grant access to managed data stores per pod rather than per node by mapping OpenCRVS service accounts to cloud identities, see [Kubernetes service accounts](kubernetes-service-accounts.md).
+
 Only full backup and restore process jobs have support for decoupled data stores. Please refer to official Postgres and MinIO documentation how to configure backup/restore.
 
 Supported data stores:

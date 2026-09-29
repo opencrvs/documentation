@@ -15,7 +15,7 @@ Both allowlists are empty by default, which leaves the corresponding routes publ
 * `ingress.admin_console_allowlist` - restricts the admin consoles:
   * MinIO and Kibana (`dependencies` chart)
   * Metabase dashboards console (`opencrvs-services` chart).
-* `ingress.application_allowlist` - restricts the whole OpenCRVS application and API access. `admin_console_allowlist` is always merged into the effective `application_allowlist`, so an IP address trusted for the admin consoles is never accidentally locked out of the application itself.
+* `ingress.application_allowlist` - restricts the whole OpenCRVS application and API access (`opencrvs-services` chart) and the MinIO S3 API route (`dependencies` chart). `admin_console_allowlist` is always merged into the effective `application_allowlist`, so an IP address trusted for the admin consoles is never accidentally locked out of the application itself.
 
 {% hint style="warning" %}
 This is a plain IP allowlist, not geo-aware. It admits any request from the listed ranges regardless of where it actually originates, and rejects everything else regardless of origin. True country-level geoblocking would need a Traefik plugin or a CDN/WAF in front of the cluster.
@@ -41,13 +41,6 @@ flowchart LR
     T -->|"admin_console_allowlist"| CONS
 ```
 
-#### Configuration options
-
-| Value                             | Chart                               | Default | Description                                                 |
-| --------------------------------- | ----------------------------------- | ------- | ----------------------------------------------------------- |
-| `ingress.application_allowlist`   | `opencrvs-services`                 | `[]`    | Source IP ranges (CIDR) allowed to reach OpenCRVS frontend  |
-| `ingress.admin_console_allowlist` | `opencrvs-services`, `dependencies` | `[]`    | Source IP ranges (CIDR) allowed to reach the admin consoles |
-
 Both charts expose the setting under `ingress`:
 
 ```yaml
@@ -72,6 +65,8 @@ ingress:
 
 #### Configuration options
 
+All lists default to `[]`.
+
 | Value                             | Chart               | Description                                                                                |
 | --------------------------------- | ------------------- | ------------------------------------------------------------------------------------------ |
 | `ingress.application_allowlist`   | `opencrvs-services` | Source IP ranges (CIDR) allowed to reach `client`, `login`, `gateway` and `countryconfig`. |
@@ -84,8 +79,17 @@ ingress:
 * Leaving a list empty (the default) leaves the corresponding routes publicly reachable - the Traefik `Middleware` resource for that list isn't even created.
 * A request from an address outside the configured ranges receives Traefik's standard `403 Forbidden` for the `ipAllowList` middleware.
 * Both charts recreate their `ipAllowList` middlewares on every `helm upgrade`, so the cluster always matches `values.override.yaml`.
+* Routes of the MOSIP integration chart (`opencrvs-mosip`) are not covered by these allowlists.
+
+{% hint style="warning" %}
+**MinIO S3 API:** browsers download supporting documents directly from MinIO using presigned URLs. Only set `ingress.application_allowlist` on the `dependencies` chart if every OpenCRVS user connects from the listed ranges, otherwise users outside them will not be able to view attachments.
+{% endhint %}
+
+{% hint style="warning" %}
+**Client IP address:** the allowlist is matched against the source IP address seen by Traefik. The default OpenCRVS installation exposes Traefik directly on the master node ports 80 and 443, so the real client IP is preserved. If you run a load balancer, reverse proxy or NAT in front of Traefik, make sure it preserves the client source IP, otherwise all requests appear to come from the load balancer address.
+{% endhint %}
 
 For the complete reference, see:
 
-* [`charts/opencrvs-services/README.md`](https://github.com/opencrvs/opencrvs-core/blob/develop/charts/opencrvs-services/README.md#hardening)
-* [`charts/dependencies/README.md`](https://github.com/opencrvs/opencrvs-core/blob/develop/charts/dependencies/README.md#global-configuration-options)
+* [`charts/opencrvs-services/README.md`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/charts/opencrvs-services/README.md#hardening)
+* [`charts/dependencies/README.md`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/charts/dependencies/README.md#global-configuration-options)

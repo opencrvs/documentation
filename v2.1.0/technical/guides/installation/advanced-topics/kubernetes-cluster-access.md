@@ -44,7 +44,7 @@ The Kubernetes `kubeconfig` file is stored in the user's home directory on the s
 ~/.kube/config
 ```
 
-Users defined in the infrastructure inventory files (`environments/<env>/inventory.yaml`) already have Kubernetes access configured.
+Users defined in the infrastructure inventory files (`environments/<env>/inventory.yml`) already have Kubernetes access configured.
 
 After connecting to the server via SSH, use `kubectl` or `k9s` to manage and troubleshoot OpenCRVS workloads. Both tools are installed and configured by default.
 

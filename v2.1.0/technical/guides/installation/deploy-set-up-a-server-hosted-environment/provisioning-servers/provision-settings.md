@@ -42,7 +42,7 @@ Defines versions for:
 * kubectl
 
 ```yaml
-kubernetes_version: "v1.35"
+kubernetes_version: "v1.36"
 ```
 
 Changing this value upgrades the Kubernetes components installed during provisioning. **Downgrades are not supported to ensure environment stability**.

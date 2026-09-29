@@ -23,7 +23,7 @@ For an overview of what dashboards show and who uses them, see the [**Performanc
 
 Before configuring dashboards:
 
-* Metabase must be deployed and accessible. In production, it runs as a Docker service. In development, start it with `yarn metabase` from the country config root.
+* Metabase must be deployed and accessible. On server environments, it runs as the `dashboards` deployment of the `opencrvs-services` Helm chart (enabled with `dashboards.enabled: true`, which `yarn environment:init` sets by default) and is available at `https://metabase.<your_domain>`. Access to it can be restricted with `ingress.admin_console_allowlist`, see [IP Allowlisting](../installation/advanced-topics/ip-allowlisting.md). In development, start it with `yarn metabase` from the country config root.
 * You must have the Metabase admin credentials (`user@opencrvs.org` / `m3tabase` by default in development).
 * Public dashboard sharing must be enabled in Metabase for each dashboard you want to embed.
 
@@ -209,9 +209,9 @@ Metabase starts at `http://localhost:4444`. Default credentials: `user@opencrvs.
 
 1. Open `http://localhost:4444` and log in.
 2. Create or modify dashboards, questions, and models.
-3. Stop the Metabase process (Ctrl+C). Changes are automatically saved to `infrastructure/metabase/metabase.init.db.sql`.
+3. Stop the Metabase process (Ctrl+C). Changes are automatically saved to `assets/metabase/metabase.init.db.sql`.
 4. Commit the updated SQL file to version control.
-5. Deploy — the updated `metabase.init.db.sql` is loaded on startup in all environments.
+5. Deploy — the updated `metabase.init.db.sql` is shipped in your country config assets image and loaded on startup in all environments.
 
 
 
@@ -311,7 +311,7 @@ LEFT JOIN pivot p
 ```
 
 4. Save the model.
-5. Stop Metabase, commit `infrastructure/metabase/metabase.init.db.sql`, and deploy.
+5. Stop Metabase, commit `assets/metabase/metabase.init.db.sql`, and deploy.
 
 
 
