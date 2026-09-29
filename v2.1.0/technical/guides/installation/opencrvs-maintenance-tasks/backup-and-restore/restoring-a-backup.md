@@ -111,7 +111,7 @@ The backup server hostname is not read from the `backup-server-ssh-credentials` 
 
 #### Enable restore in Dependencies helm chart values
 
-Add following section to `environments/<environment>/dependencies/values.yaml` and run "Deploy dependencies" workflow:
+Add following section to `environments/<environment>/dependencies/values.override.yaml` and run "Deploy dependencies" workflow:
 
 * Update `backup_server_dir` value to match with your environment name, e/g `/home/backup/production`
 * Update `schedule` to reflect best time backup job to be started,
@@ -138,7 +138,7 @@ Push your changes to github and Re-[Deploy Dependencies](../../deploy-set-up-a-s
 
 #### Enable reindex in OpenCRVS helm chart values
 
-Add following section to `environments/<environment>/opencrvs-services/values.yaml` and run "Deploy OpenCRVS" workflow:
+Add following section to `environments/<environment>/opencrvs-services/values.override.yaml` and run "Deploy OpenCRVS" workflow:
 
 * `enabled`: Enable reindex
 * `schedule`: Cronjob schedule for reindex, see [https://crontab.guru/](https://crontab.guru/)

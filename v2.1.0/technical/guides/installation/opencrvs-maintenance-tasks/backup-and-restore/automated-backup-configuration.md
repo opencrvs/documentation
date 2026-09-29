@@ -2,7 +2,7 @@
 
 ### Automated backup configuration
 
-If backup server is in your environment inventory file then add following section to `environments/<environment>/dependencies/values.yaml` and run "Deploy dependencies" workflow:
+If backup server is in your environment inventory file then add following section to `environments/<environment>/dependencies/values.override.yaml` and run "Deploy dependencies" workflow:
 
 * Update `backup_server_dir` value to match with your environment name, e/g `development`
 * Update `schedule` to reflect best time backup job to be started,

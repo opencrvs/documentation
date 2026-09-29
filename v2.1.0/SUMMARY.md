@@ -142,6 +142,7 @@
       * [Ubuntu Firewall configuration](technical/guides/installation/advanced-topics/ubuntu-firewall-configuration.md)
       * [IP Allowlisting](technical/guides/installation/advanced-topics/ip-allowlisting.md)
       * [Kubernetes Network Policy](technical/guides/installation/advanced-topics/kubernetes-network-policy.md)
+      * [Kubernetes service accounts](technical/guides/installation/advanced-topics/kubernetes-service-accounts.md)
       * [SSH access](technical/guides/installation/advanced-topics/ssh-access.md)
       * [Kubernetes cluster access](technical/guides/installation/advanced-topics/kubernetes-cluster-access.md)
       * [TLS/SSL Configuration for traefik](technical/guides/installation/advanced-topics/tls-ssl-configuration-for-traefik/README.md)
