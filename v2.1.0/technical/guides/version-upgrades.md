@@ -147,12 +147,16 @@ If deployed to servers, confirm:
 * Do you have dedicated or shared infrastructure?
 * What are your environments (dev, QA, staging, production)?
 * What are your automated backup and restore processes?
-* Do you have sufficient RAM, disk space, and CPU capacity? \<TODO: Link to correct place on docs>
-* What is the cluster size (1, 3, or 5 nodes — all nodes must be reprovisioned) \<TODO: Link to correct place on docs>
+* Do you have sufficient RAM, disk space, and CPU capacity? See [#minimum-server-specifications](installation/deploy-set-up-a-server-hosted-environment/preparation-steps/setup-infrastructure.md#minimum-server-specifications "mention")
+* What is the cluster size (1, 3, or 5 nodes — all nodes must be reprovisioned)? See [#server-environments](installation/deploy-set-up-a-server-hosted-environment/preparation-steps/setup-infrastructure.md#server-environments "mention")
 
 {% hint style="info" %}
 These checks ensure your infrastructure is healthy, backups are reliable, and upgrades can safely be tested before production deployment.
 {% endhint %}
+
+**Version-specific changes**
+
+Read the notes for the version you are upgrading to, for example [#version-specific-notes-for-2.1](version-upgrades.md#version-specific-notes-for-2.1 "mention"), and the [release notes](../../releases/release-notes.md). They list the manual steps that the automated upgrade does not do for you.
 
 ### Step 2 — Update code and test locally
 
@@ -162,10 +166,9 @@ The complexity of this step depends on the level of customisation in your countr
 
 ```bash
 cd <path>/opencrvs-core
-git fetch
-git checkout release-v*.*.*
-git pull
-yarn --force
+git fetch --tags
+git checkout v<target-version>
+pnpm install
 ```
 
 You now have the target OpenCRVS release code locally.
@@ -341,3 +344,76 @@ Use **Email All Users** to instruct staff to:
 5. Do not use production until migration finishes
 6. Log in and test with your QA team
 7. Notify staff that operations can resume
+
+***
+
+## Version-specific notes for 2.1
+
+These are the changes in v2.1 that need a decision or a manual step from you. Work through them alongside the seven steps above. The full list of changes is in the [release notes](../../releases/release-notes.md).
+
+{% hint style="danger" %}
+**Upgrading from v1.9.x? Upgrade to v2.0.0 first.**
+
+v2.1 removes MongoDB and deletes the tooling that migrates MongoDB data into PostgreSQL. v2.0.0 is the only release that can migrate your data. Deploy v2.0.0, confirm the migration finished, and only then upgrade to v2.1.
+
+* **Kubernetes:** the migration runs automatically as a Helm `pre-install,pre-upgrade` hook when `data_migration_legacy.enabled` is `true` (the default). If you disabled it, re-enable it while on v2.0.0.
+* **Docker Swarm:** the `legacy-data-migration` service runs the first time you deploy v2.0.0. If it was removed before it ran, restore it from the v2.0.0 release and run it while still on v2.0.0.
+
+Upgrading from v2.0.x needs nothing here: your data was migrated during the v2.0.0 upgrade.
+{% endhint %}
+
+### Country configuration (Step 2)
+
+`npx @opencrvs/toolkit upgrade` (run as `yarn opencrvs upgrade` above) makes these changes for you. Review each one in the diff:
+
+* Removes the Sentry wiring (`SENTRY_DSN`, the `hapi-sentry` plugin and its types).
+* Renames user and system trigger routes from `/triggers/...` to `/trigger/...`. It lists any reference it could not rewrite, for example a path built at runtime. Rename those by hand.
+* Adds the `password-reset-link` and `username-reminder-link` notification templates. Account recovery is now done with a single-use link, and it fails for every user if these templates are missing. Recovery links are built from `LOGIN_URL`, so check that value in every environment.
+* Adds explicit `APPROVE_CORRECTION` and `REJECT_CORRECTION` action configurations where `REQUEST_CORRECTION` has `flags` or `conditionals`. These actions no longer inherit the request's configuration.
+* Adds new translations.
+
+Check these yourself:
+
+* **Archiving no longer clears the `incomplete` flag.** An incomplete record stays incomplete through archive and unarchive. To keep the old behaviour, add `{ id: InherentFlags.INCOMPLETE, operation: 'remove' }` to the `flags` of your `ARCHIVE` action. See [flags.md](configuration/events/flags.md "mention").
+* **Confirming asynchronous actions.** If your country configuration confirms actions asynchronously (it returns `202` from an action trigger and accepts or rejects later), that call must now be made with a system client holding `record.action.accept` / `record.action.reject`. The user's token and the old token-exchange grant no longer work. See [action-confirmation.md](configuration/action-triggers/action-confirmation.md "mention").
+* **MOSIP.** The MOSIP integration is released with core. Give `mosip-api` its own system client holding `record.action.accept` and `record.read`, include `eventId` in the payload sent to `/events/registration`, and make sure `MOSIP_WEBSUB_SECRET` equals the `hub.secret` your WebSub subscription was created with. See [mosip-deployment.md](configuration/integrations/mosip-deployment.md "mention").
+* **Location API clients.** `POST /locations` and `POST /administrative-areas` no longer update existing entries, and `validUntil` is no longer returned. Scripts that re-post locations to change them must use `PUT`. See [updates-and-versioning.md](configuration/administrative-hierarchy/updates-and-versioning.md "mention").
+* **Attachment uploads.** Integrations that upload attachments should send `eventId`. `path` is deprecated.
+* **Unarchive.** The new `record.unarchive` scope is not granted to any role in the reference country configuration. Add it to the roles that should be able to restore archived records.
+
+### Infrastructure repository and GitHub environments (Steps 2 and 3)
+
+After merging the upstream infrastructure release into your fork:
+
+```bash
+cd <path>/opencrvs-<your-country>-infrastructure
+yarn install
+
+## Moves each inventory file to environments/<environment>/inventory.yml
+## and refreshes the environment lists in the GitHub workflows.
+## environment:init refuses to run until this has been done.
+yarn environment:upgrade
+
+## Run once per environment
+yarn environment:init
+```
+
+Running `yarn environment:init` for each environment:
+
+* Stores the backup and restore server addresses as the GitHub variables `BACKUP_HOST` and `RESTORE_HOST`. They are no longer read from the SSH secret. **Run it for every environment that backs up or restores before you deploy v2.1**, otherwise backup and restore jobs have no host. Use IP addresses: the network policy for backups is built from them.
+* Regenerates `environments/<environment>/**/values.yaml`. The generated files turn on Kubernetes network policies (deny by default), OpenTelemetry tracing and `OPENCRVS_ENVIRONMENT`. They are overwritten on every run, so keep your own settings in the matching `values.override.yaml`.
+
+Also:
+
+* **Delete the `SENTRY_DSN` secret.** Sentry has been removed.
+* **Remove the `MONGODB_ADMIN_USER` / `MONGODB_ADMIN_PASSWORD` secrets** if they are still present.
+* **Check `CONFIG_TOKEN_EXPIRY_SECONDS`.** It is now the lifetime of the short-lived access token and must not be set above `600`. If you raised it to make sessions longer, remove the override and set `CONFIG_REFRESH_TOKEN_EXPIRY_SECONDS` instead (default one week).
+* **Check disk headroom.** Logs are now kept for 30 days instead of 2. See [#logging-disk-space-requirements](installation/deploy-set-up-a-server-hosted-environment/preparation-steps/setup-infrastructure.md#logging-disk-space-requirements "mention").
+
+{% hint style="warning" %}
+**Still on Docker Swarm?** `yarn opencrvs upgrade` deletes the `infrastructure/` directory of your country configuration unless you pass `--docker-swarm`. That directory holds the "Migration swarm to k8s" workflow. If you plan to move to Kubernetes, do it while still on v2.0.x. See [migration-from-docker-swarm-guide.md](installation/deploy-set-up-a-server-hosted-environment/migration-from-docker-swarm-guide.md "mention").
+{% endhint %}
+
+### After deploying
+
+* The public `events.<domain>` route has been removed. Integrations must reach the events API through the gateway.

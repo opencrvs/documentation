@@ -20,13 +20,51 @@ TODO: Insert zip of 2.1 Config files
 
 ### v2.1 (Upcoming Q3 2026)
 
+**Core changelog:** [**https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/CHANGELOG.md#210-release-candidate**](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/CHANGELOG.md#210-release-candidate)
+
+**Countryconfig changelog:** [**https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/countryconfig-template/CHANGELOG.md#210-release-candidate**](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/countryconfig-template/CHANGELOG.md#210-release-candidate)
+
+{% hint style="warning" %}
+Read [#version-specific-notes-for-2.1](../technical/guides/version-upgrades.md#version-specific-notes-for-2.1 "mention") before upgrading. Countries on v1.9.x must upgrade to v2.0.0 first.
+{% endhint %}
+
 #### **Key highlights**
 
-* Support for custom form fields on action dialogs ([#11951](https://github.com/opencrvs/opencrvs-core/issues/11951))
-* Support for `notifiedIn` and `notifiedBy` properties on scopes ([#11875](https://github.com/opencrvs/opencrvs-core/issues/11875))
-* Add legal statuses: "Registered (Inactive)" and "Revoked", and related core actions ([#11952](https://github.com/opencrvs/opencrvs-core/issues/11952))
-* Add audit log retrieval endpoint ([#11909](https://github.com/opencrvs/opencrvs-core/issues/11909))
-* ...and miscellaneous bug fixes and improvements
+* **Location and administrative area write API.** Locations and administrative areas can be created, renamed, recoded and inactivated through the API. Every change is kept as an effective-dated version, so records keep showing the names that were valid on the date of the event. Read more: [updates-and-versioning.md](../technical/guides/configuration/administrative-hierarchy/updates-and-versioning.md "mention")
+* **Configurable core actions.** Every core action can now be given its own label, icon, conditionals and flags. This includes Delete, Assign, Mark as duplicate and the correction approvals. Notify, Declare, Register, Archive and Reject can show configured form fields on their confirmation dialog, and a new **Unarchive** action restores an archived record. Read more: [core-actions.md](../technical/guides/configuration/events/actions/core-actions.md "mention")
+* **Finer-grained scopes.** Record scopes can be restricted by record status (`status`), by record flags (`flags`), and by where and by whom a record was notified (`notifiedIn` / `notifiedBy`). Read more: [how-record-scope-options-map-to-event-declaration.md](../technical/guides/configuration/users/how-record-scope-options-map-to-event-declaration.md "mention")
+* **Stronger authentication.** Users get a short-lived access token (10 minutes) with a rotating refresh token, so role changes and deactivations take effect within minutes. Forgotten usernames and passwords are recovered through a single-use link sent to the user.
+* **Sealed records.** Registered records can be sealed so that their declaration data is hidden from search and deduplication. Read more: [sealed-records.md](../technical/guides/use-cases/sealed-records.md "mention")
+* **MOSIP integration ships with core.** The MOSIP integration is now released with every core release, and MOSIP WebSub callbacks are authenticated with an HMAC signature.
+* **Hardened deployments.** Kubernetes network policies are on by default, OpenCRVS and its admin tools can be restricted to allowed IP ranges, and workloads get their own service accounts. Tracing now uses OpenTelemetry.
+* **Integration audit log.** The operations performed by a system client can be read through the `integrations.audit` endpoint.
+* **Daily usage telemetry (opt-in).** A production instance can share a daily summary of aggregate counts with the OpenCRVS status service. Read more: [telemetry.md](../technical/architecture/telemetry.md "mention")
+
+#### **Breaking changes**
+
+* **MongoDB and InfluxDB removed.** All data lives in PostgreSQL, and the legacy MongoDB migration tooling has been deleted. Countries on v1.9.x must upgrade to v2.0.0 first, because v2.0.0 is the only release that can migrate their data.
+* **Confirming an asynchronous action needs its own credentials.** The OAuth token-exchange grant and the `record.confirm-registration` / `record.reject-registration` scopes have been removed. Accepting or rejecting a pending action now requires a system client holding the new `record.action.accept` / `record.action.reject` scopes. A user's token is refused. MOSIP integrations must be given such a client and must send `eventId`. Read more: [action-confirmation.md](../technical/guides/configuration/action-triggers/action-confirmation.md "mention")
+* **Country configuration triggers are served under `/trigger`.** User and system notification routes moved from `/triggers/...` to `/trigger/...`. Two new user triggers, `password-reset-link` and `username-reminder-link`, must be implemented for account recovery.
+* **Account recovery.** `/auth/verifyUser` no longer reveals whether an account exists, and `/auth/verifyNumber` has been removed. Recovery is by single-use link.
+* **Access token lifetime.** `CONFIG_TOKEN_EXPIRY_SECONDS` is now the lifetime of the short-lived access token (default 600). Session length is set by `CONFIG_REFRESH_TOKEN_EXPIRY_SECONDS`.
+* **Location APIs.** `validUntil` has been removed from `Location` and `AdministrativeArea` (use `status` and `versions[]`), and `POST /locations` / `POST /administrative-areas` no longer upsert. Change an existing entity with `PUT`.
+* **Document access.** The gateway's `/presigned-url` route has been removed. Presigned URLs for record documents require `record.read` on the record, and attachment uploads must name the record they belong to (`eventId`).
+* **Configuration changes.** `APPROVE_CORRECTION` and `REJECT_CORRECTION` no longer inherit the configuration of `REQUEST_CORRECTION`, and `ARCHIVE` no longer clears the `incomplete` flag. `npx @opencrvs/toolkit upgrade` adds the explicit correction configuration for you.
+* **Sentry removed.** `npx @opencrvs/toolkit upgrade` removes the Sentry wiring from your country configuration. Delete the `SENTRY_DSN` secret.
+* **Infrastructure.** Backup and restore server hosts are GitHub variables (`BACKUP_HOST`, `RESTORE_HOST`) instead of being part of the SSH secret. Ansible inventories moved to `environments/<env>/inventory.yml`. The public `events.<domain>` route has been removed; use the gateway.
+
+#### **Deprecations**
+
+* `path` on `POST /attachments`. Send `eventId` instead.
+* `POST /auth/token` parameters in the URL query string. Send them in the request body.
+
+#### **Improvements**
+
+* Log retention increased from 2 to 30 days by default. Check the disk headroom of your servers.
+* Advanced search keeps records at renamed or inactivated offices, facilities and administrative areas findable.
+* Ubuntu 26.04 support and Kubernetes v1.36.
+* The data seed job validates all seed data before writing anything.
+* ...and many bug fixes, listed in the core changelog.
 
 ***
 

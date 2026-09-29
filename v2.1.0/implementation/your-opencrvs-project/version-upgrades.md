@@ -61,10 +61,10 @@ Understanding what is coming allows you to plan upgrades alongside your normal o
 
 OpenCRVS officially maintains support for the current minor release and the immediately preceding minor release.
 
-For example, if the current release is **2.0**, the supported versions are:
+For example, if the current release is **2.1**, the supported versions are:
 
-* **2.0** (current)
-* **1.9** (previous minor release)
+* **2.1** (current)
+* **2.0** (previous minor release)
 
 Older minor versions are no longer actively maintained and will not receive new hotfixes or security updates.
 
