@@ -83,6 +83,14 @@ Once country config acknowledges the event with a `2xx`, Core informs the user t
 * **Approve** — the action's effects are applied and the record moves forward in its lifecycle.
 * **Reject** — the action is marked rejected and the record returns to an appropriate workqueue for follow-up.
 
+Country config can resolve the action immediately in its response (`200` approves, `400` rejects) or answer `202` and resolve it later. A later approval or rejection must be made with country config's own system client holding the `record.action.accept` or `record.action.reject` scope — never with a user's token. Core also applies these rules:
+
+* The user who requested the action is unassigned from the record when country config answers `202`.
+* A pending action cannot be resolved while any user is assigned to the record.
+* Only a pending action of the matching type can be approved or rejected.
+
+Together these keep the requester and the approver separate: whoever requests an action cannot also approve it.
+
 ```mermaid
 sequenceDiagram
   participant User
@@ -114,8 +122,10 @@ This pattern lets countries plug arbitrary business logic and external dependenc
 
 Country config frequently needs to read or write data in Core — for example, to enrich a record before approving it, or to fetch contextual information before sending a notification. It does this through Core's standard APIs, authenticated in one of two ways:
 
-* **User JWT** — country config reuses the JWT of the human user who triggered the original event. The call is performed _as that user_, with that user's permissions. This is appropriate when country config is acting on behalf of a specific human action.
-* **System client token** — a service-to-service token issued through the OpenCRVS admin UI for a registered system client. This is appropriate for background work, scheduled jobs, or any flow where no human user is in the loop.
+* **User JWT** — where a request from Core carries the JWT of the human user who triggered it (for example some user notification triggers), country config can reuse it. The call is performed _as that user_, with that user's permissions.
+* **System client token** — a service-to-service token for a system client registered in the admin UI or by country config itself. This is appropriate for background work, scheduled jobs, or any flow where no human user is in the loop, and it is **required** for approving or rejecting a pending action.
+
+Event action triggers do not carry a user's token. Core sends a service token that only proves the request came from Core; it has no scopes and cannot be used to call back into Core.
 
 ***
 
@@ -146,5 +156,5 @@ flowchart LR
 * Core's only integration peer is country config.
 * Every Core-side event is dispatched to country config over HTTP, with retries until a `2xx` response is received; user-originated actions stay in the outbox until fully processed.
 * Country config can extend behaviour (notifications, account events) and intercept registration actions, holding them as pending in Core until approved or rejected.
-* Country config calls Core using either the originating user's JWT or a system client token.
+* Country config calls Core using a system client token (or, where Core forwarded one, the originating user's JWT). Approving or rejecting a pending action always requires a system client with `record.action.accept` / `record.action.reject`.
 * Third parties should always integrate through country config, never directly with Core.

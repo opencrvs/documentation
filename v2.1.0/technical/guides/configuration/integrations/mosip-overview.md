@@ -10,12 +10,12 @@ Watch the video above to see a successful configuration of components that are a
 
 OpenCRVS integration with MOSIP follows a very similar technical process as followed for configuring integration with any other National ID system.
 
-For registration, the same API endpoints are configured. "In-form authentication and verification" uses QR Code scanning or eSignet. All integration behaviour is driven by country-level configuration in the [opencrvs-integrationland](https://github.com/opencrvs/opencrvs-integrationland) repository.
+For registration, the same API endpoints are configured. "In-form authentication and verification" uses QR Code scanning or eSignet. All integration behaviour is driven by country-level configuration. The reference implementation is the [testland](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/testland) country configuration in the OpenCRVS Core repository.
 
 From a back-end perspective, integration logic is split across two layers:
 
-* **Country configuration** ([opencrvs-integrationland](https://github.com/opencrvs/opencrvs-integrationland)) — Contains business logic: eligibility rules, data mapping, event handlers. This is where you customise MOSIP behaviour.
-* [**mosip-api**](https://github.com/opencrvs/mosip/tree/main/packages/mosip-api) **middleware** — A reusable Docker component that handles low-level communication with MOSIP services (Packet Manager, eSignet, ID Auth SDK, WebSub). Deploy as-is; no code changes needed.
+* **Country configuration** (reference: [packages/testland](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/testland)) — Contains business logic: eligibility rules, data mapping, event handlers. This is where you customise MOSIP behaviour.
+* [**mosip-api**](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/mosip-api) **middleware** — A reusable Docker component that handles low-level communication with MOSIP services (Packet Manager, eSignet, ID Auth SDK, WebSub). Deploy as-is; no code changes needed.
 
 #### Detailed flow diagrams
 
@@ -27,36 +27,38 @@ To understand the business process around the technical integration between Open
 
 In order to make life as easy as possible for developers who wish to configure the MOSIP integration, we have abstracted away all the non-customisable logic into an NPM library and created mock servers for both MOSIP and E-Signet.
 
-{% embed url="https://github.com/opencrvs/mosip/releases" %}
+From OpenCRVS 2.1, the MOSIP integration lives in the OpenCRVS Core repository and is released with every core release: `@opencrvs/mosip` is published at the same version as OpenCRVS Core, so use the version that matches your OpenCRVS release.
 
-Check out this repo and follow the README to run the middleware and mocks alongside your local instance of OpenCRVS. See [mock-identities.json](https://github.com/opencrvs/mosip/blob/release-v2.0.0/docs/mock-identities.json) for both eSignet & ID Auth mock identities.&#x20;
+{% embed url="https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/mosip" %}
+
+Follow the [mosip-api README](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/mosip-api) to run the middleware and mocks alongside your local instance of OpenCRVS. See [mock-identities.json](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/mosip-api/docs/mock-identities.json) for both eSignet & ID Auth mock identities.&#x20;
 
 #### mosip-api middleware
 
 The mosip-api middleware is a critical component that must be deployed. This is explained further in the following sections.
 
-{% embed url="https://github.com/opencrvs/mosip/tree/main/packages/mosip-api" %}
+{% embed url="https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/mosip-api" %}
 
-#### Example country configuration: opencrvs-integrationland
+#### Example country configuration: testland
 
-The [opencrvs-integrationland](https://github.com/opencrvs/opencrvs-integrationland) repository provides a fully operational country configuration that implements the MOSIP integration. You can follow exactly how we have configured the full business logic by reading the code.
+The [testland](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/testland) package in the OpenCRVS Core repository provides a fully operational country configuration that implements the MOSIP integration. You can follow exactly how we have configured the full business logic by reading the code.
 
 Key files:
 
 | Purpose                                   | File                                                                                                                                      |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| MOSIP eligibility logic & form helpers    | [`src/events/mosip.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/events/mosip.ts)                     |
-| MOSIP birth & death registration handlers | [`src/api/registration/index.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/api/registration/index.ts) |
-| Birth correction action handler           | [`src/api/events/handler.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/api/events/handler.ts)         |
-| Route definitions                         | [`src/index.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/index.ts)                                   |
-| Environment variables                     | [`src/environment.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/environment.ts)                       |
-| Constants                                 | [`src/constants.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/constants.ts)                           |
-| Form pages (birth)                        | [`src/events/birth/forms/pages/`](https://github.com/opencrvs/opencrvs-integrationland/tree/release-v2.0.0/src/events/birth/forms/pages)  |
-| Form pages (death)                        | [`src/events/death/forms/pages/`](https://github.com/opencrvs/opencrvs-integrationland/tree/release-v2.0.0/src/events/death/forms/pages)  |
+| MOSIP eligibility logic & form helpers    | [`src/events/mosip.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/events/mosip.ts)                     |
+| MOSIP birth & death registration handlers | [`src/api/registration/index.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/api/registration/index.ts) |
+| Birth correction action handler           | [`src/api/events/handler.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/api/events/handler.ts)         |
+| Route definitions                         | [`src/index.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/index.ts)                                   |
+| Environment variables                     | [`src/environment.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/environment.ts)                       |
+| Constants                                 | [`src/constants.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/constants.ts)                           |
+| Form pages (birth)                        | [`src/events/birth/forms/pages/`](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/testland/src/events/birth/forms/pages)  |
+| Form pages (death)                        | [`src/events/death/forms/pages/`](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/testland/src/events/death/forms/pages)  |
 
 #### Mocks
 
-* [mosip-mock](https://github.com/opencrvs/mosip/tree/main/packages/mosip-mock)
-* [esignet-mock](https://github.com/opencrvs/mosip/tree/main/packages/esignet-mock)
+* [mosip-mock](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/mosip-mock)
+* [esignet-mock](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/esignet-mock)
 
 The following sections will delve into the configuration points in more detail.

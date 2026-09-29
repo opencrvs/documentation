@@ -6,7 +6,7 @@ This section assumes that you are familiar with the [MOSIP identity authenticati
 
 #### Overview
 
-The MOSIP form integration provides helper functions that render eSignet authentication and QR code identity verification components directly in OpenCRVS declaration forms. These helpers are defined in [`src/events/mosip.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/events/mosip.ts) in the [opencrvs-integrationland](https://github.com/opencrvs/opencrvs-integrationland) repository.
+The MOSIP form integration provides helper functions that render eSignet authentication and QR code identity verification components directly in OpenCRVS declaration forms. These helpers are defined in [`src/events/mosip.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/events/mosip.ts) in the reference [testland](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/testland) country configuration.
 
 Three main helper functions are available:
 
@@ -20,7 +20,7 @@ Three main helper functions are available:
 
 This function generates the form fields required for MOSIP identity authentication on any form page. It is used for Informant, Mother, Father, Spouse, and Deceased roles across birth and death events.
 
-Example from [`src/events/birth/forms/pages/mother.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/events/birth/forms/pages/mother.ts):
+Example from [`src/events/birth/forms/pages/mother.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/events/birth/forms/pages/mother.ts):
 
 ```typescript
 import {
@@ -112,13 +112,13 @@ The eSignet redirect URL is constructed in the `LINK_BUTTON` configuration withi
 url: `${ESIGNET_REDIRECT_URL}?client_id=${OPENID_PROVIDER_CLIENT_ID}&response_type=code&scope=openid%20profile&acr_values=mosip%3Aidp%3Aacr%3Agenerated-code&claims=%7B%22userinfo%22%3A%7B%22name%22%3A%7B%22essential%22%3Atrue%7D%2C%22birthdate%22%3A%7B%22essential%22%3Atrue%7D%2C%22address%22%3A%7B%22essential%22%3Atrue%7D%2C%22individual_id%22%3A%7B%22essential%22%3Atrue%7D%7D%2C%22id_token%22%3A%7B%7D%7D&state=noop`;
 ```
 
-The `ESIGNET_REDIRECT_URL` and `OPENID_PROVIDER_CLIENT_ID` environment variables are configured in [`src/environment.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/environment.ts).
+The `ESIGNET_REDIRECT_URL` and `OPENID_PROVIDER_CLIENT_ID` environment variables are configured in [`src/environment.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/environment.ts).
 
 #### Offline identity verification via ID Auth
 
 When eSignet is unavailable (offline registration), identity data can be captured via QR code scan or manual entry using the **QR\_READER** component. Once the system is back online, the submitted data is verified against the MOSIP ID Auth SDK through the `mosipInteropClient.verifyNid()` call in the action handler.
 
-This verification happens in the `onBirthActionHandler` and `onDeathActionHandler` in [`src/api/events/handler.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/api/events/handler.ts).
+This verification happens in the `onBirthActionHandler` and `onDeathActionHandler` in [`src/api/events/handler.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/api/events/handler.ts).
 
 {% hint style="warning" %}
 MOSIP does not recommend offline ID Auth verification as a substitute for strong authentication — see [Identity verification on action (ID Auth)](https://app.gitbook.com/o/zub8C4BetmW3a9Bj4Cd4/s/TIJguU5Pzi7HeHrkXa4I/~/edit/~/changes/227/technical/guides/integration/mosip-registration-integration#identity-verification-on-action-id-auth) for the rationale.
@@ -130,12 +130,12 @@ The helpers are used across the following form pages:
 
 **Birth:**
 
-* [`src/events/birth/forms/pages/informant.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/events/birth/forms/pages/informant.ts)
-* [`src/events/birth/forms/pages/mother.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/events/birth/forms/pages/mother.ts)
-* [`src/events/birth/forms/pages/father.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/events/birth/forms/pages/father.ts)
+* [`src/events/birth/forms/pages/informant.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/events/birth/forms/pages/informant.ts)
+* [`src/events/birth/forms/pages/mother.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/events/birth/forms/pages/mother.ts)
+* [`src/events/birth/forms/pages/father.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/events/birth/forms/pages/father.ts)
 
 **Death:**
 
-* [`src/events/death/forms/pages/informant.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/events/death/forms/pages/informant.ts)
-* [`src/events/death/forms/pages/deceased.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/events/death/forms/pages/deceased.ts)
-* [`src/events/death/forms/pages/spouse.ts`](https://github.com/opencrvs/opencrvs-integrationland/blob/release-v2.0.0/src/events/death/forms/pages/spouse.ts)
+* [`src/events/death/forms/pages/informant.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/events/death/forms/pages/informant.ts)
+* [`src/events/death/forms/pages/deceased.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/events/death/forms/pages/deceased.ts)
+* [`src/events/death/forms/pages/spouse.ts`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/src/events/death/forms/pages/spouse.ts)

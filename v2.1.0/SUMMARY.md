@@ -186,6 +186,7 @@
       * [Multi-Page Certificate Templates](technical/guides/configuration/certificates/multi-page-certificate-templates.md)
     * [Action triggers](technical/guides/configuration/action-triggers/README.md)
       * [Email notifications](technical/guides/configuration/action-triggers/email-notifications.md)
+      * [Action confirmation](technical/guides/configuration/action-triggers/action-confirmation.md)
     * [Dashboards](technical/guides/configuration/dashboards.md)
     * [Translations](technical/guides/configuration/3.2.9.1-managing-language-content/README.md)
       * [Informant and staff notifications](technical/guides/configuration/3.2.9.1-managing-language-content/3.3.3-provision-a-comms-gateway.md)

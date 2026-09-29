@@ -25,7 +25,9 @@ With authentication and session security, OpenCRVS supports:
 * Optional **two-factor authentication (2FA)** using SMS or email verification codes.
 * **Time-limited one-time codes** to prevent replay or reuse during login.
 * A **screen lock PIN** for quickly securing active sessions without full re-authentication.
+* **Self-service account recovery** through a single-use, time-limited link sent to the user's registered email or phone number.
 * **Administrative password reset and recovery workflows** through User Management.
+* **Short-lived sessions** that renew automatically while the user is active.
 * Automatic **audit logging** of authentication events, credential changes, and security actions.
 
 Authentication and session security are:
@@ -53,6 +55,22 @@ Each OpenCRVS user is issued a **unique username and password**.
 * Must be changed on first login
 * Can be reset through self-service or by an administrator
 * Never displayed in clear text to administrators
+
+#### Forgotten password or username
+
+A user who has forgotten their password or username can start recovery from the login page by entering their email address or phone number.
+
+1. OpenCRVS always shows the same confirmation, whether or not an account matches — so the recovery page cannot be used to find out who has an account.
+2. If an account matches, a **single-use recovery link** is sent to the email address or phone number on that account. No account details are shown on screen.
+3. The user opens the link to reset their password or retrieve their username.
+
+Recovery links:
+
+* Expire after 1 hour by default (configurable)
+* Can only be used once
+* Are built from the deployment's login URL, so it must be configured correctly for each environment
+
+The recovery messages are sent by the country configuration and can be customised like any other user notification.
 
 ***
 
@@ -95,6 +113,10 @@ The PIN is:
 * Logged as part of session activity
 
 This feature is particularly useful in shared offices or mobile field environments.
+
+#### Session length
+
+A signed-in session uses a short-lived access token (10 minutes by default) that is renewed automatically in the background while the application is in use. Renewal is possible for up to one week after the last renewal by default; after that the user must sign in again. Each renewal replaces the previous renewal credential, and if an old one is presented again, OpenCRVS ends the session. Both durations are configurable per deployment.
 
 ***
 

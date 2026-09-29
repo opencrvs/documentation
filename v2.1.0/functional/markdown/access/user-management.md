@@ -53,10 +53,11 @@ User Management is:
 
 These scopes grant users the ability to browse the administrative structure and view office team pages
 
-| Scope           | Description                   |
-| --------------- | ----------------------------- |
-| `organisation`  | View all office locations     |
-| `organisation:` | View only their team location |
+| Scope                                                                          | Description                                      |
+| ------------------------------------------------------------------------------ | ------------------------------------------------ |
+| `{ type: 'organisation.read-locations' }`                                      | View all office locations                        |
+| `{ type: 'organisation.read-locations', options: { accessLevel: 'administrativeArea' } }` | View offices within their administrative area |
+| `{ type: 'organisation.read-locations', options: { accessLevel: 'location' } }` | View only their own office                      |
 
 ***
 
@@ -64,11 +65,14 @@ These scopes grant users the ability to browse the administrative structure and 
 
 These scopes grant a user the ability to view a user’s profile and audit history.
 
-| Scope                       | Description                             |
-| --------------------------- | --------------------------------------- |
-| `user.read:all`             | View all users in the country           |
-| `user.read:my-jurisdiction` | View users within the same jurisdiction |
-| `user.read:my-office`       | View only users in the same office      |
+| Scope                                                              | Description                                   |
+| ------------------------------------------------------------------ | --------------------------------------------- |
+| `{ type: 'user.read' }`                                            | View all users in the country                 |
+| `{ type: 'user.read', options: { accessLevel: 'administrativeArea' } }` | View users within their administrative area |
+| `{ type: 'user.read', options: { accessLevel: 'location' } }`      | View only users in the same office            |
+| `{ type: 'user.read-only-my-audit' }`                              | View only their own audit history             |
+
+`user.search` takes the same `accessLevel` option and controls which users appear in searches.
 
 ***
 
@@ -76,14 +80,15 @@ These scopes grant a user the ability to view a user’s profile and audit histo
 
 These scopes grant a user the ability to create users
 
-| Scope                         | Description                                    |
-| ----------------------------- | ---------------------------------------------- |
-| `user.create:all`             | Create and assign users to any office          |
-| `user.create:my-jurisdiction` | Create users only within the same jurisdiction |
+| Scope                                                                    | Description                                                |
+| ------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| `{ type: 'user.create' }`                                                | Create and assign users to any office                      |
+| `{ type: 'user.create', options: { accessLevel: 'administrativeArea' } }` | Create users only within their administrative area         |
+| `{ type: 'user.create', options: { role: ['REGISTRATION_AGENT'] } }`     | Limit the roles the administrator can assign               |
 
 **Example**
 
-An administrator in a State Office with `user.create:my-jurisdiction` can create users for any District office within that State, but not for other States.
+An administrator in a State Office with `{ type: 'user.create', options: { accessLevel: 'administrativeArea' } }` can create users for any District office within that State, but not for other States.
 
 ***
 
@@ -96,10 +101,12 @@ These scopes grant a user the ability to update a user.
 * Resetting passwords
 * Deactivating/reactivating accounts
 
-| Scope                         | Description                               |
-| ----------------------------- | ----------------------------------------- |
-| `user.update:all`             | Update any user                           |
-| `user.update:my-jurisdiction` | Update users within the same jurisdiction |
+| Scope                                                                  | Description                                  |
+| ---------------------------------------------------------------------- | -------------------------------------------- |
+| `{ type: 'user.edit' }`                                                | Update any user                              |
+| `{ type: 'user.edit', options: { accessLevel: 'administrativeArea' } }` | Update users within their administrative area |
+
+Like `user.create`, `user.edit` also accepts a `role` option limiting which roles the administrator can manage. See [How "user scope" options map to user details](../../../technical/guides/configuration/users/how-user-scope-options-map-to-user-details.md).
 
 ***
 

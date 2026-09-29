@@ -12,7 +12,7 @@ This guide explains how email delivery is implemented in the reference country c
 
 There are two families of email notifications:
 
-* **User notifications** — account and authentication lifecycle (onboarding, password reset, 2FA, username reminders, all-user broadcasts). Triggered by Core via `/triggers/user/...`.
+* **User notifications** — account and authentication lifecycle (onboarding, password reset, 2FA, username reminders, all-user broadcasts). Triggered by Core via `/trigger/user/...`.
 * **Informant notifications** — event lifecycle (a declaration is started, sent for review, registered, or rejected). Triggered by Core via the event action trigger.
 
 Both families converge on the same email service, so the SMTP configuration and email-sending behaviour described here apply to all of them.
@@ -29,7 +29,7 @@ sequenceDiagram
     participant SMTP as SMTP server
 
     Note over Core: An action occurs (e.g. user created, birth registered)
-    Core->>Trigger: POST /triggers/... (payload incl. Recipient)
+    Core->>Trigger: POST /trigger/... (payload incl. Recipient)
     Note over Trigger: Validate payload, build template variables
     Trigger->>Tmpl: Render HTML for this notification type
     Trigger->>SMTP: sendEmail() via nodemailer
@@ -108,12 +108,18 @@ email-templates/
 | `username-reminder`       | `username-reminder.html`              | Account username reminder                  |
 | `reset-password`          | `password-reset.html`                 | Account password reset request             |
 | `reset-password-by-admin` | `password-reset-by-system-admin.html` | Account password reset invitation          |
+| `password-reset-link`     | `password-reset-link.html`            | Reset your password                        |
+| `username-reminder-link`  | `username-reminder-link.html`         | Retrieve your username                     |
 | `2fa`                     | `2-factor-authentication.html`        | Two factor authentication                  |
 | `change-phone-number`     | `change-phone-number.html`            | Phone number change request                |
 | `change-email-address`    | `change-email-address.html`           | Email address change request               |
 | `all-user-notification`   | `all-user-notification.html`          | _(set by the admin sending the broadcast)_ |
 
-See the action triggers reference for the exact payload of each `/triggers/user/...` endpoint.
+{% hint style="warning" %}
+From OpenCRVS 2.1, a user who forgets their password or username on the login page receives a single-use recovery link instead of a code. Your country configuration must handle the `password-reset-link` and `username-reminder-link` triggers **before upgrading** — without them no recovery message can be sent, and account recovery fails for every user. The reference handler builds the link as `${LOGIN_URL}/recover?token=<token>` and passes it to the templates as `recoveryURL`, so `LOGIN_URL` must be correct for each environment. The SMS equivalents use the `resetPasswordLinkNotification` and `retrieveUsernameLinkNotification` message keys.
+{% endhint %}
+
+See the action triggers reference for the exact payload of each `/trigger/user/...` endpoint.
 
 **4.2 Informant notification templates**
 

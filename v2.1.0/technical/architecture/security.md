@@ -83,11 +83,15 @@ All user authentication requires two factors:
 
 This ensures that only users with access to authenticated hardware can log in to OpenCRVS, even if their password is compromised.
 
+Sessions use short-lived access tokens (10 minutes by default) renewed with rotating refresh tokens; reusing an old refresh token ends the session. Forgotten passwords and usernames are recovered through a single-use, time-limited link sent to the account's registered email or phone number, and the recovery endpoint responds identically whether or not an account exists, so it cannot be used to discover accounts.
+
 #### 4.2 Role-based access controls
 
 User types and access controls are managed to segregate personally identifiable data to only the users who need it.
 
 * **Roles and scopes** define what actions users can perform and what data they can access.
+* **Separation of requester and approver** — actions held for approval by the country configuration can only be approved by a system client, never by the user who requested them.
+* **Record-bound document access** — a download link for a document attached to a record is only issued to a user or client that can read that record.
 * **Jurisdictional constraints** restrict users to records from specific administrative areas.
 * **Team management** is handled via the Team GUI, accessible by National and Local System Administrators.
 

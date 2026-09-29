@@ -57,7 +57,7 @@ OpenCRVS uses multiple database technologies, each optimised for specific purpos
 
 **Redis**
 
-* Used for storing quickly expiring data like 2FA codes.
+* Used for storing quickly expiring data like 2FA codes, account recovery links and refresh-token sessions.
 
 #### 3.3 Object storage
 

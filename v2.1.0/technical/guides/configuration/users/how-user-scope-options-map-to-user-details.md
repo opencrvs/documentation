@@ -3,7 +3,7 @@
 ### Managing users
 
 \
-In production environments, users are created manually by other users. The locations where a new user can be placed, and the roles they can be assigned, are controlled by the creating [user's scopes.](https://github.com/opencrvs/opencrvs-core/blob/v2.0.0-beta/packages/commons/src/scopes.ts#L250)
+In production environments, users are created manually by other users. The locations where a new user can be placed, and the roles they can be assigned, are controlled by the creating [user's scopes.](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/commons/src/scopes.ts#L306)
 
 **Example: `LOCAL_SYSTEM_ADMIN` creating or editing another user**
 
