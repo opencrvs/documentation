@@ -89,11 +89,7 @@ We recommend you use following pre-configured environment names:
 
 **Enable two-factor authentication (2FA)?**
 
-The script asks whether to enable two-factor authentication for user login:
-
-```
-? Enable two-factor authentication (2FA)? (Y/n)
-```
+The script asks whether to enable two-factor authentication for user login: `? Enable two-factor authentication (2FA)? (Y/n)`
 
 The default answer follows the **purpose** of the environment:
 
