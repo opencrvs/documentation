@@ -206,7 +206,7 @@ OpenCRVS can be deployed:
 * **Cloud-hosted** on any infrastructure provider (AWS, Azure, GCP, etc.).
 * **Hybrid** configurations combining on-premise and cloud components.
 
-For detailed server specifications and setup guidance, see the [installation documentation](https://github.com/opencrvs/documentation/blob/master/v1.9.0/setup/3.-installation/3.3-set-up-a-server-hosted-environment).
+For detailed server specifications and setup guidance, see the [installation](../guides/installation/ "mention").
 
 #### 8.2 Scalability
 

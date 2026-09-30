@@ -148,7 +148,7 @@ Check out the [Configuration, testing and technical configuration files](https:/
 
 ### 6. Raising OpenCRVS defects
 
-If you suspect that you have discovered a defect you will need to raise an issue for L3 or L4 support.  Read the [Operational support](operational-support.md) guide for info on what these tiers mean and who is responsible for resolution.
+If you suspect that you have discovered a defect you will need to raise an issue for L3 or L4 support. Read the [Operational support](operational-support.md) guide for info on what these tiers mean and who is responsible for resolution.
 
 #### How to prepare a defect report for L3 or L4 support
 
@@ -166,15 +166,13 @@ Your issue will be fixed much faster if you spend about half an hour preparing i
    * See error
 4. **Expected behavior** — a clear and concise description of what you expected to happen.
 5. **Actual behavior** — describe what happened, including screenshots and video.
-6. **OpenCRVS Core Version** — for example, v1.7.0 (Git branch: master / release-v1.7.0).
-7. **Country Configuration Version** — for example, v1.7.0 (Git branch: master / release-v1.7.0).
+6. **OpenCRVS Core Version** — for example, v2.1.0 (Git branch: release/v2.1.0).
+7. **Country Configuration Version** — for example a link to the countryconfig.
 8. **Device** — include:
    * OS (for example, iOS, Windows, Android)
    * Browser (for example, Chrome, Firefox, Safari)
    * Version (for example, 22)
 9. **Possible fixes** — if you can, link to the line of code that might be responsible for the problem.
-
-
 
 **L3 next steps:** Now your development team can effectively track, investigate and resolve the issue.
 
