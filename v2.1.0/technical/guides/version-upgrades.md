@@ -178,18 +178,13 @@ You now have the target OpenCRVS release code locally.
 ```bash
 cd <path>/opencrvs-<your-country>
 
-## Ensure upstream points to opencrvs/infrastructure
-git remote -v
-
-git fetch --all
-
 ## Create a temporary upgrade branch
 git checkout -b upgrade-v<target-version>
 
 ## Upgrade the toolkit package version to the target version
 yarn add @opencrvs/toolkit@2.x.x --exact
 
-## Run codemod tool, which upgrades your countryconfig to support v2.0
+## Run codemod tool, which upgrades your countryconfig to support v2.1
 ## If you are still on Docker Swarm (instead of kubernetes), use the --docker-swarm flag!
 ## If this flag is set, the /infrastructure directory is kept.
 ## Otherwise it is deleted in favour of a separate infrastucture repository.
@@ -202,7 +197,9 @@ yarn opencrvs upgrade [--docker-swarm]
 yarn --force
 
 ## Finally, we recommend autoformatting your code
-yarn prettier --write src/ infrastructure/
+yarn prettier --write src/
+## If you are still on Docker Swarm (instead of kubernetes):
+yarn prettier --write infrastructure/
 ```
 
 **Run locally**
@@ -230,8 +227,8 @@ git fetch --all
 ## Create a temporary upgrade branch
 git checkout -b upgrade-v<target-version>
 
-## Upgrade the toolkit package version to the target version
-git merge upstream/release-v2.x.x
+## Upgrade repository from upstream opencrvs/infrastructure
+git merge upstream/release/2.x.x
 ```
 
 **Commit and push**
