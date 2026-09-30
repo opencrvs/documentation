@@ -40,7 +40,7 @@ git checkout -b ocrvs-<issue-number>
 
 Core ships two country configuration packages. They serve different purposes, and a change to configuration behaviour or to user-facing copy usually belongs in **both**.
 
-| | [`packages/testland`](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0-beta/packages/testland) | [`packages/countryconfig-template`](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0-beta/packages/countryconfig-template) |
+| | [`packages/testland`](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/testland) | [`packages/countryconfig-template`](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/countryconfig-template) |
 | ------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | What it is          | The reference country configuration                                                                 | The scaffolding template                                                                                                         |
 | In local dev        | Starts by default with `pnpm dev`; pass `--no-testland` to run your own country config instead       | Never runs — it is excluded from `start` and `start:prod`                                                                        |
@@ -54,11 +54,11 @@ Almost every core contribution touches at least one of three kinds of test:
 
 * **Unit tests** for business logic, front and backend
 * **Storybook interaction tests** for component behaviour
-* **End-to-end tests** in [`packages/testland/e2e`](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0-beta/packages/testland/e2e), for user-facing functional changes
+* **End-to-end tests** in [`packages/testland/e2e`](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/testland/e2e), for user-facing functional changes
 
 Prefer real assertions over snapshots — a snapshot that future contributors blindly regenerate doesn't catch much.
 
-Before writing an end-to-end test, read [How to write a test (that is not flaky)](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/testland/e2e/HOW-TO-WRITE-A-TEST.md), which documents the helpers that keep tests reliable when the suite runs in parallel. The [e2e README](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/testland/e2e/README.md) covers running the suite locally or against a deployed environment and walks through debugging a CI failure, and [SHARDING.md](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0-beta/packages/testland/e2e/SHARDING.md) explains how the suite is split across CI.
+Before writing an end-to-end test, read [How to write a test (that is not flaky)](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/e2e/HOW-TO-WRITE-A-TEST.md), which documents the helpers that keep tests reliable when the suite runs in parallel. The [e2e README](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/e2e/README.md) covers running the suite locally or against a deployed environment and walks through debugging a CI failure, and [SHARDING.md](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/packages/testland/e2e/SHARDING.md) explains how the suite is split across CI.
 
 #### Related repositories
 
