@@ -52,7 +52,7 @@ If for some reason data seed job was not executed or failed at installation time
 
 If there is an issue and you are not receiving emails, this is a good opportunity to learn about monitoring and debugging your OpenCRVS installation.
 
-To learn more about OpenCRVS monitoring and maintenance, visit the [monitoring](https://github.com/opencrvs/documentation/blob/master/v1.8.0/setup/7.-monitoring) section.
+To learn more about OpenCRVS monitoring and maintenance, visit the [monitoring](../../../monitoring/README.md) section.
 
 As the SMTP API was configured in the countryconfig service, you can filter the appropriate logs in Kibana in the **Observability > Discover** section like so:
 

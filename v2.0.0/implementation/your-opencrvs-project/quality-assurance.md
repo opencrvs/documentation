@@ -166,8 +166,8 @@ Your issue will be fixed much faster if you spend about half an hour preparing i
    * See error
 4. **Expected behavior** — a clear and concise description of what you expected to happen.
 5. **Actual behavior** — describe what happened, including screenshots and video.
-6. **OpenCRVS Core Version** — for example, v1.7.0 (Git branch: master / release-v1.7.0).
-7. **Country Configuration Version** — for example, v1.7.0 (Git branch: master / release-v1.7.0).
+6. **OpenCRVS Core Version** — for example, v2.1.0 (Git branch: release/v2.1.0).
+7. **Country Configuration Version** — for example, v2.1.0 (Git branch: release/v2.1.0).
 8. **Device** — include:
    * OS (for example, iOS, Windows, Android)
    * Browser (for example, Chrome, Firefox, Safari)
