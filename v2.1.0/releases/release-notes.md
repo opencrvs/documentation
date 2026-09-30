@@ -18,7 +18,7 @@ TODO: Insert zip of 2.1 Config files
 
 ## Releases
 
-### v2.1 (Upcoming Q3 2026)
+### v2.1
 
 **Core changelog:** [**https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/CHANGELOG.md#210-release-candidate**](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/CHANGELOG.md#210-release-candidate)
 
