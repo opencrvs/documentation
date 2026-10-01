@@ -1,4 +1,4 @@
-# Deploy: Set-up a server-hosted environment
+# Server deployment
 
 In this chapter, you will learn how to create and configure the infrastructure and all required components for an OpenCRVS deployment using GitHub Actions workflows.
 
