@@ -1,8 +1,6 @@
 # Set up Github and Dockerhub accounts
 
-In the previous step you set up a country configuration package with a minimal example configuration.
-
-Next, you want to commit all changes to a repo and build your countryconfig Docker image using the Github Actions and a [**Dockerhub**](https://hub.docker.com/) account.
+Before you deploy OpenCRVS to a server, commit your country configuration to a GitHub repository and build its Docker image with GitHub Actions and a [**Dockerhub**](https://hub.docker.com/) account. If you have not created a country configuration yet, follow the [Quick Start](quick-start.md).
 
 
 

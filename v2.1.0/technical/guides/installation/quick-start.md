@@ -1,54 +1,64 @@
 # Quick Start
 
+Before you start, install the required tools and start a local Kubernetes cluster, see [Prerequisites](prerequisites.md).
+
 ### Create a country configuration
 
-```
+{% tabs %}
+{% tab title="Run with Node" %}
+```bash
 npm create @opencrvs/countryconfig@latest <project-name>
 ```
+{% endtab %}
+{% tab title="Run with docker" %}
+If you don't have Node.js installed, run the same command with Docker.
+Modify `<project-name>` before running:
+```bash
+docker run --rm -it \
+  -v "$PWD":/work -w /work \
+  --user "$(id -u):$(id -g)" -e HOME=/tmp \
+  node:22 npx --yes @opencrvs/create-countryconfig@latest <project-name>
+```
 
-This command creates a country configuration package with a minimal example configuration.
+`--user` makes the created files belong to you instead of `root`.
+{% endtab %}
+{% endtabs %}
+
+This command creates two directories: `<project-name>-countryconfig`, a country configuration package with a minimal example configuration, and `<project-name>-infrastructure`, for deploying to servers. It asks for your organisation name and country code first.
 
 ### Run local development environment
 
-Make sure all prerequisites are installed, see [countryconfig-template](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/countryconfig-template#prerequisites)
+Go to your country configuration directory:
 
-Navigate to `<project-name>-countryconfig`
-
-Start development environemnt:
-
+```bash
+cd <path>/<project-name>-countryconfig
 ```
+
+Start the development environment:
+
+```bash
 tilt up
 ```
 
-Open the Tilt UI:
+Open the Tilt UI at [http://localhost:10350](http://localhost:10350).
 
-```
-http://localhost:10350
-```
-
-Wait until the main resources are running.
+Wait until all resources in the `1.OpenCRVS` group are green. The first `tilt up` downloads all OpenCRVS Core images, so it can take a long time, depending on your internet connection. Later starts are much faster. Follow the progress in each resource's logs.
 
 Then run the data seed task from the Tilt UI:
 
-1. Open http://localhost:10350
+1. Open [http://localhost:10350](http://localhost:10350)
 2. Find the `2.Data-tasks` section
 3. Run the `data-seed` or `clean-&-seed` resource
 4. Wait until the job completes
 
-Open OpenCRVS: http://opencrvs.localhost
+### Log in
 
-Thats it! 🎉
+Open OpenCRVS at [http://opencrvs.localhost](http://opencrvs.localhost) and log in with a test user, for example username `k.mweene` and password `test`. If you are asked for an authentication code, use `000000`.
 
-### Further reading
+For all test users, see [Log in to OpenCRVS locally](log-in-to-opencrvs-locally.md).
 
-### Data seeding
+That's it! 🎉
 
-Data seeding is the process of installing into OpenCRVS databases, the reference data for general configuration of the application. Seeding is a one-time process. A server or your localhost must be entirely cleared of all data before it can be seeded again.
+### Next steps
 
-Data seeding uses a temporary superuser and our APIs to create all of the above. This superuser is created in data migrations that run when OpenCRVS starts up. At the end of data seeding, the superuser is deactivated.
-
-On a deployed server environment, Github Action workflows perform this task. You will learn about them later when provisioning a server.
-
-### Modify default helm values
-
-Use `tilt/helm/*/values.override.yaml` to modify default values for helm charts.
+Read [Working with Tilt](working-with-tilt.md) to learn how to use the Tilt UI, reload your changes, reset data and access OpenCRVS services.
