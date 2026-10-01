@@ -119,12 +119,14 @@ OpenCRVS automatically provisions secure infrastructure with multiple layers of 
 
 #### 5.1 Firewall and SSH access
 
-* **Firewall** — OpenCRVS automatically provisions a secure firewall on each node using Ansible.
+* **Firewall** — OpenCRVS automatically provisions a firewall on each node using Ansible. See [Ubuntu Firewall configuration](../guides/installation/advanced-topics/ubuntu-firewall-configuration.md).
+* **Network policies** — Kubernetes network policies restrict traffic between OpenCRVS pods and namespaces by default. See [Kubernetes Network Policy](../guides/installation/advanced-topics/kubernetes-network-policy.md).
+* **IP allowlists** — access to the application and to the admin consoles (Kibana, MinIO, Metabase) can be restricted to known IP ranges. See [IP Allowlisting](../guides/installation/advanced-topics/ip-allowlisting.md).
 * **SSH 2FA** — SSH users are configured to use Google Authenticator 2FA when connecting via a Terminal.
-* **Automated alerts** — every SSH access prompts an automated alert to technical teams via Slack.
+* **Automated alerts** — every SSH login sends an alert email to the `ALERT_EMAIL` address.
 
 {% hint style="warning" %}
-**VPN requirement** — OpenCRVS should only be installed behind a separately configured and managed, government-owned VPN.
+**VPN** — install OpenCRVS behind a separately configured and managed, government-owned VPN or private network wherever possible. If a VPN is not feasible, the country or its system integrator must put the compensating controls in place before go-live. See [Why VPN?](../guides/installation/advanced-topics/why-vpn.md).
 {% endhint %}
 
 #### 5.2 TLS certificate

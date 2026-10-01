@@ -30,7 +30,7 @@ Before proceeding to discuss server specifications, it is important to understan
 
 Before proceeding to discuss network specifications, it is important to understand the following other concepts:
 
-* **vpn:** All servers must be protected behind a government virtual private network (VPN). [_Learn why a VPN is important._](https://documentation.opencrvs.org/technical/guides/installation/advanced-topics/why-vpn) Users must authenticate via the VPN to access OpenCRVS in a browser. The country should provide and operate the VPN. When using self-hosted GitHub Actions runners, place those runners inside the VPN or on the internal network so they can reach servers directly; no VPN tunnel from GitHub-hosted services is required.
+* **vpn:** All servers should be protected behind a government virtual private network (VPN). [_Learn why a VPN is important._](https://documentation.opencrvs.org/technical/guides/installation/advanced-topics/why-vpn) With a VPN, users authenticate via the VPN to access OpenCRVS in a browser. The country should provide and operate the VPN. When using self-hosted GitHub Actions runners, place those runners inside the VPN or on the internal network so they can reach servers directly; no VPN tunnel from GitHub-hosted services is required. If a country cannot provide a VPN and decides to expose OpenCRVS to the public internet, apply the [compensating controls](../../advanced-topics/why-vpn.md#public-deployment-is-still-possible), starting with [IP allowlisting](../../advanced-topics/ip-allowlisting.md).
 * **Continuous provisioning & deployment via GitHub Actions:** OpenCRVS provides GitHub Actions workflows for automated provisioning and deployment. A GitHub organisation is required. Self-hosted runners deployed within your VPN/internal network (recommended).
 * **bastion** or **jump:** An optional bastion (jump) host can consolidate and control SSH access to servers behind the VPN without distributing VPN credentials. Bastions are useful for administrative SSH access, auditing and as an alternative deployment hop even when using self-hosted runners inside the VPN.
 
@@ -63,7 +63,10 @@ Notes:
 If you are not using the correct version of Ubuntu, either recreate the server or upgrade Ubuntu.
 {% endhint %}
 
-OpenCRVS v2.1 supports the Ubuntu Server LTS releases 24.04 and 26.04
+OpenCRVS v2.1 supports the following Ubuntu Server LTS releases:
+
+* 24.04
+* 26.04
 
 Verify your release version using following command:
 
@@ -382,13 +385,15 @@ Refer to the following network diagram as a reference example of how to network 
 
 <figure><img src="../../../../../.gitbook/assets/OpenCRVS Network &#x26; Servers.png" alt=""><figcaption></figcaption></figure>
 
+For the firewall rules applied during provisioning and further network hardening, see [Ubuntu Firewall configuration](../../advanced-topics/ubuntu-firewall-configuration.md), [IP Allowlisting](../../advanced-topics/ip-allowlisting.md) and [Kubernetes Network Policy](../../advanced-topics/kubernetes-network-policy.md).
+
 ### Server administrator SSH access & permissions:
 
-During provisioning, the server administrator requires SSH access through the provided VPN to all servers with **sudo** permissions.
+During provisioning, the server administrator requires SSH access through the provided VPN (or a bastion host) to all servers with **sudo** permissions.
 
 During installation of OpenCRVS, SSH config to all servers will be modified, blocking password based SSH authentication, root user access, configuring 2FA authentication and alerting for all future SSH access.
 
-Once provisioned, there should be no need for technical staff to ever SSH into a server during day-to-day operations. Every SSH access going forward is audited via a Slack notification to all technical staff thanks to these provisioned alerts.
+Once provisioned, there should be no need for technical staff to ever SSH into a server during day-to-day operations. Every SSH login going forward triggers an alert email to the `ALERT_EMAIL` address thanks to these provisioned alerts.
 
 ### User access
 
@@ -403,37 +408,63 @@ The following users will access 3 of the environments: **qa**, **production** & 
 
 {% hint style="info" %}
 All user workstations / tablets / smartphones and integrating APIs will require compatible VPN clients and accounts.
+
+Without a VPN, restrict access by IP address, either at a WAF or with the Traefik [IP allowlists](../../advanced-topics/ip-allowlisting.md) (see [Choose where to filter IP addresses](../../advanced-topics/ip-allowlisting.md#choose-where-to-filter-ip-addresses)). Include every network that these users and integrations connect from; anyone outside the allowed networks receives `403 Forbidden`.
 {% endhint %}
 
 ### Egress (outbound) internet access
 
-In addition to serving user traffic the OpenCRVS infrastructure needs to be able to communicate outbound. This egress traffic includes things like pulling in latest updates, monitoring and emails.
+In addition to serving user traffic the OpenCRVS infrastructure needs to be able to communicate outbound. This egress traffic includes things like pulling in latest updates, container images, monitoring and emails.
 
-Check that the servers have internet connectivity. The servers must be able to access Dockerhub, GitHub Container Registry and other internet services such as Ubuntu update repositories, Email & SMS apis for example. Therefore check if you can ping google.com from inside the servers.
+Check that the servers have internet connectivity. The servers must be able to access container registries (GitHub Container Registry, Docker Hub, Elastic) and other internet services such as Ubuntu update repositories, Email & SMS apis for example. Therefore check if you can ping google.com from inside the servers.
 
-If your VPN requires a whitelist of allowed domains, the following are the known domains which the servers require access to:
+If your VPN or firewall requires an allowlist of outbound domains, the following are the known domains which the servers and self-hosted runners require access to:
 
 ```
+# Provisioning: Ubuntu, Kubernetes and Helm packages
 archive.ubuntu.com
+security.ubuntu.com
 changelogs.ubuntu.com
+download.docker.com
+pkgs.k8s.io
+packages.buildkite.com
+raw.githubusercontent.com
+charts.jetstack.io
+
+# Container images and Helm charts
+ghcr.io
+pkg-containers.githubusercontent.com (image and chart downloads for ghcr.io)
+registry.k8s.io (Kubernetes control plane and metrics-server images)
+quay.io (cert-manager and Calico operator images)
 hub.docker.com
 auth.docker.io
 registry-1.docker.io
-download.docker.com
-ghcr.io
-pkg-containers.githubusercontent.com (OpenCRVS images and Helm charts)
+production.cloudflare.docker.com (image downloads for Docker Hub)
 docker.elastic.co (Elasticsearch, Kibana and Beats images)
 open-telemetry.github.io (OpenTelemetry Collector Helm chart)
-fonts.gstatic.com
-storage.googleapis.com
-fonts.googleapis.com 
+
+# Backup and restore utilities installed at runtime (not needed with pre-built images, see Air-gap installation)
+apt.postgresql.org (backup server and Postgres backup/restore jobs)
+deb.debian.org
+dl-cdn.alpinelinux.org
+
+# Self-hosted runners
+galaxy.ansible.com (Ansible collections used by provisioning)
+
+# Other
 github.com
+objects.githubusercontent.com, release-assets.githubusercontent.com (GitHub release downloads)
 acme-v02.api.letsencrypt.org (if using LetsEncrypt TLS certs)
+status.opencrvs.org (if telemetry is enabled)
+fonts.gstatic.com
+fonts.googleapis.com
+storage.googleapis.com
 registry.npmjs.org
 registry.yarnpkg.com
-status.opencrvs.dev (only if telemetry is enabled)
 ... Other domains may be required depending on your configuration
 ```
+
+Self-hosted GitHub Actions runners also need the GitHub domains listed in [Requirements for communication with GitHub](https://docs.github.com/en/actions/reference/runners/self-hosted-runners#requirements-for-communication-with-github). For installations without internet access, see [Air-gap installation](../../advanced-topics/air-gap-installation.md).
 
 ### Email (SMTP) server
 

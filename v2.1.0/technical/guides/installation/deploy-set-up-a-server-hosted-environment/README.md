@@ -6,7 +6,7 @@ These workflows guide you through the installation and configuration of OpenCRVS
 
 The **essential** [**preparation steps**](preparation-steps/) guide you through the following:
 
-- Provision servers (virtual machines) & VPN.
+- Provision servers (virtual machines) under VPN or a private network.
 - Configure DNS and obtain SSL certificates.
 - Set up an SMTP server.
 - Create the required accounts:
@@ -26,5 +26,9 @@ Fork the [infrastructure](https://github.com/opencrvs/infrastructure) repository
 {% endhint %}
 
 All steps are described in detail in this chapter.
+
+{% hint style="info" %}
+Before the first deployment, read [Why VPN?](../advanced-topics/why-vpn.md), [Ubuntu Firewall configuration](../advanced-topics/ubuntu-firewall-configuration.md), [IP Allowlisting](../advanced-topics/ip-allowlisting.md) and [Kubernetes Network Policy](../advanced-topics/kubernetes-network-policy.md). Complete the [Pre-Deployment Checklist](pre-deployment-checklist.md) before go-live.
+{% endhint %}
 
 **Once the preparation steps are complete,** proceed with the installation steps **in order, starting with creating a Github environment**.
