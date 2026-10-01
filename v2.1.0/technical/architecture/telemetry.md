@@ -94,7 +94,7 @@ once per UTC day)
 
 1. **Events service** — a background worker wakes hourly and, at most once per UTC day, collects the metrics above and POSTs `{ reported_at, app_version, metrics }` to countryconfig's `POST /trigger/telemetry`. The request carries an OpenCRVS **system** token (the service's anonymous token). `reported_at` is midnight UTC of the day, so a retry or a mid-day restart reuses the same timestamp.
 2. **countryconfig** — verifies the token is a system token (a logged-in user's token is rejected, and the endpoint is not reachable through the public gateway). It then decides whether to send: it skips silently when `TELEMETRY_ENABLED` is false, and skips when the instance is not running in production. Otherwise it stamps the instance identity and forwards the report.
-3. **Toolkit** — `@opencrvs/toolkit`'s `sendTelemetry(report)` owns the status service URL (`https://status.opencrvs.dev/v1/telemetry`) and the `schema_version`. Keeping these in the toolkit means a core release can change the endpoint or payload shape, and a country config picks the change up on upgrade — an incompatible payload surfaces as a TypeScript error rather than a silent runtime mismatch.
+3. **Toolkit** — `@opencrvs/toolkit`'s `sendTelemetry(report)` owns the status service URL (`https://status.opencrvs.org/v1/telemetry`) and the `schema_version`. Keeping these in the toolkit means a core release can change the endpoint or payload shape, and a country config picks the change up on upgrade — an incompatible payload surfaces as a TypeScript error rather than a silent runtime mismatch.
 4. **Status service** — deduplicates on `(reported_at, schema_version)`, so at-most-once-per-day reporting never double-counts even if a report is retried.
 
 ***
@@ -115,7 +115,7 @@ To disable it, set `TELEMETRY_ENABLED=false` (or leave it unset — it defaults 
 Because sends are gated on production, telemetry from staging/QA/local instances is never transmitted regardless of these settings.
 
 {% hint style="info" %}
-When telemetry is enabled, the countryconfig service in production needs outbound HTTPS access to `status.opencrvs.dev`. If your network restricts egress traffic, add this domain to your allowlist.
+When telemetry is enabled, the countryconfig service in production needs outbound HTTPS access to `status.opencrvs.org`. If your network restricts egress traffic, add this domain to your allowlist.
 {% endhint %}
 
 #### Scaffolding and upgrades

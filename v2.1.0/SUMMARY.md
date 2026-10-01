@@ -158,8 +158,6 @@
       * [Disk encryption](technical/guides/installation/advanced-topics/disk-encryption.md)
       * [Disk space management](technical/guides/installation/advanced-topics/disk-space-management.md)
       * [Elasticsearch disk management](technical/guides/installation/advanced-topics/elasticsearch-disk-management.md)
-      * [Disk encryption](technical/guides/installation/advanced-topics/disk-encryption.md)
-      * [Why VPN?](technical/guides/installation/advanced-topics/why-vpn.md)
       * [Deploy OpenCRVS with external data stores](technical/guides/installation/advanced-topics/deploy-opencrvs-with-external-data-stores.md)
   * [Configuration](technical/guides/configuration/README.md)
     * [Administrative hierarchy](technical/guides/configuration/administrative-hierarchy/README.md)
