@@ -213,7 +213,13 @@ Full documentation about traefik configuration can be found at:
 
 Disk Encryption: If disk encryption is enabled, provision GitHub Actions workflow will create encrypted file in the root (`/`) directory and mount it as `/data`. Disk encryption is optional. **Disk encryption can't be enabled later.**
 
-* `DISK_SPACE`: Amount of disk space that should be dedicated to OpenCRVS data (logs, monitoring and citizens crvs records). Specified value will become the size of an encrypted cryptfs `/data` directory. Specified disk space will be allocated on each cluster node for multi-node kubernetes cluster and this behaviour may change in the future.
+* `DISK_SPACE`: Size of the encrypted `/data` volume in gigabytes, e.g. `200g`. Asked only when encryption is enabled. The volume is created on **every** node; to resize it later, see [Increase /data partition](../../advanced-topics/disk-space-management.md#increase-data-partition).
+
+{% hint style="warning" %}
+**Do not use all disk space for OpenCRVS.** Each node's root partition needs `DISK_SPACE` free, plus 50g or 10% of it (whichever is larger) for the OS.
+{% endhint %}
+
+Datastores run on the master by default; use `node_selector` to place them on other nodes and use their volumes. See [Move datastore storage](../../advanced-topics/disk-space-management.md#move-datastore-storage).
 
 #### Backup
 
