@@ -27,6 +27,8 @@ This allows cluster components to communicate with the API server while enabling
 
 OpenCRVS automatically discovers all Kubernetes node IP addresses and creates firewall rules allowing communication between cluster members only.
 
+The master node's IP address comes from `KUBE_MASTER_NODE`, and the worker addresses come from `KUBE_WORKER_NODES`. These must be the addresses the nodes use to reach each other. If the master node has both a public and a private network interface, set `KUBE_MASTER_NODE` to the private IP address. Otherwise the firewall blocks traffic from the master to the worker nodes, and commands such as `kubectl logs` fail with `dial tcp <worker IP>:10250: i/o timeout`.
+
 The following ports are opened between cluster nodes:
 
 | Port  | Protocol | Purpose                         |
@@ -65,7 +67,7 @@ By default:
 
 Configuration:
 
-* **KUBE\_MASTER\_NODE** – Leave empty if the master has a single network interface. Otherwise, specify the desired master node IP address.
+* **KUBE\_MASTER\_NODE** – Leave empty if the master has a single network interface. Otherwise, use the private IP address that the worker nodes use to reach the master.
 * **KUBE\_WORKER\_NODES** – Worker node IP addresses.
 * **KUBE\_API\_HOST** – Leave blank to use `KUBE_MASTER_NODE`.
 * **KUBE\_API\_ALLOWED\_CIDRS** – Leave blank to block Kubernetes API access from all networks except the worker nodes.
@@ -95,7 +97,7 @@ All variables are configured by `environment:init` script, use this documentatio
 
 | GitHub variable           | Ansible variable          | Description                                                                                                         |
 | ------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| KUBE\_MASTER\_NODE        | kube\_master\_node        | Master node IP address                                                                                              |
+| KUBE\_MASTER\_NODE        | kube\_master\_node        | Master node IP address. On a master node with several network interfaces, use the private IP address shared with the worker nodes |
 | KUBE\_API\_HOST           | kube\_api\_host           | Kubernetes API IP / Hostname (by default is same as Master node IP                                                  |
 | KUBE\_API\_ALLOWED\_CIDRS | kube\_api\_allowed\_cidrs | Subnets approved to access Kubernetes API server (master). Comma-separated list (e/g: `10.0.0.0/16,192.168.0.0/24`) |
 | KUBE\_WORKER\_NODES       | n/a                       | Kubernetes worker nodes. Comma-separated list (e/g: `10.0.0.2,10.0.0.3,10.0.0.4`)                                   |

@@ -27,6 +27,8 @@ This allows cluster components to communicate with the API server while enabling
 
 OpenCRVS automatically discovers all Kubernetes node IP addresses and creates firewall rules allowing communication between cluster members only.
 
+The master node's IP address comes from `KUBE_API_HOST`, and the worker addresses come from `KUBE_WORKER_NODES`. These must be the addresses the nodes use to reach each other. If the master node has both a public and a private network interface, set `KUBE_API_HOST` to the private IP address. Otherwise the firewall blocks traffic from the master to the worker nodes, and commands such as `kubectl logs` fail with `dial tcp <worker IP>:10250: i/o timeout`.
+
 The following ports are opened between cluster nodes:
 
 | Port  | Protocol | Purpose                         |
@@ -53,7 +55,7 @@ To support Calico networking, inbound traffic is allowed on the following interf
 
 | GitHub variable/secret    | Ansible variable          | Description                                                                                                         |
 | ------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| KUBE\_API\_HOST           | kube\_api\_host           | Kubernetes master node IP / Hostname                                                                                |
+| KUBE\_API\_HOST           | kube\_api\_host           | Kubernetes master node IP address. On a master node with several network interfaces, use the IP address from shared with the worker nodes subnet. |
 | KUBE\_API\_ALLOWED\_CIDRS | kube\_api\_allowed\_cidrs | Subnets approved to access Kubernetes API server (master). Comma-separated list (e/g: `10.0.0.0/16,192.168.0.0/24`) |
 | KUBE\_WORKER\_NODES       | n/a                       | Kubernetes worker nodes. Comma-separated list (e/g: `10.0.0.2,10.0.0.3,10.0.0.4`)                                   |
 

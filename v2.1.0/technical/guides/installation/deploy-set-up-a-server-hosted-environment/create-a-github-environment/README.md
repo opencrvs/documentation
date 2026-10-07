@@ -158,13 +158,27 @@ The script will ask for your Dockerhub credentials or skip if they already exist
 The script will ask you to provide Kubernetes and Runtime options:
 
 * `DOMAIN`: Domain name to expose the OpenCRVS application frontend and APIs. It will be the domain after the subdomains that you configured when setting DNS.
-* `KUBE_MASTER_NODE`: IP address for the Kubernetes master node.
-* `KUBE_API_HOST`: IP address or domain address to expose Kubernetes API. Provision script will generate Kubernetes config files for each user defined in users section of inventory file. Leave empty to use the default address of the provisioned master node.
-* `KUBE_API_ALLOWED_CIDRS` : Comma-separated list of CIDR ranges allowed to access the Kubernetes API. Default: `KUBE_API_HOST` (Allow connections from master node only).
+* `KUBE_MASTER_NODE`: IP address of the Kubernetes master node inside the cluster. Worker nodes and firewall rules use it to reach the master, and it is the Kubernetes API advertise address. Leave empty to use the IP address of the master node's default network interface. If the master node has more than one network interface, set it to the private IP address (see the warning below).
+* `KUBE_API_HOST`: IP address or domain name to expose the Kubernetes API, for example a VPN-facing address. Provision script will generate Kubernetes config files for each user defined in users section of inventory file, pointing to this address, and adds it to the Kubernetes API server certificate. Leave empty to use `KUBE_MASTER_NODE`.
+* `KUBE_API_ALLOWED_CIDRS` : Comma-separated list of CIDR ranges allowed to access the Kubernetes API, in addition to the cluster nodes. Leave empty to allow access from the cluster nodes only.
 * `KUBE_WORKER_NODES`: Comma separated list of additional Kubernetes cluster members (Virtual Machines). Leave empty for a single node setup. Worker nodes can be added later. Default: no worker nodes.
 
+{% hint style="warning" %}
+**If the master node has more than one network interface, set `KUBE_MASTER_NODE` to its private IP address**, the one on the network it shares with the worker nodes. Setting only `KUBE_API_HOST` is not enough.
+
+This is common with cloud providers, where each server has a public IP address and a private network for traffic between servers. If `KUBE_MASTER_NODE` is left empty or set to the public IP address, the cluster registers the master with its public address. The firewall on each worker then only allows that address, but the master connects to the workers from its private address, so that traffic is blocked. Pods keep running, but commands such as `kubectl logs` and `kubectl exec` fail for pods on worker nodes with an error like:
+
+```
+dial tcp 10.1.0.6:10250: i/o timeout
+```
+
+To find the right address, run `ip route get <worker node IP>` on the master node. The `src` value in the output is the address to use for `KUBE_MASTER_NODE`.
+
+You can still expose the Kubernetes API on another address, for example the public IP address, by setting `KUBE_API_HOST` and `KUBE_API_ALLOWED_CIDRS`.
+{% endhint %}
+
 {% hint style="info" %}
-The values of `KUBE_API_HOST` , `KUBE_API_ALLOWED_CIDRS` and `KUBE_WORKER_NODES` are used to generate the firewall configuration during provisioning, check [ubuntu-firewall-configuration.md](../../advanced-topics/ubuntu-firewall-configuration.md "mention")
+The values of `KUBE_MASTER_NODE`, `KUBE_API_ALLOWED_CIDRS` and `KUBE_WORKER_NODES` are used to generate the firewall configuration during provisioning, check [ubuntu-firewall-configuration.md](../../advanced-topics/ubuntu-firewall-configuration.md "mention")
 {% endhint %}
 
 <figure><img src="../../../../../.gitbook/assets/image (23).png" alt=""><figcaption><p>On screenshot access to Kubernetes API is limited to master node only.</p></figcaption></figure>
