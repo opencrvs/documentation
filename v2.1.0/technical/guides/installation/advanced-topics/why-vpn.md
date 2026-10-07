@@ -139,77 +139,31 @@ Hosting OpenCRVS publicly is not inherently insecure. With appropriate controlsâ
 
 If a country decides to expose OpenCRVS to the public internet, there are a number of compensating controls that can significantly reduce risk.
 
+Some items in the checklist are covered by OpenCRVS infrastructure configuration scripts and documentation.
 
+#### Put a WAF in front of OpenCRVS
 
-*   **Geofence & restrict access to known IP addresses wherever possible**
+OpenCRVS does not ship or configure a WAF. Choose a provider (for example Cloudflare, Azure Front Door or AWS WAF) that can:
+* Allow traffic only from your country or from known IP ranges (government networks, embassies, partner organisations).
+* Block common web attacks (OWASP Top 10) and bots with managed rule sets.
+* Absorb DDoS attacks.
 
-    * Whitelist government IP ranges.
-    * If the system is intended for use only within a single country, consider allowing access only from IP addresses geolocated to that country.
-    * Whitelist static IP addresses used by embassies, overseas missions and trusted partner organisations.
-    * Avoid exposing the service to the entire internet if only a subset of users require access.
+#### Restrict access in OpenCRVS
 
+{% hint style="warning" %}
+OpenCRVS deployment scripts provide basic protection and configuration options only. Use them together with a WAF, not instead of one.
+{% endhint %}
 
-*   **Use a Web Application Firewall (WAF)**
+* Limit the application to known IP ranges, and the Kibana, MinIO and Metabase consoles to administrator IPs only. See [IP Allowlisting](ip-allowlisting.md).
+* Keep the default Kubernetes network policies and host firewall enabled. See [Kubernetes Network Policy](kubernetes-network-policy.md) and [Ubuntu Firewall configuration](ubuntu-firewall-configuration.md).
+* Require a VPN or bastion host for SSH. See [SSH access](ssh-access.md).
+* Never disable 2FA in production.
+* Use mTLS for system-to-system integrations such as MOSIP. The SI terminates mTLS in front of OpenCRVS.
 
-    * Protect against common web attacks (OWASP Top 10).
-    * Block known malicious traffic before it reaches OpenCRVS.
-    * Enable managed rule sets and bot protection.
+#### Operate it securely
 
-
-*   **Implement DDoS protection**
-
-    * Use services such as Cloudflare, Azure DDoS Protection or AWS Shield.
-    * Prevent the system becoming unavailable during attacks.
-
-
-*   **Continue enforcing multi-factor authentication**
-
-    * Do not disable OpenCRVS 2FA on any circumstance.
-
-
-*   **Restrict administrative interfaces**
-
-    * Restrict access to Kibana, MinIO and Metabase administrative consoles to trusted system administrator IP addresses or a private network/VPN only.
-    * SSH Administration should always require VPN or bastion-host access.
-
-
-*   **Apply security patches rapidly**
-
-    * Maintain a process for monitoring security advisories.
-    * Patch not only OpenCRVS, but also Kubernetes, container images, operating systems, ingress controllers, databases and other infrastructure components.
-
-
-*   **Implement continuous security monitoring**
-
-    * Centralise logs.
-    * Detect unusual login patterns.
-    * Alert on repeated failed authentication attempts and suspicious API activity.
-
-
-*   **Perform regular vulnerability scanning**
-
-    * Scan both infrastructure and applications.
-    * Schedule periodic penetration testing rather than treating it as a one-off exercise.
-
-
-*   **Use mutual TLS (mTLS) for system-to-system integrations**
-
-    * Especially for integrations with systems such as MOSIP.
-    * Ensure APIs authenticate both the client and the server.
-
-
-*   **Maintain tested backup and disaster recovery procedures**
-
-    * Ensure backups are encrypted and offline or immutable.
-    * Regularly test restoration.
-
-
-*   **Develop and rehearse an incident response plan**
-
-    * Know who responds to security incidents.
-    * Define communication, containment and recovery procedures in advance.
-
-
-
-
-
+* Patch OpenCRVS and the infrastructure under it promptly: OS, Kubernetes, container images, databases. See [Version upgrades](../../version-upgrades.md).
+* Monitor logs and alert on failed logins and unusual API activity. See [Monitoring](../../monitoring/README.md).
+* Run vulnerability scans and penetration tests regularly, not once.
+* Keep encrypted, offline or immutable backups, and test restores. See [Backup & Restore](../opencrvs-maintenance-tasks/backup-and-restore/README.md).
+* Have an incident response plan that names who responds and how.
