@@ -24,7 +24,7 @@ layout:
 
 ### Declaration form
 
-The `declaration` property on the [EventConfig schema](../#eventconfig-schema) includes the configuration for the primary record declaration details. For example, for a birth registration event it should contain:
+The `declaration` property on the event's `ActionType.DECLARE` action (see [EventConfig schema](../#eventconfig-schema)) includes the configuration for the primary record declaration details. For example, for a birth registration event it should contain:
 
 * The child's details, such as the date and place of birth
 * The birth informant's details
@@ -56,10 +56,23 @@ import { birthDeclarationForm } from './forms/declaration'
 
 export const birthEvent = defineConfig({
   id: 'birth',
-  declaration: birthDeclarationForm,
+  actions: [
+    {
+      type: ActionType.DECLARE,
+      declaration: birthDeclarationForm
+      // ...
+    }
+    // ...
+  ]
   // ...
 })
 ```
+
+Every event must have exactly one `DECLARE` action. To read the declaration form of an event configuration in code, use `getDeclaration(event)` from `@opencrvs/toolkit/events` instead of `event.declaration`.
+
+{% hint style="warning" %}
+A top-level `declaration` in `defineConfig` is deprecated: it is moved onto the `DECLARE` action with a warning, and will be removed in a future release. Defining it both at the top level and on the `DECLARE` action throws an error.
+{% endhint %}
 
 ### Action forms
 

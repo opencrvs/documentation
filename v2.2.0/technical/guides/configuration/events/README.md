@@ -41,9 +41,16 @@ export const birthEvent = defineConfig({
     description: 'This is what this event is referred as in the system',
     id: 'event.birth.label'
   },
-  declaration: birthDeclarationForm,
   dateOfEvent: field('child.dob'),
-  // title, summary, actions, flags, ...
+  actions: [
+    {
+      type: ActionType.DECLARE,
+      declaration: birthDeclarationForm
+      // label, review, ...
+    }
+    // other actions
+  ]
+  // title, summary, flags, ...
 })
 ```
 
