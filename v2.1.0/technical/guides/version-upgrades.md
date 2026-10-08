@@ -178,6 +178,12 @@ You now have the target OpenCRVS release code locally.
 ```bash
 cd <path>/opencrvs-<your-country>
 
+## Stop tilt
+# Data (users, records, etc) will persist while upgrade
+# If you keep Tilt running while upgrade, there is a chance to wipe
+# your local database
+tilt down
+
 ## Create a temporary upgrade branch
 git checkout -b upgrade-v<target-version>
 

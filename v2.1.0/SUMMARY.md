@@ -143,6 +143,7 @@
     * [Advanced topics](technical/guides/installation/advanced-topics/README.md)
       * [Air-gap installation](technical/guides/installation/advanced-topics/air-gap-installation.md)
       * [Ubuntu unattended-upgrades](technical/guides/installation/advanced-topics/ubuntu-unattended-upgrades.md)
+      * [Upgrading Ubuntu 24.04 to 26.04](technical/guides/installation/advanced-topics/upgrading-ubuntu-24-04-to-26-04.md)
       * [Why VPN?](technical/guides/installation/advanced-topics/why-vpn.md)
       * [Ubuntu Firewall configuration](technical/guides/installation/advanced-topics/ubuntu-firewall-configuration.md)
       * [IP Allowlisting](technical/guides/installation/advanced-topics/ip-allowlisting.md)
