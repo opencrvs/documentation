@@ -175,7 +175,7 @@ You now have the target OpenCRVS release code locally.
 ```bash
 cd <path>/opencrvs-<your-country>
 
-## Ensure upstream points to opencrvs/infrastructure
+## Ensure upstream points to opencrvs/opencrvs-countryconfig
 git remote -v
 
 git fetch --all
