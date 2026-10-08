@@ -60,7 +60,7 @@ Notes:
 ### Ubuntu version
 
 {% hint style="danger" %}
-If you are not using the correct version of Ubuntu, either recreate the server or upgrade Ubuntu.
+If you are not using the correct version of Ubuntu, either recreate the server or upgrade Ubuntu. To move from 24.04 to 26.04, see [Upgrading Ubuntu 24.04 to 26.04](../../advanced-topics/upgrading-ubuntu-24-04-to-26-04.md).
 {% endhint %}
 
 OpenCRVS v2.1 supports the following Ubuntu Server LTS releases:
