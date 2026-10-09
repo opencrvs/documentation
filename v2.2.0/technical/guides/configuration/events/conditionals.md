@@ -169,7 +169,7 @@ import {
 
 Three helpers inspect the current state of the record:
 
-* `status(statusValue)` — record is in the given state. Valid statuses: `CREATED`, `NOTIFIED`, `DECLARED`, `REGISTERED`, `ARCHIVED`.
+* `status(statusValue)` — record is in the given state. Valid statuses: `CREATED`, `NOTIFIED`, `DECLARED`, `REGISTERED`, `REVOKED`, `ARCHIVED`.
 * `flag(flagValue)` — record has the given flag set. See [flags.md](flags.md "mention") for the list of inherent flags and how to define custom ones.
 * `event.hasAction(actionType)` — record's action history contains an action of the given type. Chainable with `.minCount(n)` or `.maxCount(n)` to assert a specific number of occurrences, and `.withFields({ ... })` / `.withTemplate(id)` to narrow on action-payload fields.
 
