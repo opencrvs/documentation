@@ -183,6 +183,8 @@ The available record scope types are:
 | `record.print-certified-copies` | Print certified copies                                                          |
 | `record.request-correction`     | Request a correction to a registered record                                     |
 | `record.correct`                | Apply a correction to a registered record                                       |
+| `record.revoke-registration`    | Revoke a registered record                                                      |
+| `record.reinstate-registration` | Reinstate a revoked record                                                      |
 | `record.unassign-others`        | Unassign a record assigned to another user                                      |
 | `record.custom-action`          | Perform a custom action                                                         |
 | `record.action.accept`          | Accept a pending action after the country configuration returned `202`          |

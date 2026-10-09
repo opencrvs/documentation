@@ -22,6 +22,7 @@ export const EventStatus = z.enum([
   'NOTIFIED',
   'DECLARED',
   'REGISTERED',
+  'REVOKED',
   'ARCHIVED'
 ])
 ```
@@ -272,7 +273,7 @@ Every core action accepts the same base keys: `label`, `icon`, `supportingCopy`,
 | `ASSIGN`, `UNASSIGN`                                                                                           | `label`, `icon`, `supportingCopy`, `conditionals` (no `flags` — meta actions are excluded from flag resolution) |
 | `DUPLICATE_DETECTED`                                                                                           | `flags` only — the action is system-generated and never shown as a button                           |
 | `READ`                                                                                                         | `label`, `icon`, `supportingCopy`, `review` (no `conditionals`, no `flags`)                         |
-| `NOTIFY`, `DECLARE`, `REGISTER`, `ARCHIVE`, `REJECT`                                                           | base keys plus an optional confirmation dialog `form` (see below)                                   |
+| `NOTIFY`, `DECLARE`, `REGISTER`, `ARCHIVE`, `REJECT`, `REVOKE_REGISTRATION`, `REINSTATE_REGISTRATION`                                                           | base keys plus an optional confirmation dialog `form` (see below)                                   |
 
 `NOTIFY` uses its own configuration when present and otherwise falls back to the `DECLARE` configuration for label, flags, icon and conditionals. Its confirmation dialog `form` never falls back to `DECLARE`.
 
@@ -283,6 +284,10 @@ Every core action accepts the same base keys: `label`, `icon`, `supportingCopy`,
 #### Unarchive
 
 `ActionType.UNARCHIVE` restores an `ARCHIVED` record to the status it had before it was archived. It is only available on archived records and requires the `record.unarchive` scope, which you must add to the relevant roles. Flags are not changed by archiving or unarchiving unless you configure `flags` on either action — see [flags.md](../flags.md "mention").
+
+#### Revoke and reinstate registration
+
+`ActionType.REVOKE_REGISTRATION` moves a `REGISTERED` record to the `REVOKED` status, and `ActionType.REINSTATE_REGISTRATION` moves a `REVOKED` record back to `REGISTERED`. They require the `record.revoke-registration` and `record.reinstate-registration` scopes respectively, which you must add to the relevant roles. Both accept the base keys and an optional confirmation dialog `form`. Existing environments need a reindex for the new `legalStatuses.REVOKED` field.
 
 #### Confirmation dialog form fields
 
