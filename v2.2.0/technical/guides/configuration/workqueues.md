@@ -117,6 +117,16 @@ query: {
 }
 ```
 
+### Filtering by status
+
+The `status` filter accepts `exact` (a single status), `anyOf` (one of the listed statuses) or `noneOf` (none of the listed statuses). For example, to keep revoked records out of a workqueue:
+
+```typescript
+query: {
+  status: { type: 'noneOf', terms: [EventStatus.enum.REVOKED] }
+}
+```
+
 ### Controlling visibility of workqueues
 
 A configured workqueue is only visible to users whose role grants the **`workqueue` scope** for its `slug`. The scope carries an `ids` option listing the slugs the role may see.
