@@ -344,6 +344,89 @@ Use **Email All Users** to instruct staff to:
 
 ***
 
+## Version-specific notes for 2.2
+
+These are the changes in v2.2 that need a decision or a manual step from you. Work through them alongside the seven steps above. The full list of changes is in the [release notes](../../releases/release-notes.md).
+
+### Before deploying (Step 6)
+
+{% hint style="danger" %}
+**Empty every outbox before you deploy.**
+
+v2.2 changes the shape of the event configuration the client keeps offline, so the client clears its local cache the first time it loads after the upgrade. The outbox is part of that cache: **any action still waiting in a user's outbox when v2.2 loads is discarded** and cannot be recovered.
+
+When you notify staff of the downtime, instruct every user, especially those working offline, to connect and wait until their outbox is empty. Anything still queued afterwards must be entered again. Users who had OpenCRVS open during the deploy should reload the page. Until they do, the old version can fail to show records.
+{% endhint %}
+
+### Country configuration (Step 2)
+
+#### Revocation: moving from a custom action to the core `REVOKED` status (optional)
+
+v2.2 adds the core `REVOKE_REGISTRATION` and `REINSTATE_REGISTRATION` actions and a `REVOKED` status. See [#revoke-and-reinstate-registration](configuration/events/actions/core-actions.md#revoke-and-reinstate-registration "mention").
+
+Before v2.2, countries that needed revocation built it in their own configuration: a custom revoke action that adds a country-defined flag to mark the record as revoked, and a custom reinstate action that removes it. Each country names these itself. The reference country configuration, for example, uses the `REVOKE_REGISTRATION` / `REINSTATE_REVOKE_REGISTRATION` custom actions and a flag with id `revoked`. If your country revokes this way, you can keep doing so. Nothing changes until you move.
+
+Below, "your revoked flag" means the flag your custom revoke adds. The examples use the reference configuration's ids (`'revoked'`, `'REVOKE_REGISTRATION'`, `'REINSTATE_REVOKE_REGISTRATION'`). Replace them with the ids from your own configuration.
+
+{% hint style="danger" %}
+**Do not delete the custom revoke action or your revoked flag.** Flags are recalculated from the current configuration, so removing them un-revokes every record revoked with them. Keep both, and stop new custom revocations instead.
+{% endhint %}
+
+1. **Event configuration.** Add the core actions next to the custom ones. Copy the custom actions' `label`, `icon`, `supportingCopy`, `form` and `flags`, leaving out every operation on your revoked flag: the `REVOKED` status replaces it. Hide the core revoke on records revoked the old way:
+
+   ```ts
+   {
+     type: ActionType.REVOKE_REGISTRATION,
+     label: { ... },
+     form: [ ... ],
+     // The custom revoke's flag operations, without { id: 'revoked', operation: 'add' }
+     flags: [
+       { id: 'pending-first-certificate-issuance', operation: 'remove' },
+       ...
+     ],
+     conditionals: [
+       { type: ConditionalType.SHOW, conditional: not(flag('revoked')) }
+     ]
+   },
+   {
+     type: ActionType.REINSTATE_REGISTRATION,
+     label: { ... },
+     form: [ ... ]
+   }
+   ```
+
+   Add `ActionType.REINSTATE_REGISTRATION` to `actionOrder`. If your custom revoke is named `'REVOKE_REGISTRATION'`, its `actionOrder` entry already places the core revoke. Otherwise add `ActionType.REVOKE_REGISTRATION` too.
+
+2. **Roles.** Give every role that can perform the custom revoke `record.revoke-registration` instead. Remove the custom revoke from the role's `record.custom-action` scope so it can no longer be performed, and add `record.revoke-registration`. Keep the custom reinstate scope so records revoked the old way can still be reinstated, and add `record.reinstate-registration` next to it. Carry over `event` and `placeOfEvent`:
+
+   ```diff
+   -{ type: 'record.custom-action', options: { event: ['birth'], customActionTypes: ['REVOKE_REGISTRATION', 'REINSTATE_REVOKE_REGISTRATION'] } },
+   +{ type: 'record.custom-action', options: { event: ['birth'], customActionTypes: ['REINSTATE_REVOKE_REGISTRATION'] } },
+   +{ type: 'record.revoke-registration', options: { event: ['birth'] } },
+   +{ type: 'record.reinstate-registration', options: { event: ['birth'] } },
+   ```
+
+3. **Checks on your revoked flag.** Wherever your configuration checks your revoked flag, also check the `REVOKED` status. Keep the flag check: records revoked the old way are still `REGISTERED`, so only the flag identifies them. Remove it only if no record carries the flag.
+   * **Workqueues.** Wherever a workqueue excludes your revoked flag (`flags: { noneOf: ['revoked'] }` in the reference configuration), exclude the status as well:
+
+     ```diff
+      query: {
+        ...registeredInMyAdminArea,
+     +  status: { type: 'noneOf', terms: ['REVOKED'] },
+        flags: { anyOf: ['pending-first-certificate-issuance'], noneOf: ['revoked'] }
+      }
+     ```
+
+   * **Action conditionals.** Keep the conditionals that hide print, correction and other actions on your revoked flag (`not(flag('revoked'))` in the reference configuration). Core already blocks these actions on `REVOKED` records, so they need no status check.
+
+4. **Dashboards.** Only needed if your dashboards report revocations or reinstatements. These are now recorded in two ways, so count both:
+   * Revocations: `action_type = 'CUSTOM'` with your custom revoke's `custom_action_type` (`'REVOKE_REGISTRATION'` in the reference configuration), and `action_type = 'REVOKE_REGISTRATION'`.
+   * Reinstatements: your custom reinstate's `custom_action_type` (`'REINSTATE_REVOKE_REGISTRATION'` in the reference configuration), and `action_type = 'REINSTATE_REGISTRATION'`.
+
+Users will see two kinds of revoked record. Records revoked before the move show as Registered with your revoked flag. Records revoked after it show the `Revoked` status.
+
+***
+
 ## Version-specific notes for 2.1
 
 These are the changes in v2.1 that need a decision or a manual step from you. Work through them alongside the seven steps above. The full list of changes is in the [release notes](../../releases/release-notes.md).
