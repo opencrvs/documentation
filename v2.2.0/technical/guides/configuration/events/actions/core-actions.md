@@ -277,6 +277,13 @@ Every core action accepts the same base keys: `label`, `icon`, `supportingCopy`,
 
 `NOTIFY` uses its own configuration when present and otherwise falls back to the `DECLARE` configuration for label, flags, icon and conditionals. Its confirmation dialog `form` never falls back to `DECLARE`.
 
+`NOTIFY` also supports its own `notificationForm` and `review`:
+
+* `notificationForm` is the notify form. Every field in it must also exist in the `DECLARE` declaration form with the same type, and its values pre-fill the declaration.
+* `review` holds the notify review page fields. Notify-only data, such as a notifier's signature, is configured as `NOTIFY` `review` or `form` fields and stored in the `NOTIFY` action annotation. Only `review` fields are enforced as required. Values of `review` fields that `DECLARE`'s review also has carry over to the declaration.
+
+`defineConfig` still accepts events without a notification form. It generates a missing `NOTIFY` action and `review` from the `DECLARE` action with every field optional, and logs a warning when `notificationForm` is missing. In that case the `DECLARE` form with every field optional is used in its place; this fallback will be removed in a future release. An event configuration built without `defineConfig` must provide `review` on its `NOTIFY` action.
+
 {% hint style="warning" %}
 `APPROVE_CORRECTION` and `REJECT_CORRECTION` no longer inherit the `REQUEST_CORRECTION` configuration. If your country config relies on `flags` or `conditionals` configured on `REQUEST_CORRECTION` also applying when a correction is approved or rejected, add explicit `APPROVE_CORRECTION` and `REJECT_CORRECTION` entries with the same values. `npx @opencrvs/toolkit upgrade` adds them for you when `REQUEST_CORRECTION` has `flags` or `conditionals`.
 {% endhint %}
