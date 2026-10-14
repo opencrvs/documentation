@@ -181,17 +181,11 @@ cd <path>/opencrvs-<your-country>
 ## Create a temporary upgrade branch
 git checkout -b upgrade-v<target-version>
 
-## Upgrade the toolkit package version to the target version
-yarn add @opencrvs/toolkit@2.x.x --exact
-
-## Run codemod tool, which upgrades your countryconfig to support v2.1
-## If you are still on Docker Swarm (instead of kubernetes), use the --docker-swarm flag!
-## If this flag is set, the /infrastructure directory is kept.
-## Otherwise it is deleted in favour of a separate infrastucture repository.
-yarn opencrvs upgrade [--docker-swarm]
-
-## At this point you might run in to merge conflicts under the /infrastructure directory.
-## Now is the time to fix these!
+## Run the codemod tool of the target version, which upgrades your country
+## configuration and then updates @opencrvs/toolkit in package.json itself.
+## Do not bump @opencrvs/toolkit by hand first: the tool reads it to check that
+## you are upgrading from the previous minor version, and refuses otherwise.
+npx @opencrvs/toolkit@<target-version> upgrade
 
 ## Update npm dependencies
 yarn --force
