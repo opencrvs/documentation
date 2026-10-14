@@ -49,7 +49,7 @@ Read [#version-specific-notes-for-2.1](../technical/guides/version-upgrades.md#v
 * **Access token lifetime.** `CONFIG_TOKEN_EXPIRY_SECONDS` is now the lifetime of the short-lived access token (default 600). Session length is set by `CONFIG_REFRESH_TOKEN_EXPIRY_SECONDS`.
 * **Location APIs.** `validUntil` has been removed from `Location` and `AdministrativeArea` (use `status` and `versions[]`), and `POST /locations` / `POST /administrative-areas` no longer upsert. Change an existing entity with `PUT`.
 * **Document access.** The gateway's `/presigned-url` route has been removed. Presigned URLs for record documents require `record.read` on the record, and attachment uploads must name the record they belong to (`eventId`).
-* **Configuration changes.** `APPROVE_CORRECTION` and `REJECT_CORRECTION` no longer inherit the configuration of `REQUEST_CORRECTION`, and `ARCHIVE` no longer clears the `incomplete` flag. `npx @opencrvs/toolkit upgrade` adds the explicit correction configuration for you.
+* **Configuration changes.** `APPROVE_CORRECTION` and `REJECT_CORRECTION` no longer inherit the configuration of `REQUEST_CORRECTION`, and the `incomplete` flag is removed in favour of the `NOTIFIED` status. `npx @opencrvs/toolkit upgrade` adds the explicit correction configuration for you.
 * **Sentry removed.** `npx @opencrvs/toolkit upgrade` removes the Sentry wiring from your country configuration. Delete the `SENTRY_DSN` secret.
 * **Infrastructure.** Backup and restore server hosts are GitHub variables (`BACKUP_HOST`, `RESTORE_HOST`) instead of being part of the SSH secret. Ansible inventories moved to `environments/<env>/inventory.yml`. The public `events.<domain>` route has been removed; use the gateway.
 

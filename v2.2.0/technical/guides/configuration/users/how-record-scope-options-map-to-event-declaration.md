@@ -105,7 +105,7 @@ The following scope types also support **`flags`**, restricting the scope to rec
 ```
 
 {% hint style="warning" %}
-Flag values are matched exactly and are case-sensitive. Built-in flags are lowercase — `incomplete`, `rejected`, `correction-requested`, `potential-duplicate`, `edit-in-progress` — and action flags have the form `<action type>:<action status>` in lowercase, e.g. `register:requested`. Any other value is treated as a custom flag, so a mistyped value such as `'REJECTED'` never matches: with `noneOf` it silently restricts nothing.
+Flag values are matched exactly and are case-sensitive. Built-in flags are lowercase — `rejected`, `correction-requested`, `potential-duplicate`, `edit-in-progress` — and action flags have the form `<action type>:<action status>` in lowercase, e.g. `register:requested`. Any other value is treated as a custom flag, so a mistyped value such as `'REJECTED'` never matches: with `noneOf` it silently restricts nothing.
 {% endhint %}
 
 **Example 2: Declaring records — why options are limited**\
