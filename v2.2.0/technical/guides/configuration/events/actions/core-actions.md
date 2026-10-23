@@ -279,8 +279,8 @@ Every core action accepts the same base keys: `label`, `icon`, `supportingCopy`,
 
 `NOTIFY` also supports its own `notificationForm` and `review`:
 
-* `notificationForm` is the notify form. Every field in it must also exist in the `DECLARE` declaration form with the same type, and its values pre-fill the declaration.
-* `review` holds the notify review page fields. Notify-only data, such as a notifier's signature, is configured as `NOTIFY` `review` or `form` fields and stored in the `NOTIFY` action annotation. Only `review` fields are enforced as required. Values of `review` fields that `DECLARE`'s review also has carry over to the declaration.
+* `notificationForm` is the notify form. Every field in it must also exist in the `DECLARE` declaration form with the same type, and its values pre-fill the declaration. A `NOTIFY` is rejected when a required `notificationForm` field is missing or invalid, or when its `declaration` contains a field that is not in the notification form.
+* `review` holds the notify review page fields. Notify-only data, such as a notifier's signature, is configured as `NOTIFY` `review` or `form` fields and stored in the `NOTIFY` action annotation. When `notificationForm` is configured, required `review` and dialog `form` fields are enforced on `NOTIFY`. When the record is later declared, `review` fields that also exist on the `DECLARE` review page are pre-filled with the values captured at notify.
 
 `defineConfig` still accepts events without a notification form. It generates a missing `NOTIFY` action and `review` from the `DECLARE` action with every field optional, and logs a warning when `notificationForm` is missing. In that case the `DECLARE` form with every field optional is used in its place; this fallback will be removed in a future release. An event configuration built without `defineConfig` must provide `review` on its `NOTIFY` action.
 
