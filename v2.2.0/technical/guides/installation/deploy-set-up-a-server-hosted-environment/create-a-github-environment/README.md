@@ -151,6 +151,8 @@ For environments with PII data script will ask you to answer additional question
 
 The script will ask for your Dockerhub credentials or skip if they already exist. GitHub doesn't allow you to fetch secret values so you will not be able to check the current value, only updating the value is possible.
 
+When the Docker Hub username, token, organisation and repository are all entered in the same run, the script checks them against Docker Hub. If the credentials are rejected, the repository is not found (it may be empty) or Docker Hub cannot be reached, the reason is shown and you choose whether to continue without validation. Validation is skipped if existing secrets are kept, as their values cannot be read back.
+
 <figure><img src="../../../../../.gitbook/assets/dockerhub-existing-credentials.png" alt=""><figcaption><p>DockerHub credentials were created earlier</p></figcaption></figure>
 
 #### Kubernetes & Runtime
@@ -255,7 +257,9 @@ By default restore is configured to run at 00:00 AM by UTC, if you need to adjus
 
 #### Databases & monitoring
 
-The script will proceed to ask you to set database and monitoring passwords. Strong passwords are suggested. It is advisable to accept the defaults presented to you.
+The script will first ask whether to enable monitoring (Kibana, APM, Filebeat, Metricbeat, Elastalert, OpenTelemetry Collector and tracing). Disable it if the environment does not need its own monitoring stack, for example a hotfix environment on a cluster that already hosts another environment. The answer is stored as the `MONITORING_ENABLED` GitHub environment variable (default: enabled) and drives `monitoring.enabled`, `otel.enabled` and Traefik tracing in the generated Helm values. Re-run the script for existing environments to create the variable.
+
+If monitoring is enabled, the script will proceed to ask you to set database and monitoring passwords. Strong passwords are suggested. It is advisable to accept the defaults presented to you. The Kibana questions are skipped when monitoring is disabled.
 
 * `KIBANA_USERNAME`: (Default: opencrvs-admin): Kibana user name
 * `KIBANA_PASSWORD`: (Default: random value): Kibana password
