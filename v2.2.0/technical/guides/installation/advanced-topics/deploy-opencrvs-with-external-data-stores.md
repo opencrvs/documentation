@@ -76,8 +76,8 @@ Assumptions made:
 ### Configure OpenCRVS to use external MinIO
 
 1. Modify GitHub secrets for your environment:
-   1. `MINIO_ROOT_USER`
-   2. `MINIO_ROOT_PASSWORD`
+   1. `S3_ADMIN_ACCESS_KEY`
+   2. `S3_ADMIN_SECRET_KEY`
 2. Modify Dependencies helm chart configuration:
    1.  Open `environments/<environment>/dependencies/values.override.yaml` and add following lines to disable MinIO:
 
@@ -88,7 +88,7 @@ Assumptions made:
    2.  Open `environments/<environment>/opencrvs-services/values.override.yaml` and add following lines to point OpenCRVS to external MinIO server:<br>
 
        ```yaml
-       minio:
+       s3:
          host: <hostname or IP address>
          port: <port>
        ```
