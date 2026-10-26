@@ -282,6 +282,8 @@ Every core action accepts the same base keys: `label`, `icon`, `supportingCopy`,
 * `notificationForm` is the notify form. Every field in it must also exist in the `DECLARE` declaration form with the same type, and its values pre-fill the declaration.
 * `review` holds the notify review page fields. Notify-only data, such as a notifier's signature, is configured as `NOTIFY` `review` or `form` fields and stored in the `NOTIFY` action annotation. Only `review` fields are enforced as required. Values of `review` fields that `DECLARE`'s review also has carry over to the declaration.
 
+A user whose role holds `record.notify` for an event type fills in the `notificationForm` in a separate notify flow instead of the declaration form. This applies to new records and to editing a notified record ("Notify with edits"), and notify requires the notification form's required fields to be complete. The declare flow only offers Declare and Register, and requires `record.declare`. A role should hold either `record.notify` or `record.declare` for an event type, not both: a role holding both gets only the notify flow for that event type.
+
 `defineConfig` still accepts events without a notification form. It generates a missing `NOTIFY` action and `review` from the `DECLARE` action with every field optional, and logs a warning when `notificationForm` is missing. In that case the `DECLARE` form with every field optional is used in its place; this fallback will be removed in a future release. An event configuration built without `defineConfig` must provide `review` on its `NOTIFY` action.
 
 {% hint style="warning" %}
