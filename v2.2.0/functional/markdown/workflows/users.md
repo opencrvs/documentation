@@ -127,7 +127,7 @@ Each core scope in this table maps **directly to a core record action**. If a ro
 | `record.search`           | Use quick search / advanced search to find records.                                   |
 | `record.read`             | Open and view record details (non‑mutating).                                          |
 | `record.create`           | Start a new declaration from the event form                                           |
-| `record.notify`           | Notify (submit an incomplete declaration).                                            |
+| `record.notify`           | Notify (submit an incomplete declaration) using the notification form. A role holding `record.notify` for an event type only gets the notify flow for it, so a role should hold either `record.notify` or `record.declare`, not both. |
 | `record.declare`          | Declare (submit a complete declaration)                                               |
 | `record.edit`             | Edit a notified or declared record                                                    |
 | `record.reject`           | Reject a declared record                                                              |
