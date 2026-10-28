@@ -18,6 +18,7 @@ function field(
     conditionals?: FieldConditional[]
     validations?: ValidationConfig[]
     searchCriteriaLabelPrefix?: TranslationConfig
+    defaultValue?: boolean | string | number
   }
 ): AdvancedSearchFieldBuilder
 ```
@@ -31,6 +32,9 @@ function field(
 | `options.conditionals`              | `FieldConditional[]?` | Override visibility conditionals; pass `[]` to always show the field.              |
 | `options.validations`               | `ValidationConfig[]?` | Override validations for the search input.                                         |
 | `options.searchCriteriaLabelPrefix` | `TranslationConfig?`  | Prefix shown before the field label in search result summaries (e.g. `"Child's"`). |
+| `options.defaultValue`              | `boolean \| string \| number?` | Value the field opens with in advanced search. Omitted or `true` keeps the declaration form's `defaultValue`; `false` opens the field empty; a text, number or date value opens it with that value. |
+
+Only TEXT, TEXTAREA, EMAIL, PHONE, ID, SELECT, RADIO_GROUP, COUNTRY, LOCATION, ADMINISTRATIVE_AREA, NUMBER and DATE fields take a value. Other field types (such as NAME and ADDRESS) and dates searched as a range accept only `true` or `false`. Fields using `config.searchFields` don't support `defaultValue`. An event configuration that breaks these rules fails validation.
 
 The returned builder exposes four terminal methods:
 
@@ -62,6 +66,12 @@ field('child.placeOfBirth', {
     { value: 'PRIVATE_HOME', label: { id: 'place.home', defaultMessage: 'Private home', description: '' } }
   ]
 }).exact()
+```
+
+**Example 3 — open a name field empty instead of using the form default**
+
+```ts
+field('applicant.name', { defaultValue: false }).fuzzy()
 ```
 
 ***
