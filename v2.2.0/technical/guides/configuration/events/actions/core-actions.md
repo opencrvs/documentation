@@ -284,7 +284,7 @@ Every core action accepts the same base keys: `label`, `icon`, `supportingCopy`,
 
 A user whose role holds `record.notify` for an event type fills in the `notificationForm` in a separate notify flow instead of the declaration form. This applies to new records and to editing a notified record ("Notify with edits"), and notify requires the notification form's required fields to be complete. The declare flow only offers Declare and Register, and requires `record.declare`. A role should hold either `record.notify` or `record.declare` for an event type, not both: a role holding both gets only the notify flow for that event type.
 
-Every event configuration must define an explicit `NOTIFY` action with both `notificationForm` and `review`; `defineConfig` no longer generates them from `DECLARE`. To make the notify form the declaration form with every field optional, use the `toNotificationForm` and `toNotificationReview` helpers from `@opencrvs/toolkit/events`, which return a copy with every field optional and without validations:
+`NOTIFY` is optional and no longer falls back to the `DECLARE` configuration: an event without a `NOTIFY` action cannot be notified. A `NOTIFY` action must define both `notificationForm` and `review`. To reuse the `DECLARE` form and review for `NOTIFY`, use the `toNotificationForm` and `toNotificationReview` helpers from `@opencrvs/toolkit/events`. They return a copy with every field optional and without validations, so `NOTIFY` still accepts incomplete records:
 
 ```ts
 {
@@ -295,7 +295,7 @@ Every event configuration must define an explicit `NOTIFY` action with both `not
 }
 ```
 
-`npx @opencrvs/toolkit upgrade` adds the `NOTIFY` action to existing event configurations. A `NOTIFY` request for an event without a `NOTIFY` action is rejected.
+`npx @opencrvs/toolkit upgrade` adds `notificationForm` and `review` to existing `NOTIFY` actions that lack them, and lists events without a `NOTIFY` action and configs it could not rewrite for you to change by hand. A `NOTIFY` request for an event without a `NOTIFY` action is rejected.
 
 {% hint style="warning" %}
 `APPROVE_CORRECTION` and `REJECT_CORRECTION` no longer inherit the `REQUEST_CORRECTION` configuration. If your country config relies on `flags` or `conditionals` configured on `REQUEST_CORRECTION` also applying when a correction is approved or rejected, add explicit `APPROVE_CORRECTION` and `REJECT_CORRECTION` entries with the same values. `npx @opencrvs/toolkit upgrade` adds them for you when `REQUEST_CORRECTION` has `flags` or `conditionals`.
