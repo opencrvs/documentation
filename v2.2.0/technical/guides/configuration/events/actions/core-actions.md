@@ -275,16 +275,27 @@ Every core action accepts the same base keys: `label`, `icon`, `supportingCopy`,
 | `READ`                                                                                                         | `label`, `icon`, `supportingCopy`, `review` (no `conditionals`, no `flags`)                         |
 | `NOTIFY`, `DECLARE`, `REGISTER`, `ARCHIVE`, `REJECT`, `REVOKE_REGISTRATION`, `REINSTATE_REGISTRATION`                                                           | base keys plus an optional confirmation dialog `form` (see below)                                   |
 
-`NOTIFY` uses its own configuration when present and otherwise falls back to the `DECLARE` configuration for label, flags, icon and conditionals. Its confirmation dialog `form` never falls back to `DECLARE`.
+`NOTIFY` uses its own configuration for label, flags, icon, conditionals and confirmation dialog `form`.
 
 `NOTIFY` also supports its own `notificationForm` and `review`:
 
 * `notificationForm` is the notify form. Every field in it must also exist in the `DECLARE` declaration form with the same type, and its values pre-fill the declaration. A `NOTIFY` is rejected when a required `notificationForm` field is missing or invalid, or when its `declaration` contains a field that is not in the notification form.
-* `review` holds the notify review page fields. Notify-only data, such as a notifier's signature, is configured as `NOTIFY` `review` or `form` fields and stored in the `NOTIFY` action annotation. When `notificationForm` is configured, required `review` and dialog `form` fields are enforced on `NOTIFY`. When the record is later declared, `review` fields that also exist on the `DECLARE` review page are pre-filled with the values captured at notify.
+* `review` holds the notify review page fields. Notify-only data, such as a notifier's signature, is configured as `NOTIFY` `review` or `form` fields and stored in the `NOTIFY` action annotation. Required `review` and dialog `form` fields are enforced on `NOTIFY`. When the record is later declared, `review` fields that also exist on the `DECLARE` review page are pre-filled with the values captured at notify.
 
 A user whose role holds `record.notify` for an event type fills in the `notificationForm` in a separate notify flow instead of the declaration form. This applies to new records and to editing a notified record ("Notify with edits"), and notify requires the notification form's required fields to be complete. The declare flow only offers Declare and Register, and requires `record.declare`. A role should hold either `record.notify` or `record.declare` for an event type, not both: a role holding both gets only the notify flow for that event type.
 
-`defineConfig` still accepts events without a notification form. It generates a missing `NOTIFY` action and `review` from the `DECLARE` action with every field optional, and logs a warning when `notificationForm` is missing. In that case the `DECLARE` form with every field optional is used in its place; this fallback will be removed in a future release. An event configuration built without `defineConfig` must provide `review` on its `NOTIFY` action.
+Every event configuration must define an explicit `NOTIFY` action with both `notificationForm` and `review`; `defineConfig` no longer generates them from `DECLARE`. To make the notify form the declaration form with every field optional, use the `toNotificationForm` and `toNotificationReview` helpers from `@opencrvs/toolkit/events`, which return a copy with every field optional and without validations:
+
+```ts
+{
+  type: ActionType.NOTIFY,
+  label: { /* ... */ },
+  notificationForm: toNotificationForm(DECLARATION_FORM),
+  review: toNotificationReview(DECLARATION_REVIEW)
+}
+```
+
+`npx @opencrvs/toolkit upgrade` adds the `NOTIFY` action to existing event configurations. A `NOTIFY` request for an event without a `NOTIFY` action is rejected.
 
 {% hint style="warning" %}
 `APPROVE_CORRECTION` and `REJECT_CORRECTION` no longer inherit the `REQUEST_CORRECTION` configuration. If your country config relies on `flags` or `conditionals` configured on `REQUEST_CORRECTION` also applying when a correction is approved or rejected, add explicit `APPROVE_CORRECTION` and `REJECT_CORRECTION` entries with the same values. `npx @opencrvs/toolkit upgrade` adds them for you when `REQUEST_CORRECTION` has `flags` or `conditionals`.
