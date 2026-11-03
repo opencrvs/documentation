@@ -54,6 +54,30 @@ export const birthEvent = defineConfig({
 })
 ```
 
+### Event versions
+
+An event can have several versions, each effective from a date. Pass them to `defineConfig` under `versions`. Fields shared by every version (`id`, `label`, `advancedSearch`) stay at the top level; all other fields (`actions`, `title`, `summary`, `flags`, ...) are defined on each version.
+
+```typescript
+export const birthEvent = defineConfig({
+  id: 'birth',
+  label: { ... },
+  versions: [
+    { id: 'v1', actions: [ ... ] },
+    { id: 'v2', effectiveFrom: '2027-01-01', actions: [ ... ] }
+  ]
+})
+```
+
+* A version without `effectiveFrom` (format `YYYY-MM-DD`) is effective from the beginning of time (`0001-01-01`).
+* Version ids and `effectiveFrom` dates must be unique within an event.
+* For now, the first version applies to every record.
+* `defineConfig` still accepts a flat configuration, as in the example above, and wraps it in a single version with id `default`.
+
+`defineConfig` returns a `VersionedEventConfig`. To read the fields of a version in code, use `resolveEventConfig`, for example `resolveEventConfig(birthEvent).actions`. The `opencrvs upgrade` command runs the `resolve-versioned-event-config` codemod, which rewrites such reads under `src/` and lists the ones it could not rewrite.
+
+Each event in the `GET /api/events/config` response is `{ id, label, advancedSearch, versions }`, with each version carrying its `id` and `effectiveFrom`. Core 2.2 only reads the versioned shape, so upgrade core and the country config together.
+
 ### Register events with the API
 
 First, export every event from `src/events/index.ts`, then return that array from your events handler:
