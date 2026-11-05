@@ -11,7 +11,7 @@ SSH Access is configured at inventory file (`environments/<environment>/inventor
 Configuration file has special section `users`, following options are available:
 
 * name: OS login user name
-* ssh\_keys: List of public ssh keys for user, all keys are added to `~/.ssh/authorized_keys`
+* ssh\_keys: List of public ssh keys for user. These keys replace all keys in `~/.ssh/authorized_keys`
 * state: Enable or disable remote access for the user. Allowed values are:
   * `present`: user is allowed to login
   * `absent`: user account is disabled
@@ -22,27 +22,31 @@ Configuration file has special section `users`, following options are available:
 Here is example of configuration file for user `bob`:
 
 ```yaml
-# users: Add as many users as you wish
-users:
-# Configuration example
-- name: bob
-  ssh_keys:
-    - "ssh-ed25519 AAA...Q bob@opencrvs.org"
-    - "ssh-ed25519 AAA...Q bob@aol.com"
-  state: present
-  # Allowed states:
-  # - present: user is allowed to login
-  # - absent: user account is disabled
+all:
+  vars:
+    ...
+    # users: Add as many users as you wish
+    users:
+      ...
+      # Configuration example
+      - name: bob
+        ssh_keys:
+          - "ssh-ed25519 AAA...Q bob@opencrvs.org"
+          - "ssh-ed25519 AAA...Q bob@aol.com"
+        state: present
+        # Allowed states:
+        # - present: user is allowed to login
+        # - absent: user account is disabled
 
-  role: admin
-  # Allowed roles:
-  # - operator: grant read only access to OS and full access to kubernetes cluster
-  # - admin: grant full access to OS and kubernetes cluster
+        role: admin
+        # Allowed roles:
+        # - operator: grant read only access to OS and full access to kubernetes cluster
+        # - admin: grant full access to OS and kubernetes cluster
 ```
 
 ### 2FA SSH Access
 
-Now that your servers are provisioned you can SSH in using either the IP address or the domain, plus your username as it is configured in inventory files. The first time you do so you will be required to set up 2FA for your server administrators.
+Now that your servers are provisioned you can SSH in using either the IP address or the domain, plus your username as it is configured in inventory files. The first time you do so you will be required to set up 2FA for your server users.
 
 <figure><img src="../../../../.gitbook/assets/Screenshot 2024-02-13 at 15.51.38.png" alt=""><figcaption></figcaption></figure>
 
@@ -60,22 +64,36 @@ You will also notice that root SSH access is now disabled as a security posture.
 
 <figure><img src="../../../../.gitbook/assets/Screenshot 2024-02-13 at 15.57.53.png" alt=""><figcaption></figcaption></figure>
 
-### Removing SSH Access for a user
+### Revoking SSH access
 
-If a server administrator needs to be removed from having SSH access to a server, these are the steps you need to take:
+The inventory file is the only source of SSH keys. Keys that are not in the inventory file do not work.
 
-1. In the inventory file for the server, find the user block for the user you wish to remove and set the value **state** to **absent**: \[TODO: fix screenshot]
+To revoke access of a user:
 
-<figure><img src="../../../../.gitbook/assets/Screenshot 2024-11-13 at 18.31.49.png" alt=""><figcaption></figcaption></figure>
-
-```
-state: absent
-```
-
+1. In the inventory file for the server, find the user block for the user. To revoke one key, delete it from `ssh_keys`. To revoke all access, set the value **state** to **absent**:
+    ```yaml
+    all:
+      vars:
+        ...
+        users:
+          ...
+          - name: bob
+            ssh_keys:
+              - ssh-ed25519 .....
+            state: absent            # <-- Update this line
+            role: operator
+            two_factor: false
+    ```
 2. Commit the updated inventory file to Git
 3. Run the Provision action for the environment with just the "**users**" task selected. It is quicker and less intensive than selecting "all"
+    <figure><img src="../../../../.gitbook/assets/Screenshot 2024-11-13 at 18.34.42.png" alt=""><figcaption><p>Running the users task updates all users on the server. If a user is marked as absent, they will be deactivated</p></figcaption></figure>
+4. Now the key, or the user, no longer has SSH access to the server
+5. If the user is **absent**, you can delete their block entirely from inventory files and commit the file to Git if you wish.
 
-<figure><img src="../../../../.gitbook/assets/Screenshot 2024-11-13 at 18.34.42.png" alt=""><figcaption><p>Running the users task updates all users on the server. If a user is marked as absent, they will be deactivated</p></figcaption></figure>
+For an **absent** user, the playbook also deletes the sudo rules, `~/.ssh` and `~/.kube` of the user. The home directory stays.
 
-4. Now the user will no longer have SSH access to the server
-5. You can delete their block entirely from inventory files and commit the file to Git if you wish.
+{% hint style="warning" %}
+* Do not delete the user block before you run the Provision action. The playbook does not change users that are not in the inventory file.
+* Open SSH sessions stay active. Ask the user to log out, or restart the SSH service.
+* If you set `additional_keys_for_provisioning_user`, this list replaces all keys of the provisioning user. Add the key that the Provision action uses to the list. If you do not, you lose access to the server.
+{% endhint %}
