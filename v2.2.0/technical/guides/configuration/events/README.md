@@ -56,27 +56,47 @@ export const birthEvent = defineConfig({
 
 ### Event versions
 
-An event can have several versions, each effective from a date. Pass them to `defineConfig` under `versions`. Fields shared by every version (`id`, `label`, `advancedSearch`) stay at the top level; all other fields (`actions`, `title`, `summary`, `flags`, ...) are defined on each version.
+An event can have several versions, each effective from a date. Pass them to `defineConfig` under `versions`. Fields shared by every version (`id`, `label`, `advancedSearch`) stay at the top level. All other fields (`actions`, `title`, `summary`, `flags`, ...) are defined on each version.
 
 ```typescript
 export const birthEvent = defineConfig({
   id: 'birth',
   label: { ... },
   versions: [
-    { id: 'v1', actions: [ ... ] },
+    { id: 'initial', actions: [ ... ] },
     { id: 'v2', effectiveFrom: '2027-01-01', actions: [ ... ] }
   ]
 })
 ```
 
-* A version without `effectiveFrom` (format `YYYY-MM-DD`) is effective from the beginning of time (`0001-01-01`).
+* `effectiveFrom` has the format `YYYY-MM-DD`. A version without it is effective from the beginning of time (`0001-01-01`).
 * Version ids and `effectiveFrom` dates must be unique within an event.
-* For now, the first version applies to every record.
-* `defineConfig` still accepts a flat configuration, as in the example above, and wraps it in a single version with id `default`.
+* `defineConfig` still accepts a flat configuration, as in the example above. It wraps it in a single version with the id `initial`.
 
-`defineConfig` returns a `VersionedEventConfig`. To read the fields of a version in code, use `resolveEventConfig`, for example `resolveEventConfig(birthEvent).actions`. The `opencrvs upgrade` command runs the `resolve-versioned-event-config` codemod, which rewrites such reads under `src/` and lists the ones it could not rewrite.
+#### Which version a record uses
 
-Each event in the `GET /api/events/config` response is `{ id, label, advancedSearch, versions }`, with each version carrying its `id` and `effectiveFrom`. Core 2.2 only reads the versioned shape, so upgrade core and the country config together.
+A version takes effect at midnight in the country's time zone (`SYSTEM_IANA_TIMEZONE`). A record is created under the version in effect that day and keeps it for its whole life. Every action on the record, its validation, its workqueue row and the duplicate comparison use that version, even after a newer one takes effect. A record created offline keeps the version in effect when the user created it.
+
+The record stores the version's id as `configVersionId`. Event documents and search results include it. To show it on the record overview, add a custom field to `summary.fields` with the value `{event.configVersionId}`.
+
+When a new version takes effect, the client uses it for new records without a reload. A form that is already open does not change.
+
+#### Rules for versions
+
+* An event must have a version in effect today, or `defineConfig` rejects it. It checks today in UTC−12, the last time zone to begin the day. Schedule an event's only version a day ahead.
+* Records created before 2.2 have the version `initial`. When you add `versions` to an existing event, give the version that holds your current configuration the id `initial`.
+* Never remove or rename a version that records use. A record whose version is not configured cannot be opened, and the search reindex fails, naming the missing version.
+
+#### Reading a version in code
+
+`defineConfig` returns a `VersionedEventConfig`. To read the fields of a version in code, use `resolveEventConfig`, for example `resolveEventConfig(birthEvent).actions`. The `opencrvs upgrade` command runs the `resolve-versioned-event-config` codemod. It rewrites such reads under `src/` and lists the ones that it could not rewrite.
+
+#### API
+
+* Each event in the `GET /api/events/config` response is `{ id, label, advancedSearch, versions }`. Each version has its `id` and `effectiveFrom`.
+* `event.create` takes an optional `configVersionId`. Without it, the record is created under the version in effect. A given `configVersionId` must be a configured version that is already in effect, or the call fails with HTTP 400.
+
+Core 2.2 reads only the versioned shape, so upgrade core and the country config together.
 
 ### Register events with the API
 
