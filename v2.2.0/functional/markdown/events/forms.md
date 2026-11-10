@@ -58,6 +58,8 @@ Each form has a small set of core properties that control how it behaves.
 
           * A role with `record.notify` scope and a shortened form (mandatory registration fields hidden) can submit what they have captured — Notify accepts incomplete data and produces a Notified record for follow-up.
           * A role with `record.declare` scope and the full form can submit a complete declaration — Declare requires all mandatory fields before the button is enabled.
+
+          A user with `record.notify` for an event type fills in the notification form in a separate notify flow (also when editing a notified record), while the declare flow requires `record.declare`. A role should hold only one of the two scopes for an event type.
 * **Validations**
   * Field-level validations (for example, required, pattern, min / max, date ranges).
   * Error messages shown inline to guide users.
