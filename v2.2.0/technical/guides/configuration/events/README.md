@@ -63,16 +63,15 @@ export const birthEvent = defineConfig({
   id: 'birth',
   label: { ... },
   versions: [
-    { id: 'initial', label: { ... }, actions: [ ... ] },
-    { id: 'v2', label: { ... }, effectiveFrom: '2027-01-01', actions: [ ... ] }
+    { id: 'initial', actions: [ ... ] },
+    { id: 'v2', effectiveFrom: '2027-01-01', actions: [ ... ] }
   ]
 })
 ```
 
-* Each version has its own `label`, the name of the version.
 * `effectiveFrom` has the format `YYYY-MM-DD`. A version without it is effective from the beginning of time (`0001-01-01`). At most one version may omit it.
 * Version ids and `effectiveFrom` dates must be unique within an event.
-* `defineConfig` still accepts a flat configuration, like the example in [Define an event](#define-an-event). It wraps it in a single version with the id `initial` and the label of the event.
+* `defineConfig` still accepts a flat configuration, like the example in [Define an event](#define-an-event). It wraps it in a single version with the id `initial`.
 
 #### Which version a record uses
 
@@ -94,7 +93,7 @@ When a new version takes effect, the client uses it for new records without a re
 
 #### API
 
-* Each event in the `GET /api/events/config` response is `{ id, label, advancedSearch, versions }`. Each version has its `id`, `label` and `effectiveFrom`, and the fields of that version.
+* Each event in the `GET /api/events/config` response is `{ id, label, advancedSearch, versions }`. Each version has its `id` and `effectiveFrom`, and the fields of that version.
 * `event.create` takes an optional `configVersionId`. Without it, the record is created under the version in effect. A given `configVersionId` must be a configured version, and its `effectiveFrom` must not be in the future. Otherwise the call fails with HTTP 400.
 
 Core 2.2 reads only the versioned shape, so upgrade core and the country config together.
