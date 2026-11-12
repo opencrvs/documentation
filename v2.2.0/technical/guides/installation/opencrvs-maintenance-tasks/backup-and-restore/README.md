@@ -20,7 +20,7 @@ OpenCRVS dependencies helm chart includes a built-in backup and restore features
 Supported data stores:
 
 * PostgreSQL
-* MinIO
+* RustFS (S3 object store)
 
 {% hint style="info" %}
 Elasticsearch doesn't support backup and restore, please use re-index job instead
@@ -46,7 +46,7 @@ Following backup types are supported by data stores:
 * Postgres:
   * `dump`: (Default) Database dump, without instance configuration. Backup is performed by `pg_dump` utility. Database credentials are preserved. Backup is suitable for average country with small population (up to 1 million of people).
   * `differential` : Differential backup between last full backup. Backup is performed at instance (cluster) level by `pgBackRest` tool. Database credentials are replaced with credentials from backup server at restore time. By default weekly full and daily differential backups are made.
-* MinIO:
+* RustFS:
   * `dump`: (Default) Full filesystem copy clone archived and encrypted on daily basics.
   * `differential`: Full filesystem copy mirrored on remote backup server folder with rsync.
 
@@ -61,7 +61,7 @@ The backup server hostname is set with `backup.host` (`restore.host`) in the cha
 Example:
 
 ```yml
-minio:
+rustfs:
   backup:
     schedule: "0 1 * * *"
 postgres:
@@ -97,7 +97,7 @@ drwxrwxr-x 2 backup backup 4096 Feb  5 01:00 2026-02-05
 drwxrwxr-x 2 backup backup 4096 Feb 13 01:00 2026-02-13
 backup@poc-backup:~$ ls -l /home/backup/production/2026-02-05
 total 124
--rw-r--r-- 1 backup backup   112 Feb  5 01:00 minio_backup_2026-02-05.tar.gz.enc
+-rw-r--r-- 1 backup backup   112 Feb  5 01:00 rustfs_backup_2026-02-05.tar.gz.enc
 -rw-r--r-- 1 backup backup 33040 Feb  5 01:00 postgres_backup_2026-02-05.tar.gz.enc
 ```
 

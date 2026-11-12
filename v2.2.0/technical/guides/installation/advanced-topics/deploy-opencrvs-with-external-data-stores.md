@@ -65,32 +65,35 @@ Copy
 * `CREATEROLE`: Allows creating new roles.
 * `REPLICATION`: Not necessary unless you want replication privileges (optional).
 
-## MinIO
+## S3 object store (RustFS)
+
+The documents service uses the plain S3 API. You can use any S3-compatible store. The dependencies chart deploys RustFS by default.
 
 Assumptions made:
 
-* MinIO internal server ports 9000 and 9001 are available from Kubernetes cluster nodes
-* OpenCRVS DevOps/Sysadmin has MinIO admin user credentials
-* MinIO frontend is exposed as subdomain of OpenCRVS domain. E/g If OpenCRVS is deployed as opencrvs.example.com then MinIO may have any URL under opencrvs.example.com (my-minio.opencrvs.example.com).
+* The S3 API port of the store is available from Kubernetes cluster nodes
+* OpenCRVS DevOps/Sysadmin has the admin user credentials of the store
+* The store is exposed to browsers on a URL that you set as `s3.public_endpoint` (for example `https://s3.example.org`). The services chart signs document URLs for this URL.
 
-### Configure OpenCRVS to use external MinIO
+### Configure OpenCRVS to use an external S3 store
 
 1. Modify GitHub secrets for your environment:
    1. `S3_ADMIN_ACCESS_KEY`
    2. `S3_ADMIN_SECRET_KEY`
 2. Modify Dependencies helm chart configuration:
-   1.  Open `environments/<environment>/dependencies/values.override.yaml` and add following lines to disable MinIO:
+   1.  Open `environments/<environment>/dependencies/values.override.yaml` and add following lines to disable RustFS:
 
        ```yaml
-       minio:
+       rustfs:
          enabled: false
        ```
-   2.  Open `environments/<environment>/opencrvs-services/values.override.yaml` and add following lines to point OpenCRVS to external MinIO server:<br>
+   2.  Open `environments/<environment>/opencrvs-services/values.override.yaml` and add following lines to point OpenCRVS to external S3 server:<br>
 
        ```yaml
        s3:
          host: <hostname or IP address>
          port: <port>
+         public_endpoint: <URL that browsers use, with protocol>
        ```
 3. Commit your changes to GitHub
 4. Deploy Dependencies
