@@ -6,11 +6,11 @@ OpenCRVS can be deployed on decoupled infrastructure with clear permissions and 
 
 On managed Kubernetes you can grant access to managed data stores per pod rather than per node by mapping OpenCRVS service accounts to cloud identities, see [Kubernetes service accounts](kubernetes-service-accounts.md).
 
-Only full backup and restore process jobs have support for decoupled data stores. Please refer to official Postgres and MinIO documentation how to configure backup/restore.
+Only full backup and restore process jobs have support for decoupled data stores. Please refer to official Postgres and RustFS documentation how to configure backup/restore.
 
 Supported data stores:
 
-* MinIO
+* RustFS
 * Elasticsearch
 * Postgres
 
@@ -65,33 +65,44 @@ Copy
 * `CREATEROLE`: Allows creating new roles.
 * `REPLICATION`: Not necessary unless you want replication privileges (optional).
 
-## MinIO
+## S3 Storage
 
 Assumptions made:
 
-* MinIO internal server ports 9000 and 9001 are available from Kubernetes cluster nodes
-* OpenCRVS DevOps/Sysadmin has MinIO admin user credentials
-* MinIO frontend is exposed as subdomain of OpenCRVS domain. E/g If OpenCRVS is deployed as opencrvs.example.com then MinIO may have any URL under opencrvs.example.com (my-minio.opencrvs.example.com).
+* S3 API port is available from Kubernetes cluster nodes
+* OpenCRVS DevOps/Sysadmin has RustFS admin user credentials
+* S3 API is available for clients browsers (required for presigned URLs).
 
-### Configure OpenCRVS to use external MinIO
+### Configure OpenCRVS to use external S3 backend
 
 1. Modify GitHub secrets for your environment:
    1. `S3_ADMIN_ACCESS_KEY`
    2. `S3_ADMIN_SECRET_KEY`
 2. Modify Dependencies helm chart configuration:
-   1.  Open `environments/<environment>/dependencies/values.override.yaml` and add following lines to disable MinIO:
+   1.  Open `environments/<environment>/dependencies/values.override.yaml` and add following lines to disable RustFS:
 
        ```yaml
-       minio:
+       rustfs:
          enabled: false
        ```
-   2.  Open `environments/<environment>/opencrvs-services/values.override.yaml` and add following lines to point OpenCRVS to external MinIO server:<br>
-
-       ```yaml
-       s3:
-         host: <hostname or IP address>
-         port: <port>
-       ```
+   2.  Open `environments/<environment>/opencrvs-services/values.override.yaml` and add following lines to point OpenCRVS to external S3 storage:<br>
+        ```yaml
+        s3:
+          # hostname or IP address, port and protocel for OpenCRVS backend calls
+          protocol: https
+          host: 1.2.3.4
+          port: 3535
+          # Public endpoint for client (browser) calls
+          public_endpoint: https://s3.example.com
+        ```
+       Google Cloud example:
+        ```yaml
+        s3:
+          host: storage.googleapis.com
+          port: 443
+          protocol: https
+          public_endpoint: https://storage.googleapis.com
+        ```
 3. Commit your changes to GitHub
 4. Deploy Dependencies
 5. Deploy OpenCRVS

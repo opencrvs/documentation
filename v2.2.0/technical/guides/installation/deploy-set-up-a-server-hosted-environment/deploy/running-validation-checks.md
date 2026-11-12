@@ -24,7 +24,7 @@ Following checks are running at pre-deployment:
 
 * Postgres connectivity
 * Redis connectivity
-* MinIO connectivity
+* RustFS connectivity
 * Elasticsearch connectivity, if configured
 * SMTP configuration:
   * Server availability

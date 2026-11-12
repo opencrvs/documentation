@@ -61,7 +61,7 @@ OpenCRVS uses multiple database technologies, each optimised for specific purpos
 
 #### 3.3 Object storage
 
-**Minio**
+**RustFS**
 
 * Amazon S3-compatible object store.
 * Stores supporting documentation attachments (images, scanned documents).

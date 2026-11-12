@@ -2,7 +2,7 @@
 
 ### General information
 
-By default, OpenCRVS deploys an Elasticsearch instance that is shared by the application and observability services. Elasticsearch data is stored on the same disk partition as other persistent services, such as PostgreSQL and MinIO, under `/data`.
+By default, OpenCRVS deploys an Elasticsearch instance that is shared by the application and observability services. Elasticsearch data is stored on the same disk partition as other persistent services, such as PostgreSQL and RustFS, under `/data`.
 
 In many environments, this disk partition is encrypted and has limited available space. Observability data, especially monitoring metrics and application logs, can require significantly more storage over time. As a rough estimate, monitoring data for a single-node environment can use approximately 5 GB per month. Logging storage is harder to estimate because it depends on several factors, including the number of active users, the number of registrations processed each day, enabled log levels, and retention settings.
 

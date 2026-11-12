@@ -119,7 +119,7 @@ This partition stores OpenCRVS application (citizens) data.
 1. Elasticsearch monitoring and logging indices filled the disk.
 2. Citizen data growth.
 3. Backup files accumulation.
-4. Attachments stored in MinIO.
+4. Attachments stored in RustFS.
 
 #### Impact
 
@@ -148,7 +148,7 @@ Common directories:
 
 * /data/elasticsearch, see [#elasticsearch-disk-cleanup](disk-space-management.md#elasticsearch-disk-cleanup "mention")
 * /data/postgres, see [#postgresql-storage](disk-space-management.md#postgresql-storage "mention")
-* /data/minio, see [#minio-storage-cleanup](disk-space-management.md#minio-storage-cleanup "mention")
+* /data/rustfs, see [#rustfs-storage-cleanup](disk-space-management.md#rustfs-storage-cleanup "mention")
 
 #### Elasticsearch disk cleanup
 
@@ -188,18 +188,18 @@ rm -rf /data/elasticsearch/*
 This removes **all logs and monitoring data**.
 {% endhint %}
 
-#### MinIO storage cleanup
+#### RustFS storage cleanup
 
 Check size:
 
 ```
-du -sh /data/minio
+du -sh /data/rustfs
 ```
 
 Possible actions:
 
 * Remove old attachments
-* Enable **MinIO lifecycle rules** to automatically delete old objects.
+* Enable **RustFS lifecycle rules** to automatically delete old objects.
 
 ***
 
@@ -230,14 +230,14 @@ OpenCRVS dependencies helm chart has an options to change data location for part
 
 For storage type `pvc` data location is managed by Kubernetes CSI (storage class) and underlaying persistent storage implementation
 
-An example for MinIO bellow shows how to modify data location for `storage_type: host_path`, but same configuration options also apply to Elasticsearch and Postgres. In this example MinIO data is stored on fist worker node (`data2`) instead of default master node (`data1`):
+An example for RustFS bellow shows how to modify data location for `storage_type: host_path`, but same configuration options also apply to Elasticsearch and Postgres. In this example RustFS data is stored on fist worker node (`data2`) instead of default master node (`data1`):
 
 ```yml
-minio:
+rustfs:
   storage_type: host_path # Store data on filesystem (default)
   node_selector:
     role: data2 # Store data on worker node instead of master, default is 'data1'
-  host_data_path: /data/minio  # default value
+  host_data_path: /data/rustfs  # default value
 ```
 
 To change data location on live environment operator (SysAdmin, DevOps) needs to modify helm chart values and copy existing data manually to new location.

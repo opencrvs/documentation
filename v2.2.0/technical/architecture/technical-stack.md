@@ -73,7 +73,7 @@ Some supporting services still use **Hapi.js**, though this will be phased out o
 
 OpenCRVS uses purpose-specific databases rather than a single general-purpose store. Each database is chosen for what it does well:
 
-<table><thead><tr><th width="186.42578125">Database</th><th>What it stores</th><th data-hidden>Version</th></tr></thead><tbody><tr><td><strong>PostgreSQL</strong></td><td>Civil registration events, user data, and metrics</td><td>17.6</td></tr><tr><td><strong>Elasticsearch</strong></td><td>Search index for records and analytics queries</td><td>8.19</td></tr><tr><td><strong>Redis</strong></td><td>Session tokens, short-lived caches, rate limiting</td><td>8</td></tr><tr><td><strong>MinIO</strong></td><td>Supporting documents and attachments (S3-compatible object storage)</td><td>—</td></tr></tbody></table>
+<table><thead><tr><th width="186.42578125">Database</th><th>What it stores</th><th data-hidden>Version</th></tr></thead><tbody><tr><td><strong>PostgreSQL</strong></td><td>Civil registration events, user data, and metrics</td><td>17.6</td></tr><tr><td><strong>Elasticsearch</strong></td><td>Search index for records and analytics queries</td><td>8.19</td></tr><tr><td><strong>Redis</strong></td><td>Session tokens, short-lived caches, rate limiting</td><td>8</td></tr><tr><td><strong>RustFS</strong></td><td>Supporting documents and attachments (S3-compatible object storage)</td><td>—</td></tr></tbody></table>
 
 PostgreSQL is the authoritative store for all registration data. Elasticsearch is a derived store — populated from PostgreSQL — that powers fast search and reporting queries without loading the primary database.
 

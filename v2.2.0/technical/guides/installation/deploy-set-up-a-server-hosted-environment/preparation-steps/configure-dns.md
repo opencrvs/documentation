@@ -28,9 +28,9 @@ _countryconfig.\<your\_domain>_
 
 _metabase.\<your\_domain>_
 
-_minio.\<your\_domain>_
+_rustfs.\<your\_domain>_
 
-_minio-console.\<your\_domain>_
+_rustfs-console.\<your\_domain>_
 
 _gateway.\<your\_domain>_
 

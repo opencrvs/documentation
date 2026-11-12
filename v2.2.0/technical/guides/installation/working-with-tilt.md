@@ -25,7 +25,7 @@ Open the Tilt UI at [http://localhost:10350](http://localhost:10350). Resources 
 | `1.OpenCRVS`     | OpenCRVS services: `auth`, `client`, `countryconfig`, `documents`, `events`, `gateway`, `login` |
 | `2.Data-tasks`   | Tasks you run manually: `data-seed`, `data-cleanup`, `clean-&-seed`                          |
 | `3.Jobs`         | Jobs that run automatically: `postgres-on-deploy`, `data-migration`, `data-migration-analytics`, `elasticsearch-reindex` |
-| `4.Dependencies` | `elasticsearch`, `minio`, `redis`, `postgres`                                               |
+| `4.Dependencies` | `elasticsearch`, `rustfs`, `redis`, `postgres`                                               |
 | `5.Traefik`      | Traefik and its routes                                                                      |
 
 Select a resource to see its logs and status. A green resource is running or has completed; a red resource has failed, and its logs show why. To restart a resource, select it and use the trigger (↻) button.
@@ -63,7 +63,7 @@ Seeding uses a temporary superuser, created by the data migrations that run when
 
 The local environment runs in non-secure mode: there is no authentication on Redis and Elasticsearch, and these default credentials are used:
 
-* MinIO: `minioadmin` / `minioadmin`
+* RustFS: `rustfsadmin` / `rustfsadmin`
 * PostgreSQL: `postgres` / `postgres`
 
 Monitoring (Kibana) and dashboards (Metabase) are not deployed locally.
@@ -74,7 +74,7 @@ To connect to a dependency from your computer, for example with a database clien
 kubectl port-forward -n opencrvs-deps-dev svc/postgres 5432:5432        # PostgreSQL
 kubectl port-forward -n opencrvs-deps-dev svc/elasticsearch 9200:9200   # Elasticsearch
 kubectl port-forward -n opencrvs-deps-dev svc/redis 6379:6379           # Redis
-kubectl port-forward -n opencrvs-deps-dev svc/minio 3536:3536           # MinIO console, http://localhost:3536
+kubectl port-forward -n opencrvs-deps-dev svc/rustfs 3536:3536           # RustFS console, http://localhost:3536
 ```
 
 Keep the command running while you use the connection.
@@ -143,7 +143,7 @@ To stop or remove the cluster itself, see [Stop or remove the cluster](prerequis
 If `opencrvs.localhost` does not resolve, add this line to `/etc/hosts` (macOS, Ubuntu and WSL) or `C:\Windows\System32\drivers\etc\hosts` (Windows, edit as administrator):
 
 ```
-127.0.0.1 opencrvs.localhost register.opencrvs.localhost login.opencrvs.localhost gateway.opencrvs.localhost countryconfig.opencrvs.localhost minio.opencrvs.localhost minio-console.opencrvs.localhost
+127.0.0.1 opencrvs.localhost register.opencrvs.localhost login.opencrvs.localhost gateway.opencrvs.localhost countryconfig.opencrvs.localhost rustfs.opencrvs.localhost rustfs-console.opencrvs.localhost
 ```
 
 On Windows, the browser runs on Windows, so edit the Windows hosts file even if you use WSL.

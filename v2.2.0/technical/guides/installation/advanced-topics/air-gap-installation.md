@@ -5,7 +5,7 @@
 Running the `opencrvs-services` and `dependencies` Helm charts without outbound internet access has two independent requirements:
 
 * Every container image must come from a registry the cluster can reach.
-* The Postgres and MinIO backup/restore jobs must not need to install packages at deploy time.
+* The Postgres and RustFS backup/restore jobs must not need to install packages at deploy time.
 
 ### Pulling images from a private registry
 
@@ -47,14 +47,13 @@ These are not published by OpenCRVS and have no chart-wide override - each ships
 | Filebeat      | `docker.elastic.co/beats/filebeat`              |
 | Logstash      | `docker.elastic.co/logstash/logstash`           |
 | Elastalert    | `jertel/elastalert2`                            |
-| MinIO         | `ghcr.io/opencrvs/minio`                        |
+| RustFS        | `rustfs/rustfs`                                 |
 | Redis         | `redis`                                         |
 
 **`opencrvs-services` chart**
 
 | Service            | Default image       | Notes                                                                    |
 | ------------------ | ------------------- | ------------------------------------------------------------------------ |
-| `minio.image`      | `ghcr.io/opencrvs/minio-mc` | Client image used by one-off jobs that configure MinIO buckets/policies. |
 | `postgres.image`   | `postgres`          | Used by the backup, restore, data cleanup and analytics migration jobs.  |
 | `dashboards.image` | `metabase/metabase` | Only pulled when `dashboards.enabled: true`.                             |
 
@@ -66,9 +65,9 @@ postgres:
 elasticsearch:
   image:
     repository: myregistry.example.com/elasticsearch
-minio:
+rustfs:
   image:
-    repository: myregistry.example.com/minio
+    repository: myregistry.example.com/rustfs
 ```
 
 **Charts and images deployed by the infrastructure workflows**
@@ -86,7 +85,7 @@ The GitHub Actions workflows in the infrastructure repository also pull Helm cha
 Check each chart's `values.yaml` for the exact tag pinned to every image. All images must already exist in the private registry before deploying - neither chart falls back to a public registry once an override is set.
 {% endhint %}
 
-### Postgres Preinstalling backup/restore utility packages
+### Postgres: Preinstalling backup/restore utility packages
 
 Postgres backup/restore jobs install required utilities at runtime with `apt-get` when they are missing from the base image. In an air-gapped environment this installation step fails because package repositories are not reachable, even once the base image itself is pulled from a private registry.
 
@@ -106,11 +105,7 @@ RUN apt update && \
 
 ```
 
-### MinIO Preinstalling backup/restore utility packages
-
-MinIO backup/restore jobs also install utilities at runtime, with `apk`. Build a custom image from the default MinIO image (`ghcr.io/opencrvs/minio`) and preinstall the required packages: `bash`, `curl`, `openssl`, `openssh`, `jq`, `rsync`, `minio-client`, `coreutils`
-
-After publishing the custom images, point the `dependencies` chart to them:
+After publishing the custom image, point the `dependencies` chart to it:
 
 ```yaml
 # dependencies chart values.override.yaml
@@ -118,10 +113,6 @@ postgres:
   image:
     repository: myregistry.example.com/postgres-with-backup-tools
     tag: 17.6-custom
-minio:
-  image:
-    repository: myregistry.example.com/minio-with-backup-tools
-    tag: release.2025-06-13t11-33-47z-custom
 ```
 
 ### Configuration options
@@ -139,4 +130,4 @@ For the complete reference, see:
 * [`charts/opencrvs-services/values.yaml`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/charts/opencrvs-services/values.yaml)
 * [`charts/dependencies/README.md`](https://github.com/opencrvs/opencrvs-core/blob/v2.1.0/charts/dependencies/README.md#air-gap-installation)
 
-Once all configuration completed and custom Postgres and MinIO images are published, please follow regular deployment steps.
+Once all configuration completed and custom Postgres image is published, please follow regular deployment steps.
