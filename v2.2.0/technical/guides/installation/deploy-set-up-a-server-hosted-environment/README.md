@@ -10,14 +10,14 @@ The **essential** [**preparation steps**](preparation-steps/) guide you through 
 - Configure DNS and obtain SSL certificates.
 - Set up an SMTP server.
 - Create the required accounts:
-  - GitHub organisation
+  - [GitHub organisation](../set-up-github-organisation-and-repository.md)
   - Docker Hub
   - 1Password (or another secrets manager)
   - Optional: other services such as Slack
 
 #### Fork the required repositories
 
-If you have not already done so in the [Quick Start](../quick-start.md), fork your country configuration repository, scaffolded from [countryconfig-template](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/countryconfig-template), and configure its CI process to push images to your container registry. See [**Fork and build the countryconfig repo**](../set-up-github-and-dockerhub-accounts.md)
+If you have not already done so in the [Quick Start](../quick-start.md), fork your country configuration repository, scaffolded from [countryconfig-template](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/packages/countryconfig-template), and configure its CI process to push images to your container registry. See [**Publish image to container registry**](../publish-image-to-container-registry.md)
 
 Fork the [infrastructure](https://github.com/opencrvs/infrastructure) repository.
 
