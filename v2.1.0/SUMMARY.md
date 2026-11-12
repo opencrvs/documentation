@@ -108,6 +108,7 @@
       * [Quick Start](technical/guides/installation/quick-start.md)
       * [Log in to OpenCRVS locally](technical/guides/installation/log-in-to-opencrvs-locally.md)
       * [Working with Tilt](technical/guides/installation/working-with-tilt.md)
+        * [Customising Tilt](technical/guides/installation/customising-tilt.md)
     * [Server deployment](technical/guides/installation/deploy-set-up-a-server-hosted-environment/README.md)
       * [Set up Github and Dockerhub accounts](technical/guides/installation/set-up-github-and-dockerhub-accounts.md)
       * [Preparation steps](technical/guides/installation/deploy-set-up-a-server-hosted-environment/preparation-steps/README.md)
