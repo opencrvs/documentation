@@ -8,9 +8,9 @@ Both the `opencrvs-services` and `dependencies` Helm charts support Traefik midd
 
 Two CIDR allowlists restrict who can reach OpenCRVS, enforced by a Traefik `ipAllowList` middleware at the ingress edge - before a request ever reaches an OpenCRVS pod. This is separate from the pod-to-pod Ingress/Egress access `NetworkPolicy` configuration, which only governs traffic already inside the cluster.
 
-* `ingress.application_allowlist` - restricts the OpenCRVS application and API: `client`, `login`, `gateway`, `countryconfig`, the Metabase public dashboards embedded in the Performance page (`opencrvs-services` chart) and the MinIO S3 API used for document downloads (`dependencies` chart).
+* `ingress.application_allowlist` - restricts the OpenCRVS application and API: `client`, `login`, `gateway`, `countryconfig`, the Metabase public dashboards embedded in the Performance page (`opencrvs-services` chart) and the RustFS S3 API used for document downloads (`dependencies` chart).
 * `ingress.admin_console_allowlist` - restricts the admin consoles:
-  * MinIO console and Kibana (`dependencies` chart)
+  * RustFS console and Kibana (`dependencies` chart)
   * Metabase admin console (`opencrvs-services` chart)
 
 {% hint style="warning" %}
@@ -19,7 +19,7 @@ Both allowlists are empty by default, which leaves the corresponding routes reac
 
 #### The two allowlists are configured independently
 
-* `application_allowlist` does not restrict the admin consoles. If `admin_console_allowlist` is empty, Metabase admin, Kibana and the MinIO console stay open even when `application_allowlist` is set.
+* `application_allowlist` does not restrict the admin consoles. If `admin_console_allowlist` is empty, Metabase admin, Kibana and the RustFS console stay open even when `application_allowlist` is set.
 * `admin_console_allowlist` never restricts the application on its own. When `application_allowlist` is set, the addresses in `admin_console_allowlist` are added to it automatically, so you don't need to repeat them. When `application_allowlist` is empty, the application stays open.
 
 {% hint style="warning" %}
@@ -36,13 +36,13 @@ flowchart LR
     end
 
     subgraph DEP["Dependencies"]
-        MINIO["MinIO S3 API"]
-        CONS["MinIO console / Kibana"]
+        RUSTFS["RustFS S3 API"]
+        CONS["RustFS console / Kibana"]
     end
 
     T -->|"application_allowlist + admin_console_allowlist"| APP
     T -->|"admin_console_allowlist"| DASH
-    T -->|"application_allowlist + admin_console_allowlist"| MINIO
+    T -->|"application_allowlist + admin_console_allowlist"| RUSTFS
     T -->|"admin_console_allowlist"| CONS
 ```
 
@@ -107,9 +107,9 @@ kubectl logs -n traefik -l service_name=traefik --prefix --tail=20
 | Value                             | Chart               | Default | Restricts                                                                                                |
 | --------------------------------- | ------------------- | ------- | -------------------------------------------------------------------------------------------------------- |
 | `ingress.application_allowlist`   | `opencrvs-services` | `[]`    | `client`, `login`, `gateway`, `countryconfig` and the Metabase public dashboards                         |
-| `ingress.application_allowlist`   | `dependencies`      | `[]`    | The MinIO S3 API. Browsers and integrations download documents from it through presigned URLs.           |
+| `ingress.application_allowlist`   | `dependencies`      | `[]`    | The RustFS S3 API. Browsers and integrations download documents from it through presigned URLs.           |
 | `ingress.admin_console_allowlist` | `opencrvs-services` | `[]`    | The Metabase admin console                                                                               |
-| `ingress.admin_console_allowlist` | `dependencies`      | `[]`    | The MinIO console and Kibana                                                                             |
+| `ingress.admin_console_allowlist` | `dependencies`      | `[]`    | The RustFS console and Kibana                                                                             |
 
 Each chart reads only its own values, so set the lists in both charts. If you set `application_allowlist` in the `dependencies` chart, it must include every network that users and integrations download documents from.
 
@@ -133,7 +133,7 @@ ingress:
     # Allow document downloads from the same subnet as the application
     - 203.0.113.0/24
   admin_console_allowlist:
-    # Allow access to Kibana and the MinIO console from a particular IP
+    # Allow access to Kibana and the RustFS console from a particular IP
     - 198.51.100.42/32
 ```
 

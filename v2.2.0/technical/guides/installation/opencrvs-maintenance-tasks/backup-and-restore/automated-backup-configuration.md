@@ -20,7 +20,7 @@ backup:
 ```
 
 {% hint style="info" %}
-The backup server hostname is configured with `backup.host` and is no longer read from the `backup-server-ssh-credentials` secret. When the environment is managed by the `yarn environment:init` script, the value is populated from the `BACKUP_HOST` GitHub environment variable. A different host can be set per datastore with `postgres.backup.host` or `minio.backup.host`.
+The backup server hostname is configured with `backup.host` and is no longer read from the `backup-server-ssh-credentials` secret. When the environment is managed by the `yarn environment:init` script, the value is populated from the `BACKUP_HOST` GitHub environment variable. A different host can be set per datastore with `postgres.backup.host` or `rustfs.backup.host`.
 {% endhint %}
 
 Push your changes to GitHub and Re-[Deploy Dependencies](../../deploy-set-up-a-server-hosted-environment/deploy/running-a-dependencies-deployment.md)
@@ -42,7 +42,7 @@ If backup server was provisioned as part of any other environments or is a third
 
     ```
     NAME              SCHEDULE    TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
-    minio-backup      0 1 * * *   <none>     False     0        5h9m            13h
+    rustfs-backup      0 1 * * *   <none>     False     0        5h9m            13h
     postgres-backup   0 1 * * *   <none>     False     0        5h9m            20h
     ```
 
@@ -61,7 +61,7 @@ Wait at least for first job execution, usually takes at to 24 hours
 
     ```
     NAME                       STATUS     COMPLETIONS   DURATION   AGE
-    minio-backup-29381820      Complete   1/1           9s         5h11m
+    rustfs-backup-29381820      Complete   1/1           9s         5h11m
     postgres-backup-29381820   Complete   1/1           13s        5h11m
     ```
 
@@ -86,6 +86,6 @@ Verify backup files are present on backup server
     ```
     backup@backup-01:~$ ls -l /home/backup/production/2025-11-12
     total 25972
-    -rw-r--r-- 1 backup backup 26506864 Nov 12 01:00 minio_backup_2025-11-12.tar.gz.enc
+    -rw-r--r-- 1 backup backup 26506864 Nov 12 01:00 rustfs_backup_2025-11-12.tar.gz.enc
     -rw-r--r-- 1 backup backup      448 Nov 12 01:00 postgres_backup_2025-11-12.tar.gz.enc
     ```

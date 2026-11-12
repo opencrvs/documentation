@@ -18,7 +18,7 @@ Reasons for manual backup:
 Following components are backed up:
 
 * PostgreSQL
-* MinIO
+* RustFS
 
 ### Running all components backup
 
@@ -40,8 +40,8 @@ Following components are backed up:
     Example output:
 
     ```
-    job.batch "minio-backup-job" deleted
-    job.batch/minio-backup-job created
+    job.batch "rustfs-backup-job" deleted
+    job.batch/rustfs-backup-job created
     job.batch "postgres-backup-job" deleted
     job.batch/postgres-backup-job created
     ```
@@ -56,8 +56,8 @@ Following components are backed up:
     ```
     NB01NSTL012:~ vmudryi$ kubectl get job -ljob-type=backup
     NAME                       STATUS     COMPLETIONS   DURATION   AGE
-    minio-backup-29384700      Complete   1/1           9s         6h9m
-    minio-backup-job           Complete   1/1           10s        2m30s
+    rustfs-backup-29384700      Complete   1/1           9s         6h9m
+    rustfs-backup-job           Complete   1/1           10s        2m30s
     postgres-backup-29384700   Complete   1/1           12s        6h9m
     postgres-backup-job        Complete   1/1           12s        2m28s
     ```
@@ -118,6 +118,6 @@ Following components are backed up:
     ```
     backup@tmp-backup:~$ ls -l /home/backup/production/2025-11-12
     total 25972
-    -rw-r--r-- 1 backup backup 26506864 Nov 12 01:00 minio_backup_2025-11-12.tar.gz.enc
+    -rw-r--r-- 1 backup backup 26506864 Nov 12 01:00 rustfs_backup_2025-11-12.tar.gz.enc
     -rw-r--r-- 1 backup backup      448 Nov 12 01:00 postgres_backup_2025-11-12.tar.gz.enc
     ```

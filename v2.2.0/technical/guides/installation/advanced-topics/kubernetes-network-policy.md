@@ -55,7 +55,7 @@ The MOSIP integration chart (`opencrvs-mosip`) is usually deployed into the same
 
 ### Cross-namespace access
 
-The `dependencies` chart (Postgres, Elasticsearch, Redis, MinIO) and `opencrvs-services` chart are typically deployed to separate namespaces. `network_policy.allowed_namespaces` grants one half of that access per chart:
+The `dependencies` chart (Postgres, Elasticsearch, Redis, RustFS) and `opencrvs-services` chart are typically deployed to separate namespaces. `network_policy.allowed_namespaces` grants one half of that access per chart:
 
 ```mermaid
 flowchart LR
@@ -63,7 +63,7 @@ flowchart LR
     A[auth / gateway / events / ...]
   end
   subgraph DEP ["dependencies namespace"]
-    B[(Postgres / Elasticsearch / Redis / MinIO)]
+    B[(Postgres / Elasticsearch / Redis / RustFS)]
   end
   A -- "egress: allowed_namespaces: opencrvs-deps-{env}" --> B
   B -. "ingress: allowed_namespaces: opencrvs-{env}" .-> A
@@ -108,7 +108,7 @@ Check "Custom rules" section for more information
 
 ### Backup and restore server
 
-When backup or restore is enabled, the `dependencies` chart allows Postgres and MinIO to connect to the backup server over SSH (TCP port 22) only. The rule is built from `backup.host` / `restore.host` (set from the `BACKUP_HOST` / `RESTORE_HOST` GitHub environment variables) as a `/32` IP block, because Kubernetes NetworkPolicy cannot match hostnames. **`BACKUP_HOST` and `RESTORE_HOST` must be IP addresses.**
+When backup or restore is enabled, the `dependencies` chart allows Postgres and RustFS to connect to the backup server over SSH (TCP port 22) only. The rule is built from `backup.host` / `restore.host` (set from the `BACKUP_HOST` / `RESTORE_HOST` GitHub environment variables) as a `/32` IP block, because Kubernetes NetworkPolicy cannot match hostnames. **`BACKUP_HOST` and `RESTORE_HOST` must be IP addresses.**
 
 ### Cloud-native deployments
 

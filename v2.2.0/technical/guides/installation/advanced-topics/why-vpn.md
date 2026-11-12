@@ -154,7 +154,7 @@ OpenCRVS does not ship or configure a WAF. Choose a provider (for example Cloudf
 OpenCRVS deployment scripts provide basic protection and configuration options only. Use them together with a WAF, not instead of one.
 {% endhint %}
 
-* Limit the application to known IP ranges, and the Kibana, MinIO and Metabase consoles to administrator IPs only. See [IP Allowlisting](ip-allowlisting.md).
+* Limit the application to known IP ranges, and the Kibana, RustFS and Metabase consoles to administrator IPs only. See [IP Allowlisting](ip-allowlisting.md).
 * Keep the default Kubernetes network policies and host firewall enabled. See [Kubernetes Network Policy](kubernetes-network-policy.md) and [Ubuntu Firewall configuration](ubuntu-firewall-configuration.md).
 * Require a VPN or bastion host for SSH. See [SSH access](ssh-access.md).
 * Never disable 2FA in production.

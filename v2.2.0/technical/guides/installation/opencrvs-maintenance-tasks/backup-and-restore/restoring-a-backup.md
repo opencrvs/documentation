@@ -169,7 +169,7 @@ Usually to make sure restore was successful you need to verify data from Product
 
     ```
     NAME               SCHEDULE    TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
-    minio-restore      0 0 * * *   <none>     False     0        <none>          62s
+    rustfs-restore      0 0 * * *   <none>     False     0        <none>          62s
     postgres-restore   0 0 * * *   <none>     False     0        <none>          61s
     ```
 
@@ -188,7 +188,7 @@ Wait at least for first job execution, usually takes at to 24 hours
 
     ```
     NAME                        STATUS     COMPLETIONS   DURATION   AGE
-    minio-restore-29384640      Complete   1/1           11s        7h16m
+    rustfs-restore-29384640      Complete   1/1           11s        7h16m
     postgres-restore-29384640   Complete   1/1           11s        7h16m
     ```
 
@@ -217,7 +217,7 @@ In same cases during upgrade or testing restore should be disabled.
 
     ```
     NAME               SCHEDULE    TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
-    minio-restore      0 0 * * *   <none>     False     0        <none>          62s
+    rustfs-restore      0 0 * * *   <none>     False     0        <none>          62s
     postgres-restore   0 0 * * *   <none>     False     0        <none>          61s
     ```
 4.  Disable all restore cronjobs:
@@ -231,7 +231,7 @@ In same cases during upgrade or testing restore should be disabled.
 
     ```
     NAME               SCHEDULE    TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
-    minio-restore      0 0 * * *   <none>     True      0        <none>          62s
+    rustfs-restore      0 0 * * *   <none>     True      0        <none>          62s
     postgres-restore   0 0 * * *   <none>     True      0        <none>          61s
     ```
 6.  (Optionally) Disable particular cronjob:

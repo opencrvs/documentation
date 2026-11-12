@@ -13,7 +13,7 @@ This section explains how to deploy OpenCRVS dependencies grouped in 3 helm char
   * PostgreSQL
   * Elasticsearch
   * Redis
-  * MinIO
+  * RustFS
 * **Tracing:** [OpenTelemetry Collector](https://github.com/open-telemetry/opentelemetry-helm-charts) helm chart. It receives traces from OpenCRVS services, Traefik and NGINX and forwards them to Elastic APM. It is installed only when `environments/<env>/opentelemetry/values.yaml` exists.
 
 Environment configuration script (`yarn environment:init`) prepared configuration files (`values.yaml`) for deployment with default parameters. Navigate to `environments` folder inside infrastructure repository and review configuration files.
@@ -60,13 +60,13 @@ A default configuration, created by the `yarn environment:init` script, is suffi
       ```
       NAME                             READY   STATUS      RESTARTS     AGE
       elasticsearch-0                  1/1     Running     0            8d
-      minio-0                          1/1     Running     0            8d
+      rustfs-0                         1/1     Running     0            8d
       postgres-0                       1/1     Running     0            8d
       redis-0                          1/1     Running     0            8d
       ```
-* Verify that **MinIO** and **Kibana** are available:
+* Verify that **RustFS** and **Kibana** are available:
   * Kibana URL: `https://kibana.<your domain>`\
     Username and password are stored as Kubernetes secret `elasticsearch-opencrvs-users` in `opencrvs-deps-<environment>` namespace.
-  * MinIO URL: `https://minio.<your domain>` . Username and password are stored as Kubernetes secret `minio-opencrvs-users` in `opencrvs-deps-<environment>` namespace.
+  * RustFS URL: `https://rustfs.<your domain>` . Username and password are stored as Kubernetes secret `s3-opencrvs-users` in `opencrvs-deps-<environment>` namespace.
 
 > NOTE: Credentials are stored at GitHub secrets or can be fetched namespace `opencrvs-deps-<env>`.
