@@ -148,6 +148,8 @@ OpenCRVS does not ship or configure a WAF. Choose a provider (for example Cloudf
 * Block common web attacks (OWASP Top 10) and bots with managed rule sets.
 * Absorb DDoS attacks.
 
+To also require users to sign in with an identity provider before they reach OpenCRVS, use an access proxy. For a worked example with open source alternatives, see [Access proxy example: Cloudflare Access with Google](access-proxy-example-cloudflare-access.md).
+
 #### Restrict access in OpenCRVS
 
 {% hint style="warning" %}

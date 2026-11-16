@@ -150,6 +150,7 @@
       * [Kubernetes service accounts](technical/guides/installation/advanced-topics/kubernetes-service-accounts.md)
       * [SSH access](technical/guides/installation/advanced-topics/ssh-access.md)
       * [Kubernetes cluster access](technical/guides/installation/advanced-topics/kubernetes-cluster-access.md)
+      * [Access proxy example: Cloudflare Access with Google](technical/guides/installation/advanced-topics/access-proxy-example-cloudflare-access.md)
       * [TLS/SSL Configuration for traefik](technical/guides/installation/advanced-topics/tls-ssl-configuration-for-traefik/README.md)
         * [LetsEncrypt https challenge in development environments](technical/guides/installation/advanced-topics/tls-ssl-configuration-for-traefik/letsencrypt-https-challenge-in-development-environments.md)
         * [LetsEncrypt DNS challenge in production](technical/guides/installation/advanced-topics/tls-ssl-configuration-for-traefik/letsencrypt-dns-challenge-in-production.md)
