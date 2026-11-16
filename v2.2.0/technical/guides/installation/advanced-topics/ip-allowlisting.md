@@ -50,7 +50,7 @@ flowchart LR
 
 Use only one of these options:
 
-1. **IP filtering by a WAF (recommended).** A Web Application Firewall in front of OpenCRVS decides which users may connect. The Traefik allowlists only admit the WAF's addresses, so users cannot bypass it by connecting to your servers directly. A WAF can also filter by country (geo-IP), which Traefik cannot.
+1. **IP filtering by a WAF (recommended).** A Web Application Firewall in front of OpenCRVS decides which users may connect. The Traefik allowlists only admit the WAF's addresses, so users cannot bypass it by connecting to your servers directly. A WAF can also filter by country (geo-IP), which Traefik cannot. For an example of an access proxy that also authenticates users, see [Access proxy example: Cloudflare Access with Google](access-proxy-example-cloudflare-access.md).
 2. **IP filtering by Traefik.** The Traefik allowlists contain the networks your users connect from.
 
 You cannot combine them: behind a WAF that proxies traffic (as cloud WAFs do), every request reaches Traefik from the WAF's own IP addresses, so Traefik cannot tell users apart.
