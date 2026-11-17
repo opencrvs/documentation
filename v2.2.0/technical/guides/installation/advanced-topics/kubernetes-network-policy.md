@@ -44,7 +44,6 @@ The table above shows the chart defaults. Environments created with `yarn enviro
 The following services are allowed to accept connections from any private subnet:
 
 * `client`
-* `gateway`
 * `login`
 * `countryconfig`
 * `dashboards`
@@ -175,7 +174,7 @@ Reference for the `opencrvs-services` chart:
 | `network_policy.allow_same_namespace`                   | `true`    | Allow pods in the same namespace to reach each other.                            |
 | `network_policy.allowed_namespaces`                     | `[]`      | Namespaces OpenCRVS pods are allowed to reach (egress), e.g. the dependencies namespace — see Cross-namespace access. |
 | `network_policy.annotations` / `labels`                 | `{}`      | Extra annotations/labels on every generated NetworkPolicy. Can be overridden per service.                         |
-| `<service>.network_policy.ingress_mode` / `egress_mode` | global    | Per-service override, same modes. Unset values inherit the global setting. Chart defaults: `ingress_mode: private` for `client`, `gateway`, `login`, `countryconfig` and `dashboards`; `egress_mode: full` for `countryconfig`; `ingress_mode: deny` / `egress_mode: full` for `deployment_jobs`. |
+| `<service>.network_policy.ingress_mode` / `egress_mode` | global    | Per-service override, same modes. Unset values inherit the global setting. Chart defaults: `ingress_mode: private` for `client`, `login`, `countryconfig` and `dashboards`; `egress_mode: full` for `countryconfig`; `ingress_mode: deny` / `egress_mode: full` for `deployment_jobs`. |
 | `<service>.network_policy.rules` / `custom_rules`       | `[]`      | Explicit NetworkPolicy rules for one service.                                                                     |
 
 For the complete reference, see:
