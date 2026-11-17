@@ -143,7 +143,7 @@ To stop or remove the cluster itself, see [Stop or remove the cluster](prerequis
 If `opencrvs.localhost` does not resolve, add this line to `/etc/hosts` (macOS, Ubuntu and WSL) or `C:\Windows\System32\drivers\etc\hosts` (Windows, edit as administrator):
 
 ```
-127.0.0.1 opencrvs.localhost register.opencrvs.localhost login.opencrvs.localhost gateway.opencrvs.localhost countryconfig.opencrvs.localhost minio.opencrvs.localhost minio-console.opencrvs.localhost
+127.0.0.1 opencrvs.localhost register.opencrvs.localhost login.opencrvs.localhost countryconfig.opencrvs.localhost minio.opencrvs.localhost minio-console.opencrvs.localhost
 ```
 
 On Windows, the browser runs on Windows, so edit the Windows hosts file even if you use WSL.
