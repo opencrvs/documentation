@@ -92,6 +92,8 @@ When a new version takes effect, the client uses it for new records without a re
 
 `defineConfig` returns a `VersionedEventConfig`. To read the fields of a version in code, use `resolveEventConfig`, for example `resolveEventConfig(birthEvent).actions`. The `opencrvs upgrade` command runs the `resolve-versioned-event-config` codemod. It rewrites such reads under `src/` and lists the ones that it could not rewrite.
 
+In `src/analytics/analytics.ts`, `resolveEventConfig` gives the version in effect today. This is correct while an event has one version. When you add a second version, read the configuration of each record with `getEventConfigForRecord(config, event)` instead. Otherwise, analytics drops the fields that only an older version has, and the Metabase cards that use those fields break.
+
 #### API
 
 * Each event in the `GET /api/events/config` response is `{ id, label, advancedSearch, versions }`. Each version has its `id`, `label` and `effectiveFrom`, and the fields of that version.
