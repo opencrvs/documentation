@@ -129,6 +129,16 @@ The available chain steps for `.isBefore()` and `.isAfter()`:
 * `.date(date | field)` — compares against an absolute `YYYY-MM-DD` date or another date field.
 * `.days(N).inPast()` / `.inFuture()` — N days before/after today.
 * `.days(N).fromDate(date | field)` / `.fromNow()` — N days before/after the given date.
+* `.days(N).beforeAction(ref)` / `.afterAction(ref)` — N days before/after the date of an action on the record. Build `ref` with `event.firstAction(...)` or `event.lastAction(...)`, which take one or more action types. Only accepted actions count. Until a matching action exists, the rule compares with today.
+
+```ts
+// Child was born more than 365 days before the first notify or declare action
+field('child.dob').isAfter().days(365).beforeAction(
+  event.firstAction(ActionType.NOTIFY, ActionType.DECLARE)
+)
+```
+
+For a custom action, pass `{ type: ActionType.CUSTOM, customActionType: 'NAME' }`. A bare `ActionType.CUSTOM` is not allowed.
 
 ## User conditionals
 
