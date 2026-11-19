@@ -38,6 +38,8 @@ The returned builder exposes these methods:
 | `.isAfter().days(n).inFuture()`      | Date is more than `n` days in the future.                                     |
 | `.isAfter().days(n).fromDate(date)`  | Date is at least `n` days after a fixed date or field reference.              |
 | `.isAfter().date(date)`              | Date is after a fixed ISO date or another field reference (no day tolerance). |
+| `.isAfter().days(n).beforeAction(event.firstAction(...))` | Date is more than `n` days before the date of the first matching accepted action. Use `event.lastAction(...)` for the last one. Compares with today until such an action exists. |
+| `.isBefore().days(n).beforeAction(event.firstAction(...))` | Date is fewer than `n` days before the date of the first matching accepted action. |
 | `.isAfter().now()`                   | Date is in the future.                                                        |
 | `.isBefore().days(n).inPast()`       | Date is fewer than `n` days ago.                                              |
 | `.isBefore().days(n).fromDate(date)` | Date is fewer than `n` days before a fixed date or field reference.           |
