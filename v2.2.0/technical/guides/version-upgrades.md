@@ -366,7 +366,7 @@ Below, "your revoked flag" means the flag your custom revoke adds. The examples 
 **Do not delete the custom revoke action or your revoked flag.** Flags are recalculated from the current configuration, so removing them un-revokes every record revoked with them. Keep both, and stop new custom revocations instead.
 {% endhint %}
 
-1. **Event configuration.** Add the core actions next to the custom ones. Copy the custom actions' `label`, `icon`, `supportingCopy`, `form` and `flags`, leaving out every operation on your revoked flag: the `REVOKED` status replaces it. Hide the core revoke on records revoked the old way:
+1. **Event configuration.** Add the core actions next to the custom ones. Copy the custom actions' `label`, `icon`, `dialogCopy` (`supportingCopy` before 2.2), `form` and `flags`, leaving out every operation on your revoked flag: the `REVOKED` status replaces it. Hide the core revoke on records revoked the old way:
 
    ```ts
    {
