@@ -24,7 +24,7 @@ export const birthEvent = defineConfig({
         description: 'The label shown on the action menu for Escalate-action',
         id: 'event.birth.action.escalate.label'
       },
-      supportingCopy: {
+      dialogCopy: {
         defaultMessage: 'Escalating this declaration will forward it to the chosen authority for further review and decision.',
         description: 'This is the confirmation text for the escalate action',
         id: 'event.birth.action.escalate.supportingCopy'

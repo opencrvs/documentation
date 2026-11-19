@@ -265,15 +265,15 @@ Example 2: `PRINT_CERTIFICATE` configures complete form with two fields:
 
 ### Configuring core actions
 
-Every core action accepts the same base keys: `label`, `icon`, `supportingCopy`, `conditionals` and `flags`. Each action type resolves to its own configuration entry. When an action has no entry in `actions`, OpenCRVS uses its built-in label and icon.
+Every core action accepts the base keys `label`, `icon`, `conditionals` and `flags`. The actions that open a confirmation dialog also accept `dialogCopy`, the text at the top of the dialog. Each action type resolves to its own configuration entry. When an action has no entry in `actions`, OpenCRVS uses its built-in label and icon.
 
 | Action                                                                                                         | Configurable keys                                                                                   |
 | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `DELETE`, `MARK_AS_DUPLICATE`, `MARK_AS_NOT_DUPLICATE`, `APPROVE_CORRECTION`, `REJECT_CORRECTION`, `UNARCHIVE` | `label`, `icon`, `supportingCopy`, `conditionals`, `flags`                                          |
-| `ASSIGN`, `UNASSIGN`                                                                                           | `label`, `icon`, `supportingCopy`, `conditionals` (no `flags` — meta actions are excluded from flag resolution) |
+| `DELETE`, `MARK_AS_DUPLICATE`, `MARK_AS_NOT_DUPLICATE`, `APPROVE_CORRECTION`, `REJECT_CORRECTION`, `UNARCHIVE` | `label`, `icon`, `conditionals`, `flags` (`UNARCHIVE` also accepts `dialogCopy`)                  |
+| `ASSIGN`, `UNASSIGN`                                                                                           | `label`, `icon`, `conditionals` (no `flags` — meta actions are excluded from flag resolution) |
 | `DUPLICATE_DETECTED`                                                                                           | `flags` only — the action is system-generated and never shown as a button                           |
-| `READ`                                                                                                         | `label`, `icon`, `supportingCopy`, `review` (no `conditionals`, no `flags`)                         |
-| `NOTIFY`, `DECLARE`, `REGISTER`, `ARCHIVE`, `REJECT`, `REVOKE_REGISTRATION`, `REINSTATE_REGISTRATION`                                                           | base keys plus an optional confirmation dialog `form` (see below)                                   |
+| `READ`                                                                                                         | `label`, `icon`, `review` (no `conditionals`, no `flags`)                         |
+| `NOTIFY`, `DECLARE`, `REGISTER`, `ARCHIVE`, `REJECT`, `REVOKE_REGISTRATION`, `REINSTATE_REGISTRATION`                                                           | base keys plus `dialogCopy` and an optional confirmation dialog `form` (see below)                                   |
 
 `NOTIFY` uses its own configuration for label, flags, icon, conditionals and confirmation dialog `form`.
 
