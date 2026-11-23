@@ -42,6 +42,7 @@ The returned builder exposes these methods:
 | `.isBefore().days(n).inPast()`       | Date is fewer than `n` days ago.                                              |
 | `.isBefore().days(n).fromDate(date)` | Date is fewer than `n` days before a fixed date or field reference.           |
 | `.isBefore().now()`                  | Date is in the past.                                                          |
+| `.isAfter()` or `.isBefore()` with `.days(n).beforeAction(ref)` / `.afterAction(ref)` | Compares the date with `n` days before/after the date of the action in `ref`. Create `ref` with `event.firstAction(...)` or `event.lastAction(...)`. Uses today until the action exists. |
 
 **Example 1 — show a field only when another field has a specific value**
 
