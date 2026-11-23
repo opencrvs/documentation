@@ -129,6 +129,14 @@ The available chain steps for `.isBefore()` and `.isAfter()`:
 * `.date(date | field)` — compares against an absolute `YYYY-MM-DD` date or another date field.
 * `.days(N).inPast()` / `.inFuture()` — N days before/after today.
 * `.days(N).fromDate(date | field)` / `.fromNow()` — N days before/after the given date.
+* `.days(N).beforeAction(ref)` / `.afterAction(ref)` — N days before/after the date of an action on the event. Create `ref` with `event.firstAction(...)` or `event.lastAction(...)`.
+
+`event.firstAction(type, ...)` and `event.lastAction(type, ...)` take one or more action types. They select the date of the first or the last accepted action that matches. For a custom action, pass `{ type: ActionType.CUSTOM, customActionType: 'NAME' }`. If the action was accepted asynchronously, the date of the original request is used. Until a matching action exists, the comparison uses today's date.
+
+```ts
+// Child date of birth is more than 30 days before the first DECLARE action
+field('child.dob').isAfter().days(30).beforeAction(event.firstAction(ActionType.DECLARE))
+```
 
 ## User conditionals
 
