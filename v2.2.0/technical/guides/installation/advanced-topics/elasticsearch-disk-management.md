@@ -52,7 +52,7 @@ After deployment, Elasticsearch will mount the new host path and continue storin
 
 #### Option 3: Reduce logs storage by Helm chart
 
-OpenCRVS allows you to reduce Elasticsearch storage usage by lowering the retention period for observability data. This is configured in the dependencies Helm chart values. By default, application logs and monitoring metrics are retained for 30 days. APM data (traces and errors) is retained for 7 days and is not affected by these settings.
+OpenCRVS allows you to reduce Elasticsearch storage usage by lowering the retention period for observability data. This is configured in the dependencies Helm chart values. By default, application logs are retained for 7 days and monitoring metrics for 30 days. APM data (traces and errors) is retained for 7 days and is not affected by these settings.
 
 Use this option when Elasticsearch is running correctly, but disk usage is growing because logs or metrics are retained for longer than required.
 
