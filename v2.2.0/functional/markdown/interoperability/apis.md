@@ -87,7 +87,7 @@ Requests are authenticated in one of two ways:
 
 Accepting or rejecting an action that country config has paused can only be done with a system client token holding the `record.action.accept` or `record.action.reject` scope. A user JWT is refused for these calls, whatever permissions the user has.
 
-Tokens are signed with RS256, and the matching public key is published at the `/.well-known` endpoint so downstream services can verify them without sharing secrets.
+Tokens are signed with RS256, and the matching public key is published at the `/.well-known` endpoint so downstream services can verify them without sharing secrets. The auth service also publishes its public keys as a JSON Web Key Set at `/.well-known/jwks.json`. The set contains the token verification key and the request-signing key of core. Each key has its RFC 7638 thumbprint as `kid`.
 
 ***
 
