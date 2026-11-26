@@ -60,7 +60,7 @@ Read [#version-specific-notes-for-2.1](../technical/guides/version-upgrades.md#v
 
 #### **Improvements**
 
-* Log retention increased from 2 to 30 days by default. Check the disk headroom of your servers.
+* Log retention increased from 2 to 7 days by default. Check the disk headroom of your servers.
 * Advanced search keeps records at renamed or inactivated offices, facilities and administrative areas findable.
 * Ubuntu 26.04 support and Kubernetes v1.36.
 * The data seed job validates all seed data before writing anything.

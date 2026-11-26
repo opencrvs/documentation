@@ -274,7 +274,7 @@ Logging data is stored in Elasticsearch and can be searched in Kibana. It comes 
 * Operating system logs (syslog and authentication logs), collected by Filebeat
 * OpenTelemetry traces from OpenCRVS services, Traefik and NGINX, collected by the OpenTelemetry Collector and stored in Elastic APM
 
-By default, the [OpenCRVS Dependencies Helm chart](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/charts/dependencies) keeps logs for 30 days and APM (tracing) data for 7 days. To change the log retention, set `monitoring.logs.retention_days`.
+By default, the [OpenCRVS Dependencies Helm chart](https://github.com/opencrvs/opencrvs-core/tree/v2.1.0/charts/dependencies) keeps logs for 7 days and APM (tracing) data for 7 days. To change the log retention, set `monitoring.logs.retention_days`.
 
 Unlike monitoring data, logging data grows with use: every record adds log entries as users declare, validate, register, search for, print and correct it. Estimate the logging disk from the number of records you register in a year, `records_per_year` from [Estimate the number of records](#estimate-the-number-of-records):
 
@@ -283,7 +283,7 @@ logging_disk = records_per_year / 365 * retention_days * 0.5 MB
 ```
 
 * `records_per_year`: records registered in a year. For a planning horizon of several years, use its last year: `records_per_year * (1 + growth_rate)^(years - 1)`
-* `retention_days`: number of days logs are kept, 30 by default
+* `retention_days`: number of days logs are kept, 7 by default
 * `0.5 MB`: logs per record
 
 Keep at least 10 GB for logs, even if the formula gives less: OpenCRVS services, Kubernetes and the operating system write logs even when nobody is using OpenCRVS.

@@ -14,7 +14,7 @@ Monitoring helps keep an OpenCRVS installation healthy, reliable, and performant
 
 OpenCRVS includes pre-installed tools for monitoring and debugging live installations. The  [Elastic Stack](https://www.elastic.co/elastic-stack) collects metrics, logs, and alerts, while [Kibana](https://www.elastic.co/kibana) provides access to this observability data.
 
-By default, application logs and infrastructure metrics are retained for the last 30 days, and APM data (traces, errors and service metrics) for the last 7 days. Log and metric retention can be changed with `monitoring.logs.retention_days` and `monitoring.metrics.retention_days` in the dependencies helm chart values, see [elasticsearch-disk-management.md](../installation/advanced-topics/elasticsearch-disk-management.md "mention").
+By default, infrastructure metrics are retained for the last 30 days, and application logs and APM data (traces, errors and service metrics) for the last 7 days. Log and metric retention can be changed with `monitoring.logs.retention_days` and `monitoring.metrics.retention_days` in the dependencies helm chart values, see [elasticsearch-disk-management.md](../installation/advanced-topics/elasticsearch-disk-management.md "mention").
 
 This page gives you brief overview how to use preconfigured monitoring solution.
 
