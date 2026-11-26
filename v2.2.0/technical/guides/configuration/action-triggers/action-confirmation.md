@@ -55,7 +55,7 @@ Return `HTTP 202` when the decision is not available yet, for example while wait
 **Credentials**
 
 {% hint style="danger" %}
-Do not call `accept` or `reject` with the token Core sent to your trigger. That token only proves the request came from Core — it carries no scopes.
+Core does not send a token to your trigger. It signs the request instead, with the `Signature`, `Signature-Input` and `Content-Digest` headers. Use these headers to check that the request came from Core. They do not carry scopes. Do not use them to call `accept` or `reject`.
 {% endhint %}
 
 Call Core with **your country configuration's own system client**. The client needs:
