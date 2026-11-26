@@ -201,16 +201,16 @@
 * [APIs](technical/apis/README.md)
   * [Core APIs](technical/apis/core-apis/README.md)
     * ```yaml
+      type: builtin:openapi
       props:
         models: true
         downloadLink: true
         grouping: by-tag
-      type: builtin:openapi
       dependencies:
         spec:
           ref:
             kind: openapi
-            spec: events-v20
+            spec: events-20-new
       ```
   * [Country-config APIs](technical/apis/country-config-apis/README.md)
     * ```yaml
