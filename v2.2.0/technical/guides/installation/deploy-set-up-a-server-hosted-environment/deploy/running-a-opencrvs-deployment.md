@@ -2,7 +2,7 @@
 
 ### Preparation steps
 
-Before you can deploy, you need to make sure that your country configuration Docker image has compiled and has been pushed to your container registry (E.G. Dockerhub). This was explained previously in [Fork and buld the countryconfig repo](../../set-up-github-and-dockerhub-accounts.md)
+Before you can deploy, you need to make sure that your country configuration Docker image has compiled and has been pushed to your container registry (E.G. Dockerhub). This was explained previously in [Publish image to container registry](../../publish-image-to-container-registry.md)
 
 Copy the githash tag associated with your **countryconfig** Docker container image because you will use it in the next step.
 
