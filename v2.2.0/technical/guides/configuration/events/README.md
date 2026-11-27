@@ -87,6 +87,9 @@ When a new version takes effect, the client uses it for new records without a re
 * An event must have a version in effect today, or `defineConfig` rejects it. It checks today in UTC−12, the last time zone to begin the day. Schedule an event's only version a day ahead.
 * Records created before 2.2 have the version `initial`. When you add `versions` to an existing event, give the version that holds your current configuration the id `initial`.
 * Never remove or rename a version that records use. A record whose version is not configured cannot be opened, and the search reindex fails, naming the missing version.
+* A field that advanced search or deduplication uses must have the same type in every version that has it. Search does not convert values between types, so `defineConfig` rejects a type change on such a field and names the field and both versions. For example, if search uses `child.weightAtBirth`, do not change it from TEXT in one version to NUMBER in the next. A field that no search or deduplication uses can change type.
+* To use a new type, add a new field with a new id. To search or deduplicate the records of both versions, list both ids in `searchFields` or `matchAgainst`. Do this only when one value matches both fields, for example TEXT fields for the parts of a name and the NAME field that replaces them. A TEXT field matches only its whole value, so search the name parts with one TEXT input each, for example `searchFields: ['child.firstname', 'child.name']`.
+* Every field that deduplication uses must exist in at least one version. Otherwise, `defineConfig` rejects the configuration.
 
 #### Reading a version in code
 
