@@ -114,6 +114,10 @@ Keep both variables on the same release. Tilt downloads the charts again when `O
 
 Tilt detects your engine from the current `kubectl` context. To override the detection, set `LOCAL_K8S=minikube` (Traefik as a NodePort on port 30080) or `LOCAL_K8S=orbstack` (Traefik as a `LoadBalancer` on port 80). See [Prerequisites](prerequisites.md#start-a-local-kubernetes-cluster).
 
+#### Add your own resources
+
+To deploy something next to OpenCRVS, for example a companion application or an extra Helm chart, use `tilt/custom.tilt`. See [Customising Tilt](customising-tilt.md).
+
 ### Stop Tilt
 
 Press `Ctrl+C` in the terminal where `tilt up` runs. This stops Tilt, but OpenCRVS keeps running in the cluster. Run `tilt up` again to continue.
