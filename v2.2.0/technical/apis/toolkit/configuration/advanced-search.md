@@ -36,6 +36,8 @@ function field(
 
 Only TEXT, TEXTAREA, EMAIL, PHONE, ID, SELECT, RADIO_GROUP, COUNTRY, LOCATION, ADMINISTRATIVE_AREA, NUMBER and DATE fields take a value. Other field types (such as NAME and ADDRESS) and dates searched as a range accept only `true` or `false`. Fields using `config.searchFields` don't support `defaultValue`. An event configuration that breaks these rules fails validation.
 
+A search input with `config.searchFields` searches each listed field and matches a record when one of them matches. The fields can come from different versions of the event, so one input finds the records of all versions. List fields together only when one search value matches all of them, because search does not convert values between types. See [Rules for versions](../../../guides/configuration/events/README.md#rules-for-versions).
+
 The returned builder exposes four terminal methods:
 
 | Method      | Match type         | Use for                             |
