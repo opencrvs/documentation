@@ -34,7 +34,7 @@ Fuzzy text match — tolerates minor spelling differences.
 | -------------- | ------------------ | ------------ | -------------------------------------------------------------- |
 | `fuzziness`    | `string \| number` | `'AUTO:4,7'` | Edit distance: ≤3 chars → 0 edits, 4–6 → 1 edit, ≥7 → 2 edits. |
 | `boost`        | `number`           | `1`          | Scoring weight multiplier.                                     |
-| `matchAgainst` | `string`           | —            | Match this field's value against a different field ID instead. |
+| `matchAgainst` | `string \| string[]` | —          | Match this field's value against a different field ID instead. A list of field IDs matches any of them (OR). |
 
 **`.strictMatches(options?)`**
 
@@ -44,7 +44,7 @@ Exact value match.
 | -------------- | -------- | ------- | -------------------------------------------------------------------------- |
 | `value`        | `string` | —       | Constant value both records must share. Omit to match any identical value. |
 | `boost`        | `number` | `1`     | Scoring weight multiplier.                                                 |
-| `matchAgainst` | `string` | —       | Compare against a different field ID.                                      |
+| `matchAgainst` | `string \| string[]` | —       | Compare against a different field ID, or a list of field IDs matched with OR. |
 
 **`.dateRangeMatches(options)`**
 
@@ -55,7 +55,7 @@ Date proximity match — records within ±`days` of each other score as potentia
 | `days`         | `number` | Yes      | Half-width of the match window in days.                                                                                 |
 | `pivot`        | `number` | No       | Day distance at which the relevance score is halved. Defaults to `⌊(days * 2) / 3⌋`.                                    |
 | `boost`        | `number` | No       | Scoring weight multiplier (default `1`).                                                                                |
-| `matchAgainst` | `string` | No       | When set, matches this field against `matchAgainst` instead of against itself; useful for cross-field age/dob matching. |
+| `matchAgainst` | `string \| string[]` | No       | When set, matches this field against `matchAgainst` instead of against itself; useful for cross-field age/dob matching. A list of field IDs matches any of them (OR). |
 
 **Example 1 — match births with similar child names and nearby dates**
 
